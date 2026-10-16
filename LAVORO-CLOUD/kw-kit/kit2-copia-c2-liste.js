@@ -1,20 +1,21 @@
 // ═══ KW kit v2 · COPIA FEDELE · liste del blocco C2 (reel 5 di Kallaway) — L01 · L02 (+ la lista che serve a K14 e F03) ═══════
 // Misurate sul reel 5 con _analisi/ritmo/_script_copia02/barre.py (le strisce dell'accento rosso fotogramma per fotogramma).
 
-// ── la lista del reel 5: barre scure 810×120 (attiva ×1,077), passo 160, accento a sinistra 24 px, numero neretto, testo sfocato
+// ── la lista del reel 5: barre scure 858×122 (attiva ×1,077), passo 160, accento a sinistra 24 px, numero neretto, testo sfocato
 // finché non è detto. In un contenitore (nel mondo) che si può spostare: .show, .entra (da sinistra, scena 1), .risolvi (L02,
 // con la banda di luce F03), .attiva, .barra(i) (per K14: copia nell'HUD) ──
-// voci: [testo | [riga1, riga2]] · o: { w (810), h (120), passo (160), fsNum (40), fs (29), z }
+// voci: [testo | [riga1, riga2]] · o: { w (858), h (122), passo (160), fsNum (42), fs (31), z }
 const r5Lista = (parent, cx, top, voci, o) => {
   o = o || {};
-  const w = o.w || 810, h = o.h || 120, passo = o.passo || 160, fsN = o.fsNum || 40, fs = o.fs || 29;
+  const w = o.w || 858, h = o.h || 122, passo = o.passo || 160, fsN = o.fsNum || Math.round(42 * w / 858), fs = o.fs || Math.round(31 * w / 858);
+  const kx = w / 858;
   const box = layered(el(parent, { position: "absolute", left: cx - w / 2, top, width: w, height: 1, zIndex: o.z || 12 }));
   const mkBarra = (par, i, txt, x, y, nitido) => {
     const r = layered(el(par, { position: "absolute", left: x, top: y, width: w, height: h, borderRadius: 14, background: R5.barra, boxShadow: `inset 0 0 0 1.5px ${R5.bordo}, 0 14px 36px rgba(0,0,0,.45)`, overflow: "hidden" }));
     const acc = el(r, { position: "absolute", left: 0, top: 0, width: 24, height: h, background: K.lime, boxShadow: R5.glowL(0.5) });
-    const num = el(r, { position: "absolute", left: 37, top: 0, height: h, display: "flex", alignItems: "center", fontFamily: FS, fontWeight: 800, fontSize: fsN, color: K.white, letterSpacing: "0.01em" }, String(i + 1).padStart(2, "0"));
+    const num = el(r, { position: "absolute", left: Math.round(39 * kx), top: 0, height: h, display: "flex", alignItems: "center", fontFamily: FS, fontWeight: 800, fontSize: fsN, color: K.white, letterSpacing: "0.01em" }, String(i + 1).padStart(2, "0"));
     const righe = Array.isArray(txt) ? txt : [txt];
-    const st = { position: "absolute", left: 118, top: 0, right: 26, height: h, display: "flex", flexDirection: "column", justifyContent: "center", fontFamily: FS, fontWeight: 700, fontSize: righe.length > 1 ? Math.round(fs * 0.9) : fs, lineHeight: 1.02, color: K.white, whiteSpace: "nowrap", letterSpacing: "-0.01em" };
+    const st = { position: "absolute", left: Math.round(125 * kx), top: 0, right: 26, height: h, display: "flex", flexDirection: "column", justifyContent: "center", fontFamily: FS, fontWeight: 700, fontSize: righe.length > 1 ? Math.round(fs * 0.9) : fs, lineHeight: 1.02, color: K.white, whiteSpace: "nowrap", letterSpacing: "-0.01em" };
     const html = righe.map((s) => `<div>${s}</div>`).join("");
     const soft = el(r, Object.assign({}, st, { filter: "blur(7px)", opacity: nitido ? 0 : 0.6 }), html);
     const sharp = el(r, Object.assign({}, st, { clipPath: nitido ? "inset(0% 0% 0% 0%)" : "inset(0% 0% 0% 100%)", textShadow: "0 0 10px rgba(255,255,255,.25)" }), html);
@@ -27,7 +28,7 @@ const r5Lista = (parent, cx, top, voci, o) => {
     // voci già lì (piene) al primo fotogramma
     piene: (n, nitide) => { for (let i = 0; i < n; i++) { gsap.set(rows[i].r, { opacity: 1 }); if (nitide && nitide.includes(i)) { gsap.set(rows[i].soft, { opacity: 0 }); gsap.set(rows[i].sharp, { clipPath: "inset(0% 0% 0% 0%)" }); } } },
     // la voce i arriva da sotto e si accende (Kallaway scena 3: 9,0 e 9,17 s, mentre la lista sale)
-    show: (i, t, dur) => { gsap.set(rows[i].r, { y: 34 }); tl.to(rows[i].r, { opacity: 1, y: 0, duration: dur || 0.22, ease: "power2.out" }, t); },
+    show: (i, t, dur) => { gsap.set(rows[i].r, { y: 34 }); tl.to(rows[i].r, { opacity: 1, y: 0, duration: dur || 0.15, ease: "power2.out" }, t); },
     // la voce i entra da sinistra in corsa e frena (scena 1: la prima a 0,125 s da x −130, poi 0,04 s fra una e l'altra; misurato:
     // accento a 9 · 45 · 72 · 93 · 108 · 120 · 129 · 135 · 138 px a +0,04 … +0,71 s)
     entra: (i, t, dx) => {
@@ -41,8 +42,8 @@ const r5Lista = (parent, cx, top, voci, o) => {
     risolvi: (i, t, o2) => {
       o2 = o2 || {};
       const dur = o2.dur || 0.67, rw = rows[i];
-      COPIA.F03(rw.r, t, { dur, w: 60 });
-      tl.to(rw.sharp, { clipPath: "inset(0% 0% 0% 0%)", duration: dur, ease: "power1.inOut" }, t);
+      COPIA.F03(rw.r, t, { dur, w: 60, ease: o2.ease });
+      tl.to(rw.sharp, { clipPath: "inset(0% 0% 0% 0%)", duration: dur, ease: o2.ease || "none" }, t);
       tl.to(rw.soft, { opacity: 0, duration: dur * 0.9, ease: "power1.in" }, t);
       if (o2.attiva !== false) api.attiva(i, t + (o2.ritardo == null ? 0.2 : o2.ritardo), o2.durAttiva);
     },
@@ -67,7 +68,8 @@ const r5Lista = (parent, cx, top, voci, o) => {
  * kallaway: reel 5, 8,917 s · al taglio c'è già la prima barra (titolo fisso sopra); la seconda e la terza arrivano da sotto a
  *   9,0 e 9,17 s mentre tutta la lista sale e frena (1,4 s); il testo delle voci è sfocato finché non lo dice; poi la camera si
  *   allontana piano (fino a ×0,93 a 13,4 s) — la lista «non sta mai ferma»
- * misure: barre 810×120 px (0,75 della larghezza), passo 160, accento 24 px; prima barra in alto a y 702 → 687 → 669 → 651 → 636
+ * misure: barre 858×122 px (0,79 della larghezza; 800 px nella lista lampo della scena 1), passo 160, accento 24 px; prima barra
+ *   in alto a y 702 → 687 → 669 → 651 → 636
  *   → 621 → 609 → 600 → 591 → 582 → 564 (10,0) → 560 (10,33); camera ×1 → ×0,93 fra 9,0 e 13,4 s attorno a (540, 380)
  *   (barre.py: altezza 122 → 113 px, accento x 111 → 141)
  * quando: ogni elenco numerato annunciato all'inizio («tre motivi», «cinque impostazioni»)
@@ -84,7 +86,7 @@ COPIA.L01 = (scena, o) => {
   const [lx, ltop] = W(540, 560);
   const lista = r5Lista(L, lx, ltop, o.voci || R5_VOCI, {});
   lista.piene(o.piene == null ? 1 : o.piene, o.nitide);
-  (o.arrivi || [9.0, 9.167]).forEach((t, k) => { if (t != null) lista.show((o.piene == null ? 1 : o.piene) + k, t); });
+  (o.arrivi || [8.93, 9.1]).forEach((t, k) => { if (t != null) lista.show((o.piene == null ? 1 : o.piene) + k, t); });
   const t0 = scena.t0;
   // la salita misurata (y della prima barra in alto, schermo) → spostamento del contenitore rispetto alla posa finale (560)
   const sal = o.salita || [[0, 702], [0.083, 687], [0.167, 669], [0.25, 651], [0.333, 636], [0.417, 621], [0.5, 609], [0.583, 600], [0.667, 591], [0.75, 582], [0.917, 571], [1.083, 564], [1.25, 561], [1.416, 560]];

@@ -98,10 +98,11 @@ COPIA.O28 = (scena, o) => {
     return p;
   });
   // si riallineano: le prime due dopo la seconda (95,2–95,6 s), tutte alla fine (96,6 s)
-  tl.to(pezzi[0], { x: fin[0][0] - pos[0][0], duration: 0.4, ease: "power2.inOut" }, tt[1] + 0.2);
+  tl.to(pezzi[0], { x: 547 - pos[0][0], duration: 0.3, ease: "power2.out" }, tt[1] - 0.05);
+  tl.to(pezzi[0], { x: fin[0][0] - pos[0][0], duration: 0.4, ease: "power2.inOut" }, tt[1] + 0.25);
   tl.to(pezzi[1], { x: fin[1][0] - pos[1][0], duration: 0.4, ease: "power2.inOut" }, tt[1] + 0.2);
   tl.to(pezzi[2], { x: fin[2][0] - pos[2][0], duration: 0.15, ease: "power2.out" }, tt[2] + 0.1);
-  const al = o.allinea || 96.45;
+  const al = o.allinea || 96.15;
   pezzi.forEach((p, i) => tl.to(p, { x: 553 - pos[i][0], duration: 0.35, ease: "power2.inOut" }, al));
   return { rect: null, pose: null, ancore: { centro: W(553, 778) }, elementi: { pezzi } };
 };

@@ -236,14 +236,14 @@ COPIA.r05_apertura = (scena, o) => {
   const t0 = scena.t0 || 0;
   // titolo nell'HUD: «3» al primo fotogramma, poi una parola ogni ~0,1 s (i suoi istanti: 0 · 0,17 · 0,38 · 0,5 · 0,62 · 0,75 · 0,88 · 1,0)
   const T = r5Titolo({ righe: o.titolo || R5_TITOLO, interlinea: [92] });
-  T.inAt(o.tempiTitolo || [0, 0.17, 0.38, 0.44, 0.5, 0.56, 0.75, 0.88, 1.0]);
+  T.inAt(o.tempiTitolo || [-0.06, 0.12, 0.3, 0.38, 0.44, 0.5, 0.7, 0.84, 0.96]);
   tl.set(T.root, { opacity: 0 }, scena.t1);
   // la lista lampo: entra da sinistra (0,125 s, poi ogni 0,083 s), sale di 32 px da 0,75 s e si spegne a 1,08 s
   const [lx, lt] = W(544, 552);
-  const lista = r5Lista(L, lx, lt, o.voci || R5_VOCI, { passo: 159 });
+  const lista = r5Lista(L, lx, lt, o.voci || R5_VOCI, { passo: 159, w: 800, h: 119 });   // qui la lista è più piccola (800 px)
   [0, 1, 2].forEach((i) => {
     const r = lista.rows[i].r, f = cpCurva([[0, -151], [0.042, -130], [0.083, -109], [0.125, -94], [0.167, -79], [0.208, -67], [0.25, -55], [0.292, -46], [0.333, -37], [0.375, -31], [0.417, -25], [0.458, -19], [0.5, -15], [0.542, -10], [0.583, -7], [0.625, -4], [0.708, -1], [0.79, 0]]);
-    const ti = t0 + 0.125 + i * 0.083, st = { v: 0 };
+    const ti = t0 + 0.045 + i * 0.083, st = { v: 0 };
     gsap.set(r, { x: -151 });
     tl.to(r, { opacity: 1, duration: 0.08 }, ti);
     tl.fromTo(st, { v: 0 }, { v: 1, duration: 0.79, ease: "none", immediateRender: false, onUpdate: () => gsap.set(r, { x: f(st.v * 0.79) }) }, ti);
@@ -352,7 +352,8 @@ COPIA.r05_argomenti = (scena, o) => {
   const [rx, ry] = W(544, 841);
   const o21 = COPIA.O21({ X: rx, Y: ry, parent: L }, { r: 440, disegno: [t0 + 2.5, 0.6], compare: [t0 + 3.17, 0.16], colore: [t0 + 3.83, 0.34] });
   // la camera si allontana piano (16,5 → 18,54 s)
-  cpCam.scala([[t0 + 2.7, 1], [t0 + 3.33, 0.89], [t0 + 3.83, 0.86], [t0 + 4.67, 0.83], [scena.t1, 0.82]], [540, 841]);
+  // (misure_c2.py: il cerchio da 343 a 284 px di raggio fra 17,4 e 18,4 s; il reel 271 → 241 px)
+  cpCam.scala([[t0 + 2.7, 1], [t0 + 3.33, 0.89], [t0 + 3.61, 0.88], [t0 + 4.11, 0.82], [t0 + 4.67, 0.785], [scena.t1, 0.78]], [540, 841]);
   return { rect: null, pose: null, ancore: {}, elementi: { tel, box, voci, o21, sc } };
 };
 
@@ -382,17 +383,17 @@ COPIA.r05_problema = (scena, o) => {
   const L = scena.parent || layer(10), X = scena.X, Y = scena.Y, W = (sx, sy) => [X - 540 + sx, Y - 880 + sy];
   const t0 = scena.t0;
   const T = r5Titolo({ righe: o.titolo || [[{ t: "Il Tuo Vero Problema", ruolo: "serif", size: 84 }]], y: 262, sottolinea: { y: 356, w: 560, h: 4 } });
-  T.inAt([t0, t0 + 0.07, t0 + 0.13, t0 + 0.5]);
+  T.inAt([t0 - 0.06, t0 + 0.03, t0 + 0.1, t0 + 0.46]);
   T.sottolinea(t0 + 1.95, 0.35);
   tl.set(T.root, { opacity: 0 }, scena.t1);
   const [cx, cy] = W(557, 800);
   const card = layered(el(L, { position: "absolute", left: cx - 255, top: cy - 226, width: 510, height: 453, borderRadius: 14, background: R5.vetro, boxShadow: "inset 0 0 0 2px rgba(255,255,255,.22), 0 0 40px rgba(255,255,255,.08), 0 24px 60px rgba(0,0,0,.6)", overflow: "hidden", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", zIndex: 12 }));
   const voci = (o.argomenti || R5_ARGOMENTI).map((s) => el(card, { position: "relative", zIndex: 2, fontFamily: FS, fontWeight: 700, fontSize: 40, lineHeight: "60px", color: K.white, whiteSpace: "nowrap", letterSpacing: "-0.01em" }, s));
   gsap.set(card, { opacity: 0 });
-  tl.to(card, { opacity: 0.45, duration: 0.12 }, t0 + 0.125);
-  tl.to(card, { opacity: 1, duration: 0.25 }, t0 + 0.25);
+  tl.to(card, { opacity: 0.4, duration: 0.08 }, t0 + 0.03);
+  tl.to(card, { opacity: 1, duration: 0.3 }, t0 + 0.12);
   // la banda lime dall'alto in basso; le righe che tocca diventano lime per un attimo
-  r5Scan(card, t0 + 1.47, 0.62, { h: 0.1, tinta: 0.22, spegni: 0.25, z: 3, ease: "none" });
+  r5Scan(card, t0 + 1.47, 0.62, { h: 0.1, tinta: 0.1, spegni: 0.25, z: 3, ease: "none" });
   voci.forEach((v, k) => { const tk = t0 + 1.47 + 0.62 * ((k + 0.7) / 6.6); tl.to(v, { color: K.lime, duration: 0.06 }, tk); tl.to(v, { color: K.white, duration: 0.2 }, tk + 0.12); });
   const fondo = el(card, { position: "absolute", left: 0, bottom: 0, width: 510, height: 60, background: "linear-gradient(180deg, rgba(207,251,80,0), rgba(207,251,80,.75))", opacity: 0, zIndex: 1 });
   tl.to(fondo, { opacity: 1, duration: 0.1 }, t0 + 2.05);
@@ -419,7 +420,7 @@ COPIA.r05_target = (scena, o) => {
   const L = scena.parent || layer(10), X = scena.X, Y = scena.Y, W = (sx, sy) => [X - 540 + sx, Y - 880 + sy];
   const t0 = scena.t0;
   const T = r5Titolo({ righe: o.titolo || [[{ t: "Fai Solo Video Che", ruolo: "sans", size: 58 }], [{ t: "Aiutano Il Tuo Pubblico", ruolo: "sans", size: 58, box: true, h: 68 }]], tops: [221, 282], y: 221 });
-  T.inAt([t0 + 0.04, t0 + 0.2, t0 + 0.41, t0 + 0.54, t0 + 0.66, t0 + 0.8, t0 + 0.92, t0 + 1.12]);
+  T.inAt([t0 - 0.06, t0 + 0.2, t0 + 0.41, t0 + 0.54, t0 + 0.66, t0 + 0.8, t0 + 0.92, t0 + 1.12]);
   tl.set(T.root, { opacity: 0 }, scena.t1);
   // il tuo reel al centro (pieno al taglio), la banda lime
   const [px, py] = W(540, 786);
@@ -537,7 +538,7 @@ COPIA.r05_prove = (scena, o) => {
   const L = scena.parent || layer(10), X = scena.X, Y = scena.Y, W = (sx, sy) => [X - 540 + sx, Y - 880 + sy];
   const t0 = scena.t0;
   const T = r5Titolo({ righe: o.titolo || [[{ t: "La Fiducia Nasce Da", ruolo: "sans", size: 58 }], [{ t: "Due Cose", ruolo: "sans", size: 58, box: true, h: 68 }]], tops: [209, 285], y: 209 });
-  T.inAt([t0 + 0.0, t0 + 0.08, t0 + 0.2, t0 + 0.45, t0 + 0.63, t0 + 0.76]);
+  T.inAt([t0 - 0.06, t0 + 0.06, t0 + 0.2, t0 + 0.45, t0 + 0.63, t0 + 0.76]);
   tl.to(T.root, { opacity: 0.35, duration: 0.25 }, t0 + 2.6);
   tl.to(T.root, { opacity: 0, duration: 0.15 }, t0 + 2.85);
   const pil = o.pillole || ["Prove Dei Risultati", "Capacità Dimostrate Dal Vivo"];
@@ -616,7 +617,7 @@ COPIA.r05_azione = (scena, o) => {
   const L = scena.parent || layer(10), X = scena.X, Y = scena.Y, W = (sx, sy) => [X - 540 + sx, Y - 880 + sy];
   const t0 = scena.t0;
   const T = r5Titolo({ righe: o.titolo || [[{ t: "Informazioni Nuove", ruolo: "sans", size: 56 }], [{ t: "Azione Chiara", ruolo: "sans", size: 56 }]], tops: [212, 285], y: 212, sottolinea: { y: 358, w: 400, h: 4 } });
-  T.inAt([t0, t0 + 0.17, t0 + 0.54, t0 + 0.74]);
+  T.inAt([t0 - 0.06, t0 + 0.17, t0 + 0.54, t0 + 0.74]);
   T.sottolinea(t0 + 0.95, 0.45);
   tl.set(T.root, { opacity: 0 }, scena.t1);
   const [px, py] = W(537, 836);
@@ -669,12 +670,13 @@ COPIA.r05_prova = (scena, o) => {
   const L = scena.parent || layer(10), X = scena.X, Y = scena.Y, W = (sx, sy) => [X - 540 + sx, Y - 880 + sy];
   const t0 = scena.t0;
   const T = r5Titolo({ righe: o.titolo || [[{ t: "Fallo", ruolo: "sans", size: 58 }, { t: "Provare", ruolo: "serif", size: 70, box: true, h: 80 }], [{ t: "A Chi Ti Guarda", ruolo: "sans", size: 58 }]], tops: [200, 285], y: 200 });
-  T.inAt([t0 + 0.03, t0 + 0.25, t0 + 0.46, t0 + 0.6, t0 + 0.7, t0 + 0.8]);
+  T.inAt([t0 - 0.06, t0 + 0.25, t0 + 0.46, t0 + 0.6, t0 + 0.7, t0 + 0.8]);
   tl.set(T.root, { opacity: 0 }, scena.t1);
   // la persona con l'anello e il disco
   const [qx, qy] = W(536, 789);
   const pers = r5Persona(L, qx, qy, { d: 150, z: 16 });
   const anello = layered(el(L, { position: "absolute", left: qx - 88, top: qy - 88, width: 176, height: 176, borderRadius: "50%", boxShadow: `inset 0 0 0 5px ${K.lime}, ${R5.glowL(0.6)}`, zIndex: 15 }));
+  gsap.set([pers, anello], { opacity: 0 }); tl.to([pers, anello], { opacity: 1, duration: 0.06 }, t0 + 0.04);
   r5Pulse(L, qx, qy, t0 + 0.05, { r0: 90, r1: 260, dur: 0.45, a: 0.45, tiene: 0.3, via: 0.35, z: 14 });
   tl.to(anello, { opacity: 0, duration: 0.2 }, t0 + 0.55);
   tl.to([pers, anello], { y: -99, duration: 0.25, ease: "power2.inOut" }, t0 + 0.55);
@@ -766,7 +768,7 @@ const r5Tablet = (parent, cx, cy, o) => {
     if (o.senzaCentro && r === 0 && c === 0) { celle.push(null); continue; }
     const cel = el(tab, { position: "absolute", left: W2 / 2 + c * gx - cw / 2, top: H2 / 2 + r * gy - ch / 2, width: cw, height: ch, borderRadius: 18, overflow: "hidden", background: "#222" });
     imgIn(cel, o.img || "c2-clone", { objectFit: "cover" });
-    if (o.tinta) el(cel, { position: "absolute", inset: 0, background: K.lime, mixBlendMode: "multiply", opacity: o.tinta });
+    if (o.tinta) { el(cel, { position: "absolute", inset: 0, background: K.lime, mixBlendMode: "multiply", opacity: o.tinta }); el(cel, { position: "absolute", inset: 0, background: K.lime, opacity: 0.28 }); }
     if (o.scuro) el(cel, { position: "absolute", inset: 0, background: `rgba(20,20,20,${o.scuro})` });
     celle.push(cel);
   }
@@ -790,7 +792,7 @@ COPIA.r05_cloni = (scena, o) => {
   const L = scena.parent || layer(10), X = scena.X, Y = scena.Y, W = (sx, sy) => [X - 540 + sx, Y - 880 + sy];
   const t0 = scena.t0;
   const T = r5Titolo({ righe: o.titolo || [[{ t: "Smetti Di Essere ", ruolo: "sans", size: 62 }, { t: "Uguale A Tutti", ruolo: "sans", size: 62, box: true, h: 70 }]], y: 234 });
-  T.inAt([t0 + 0.04, t0 + 0.1, t0 + 0.14, t0 + 0.29, t0 + 0.45, t0 + 0.62]);
+  T.inAt([t0 - 0.06, t0 + 0.08, t0 + 0.14, t0 + 0.29, t0 + 0.45, t0 + 0.62]);
   tl.set(T.root, { opacity: 0 }, scena.t1);
   // la copertina e il tablet dei cloni (centro vuoto: c'è lei)
   const [cx, cy] = W(534, 765);
@@ -802,7 +804,7 @@ COPIA.r05_cloni = (scena, o) => {
   imgIn(cop, "c2-clone", { objectFit: "cover" });
   tl.set([tb.tab, cop], { opacity: 0 }, 91.04);
   // la camera: arriva da destra (al taglio il contenuto è 107 px più a destra: lo mette la posa del taglio) e si allontana
-  cpCam.percorso([[t0, 0, 0], [t0 + 0.15, -45, 0], [t0 + 0.3, -79, 0], [t0 + 0.6, -103, 0], [t0 + 0.9, -107, 0]]);
+  cpCam.percorso([[t0, 0, 0], [t0 + 0.1, -17, 0], [t0 + 0.25, -109, 0], [t0 + 0.5, -140, 0], [t0 + 0.9, -152, 0]]);
   cpCam.scala([[t0 + 0.3, 1], [t0 + 0.91, 0.9], [t0 + 1.12, 0.76], [t0 + 1.25, 0.64], [t0 + 1.41, 0.56], [t0 + 1.62, 0.47], [t0 + 2.21, 0.43], [91.04, 0.425]], [534, 765]);
   // seconda parte (dalle 91,04 s, un'altra posa: nell'HUD della scena) — la persona e il pannello
   const H = layered(el(hud, { position: "absolute", left: 0, top: 0, width: 1080, height: 1332, opacity: 0, zIndex: 40 }));
@@ -862,15 +864,16 @@ COPIA.r05_nuovo = (scena, o) => {
   const L = scena.parent || layer(10), X = scena.X, Y = scena.Y, W = (sx, sy) => [X - 540 + sx, Y - 880 + sy];
   const t0 = scena.t0;
   const T = r5Titolo({ righe: o.titolo || [[{ t: "Distinguiti Con", ruolo: "sans", size: 56 }], [{ t: "Qualcosa Di Nuovo", ruolo: "serif", size: 70, box: true, h: 86 }]], tops: [204, 283], y: 204 });
-  T.inAt([t0 + 0.02, t0 + 0.17, t0 + 0.38, t0 + 0.5, t0 + 0.77]);
+  T.inAt([t0 - 0.06, t0 + 0.15, t0 + 0.36, t0 + 0.48, t0 + 0.77]);
   tl.set(T.root, { opacity: 0 }, scena.t1);
   const [px, py] = W(540, 770);
   const tel = r5Card(L, px, py + 49, 302, 474, [[0, o.clip || "tuo5"]], { r: 12, z: 14 });
   const boll = el(tel.g, { position: "absolute", left: 14, top: 14, padding: "4px 14px", borderRadius: 20, background: K.lime, fontFamily: FS, fontWeight: 800, fontSize: 24, color: K.ink, zIndex: 40 }, o.bollino || "Nuovo");
   gsap.set(tel.g, { opacity: 0, y: 100, filter: "brightness(.4)" });
-  tl.to(tel.g, { opacity: 1, y: 0, duration: 0.3, ease: "power2.out" }, t0 + 0.02);
-  tl.to(tel.g, { filter: "brightness(1)", duration: 0.25 }, t0 + 0.1);
-  tl.set(tel.g, { filter: "none" }, t0 + 0.36);
+  tl.to(tel.g, { opacity: 1, duration: 0.06 }, t0 + 0.0);
+  tl.to(tel.g, { y: 0, duration: 0.3, ease: "power2.out" }, t0 + 0.0);
+  tl.to(tel.g, { filter: "brightness(1)", duration: 0.12 }, t0 + 0.02);
+  tl.set(tel.g, { filter: "none" }, t0 + 0.15);
   tl.to(tel.g, { scale: 380 / 302, y: -49, duration: 0.6, ease: "power2.inOut" }, t0 + 0.8);
   r5Scan(tel.g, t0 + 1.17, 0.62, { h: 0.14, tinta: 0.4, spegni: 0.2 });
   // il documento bianco (107,75 s)
@@ -895,8 +898,8 @@ COPIA.r05_nuovo = (scena, o) => {
 /* @copia r05_riepilogo · La lista intera di nuovo, tutta risolta (reel 5, 112,708–115,958 s; L01)
  * kallaway: reel 5, 112,708 s · il titolo si riscrive parola per parola dal taglio (riquadro da 112,79 s); le tre voci, già tutte
  *   chiare e attive, entrano da sinistra una dopo l'altra (0,083 s) e frenano; poi la camera si allontana piano fino al taglio
- * misure: barre attive 936×137 sullo schermo (×1,156) con l'accento a x 72 (113,8 s), passo 167; poi accento 72 → 102 px e
- *   altezza 137 → 125 (×0,936 attorno a 540, 685) fino a 115,96 s
+ * misure: barre attive 936×137 sullo schermo (858 × 1,077 × camera 1,013) con l'accento a x 72 (113,8 s), passo 167; poi
+ *   accento 72 → 102 px e altezza 137 → 125 (×0,936 attorno a 540, 685) fino a 115,96 s
  * scena: t0 (112,708), t1 (115,958), X, Y, parent · opzioni: voci, titolo
  * colori: come la lista
  */
@@ -905,11 +908,11 @@ COPIA.r05_riepilogo = (scena, o) => {
   const L = scena.parent || layer(10), X = scena.X, Y = scena.Y, W = (sx, sy) => [X - 540 + sx, Y - 880 + sy];
   const t0 = scena.t0;
   const T = r5Titolo({ righe: o.titolo || R5_TITOLO, interlinea: [92] });
-  T.inAt([t0 + 0.08, t0 + 0.29, t0 + 0.41, t0 + 0.47, t0 + 0.53, t0 + 0.6, t0 + 0.83, t0 + 0.96, t0 + 1.08]);
+  T.inAt([t0 + 0.02, t0 + 0.18, t0 + 0.33, t0 + 0.4, t0 + 0.45, t0 + 0.52, t0 + 0.75, t0 + 0.88, t0 + 1.0]);
   tl.set(T.root, { opacity: 0 }, scena.t1);
-  // la lista (mondo; la camera parte da ×1,073): barre attive, passo 156 (167 sullo schermo)
-  const [lx, lt] = W(540, 568.7);
-  const lista = r5Lista(L, lx, lt, o.voci || R5_VOCI, { passo: 156 });
+  // la lista (mondo; la camera parte da ×1,013): barre attive (858 × 1,077 × 1,013 = 936 px sullo schermo), passo 164
+  const [lx, lt] = W(540, 550.3);
+  const lista = r5Lista(L, lx, lt, o.voci || R5_VOCI, { passo: 164 });
   lista.piene(3, [0, 1, 2]);
   const f = cpCurva([[0, -100], [0.083, -78], [0.167, -56], [0.25, -39], [0.333, -28], [0.417, -17], [0.5, -11], [0.583, -6], [0.667, -3], [0.75, -1], [0.833, 0]]);
   lista.rows.forEach((rw, i) => {

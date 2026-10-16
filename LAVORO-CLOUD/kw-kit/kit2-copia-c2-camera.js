@@ -5,7 +5,7 @@
  *   spegne e le altre voci spariscono, la voce 01 corre su (picco ~790 px/s a 13,63 s) e frena dove stava il titolo: resta lì,
  *   ferma sullo schermo, come intestazione della sezione; sotto arriva la scena nuova (il reel del creator a 13,79 s)
  * misure: alto della voce 01 sullo schermo 552 (12,92) → 543 → 531 → 504 (13,42) → 480 → 441 → 375 → 333 → 309 → 294 → 285 → 276
- *   → 270 (14,17) → 262 (14,6 s); larga 862 px (×1,064 della barra a riposo) e uguale per tutta la corsa; le altre voci salgono
+ *   → 270 (14,17) → 262 (14,6 s); larga 862 px (×1,005 della barra a riposo, 858) e uguale per tutta la corsa; le altre voci salgono
  *   ~48 px con lei fino a 13,42 s e spariscono in 0,1 s (barre.py)
  * quando: ogni volta che si entra in un punto della lista (01 → la spiegazione)
  * scena: lista (r5Lista nel mondo), i, t0 (inizio della salita), t1 (fine della scena: l'intestazione se ne va) · opzioni:
@@ -21,7 +21,7 @@ COPIA.K14 = (scena, o) => {
   const per = o.percorso || [[0, 552], [0.083, 549], [0.167, 543], [0.25, 537], [0.333, 531], [0.417, 519], [0.5, 504], [0.583, 480], [0.667, 441], [0.75, 375], [0.833, 333], [0.917, 309], [1.0, 294], [1.083, 285], [1.167, 276], [1.25, 270], [1.48, 264], [1.7, 262]];
   // dove sta la voce sullo schermo al via (centro x, alto) e quanto è grande: la barra nell'HUD prende il suo posto
   const bx = parseFloat(li.box.style.left), by = parseFloat(li.box.style.top) + (gsap.getProperty(li.box, "y") || 0);
-  const sc = 1.064, wS = li.w * sc, hS = li.h * sc;
+  const sc = o.scala || 1.005, wS = li.w * sc, hS = li.h * sc;   // sullo schermo larga 862 px come la sua (barra 858 × 1,005)
   const hb = li.barraHud(i, true);
   gsap.set(hb.r, { left: 540 - li.w / 2, top: 0, scale: sc, transformOrigin: "50% 0%", opacity: 0, zIndex: 48 });
   hb.r.style.zIndex = 48;

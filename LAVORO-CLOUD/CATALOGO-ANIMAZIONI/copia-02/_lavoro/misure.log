@@ -1,0 +1,30 @@
+L01  prima barra a 8.92 s (alto-basso, x) K (696, 818, 111)  |  C (700, 817, 136)
+L01  prima barra a 9.25 s (alto-basso, x) K (636, 758, 111)  |  C (632, 749, 137)
+L01  prima barra a 9.5 s (alto-basso, x) K (600, 722, 114)  |  C (598, 715, 138)
+L01  prima barra a 10.0 s (alto-basso, x) K (564, 683, 117)  |  C (562, 677, 142)
+L01  prima barra a 10.33 s (alto-basso, x) K (560, 680, 120)  |  C (556, 672, 144)
+L01  prima barra a 12.0 s (alto-basso, x) K (557, 683, 99)  |  C (548, 669, 125)
+L01  prima barra a 13.0 s (alto-basso, x) K (549, 671, 108)  |  C (548, 674, 109)
+L02  accento della 01 a 10.9 s (x)      K 118  |  C 148
+L02  accento della 01 a 11.2 s (x)      K 110  |  C 143
+L02  accento della 01 a 11.6 s (x)      K 99  |  C 122
+L02  accento della 01 a 12.4 s (x)      K 102  |  C 128
+K14  alto della voce a 13.25 s          K 531  |  C 528
+K14  alto della voce a 13.5 s           K 480  |  C 474
+K14  alto della voce a 13.67 s          K 351  |  C 348
+K14  alto della voce a 13.83 s          K 309  |  C 306
+K14  alto della voce a 14.0 s           K None  |  C None
+K14  alto della voce a 14.17 s          K None  |  C None
+K14  alto della voce a 14.6 s           K None  |  C None
+F03  colonna della banda nel tempo      K [(34.25, 934), (34.33, 934), (34.42, 878), (34.5, 804), (34.58, 695), (34.66, 133), (34.75, 130), (34.83, 127), (34.91, 169), (35.0, 124)]  |  C [(34.25, None), (34.33, None), (34.42, 862), (34.5, 743), (34.58, 500), (34.66, 342), (34.75, 163), (34.83, 159), (34.91, 126), (35.0, 126)]
+T08  titolo (% del p99) 35,3 → 35,96 s ogni 0,083 K [100, 84, 69, 52, 35, 18, 15, 4]  |  C [100, 100, 87, 72, 64, 36, 12, 12]
+O21  persone a 17,4 s                   K {'n': 28, 'raggio_medio': 343, 'raggio_max': 641}  |  C {'n': 35, 'raggio_medio': 324, 'raggio_max': 638}
+O21  persone a 18,4 s (colorate)        K {'n': 23, 'raggio_medio': 284, 'raggio_max': 302}  |  C {'n': 24, 'raggio_medio': 308, 'raggio_max': 340}
+O28  pillole a 96,7 s (y0, y1, x0, x1)  K [(651, 728, 366, 755), (744, 821, 366, 755), (837, 862, 369, 758), (881, 884, 369, 758), (891, 914, 369, 758)]  |  C [(646, 719, 351, 755), (742, 814, 351, 755), (836, 909, 351, 755)]
+O28  pillole a 95,05 s                  K [(643, 722, 345, 749), (741, 818, 442, 845)]  |  C [(646, 719, 405, 809), (731, 804, 439, 843)]
+X01  card a 120,5 s (x0, y0, x1, y1)    K [172, 564, 905, 995]  |  C [169, 565, 910, 1003]
+K01  taglio attorno a 3.417 s (istante, salto) K (3.417, 37.8)  |  C (3.433, 12.4)
+K01  taglio attorno a 8.917 s (istante, salto) K (8.917, 38.7)  |  C (8.933, 6.0)
+K01  taglio attorno a 18.542 s (istante, salto) K (18.542, 35.0)  |  C (18.567, 7.9)
+K01  taglio attorno a 117.708 s (istante, salto) K (117.708, 37.4)  |  C (117.767, 3.6)
+/home/user/TEST-REMOTION-2/CATALOGO-ANIMAZIONI/copia-02/_lavoro/misure.json
