@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>Copia · reel 79 di Kallaway (blocco C1)</title>
+    <script src="assets/vendor/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Advercase"; src: url("assets/fonts/Advercase-Bold.ttf") format("truetype"); font-weight: 700; font-style: normal; font-display: block; }
+      @font-face { font-family: "Advercase"; src: url("assets/fonts/Advercase-Regular.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: block; }
+      @font-face { font-family: "Patrick Hand"; src: url("assets/fonts/PatrickHand-Regular.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: block; }
+      @font-face { font-family: "Zalando Sans"; src: url("assets/fonts/ZalandoSans-Variable.ttf") format("truetype"); font-weight: 100 900; font-style: normal; font-display: block; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: #1e1e1e; }
+      body { font-family: "Zalando Sans", sans-serif; color: #f4f4f2; -webkit-font-smoothing: antialiased; }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; background: #1e1e1e; }
+      .clip { position: absolute; inset: 0; overflow: hidden; }
+      #glow { position: absolute; inset: 0; opacity: 0.35; background: radial-gradient(58% 32% at 50% 46%, rgba(207, 251, 80, 0.08), rgba(207, 251, 80, 0) 70%); }
+      #vignette { position: absolute; inset: 0; background: radial-gradient(110% 78% at 50% 44%, rgba(0, 0, 0, 0) 44%, rgba(0, 0, 0, 0.62) 100%); }
+      .cam { position: absolute; left: 540px; top: 880px; width: 1px; height: 1px; }
+      .layer { position: absolute; left: 0; top: 0; width: 1px; height: 1px; }
+      #dots { position: absolute; left: -12000px; top: -9000px; width: 40000px; height: 24000px; background-image: radial-gradient(circle, rgba(255, 255, 255, 0.095) 1.25px, rgba(255, 255, 255, 0) 1.95px); background-size: 24px 24px; }
+      #stage { position: absolute; inset: 0; overflow: hidden; }
+      /* safe zone dell'utente (SAFEZONE.jpg): da y = 1332 in giù c'è la sua faccia → la grafica sfuma nel fondo prima della linea */
+      #safe { position: absolute; inset: 0; -webkit-mask-image: linear-gradient(to bottom, #000 0px, #000 1288px, transparent 1330px); mask-image: linear-gradient(to bottom, #000 0px, #000 1288px, transparent 1330px); }
+      #mbwrap, #shake { position: absolute; inset: 0; }
+      #hud { position: absolute; inset: 0; -webkit-mask-image: linear-gradient(to bottom, #000 0px, #000 1288px, transparent 1330px); mask-image: linear-gradient(to bottom, #000 0px, #000 1288px, transparent 1330px); }
+    </style>
+  </head>
+  <body>
+    <!-- KW_RITMO: regole del ritmo e template (kw-kit/kit2-ritmo.js); qui la COPIA FEDELE del reel 79 di Kallaway (giro 2, blocco C1):
+         Kallaway vince sulle regole R1–R8 dove un suo valore misurato è diverso (annotato nelle schede di kw-kit/kit2-copia-*.js). -->
+    <!-- Copia 1:1 sul tempo del suo reel (107,6 s): ogni scena e ogni transizione al suo istante (copia-01/scene.json,
+         copia-01/transizioni.json). Dove lui è a tutto schermo in camera lo spazio resta scuro («facecam piena»). Niente audio. -->
+    <div id="root" data-composition-id="main" data-start="0" data-duration="107.6" data-width="1080" data-height="1920">
+      <div id="bg" class="clip" data-start="0" data-duration="107.6" data-track-index="0">
+        <div class="cam" id="gcam2" data-layout-allow-overflow><div class="layer" id="gzoom2"><div class="layer" id="gpan2"><div class="layer" id="bokeh"></div></div></div></div>
+        <div class="cam" id="gcam" data-layout-allow-overflow><div class="layer" id="gzoom"><div class="layer" id="gpan"><div id="dots"></div></div></div></div>
+        <div id="glow"></div>
+        <div id="vignette"></div>
+      </div>
+      <div id="stage">
+        <svg width="0" height="0" style="position: absolute" aria-hidden="true">
+          <filter id="mb" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur id="mbn" in="SourceGraphic" stdDeviation="0 0" /></filter>
+        </svg>
+        <div id="cppool" style="position:absolute;left:0;top:0;width:0;height:0;overflow:hidden">
+          <img id="cp-g01" src="assets/img/g01.jpg" alt=""><img id="cp-g02" src="assets/img/g02.jpg" alt=""><img id="cp-g03" src="assets/img/g03.jpg" alt=""><img id="cp-g04" src="assets/img/g04.jpg" alt=""><img id="cp-g05" src="assets/img/g05.jpg" alt=""><img id="cp-g06" src="assets/img/g06.jpg" alt=""><img id="cp-g07" src="assets/img/g07.jpg" alt=""><img id="cp-g08" src="assets/img/g08.jpg" alt=""><img id="cp-g09" src="assets/img/g09.jpg" alt=""><img id="cp-g10" src="assets/img/g10.jpg" alt=""><img id="cp-g11" src="assets/img/g11.jpg" alt=""><img id="cp-g12" src="assets/img/g12.jpg" alt=""><img id="cp-g13" src="assets/img/g13.jpg" alt=""><img id="cp-g14" src="assets/img/g14.jpg" alt=""><img id="cp-g15" src="assets/img/g15.jpg" alt=""><img id="cp-g16" src="assets/img/g16.jpg" alt=""><img id="cp-g17" src="assets/img/g17.jpg" alt=""><img id="cp-g18" src="assets/img/g18.jpg" alt=""><img id="cp-g19" src="assets/img/g19.jpg" alt=""><img id="cp-g20" src="assets/img/g20.jpg" alt="">
+        </div>
+        <div id="safe"><div id="mbwrap"><div id="shake"><div class="cam" id="cam" data-layout-allow-overflow><div class="layer" id="zoom"><div class="layer" id="pan"></div></div></div></div></div></div>
+        <!--VIDEOS
+          # 1 · A05: la card con 4 storyteller veri (cambi a 0,167 · 0,334 · 0,48 s come Kallaway)
+          card_a assets/clips/card_a.mp4 0 0.5
+          card_b assets/clips/card_b.mp4 0.1 0.5
+          card_c assets/clips/card_c.mp4 0.25 0.5
+          card_d assets/clips/card_d.mp4 0.4 2.1
+          # 2 · al centro della griglia il TUO reel (Kallaway: il suo reel «How To Create a Killer Hook»)
+          c_centro assets/clips/mio/v03.mp4 1.7 3.4
+          # 6 · nel telefono il TUO reel (Kallaway: il suo reel «How To Script A Winning YouTube Video», lui in B/N, il documento scuro)
+          tel_a assets/clips/tel_a.mp4 12.3 2.4
+          tel_b assets/clips/tel_b.mp4 14.4 1.2
+          tel_c assets/clips/tel_c.mp4 15.4 1.2
+          # 12 · il reel vero di un creator (Kallaway: un creator che racconta una sfida; qui un creator di viaggi e il taglio col fuoco)
+          cr_a assets/clips/cr_a.mp4 36.54 4.6
+          cr_b assets/clips/cr_b.mp4 41.0 1.9
+          cr_c assets/clips/cr_c.mp4 42.75 3.6
+          # 18 · film di suspense (Kallaway: tre film) e 20 · il casinò (Kallaway: le carte del blackjack) — Pexels
+          film_a assets/clips/film_a.mp4 71.6 1.0
+          film_b assets/clips/film_b.mp4 72.4 1.1
+          film_c assets/clips/film_c.mp4 73.3 2.1
+          casino_a assets/clips/casino_a.mp4 78.4 2.2
+          casino_b assets/clips/casino_b.mp4 80.6 2.0
+          # 25 · alla fine nella card del video il TUO video (Kallaway: lui nel suo studio)
+          cta_tu assets/clips/cta_tu.mp4 107.2 0.4
+        -->
+      </div>
+      <div id="hudclip" class="clip" data-start="0" data-duration="107.6" data-track-index="2">
+        <div id="hud"></div>
+      </div>
+    </div>
+    <script>
+      (() => {
+        const ICON = __ICONS__;
+        /*__KIT__*/
+
+        camInit(540, 880, 1);
+        const L1 = layer(10);
+
+        // ═══ 1 · 0–1,88 s · A05 (con T01, C01, O13, F02, F01, K02): la card coi 4 storyteller → linea → cervello col disco ═══
+        const a05 = COPIA.A05({ t0: 0, t1: 1.88, X: 540, Y: 880, parent: L1 }, {
+          clip: [[0, "card_a"], [0.167, "card_b"], [0.334, "card_c"], [0.48, "card_d"]],
+          titolo: [[{ t: "Come rendere il tuo", ruolo: "sans", size: 58 }], [{ t: "Storytelling ", ruolo: "serif", size: 92 }, { t: "da dipendenza", ruolo: "serif", size: 92, unita: true }]],
+          titoloEsce: 4.17,
+        });
+
+        // ═══ 1 → 2 · TRANS.panVerticale (1,376–3,6 s): il cervello sale e sfuma, la griglia arriva dal basso in corsa e frena ═══
+        const L2 = layer(11);
+        TRANS.panVerticale(1.376, 2.224, -1312, { profilo: "r79_cervelloGriglia", esce: [L1, 1.70, 0.26], entra: [L2, 1.80, 0.06] });
+        // il cervello esce più piano della griglia che arriva (Kallaway: ~1000 px/s contro ~2800): il suo strato rallenta
+        cpStrato(L1, [[1.752, 0, 0], [1.79, 0, 15], [1.835, 0, 65], [1.877, 0, 134], [1.919, 0, 192], [1.96, 0, 207], [2.1, 0, 210]]);
+
+        // ═══ 2 · 1,8–4,9 s · r79_griglia: griglia di reel di altri creator, si tinge, il tuo reel esce in avanti ═══
+        const p32 = cpCam.posa(3.2);
+        const gr = COPIA.r79_griglia({ X: p32.fx + (545 - ANCHOR.x) / p32.s, Y: p32.fy + (868 - ANCHOR.y) / p32.s, parent: L2 }, { centro: "c_centro", esce: [4.62, 0.28] });
+        cpFascia(L2, 1.75, 4.95);   // la fascia scura sotto il titolo copre le righe alte della griglia (fino a y 330, sfuma a 460)
+
+        // ═══ 2 → 3 · TRANS.panVerticale (4,42–6,1 s): sopra la griglia si disegna il ∞, la camera sale, la griglia esce dal basso ═══
+        TRANS.panVerticale(4.42, 1.68, 628, { profilo: "r79_grigliaInfinito" });
+        // ═══ 3 · 4,25–6,67 s · O18: il ∞ della dopamina si disegna, titolo nel mondo, zoom ×1,21, i numeri 1–4 ═══
+        const p535 = cpCam.posa(5.35);
+        const L3 = layer(12);
+        const o18 = COPIA.O18({ t0: 4.25, X: p535.fx + (538 - ANCHOR.x) / p535.s, Y: p535.fy + (843 - ANCHOR.y) / p535.s, parent: L3 }, {
+          titolo: [[{ t: "Il ", ruolo: "sans", size: 98 }, { t: "Ciclo della", ruolo: "sans", size: 98, unita: true }], [{ t: "Dipendenza", ruolo: "serif", size: 104 }]],
+          tempiTitolo: [4.8, 4.98, 5.4], titoloEsce: 6.17, numeri: 6.25,
+        });
+        cpCam.scala([[5.65, 1], [5.85, 1.03], [6.0, 1.075], [6.1, 1.11], [6.25, 1.15], [6.4, 1.185], [6.55, 1.21], [6.67, 1.212]], [540, 868]);
+
+        // ═══ 3 → 4 → 5 · la camera presa da Kallaway: si allontana dal ∞ (albero), poi K03 verso la slot e la mappa (6,67–12,22 s) ═══
+        cpCam.cattura(CP_CATTURE.r79_albero);
+        COPIA.K03({ t0: 9.551, t1: 12.221 });
+        // i numeri se ne vanno mentre si allontana (1 e 2 a 6,9 s, 3 e 4 a 7,15 s), il ∞ sfuma quando si parte verso la slot
+        tl.to([o18.elementi.numeri[0], o18.elementi.numeri[1]], { opacity: 0, duration: 0.12 }, 6.9);
+        tl.to([o18.elementi.numeri[2], o18.elementi.numeri[3]], { opacity: 0, duration: 0.12 }, 7.15);
+        tl.to(o18.elementi.np.S, { opacity: 0, duration: 0.3, ease: "power1.in" }, 9.65);
+
+        // ═══ 4 · 6,67–9,9 s · r79_albero (O13 nell'HUD, O14 la slot): il cervello sopra, il ∞ e la slot sotto ═══
+        const p102 = cpCam.posa(10.2);
+        const o14 = COPIA.O14({ X: p102.fx + (545 - ANCHOR.x) / p102.s, Y: p102.fy + (891 - ANCHOR.y) / p102.s, h: 454 * 1.15 / p102.s, parent: L3 }, { gira: [9.95, 0.7], cresce: [9.35, 0.27, 1.7] });
+        // la cima della slot mentre cresce (×1,7 attorno al piede, 97% della larghezza): la seconda linea la segue
+        const sr = o14.rect, oX = sr[0] + 0.97 * (sr[2] - sr[0]), oY = sr[3], [tx, ty] = o14.ancore.sopra;
+        const kSlot = (t) => { const u = Math.max(0, Math.min(1, (t - 9.35) / 0.27)); return 1 / 1.7 + (1 - 1 / 1.7) * (1 - Math.pow(1 - u, 3)); };
+        COPIA.r79_albero({ t0: 6.67, t1: 9.9, parent: hud }, { infinito: o18.ancore.sopra, slot: (t) => [oX + (tx - oX) * kSlot(t), oY + (ty - oY) * kSlot(t)], etichetta: "Psicologia" });
+
+        // ═══ 5 · 10,75–12,3 s · K17: la mappa (il ∞ gigante), tappa 1 «Posta in gioco» ═══
+        const p122 = cpCam.posa(12.2), sM = p122.s, wM = (sx, sy) => [p122.fx + (sx - ANCHOR.x) / sM, p122.fy + (sy - ANCHOR.y) / sM];
+        const mw = 113 / sM, ma = (735 - 56) / sM, mb = ma * (117 / 200);
+        const [mLeft, mTop] = wM(172, 729);
+        const L5 = layer(8);
+        const mappa = COPIA.K17({ X: mLeft + mw / 2 + ma, Y: mTop + mw / 2 + 0.75 * mb, parent: L5 }, {
+          a: ma, b: mb, w: mw, fsNum: 188 / 0.58 / sM, fsNome: 97 / sM,
+          nomi: ["Posta\nin gioco", "Grande\ndomanda", "Finta", "Riaggancio"],
+          tappe: [wM(330, 706).concat(["su"]), null, null, null].map((v, i) => v || [0, 0, i % 2 ? "giu" : "su"]),
+        });
+        mappa.tappa(0, 10.875, [11.5, 11.56, 11.62]);
+
+        // ═══ 6 · 12,304–16,39 s · r79_telefono: taglio sul telefono col tuo reel, cervello sopra, due dischi, spinta ×1,2 ═══
+        cpCam.taglio(12.304, { fx: 6000, fy: 880, s: 1 });
+        const L6 = layer(13);
+        const tel6 = COPIA.r79_telefono({ t0: 12.304, t1: 16.39, X: 6001, Y: 865, parent: L6 }, {});
+        // ═══ 7 · 16,39–18,23 s · facecam piena ═══
+        cpFacecam(16.39, 18.23);
+
+        // ═══ 8 · 18,23–23,79 s · r79_fiches (con K04): «Posta in gioco», tre fiches che salgono in lista ═══
+        cpCam.taglio(18.23, { fx: 12000 + 8, fy: 880 - 24, s: 1 });   // il contenuto parte 8 px a sinistra e 24 più in basso (arrivo)
+        COPIA.r79_fiches({ t0: 18.23, t1: 23.79, X: 12000, Y: 880, parent: layer(14) }, {});
+
+        // ═══ 9 · 23,79–30,36 s · r79_copione: il documento, la riga di luce, buio, il documento ×1,65 con la frase ═══
+        cpCam.taglio(23.79, { fx: 18000, fy: 880, s: 1 });
+        COPIA.r79_copione({ t0: 23.79, t1: 30.36, X: 18000, Y: 880, parent: layer(15) }, {});
+
+        // ═══ 10 · 30,36–34,74 s · facecam piena ═══
+        cpFacecam(30.36, 34.74);
+
+        // ═══ 11 · 34,743–36,54 s · K02 + K17: di nuovo la mappa (tappa 1 più in basso), arriva già in corsa e frena sulla tappa 2 ═══
+        const p12m = cpCam.posa(12.2);
+        COPIA.K02({ t0: 34.743, posa: { fx: p12m.fx + 6 / p12m.s, fy: p12m.fy - 250 / p12m.s, s: p12m.s } }, {});
+        const p365 = cpCam.posa(36.5), wM2 = (sx, sy) => [p365.fx + (sx - ANCHOR.x) / p365.s, p365.fy + (sy - ANCHOR.y) / p365.s];
+        mappa.tappa(1, 34.98, [35.45, 35.5], { pos: wM2(298, 875).concat(["giu"]), bianco: 0.25, biancoNome: 0.4 });
+
+        // ═══ 12 · 36,54–46,17 s · r79_creator: il reel vero di un creator, le scritte evidenziate, chi guarda e la sua domanda ═══
+        COPIA.r79_creator({ t0: 36.54, t1: 46.17, X: 24000, Y: 880, X2: 30000, Y2: 880, parent: layer(16) }, {});
+
+        // ═══ 13 · 46,17–50,926 s · r79_carte: la grande domanda al casinò (carta coperta e le due scoperte del blackjack) ═══
+        cpCam.taglio(46.17, { fx: 36000, fy: 880, s: 1 });
+        COPIA.r79_carte({ t0: 46.17, t1: 50.926, X: 36000, Y: 880, parent: layer(17) }, {});
+
+        // ═══ 14 · 50,926–52,47 s · K17: la mappa intera, tuffo sulla tappa 3 «Finta» (×2,235, già in corsa) ═══
+        const [mcx, mcy] = mappa.ancore.centro, sOv = 687 / (2 * (ma + mw / 2));
+        cpCam.taglio(50.926, { fx: mcx - (537.5 - ANCHOR.x) / sOv, fy: mcy - (745 - ANCHOR.y) / sOv, s: sOv });
+        cpCam.cattura(CP_CATTURE.r79_mappa23);
+        const p524 = cpCam.posa(52.4), wM3 = (sx, sy) => [p524.fx + (sx - ANCHOR.x) / p524.s, p524.fy + (sy - ANCHOR.y) / p524.s];
+        mappa.tappa(2, 51.05, [51.75], { pos: wM3(210, 1014).concat(["su"]), bianco: 0.3, biancoNome: 0.3 });
+
+        // ═══ 15 · 52,47–53,85 s · facecam piena ═══
+        cpFacecam(52.47, 53.85);
+
+        // ═══ 16 · 53,846–67,86 s · O30: «La Finta», le due strade, la pallina coi fari; la camera si allontana a 57,55 s ═══
+        cpCam.taglio(53.846, { fx: 42000, fy: 880, s: 1 });
+        cpCam.zoom(53.846, 0.001, 1 / 0.85, [363, 1848]);              // vista ravvicinata dal taglio
+        cpCam.zoom(57.55, 0.5, 0.85, [363, 1848], "power2.inOut");     // poi la vista larga
+        COPIA.O30({ t0: 53.846, t1: 67.86, X: 42000, Y: 880, parent: layer(18) }, {});
+
+        // ═══ 17 · 67,86–71,61 s · facecam piena ═══
+        cpFacecam(67.86, 71.61);
+
+        // ═══ 18 · 71,61–75,284 s · tre spezzoni di film di suspense a tutto schermo (fonti libere: Pexels) ═══
+        cpSchermoPieno(71.61, 75.284, [[71.61, "film_a"], [72.405, "film_b"], [73.323, "film_c"]]);
+
+        // ═══ 19 · 75,284–78,41 s · K17: di nuovo sulla tappa 3 e lungo il ∞ fino alla 4 «Riaggancio» (già in corsa) ═══
+        const p524b = cpCam.posa(52.43);
+        cpCam.taglio(75.284, { fx: p524b.fx, fy: p524b.fy + 9 / p524b.s, s: p524b.s });
+        cpCam.cattura(CP_CATTURE.r79_mappa34);
+        const p783 = cpCam.posa(78.3), wM4 = (sx, sy) => [p783.fx + (sx - ANCHOR.x) / p783.s, p783.fy + (sy - ANCHOR.y) / p783.s];
+        mappa.tappa(3, 76.0, [77.9], { pos: wM4(282, 881).concat(["giu"]), bianco: 0.55, biancoNome: 0.35 });
+
+        // ═══ 20 · 78,41–82,33 s · il casinò a tutto schermo: la mano del croupier e le carte sul panno (Pexels) ═══
+        cpSchermoPieno(78.41, 82.33, [[78.41, "casino_a"], [80.62, "casino_b"]]);
+
+        // ═══ 21 · 82,33–84,88 s · facecam piena ═══
+        cpFacecam(82.33, 84.88);
+
+        // ═══ 22 · 84,88–91,05 s · r79_storie: «Storie buone» (un arco) e «Storie grandi» (archi a cascata) ═══
+        cpCam.taglio(84.88, { fx: 48000, fy: 880, s: 1 });
+        COPIA.r79_storie({ t0: 84.88, t1: 91.05, X: 48000, Y: 880, parent: layer(19) }, {});
+
+        // ═══ 23 · 91,05–96,68 s · r79_riepilogo: il ∞ coi quattro passi, la camera si avvicina, il titolo finale ═══
+        cpCam.taglio(91.05, { fx: 54000 + 1 / 0.94, fy: 880 + 63.6 / 0.94, s: 0.94 });
+        COPIA.r79_riepilogo({ t0: 91.05, t1: 96.68, X: 54000, Y: 880, parent: layer(20) }, {});
+
+        // ═══ 24 · 96,68–100,06 s · facecam piena ═══
+        cpFacecam(96.68, 100.06);
+
+        // ═══ 25 · 100,06–107,6 s · r79_cta: «Commenta “storytelling”», la card del video, tuffo nel canale e ritorno ═══
+        cpCam.taglio(100.06, { fx: 60000, fy: 880, s: 1 });
+        COPIA.r79_cta({ t0: 100.06, t1: 107.6, X: 60000, Y: 880, parent: layer(21) }, {});
+
+        cpCam.gira(0, 107.6);
+        window.__timelines = window.__timelines || {};
+        window.__timelines["main"] = tl;
+      })();
+    </script>
+  </body>
+</html>

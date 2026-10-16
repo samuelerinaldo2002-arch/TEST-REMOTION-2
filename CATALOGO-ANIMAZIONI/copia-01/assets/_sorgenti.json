@@ -1,0 +1,166 @@
+{
+ "card_a": {
+  "sorgente": "_clip-esterni\\dankoe\\20260325_ZM6JkNnOPbg.mp4",
+  "da": 3.0,
+  "durata": 1.0
+ },
+ "card_b": {
+  "sorgente": "_clip-esterni\\leilahormozi\\20261005_QYQFWtT4uRg.mp4",
+  "da": 4.0,
+  "durata": 1.0
+ },
+ "card_c": {
+  "sorgente": "_clip-esterni\\garyvee\\20261004_7LVK2brR_SQ.mp4",
+  "da": 4.0,
+  "durata": 1.0
+ },
+ "card_d": {
+  "sorgente": "_clip-esterni\\tonyrobbins\\20260922_enGdUAmTbc8.mp4",
+  "da": 9.0,
+  "durata": 2.5
+ },
+ "g01": {
+  "sorgente": "_clip-esterni\\codiesanchez\\20261001_VLRC_mdmkgA.mp4",
+  "da": 21.79
+ },
+ "g02": {
+  "sorgente": "_clip-esterni\\dankoe\\20260411_Bw9EkEKFY9k.mp4",
+  "da": 14.92
+ },
+ "g03": {
+  "sorgente": "_clip-esterni\\hormozi\\20261005_2uH6CYuOE3w.mp4",
+  "da": 33.69
+ },
+ "g04": {
+  "sorgente": "_clip-esterni\\leilahormozi\\20261006_eA_DgwMICjU.mp4",
+  "da": 19.84
+ },
+ "g05": {
+  "sorgente": "_clip-esterni\\garyvee\\20261006_Qym1ouLattY.mp4",
+  "da": 7.9
+ },
+ "g06": {
+  "sorgente": "_clip-esterni\\viaggi\\20260921_jeuTcG6Wu2E.mp4",
+  "da": 23.48
+ },
+ "g07": {
+  "sorgente": "_clip-esterni\\animali\\20261006_GvSB5dw82uk.mp4",
+  "da": 35.58
+ },
+ "g08": {
+  "sorgente": "_clip-esterni\\hormozi\\20261005_vYTuKljjXNM.mp4",
+  "da": 23.65
+ },
+ "g09": {
+  "sorgente": "_clip-esterni\\fitness\\20260825_aHIt29V6hwo.mp4",
+  "da": 17.73
+ },
+ "g10": {
+  "sorgente": "_clip-esterni\\stevenbartlett\\20261004_cK13l1gYyDc.mp4",
+  "da": 25.43
+ },
+ "g11": {
+  "sorgente": "_clip-esterni\\codiesanchez\\20261003_3CeVvT-Tgh0.mp4",
+  "da": 12.22
+ },
+ "g12": {
+  "sorgente": "_clip-esterni\\tonyrobbins\\20260903_0_b9DrdmTag.mp4",
+  "da": 17.71
+ },
+ "g13": {
+  "sorgente": "_clip-esterni\\devinjatho\\20260824_8p75INXg84Q.mp4",
+  "da": 17.01
+ },
+ "g14": {
+  "sorgente": "_clip-esterni\\viaggi\\20260929_8grbpwPxr1s.mp4",
+  "da": 14.58
+ },
+ "g15": {
+  "sorgente": "_clip-esterni\\garyvee\\20261003_vNeW21vW66Q.mp4",
+  "da": 13.32
+ },
+ "g16": {
+  "sorgente": "_clip-esterni\\leilahormozi\\20261005_PEYfgqSdfcw.mp4",
+  "da": 11.18
+ },
+ "g17": {
+  "sorgente": "_clip-esterni\\hormozi\\20261006_bItxHR3h_as.mp4",
+  "da": 15.8
+ },
+ "g18": {
+  "sorgente": "_clip-esterni\\cucina\\20260930_v8p1uRsQYNk.mp4",
+  "da": 15.14
+ },
+ "g19": {
+  "sorgente": "_clip-esterni\\dankoe\\20260519_2yJUzTBHcLs.mp4",
+  "da": 16.23
+ },
+ "g20": {
+  "sorgente": "_clip-esterni\\stevenbartlett\\20260930_TkAUoahM950.mp4",
+  "da": 29.27
+ },
+ "g21": {
+  "sorgente": "_clip-esterni\\fitness\\20260923_rHgCRGNbG_Q.mp4",
+  "da": 22.49
+ },
+ "tel_a": {
+  "sorgente": "D:\\CONTENUTI\\OTTOBRE 2026\\PARTE 1\\DA PUBBLICARE\\2026_10_13 REEL.mp4",
+  "da": 4.6,
+  "durata": 2.4
+ },
+ "tel_b": {
+  "sorgente": "D:\\CONTENUTI\\OTTOBRE 2026\\PARTE 1\\DA PUBBLICARE\\2026_10_13 REEL.mp4",
+  "da": 8.0,
+  "durata": 1.2
+ },
+ "tel_c": {
+  "sorgente": "D:\\CONTENUTI\\OTTOBRE 2026\\PARTE 1\\DA PUBBLICARE\\2026_10_12 REEL.mp4",
+  "da": 24.6,
+  "durata": 1.2
+ },
+ "cr_a": {
+  "sorgente": "_clip-esterni\\viaggi\\20260921_jeuTcG6Wu2E.mp4",
+  "da": 7.0,
+  "durata": 4.6
+ },
+ "cr_b": {
+  "sorgente": "_clip-esterni\\viaggi\\20260921_jeuTcG6Wu2E.mp4",
+  "da": 13.0,
+  "durata": 1.9
+ },
+ "cr_c": {
+  "sorgente": "_clip-esterni\\viaggi\\20260921_jeuTcG6Wu2E.mp4",
+  "da": 0.9,
+  "durata": 3.6
+ },
+ "film_a": {
+  "sorgente": "CATALOGO-ANIMAZIONI\\copia-01\\_lavoro\\stock\\px_34279707.mp4",
+  "da": 8.0,
+  "durata": 1.0
+ },
+ "film_b": {
+  "sorgente": "CATALOGO-ANIMAZIONI\\copia-01\\_lavoro\\stock\\px_8888784.mp4",
+  "da": 4.6,
+  "durata": 1.1
+ },
+ "film_c": {
+  "sorgente": "CATALOGO-ANIMAZIONI\\copia-01\\_lavoro\\stock\\px_29072593.mp4",
+  "da": 4.0,
+  "durata": 2.1
+ },
+ "casino_a": {
+  "sorgente": "CATALOGO-ANIMAZIONI\\copia-01\\_lavoro\\stock\\px_6664998.mp4",
+  "da": 1.6,
+  "durata": 2.2
+ },
+ "casino_b": {
+  "sorgente": "CATALOGO-ANIMAZIONI\\copia-01\\_lavoro\\stock\\px_6664998.mp4",
+  "da": 6.4,
+  "durata": 2.0
+ },
+ "cta_tu": {
+  "sorgente": "D:\\CONTENUTI\\OTTOBRE 2026\\PARTE 1\\DA PUBBLICARE\\2026_10_13 REEL.mp4",
+  "da": 19.0,
+  "durata": 0.8
+ }
+}

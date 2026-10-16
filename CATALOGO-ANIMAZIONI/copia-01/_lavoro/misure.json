@@ -1,0 +1,130 @@
+{
+ "A05": {
+  "K": {
+   "ingombro 0,4 s (card)": "t 0.40: larghezza 0.738 (x 144�941) � y 587�1051 (464 px) � coperto 0.35",
+   "arrivo 0–0,5 s": "canale y · inizio 0.000 s · fine 0.542 s · durata 0.542 s\ndelta: x -433.5 px · y -83.9 px · scala x1.0145 (+1.5%)\npicco di velocità a 0.000 s (0% della durata) · 15571 px/s sullo schermo\ncurve note: power1.out 0.0556 · KW.arrive 0.0673 · sine.out 0.0705 · KW.move 0.0990 · power2.out 0.1037\ncubic-bezier(0.000, 0.475, 0.992, 1.098) errore 0.0247"
+  },
+  "C": {
+   "ingombro 0,4 s (card)": "t 0.40: larghezza 0.737 (x 142�938) � y 604�1055 (451 px) � coperto 0.33",
+   "arrivo 0–0,5 s": "canale y · inizio 0.000 s · fine 0.533 s · durata 0.533 s\ndelta: x -2.1 px · y -125.3 px · scala x1.0093 (+0.9%)\npicco di velocità a 0.000 s (0% della durata) · 652 px/s sullo schermo\ncurve note: power1.out 0.0566 · sine.out 0.0650 · KW.arrive 0.0777 · KW.move 0.0936 · KW.drift 0.0960\ncubic-bezier(0.120, 0.312, 0.077, 0.495) errore 0.0115"
+  }
+ },
+ "T01": {
+  "K": {
+   "ingombro titolo 1,6 s": "t 1.60: larghezza 0.681 (x 170�906) � y 150�311 (161 px) � coperto 0.47"
+  },
+  "C": {
+   "ingombro titolo 1,6 s": "t 1.60: larghezza 0.781 (x 119�962) � y 150�318 (168 px) � coperto 0.38"
+  }
+ },
+ "C01": {
+  "K": {
+   "pan della linea": "canale x · inizio 0.626 s · fine 1.376 s · durata 0.750 s\ndelta: x -869.5 px · y -82.1 px · scala x1.0064 (+0.6%)\npicco di velocità a 0.959 s (44% della durata) · 2948 px/s sullo schermo\ncurve note: power2.inOut 0.0176 · power1.inOut 0.0329 · power3.inOut 0.0454 · sine.inOut 0.0501 · linear 0.1175\ncubic-bezier(0.650, 0.057, 0.337, 0.913) errore 0.0013"
+  },
+  "C": {
+   "pan della linea": "canale x · inizio 0.633 s · fine 1.367 s · durata 0.734 s\ndelta: x -721.7 px · y -96.2 px · scala x1.0588 (+5.9%)\npicco di velocità a 0.967 s (46% della durata) · 2943 px/s sullo schermo\ncurve note: power2.inOut 0.1021 · power3.inOut 0.1058 · power1.inOut 0.1117 · sine.inOut 0.1201 · power1.in 0.1530\ncubic-bezier(0.748, -0.133, 0.190, 0.547) errore 0.0128"
+  }
+ },
+ "F01": {
+  "K": {
+   "glow titolo 1,6 s": "fit: stretto sigma=1.5px a=1.061 � largo sigma=8.0px a=0.096 � rmse=0.0068\nCSS ~ 0 0 3px rgba(colore,1.00), 0 0 16px rgba(colore,0.15)\nalone (d>=4): medio sigma=7px a=0.104 � largo sigma=20px a=0.007 � rmse=0.0103",
+   "glow neon 5,6 s": "fit: stretto sigma=7.0px a=1.258 � largo sigma=20.0px a=0.066 � rmse=0.0330\nCSS ~ 0 0 14px rgba(colore,1.00), 0 0 40px rgba(colore,0.11)\nalone (d>=4): medio sigma=7px a=1.365 � largo sigma=26px a=0.037 � rmse=0.0227"
+  },
+  "C": {
+   "glow titolo 1,6 s": "fit: stretto sigma=2.5px a=0.315 � largo sigma=8.0px a=0.056 � rmse=0.0147\nCSS ~ 0 0 5px rgba(colore,0.50), 0 0 16px rgba(colore,0.09)\nalone (d>=4): medio sigma=4px a=0.218 � largo sigma=20px a=0.005 � rmse=0.0062",
+   "glow neon 5,6 s": "fit: stretto sigma=6.0px a=0.551 � largo sigma=18.0px a=0.352 � rmse=0.0175\nCSS ~ 0 0 12px rgba(colore,0.88), 0 0 36px rgba(colore,0.56)\nalone (d>=4): medio sigma=6px a=0.657 � largo sigma=20px a=0.303 � rmse=0.0187"
+  }
+ },
+ "O13": {
+  "K": {
+   "ingombro cervello 1,0 s": "t 1.00: larghezza 0.983 (x 10�1072) � y 801�980 (179 px) � coperto 0.22"
+  },
+  "C": {
+   "ingombro cervello 1,0 s": "t 1.00: larghezza 0.965 (x 5�1047) � y 801�988 (187 px) � coperto 0.30"
+  }
+ },
+ "F02": {
+  "K": {
+   "ingombro disco 1,3 s": "t 1.30: larghezza 0.868 (x 15�952) � y 347�1161 (814 px) � coperto 0.62"
+  },
+  "C": {
+   "ingombro disco 1,3 s": "t 1.30: larghezza 0.908 (x 4�985) � y 312�1174 (862 px) � coperto 0.20"
+  }
+ },
+ "O18": {
+  "K": {
+   "ingombro ∞ 5,35 s": "t 5.35: larghezza 0.395 (x 326�753) � y 737�947 (210 px) � coperto 0.12"
+  },
+  "C": {
+   "ingombro ∞ 5,35 s": "t 5.35: larghezza 0.428 (x 306�768) � y 721�962 (241 px) � coperto 0.20"
+  }
+ },
+ "O14": {
+  "K": {
+   "ingombro slot 10,2 s": "t 10.20: larghezza 0.291 (x 421�735) � y 669�1088 (419 px) � coperto 0.11"
+  },
+  "C": {
+   "ingombro slot 10,2 s": "t 10.20: larghezza 0.239 (x 427�685) � y 689�1034 (345 px) � coperto 0.05"
+  }
+ },
+ "K03": {
+  "K": {
+   "verso la slot": "canale s · inizio 9.593 s · fine 10.636 s · durata 1.043 s\ndelta: x -297.8 px · y -123.9 px · scala x1.5563 (+55.6%)\npicco di velocità a 9.593 s (0% della durata) · 815 px/s sullo schermo\ncurve note: KW.arrive 0.0247 · power2.out 0.0439 · circ.out 0.0524 · power3.out 0.0740 · power1.out 0.0971\ncubic-bezier(0.108, 0.527, 0.335, 0.878) errore 0.0021",
+   "verso la mappa": "canale x · inizio 10.469 s · fine 11.887 s · durata 1.418 s\ndelta: x -948.7 px · y -15.5 px · scala x1.0341 (+3.4%)\npicco di velocità a 10.761 s (21% della durata) · 2124 px/s sullo schermo\ncurve note: KW.move 0.0607 · power1.out 0.0655 · sine.out 0.0700 · KW.arrive 0.1162 · KW.drift 0.1177\ncubic-bezier(0.365, 0.092, 0.070, 0.888) errore 0.0016"
+  },
+  "C": {
+   "verso la slot": "canale s · inizio 9.500 s · fine 10.633 s · durata 1.133 s\ndelta: x -300.3 px · y -131.8 px · scala x1.5669 (+56.7%)\npicco di velocità a 9.633 s (12% della durata) · 697 px/s sullo schermo\ncurve note: power1.out 0.0465 · KW.arrive 0.0572 · power2.out 0.0696 · sine.out 0.0763 · KW.move 0.0926\ncubic-bezier(0.268, 0.258, 0.067, 0.790) errore 0.0087",
+   "verso la mappa": "canale x · inizio 10.467 s · fine 12.200 s · durata 1.733 s\ndelta: x -894.2 px · y -212.0 px · scala x1.0120 (+1.2%)\npicco di velocità a 10.767 s (17% della durata) · 6113 px/s sullo schermo\ncurve note: power2.out 0.0803 · KW.arrive 0.1115 · power3.out 0.1127 · power1.out 0.1235 · circ.out 0.1448\ncubic-bezier(0.277, 0.022, 0.103, 1.222) errore 0.0178"
+  }
+ },
+ "K04": {
+  "K": {
+   "deriva 20,81 s": [
+    "K04_copia01_K: taglio 20.812s · misurati 1.75s · scala -0.07% (1 s -0.03, 2 s None) · centro (-1, -92) px · angoli 92 px · vel. angoli {'0.25': 28.07, '1.0': 75.5} px/s · curva power1.inOut 0.0511 · inlier 71.0 · falliti 0"
+   ]
+  },
+  "C": {
+   "deriva 20,81 s": [
+    "K04_copia01_C: taglio 20.800s · misurati 1.77s · scala +0.04% (1 s 0.03, 2 s None) · centro (-0, -86) px · angoli 86 px · vel. angoli {'0.25': 27.15, '1.0': 75.44} px/s · curva power1.inOut 0.0691 · inlier 24.0 · falliti 0"
+   ]
+  }
+ },
+ "K02": {
+  "K": {
+   "arrivo sulla mappa": "canale xy · inizio 34.785 s · fine 36.411 s · durata 1.626 s\ndelta: x -556.9 px · y -660.3 px · scala xnan (+nan%)\npicco di velocità a 34.785 s (0% della durata) · 2300 px/s sullo schermo\ncurve note: KW.arrive 0.0088 · power2.out 0.0458 · circ.out 0.0687 · power1.out 0.0796 · power3.out 0.0894\ncubic-bezier(0.100, 0.510, 0.420, 0.900) errore 0.0007\nC:\\Users\\rinal\\Desktop\\REMOTION - TEST 2\\TEST KALLAWAYMARKETING\\CATALOGO-ANIMAZIONI\\_analisi\\ritmo\\_script_copia01\\fitmove.py:59: RuntimeWarning: divide by zero encountered in log\n  lx = np.log(s)\nC:\\Users\\rinal\\Desktop\\REMOTION - TEST 2\\TEST KALLAWAYMARKETING\\CATALOGO-ANIMAZIONI\\_analisi\\ritmo\\_script_copia01\\fitmove.py:111: RuntimeWarning: invalid value encountered in scalar divide\n  print(f\"delta: x {x[-1] - x[0]:+.1f} px � y {y[-1] - y[0]:+.1f} px � scala x{s[-1] / s[0]:.4f} ({(s[-1] / s[0] - 1) * 100:+.1f}%)\")"
+  },
+  "C": {
+   "arrivo sulla mappa": "canale xy · inizio 34.767 s · fine 36.267 s · durata 1.500 s\ndelta: x -605.5 px · y -718.6 px · scala x1.0013 (+0.1%)\npicco di velocità a 34.767 s (0% della durata) · 3396 px/s sullo schermo\ncurve note: KW.arrive 0.0182 · power2.out 0.0521 · circ.out 0.0636 · power1.out 0.0861 · power3.out 0.0901\ncubic-bezier(0.090, 0.590, 0.505, 0.900) errore 0.0019"
+  }
+ },
+ "K17": {
+  "K": {
+   "tuffo sulla tappa 3": "canale s · inizio 50.968 s · fine 51.969 s · durata 1.001 s\ndelta: x -417.0 px · y +514.7 px · scala x1.7654 (+76.5%)\npicco di velocità a 50.968 s (0% della durata) · 2183 px/s sullo schermo\ncurve note: KW.arrive 0.0228 · power2.out 0.0461 · circ.out 0.0532 · power3.out 0.0779 · power1.out 0.0945\ncubic-bezier(0.025, 0.105, 0.098, 0.850) errore 0.0022"
+  },
+  "C": {
+   "tuffo sulla tappa 3": "C:\\Users\\rinal\\Desktop\\REMOTION - TEST 2\\TEST KALLAWAYMARKETING\\CATALOGO-ANIMAZIONI\\_analisi\\ritmo\\_script_copia01\\fitmove.py:59: RuntimeWarning: divide by zero encountered in log\n  lx = np.log(s)\nC:\\Users\\rinal\\Desktop\\REMOTION - TEST 2\\TEST KALLAWAYMARKETING\\CATALOGO-ANIMAZIONI\\_analisi\\ritmo\\_script_copia01\\fitmove.py:71: RuntimeWarning: invalid value encountered in subtract\n  p = (v - v[0]) / (v[-1] - v[0] if abs(v[-1] - v[0]) > 1e-9 else 1)\nC:\\Users\\rinal\\Desktop\\REMOTION - TEST 2\\TEST KALLAWAYMARKETING\\CATALOGO-ANIMAZIONI\\_analisi\\ritmo\\_script_copia01\\fitmove.py:71: RuntimeWarning: invalid value encountered in scalar subtract\n  p = (v - v[0]) / (v[-1] - v[0] if abs(v[-1] - v[0]) > 1e-9 else 1)\nTraceback (most recent call last):\n  File \"C:\\Users\\rinal\\Desktop\\REMOTION - TEST 2\\TEST KALLAWAYMARKETING\\CATALOGO-ANIMAZIONI\\_analisi\\ritmo\\_script_copia01\\fitmove.py\", line 76, in <module>\n    i0, i1 = on[0], on[-1] + 1\n             ~~^^^\nIndexError: index 0 is out of bounds for axis 0 with size 0"
+  }
+ },
+ "K06": {
+  "K": {
+   "tuffo nella card": "canale s · inizio 102.144 s · fine 102.352 s · durata 0.208 s\ndelta: x -673.2 px · y -537.2 px · scala x1.1051 (+10.5%)\npicco di velocità a 102.144 s (0% della durata) · 20923 px/s sullo schermo\ncurve note: expo.out 0.0898 · power4.out 0.0955 · circ.out 0.1077 · power3.out 0.1082 · power2.out 0.1407\ncubic-bezier(0.000, 1.062, 1.000, 1.150) errore 0.0788"
+  },
+  "C": {
+   "tuffo nella card": "C:\\Users\\rinal\\Desktop\\REMOTION - TEST 2\\TEST KALLAWAYMARKETING\\CATALOGO-ANIMAZIONI\\_analisi\\ritmo\\_script_copia01\\fitmove.py:59: RuntimeWarning: divide by zero encountered in log\n  lx = np.log(s)\nC:\\Users\\rinal\\Desktop\\REMOTION - TEST 2\\TEST KALLAWAYMARKETING\\CATALOGO-ANIMAZIONI\\_analisi\\ritmo\\_script_copia01\\fitmove.py:71: RuntimeWarning: invalid value encountered in divide\n  p = (v - v[0]) / (v[-1] - v[0] if abs(v[-1] - v[0]) > 1e-9 else 1)\nTraceback (most recent call last):\n  File \"C:\\Users\\rinal\\Desktop\\REMOTION - TEST 2\\TEST KALLAWAYMARKETING\\CATALOGO-ANIMAZIONI\\_analisi\\ritmo\\_script_copia01\\fitmove.py\", line 76, in <module>\n    i0, i1 = on[0], on[-1] + 1\n             ~~^^^\nIndexError: index 0 is out of bounds for axis 0 with size 0"
+  }
+ },
+ "O30": {
+  "K": {
+   "ingombro 63,5 s": "t 63.50: larghezza 0.508 (x 292�841) � y 302�1177 (875 px) � coperto 0.10",
+   "pop «A» 60,45 s": [
+    "O30_A_copia01_K: scala 1.00→1.00 · rimbalzo scala 0.0% · spostamento 0 px · rimbalzo pos - · entrata 0.00 s · score min 1.00"
+   ]
+  },
+  "C": {
+   "ingombro 63,5 s": "t 63.50: larghezza 0.608 (x 317�974) � y 303�1174 (871 px) � coperto 0.08",
+   "pop «A» 60,45 s": [
+    "O30_A_copia01_C: scala 0.30→1.00 · rimbalzo scala 0.0% · spostamento 210 px · rimbalzo pos 5.1% · entrata 0.23 s · score min 0.70"
+   ]
+  }
+ }
+}

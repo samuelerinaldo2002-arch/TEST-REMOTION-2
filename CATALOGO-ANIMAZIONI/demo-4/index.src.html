@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>Demo 4 · blocco 2</title>
+    <script src="assets/vendor/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Advercase"; src: url("assets/fonts/Advercase-Bold.ttf") format("truetype"); font-weight: 700; font-style: normal; font-display: block; }
+      @font-face { font-family: "Advercase"; src: url("assets/fonts/Advercase-Regular.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: block; }
+      @font-face { font-family: "Patrick Hand"; src: url("assets/fonts/PatrickHand-Regular.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: block; }
+      @font-face { font-family: "Zalando Sans"; src: url("assets/fonts/ZalandoSans-Variable.ttf") format("truetype"); font-weight: 100 900; font-style: normal; font-display: block; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: #1e1e1e; }
+      body { font-family: "Zalando Sans", sans-serif; color: #f4f4f2; -webkit-font-smoothing: antialiased; }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; background: #1e1e1e; }
+      .clip { position: absolute; inset: 0; overflow: hidden; }
+      #glow { position: absolute; inset: 0; opacity: 0.35; background: radial-gradient(58% 32% at 50% 46%, rgba(207, 251, 80, 0.08), rgba(207, 251, 80, 0) 70%); }
+      #vignette { position: absolute; inset: 0; background: radial-gradient(110% 78% at 50% 44%, rgba(0, 0, 0, 0) 44%, rgba(0, 0, 0, 0.62) 100%); }
+      .cam { position: absolute; left: 540px; top: 880px; width: 1px; height: 1px; }
+      .layer { position: absolute; left: 0; top: 0; width: 1px; height: 1px; }
+      #dots { position: absolute; left: -6000px; top: -6000px; width: 40000px; height: 20000px; background-image: radial-gradient(circle, rgba(255, 255, 255, 0.095) 1.25px, rgba(255, 255, 255, 0) 1.95px); background-size: 24px 24px; }
+      #stage { position: absolute; inset: 0; overflow: hidden; }
+      #safe { position: absolute; inset: 0; -webkit-mask-image: linear-gradient(to bottom, #000 0px, #000 1385px, transparent 1450px); mask-image: linear-gradient(to bottom, #000 0px, #000 1385px, transparent 1450px); }
+      #mbwrap, #shake { position: absolute; inset: 0; }
+      #hud { position: absolute; inset: 0; }
+    </style>
+  </head>
+  <body>
+        <div id="root" data-composition-id="main" data-start="0" data-duration="48.6" data-width="1080" data-height="1920">
+      <div id="bg" class="clip" data-start="0" data-duration="48.6" data-track-index="0">
+        <div class="cam" id="gcam2" data-layout-allow-overflow><div class="layer" id="gzoom2"><div class="layer" id="gpan2"><div class="layer" id="bokeh"></div></div></div></div>
+        <div class="cam" id="gcam" data-layout-allow-overflow><div class="layer" id="gzoom"><div class="layer" id="gpan"><div id="dots"></div></div></div></div>
+        <div id="glow"></div>
+        <div id="vignette"></div>
+      </div>
+      <div id="stage">
+        <svg width="0" height="0" style="position: absolute" aria-hidden="true">
+          <filter id="mb" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur id="mbn" in="SourceGraphic" stdDeviation="0 0" /></filter>
+        </svg>
+        <div id="safe"><div id="mbwrap"><div id="shake"><div class="cam" id="cam" data-layout-allow-overflow><div class="layer" id="zoom"><div class="layer" id="pan"></div></div></div></div></div></div>
+        <!--VIDEOS
+          # A06 · 30 reel veri nei giorni del calendario
+          cal01 assets/clips/cal/c01.mp4 1.7 3.9
+          cal02 assets/clips/cal/c02.mp4 1.7 3.9
+          cal03 assets/clips/cal/c03.mp4 1.7 3.9
+          cal04 assets/clips/cal/c04.mp4 1.7 3.9
+          cal05 assets/clips/cal/c05.mp4 1.7 3.9
+          cal06 assets/clips/cal/c06.mp4 1.7 3.9
+          cal07 assets/clips/cal/c07.mp4 1.7 3.9
+          cal08 assets/clips/cal/c08.mp4 1.7 3.9
+          cal09 assets/clips/cal/c09.mp4 1.7 3.9
+          cal10 assets/clips/cal/c10.mp4 1.7 3.9
+          cal11 assets/clips/cal/c11.mp4 1.7 3.9
+          cal12 assets/clips/cal/c12.mp4 1.7 3.9
+          cal13 assets/clips/cal/c13.mp4 1.7 3.9
+          cal14 assets/clips/cal/c14.mp4 1.7 3.9
+          cal15 assets/clips/cal/c15.mp4 1.7 3.9
+          cal16 assets/clips/cal/c16.mp4 1.7 3.9
+          cal17 assets/clips/cal/c17.mp4 1.7 3.9
+          cal18 assets/clips/cal/c18.mp4 1.7 3.9
+          cal19 assets/clips/cal/c19.mp4 1.7 3.9
+          cal20 assets/clips/cal/c20.mp4 1.7 3.9
+          cal21 assets/clips/cal/c21.mp4 1.7 3.9
+          cal22 assets/clips/cal/c22.mp4 1.7 3.9
+          cal23 assets/clips/cal/c23.mp4 1.7 3.9
+          cal24 assets/clips/cal/c24.mp4 1.7 3.9
+          cal25 assets/clips/cal/c25.mp4 1.7 3.9
+          cal26 assets/clips/cal/c26.mp4 1.7 3.9
+          cal27 assets/clips/cal/c27.mp4 1.7 3.9
+          cal28 assets/clips/cal/c28.mp4 1.7 3.9
+          cal29 assets/clips/cal/c29.mp4 1.7 3.9
+          cal30 assets/clips/cal/c30.mp4 1.7 3.9
+          # O25 · lavagna: un reel vero per tipo di contenuto
+          wb1 assets/clips/cal/c02.mp4 5.6 7
+          wb2 assets/clips/cal/c12.mp4 5.6 7
+          wb3 assets/clips/cal/c13.mp4 5.6 7 1
+          wb4 assets/clips/t_via2.mp4 5.6 7 1
+          # T09 · griglia del profilo
+          pg1 assets/clips/cal/c03.mp4 12.6 4.8
+          pg2 assets/clips/cal/c05.mp4 12.6 4.8
+          pg3 assets/clips/cal/c07.mp4 12.6 4.8
+          pg4 assets/clips/cal/c09.mp4 12.6 4.8
+          pg5 assets/clips/cal/c11.mp4 12.6 4.8
+          pg6 assets/clips/cal/c14.mp4 12.6 4.8
+          # F03 · K09 · il reel e il centro degli anelli
+          vR1 assets/clips/cal/c25.mp4 17.4 3.4
+          vR2 assets/clips/cal/c25.mp4 20.0 3.6 1
+          # A07 · copertina negli approfondimenti
+          vI1 assets/clips/cal/c22.mp4 23.6 4.4
+          # H01 · l'outlier
+          vH1 assets/clips/cal/c26.mp4 28.0 5
+          # O12 · sette angoli dello stesso tema
+          vO1 assets/clips/cal/c01.mp4 39.0 5.6
+          vO2 assets/clips/cal/c06.mp4 39.0 5.6
+          vO3 assets/clips/cal/c10.mp4 39.0 5.6
+          vO4 assets/clips/cal/c15.mp4 39.0 5.6
+          vO5 assets/clips/cal/c19.mp4 39.0 5.6
+          vO6 assets/clips/cal/c24.mp4 39.0 5.6
+          # O25 · tablet: database di reel che funzionano
+          vD1 assets/clips/cal/c04.mp4 44.6 4
+          vD2 assets/clips/cal/c08.mp4 44.6 4
+          vD3 assets/clips/cal/c17.mp4 44.6 4
+          vD4 assets/clips/cal/c21.mp4 44.6 4
+          vD5 assets/clips/cal/c23.mp4 44.6 4
+          vD6 assets/clips/cal/c27.mp4 44.6 4
+          vD7 assets/clips/cal/c28.mp4 44.6 4
+          vD8 assets/clips/cal/c29.mp4 44.6 4
+          vD9 assets/clips/cal/c30.mp4 44.6 4
+        -->
+      </div>
+      <div id="hudclip" class="clip" data-start="0" data-duration="48.6" data-track-index="2">
+        <div id="hud"></div>
+      </div>
+      <!--SFX
+        0.0 whoosh .1 ; 1.0 whoosh .14 ; 1.1 tick .06 ; 1.25 tick .06 ; 1.4 tick .06 ; 1.8 rise .07 ; 3.45 ding .14
+        5.6 whoosh .14 ; 6.75 whoosh .1 ; 7.2 click2 .1 ; 8.3 whoosh .1 ; 9.4 whoosh .1 ; 10.5 whoosh .1
+        12.6 whoosh .14 ; 13.1 pop .1 ; 14.2 key2 .1 ; 14.5 pop .1 ; 15.7 key3 .1 ; 16.0 pop .1
+        17.4 whoosh .14 ; 17.95 card .08 ; 18.35 card .08 ; 18.75 card .08 ; 20.2 whoosh .2
+        23.6 whoosh .1 ; 24.9 ding .14
+        28.0 whoosh .14 ; 29.0 whoosh .08 ; 29.6 whoosh .08 ; 30.2 whoosh .08
+        33.0 whoosh .14 ; 33.5 pop .08 ; 34.3 pop .08 ; 35.1 pop .08 ; 35.9 pop .08 ; 36.7 pop .08 ; 37.5 pop .08
+        39.0 whoosh .14 ; 39.8 click .12
+        44.6 whoosh .14 ; 45.9 tap .14
+      -->
+    </div>
+    <script>
+      (() => {
+        const ICON = __ICONS__;
+        /*__KIT__*/
+
+        const L = layer(10);
+        const S = svgLayer(L, 6, -60000, -60000, 200000, 200000);
+        const head = (t, lines, times, out, size) => { const T = titleW({ lines, size: size || 80 }); T.inAt(times || t); if (out) T.outAt(out); return T; };
+        const Y = 900;
+        camInit(540, 900, 1);
+
+        // ═══ A06 · tipografia gigante che diventa il calendario (15/10: "30 giorni di contenuti in 30 secondi") (0 – 5,6) ═══
+        // le parole del hook riempiono lo schermo, poi si ritirano in alto e i giorni arrivano sparsi e si montano; poi i reel veri
+        let X = 540;
+        const BT = bigType({ lines: [[{ t: "30 giorni" }], [{ t: "di contenuti", hand: true, scale: 0.8 }], [{ t: "in 30 secondi", box: true, scale: 0.62 }]], size: 200, top: 470 });
+        BT.inAt([0.0, 0.12, 0.27, 0.4, 0.53, 0.65, 0.78]);
+        BT.retract(1.0, { scale: 0.28, y: -300, dur: 0.3 });
+        const cal = calendar(L, X, Y + 230, { mese: "Novembre", start: 2, giorni: 30, cell: 112, cellH: 146, gap: 9 });
+        const calRect = [X - cal.W / 2 - 10, Y + 230 - cal.H / 2 - 10, X + cal.W / 2 + 10, Y + 230 + cal.H / 2 + 10];
+        // la camera è già sul calendario (ancora vuoto): la trasformazione non muove la camera, come nel reel 139
+        cutRect(0, calRect, { top: 380 });
+        float(1.0, 4.6, 0, -10, 0.02);
+        blurIn(cal.c, 1.0, { y: 30, blur: 12, dur: 0.35 });
+        cal.assemble(1.0, { spread: 420, dur: 0.45 });
+        cal.fillVideos(1.75, Array.from({ length: 30 }, (_, i) => "cal" + String(i + 1).padStart(2, "0")), { step: 0.055 });
+        BT.outAt(5.15);
+        // [catalogo] A06 — parole giganti del hook che si ritirano in titolo; il calendario si monta dai giorni sparsi e si riempie di reel veri
+
+        // ═══ O25 lavagna · T10 titolo che si compatta (29/09: "gli unici quattro tipi di contenuto: insegna, dimostra, mini serie, storia") (5,6 – 12,6) ═══
+        X = 3400;
+        const wb = whiteboard(L, X, Y + 120, [{ t: "Insegna", media: "wb1" }, { t: "Dimostra", media: "wb2" }, { t: "Mini serie", media: "wb3" }, { t: "Storia", media: "wb4" }], { pw: 270, ph: 500, gap: 30, fs: 32 });
+        cutRect(5.6, [wb.rect[0], wb.rect[1] - 40, wb.rect[2], wb.rect[3]], { top: 470 });
+        const T2 = titleW({ lines: [[{ t: "Gli unici " }, { t: "4 tipi", box: true }], [{ t: "di contenuto", hand: true }]], size: 96 });
+        T2.inAt([5.65, 5.8, 5.95, 6.1, 6.25]);
+        wb.show(5.7);
+        const T2c = compactTitle(T2, 6.75, [[{ t: "4 tipi di contenuto", box: true }]], { size: 52, top: 150 });
+        frameRect(7.0, 0.8, wb.panelRect(0), { top: 300 });
+        wb.panel(0, 7.35);
+        move(8.3, 0.55, ...(() => { const p = fitPose(...wb.panelRect(1), { top: 300 }); return [p.fx, p.fy, p.s]; })());
+        wb.panel(1, 8.55);
+        move(9.4, 0.55, ...(() => { const p = fitPose(...wb.panelRect(2), { top: 300 }); return [p.fx, p.fy, p.s]; })());
+        wb.panel(2, 9.65);
+        move(10.5, 0.55, ...(() => { const p = fitPose(...wb.panelRect(3), { top: 300 }); return [p.fx, p.fy, p.s]; })());
+        wb.panel(3, 10.75);
+        frameRect(11.45, 0.8, wb.rect, { top: 300 });
+        T2c.outAt(12.15);
+        // [catalogo] O25 · T10 — lavagna bianca vera con 4 pannelli e reel veri, la camera la percorre; il titolo grande si compatta in un box
+
+        // ═══ T09 · la parola del titolo cambia (04/10: "primo, secondo, terzo errore" del profilo) (12,6 – 17,4) ═══
+        X = 6200;
+        const PX = X - 470;
+        const pr = igProfile(L, PX, Y - 560, { user: "tu", handle: "samuelerinaldo.media", nome: "Samuele Rinaldo", bio: ["Ciao! Benvenuto nel mio profilo", "Mi piace fare video"], post: "214", follower: "8.430", seguiti: "312", grid: ["pg1", "pg2", "pg3", "pg4", "pg5", "pg6"], mio: true });
+        arriveRect(12.6, [PX - 20, Y - 580, X + 520, Y + 600], { dy: 320, top: 380 });
+        float(13.7, 3.7, 0, -10, 0.02);
+        const T3 = head(12.65, [[{ t: "Il " }, { t: "primo", box: true }, { t: "errore" }]], [12.65, 12.82, 13.0], 16.95);
+        swapWord(T3, 1, "secondo", 14.2);
+        swapWord(T3, 1, "terzo", 15.7);
+        [["header", 13.1, "Nome: non dice cosa fai"], ["bio", 14.5, "Bio: non promette niente"], ["griglia", 16.0, "Griglia: nessun filo"]].forEach(([part, t, txt], i) => {
+          const hlb = pr.hl(t, part);
+          if (i < 2) tl.to(hlb, { opacity: 0, duration: 0.25 }, t + 1.35);
+          const r = pr.partRect(part), ym = (r[1] + r[3]) / 2;
+          const ld = leader(L, S, r[2] - 8, ym, X + 510, ym, txt, { fs: 38 });
+          ld.draw(t + 0.1); ld.write(t + 0.2);
+          if (i < 2) { tl.to([ld.lab, ld.dot], { opacity: 0, duration: 0.25 }, t + 1.35); ld.cn.hide(t + 1.35, 0.25); }
+        });
+        // [catalogo] T09 — il titolo resta e cambia solo l'ordinale (si riscrive a macchina); sul profilo si accende la parte sbagliata
+
+        // ═══ F03 sheen · K09 uscita lungo una linea (05/09: "storie, caroselli e reel non sono uguali" → "il reel va a chi non ti segue") (17,4 – 23,6) ═══
+        X = 9000;
+        const CW = 290, CHh = 520, cy4 = Y - 40;
+        const T4 = titleW({ parent: L, x: X, y: cy4 - CHh / 2 - 150, size: 76, lines: [[{ t: "Storie, caroselli " }, { t: "e reel", box: true }]] });
+        T4.inAt([17.45, 17.6, 17.75, 17.9]);
+        const cards4 = [["Storie", "Chi ti segue"], ["Caroselli", "Entrambi"], ["Reel", "Chi non ti segue"]].map(([nm, chi], i) => {
+          const cx = X + (i - 1) * (CW + 34);
+          const c = glass(L, cx - CW / 2, cy4 - CHh / 2, CW, CHh, { zIndex: 13, borderRadius: 26 });
+          const m = el(c, { position: "absolute", left: 16, top: 16, width: CW - 32, height: 330, borderRadius: 16, overflow: "hidden", background: "#111" });
+          if (i === 0) { mediaTile(m, 0, 0, CW - 32, 330, "th-mio_03", 1); [0, 1, 2].forEach((k) => el(m, { position: "absolute", left: 12 + k * 82, top: 10, width: 74, height: 4, borderRadius: 2, background: k ? "rgba(255,255,255,.45)" : "#fff", zIndex: 3 })); avatar(m, 34, 40, 38, "tu", { ring: "#fff", bw: 2, z: 3 }); }
+          else if (i === 1) { [2, 1, 0].forEach((k) => { const d = docPage(m, 24 + k * 16, 30 + k * 12, CW - 96, 250, ["Slide 1", "Slide 2", "Slide 3"][k], k + 2, { z: 3 - k }); d.style.transform = `rotate(${(k - 1) * 3}deg)`; [d, ...d.querySelectorAll("*")].forEach((n) => n.setAttribute("data-layout-allow-overlap", "")); }); [0, 1, 2, 3].forEach((k) => el(m, { position: "absolute", left: (CW - 32) / 2 - 30 + k * 16, top: 312, width: 8, height: 8, borderRadius: "50%", background: k ? "rgba(255,255,255,.4)" : "#fff" })); }
+          else { videoTile(m, 0, 0, CW - 32, 330, "vR1", 1); el(m, { position: "absolute", left: 10, bottom: 10, zIndex: 3 }, svg("clapperboard", 30, "#fff", 2.2)); }
+          el(c, { position: "absolute", left: 0, top: 362, width: CW, textAlign: "center", fontFamily: FD, fontWeight: 700, fontSize: 44, color: K.white, textShadow: GLOW_T }, nm);
+          const who = el(c, { position: "absolute", left: 24, top: 430, width: CW - 48, height: 60, borderRadius: 30, display: "flex", alignItems: "center", justifyContent: "center", background: i === 2 ? limeFill(1) : "rgba(255,255,255,.08)", border: i === 2 ? "none" : "1.5px solid rgba(255,255,255,.2)", fontFamily: FS, fontWeight: 800, fontSize: 24, color: i === 2 ? K.ink : K.white, whiteSpace: "nowrap" }, chi);
+          gsap.set(who, { opacity: 0 });
+          blurIn(c, 17.55 + i * 0.2, { y: 40, blur: 14, dur: 0.45, scale: 0.95 });
+          sheenK(c, 17.95 + i * 0.4, { dur: 0.7 });
+          tl.fromTo(who, { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.3, ease: "power2.out", immediateRender: false }, 18.1 + i * 0.4);
+          return { c, cx };
+        });
+        cutRect(17.4, [X - 1.5 * CW - 50, cy4 - CHh / 2 - 230, X + 1.5 * CW + 50, cy4 + CHh / 2 + 40], { top: 330 });
+        float(17.4, 2.5, 0, -10, 0.02);
+        const X2 = X + 2050, R4 = 420;
+        // la camera inquadra solo gli anelli (riempiono la zona utile); il titolo nuovo sta nel mondo proprio dove cade la riga dei titoli
+        const pose4 = fitPose(X2 - R4 - 45, Y + 30 - R4 - 45, X2 + R4 + 45, Y + 30 + R4 + 45, { top: 330 });
+        const T4b = titleW({ parent: L, x: X2, y: Y + 30 - R4 - 45 - (330 - 150) / pose4.s, size: 70, lines: [[{ t: "Il reel va a" }], [{ t: "chi non ti segue", box: true }]] });
+        const rings4 = peopleRings(L, X2, Y + 30, [[222, 12], [322, 17], [R4, 22]], { media: "vR2", ring: K.lime, d: 250, dot: 62, volti: "atlas-muro" });
+        const ex = lineExit(L, S, [X + 1.5 * CW + 34 + 6, cy4], [X2 - R4 - 30, Y + 30], 19.9, pose4);
+        rings4.show(20.45, { daLontano: true });
+        T4b.inAt([20.7, 20.85, 21.0, 21.15, 21.3]);
+        float(20.75, 2.85, 0, -10, 0.02);
+        T4b.outAt(23.15);
+        // [catalogo] F03 · K09 — tre card con lo sheen da destra; una linea esce dal reel e la camera la insegue fino agli anelli (titoli nel mondo)
+
+        // ═══ A07 · Approfondimenti del reel con i numeri che salgono (03/10: "raddoppi le visualizzazioni") (23,6 – 28) ═══
+        X = 13000;
+        const ins = igInsights(L, X - PH.w / 2, Y - 560, { media: "vI1", views: [1240, 2480], delta: "×2", skip: "31%", didascalia: "Il trucco dei reel di prova: si fa così…", data: "3 ott · Durata 0:38" });
+        arriveRect(23.6, ins.rect, { top: 360, dx: 0, dy: 0, ds: -0.12, dur: 0.9, blur: 0 });
+        float(24.5, 0.8, 0, -8, 0.02);
+        head(23.62, [[{ t: "Raddoppi le " }, { t: "visualizzazioni", box: true }]], [23.62, 23.8, 24.0], 27.55);
+        ins.curve(23.7, 0.9);
+        ins.count(23.85, 1.1);
+        frameRect(25.3, 0.9, (() => { const r = ins.chartRect(); return [r[0] - 30, r[1] - 470, r[2] + 30, r[3] + 120]; })(), { top: 360 });
+        ins.skipOn(25.5);
+        float(26.2, 1.8, 0, -8, 0.02);
+        // [catalogo] A07 — Approfondimenti del reel già in scena al taglio: curva della fidelizzazione che si disegna, views che raddoppiano
+
+        // ═══ H01 · annotazioni a mano che entrano con la scia (08/09: dall'outlier copi idea, hook e formato) (28 – 33) ═══
+        X = 15500;
+        const vH = videoCard(L, X, Y - 480, 160, 284, "vH1", { z: 12 });
+        vH.body.style.border = `3px solid ${K.lime}`;
+        const vb = viewBadge(L, X, Y - 480 + 162, "2,4M", { fs: 24, z: 14 });
+        blurIn(vH.body, 28.1, { y: 30, blur: 12, dur: 0.45 });
+        popSeq([vb], 28.5);
+        [["Idea", 1, Y - 170, "L'idea", 29.0], ["Hook", -1, Y + 150, "L'hook", 29.6], ["Formato", 1, Y + 470, "Il formato", 30.2]].forEach(([w, side, y, page, t], i) => {
+          const h = handIn(L, X + (side > 0 ? -200 : 160), y, w, { side, page, seed: i + 4, fs: 116, pw: 640, ph: 250 });
+          h.show(t);
+        });
+        arriveRect(28, [X - 330, Y - 660, X + 330, Y - 280], { dy: 200, top: 380 });
+        const pH = fitPose(X - 530, Y - 640, X + 515, Y + 615, { top: 380 });
+        camK(28.9, 1.5, pH.fx, pH.fy, pH.s, KW.arrive);
+        float(30.4, 2.6, 0, -14, 0.02);
+        head(28.05, [[{ t: "Dall'outlier " }, { t: "copi", box: true }]], [28.05, 28.25, 28.45], 32.55);
+        // [catalogo] H01 — parola scritta a mano + freccia a ricciolo + pagina vera che entrano dai lati alternati con la scia
+
+        // ═══ K12 · nastro trasportatore (13/10: le storie in evidenza: presentazione, risultati, domande, dietro le quinte, offerte, testimonianze) (33 – 39) ═══
+        X = 18000;
+        const cv = conveyor(L, X - 445, Y + 40, [
+          { t: "Presentazione", media: "th-mio_02" }, { t: "Risultati", media: "th-mio_05" }, { t: "Domande frequenti", media: "th-mio_06" },
+          { t: "Dietro le quinte", media: "th-mio_07" }, { t: "Offerte", media: "th-mio_08" }, { t: "Testimonianze", media: "th-mio_09" }], { w: 250, h: 444, gap: 22, speed: 150, fs: 26, timeline: true });
+        const hd7 = el(L, { position: "absolute", left: X - 470, top: Y - 336, width: 940, height: 120, zIndex: 12 });
+        avatar(hd7, 60, 60, 104, "tu", { bw: 4, z: 2 });
+        el(hd7, { position: "absolute", left: 130, top: 22, fontFamily: FS, fontWeight: 800, fontSize: 34, color: K.white, whiteSpace: "nowrap" }, "samuelerinaldo.media");
+        el(hd7, { position: "absolute", left: 130, top: 66, display: "flex", alignItems: "center", gap: 10, fontFamily: FS, fontWeight: 600, fontSize: 26, color: "rgba(255,255,255,.6)", whiteSpace: "nowrap" }, svg("bookmark", 26, "rgba(255,255,255,.6)", 2.2) + "Storie in evidenza");
+        blurIn(hd7, 33.1, { y: 20, blur: 10, dur: 0.4 });
+        cutRect(33.0, [X - 486, Y - 345, X + 486, Y + 425], { top: 400 });
+        cv.run(33.1, 39.0);
+        [33.5, 34.3, 35.1, 35.9, 36.7, 37.5].forEach((t, i) => cv.on(i, t));
+        head(33.05, [[{ t: "Le storie " }, { t: "in evidenza", box: true }]], [33.05, 33.25, 33.45], 38.55);
+        // [catalogo] K12 — nastro di card (le tue storie in evidenza, copertine vere) a velocità costante, ognuna si accende quando è detta
+
+        // ═══ O12 · lenti di vetro (02/10: "× sette angoli": lo stesso tema visto da sette angoli) (39 – 44,6) ═══
+        X = 20500;
+        const fl = orbFlower(L, X, Y + 60, ["th-mio_04", "vO1", "vO2", "vO3", "vO4", "vO5", "vO6"], { r: 136, R: 365, k0: 1.25, iris0: true, links: true, dim: 0.6 });
+        cutRect(39.0, fl.rect, { top: 380 });
+        float(39.0, 5.6, 0, -12, 0.03);
+        head(39.05, [[{ t: "Un tema, " }, { t: "7 angoli", box: true }]], [39.05, 39.25, 39.45], 44.15);
+        fl.show(39.1);
+        fl.orbs[0].iris(39.8);
+        fl.spin(39.5, 5.1, 10);
+        [[1, 41.0], [3, 41.8], [5, 42.6]].forEach(([i, t]) => fl.focus(i, t));
+        fl.all(43.4);
+        // [catalogo] O12 — sfere di vetro scuro con reel veri a fiore, rack focus d'apertura, diaframma che si apre al centro
+
+        // ═══ O25 · tablet con il database di idee (10/09: "le prendi da un database") (44,6 – 48,6) ═══
+        X = 23000;
+        const tb = tablet(L, X - 380, Y - 520, { w: 760, h: 1000 });
+        el(tb.screen, { position: "absolute", left: 28, top: 26, fontFamily: FD, fontWeight: 700, fontSize: 40, color: K.white }, "Idee che funzionano");
+        const chips9 = el(tb.screen, { position: "absolute", left: 28, top: 86, display: "flex", gap: 10 });
+        ["Tutti", "Fitness", "Ultimi 30 gg", "Views ↓"].forEach((c, k) => el(chips9, { padding: "8px 16px", borderRadius: 14, background: k === 0 ? limeFill(1) : "#1f1f22", color: k === 0 ? K.ink : "#fff", fontFamily: FS, fontWeight: 700, fontSize: 20, whiteSpace: "nowrap" }, c, "span"));
+        const gw = (tb.sw - 56 - 24) / 3, gh = Math.round((gw * 16) / 9 * 0.7);
+        const cells9 = ["vD1", "vD2", "vD3", "vD4", "vD5", "vD6", "vD7", "vD8", "vD9"].map((id, i) => {
+          const c = el(tb.screen, { position: "absolute", left: 28 + (i % 3) * (gw + 12), top: 140 + Math.floor(i / 3) * (gh + 12), width: gw, height: gh, borderRadius: 14, overflow: "hidden", background: "#111", border: "1.5px solid rgba(255,255,255,.14)" });
+          videoTile(c, 0, 0, gw, gh, id, 1);
+          const b = viewBadge(c, gw / 2, gh - 28, ["1,2M", "840K", "2,1M", "96K", "3,4M", "1,4M", "412K", "88K", "655K"][i], { fs: 20, z: 5 });
+          blurIn(c, 44.75 + (i % 3) * 0.05 + Math.floor(i / 3) * 0.08, { y: 20, blur: 10, dur: 0.35 });
+          return { c, b };
+        });
+        popSeq(cells9.map((x) => x.b), 45.2, 0.06);
+        const pT = cutRect(44.6, tb.rect, { top: 380 });
+        camK(44.65, 1.8, pT.fx, pT.fy - 10, pT.s * 1.08, "sine.inOut");
+        float(46.5, 2.1, 0, -8, 0.01);
+        head(44.65, [[{ t: "Le prendi da " }, { t: "un database", box: true }]], [44.65, 44.82, 45.0, 45.15], 48.2);
+        const fg9 = tapFinger(L, { size: 84 });
+        const [tx9, ty9] = tb.at(28 + (gw + 12) + gw / 2, 140 + (gh + 12) + gh / 2);
+        fg9.show(45.6, tx9, ty9 + 30); fg9.tap(45.9); fg9.hide(46.4);
+        tl.to(cells9[4].c, { borderColor: K.lime, boxShadow: `${GLOW_A(1)}`, scale: 1.06, duration: 0.25, ease: "power2.out" }, 45.92);
+        // [catalogo] O25 — tablet con il database di reel veri (badge views), il dito sceglie quello da rifare
+
+        window.__timelines = window.__timelines || {};
+        window.__timelines["main"] = tl;
+      })();
+    </script>
+  </body>
+</html>

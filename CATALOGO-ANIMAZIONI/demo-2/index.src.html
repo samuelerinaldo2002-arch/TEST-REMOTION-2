@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>Demo kit v2 · oggetti</title>
+    <script src="assets/vendor/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Advercase"; src: url("assets/fonts/Advercase-Bold.ttf") format("truetype"); font-weight: 700; font-style: normal; font-display: block; }
+      @font-face { font-family: "Advercase"; src: url("assets/fonts/Advercase-Regular.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: block; }
+      @font-face { font-family: "Patrick Hand"; src: url("assets/fonts/PatrickHand-Regular.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: block; }
+      @font-face { font-family: "Zalando Sans"; src: url("assets/fonts/ZalandoSans-Variable.ttf") format("truetype"); font-weight: 100 900; font-style: normal; font-display: block; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: #1e1e1e; }
+      body { font-family: "Zalando Sans", sans-serif; color: #f4f4f2; -webkit-font-smoothing: antialiased; }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; background: #1e1e1e; }
+      .clip { position: absolute; inset: 0; overflow: hidden; }
+      #glow { position: absolute; inset: 0; opacity: 0.35; background: radial-gradient(58% 32% at 50% 46%, rgba(207, 251, 80, 0.08), rgba(207, 251, 80, 0) 70%); }
+      #vignette { position: absolute; inset: 0; background: radial-gradient(110% 78% at 50% 44%, rgba(0, 0, 0, 0) 44%, rgba(0, 0, 0, 0.62) 100%); }
+      .cam { position: absolute; left: 540px; top: 880px; width: 1px; height: 1px; }
+      .layer { position: absolute; left: 0; top: 0; width: 1px; height: 1px; }
+      #dots { position: absolute; left: -6000px; top: -6000px; width: 20000px; height: 20000px; background-image: radial-gradient(circle, rgba(255, 255, 255, 0.095) 1.25px, rgba(255, 255, 255, 0) 1.95px); background-size: 24px 24px; }
+      #stage { position: absolute; inset: 0; overflow: hidden; }
+      #safe { position: absolute; inset: 0; -webkit-mask-image: linear-gradient(to bottom, #000 0px, #000 1385px, transparent 1450px); mask-image: linear-gradient(to bottom, #000 0px, #000 1385px, transparent 1450px); }
+      #mbwrap, #shake { position: absolute; inset: 0; }
+      #hud { position: absolute; inset: 0; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="76" data-width="1080" data-height="1920">
+      <div id="bg" class="clip" data-start="0" data-duration="76" data-track-index="0">
+        <div class="cam" id="gcam2" data-layout-allow-overflow><div class="layer" id="gzoom2"><div class="layer" id="gpan2"><div class="layer" id="bokeh"></div></div></div></div>
+        <div class="cam" id="gcam" data-layout-allow-overflow><div class="layer" id="gzoom"><div class="layer" id="gpan"><div id="dots"></div></div></div></div>
+        <div id="glow"></div>
+        <div id="vignette"></div>
+      </div>
+      <div id="stage">
+        <svg width="0" height="0" style="position: absolute" aria-hidden="true">
+          <filter id="mb" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur id="mbn" in="SourceGraphic" stdDeviation="0 0" /></filter>
+        </svg>
+        <div id="safe"><div id="mbwrap"><div id="shake"><div class="cam" id="cam" data-layout-allow-overflow><div class="layer" id="zoom"><div class="layer" id="pan"></div></div></div></div></div></div>
+        <!--VIDEOS
+          # O24 · 30 reel veri nei giorni del calendario
+          cal01 assets/clips/cal/c01.mp4 0 5.2
+          cal02 assets/clips/cal/c02.mp4 0 5.2
+          cal03 assets/clips/cal/c03.mp4 0 5.2
+          cal04 assets/clips/cal/c04.mp4 0 5.2
+          cal05 assets/clips/cal/c05.mp4 0 5.2
+          cal06 assets/clips/cal/c06.mp4 0 5.2
+          cal07 assets/clips/cal/c07.mp4 0 5.2
+          cal08 assets/clips/cal/c08.mp4 0 5.2
+          cal09 assets/clips/cal/c09.mp4 0 5.2
+          cal10 assets/clips/cal/c10.mp4 0 5.2
+          cal11 assets/clips/cal/c11.mp4 0 5.2
+          cal12 assets/clips/cal/c12.mp4 0 5.2
+          cal13 assets/clips/cal/c13.mp4 0 5.2
+          cal14 assets/clips/cal/c14.mp4 0 5.2
+          cal15 assets/clips/cal/c15.mp4 0 5.2
+          cal16 assets/clips/cal/c16.mp4 0 5.2
+          cal17 assets/clips/cal/c17.mp4 0 5.2
+          cal18 assets/clips/cal/c18.mp4 0 5.2
+          cal19 assets/clips/cal/c19.mp4 0 5.2
+          cal20 assets/clips/cal/c20.mp4 0 5.2
+          cal21 assets/clips/cal/c21.mp4 0 5.2
+          cal22 assets/clips/cal/c22.mp4 0 5.2
+          cal23 assets/clips/cal/c23.mp4 0 5.2
+          cal24 assets/clips/cal/c24.mp4 0 5.2
+          cal25 assets/clips/cal/c25.mp4 0 5.2
+          cal26 assets/clips/cal/c26.mp4 0 5.2
+          cal27 assets/clips/cal/c27.mp4 0 5.2
+          cal28 assets/clips/cal/c28.mp4 0 5.2
+          cal29 assets/clips/cal/c29.mp4 0 5.2
+          cal30 assets/clips/cal/c30.mp4 0 5.2
+          # L13 · confronto pieno: reel a caso (6 temi diversi) e reel di una nicchia (6 creator business)
+          vA1 assets/clips/t_cuc1.mp4 64 2.5 1
+          vA2 assets/clips/t_ani1.mp4 64 2.5 2
+          vA3 assets/clips/t_via1.mp4 64 2.5 1.5
+          vA4 assets/clips/t_mot1.mp4 64 2.5 1
+          vA5 assets/clips/t_fit1.mp4 64 2.5 3
+          vA6 assets/clips/t_via2.mp4 64 2.5 2
+          vB1 assets/clips/cal/c01.mp4 64 2.5
+          vB2 assets/clips/cal/c03.mp4 64 2.5
+          vB3 assets/clips/cal/c05.mp4 64 2.5
+          vB4 assets/clips/cal/c07.mp4 64 2.5
+          vB5 assets/clips/cal/c14.mp4 64 2.5
+          vB6 assets/clips/cal/c21.mp4 64 2.5
+          # U08 · il reel (interruttore + Instagram) attorno a cui spuntano i tag
+          vE1 assets/clips/cal/c04.mp4 68.4 0.8 0.6
+          # L14 · muro di reel: Insegna / Dimostra / Racconta
+          wI1 assets/clips/cal/c02.mp4 69.2 2.8
+          wI2 assets/clips/cal/c09.mp4 69.2 2.8
+          wI3 assets/clips/cal/c10.mp4 69.2 2.8
+          wD1 assets/clips/cal/c12.mp4 69.2 2.8
+          wD2 assets/clips/cal/c20.mp4 69.2 2.8
+          wD3 assets/clips/cal/c28.mp4 69.2 2.8
+          wR1 assets/clips/cal/c13.mp4 69.2 2.8
+          wR2 assets/clips/cal/c23.mp4 69.2 2.8
+          wR3 assets/clips/t_via2.mp4 69.2 2.8 1
+        -->
+      </div>
+      <div id="hudclip" class="clip" data-start="0" data-duration="76" data-track-index="2">
+        <div id="hud"></div>
+      </div>
+      <!--SFX
+        0 whoosh .14 ; 5 whoosh .14 ; 10 whoosh .14 ; 14.5 whoosh .14 ; 20 whoosh .14 ; 23.5 whoosh .14 ; 28 whoosh .14
+        33 whoosh .14 ; 38 whoosh .14 ; 43 whoosh .14 ; 48 whoosh .14 ; 52 whoosh .14 ; 53.08 whoosh .12 ; 53.3 slam .2 ; 57 whoosh .14
+        57.68 pop .12 ; 58.24 pop .12 ; 58.81 pop .12 ; 59.37 pop .12 ; 59.6 whoosh .1 ; 62.15 land .16
+        64 whoosh .14 ; 66.4 whoosh .16 ; 67.08 tap .22 ; 67.1 toggle .12 ; 67.5 tap .22 ; 67.52 toggle .12 ; 67.92 tap .22 ; 67.94 toggle .12 ; 68.0 whoosh .08
+        69.2 whoosh .14 ; 72 whoosh .16 ; 74.2 whoosh .1 ; 74.4 ding .16
+      -->
+    </div>
+    <script>
+      (() => {
+        const ICON = __ICONS__;
+        /*__KIT__*/
+
+        const L = layer(10);
+        const S = svgLayer(L, 6, -60000, -60000, 200000, 200000);
+        const head = (t, lines, times, out) => { const T = titleW({ lines, size: 80 }); T.inAt(times || t); if (out) T.outAt(out); return T; };
+        camInit(540, 900, 1);
+
+        // ═══ O24 · calendario: i giorni si riempiono di reel veri, in ordine (come il reel 68 di Kallaway) (0 – 5) ═══
+        let X = 540, Y = 900;
+        arrive(0, X, Y, 1, { dy: 300, blur: 0 });
+        float(1.1, 3.9, 0, -10, 0.02);
+        head(0.15, [[{ t: "30 giorni " }, { t: "di contenuti", box: true }]], [0.15, 0.32, 0.5, 0.62], 4.6);
+        const cal = calendar(L, X, Y + 40, { mese: "Novembre", start: 2, giorni: 30, cell: 108, cellH: 132, gap: 9 });
+        blurIn(cal.c, 0.3, { y: 40, blur: 14, dur: 0.5 });
+        cal.fillVideos(1.0, Array.from({ length: 30 }, (_, i) => "cal" + String(i + 1).padStart(2, "0")), { step: 0.055 });
+        // [catalogo] O24 — calendario: 30 reel veri arrivano nei giorni, in ordine (reel 68 di Kallaway)
+        // ═══ O23 · 100 puntini (5 – 10) ═══
+        X = 3000;
+        const dg = dotGrid(L, X, Y + 40);
+        arriveRect(5, [X - dg.W / 2 - 20, Y + 40 - dg.H / 2, X + dg.W / 2 + 20, Y + 40 + dg.H / 2 + 110], { dx: 380, dy: 0, top: 390, fill: 0.9 });
+        float(6.1, 3.9, 0, -15, 0.02);
+        head(5.15, [[{ t: "70 · 20 · 10" }], [{ t: "la proporzione giusta", hand: true }]], 5.15, 9.6);
+        blurIn(dg.c, 5.25, { y: 30, blur: 12, dur: 0.45 });
+        dg.waveIn(5.4, 0.5);
+        dg.split(6.3, [[70, K.lime], [20, "#ffffff"], [10, "rgba(255,255,255,.12)"]], 0.014);
+        [["70% valore", K.lime], ["20% fiducia", "#ffffff"], ["10% vendita", "rgba(255,255,255,.35)"]].forEach(([txt, col], i) => {
+          const lg = el(L, { position: "absolute", left: X - dg.W / 2 + 10 + i * (dg.W / 3), top: Y + 40 + dg.H / 2 + 36, display: "flex", alignItems: "center", gap: 12, fontFamily: FS, fontWeight: 800, fontSize: 32, color: K.white, whiteSpace: "nowrap", zIndex: 14 }, `<span style="width:24px;height:24px;border-radius:50%;background:${col};box-shadow:${col === K.lime ? GLOW_A(0.7) : "none"};display:inline-block"></span>` + txt);
+          blurIn(lg, 6.5 + i * 0.4, { y: 12, blur: 8, dur: 0.35 });
+        });
+        // [catalogo] O23 — griglia di 100 puntini (onda, gruppi colorati, legenda)
+        // ═══ D07 · formula (10 – 14.5) ═══
+        X = 5500;
+        const eq = equation(L, X, Y, [{ v: "5", l: "sotto-nicchie" }, { op: "×" }, { v: "10", l: "formati" }, { op: "×" }, { v: "7", l: "angoli" }, { op: "=" }, { v: "350", res: true, l: "contenuti", tag: "≈ 1 anno" }], { vertical: true, units: true, fs: 148, w: 920, unit: 0.21 });
+        arriveRect(10, [X - eq.W / 2, Y - eq.H / 2, X + eq.W / 2, Y + eq.H / 2], { dy: -320, top: 390, fill: 0.95 });
+        float(11.1, 3.4, 0, 10, 0.02);
+        head(10.1, [[{ t: "Quasi " }, { t: "un anno", box: true }], [{ t: "di contenuti", hand: true }]], [10.1, 10.25, 10.4, 10.55], 14.1);
+        eq.show(0, 10.45); eq.show(1, 10.9); eq.show(2, 11.35); eq.show(3, 12.0, 0.8);
+        // [catalogo] D07 — formula verticale nel riquadro tratteggiato (reel 117), il risultato conta e brilla
+        // ═══ U01 · U03 chat AI + cursore (14.5 – 20) ═══
+        X = 8000;
+        arriveRect(14.5, [X - 470, Y - 300, X + 470, Y + 640], { dy: 320, top: 340 });
+        float(15.6, 4.4, 0, 15, 0.02);
+        head(14.55, [[{ t: "Chiedilo a " }, { t: "Claude", box: true }]], [14.55, 14.7, 14.85], 19.6);
+        const ch = chatUI(L, X, Y - 60, { logo: "claude", rows: 2 });
+        ch.show(14.6);
+        ch.type(15.3, "Elencami 5 sotto-nicchie della mia attività…", 26);
+        const cu = cursor(L, X + 300, Y + 300);
+        cu.show(16.9); cu.moveTo(17.0, X + 426, Y - 8, 0.45); cu.click(17.55); ch.sendAt(17.55); cu.hide(18.6);
+        const ans = glass(L, X - 470, Y + 170, 940, 440, { zIndex: 13 });
+        el(ans, { position: "absolute", left: 32, top: 24, display: "flex", alignItems: "center", gap: 12, fontFamily: FS, fontWeight: 800, fontSize: 26, color: "rgba(255,255,255,.7)" }, `<span style="width:30px;height:30px;border-radius:8px;background:#D97757;display:inline-block"></span>Claude`);
+        blurIn(ans, 17.75, { y: 30, blur: 12, dur: 0.4 });
+        ["Allenamento a casa", "Alimentazione", "Post-parto", "Tempo per sé", "Motivazione"].forEach((r, i) => {
+          const row = el(ans, { position: "absolute", left: 32, top: 82 + i * 68, width: 876, height: 56, borderRadius: 14, background: "rgba(255,255,255,.05)", display: "flex", alignItems: "center", gap: 16, padding: "0 18px", fontFamily: FS, fontWeight: 700, fontSize: 30, color: K.white, whiteSpace: "nowrap" }, `<b style="color:${K.lime}">${i + 1}.</b>` + r);
+          blurIn(row, 18.0 + i * 0.12, { y: 14, blur: 8, dur: 0.3 });
+        });
+        // [catalogo] U01 · U03 — chat AI ricreata, prompt che si scrive, cursore che clicca, risposta che arriva
+        // ═══ O13 · cervello + F02 pulse (20 – 23.5) ═══
+        X = 10500;
+        cutRect(20, [X - 560, Y - 390, X + 560, Y + 390], { top: 340, fill: 0.98 });
+        float(20, 3.5, 0, -10, 0.03);
+        head(20.05, [[{ t: "Il cervello " }, { t: "ama le storie", box: true }]], [20.05, 20.2, 20.4, 20.55], 23.1);
+        const br = brain(L, X, Y, 780);
+        blurIn(br.g, 20.1, { y: 30, blur: 14, dur: 0.5, scale: 0.85 });
+        pulse(L, X, Y, 21.0, { r: 380, z: 5 });
+        br.on(21.6);
+        br.spark(22.3);
+        // punti d'attacco dentro la sagoma del cervello Adobe (il vecchio "Emozione" a +200 cadeva sotto il lobo)
+        [["Dopamina", -1, -170], ["Attenzione", 1, -170], ["Memoria", -1, 85], ["Emozione", 1, 85]].forEach(([txt, side, dy], i) => {
+          const ldx = leader(L, S, X + side * 205, Y + dy, X + side * 520, Y + dy, txt, { fs: 38 });
+          ldx.draw(21.4 + i * 0.18); ldx.write(21.5 + i * 0.18);
+        });
+        // [catalogo] O13 · F02 · C04 — cervello che si accende, pulse, etichette con linee guida
+        // ═══ O18 · tubo al neon ∞ + riflesso (23.5 – 28) ═══
+        X = 13000;
+        arriveRect(23.5, [X - 470, Y - 330, X + 470, Y + 330], { dx: -360, dy: 0, top: 380 });
+        float(24.6, 3.4, 0, 0, 0.03);
+        const inf = `M${X} ${Y} C ${X + 140} ${Y - 260}, ${X + 400} ${Y - 260}, ${X + 400} ${Y} C ${X + 400} ${Y + 260}, ${X + 140} ${Y + 260}, ${X} ${Y} C ${X - 140} ${Y - 260}, ${X - 400} ${Y - 260}, ${X - 400} ${Y} C ${X - 400} ${Y + 260}, ${X - 140} ${Y + 260}, ${X} ${Y}`;
+        const np = neonPath(L, inf, { w: 48 });
+        np.draw(23.7, 1.8);
+        np.glint(25.6, 1.3, 2);
+        head(23.6, [[{ t: "Il ciclo della " }], [{ t: "dipendenza", box: true }]], [23.6, 23.75, 23.9, 24.1], 27.6);
+        [["Posta in gioco", -270, -232], ["Domanda", 270, -232], ["Finta", 270, 232], ["Riaggancio", -270, 232]].forEach(([txt, dx, dy], i) => {
+          const pl = el(L, { position: "absolute", left: X + dx - 180, top: Y + dy - 42, width: 360, height: 84, borderRadius: 42, background: "linear-gradient(180deg, rgba(64,64,64,.96), rgba(34,34,34,.97))", border: "1.5px solid rgba(255,255,255,.4)", boxShadow: "0 14px 34px rgba(0,0,0,.55), inset 0 1.5px 0 rgba(255,255,255,.12)", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: FS, fontWeight: 800, fontSize: 34, color: K.white, whiteSpace: "nowrap", zIndex: 20 });
+          blurIn(pl, 25.0 + i * 0.3, { y: 10, blur: 10, dur: 0.3, scale: 0.9 });
+          scrambleIn(pl, `${i + 1} · ${txt}`, 25.05 + i * 0.3, 0.3, i + 7);
+        });
+        // [catalogo] O18 · T04 — tubo al neon che si disegna + riflesso che corre, 4 fasi in pill
+        // ═══ L04 checklist · L11 percorso a tappe (28 – 33) ═══
+        X = 15500;
+        arriveRect(28, [X - 480, Y - 400, X + 480, Y + 470], { dy: 340, top: 340 });
+        float(29.1, 3.9, 0, -10, 0.02);
+        head(28.05, [[{ t: "Prima di " }, { t: "pubblicare", box: true }]], [28.05, 28.2, 28.35], 32.6);
+        const ck = checklist(L, X, Y - 190, 980, ["Ha senso che ne parli io?", "Ha già funzionato in passato?", "Che obiettivo ha il video?"], { fs: 42, blurUntilTick: true });
+        ck.show(28.2); ck.tick(0, 28.9); ck.tick(1, 29.4); ck.tick(2, 29.9);
+        const ps = metroPath(L, S, [[X - 330, Y + 200], [X + 0, Y + 340], [X + 300, Y + 190]], ["Salva in bozza", "Duplica", "Pubblica come prova"], { fs: 30, r: 40, icons: ["save", "copy", "flask-conical"], lw: 360, side: ["b", "b", "t"] });
+        ps.show(30.15, 0.8); ps.go(1, 30.95, 0.7); ps.go(2, 31.75, 0.7);
+        // [catalogo] L04 · L11 — checklist con spunte, percorso a metropolitana con la pallina che corre (metroPath)
+        // ═══ O07 · scala al neon (33 – 38) ═══
+        X = 18000;
+        const ld = ladder(L, X, Y + 520, ["Foto profilo", "Nome + cosa fai", "Chi aiuti", "Perché fidarsi", "Parola nei DM"], { gap: 200, w: 600, fs: 40 });
+        arriveRect(33, [X - 330, Y + 20, X + 330, Y + 580], { dy: 360, top: 340 });
+        head(33.05, [[{ t: "5 step di " }, { t: "un profilo", box: true }], [{ t: "che porta clienti", hand: true }]], [33.05, 33.2, 33.35, 33.5, 33.65], 37.6);
+        ld.build(33.1, 0.6);
+        ld.on(0, 34.0); ld.on(1, 34.9);
+        frameRect(35.2, 1.3, [X - 330, Y - 380, X + 330, Y + 180], { top: 400 });
+        ld.on(2, 35.6); ld.on(3, 36.4); ld.on(4, 37.1);
+        // [catalogo] O07 — scala al neon, i pioli si accendono e il nome si scrive
+        // ═══ O06 imbuto · O22 folla (38 – 43) ═══
+        X = 20500;
+        arriveRect(38, [X - 520, Y - 485, X + 520, Y + 520], { dy: -320, top: 340 });
+        float(39.1, 3.9, 0, 10, 0.02);
+        head(38.05, [[{ t: "Da sconosciuto " }, { t: "a cliente", box: true }]], [38.05, 38.2, 38.35, 38.5], 42.6);
+        const fu = funnel(L, X - 170, Y - 420, ["Ti scopre", "Ti segue", "Ti scrive", "Compra"], { w: 700, wEnd: 220, h: 118, fs: 34, end: "Cliente" });
+        fu.build(38.15, 0.12);
+        fu.light(0, 38.9); fu.light(1, 39.5); fu.light(2, 40.1);
+        const cr = crowd(L, X + 300, Y + 330, 6, 4, { s: 44, gap: 12 });
+        blurIn(cr.c, 39.2, { y: 30, blur: 12, dur: 0.45 });
+        cr.fillIn(39.3, 0.6);
+        cr.count(39.4, 0, 200, 0.9);
+        cr.recolor(40.6, [0, 1, 2, 6, 7, 13], K.lime, 0.05);
+        cr.dim(41.4, [3, 4, 5, 8, 9, 10, 11, 12, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]);
+        fu.light(3, 41.4); fu.lightOrb(41.75);
+        // [catalogo] O06 · O22 — imbuto a strati, folla con contatore che si colora
+        // ═══ D04 · D05 · D06 grafici (43 – 48) ═══
+        X = 23000;
+        arriveRect(43, [X - 440, Y - 580, X + 440, Y + 530], { dx: 380, dy: 0, top: 340 });
+        float(44.1, 3.9, 0, -10, 0.02);
+        head(43.05, [[{ t: "I numeri " }, { t: "che contano", box: true }]], [43.05, 43.2, 43.35], 47.6);
+        const rt = retention(L, X - 420, Y - 570, { w: 840, h: 400, label: "Retention" });
+        blurIn(rt.c, 43.1, { y: 30, blur: 12, dur: 0.45 });
+        rt.draw(43.5, 1.0);
+        const bc = barChart(L, X, Y + 380, [{ v: 0.3, l: "Media", av: "anon", val: "1.200" }, { v: 0.42, l: "Tu", av: "tu", val: "1.800" }, { v: 0.95, l: "Outlier", win: true, val: "48K" }], { h: 420, bw: 180, gap: 90, fs: 32 });
+        bc.grow(44.6);
+        const pb = progressBar(L, X - 420, Y + 480, 840, { label: "Analisi in corso" });
+        pb.fill(45.4, 1, 1.6, "power1.inOut");
+        // [catalogo] D04 · D05 · D06 — retention che crolla, barre, barra di avanzamento
+        // ═══ L12 · documento che si costruisce (48 – 52) ═══
+        X = 25500;
+        arriveRect(48, [X - 330, Y - 330, X + 330, Y + 330], { dy: 320, top: 340 });
+        float(49.1, 2.9, 0, 0, 0.05);
+        head(48.05, [[{ t: "Il copione " }, { t: "in 4 parti", box: true }]], [48.05, 48.2, 48.35, 48.5], 51.6);
+        const sd = scriptDoc(L, X, Y, [{ label: "Hook", rows: 2 }, { label: "Spiega", rows: 4 }, { label: "Mostra", rows: 3 }, { label: "Insegna", rows: 3 }, { label: "CTA", rows: 1 }], { title: "Copione" });
+        blurIn(sd.c, 48.1, { y: 30, blur: 10, dur: 0.4 });
+        sd.lay(48.3);
+        [0, 1, 2, 3, 4].forEach((i) => sd.section(i, 49.1 + i * 0.5));
+        sd.focus(0, 51.6);
+        // [catalogo] L12 — documento \"copione\" che si costruisce a sezioni
+
+        // ═══ O10 bersaglio · O05 piramide (52 – 57) ═══
+        X = 28000;
+        arriveRect(52, [X - 560, Y - 640, X + 470, Y - 20], { dx: -380, dy: 0, top: 340 });
+        head(52.05, [[{ t: "Chi è " }, { t: "il tuo cliente", box: true }]], [52.05, 52.2, 52.35, 52.5], 53.9);
+        const be = bullseye(L, X - 230, Y - 330, [56, 140, 220, 296]);
+        [52.15, 52.35, 52.55, 52.75].forEach((t, i) => be.ring(i, t));
+        const ldb = leader(L, S, X - 170, Y - 330, X + 460, Y - 330, "Il tuo cliente ideale", { fs: 36 });
+        ldb.draw(52.5); ldb.write(52.65);
+        const ldc = leader(L, S, X - 230 + 200, Y - 330 + 150, X + 460, Y - 330 + 150, "Chi fa fitness", { fs: 32 });
+        ldc.draw(52.95); ldc.write(53.05);
+        be.hit(53.3, { dx: 0.9, dy: 0.8, amp: 9 });
+        tl.to([...be.rings, be.ticks, be.dart(), ldb.lab, ldb.dot, ldc.lab, ldc.dot], { opacity: 0, duration: 0.35, ease: "power2.in" }, 53.9);
+        ldb.cn.hide(53.9, 0.3); ldc.cn.hide(53.9, 0.3);
+        const py = pyramid(L, S, X - 170, Y + 640, ["Base", "Fiducia", "Vendita"], { w: 680, h: 680, fs: 40, side: 1 });
+        frameRect(54.0, 1.0, py.rect, { top: 340 });
+        head(54.1, [[{ t: "Prima " }, { t: "la fiducia", box: true }]], [54.1, 54.25, 54.4], 56.7);
+        py.build(54.4, 0.18);
+        py.flag(0, 54.9); py.flag(1, 55.5); py.flag(2, 56.1);
+        // [catalogo] O10 · O05 — bersaglio dal centro, piramide con bandiere (due inquadrature)
+        // ═══ O20 radar (Kallaway reel 46 e 105): il tuo profilo vero al centro, lo spicchio trova dove ti scoprono (57 – 59,6) ═══
+        // (i titoli escono ≥ 0,45 s prima che entri il successivo: l'uscita dura ~0,45 s e due titoli non devono sovrapporsi)
+        X = 30500;
+        const RR = 400;
+        arriveRect(57, [X - RR - 30, Y - RR - 30, X + RR + 30, Y + RR + 70], { dy: 320, top: 340 });
+        float(58.1, 1.5, 0, -14, 0.025);
+        head(57.05, [[{ t: "Dove " }, { t: "ti trovano", box: true }]], [57.05, 57.2, 57.35], 59.15);
+        const rd = radar(L, X, Y, RR, { user: "tu", nome: "samuelerinaldo.media", sotto: "Samuele Rinaldo", bottone: "Segui" });
+        rd.show(57.1);
+        rd.spin(57.35, 2.3, 1);
+        [[52, "facebook", "Facebook"], [140, "google", "Google"], [228, "esplora", "Esplora"], [316, "simili", "Suggeriti"]].forEach(([ang, k, l]) => rd.find(ang, k, l));
+        tl.to(rd.all(), { opacity: 0, duration: 0.3, ease: "power2.in" }, 59.65);
+        // [catalogo] O20 — radar con il disco-profilo (foto vera), spicchio lime, puntini, 4 piattaforme trovate
+
+        // ═══ O02 anello al neon che implode nella tua foto vera · O03 i canali tornano fuori collegati (Kallaway reel 98) (59,6 – 64) ═══
+        const HX = X, HC = Y + 1170;
+        cutRect(59.6, [HX - 430, HC - 400, HX + 430, HC + 440], { top: 340 });
+        float(59.6, 4.4, 0, -14, 0.03);
+        head(59.65, [[{ t: "Tutto " }, { t: "in un posto", box: true }]], [59.65, 59.8, 59.95], 63.55);
+        const lr = ["instagram", "youtube", "facebook", "instagram", "youtube", "facebook"].map((k) => brandIcon(L, HX, HC, 116, k, 15));
+        const lring = logoRing(L, HX, HC, lr, { r: 330, w: 20 });
+        lring.burst(60.0); lring.spin(60.3, 1.6, 1.1); lring.implode(61.9, 0.6);
+        const hero = avatar(L, HX, HC, 310, "tu", { bw: 6, z: 16 });
+        gsap.set(hero, { opacity: 0, scale: 0.4 });
+        tl.to(hero, { opacity: 1, scale: 1, duration: 0.45, ease: "back.out(2)" }, 62.15);
+        ripple(L, HX, HC, 62.18, { r: 210, s0: 0.75, s1: 1.9, w: 5 });
+        ripple(L, HX, HC, 62.34, { r: 210, s0: 0.75, s1: 2.6, w: 3 });
+        // i loghi tornano fuori come canali etichettati, sulle diagonali, collegati al profilo da flussi che entrano
+        [["instagram", "Instagram", -1, -1], ["youtube", "YouTube", 1, -1], ["facebook", "Facebook", -1, 1], ["google", "Google", 1, 1]].forEach(([k, l, sx, sy], i) => {
+          const cx2 = HX + sx * 280, cy2 = HC + sy * 262, x1 = HX + sx * 142, y1 = HC + sy * 142, x2 = cx2 - sx * 40, y2 = cy2 - sy * 44;
+          connector(S, [[x1, y1], [x2, y2]], { color: "rgba(255,255,255,.5)", w: 3 }).draw(62.45 + i * 0.06, 0.3);
+          chip(L, cx2, cy2, k, l, { w: 236, h: 86, fs: 28 }).show(62.55 + i * 0.08);
+          flowLine(S, `M${x2} ${y2} L${x1} ${y1}`, 62.9 + i * 0.05, { r: 7, gap: 22, speed: 110, dur: 1.1 - i * 0.05, color: K.lime, glow: "rgba(207,251,80,.9)" });
+        });
+        handNote(L, HX - 318, HC + 370, "un profilo, tutti i canali", { size: 62, rot: -3 }).write(62.95, 0.55);
+        // [catalogo] O02 · O03 — anello al neon che esplode, gira e implode nella foto vera; i canali tornano fuori collegati
+
+        // ═══ L13 confronto pieno (Kallaway reel 29 e 123): due card con reel veri, badge, righe ✗/✓ e verdetto (64 – 66,4) ═══
+        X = 33000;
+        const vs = versusCards(L, X, Y - 470,
+          { titolo: "A caso", vids: ["vA1", "vA2", "vA3", "vA4", "vA5", "vA6"], views: ["312", "1,1K", "480", "2,3K", "190", "870"], righe: ["Un tema al giorno", "Zero prove", "Nessuna CTA"] },
+          { titolo: "Con un metodo", vids: ["vB1", "vB2", "vB3", "vB4", "vB5", "vB6"], views: ["48K", "120K", "1,2M", "86K", "310K", "64K"], righe: ["Una nicchia", "Risultati veri", "Una parola nei DM"] },
+          { w: 450, gap: 40 });
+        arriveRect(64, vs.rect, { dx: 380, dy: 0, top: 340 });
+        float(65.1, 1.3, 0, -12, 0.02);
+        head(64.05, [[{ t: "Due modi " }, { t: "di pubblicare", box: true }]], [64.05, 64.2, 64.35, 64.5], 65.95);
+        vs.show(64.15);
+        vs.verdict(65.7);
+        // [catalogo] L13 · F04 — confronto pieno con reel veri, badge views, righe ✗/✓ e verdetto (sbagliato spento, giusto acceso)
+
+        // ═══ U08 Impostazioni di Instagram + U07 il dito accende i 3 interruttori → la camera passa all'effetto (66,4 – 69,2) ═══
+        X = 35000;
+        const PX = X - 540, PY = Y - 570;
+        const st = igSettings(L, PX, PY, [
+          { kind: "facebook", t: "Condividi su Facebook", d: "I tuoi reel anche su Facebook" },
+          { kind: "google", t: "Comparsa su Google", d: "Il profilo nelle ricerche" },
+          { kind: "simili", t: "Account simili", d: "Suggerito a chi ti somiglia" },
+        ], { user: "tu", sezione: "Come ti trovano gli altri" });
+        const pz = fitPose(PX - 10, PY + 50, PX + PH.w + 10, PY + 700, { top: 340 });
+        whip2(66.4, 0.42, pz.fx, pz.fy, pz.s);
+        float(66.85, 1.15, 0, -8, 0.02);
+        head(66.45, [[{ t: "Attiva " }, { t: "queste 3", box: true }]], [66.45, 66.6, 66.75], 68.75);
+        const fg = tapFinger(L, { size: 84 });
+        const sw0 = st.sw(0), sw1 = st.sw(1), sw2 = st.sw(2);
+        fg.show(66.72, sw0[0] + 60, sw0[1] + 330);
+        fg.to(66.8, sw0[0], sw0[1], 0.26); fg.tap(67.08); st.on(0, 67.1);
+        fg.to(67.22, sw1[0], sw1[1], 0.24); fg.tap(67.5); st.on(1, 67.52);
+        fg.to(67.64, sw2[0], sw2[1], 0.24); fg.tap(67.92); st.on(2, 67.94);
+        fg.hide(68.08);
+        // seconda inquadratura: a sinistra gli interruttori accesi, la parentesi li raggruppa e porta all'effetto
+        frameRect(68.0, 0.75, [X - 250, PY - 10, X + 500, Y + 440], { top: 340 }); // il telefono parte sotto il titolo
+        const ro0 = st.rowRect(0), ro2 = st.rowRect(2);
+        const bx = X + 48, ym = (ro0[1] + ro2[3]) / 2;
+        bracket(S, bx, ro0[1] + 10, ro2[3] - 10, -1, { depth: 30 }).draw(68.2);
+        connector(S, [[bx + 32, ym], [X + 120, ym]], { color: K.lime, w: 3, glow: true }).draw(68.35, 0.2);
+        const stc = statCard(L, X + 120, ym - 175, { label: "Account raggiunti", icon: "users", w: 360, h: 260, fs: 80 });
+        blurIn(stc.c, 68.35, { y: 24, blur: 12, dur: 0.4 });
+        stc.count(68.5, 1240, 4980, 0.65);
+        const ev = videoCard(L, X + 300, ym + 300, 220, 390, "vE1", { z: 12 });
+        blurIn(ev.body, 68.45, { y: 24, blur: 12, dur: 0.4 });
+        tags(L, S, [{ t: "+ visibilità", x: X + 70, y: ym + 150, rot: -6 }, { t: "gratis", x: X + 390, y: ym + 260, rot: 5 }, { t: "2 minuti", x: X + 90, y: ym + 380, rot: 4 }], {}).forEach((tg, i) => tg.show(68.65 + i * 0.14));
+        // [catalogo] U08 · U07 · L10 · D01 · H03 — Impostazioni vere di Instagram, il dito accende gli interruttori, poi l'effetto
+
+        // ═══ L14 · A01 muro di reel veri (Kallaway reel 109 e 120): 3 formati con badge views in sequenza (69,2 – 72) ═══
+        X = 37000;
+        const wall = reelWall(L, X, Y, ["wI1", "wD1", "wR1", "wI2", "wD2", "wR2", "wI3", "wD3", "wR3"], { cols: 3, tw: 270, th: 340, heads: ["Insegna", "Dimostra", "Racconta"], views: ["1,2M", "840K", "2,1M", "96K", "310K", "1,4M", "412K", "88K", "655K"] });
+        arriveRect(69.2, wall.rect, { dy: 340, top: 340 });
+        float(70.3, 1.7, 0, -16, 0.03);
+        head(69.25, [[{ t: "3 formati " }, { t: "che funzionano", box: true }]], [69.25, 69.4, 69.55, 69.7], 71.55);
+        wall.show(69.22);
+        // [catalogo] L14 · A01 — muro di reel veri in un contenitore, etichette di colonna, badge views in sequenza
+
+        // ═══ X01 "Commenta IDEE" (Kallaway reel 12 e 1): documenti che arrivano a ondate + il tuo DM con la foto vera (72 – 76) ═══
+        X = 39000;
+        const dwl = docWall(L, X, Y + 60, { n: 9, cols: 3, dw: 250, dh: 300, titoli: ["Lista IDEE", "Hook", "Format", "Script", "CTA", "Calendario", "Nicchia", "Trend", "Bonus"] });
+        const pc = fitPose(dwl.rect[0], dwl.rect[1], dwl.rect[2], dwl.rect[3], { top: 430 });
+        whip2(72.0, 0.42, pc.fx, pc.fy, pc.s);
+        float(72.45, 3.5, 0, -14, 0.03);
+        titleW({ lines: [[{ t: "Commenta " }, { t: "\"IDEE\"", box: true }], [{ t: "e ti mando la lista", hand: true }]], size: 80 }).inAt([72.05, 72.2, 72.55, 72.65, 72.75, 72.85, 72.95]);
+        dwl.show(72.1, [1, 3, 6, 9]);
+        const nt = igNotif(L, X, Y + 60 - dwl.H / 2 - 50, { user: "tu", nome: "samuelerinaldo.media", testo: "ti ha inviato un PDF", allegato: "Lista IDEE" });
+        const ax = nt.attXY();
+        dwl.send(73.95, 0, ax[0], ax[1], 0.4);
+        nt.show(74.4);
+        // [catalogo] X01 · U09 — "Commenta X" con il contenitore di documenti a ondate e la notifica DM con la foto vera
+
+        window.__timelines = window.__timelines || {};
+        window.__timelines["main"] = tl;
+      })();
+    </script>
+  </body>
+</html>

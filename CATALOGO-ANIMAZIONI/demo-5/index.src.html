@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>Demo 5 · blocco 4 (le 11 rare)</title>
+    <script src="assets/vendor/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Advercase"; src: url("assets/fonts/Advercase-Bold.ttf") format("truetype"); font-weight: 700; font-style: normal; font-display: block; }
+      @font-face { font-family: "Advercase"; src: url("assets/fonts/Advercase-Regular.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: block; }
+      @font-face { font-family: "Patrick Hand"; src: url("assets/fonts/PatrickHand-Regular.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: block; }
+      @font-face { font-family: "Zalando Sans"; src: url("assets/fonts/ZalandoSans-Variable.ttf") format("truetype"); font-weight: 100 900; font-style: normal; font-display: block; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: #1e1e1e; }
+      body { font-family: "Zalando Sans", sans-serif; color: #f4f4f2; -webkit-font-smoothing: antialiased; }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; background: #1e1e1e; }
+      .clip { position: absolute; inset: 0; overflow: hidden; }
+      #glow { position: absolute; inset: 0; opacity: 0.35; background: radial-gradient(58% 32% at 50% 46%, rgba(207, 251, 80, 0.08), rgba(207, 251, 80, 0) 70%); }
+      #vignette { position: absolute; inset: 0; background: radial-gradient(110% 78% at 50% 44%, rgba(0, 0, 0, 0) 44%, rgba(0, 0, 0, 0.62) 100%); }
+      .cam { position: absolute; left: 540px; top: 880px; width: 1px; height: 1px; }
+      .layer { position: absolute; left: 0; top: 0; width: 1px; height: 1px; }
+      #dots { position: absolute; left: -6000px; top: -6000px; width: 40000px; height: 20000px; background-image: radial-gradient(circle, rgba(255, 255, 255, 0.095) 1.25px, rgba(255, 255, 255, 0) 1.95px); background-size: 24px 24px; }
+      #stage { position: absolute; inset: 0; overflow: hidden; }
+      #safe { position: absolute; inset: 0; -webkit-mask-image: linear-gradient(to bottom, #000 0px, #000 1385px, transparent 1450px); mask-image: linear-gradient(to bottom, #000 0px, #000 1385px, transparent 1450px); }
+      #mbwrap, #shake { position: absolute; inset: 0; }
+      #hud { position: absolute; inset: 0; }
+    </style>
+  </head>
+  <body>
+        <div id="root" data-composition-id="main" data-start="0" data-duration="54.4" data-width="1080" data-height="1920">
+      <div id="bg" class="clip" data-start="0" data-duration="54.4" data-track-index="0">
+        <div class="cam" id="gcam2" data-layout-allow-overflow><div class="layer" id="gzoom2"><div class="layer" id="gpan2"><div class="layer" id="bokeh"></div></div></div></div>
+        <div class="cam" id="gcam" data-layout-allow-overflow><div class="layer" id="gzoom"><div class="layer" id="gpan"><div id="dots"></div></div></div></div>
+        <div id="glow"></div>
+        <div id="vignette"></div>
+      </div>
+      <div id="stage">
+        <svg width="0" height="0" style="position: absolute" aria-hidden="true">
+          <filter id="mb" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur id="mbn" in="SourceGraphic" stdDeviation="0 0" /></filter>
+        </svg>
+        <div id="safe"><div id="mbwrap"><div id="shake"><div class="cam" id="cam" data-layout-allow-overflow><div class="layer" id="zoom"><div class="layer" id="pan"></div></div></div></div></div></div>
+        <!--VIDEOS
+          # K08 · O16 · il reel che viene condiviso
+          vS assets/clips/t_mot1.mp4 0 6.2
+          # O19 · il reel della mappa
+          vM assets/clips/g_fit1.mp4 32.4 5.8
+        -->
+      </div>
+      <div id="hudclip" class="clip" data-start="0" data-duration="54.4" data-track-index="2">
+        <div id="hud"></div>
+      </div>
+      <!--SFX
+        0.0 whoosh .1 ; 0.95 tap .14 ; 1.05 pop .1 ; 1.3 whoosh .12 ; 1.85 drop .16 ; 1.9 sub .12 ; 2.7 key2 .06
+        6.2 whoosh .14 ; 6.5 click .08 ; 7.6 whoosh .1 ; 8.9 whoosh .1 ; 10.2 whoosh .1
+        11.9 whoosh .14 ; 12.3 glitch .08 ; 13.4 key3 .06
+        17.0 whoosh .14 ; 17.6 land .08 ; 18.1 land .08 ; 18.6 land .08 ; 19.1 land .08 ; 19.6 land .08
+        22.4 whoosh .14 ; 23.2 rise .06 ; 24.6 click2 .1 ; 25.1 slam .08
+        28.0 whoosh .14 ; 29.4 drop .08 ; 30.3 drop .08 ; 31.2 drop .08
+        32.4 whoosh .14 ; 33.0 tick .05 ; 33.2 tick .05 ; 33.4 tick .05 ; 33.6 tick .05 ; 33.8 tick .05
+        38.2 whoosh .14 ; 39.0 rise .07 ; 40.1 ding .12
+        43.8 whoosh .14 ; 44.4 click .08 ; 44.7 click .08 ; 45.0 click .08 ; 45.3 click .08
+        49.4 whoosh .14 ; 50.0 glitch .1 ; 51.2 ding .12
+      -->
+    </div>
+    <script>
+      (() => {
+        const ICON = __ICONS__;
+        /*__KIT__*/
+
+        const L = layer(10);
+        const S = svgLayer(L, 6, -60000, -60000, 200000, 200000);
+        const SH = svgLayer(L, 45, -60000, -60000, 200000, 200000);
+        const head = (t, lines, times, out, size) => { const T = titleW({ lines, size: size || 80 }); T.inAt(times || t); if (out) T.outAt(out); return T; };
+        const Y = 900;
+        camInit(540, 900, 1);
+
+        // ═══ K08 · O16 — "una condivisione è un sasso nello stagno: le onde arrivano a chi non ti conosce" (0 – 6,2) ═══
+        // il dito preme Condividi sotto un reel vero; la condivisione diventa un sasso lime che cade e la camera lo insegue (K08)
+        // fino all'acqua: tonfo, gocce, onde concentriche (O16) e la linea guida su chi raggiungono
+        let X = 600;
+        const vc1 = videoCard(L, X, Y - 330, 330, 586, "vS", { z: 12 });
+        const sh1 = el(L, { position: "absolute", left: X - 150, top: Y + 0, width: 300, height: 76, borderRadius: 38, display: "flex", alignItems: "center", justifyContent: "center", gap: 12, background: "linear-gradient(180deg,#3b3b3b,#232323)", border: "1.5px solid rgba(255,255,255,.22)", boxShadow: "0 16px 36px rgba(0,0,0,.5)", fontFamily: FS, fontWeight: 800, fontSize: 32, color: K.white, whiteSpace: "nowrap", zIndex: 13 }, svg("send", 32, K.white, 2.2) + "Condividi");
+        const { pose: poseA } = (() => ({ pose: fitPose(X - 360, Y - 650, X + 360, Y + 110, { top: 380 }) }))();
+        cutTo(0, poseA.fx, poseA.fy, poseA.s);
+        float(0, 1.3, 0, -8, 0.01);
+        const T1 = head(0.05, [[{ t: "Una " }, { t: "condivisione", box: true }]], [0.05, 0.2], 1.6);
+        const fg1 = tapFinger(L, { size: 84 });
+        fg1.show(0.55, X + 60, Y + 300); fg1.to(0.62, X + 40, Y + 40, 0.26); fg1.tap(0.92); fg1.hide(1.25);
+        tl.to(sh1, { background: limeFill(1), color: K.ink, duration: 0.12 }, 0.95);
+        const peb = pebble(L, X, Y + 38, 96, "send", { z: 22 });
+        tl.fromTo(peb, { opacity: 0, scale: 0.4 }, { opacity: 1, scale: 1, duration: 0.25, ease: "back.out(2.6)", immediateRender: false }, 1.02);
+        const WY = Y + 1250;
+        const wt = water(L, X, WY, 1400, { k: 0.36, z: 9 });
+        wt.show(1.1, 0.4);
+        const poseW = fitPose(X - 560, WY - 380, X + 560, WY + 300, { top: 380 });
+        fallFollow(peb, 1.3, X, Y + 38, X, WY - 10, poseW, { dur: 0.55 });
+        tl.to(peb, { opacity: 0, scale: 0.6, duration: 0.12 }, 1.85);
+        wt.splash(1.86, X, WY - 10);
+        wt.ripples(1.86, X, WY, { n: 3, r: 640 });
+        wt.ripples(2.6, X, WY, { n: 2, r: 640 });
+        // chi non ti conosce: volti veri sull'acqua, si accendono di lime quando l'onda arriva (più lontani = più tardi)
+        [[-260, -40], [300, -70], [-470, 60], [470, 40], [-120, 140], [190, 150], [-380, -120], [380, -150]].forEach(([dx, dy], i) => {
+          const d = 84, f = faceDot(L, X + dx - d / 2, WY + dy - d / 2, d, 60 + i * 9, "atlas-muro", { bw: 3 });
+          f.style.zIndex = 12;
+          const dist = Math.hypot(dx, dy / 0.36), ta = 1.86 + (dist / 640) * 0.9;
+          gsap.set(f, { opacity: 0, scale: 0.5, filter: "grayscale(1) brightness(.6)" });
+          tl.to(f, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(2)" }, 1.45 + i * 0.03);
+          tl.to(f, { filter: "grayscale(0) brightness(1)", borderColor: K.lime, boxShadow: `${GLOW_A(0.8)}, 0 6px 14px rgba(0,0,0,.5)`, duration: 0.12 }, ta);
+          tl.fromTo(f, { y: 0 }, { y: -14, duration: 0.18, ease: "power2.out", yoyo: true, repeat: 1, immediateRender: false }, ta);
+        });
+        const ld1 = leader(L, S, X + 300, WY - 100, X + 300, WY - 330, "", { dot: true });
+        const lb1 = el(L, { position: "absolute", left: X + 70, top: WY - 410, width: 460, textAlign: "center", fontFamily: FS, fontWeight: 800, fontSize: 40, color: K.white, textShadow: GLOW_T, zIndex: 20, whiteSpace: "nowrap" }, "Chi non ti conosce");
+        gsap.set(lb1, { opacity: 0 });
+        ld1.draw(2.55, 0.35);
+        blurIn(lb1, 2.7, { y: 10, blur: 8, dur: 0.3 });
+        float(2.2, 4.0, 0, -10, 0.02);
+        head(2.1, [[{ t: "Le onde " }, { t: "arrivano lontano", box: true }]], [2.1, 2.25, 2.4, 2.55], 5.75);
+        // [catalogo] K08 · O16 — la condivisione diventa un sasso, la camera lo insegue fino all'acqua: tonfo e onde
+
+        // ═══ L06 — "i quattro passi: idee, copione, riprese, pubblica" (6,2 – 11,9) ═══
+        // l'indice sta fisso nell'angolo per tutta la sezione (HUD) e la voce corrente si accende; la camera passa da un passo all'altro
+        X = 4200;
+        const si = sideIndex(["Idee", "Copione", "Riprese", "Pubblica"], { x: 36, top: 330, w: 236, fs: 26 });
+        si.show(6.25); si.go(0, 6.3);
+        tl.to(si.box, { opacity: 0, x: -40, duration: 0.3 }, 11.55);
+        const P2 = [X, X + 900, X + 1800, X + 2700].map((x) => x + 120);
+        // 1 · idee: sei copertine vere dei tuoi reel
+        ["mio_01", "mio_02", "mio_05", "mio_06", "mio_07", "mio_08"].forEach((m, i) => {
+          const tw = 230, th = 409, gx = P2[0] - 250 + (i % 3) * 250, gy = Y - 300 + Math.floor(i / 3) * 430;
+          const c = el(L, { position: "absolute", left: gx - tw / 2, top: gy - th / 2 + 160, width: tw, height: th, borderRadius: 16, overflow: "hidden", border: "1.5px solid rgba(255,255,255,.18)", boxShadow: "0 18px 40px rgba(0,0,0,.5)", zIndex: 12 });
+          mediaTile(c, 0, 0, tw, th, "th-" + m, 1);
+          blurIn(c, 6.35 + i * 0.05, { y: 24, blur: 10, dur: 0.35 });
+        });
+        // 2 · copione
+        const sd2 = scriptDoc(L, P2[1], Y + 60, [{ label: "Hook", rows: 2 }, { label: "Spiega", rows: 3 }, { label: "Mostra", rows: 3 }, { label: "CTA", rows: 1 }], { title: "Copione", w: 720 });
+        sd2.lay(7.6); [0, 1, 2, 3].forEach((i) => sd2.section(i, 7.8 + i * 0.18, 0.03));
+        // 3 · riprese: la tua copertina in un telaio da registrazione
+        const rec = el(L, { position: "absolute", left: P2[2] - 250, top: Y - 360, width: 500, height: 830, borderRadius: 26, overflow: "hidden", border: "2px solid rgba(255,255,255,.3)", boxShadow: "0 30px 70px rgba(0,0,0,.55)", zIndex: 12 });
+        mediaTile(rec, 0, 0, 500, 830, "th-mio_03", 1);
+        const recDot = el(rec, { position: "absolute", left: 22, top: 22, height: 40, display: "flex", alignItems: "center", gap: 10, padding: "0 16px", borderRadius: 20, background: "rgba(0,0,0,.6)", fontFamily: FS, fontWeight: 800, fontSize: 24, color: "#fff", zIndex: 5 }, `<span style="width:14px;height:14px;border-radius:50%;background:#ff3b30;display:inline-block"></span>REC 00:24`);
+        // 4 · pubblica: il bottone Condividi che si accende
+        const post = el(L, { position: "absolute", left: P2[3] - 190, top: Y - 380, width: 380, height: 640, borderRadius: 24, overflow: "hidden", border: "2px solid rgba(255,255,255,.25)", boxShadow: "0 30px 70px rgba(0,0,0,.55)", zIndex: 12 });
+        mediaTile(post, 0, 0, 380, 640, "th-mio_06", 1);
+        const pub = el(L, { position: "absolute", left: P2[3] - 230, top: Y + 300, width: 460, height: 110, borderRadius: 55, display: "flex", alignItems: "center", justifyContent: "center", gap: 16, background: "linear-gradient(180deg,#3b3b3b,#232323)", border: "1.5px solid rgba(255,255,255,.22)", boxShadow: "0 20px 44px rgba(0,0,0,.5)", fontFamily: FS, fontWeight: 800, fontSize: 44, color: K.white, whiteSpace: "nowrap", zIndex: 13 }, svg("send", 44, K.white, 2.2) + "Pubblica");
+        const fg2 = tapFinger(L, { size: 84 });
+        fg2.show(10.5, P2[3] + 80, Y + 600); fg2.to(10.58, P2[3] + 40, Y + 355, 0.26); fg2.tap(10.88); fg2.hide(11.3);
+        tl.to(pub, { background: limeFill(1), color: K.ink, boxShadow: `${GLOW_A(0.8)}, 0 20px 44px rgba(0,0,0,.5)`, duration: 0.12 }, 10.9);
+        const poseP = (i) => fitPose(P2[i] - 680, Y - 360, P2[i] + 430, Y + 470, { top: 380 });
+        { const p = poseP(0); cutTo(6.2, p.fx, p.fy, p.s); }
+        [[1, 7.6], [2, 8.9], [3, 10.2]].forEach(([i, t]) => { const p = poseP(i); whip2(t, 0.4, p.fx, p.fy, p.s); si.go(i, t + 0.15); });
+        float(10.6, 1.3, 0, -8, 0.01);
+        head(6.25, [[{ t: "I 4 " }, { t: "passi", box: true }]], [6.25, 6.38, 6.5], 11.45);
+        // [catalogo] L06 — indice fisso nell'angolo con la voce corrente accesa, la camera passa da un passo all'altro
+
+        // ═══ U06 — "lo dice Alex Hormozi: il volume batte la fortuna" (11,9 – 17) ═══
+        X = 9200;
+        const hz = el(L, { position: "absolute", left: X - 330, top: Y - 420, width: 660, height: 820, borderRadius: 30, overflow: "hidden", border: "2px solid rgba(255,255,255,.25)", boxShadow: "0 34px 90px rgba(0,0,0,.6)", zIndex: 12 });
+        imgIn(hz, "av-hormozi", { objectFit: "cover" });
+        el(hz, { position: "absolute", left: 0, bottom: 0, width: 660, height: 360, background: "linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,.82))", zIndex: 2 });
+        blurIn(hz, 11.95, { y: 30, blur: 14, dur: 0.45 });
+        const lt = lowerThird(hz, 40, 640, "Alex Hormozi", "@hormozi · 4 mln di follower", { fs: 44 });
+        lt.g.style.zIndex = 5;
+        lt.show(12.3);
+        cutRect(11.9, [X - 360, Y - 450, X + 360, Y + 430], { top: 380 });
+        float(11.9, 5.1, 0, -12, 0.02);
+        head(11.95, [[{ t: "Il volume " }], [{ t: "batte la fortuna", hand: true }]], [11.95, 12.1, 13.4, 13.55, 13.7], 16.55);
+        // [catalogo] U06 — lower third con la barra lime e il nome che si decodifica sulla foto vera della fonte
+
+        // ═══ L07 — "i formati, dal migliore al peggiore" (17 – 22,4) ═══
+        X = 13200;
+        const tier = tierList(L, X, Y - 350, ["S", "A", "B", "C"], { w: 960, rh: 176, gap: 16, slot: 132 });
+        tier.show(17.05);
+        cutRect(17.0, tier.rect, { top: 380 });
+        float(17.0, 5.4, 0, -10, 0.02);
+        const fmt = [["mio_04", "Storia", 0], ["mio_09", "Tutorial", 0], ["mio_10", "Dietro le quinte", 1], ["mio_02", "Meme", 2], ["mio_05", "Foto con testo", 3]];
+        fmt.forEach(([m, lb, row], i) => {
+          const c = el(L, { position: "absolute", left: 0, top: 0, width: 132, height: 158, borderRadius: 12, overflow: "hidden", border: "2px solid rgba(255,255,255,.3)", boxShadow: "0 12px 26px rgba(0,0,0,.5)", zIndex: 20 });
+          mediaTile(c, 0, 0, 132, 158, "th-" + m, 1);
+          el(c, { position: "absolute", left: 0, bottom: 0, width: 132, padding: "4px 0", textAlign: "center", background: "rgba(0,0,0,.72)", fontFamily: FS, fontWeight: 800, fontSize: 15, color: "#fff", zIndex: 4, whiteSpace: "nowrap" }, lb);
+          gsap.set(c, { opacity: 0 });
+          tier.drop(c, row, 17.45 + i * 0.5);
+        });
+        head(17.05, [[{ t: "Dal " }, { t: "migliore", box: true }], [{ t: "al peggiore", hand: true }]], [17.05, 17.2, 17.35, 17.5], 21.95);
+        // [catalogo] L07 — tier list S/A/B/C: le copertine vere cadono riga per riga fino al loro posto
+
+        // ═══ O09 — "da un'idea confusa a tre livelli chiari" (22,4 – 28) ═══
+        X = 17200;
+        const ms = morphShape(L, X - 80, Y + 80, 450);
+        cutRect(22.4, [X - 520, Y + 80 - 470, X + 600, Y + 80 + 440], { top: 380 });
+        float(22.4, 5.6, 0, -10, 0.02);
+        ms.show(22.45);
+        ms.spin(22.8, 1.8, 120);
+        ms.morph(23.0, "pentagono", 0.7);
+        ms.morph(23.75, "triangolo", 0.7);
+        ms.slice(24.65, ["Attirare", "Fidarsi", "Comprare"]);
+        head(22.45, [[{ t: "Un'idea " }, { t: "confusa", box: true }]], [22.45, 22.6], 24.15);
+        head(24.6, [[{ t: "3 livelli " }, { t: "chiari", box: true }]], [24.6, 24.75, 24.9], 27.55);
+        // [catalogo] O09 — esagono che ruota e cambia forma fino al triangolo, poi si taglia in tre livelli con le etichette
+
+        // ═══ O17 — "i formati vecchi vengono sommersi" (28 – 32,4) ═══
+        X = 21200;
+        const old = [["Foto con citazione", "quote"], ["Carosello di solo testo", "text"], ["Video orizzontale", "monitor"]].map(([tx, ic], i) => {
+          const c = glass(L, X - 480 + i * 330 - 150, Y - 250, 300, 380, { zIndex: 12, borderRadius: 22 });
+          el(c, { position: "absolute", left: 0, top: 40, width: 270, display: "flex", justifyContent: "center" }, svg(ic, 92, "rgba(255,255,255,.85)", 1.8));
+          el(c, { position: "absolute", left: 16, top: 190, width: 238, textAlign: "center", fontFamily: FS, fontWeight: 800, fontSize: 28, lineHeight: 1.15, color: K.white }, tx);
+          blurIn(c, 28.05 + i * 0.08, { y: 20, blur: 10, dur: 0.35 });
+          return c;
+        });
+        const wave = sinkWave(L, X - 700, X + 700, Y + 330, { amp: 16, z: 30, depth: 900 });
+        wave.show(28.2, 4.2);
+        wave.rise(28.6, 260, 2.6);
+        old.forEach((c, i) => wave.sink(c, 29.4 + i * 0.9, 420));
+        cutRect(28.0, [X - 520, Y - 330, X + 520, Y + 420], { top: 380 });
+        float(28.0, 4.4, 0, -8, 0.01);
+        head(28.05, [[{ t: "Chi non si aggiorna" }], [{ t: "viene sommerso", box: true }]], [28.05, 28.17, 28.29, 28.41, 28.55, 28.7], 31.95);
+        // [catalogo] O17 — l'onda (grafite col bordo lime) sale e i formati vecchi affondano uno per uno, traslucidi
+
+        // ═══ O19 — "la mappa del reel: hook, contesto, riaggancio, colpo di scena, CTA" (32,4 – 38,2) ═══
+        X = 25200;
+        const vm = videoCard(L, X - 250, Y + 60, 380, 676, "vM", { z: 12 });
+        blurIn(vm.body, 32.45, { y: 30, blur: 12, dur: 0.4 });
+        const cpts = [[X + 110, Y + 360], [X + 250, Y + 120], [X + 150, Y - 80], [X + 360, Y - 10], [X + 290, Y - 270]];
+        const cs = constellation(L, S, cpts, ["Hook", "Contesto", "Riaggancio", "Colpo di scena", "CTA"], { fs: 34 });
+        cs.draw(33.0, 0.2);
+        cutRect(32.4, [X - 460, Y - 330, X + 620, Y + 420], { top: 380 });
+        float(32.4, 5.8, 0, -10, 0.02);
+        head(32.45, [[{ t: "La mappa " }, { t: "del reel", box: true }]], [32.45, 32.58, 32.71, 32.84], 37.75);
+        // [catalogo] O19 — costellazione accanto al reel vero: tratto per tratto, punti lime luminosi ed etichette
+
+        // ═══ D09 — "il 40% delle views arriva da chi non ti segue" (38,2 – 43,8) ═══
+        X = 29200;
+        const pr8 = peopleRings(L, X, Y + 70, [[220, 12], [320, 17], [420, 22]], { percent: true, d: 250, dot: 60, volti: "atlas-muro" });
+        pr8.show(38.25, { daLontano: true });
+        pr8.pct(39.0, 0, 40, 1.1);
+        cutRect(38.2, [X - 480, Y + 70 - 480, X + 480, Y + 70 + 480], { top: 380 });
+        float(38.2, 5.6, 0, -10, 0.02);
+        head(38.25, [[{ t: "Da chi " }, { t: "non ti segue", box: true }]], [38.25, 38.38, 38.51, 38.64, 38.77], 43.35);
+        // [catalogo] D09 — anelli di volti veri: la percentuale al centro sale e la stessa quota di persone si colora di lime
+
+        // ═══ C05 — "tutto parte dal tuo profilo" (43,8 – 49,4) ═══
+        X = 33200;
+        const hero9 = avatar(L, X, Y + 60, 280, "tu", { bw: 6, z: 16 });
+        gsap.set(hero9, { opacity: 0, scale: 0.6 });
+        tl.to(hero9, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(2)" }, 43.85);
+        const nodes9 = [["Storie", "circle-play", -340, -300], ["Reel", "clapperboard", 340, -300], ["DM", "send", -340, 380], ["Link in bio", "link", 340, 380]];
+        nodes9.forEach(([tx, ic, dx, dy], i) => {
+          const nx = X + dx, ny = Y + 60 + dy;
+          const n = el(L, { position: "absolute", left: nx - 150, top: ny - 50, width: 300, height: 100, borderRadius: 50, display: "flex", alignItems: "center", justifyContent: "center", gap: 12, background: "linear-gradient(180deg,#3b3b3b,#232323)", border: "1.5px solid rgba(255,255,255,.22)", boxShadow: "0 16px 36px rgba(0,0,0,.5)", fontFamily: FS, fontWeight: 800, fontSize: 34, color: K.white, whiteSpace: "nowrap", zIndex: 14 }, svg(ic, 34, K.lime, 2.4) + tx);
+          gsap.set(n, { opacity: 0, scale: 0.7 });
+          const c9 = circuit(S, [X + Math.sign(dx) * 142, Y + 60 + Math.sign(dy) * 50], [nx, ny - Math.sign(dy) * 50], { prima: "h", w: 5 });
+          c9.draw(44.3 + i * 0.3, 0.3);
+          tl.to(n, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(2.4)" }, 44.55 + i * 0.3);
+          c9.pulse(45.8 + i * 0.25, 0.6, L);
+        });
+        cutRect(43.8, [X - 480, Y - 300, X + 480, Y + 500], { top: 380 });
+        float(43.8, 5.6, 0, -10, 0.02);
+        head(43.85, [[{ t: "Tutto parte " }], [{ t: "dal tuo profilo", box: true }]], [43.85, 44.0, 44.15, 44.3, 44.45], 48.95);
+        // [catalogo] C05 — circuito ad angoli retti dalla tua foto vera ai canali, con l'impulso che corre
+
+        // ═══ F09 — "Instagram analizza chi sei" (49,4 – 54,4) ═══
+        X = 37200;
+        const px = pixelate(L, X - 300, Y - 330, 600, 760, "av-tu", { b0: 40 });
+        px.show(49.4);
+        px.resolve(50.0, 1.2);
+        handNote(L, X + 150, Y + 330, "analizzato", { size: 70, rot: -6 }).write(51.3, 0.5);
+        cutRect(49.4, [X - 340, Y - 360, X + 340, Y + 470], { top: 380 });
+        float(49.4, 5.0, 0, -10, 0.02);
+        head(49.45, [[{ t: "Instagram " }, { t: "ti analizza", box: true }]], [49.45, 49.6, 49.75], 54.0);
+        // [catalogo] F09 — la tua foto vera a blocchi che si risolve con lo sfarfallio di tinta: la scansione
+
+        window.__timelines = window.__timelines || {};
+        window.__timelines["main"] = tl;
+      })();
+    </script>
+  </body>
+</html>

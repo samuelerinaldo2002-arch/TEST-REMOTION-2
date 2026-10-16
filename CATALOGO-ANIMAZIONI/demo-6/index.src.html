@@ -1,0 +1,506 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>Demo 6 · blocco 5 (le nuove dalla revisione)</title>
+    <script src="assets/vendor/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Advercase"; src: url("assets/fonts/Advercase-Bold.ttf") format("truetype"); font-weight: 700; font-style: normal; font-display: block; }
+      @font-face { font-family: "Advercase"; src: url("assets/fonts/Advercase-Regular.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: block; }
+      @font-face { font-family: "Patrick Hand"; src: url("assets/fonts/PatrickHand-Regular.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: block; }
+      @font-face { font-family: "Zalando Sans"; src: url("assets/fonts/ZalandoSans-Variable.ttf") format("truetype"); font-weight: 100 900; font-style: normal; font-display: block; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: #1e1e1e; }
+      body { font-family: "Zalando Sans", sans-serif; color: #f4f4f2; -webkit-font-smoothing: antialiased; }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; background: #1e1e1e; }
+      .clip { position: absolute; inset: 0; overflow: hidden; }
+      #glow { position: absolute; inset: 0; opacity: 0.35; background: radial-gradient(58% 32% at 50% 46%, rgba(207, 251, 80, 0.08), rgba(207, 251, 80, 0) 70%); }
+      #vignette { position: absolute; inset: 0; background: radial-gradient(110% 78% at 50% 44%, rgba(0, 0, 0, 0) 44%, rgba(0, 0, 0, 0.62) 100%); }
+      .cam { position: absolute; left: 540px; top: 880px; width: 1px; height: 1px; }
+      .layer { position: absolute; left: 0; top: 0; width: 1px; height: 1px; }
+      #dots { position: absolute; left: -6000px; top: -6000px; width: 40000px; height: 20000px; background-image: radial-gradient(circle, rgba(255, 255, 255, 0.095) 1.25px, rgba(255, 255, 255, 0) 1.95px); background-size: 24px 24px; }
+      #stage { position: absolute; inset: 0; overflow: hidden; }
+      #safe { position: absolute; inset: 0; -webkit-mask-image: linear-gradient(to bottom, #000 0px, #000 1385px, transparent 1450px); mask-image: linear-gradient(to bottom, #000 0px, #000 1385px, transparent 1450px); }
+      #mbwrap, #shake { position: absolute; inset: 0; }
+      #hud { position: absolute; inset: 0; }
+    </style>
+  </head>
+  <body>
+        <div id="root" data-composition-id="main" data-start="0" data-duration="84.8" data-width="1080" data-height="1920">
+      <div id="bg" class="clip" data-start="0" data-duration="84.8" data-track-index="0">
+        <div class="cam" id="gcam2" data-layout-allow-overflow><div class="layer" id="gzoom2"><div class="layer" id="gpan2"><div class="layer" id="bokeh"></div></div></div></div>
+        <div class="cam" id="gcam" data-layout-allow-overflow><div class="layer" id="gzoom"><div class="layer" id="gpan"><div id="dots"></div></div></div></div>
+        <div id="glow"></div>
+        <div id="vignette"></div>
+      </div>
+      <div id="stage">
+        <svg width="0" height="0" style="position: absolute" aria-hidden="true">
+          <filter id="mb" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur id="mbn" in="SourceGraphic" stdDeviation="0 0" /></filter>
+        </svg>
+        <div id="safe"><div id="mbwrap"><div id="shake"><div class="cam" id="cam" data-layout-allow-overflow><div class="layer" id="zoom"><div class="layer" id="pan"></div></div></div></div></div></div>
+        <!--VIDEOS
+          # H04 · L16 · la tua griglia: i tuoi reel veri in movimento
+          g1 assets/clips/mio/m01.mp4 0 5.6
+          g2 assets/clips/mio/m02.mp4 0 5.6
+          g3 assets/clips/mio/m03.mp4 0 5.6
+          g4 assets/clips/mio/m04.mp4 0 5.6
+          g5 assets/clips/mio/m05.mp4 0 5.6
+          g6 assets/clips/mio/m06.mp4 0 5.6
+          g7 assets/clips/mio/m07.mp4 0 5.6
+          g8 assets/clips/mio/m08.mp4 0 5.6
+          g9 assets/clips/mio/m09.mp4 0 5.6
+          # U12 · il reel con le azioni
+          vR assets/clips/mio/v01.mp4 43.6 4.4
+          # U14 · D14 · il tuo video vero nel mirino
+          vV assets/clips/mio/v02.mp4 52.4 5.4
+          # T13 · F12 · la griglia del tuo profilo (reel veri in movimento)
+          q1 assets/clips/mio/m04.mp4 5.6 5.6
+          q2 assets/clips/mio/m05.mp4 5.6 5.6
+          q3 assets/clips/mio/m06.mp4 5.6 5.6
+          q4 assets/clips/mio/m07.mp4 5.6 5.6
+          q5 assets/clips/mio/m08.mp4 5.6 5.6
+          q6 assets/clips/mio/m09.mp4 5.6 5.6
+          # O26 · i tuoi reel veri nella griglia del profilo (spezzoni da D:\CONTENUTI\OTTOBRE 2026\PARTE 1\DA PUBBLICARE)
+          p1 assets/clips/mio/m01.mp4 79.4 5.4
+          p2 assets/clips/mio/m02.mp4 79.4 5.4
+          p3 assets/clips/mio/m03.mp4 79.4 5.4
+          p4 assets/clips/mio/m04.mp4 79.4 5.4
+          p5 assets/clips/mio/m05.mp4 79.4 5.4
+          p6 assets/clips/mio/m06.mp4 79.4 5.4
+        -->
+      </div>
+      <div id="hudclip" class="clip" data-start="0" data-duration="84.8" data-track-index="2">
+        <div id="hud"></div>
+      </div>
+      <!--SFX
+        # H04 · L16: angoli, due scambi a S, la prima riga si accende
+        0.0 whoosh .1 ; 0.55 pop .05 ; 1.15 tick .08 ; 1.55 whoosh .09 ; 2.15 land .07 ; 2.45 tick .08 ; 2.85 whoosh .09 ; 3.45 land .07 ; 3.75 ding .1
+        # T13 · F12: la camera entra, barre, la bio nuova si scrive, la camera esce, timbro
+        5.6 whoosh .14 ; 6.15 whoosh .06 ; 6.55 key2 .06 ; 6.8 key3 .06 ; 7.05 key2 .06 ; 7.6 tick .05 ; 8.1 key4 .05 ; 8.3 key5 .05 ; 8.7 key1 .05 ; 8.9 key6 .05 ; 9.3 whoosh .07 ; 9.75 slam .15 ; 9.77 sub .12 ; 10.25 pop .06
+        # O28: cinque mattoncini cadono, si accendono sulla voce, si incastrano
+        11.2 whoosh .14 ; 11.6 land .08 ; 11.8 land .07 ; 12.0 land .08 ; 12.25 pop .07 ; 12.95 pop .07 ; 13.65 pop .07 ; 14.35 pop .07 ; 15.05 pop .07 ; 16.12 slam .1
+        # L15: card, la vista va nella fila in alto, ventaglio finale
+        16.6 whoosh .14 ; 16.7 card .07 ; 17.9 whoosh .07 ; 18.25 card .07 ; 19.45 whoosh .07 ; 19.8 card .07 ; 20.95 whoosh .08 ; 21.65 card .06
+        # D10 · U15: cronometro, quattro pezzi, zero
+        22.0 whoosh .14 ; 22.6 tick .06 ; 23.3 pop .07 ; 24.15 pop .07 ; 25.0 pop .07 ; 25.85 pop .07 ; 26.0 ding .1
+        # D11: corsa
+        27.4 whoosh .14 ; 27.6 rise .07 ; 30.7 ding .1
+        # O29: disco e lampeggio del cervello (reel 48), voci, strobo
+        32.8 whoosh .14 ; 33.42 sub .12 ; 33.75 glitch .07 ; 33.82 glitch .06 ; 33.95 whoosh .06 ; 34.8 tick .05 ; 35.4 tick .05 ; 36.0 tick .05 ; 36.85 click .08 ; 37.15 click .08 ; 37.45 click .08
+        # D12: cursore in basso, il faro si accende, la scala sale fino in cima
+        38.2 whoosh .14 ; 38.75 tick .06 ; 39.3 whoosh .06 ; 39.7 toggle .09 ; 39.85 rise .08 ; 40.8 ding .12
+        # U12: la camera entra sulle azioni, quattro icone, esce
+        43.6 whoosh .14 ; 44.2 whoosh .06 ; 44.55 pop .08 ; 45.05 pop .08 ; 45.55 pop .08 ; 46.05 pop .08 ; 46.8 whoosh .06
+        # O31: l'orbita gira e il contatore sale, il razzo nasce sotto la foto, accensione, i volti esplodono al decollo, il contatore arriva
+        48.0 whoosh .14 ; 48.25 rise .05 ; 48.55 card .06 ; 48.75 rise .1 ; 49.4 sub .08 ; 49.45 whoosh .2 ; 51.57 ding .1
+        # U14 · D14
+        52.4 whoosh .14 ; 52.6 click .08 ; 53.0 tick .06 ; 55.7 ding .12
+        # U13 · O32: i commenti esplodono tutti insieme (reel 123), restano da leggere, risucchiati nella cartella, la lista si apre
+        57.8 whoosh .14 ; 57.95 pop .06 ; 58.0 pop .05 ; 58.07 pop .05 ; 58.16 pop .04 ; 58.29 pop .04 ; 58.43 pop .04 ; 58.6 pop .04 ; 59.7 card .08 ; 59.8 whoosh .09 ; 60.35 card .1
+        # O30: la strada si disegna, la pallina parte, prende la finta
+        63.2 whoosh .14 ; 63.3 rise .06 ; 64.2 tick .06 ; 65.35 ding .12
+        # D13 · O07
+        68.6 whoosh .14 ; 69.3 pop .06 ; 69.9 pop .06 ; 70.5 pop .06 ; 71.1 pop .06 ; 71.7 ding .1
+        # O27: lancio, l'amo entra in acqua, abbocca, strappo e schizzi
+        74.0 whoosh .14 ; 74.45 whoosh .06 ; 74.98 drop .08 ; 76.7 tap .1 ; 76.92 whoosh .12 ; 77.12 drop .14
+        # O26: lo schermo si accende, il profilo, il punto e la lente, gli angoli su Messaggio, se ne va
+        79.4 whoosh .14 ; 79.95 pop .05 ; 80.45 tick .06 ; 80.95 pop .06 ; 81.2 sub .1 ; 81.6 tick .07 ; 82.85 whoosh .08
+      -->
+    </div>
+    <script>
+      (() => {
+        const ICON = __ICONS__;
+        /*__KIT__*/
+
+        const L = layer(10);
+        const S = svgLayer(L, 6, -60000, -60000, 200000, 200000);
+        const SH = svgLayer(L, 45, -60000, -60000, 200000, 200000);
+        const head = (t, lines, times, out, size) => { const T = titleW({ lines, size: size || 80 }); T.inAt(times || t); if (out) T.outAt(out); return T; };
+        const Y = 900;
+        camInit(540, 900, 1);
+
+        // ═══ H04 · L16 — "riordina la griglia" (08/10) (0 – 5,6) ═══
+        // la tua griglia con le views vere: gli angoli di selezione si chiudono sui reel che non funzionano, poi la griglia si
+        // riordina: in alto quelli che portano views
+        // come il reel 69 di Kallaway: un elemento alla volta. Gli angoli scelgono il reel che porta più views, si stacca e fa una
+        // S fino al primo posto mentre l'altro scivola al suo; poi il secondo. La prima riga (quella che vede chi arriva) si accende
+        let X = 600;
+        const TW = 270, TH = 360, TG = 18, gx0 = X - (3 * TW + 2 * TG) / 2, gy0 = Y - (3 * TH + 2 * TG) / 2 + 60;
+        const views1 = ["88K", "2,1M", "41K", "1,4M", "12K", "650K", "96K", "3,2M", "1,1M"];
+        const posti1 = [], tiles1 = [], badges1 = [];
+        ["g1", "g2", "g3", "g4", "g5", "g6", "g7", "g8", "g9"].forEach((m, i) => {
+          const left = gx0 + (i % 3) * (TW + TG), top = gy0 + Math.floor(i / 3) * (TH + TG);
+          posti1.push([left, top]);
+          const tile = el(L, { position: "absolute", left, top, width: TW, height: TH, borderRadius: 18, overflow: "hidden", border: "2px solid rgba(255,255,255,.16)", boxShadow: "0 18px 40px rgba(0,0,0,.5)", zIndex: 12 });
+          mediaTile(tile, 0, 0, TW, TH, m, 1);
+          badges1.push(viewBadge(tile, TW / 2, TH - 34, views1[i], { fs: 24, z: 5, dark: !/M$/.test(views1[i]) }));
+          blurIn(tile, 0.05 + i * 0.03, { y: 20, blur: 10, dur: 0.35 });
+          tiles1.push(tile);
+        });
+        popSeq(badges1, 0.55, 0.04);
+        const rr = (i) => [posti1[i][0], posti1[i][1], posti1[i][0] + TW, posti1[i][1] + TH];
+        const sc1 = selectCorners(L, rr(7), { len: 56, w: 8, pad: 14 });
+        sc1.show(1.15); sc1.hide(1.55);
+        swapPlaces(tiles1[7], tiles1[0], 1.55, { dur: 0.62 });
+        const sc1b = selectCorners(L, rr(3), { len: 56, w: 8, pad: 14 });
+        sc1b.show(2.45); sc1b.hide(2.85);
+        swapPlaces(tiles1[3], tiles1[2], 2.85, { dur: 0.62 });
+        // la prima riga si accende, il resto si abbassa (F04)
+        const top1 = [tiles1[7], tiles1[1], tiles1[3]], rest1 = tiles1.filter((x) => !top1.includes(x));
+        tl.to(tiles1[1], { borderColor: K.lime, boxShadow: `${GLOW_A(0.8)}, 0 24px 50px rgba(0,0,0,.55)`, duration: 0.2 }, 3.75);
+        tl.to(rest1, { opacity: 0.38, filter: "grayscale(.6)", duration: 0.35 }, 3.8);
+        const lb1 = el(L, { position: "absolute", left: gx0 - 10, top: gy0 - 74, width: 3 * TW + 2 * TG + 20, textAlign: "center", fontFamily: FS, fontWeight: 800, fontSize: 34, color: K.lime, textShadow: GLOW_LT, whiteSpace: "nowrap", zIndex: 13 }, "La prima riga: quella che vede chi arriva");
+        blurIn(lb1, 3.9, { y: 10, blur: 8, dur: 0.35 });
+        cutRect(0, [gx0 - 20, gy0 - 90, gx0 + 3 * TW + 2 * TG + 20, gy0 + 3 * TH + 2 * TG + 20], { top: 380 });
+        float(0, 5.6, 0, -12, 0.02);
+        head(0.05, [[{ t: "Riordina " }, { t: "la griglia", box: true }]], [0.05, 0.2, 0.35], 5.15);
+        // [catalogo] H04 · L16 — gli angoli lime si chiudono sui reel deboli, poi la griglia si riordina per views
+
+        // ═══ T13 · F12 — "il profilo non è un curriculum, è un venditore" (04/10) (5,6 – 11,2) ═══
+        // come il reel 31 di Kallaway (la correzione avviene dentro un'interfaccia vera): il tuo profilo Instagram; la camera entra
+        // sulla bio, le righe da curriculum si barrano e si chiudono, si scrive la bio da venditore; la camera si allarga e cala il
+        // timbro (reel 80/104), il bottone "Messaggio" si accende: chi arriva sa cosa fare
+        X = 4600;
+        const pf2 = igProfile(L, X - 280, Y - 570, { user: "tu", handle: "samuelerinaldo.media", nome: "Samuele Rinaldo", bio: ["", "", ""], blurStats: true, ring: "lime", grid: ["q1", "q2", "q3", "q4", "q5", "q6"], z: 12 });
+        const [bx2, by2] = pf2.at(24, 334);
+        const sl = strikeLines(L, bx2, by2, ["Laureato in Economia", "10 anni nel marketing", "Amo il caffè e i viaggi"], { fs: 23, w: 500, lh: 1.32, z: 14 });
+        const p2 = arriveRect(5.6, pf2.rect, { top: 380, dy: 300 });
+        // la camera entra sulla parte alta del telefono partendo dal suo bordo (regola 17: niente interfaccia dietro al titolo)
+        const bio2 = [X - 290, Y - 580, X + 290, Y - 570 + 600];
+        frameRect(6.15, 0.5, bio2, { top: 380 });
+        [6.55, 6.8, 7.05].forEach((t, i) => sl.strike(i, t));
+        [7.6, 7.7, 7.8].forEach((t, i) => sl.remove(i, t));
+        sl.add(8.05, "Ti porto clienti da Instagram", { color: K.lime });
+        sl.add(8.65, "Scrivimi CLIENTI in DM");
+        frameRect(9.3, 0.45, pf2.rect, { top: 380 });
+        const [sx2, sy2] = pf2.at(267, 400);
+        stamp(L, sx2 + 40, sy2 + 10, "Venditore", { w: 520, h: 190, rot: -10, fs: 78 }).down(9.75);
+        pf2.hl(10.25, "bottoni");
+        float(10.3, 0.9, 0, -8, 0.015);
+        head(5.65, [[{ t: "Non è " }, { t: "un curriculum", box: true }]], [5.65, 5.8, 5.95, 6.1], 7.95);
+        head(8.45, [[{ t: "È un " }, { t: "venditore", box: true }]], [8.45, 8.6, 8.75], 10.75);
+        // [catalogo] T13 · F12 — reel 31: la bio del tuo profilo vero si corregge (camera dentro); reel 80: cala il timbro
+
+        // ═══ O28 — "cinque pezzi di un profilo che porta clienti" (25/09) (11,2 – 16,6) ═══
+        X = 8600;
+        // come il reel 90 di Kallaway: mattoncini 3D veri (pioli, faccia sopra, fianco) con l'etichetta sfocata a sinistra; ognuno
+        // si accende quando è detto; alla fine si incastrano in una torre sola (i cinque pezzi fanno un profilo)
+        const bt = brickTower(L, S, X + 170, Y + 500, ["Strategia", "Contenuti", "Distribuzione", "Relazione", "Monetizzazione"], { w: 320, h: 100, lw: 380, fs: 36 });
+        // nel reel 90 la torre è in piedi in mezzo secondo (cadono quasi insieme), poi le etichette vanno a fuoco una alla volta
+        [0, 1, 2, 3, 4].forEach((i) => bt.drop(i, 11.3 + i * 0.1));
+        [0, 1, 2, 3, 4].forEach((i) => bt.say(i, 12.25 + i * 0.7));
+        bt.snap(15.8);
+        cutRect(11.2, bt.rect, { top: 380 });
+        float(11.2, 5.4, 0, -10, 0.02);
+        head(11.25, [[{ t: "5 pezzi " }, { t: "di un profilo", box: true }]], [11.25, 11.4, 11.55, 11.7], 16.15);
+        // [catalogo] O28 — mattoncini in grafite che si impilano; l'etichetta va a fuoco e il mattoncino si accende quando è detto
+
+        // ═══ L15 — "tre tipi di carosello: personali, di valore, firma" (27/09) (16,6 – 22) ═══
+        // come il reel 15 di Kallaway: una card grande al centro (anteprima vera del carosello + due punti che dicono a cosa serve);
+        // quando arriva la successiva, quella vista rimpicciolisce nella fila in alto sotto il titolo; alla fine le tre in riga
+        X = 12600;
+        const kinds = [["1", "Personali", "mio_03", ["La tua storia", "Ti fanno conoscere"]], ["2", "Di valore", "mio_05", ["Consigli pratici", "Si salvano"]], ["3", "Firma", "mio_08", ["Il tuo metodo", "Ti distinguono"]]];
+        const CW4 = 600, CH4 = 780;
+        const cards4 = kinds.map(([n, nm, m, pts], k) => {
+          const c = glass(L, X - CW4 / 2, Y - CH4 / 2 + 70, CW4, CH4, { zIndex: 14 + k, borderRadius: 34 });
+          el(c, { position: "absolute", left: 30, top: 28, height: 60, display: "flex", alignItems: "center", gap: 14, fontFamily: FS, fontWeight: 800, fontSize: 40, color: K.white, whiteSpace: "nowrap" }, `<span style="display:inline-flex;align-items:center;justify-content:center;width:58px;height:58px;border-radius:15px;background:${limeFill(1)};color:${K.ink};font-family:${FD}">${n}</span>${nm}`);
+          // anteprima del carosello: slide vera 3:4, la successiva che spunta di lato, "1/5" e i puntini
+          const sl4b = el(c, { position: "absolute", left: 388, top: 122, width: 180, height: 400, borderRadius: 18, overflow: "hidden", border: "1.5px solid rgba(255,255,255,.18)", zIndex: 1 });
+          mediaTile(sl4b, 0, 0, 180, 400, "th-" + ["mio_06", "mio_09", "mio_02"][k], 1);
+          el(sl4b, { position: "absolute", inset: 0, background: "rgba(20,20,20,.5)" });
+          const sl4 = el(c, { position: "absolute", left: 30, top: 110, width: 400, height: 534 * 0.8, borderRadius: 20, overflow: "hidden", border: "1.5px solid rgba(255,255,255,.24)", boxShadow: "0 18px 40px rgba(0,0,0,.55)", zIndex: 2 });
+          mediaTile(sl4, 0, 0, 400, 534 * 0.8, "th-" + m, 1);
+          el(sl4, { position: "absolute", right: 14, top: 14, padding: "4px 12px", borderRadius: 12, background: "rgba(20,20,20,.7)", fontFamily: FS, fontWeight: 800, fontSize: 22, color: K.white }, "1/5");
+          [0, 1, 2, 3, 4].forEach((d) => el(c, { position: "absolute", left: 30 + 200 - 46 + d * 22, top: 110 + 534 * 0.8 + 18, width: 11, height: 11, borderRadius: "50%", background: d ? "rgba(255,255,255,.35)" : K.lime }));
+          pts.forEach((p, j) => el(c, { position: "absolute", left: 34, top: 590 + j * 62, display: "flex", alignItems: "center", gap: 14, fontFamily: FS, fontWeight: 800, fontSize: 36, color: j ? "rgba(255,255,255,.75)" : K.white, whiteSpace: "nowrap" }, `<span style="width:12px;height:12px;border-radius:50%;background:${K.lime};box-shadow:${GLOW_A(0.6)}"></span>${p}`));
+          gsap.set(c, { opacity: 0 });
+          return c;
+        });
+        // fila delle card già viste, sotto il titolo; alla fine la riga delle tre al centro
+        const row4 = (k, sc, yy) => [X - (CW4 * sc + 26) + k * (CW4 * sc + 26), yy];
+        cards4.forEach((c, k) => {
+          const t0 = 16.7 + k * 1.55;
+          tl.fromTo(c, { opacity: 0, x: 160, filter: "blur(12px)" }, { opacity: 1, x: 0, filter: "blur(0px)", duration: 0.45, ease: "power3.out", immediateRender: false }, t0);
+          tl.set(c, { filter: "none" }, t0 + 0.46);
+          [c, ...c.querySelectorAll("*")].forEach((nd) => nd.setAttribute("data-layout-allow-overlap", ""));
+          const go = (t, sc, yy, dur, rot) => { const [rx, ry] = row4(k, sc, yy); tl.to(c, { x: rx - X, y: ry - (Y + 70), scale: sc, rotation: rot || 0, duration: dur, ease: "power3.inOut" }, t); };
+          // nel reel 15 la card vista sale e rimpicciolisce in ~1 s con una coda morbida, mentre arriva la nuova
+          if (k < 2) go(t0 + 1.2, 0.26, Y - 520, 0.9);
+          // finale: le tre a ventaglio, grandi (quella al centro davanti), come la riga finale del reel 15
+          const fx4 = [-300, 0, 300][k], fy4 = [40, 0, 40][k];
+          tl.set(c, { zIndex: k === 1 ? 20 : 15 }, 20.95);
+          tl.to(c, { x: fx4, y: fy4 - 60, scale: 0.62, rotation: [-8, 0, 8][k], duration: 0.75, ease: "power2.inOut" }, 20.95);
+        });
+        cutRect(16.6, [X - 480, Y - 620, X + 480, Y + 500], { top: 380 });
+        float(16.6, 5.4, 0, -10, 0.02);
+        head(16.65, [[{ t: "3 tipi " }, { t: "di carosello", box: true }]], [16.65, 16.8, 16.95, 17.1], 21.55);
+        // [catalogo] L15 — la card appena spiegata rimpicciolisce e va nella pila nell'angolo, arriva la successiva
+
+        // ═══ D10 · U15 — "profilo ottimizzato in 60 secondi" (05/10) (22 – 27,4) ═══
+        // come il reel 46 di Kallaway: il profilo al centro (foto vera, nome) dentro anelli sottili concentrici; l'anello lime si
+        // riempie a scatti, uno per ogni pezzo del profilo, e il pezzo nasce sul bordo; il cronometro scende da 60 a 0 (U15)
+        X = 16600;
+        const AX = X - 110, AY = Y + 170;
+        [240, 360, 470].forEach((r, k) => { const rg = el(L, { position: "absolute", left: AX - r, top: AY - r, width: 2 * r, height: 2 * r, borderRadius: "50%", border: `2px solid rgba(255,255,255,${0.22 - k * 0.05})`, zIndex: 11 }); blurIn(rg, 22.05 + k * 0.06, { y: 0, scale: 0.85, blur: 8, dur: 0.4 }); });
+        const av5 = avatar(L, AX, AY - 22, 250, "tu", { bw: 6, z: 14 });
+        gsap.set(av5, { opacity: 0, scale: 0.7 });
+        tl.to(av5, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(2)" }, 22.05);
+        const nm5 = el(L, { position: "absolute", left: AX - 200, top: AY + 112, width: 400, textAlign: "center", fontFamily: FS, fontWeight: 800, fontSize: 30, color: K.white, whiteSpace: "nowrap", zIndex: 14 }, "samuelerinaldo.media");
+        blurIn(nm5, 22.2, { y: 8, blur: 8, dur: 0.35 });
+        const pr5 = progressRing(L, AX, AY, 240, { w: 22 });
+        pr5.show(22.1);
+        [["user-round", "Nome"], ["camera", "Foto"], ["align-left", "Bio"], ["link", "Link"]].forEach(([ic, tx], i) => {
+          const f = (i + 1) / 4, t = 22.85 + i * 0.85;
+          pr5.to(f, t, 0.5);
+          const [px, py] = pr5.at(f - 0.0001), a = -Math.PI / 2 + f * Math.PI * 2, ox = px + Math.cos(a) * 118, oy = py + Math.sin(a) * 118;
+          const ch = el(L, { position: "absolute", left: ox - 110, top: oy - 38, width: 220, height: 76, borderRadius: 38, display: "flex", alignItems: "center", justifyContent: "center", gap: 12, background: limeFill(1), boxShadow: GLOW_A(0.6), fontFamily: FS, fontWeight: 800, fontSize: 34, color: K.ink, whiteSpace: "nowrap", zIndex: 16 }, svg(ic, 34, K.ink, 2.4) + tx);
+          gsap.set(ch, { opacity: 0, scale: 0.6 });
+          tl.to(ch, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(2.4)" }, t + 0.45);
+          pulse(L, px, py, t + 0.45, { r: 46, z: 15 });
+        });
+        const sw5 = stopwatch(L, X + 350, Y - 330, 300, {});
+        sw5.show(22.15);
+        sw5.run(22.6, 3.4, 60, 0);
+        cutRect(22.0, [X - 600, Y - 500, X + 520, Y + 660], { top: 380 });
+        float(22.0, 5.4, 0, -10, 0.02);
+        head(22.05, [[{ t: "Profilo pronto " }], [{ t: "in 60 secondi", box: true }]], [22.05, 22.2, 22.35, 22.5, 22.65], 26.95);
+        // [catalogo] D10 · U15 — anello di progresso attorno alla tua foto con i 4 pezzi che si accendono, cronometro che scende
+
+        // ═══ D11 — "e li superi" (11/09) (27,4 – 32,8) ═══
+        X = 20600;
+        // come il reel 65 di Kallaway: tre corse con la foto in testa e la pill dei follower che sale; la tua parte piano e supera
+        const rc = raceChart(L, X - 400, Y + 400, [
+          { pts: [[0, 0.05], [0.3, 0.45], [0.6, 0.6], [1, 0.66]], av: 12, val: [500, 13000] },
+          { pts: [[0, 0.08], [0.35, 0.36], [0.7, 0.5], [1, 0.55]], av: 31, val: [500, 13000] },
+          { pts: [[0, 0.02], [0.4, 0.12], [0.7, 0.55], [1, 0.95]], av: "tu", lime: true, val: [500, 13000] },
+        ], { w: 720, h: 660, mesi: ["Mese 1", "Mese 2", "Mese 3"] });
+        const ay6 = el(L, { position: "absolute", left: X - 400 - 20, top: Y + 400 - 660 - 112, fontFamily: FS, fontWeight: 800, fontSize: 30, color: "rgba(255,255,255,.75)", whiteSpace: "nowrap", zIndex: 13 }, "Follower");
+        blurIn(ay6, 27.6, { y: 8, blur: 8, dur: 0.3 });
+        rc.axes(27.45);
+        // come nel reel 65: la corsa parte subito, a passo costante
+        rc.run(27.6, 3.1, "sine.out");
+        cutRect(27.4, rc.rect, { top: 380 });
+        float(27.4, 5.4, 0, -10, 0.02);
+        head(27.45, [[{ t: "E li " }, { t: "superi", box: true }]], [27.45, 27.6, 27.75], 32.35);
+        // [catalogo] D11 — corsa: le linee salgono a velocità diverse con le foto in testa, la tua parte piano e supera le altre
+
+        // ═══ O29 — "comprano per come si sono sentiti" (09/10) (32,8 – 38,2) ═══
+        // come il reel 48 di Kallaway: la testa scura col cervello bianco entra, il disco dietro si accende a scatti e il cervello
+        // lampeggia (5 fotogrammi) e resta lime; sotto la lista delle emozioni, sfocata, che va a fuoco voce per voce; strobo finale
+        X = 24600;
+        const hb = headBrain(L, X - 20, Y - 230, 640);
+        hb.show(32.85);
+        hb.on(33.55);
+        const em7 = listK(L, X, Y + 470, 820, ["Desiderio", "Paura", "Convinzione"], { h: 112, gap: 20, fs: 44 });
+        em7.show(3, 34.25);
+        em7.resolve(0, 34.8); em7.resolve(1, 35.4); em7.resolve(2, 36.0);
+        hb.strobo(36.85);
+        // come nel reel 48: prima la testa da vicino (disco e lampeggio), poi la camera scende e scopre la lista sotto
+        cutRect(32.8, [X - 460, Y - 680, X + 420, Y + 230], { top: 380 });
+        float(32.8, 1.15, 0, -6, 0.012);
+        frameRect(33.95, 1.05, [X - 470, Y - 670, X + 470, Y + 690], { top: 380 });
+        float(35.0, 3.2, 0, -10, 0.02);
+        head(32.85, [[{ t: "Comprano per " }], [{ t: "un'emozione", box: true }]], [32.85, 33.0, 33.15, 33.3], 37.75);
+        // [catalogo] O29 — reel 48: testa col cervello vero, disco a scatti e cervello che lampeggia; lista delle emozioni sotto
+
+        // ═══ D12 — "non è la fotocamera, è la luce: dal 99% al primo 10%" (11/10) (38,2 – 43,6) ═══
+        // come il reel 12 di Kallaway: la barra a gradiente si riempie dal basso e il cursore sale fino in cima; in basso la
+        // fotocamera vera (il 99% guarda quella), in alto il faro vero che si accende e illumina la cima (il primo 10%: la luce)
+        X = 28600;
+        const gs = gradientScale(L, X + 150, Y - 470, 170, 960, { n: 12, fs: 40, etichette: ["99%", "Primo 10%"] });
+        gs.show(38.3);
+        const cam8 = fotocamera(L, X - 300, Y + 330, 360, { z: 13 });
+        blurIn(cam8.g, 38.5, { y: 16, blur: 10, dur: 0.4 });
+        gs.fill(38.75, 0.1, 0.35);
+        gs.cursor(38.75, 0.05, "La fotocamera", 0.45);
+        const faro8 = faro(L, X - 320, Y - 190, 300, { dir: -18, len: 660, z: 13 });
+        // nel reel 12 la barra si riempie a 1,3–2,4 s e poi resta piena da leggere: faro e riempimento arrivano prima
+        blurIn(faro8.g, 39.3, { y: 16, blur: 10, dur: 0.4 });
+        faro8.on(39.7);
+        faro8.live(40.05, 43.6);
+        gs.fill(39.85, 1.0, 0.95);
+        gs.cursor(39.85, 0.93, "La luce", 0.95);
+        cutRect(38.2, [X - 520, Y - 560, X + 560, Y + 560], { top: 380 });
+        float(38.2, 5.4, 0, -10, 0.02);
+        head(38.25, [[{ t: "Dal 99% " }], [{ t: "al primo 10%", box: true }]], [38.25, 38.4, 38.55, 38.7], 43.15);
+        // [catalogo] D12 — reel 12: scala a gradiente che si riempie col cursore; fotocamera vera in basso (99%), faro vero che illumina la cima
+
+        // ═══ U12 — "ogni salvataggio e condivisione lo spinge" (03/10) (43,6 – 48) ═══
+        // come i reel 22 e 119 di Kallaway: il tuo reel vero con la colonna delle azioni DENTRO il video (come in Instagram); la
+        // camera entra sulla colonna mentre cuore, commento, condividi e salva si accendono e i numeri raddoppiano
+        X = 32600;
+        const VW9 = 560, VH9 = 996;
+        const vc9 = videoCard(L, X, Y + 40, VW9, VH9, "vR", { z: 12 });
+        blurIn(vc9.body, 43.65, { y: 30, blur: 12, dur: 0.4 });
+        // velo in basso e a destra (leggibilità), nome e didascalia come in Instagram
+        el(vc9.body, { position: "absolute", inset: 0, background: "linear-gradient(90deg, rgba(0,0,0,0) 62%, rgba(0,0,0,.45)), linear-gradient(180deg, rgba(0,0,0,.72) 0%, rgba(0,0,0,0) 30%, rgba(0,0,0,0) 62%, rgba(0,0,0,.6))", zIndex: 4 });
+        const own9 = el(vc9.body, { position: "absolute", left: 22, bottom: 92, display: "flex", alignItems: "center", gap: 12, fontFamily: FS, fontWeight: 800, fontSize: 26, color: "#fff", whiteSpace: "nowrap", zIndex: 5 });
+        const oa9 = el(own9, { position: "relative", width: 52, height: 52, flex: "none" });
+        avatar(oa9, 26, 26, 52, "tu", { bw: 2, ring: "#ffffff", z: 1 });
+        el(own9, {}, "samuelerinaldo.media", "span");
+        el(own9, { padding: "4px 14px", borderRadius: 10, border: "1.5px solid rgba(255,255,255,.8)", fontSize: 22 }, "Segui", "span");
+        el(vc9.body, { position: "absolute", left: 22, bottom: 50, fontFamily: FS, fontWeight: 600, fontSize: 23, color: "rgba(255,255,255,.9)", whiteSpace: "nowrap", zIndex: 5 }, "Il trucco che raddoppia le views…");
+        const RX9 = X + VW9 / 2 - 58, RY9 = Y + 40 + 40;
+        const ra = reelActions(L, RX9, RY9, [1240, 48, 31, 85], { gap: 118, size: 58, z: 16 });
+        ra.show(43.8);
+        ra.on(0, 44.55, 1240, 2480); ra.on(1, 45.05, 48, 96); ra.on(2, 45.55, 31, 62); ra.on(3, 46.05, 85, 170);
+        cutRect(43.6, [X - VW9 / 2 - 30, Y + 40 - VH9 / 2 - 30, X + VW9 / 2 + 30, Y + 40 + VH9 / 2 + 30], { top: 380 });
+        frameRect(44.2, 0.6, [RX9 - 300, RY9 - 120, RX9 + 120, RY9 + 3 * 118 + 120], { top: 380 });
+        float(44.8, 2.0, 0, 30, 0.02);
+        frameRect(46.8, 0.6, [X - VW9 / 2 - 30, Y + 40 - VH9 / 2 - 30, X + VW9 / 2 + 30, Y + 40 + VH9 / 2 + 30], { top: 380 });
+        head(43.65, [[{ t: "Ogni azione " }], [{ t: "lo spinge", box: true }]], [43.65, 43.8, 43.95, 44.1], 47.55);
+        // [catalogo] U12 — le azioni del reel vero si accendono di lime una a una e i numeri raddoppiano
+
+        // ═══ O31 — "raddoppi le visualizzazioni" (03/10) (48 – 52,4) ═══
+        // come il reel 59 di Kallaway: la tua foto al centro di un'orbita di volti (chi ti guarda) col contatore delle views; il
+        // razzo nasce sotto la foto e la porta su, la camera lo insegue, l'orbita resta indietro, le views raddoppiano
+        X = 36600;
+        const rk = rocket(L, X, Y + 330, 600, { user: "tu", pill: { da: 12400, unita: "views" }, z: 16 });
+        const [ax10, ay10] = rk.paxXY();
+        const orb10 = [340, 500].map((r, k) => {
+          const ring = el(L, { position: "absolute", left: ax10 - r, top: ay10 - r, width: 2 * r, height: 2 * r, borderRadius: "50%", border: "2px solid rgba(255,255,255,.22)", zIndex: 11 });
+          blurIn(ring, 48.05 + k * 0.08, { y: 0, blur: 8, scale: 0.85, dur: 0.4 });
+          return ring;
+        });
+        // i volti girano sulle orbite (interna oraria, esterna antioraria) e restano dritti: ogni anello è un perno che ruota,
+        // ogni volto ruota al contrario dello stesso angolo
+        const GIRO10 = [64, -44];
+        const spin10 = [0, 1].map((k) => layered(el(L, { position: "absolute", left: ax10, top: ay10, width: 1, height: 1, zIndex: 12 })));
+        spin10.forEach((s, k) => tl.fromTo(s, { rotation: 0 }, { rotation: GIRO10[k], duration: 2.0, ease: "none", immediateRender: false }, 48.0));
+        const fac10 = [[0.2, 0], [1.3, 0], [2.4, 0], [3.5, 0], [4.6, 0], [0.75, 1], [1.95, 1], [3.1, 1], [4.2, 1], [5.4, 1]].map(([a, k], i) => {
+          const r = k ? 500 : 340, d = k ? 92 : 78;
+          const hold = layered(el(spin10[k], { position: "absolute", left: Math.cos(a) * r, top: Math.sin(a) * r, width: 1, height: 1 }));
+          faceDot(hold, -d / 2, -d / 2, d, 9 + i * 7, "atlas-muro", { bw: 3 });
+          blurIn(hold, 48.15 + i * 0.03, { y: 0, blur: 8, scale: 0.6, dur: 0.3 });
+          tl.fromTo(hold, { rotation: 0 }, { rotation: -GIRO10[k], duration: 2.0, ease: "none", immediateRender: false }, 48.0);
+          // al decollo (reel 59) i volti esplodono verso l'esterno: crescono, volano via lungo il raggio e si spengono
+          tl.to(hold, { x: Math.cos(a) * (k ? 760 : 620), y: Math.sin(a) * (k ? 760 : 620), scale: 2.3, opacity: 0, filter: "blur(5px)", duration: 0.55, ease: "power2.in" }, 49.4 + Math.abs(hash(i, 61)) * 0.08);
+          return hold;
+        });
+        rk.show(48.05, 0.5);
+        rk.ignite(48.75, 0.75);
+        // il contatore sale da subito, quasi lineare, e arriva al doppio durante il volo
+        rk.count(48.25, 24800, 3.3, "none");
+        const p10 = cutRect(48.0, [X - 560, ay10 - 520, X + 560, Y + 650], { top: 380 });
+        float(48.0, 1.5, 0, -8, 0.01);
+        rk.ride(49.45, 2700, 2.6, { pose: p10 });
+        // anche gli anelli si allargano e spariscono con l'esplosione
+        orb10.forEach((ring, k) => tl.to(ring, { scale: 1.7 + k * 0.2, opacity: 0, duration: 0.5, ease: "power2.in" }, 49.4 + k * 0.05));
+        head(48.05, [[{ t: "Raddoppi " }], [{ t: "le visualizzazioni", box: true }]], [48.05, 48.2, 48.35], 51.95);
+        // [catalogo] O31 — reel 59: la tua foto sul razzo vero (cromo) col contatore che raddoppia, la camera insegue il decollo
+
+        // ═══ U14 · D14 — "registra tre volte: la terza è quella buona" (07/09) (52,4 – 57,8) ═══
+        X = 40600;
+        const fr = el(L, { position: "absolute", left: X - 420, top: Y - 470, width: 840, height: 640, borderRadius: 24, overflow: "hidden", border: "1.5px solid rgba(255,255,255,.2)", boxShadow: "0 30px 70px rgba(0,0,0,.55)", zIndex: 12 });
+        mediaTile(fr, 0, 0, 840, 640, "vV", 1);
+        blurIn(fr, 52.45, { y: 20, blur: 10, dur: 0.35 });
+        const vf = viewfinder(L, [X - 420, Y - 470, X + 420, Y + 170]);
+        vf.show(52.5); vf.rec(52.6, 5.0); vf.focus(53.0, X - 10, Y - 250);
+        const wf = waveform(L, X - 420, Y + 330, 840, 170, { n: 96, prese: 3 });
+        wf.play(53.0, 2.4);
+        wf.dim(0, 55.7); wf.dim(1, 55.7); wf.take(2, 55.7);
+        ["Presa 1", "Presa 2", "Presa 3"].forEach((tx, k) => {
+          const [a0, a1] = wf.takeX(k);
+          const l = el(L, { position: "absolute", left: (a0 + a1) / 2 - 120, top: Y + 440, width: 240, textAlign: "center", fontFamily: FS, fontWeight: 800, fontSize: 28, color: k === 2 ? K.lime : "rgba(255,255,255,.6)", textShadow: k === 2 ? GLOW_LT : "none", whiteSpace: "nowrap", zIndex: 13 }, (k === 2 ? svg("check", 26, K.lime, 3).replace("display:block", "display:inline-block;vertical-align:-3px;margin-right:8px") : "") + tx);
+          gsap.set(l, { opacity: 0 });
+          tl.to(l, { opacity: 1, duration: 0.25 }, 53.0 + (k + 0.5) * 0.8);
+        });
+        cutRect(52.4, [X - 450, Y - 490, X + 450, Y + 490], { top: 380 });
+        float(52.4, 5.4, 0, -10, 0.02);
+        head(52.45, [[{ t: "Registra " }, { t: "3 volte", box: true }]], [52.45, 52.6, 52.75], 57.35);
+        // [catalogo] U14 · D14 — mirino vero sopra il tuo video (REC, timecode), sotto la forma d'onda delle 3 prese: la terza è lime
+
+        // ═══ U13 · O32 — "commenta IDEE e ti mando la lista" (02/10) (57,8 – 63,2) ═══
+        // come il reel 123 di Kallaway: i commenti veri (leggibili) riempiono lo schermo sempre più in fretta; poi (reel 30 e 58)
+        // volano tutti dentro la cartella "Lista IDEE", che si apre a ventaglio con le pagine della lista: è quella che mandi in DM
+        X = 44600;
+        const cm = [["giulia.fit", "IDEE"], ["marco.viaggi", "IDEE!"], ["sara_cucina", "IDEE grazie"], ["luca.coach", "IDEE"], ["anna.mamma", "Idee!!"], ["teo.photo", "IDEE"], ["fede.run", "IDEE pls"], ["chiara.b", "IDEE"], ["paolo.pt", "IDEE!!!"], ["marta_yoga", "IDEE"], ["dario.food", "Idee"], ["elisa.mua", "IDEE subito"], ["nico.design", "IDEE"], ["vale.home", "IDEE!"]];
+        const cb = commentBurst(L, [X - 480, Y - 540, X + 480, Y + 430], cm, { fs: 36, w: 0.6 });
+        // reel 123: i commenti esplodono quasi tutti insieme (~0,3 s), poi restano fermi da leggere prima di volare via
+        cb.burst(57.95, 0.65, 1.8);
+        const ff = fanFolder(L, X, Y + 330, ["Idea 1", "Idea 2", "Idea 3", "Idea 4", "Idea 5"], { w: 540, h: 350, etichetta: "Lista IDEE" });
+        ff.show(59.7);
+        cb.collect(59.8, X, Y + 300);
+        ff.fan(60.35);
+        cutRect(57.8, [X - 500, Y - 560, X + 500, Y + 470], { top: 380 });
+        float(57.8, 1.9, 0, -10, 0.02);
+        frameRect(59.7, 0.9, [X - 540, Y + 330 - 175 - 460, X + 540, Y + 330 + 200], { top: 380 });
+        float(60.6, 2.6, 0, -8, 0.015);
+        head(57.85, [[{ t: "Commenta " }, { t: "\"IDEE\"", box: true }]], [57.85, 58.0], 62.75);
+        // [catalogo] U13 · O32 — reel 123: i commenti veri si moltiplicano; reel 30/58: volano nella cartella "Lista IDEE" che si apre
+
+        // ═══ O30 — "poi arriva la finta" (23/09) (63,2 – 68,6) ═══
+        // come il reel 79 di Kallaway ("The Headfake"): la strada che si aspettano (tratteggiata, in prospettiva) e la finta (neon
+        // lime) che se ne stacca; la pallina coi fari corre sulla strada attesa e al bivio prende la finta, che si accende
+        X = 48600;
+        const rf = roadFork(L, S, X, Y + 700, { w: 980, h: 1440, labels: ["Quello che si aspettano", "La finta"], fs: 40 });
+        rf.draw(63.3, 0.85);
+        rf.drive(64.2, 2.5);
+        rf.choose(65.35);
+        const p13 = cutRect(63.2, rf.rect, { top: 380 });
+        float(63.2, 1.0, 0, -6, 0.01);
+        move(64.4, 2.6, p13.fx + 60, p13.fy - 130, p13.s * 1.06);
+        float(67.0, 1.6, 0, -6, 0.01);
+        head(63.25, [[{ t: "Poi arriva " }, { t: "la finta", box: true }]], [63.25, 63.4, 63.55, 63.7], 68.15);
+        // [catalogo] O30 — reel 79: strada attesa tratteggiata in prospettiva, la finta al neon; la pallina coi fari prende la finta
+
+        // ═══ D13 · O07 — "dalla base all'ultimo gradino" (06/10) (68,6 – 74) ═══
+        X = 52600;
+        const ld14 = ladder(L, X + 130, Y + 500, ["Ti scopre", "Ti segue", "Si fida", "Ti scrive", "Compra"], { gap: 180, w: 480, fs: 32 });
+        const th14 = thermo(L, X - 300, Y - 300, Y + 470, { w: 48, etichette: ["Base", "Ultimo gradino"] });
+        ld14.build(68.65, 0.6);
+        th14.show(68.8);
+        [0, 1, 2, 3, 4].forEach((i) => { ld14.on(i, 69.3 + i * 0.6); th14.to(69.3 + i * 0.6, (i + 1) / 5, 0.5); });
+        cutRect(68.6, [X - 470, Y - 440, X + 450, Y + 620], { top: 380 });
+        float(68.6, 5.4, 0, -10, 0.02);
+        head(68.65, [[{ t: "Dalla base " }], [{ t: "all'ultimo gradino", box: true }]], [68.65, 68.8, 68.95, 69.1], 73.55);
+        // [catalogo] D13 · O07 — accanto alla scala al neon il termometro si riempie gradino dopo gradino
+
+        // ═══ O27 — "l'hook aggancia chi scorre" (ogni hook) (74 – 79,4) ═══
+        // come il reel 100 di Kallaway: la cornice con la canna, la lenza lime che si arcua e l'acqua a bande; l'amo d'acciaio
+        // scende, chi scorre (volto vero) nuota verso l'amo, abbocca e viene strappato fuori; gli altri continuano a scorrere sotto
+        X = 56600;
+        const hc = hookCatch(L, X, Y + 110, { w: 940, h: 1020, d: 130, altri: 6 });
+        hc.show(74.05);
+        hc.cast(74.45, 0.6);
+        hc.swim(75.15, 1.5);
+        hc.snap(76.7);
+        cutRect(74.0, hc.rect, { top: 380 });
+        float(74.0, 5.4, 0, -10, 0.02);
+        head(74.05, [[{ t: "L'hook " }, { t: "aggancia", box: true }]], [74.05, 74.2, 74.35], 78.95);
+        // [catalogo] O27 — reel 100: canna, lenza, amo d'acciaio che scende; chi scorre (volto vero) abbocca e viene strappato fuori
+
+        // ═══ O26 — "arrivano sul profilo e non ti scrivono" (13/10) (79,4 – 84,8) ═══
+        // come i reel 18 e 52 di Kallaway: a sinistra il telefono grande con lo schermo vero (il tuo profilo, i tuoi reel in
+        // movimento), a destra la figura bianca di profilo che lo guarda; ha un dubbio (punto e lente sulla testa), gli angoli
+        // si chiudono su "Messaggio" e lui se ne va senza scriverti
+        X = 60600;
+        const pf = igProfile(L, X - 660, Y - 380, { user: "tu", handle: "samuelerinaldo.media", nome: "Samuele Rinaldo", bio: ["Ti porto clienti da Instagram", "Strategia · contenuti · DM"], blurStats: true, ring: "lime", grid: ["p1", "p2", "p3", "p4", "p5", "p6"], z: 13 });
+        blurIn(pf.frame, 79.5, { x: -60, y: 0, blur: 12, dur: 0.45 });
+        const fg = figure3d(L, X + 460, Y + 700, 1450, { z: 12 });
+        fg.show(79.45);
+        fg.screen(79.95);
+        const [phx, phy] = fg.phoneXY();
+        const cn16 = connector(S, [[phx - 30, phy], [X - 100, phy - 30]], { color: K.lime, w: 5, glow: true, dash: [4, 12] });
+        cn16.draw(80.05, 0.35);
+        pf.hl(80.45, "header");
+        fg.dot(80.95);
+        fg.focus(81.2, 0.4);
+        const br16 = pf.partRect("bottoni"), msg16 = [pf.at(248, 0)[0], br16[1] + 6, pf.at(462, 0)[0], br16[1] + 62];
+        const sc16 = selectCorners(L, msg16, { len: 46, w: 8, pad: 16, z: 45 });
+        sc16.show(81.6);
+        sc16.hide(82.9);
+        fg.away(82.85);
+        cn16.hide(82.85, 0.3);
+        cutRect(79.4, [X - 680, Y - 640, X + 760, Y + 700], { top: 380 });
+        float(79.4, 5.4, 0, -10, 0.02);
+        head(79.45, [[{ t: "Arrivano " }, { t: "sul profilo", box: true }], [{ t: "e non ti scrivono" }]], [79.45, 79.6, 79.75, 81.5, 81.62, 81.74, 81.86], 84.35);
+        // [catalogo] O26 — la figura bianca di Kallaway (manichino) guarda il tuo profilo vero, dubbio (punto + lente), non scrive
+
+        window.__timelines = window.__timelines || {};
+        window.__timelines["main"] = tl;
+      })();
+    </script>
+  </body>
+</html>
