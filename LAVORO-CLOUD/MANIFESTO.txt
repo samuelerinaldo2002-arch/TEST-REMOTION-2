@@ -1,0 +1,3 @@
+# Percorsi normali del progetto (relativi alla radice) creati o modificati in cloud: salva.sh li copia in LAVORO-CLOUD/.
+# Una riga = un file o una cartella. Le cartelle composition/ non si copiano (le rifà il build).
+CATALOGO-ANIMAZIONI/copia-02
