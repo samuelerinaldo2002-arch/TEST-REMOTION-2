@@ -67,3 +67,10 @@ PROSSIMA-SESSIONE.md.
   Il progetto pesa 6,9 GB: va ridotto (render, `.thumbnails`, `node_modules`, 4K) o caricato con Git LFS.
 - **Anteprime:** i server :30xx girerebbero nel cloud, non nel browser dell'utente: servono i video/le pagine scaricabili.
 - **Crediti:** non è verificato se la sessione cloud usi i 100 $ di crediti dell'utente.
+
+## Repository (16/10 notte)
+Caricato in `github.com/samuelerinaldo2002-arch/TEST-REMOTION-2` (**privato**, branch `main`, 8.407 file, la radice del repository è
+la cartella `TEST KALLAWAYMARKETING`). **Non sono nel repository** (vanno rigenerati in cloud se servono): `node_modules`,
+`.thumbnails`, `_tools/venv`, `raw-4k.mp4` e i 4K finali, `CATALOGO-ANIMAZIONI/_analisi/render/` (bozze), `_analisi/confronti-video/`.
+Il modello `_tools/modelli/isnet-general-use.onnx` (178 MB) è in Git LFS. Il progetto a pezzi sotto i 100 MB per file.
+Se un nuovo push grosso dà errore 500, va fatto a pezzi da ~350 MB (commit + push uno alla volta).
