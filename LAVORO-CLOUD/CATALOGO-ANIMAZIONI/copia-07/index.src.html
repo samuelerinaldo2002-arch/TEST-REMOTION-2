@@ -131,6 +131,10 @@
           cr11 assets/clips/cr11.mp4 44.6 2.1
           # 18 · «Reel insights»: il SUO reel nella miniatura → il tuo reel
           ins assets/clips/ins.mp4 84.8 3.9
+          # 25 · CTA: il SUO video 16:9 (lui allo studio) e il suo schema → il tuo video 16:9 (come in C2) e una tua grafica
+          cta_a assets/clips/cta_a.mp4 110.7 0.9
+          cta_b assets/clips/cta_b.mp4 111.5 3.4
+          cta_c assets/clips/cta_c.mp4 114.85 0.3
         -->
       </div>
       <div id="hudclip" class="clip" data-start="0" data-duration="122.462" data-track-index="2">
@@ -237,6 +241,12 @@
         // ═══ 24 · 108,567–110,777 s · r01_riepilogo: «I 3 Modi Migliori Per / Accelerare Le Tue Views», la lista intera ═══
         cpCam.taglio(108.567, { fx: 96000, fy: 880, s: 1 });
         COPIA.r01_riepilogo({ t0: 108.567, t1: 110.777, X: 96000, Y: 880, parent: layer(26) }, {});
+
+        // ═══ 25 · 110,777–115,115 s · r01_cta (X01): fondo chiaro, «Commenta “Strategia” / Per Avere Il Video», la card del tuo video ═══
+        COPIA.r01_cta({ t0: 110.777, t1: 115.115 }, {});
+
+        // ═══ 26 · 115,115–119,42 s · facecam piena fino alla fine del reel ═══
+        cpFacecam(115.115, 119.42);
 
         //__SCENE__
 

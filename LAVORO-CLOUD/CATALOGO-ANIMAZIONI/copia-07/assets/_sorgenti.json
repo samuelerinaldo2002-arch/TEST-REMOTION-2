@@ -58,6 +58,12 @@
   "da": 0,
   "cosa": "tu che parli in camera, 16:9 (ritaglio del tuo reel v02, come in C2)"
  },
+ "cta_c": {
+  "sorgente": "CATALOGO-ANIMAZIONI/copia-01/assets/clips/mio/v02.mp4",
+  "da": 1.2,
+  "durata": 1.0,
+  "cosa": "tu che parli in camera, 16:9 (ritaglio del tuo reel v02)"
+ },
  "cta_b": {
   "sorgente": "CATALOGO-ANIMAZIONI/copia-01/assets/clips/mio/m04.mp4",
   "da": 0.5,

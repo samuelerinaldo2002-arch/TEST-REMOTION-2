@@ -57,6 +57,8 @@ src_cta = os.path.join(C2, "clips", "cta_tu.mp4")
 out = os.path.join(CL, "cta_a.mp4")
 REG["cta_a"] = {"sorgente": os.path.relpath(src_cta, PROJ), "da": 0, "cosa": "tu che parli in camera, 16:9 (ritaglio del tuo reel v02, come in C2)"}
 if not os.path.exists(out): shutil.copyfile(src_cta, out)
+# (un video del pool si può usare una volta sola: la terza parte è un altro spezzone dello stesso tuo reel)
+clip("cta_c", mio("v02"), 1.2, 1.0, "crop=540:304:0:150,scale=640:360:flags=lanczos,unsharp=5:5:0.5", "tu che parli in camera, 16:9 (ritaglio del tuo reel v02)")
 clip("cta_b", mio("m04"), 0.5, 4.0, "crop=360:203:0:120,scale=640:360:flags=lanczos", "la tua grafica (la griglia dei post) in 16:9")
 # coda A01 (reel 25 di Kallaway, 0–3,04 s: 6 reel di creator diversi, «contenuti applicazione») → 6 creator diversi
 for k, (cr, i, ss) in enumerate([("leilahormozi", 2, 2.0), ("codiesanchez", 2, 2.0), ("fitness", 1, 2.0),

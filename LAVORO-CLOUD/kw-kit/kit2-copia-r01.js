@@ -1066,3 +1066,45 @@ COPIA.r01_riepilogo = (scena, o) => {
   tl.set(L, { opacity: 0 }, t1);
   return { rect: null, pose: null, ancore: {}, elementi: { T1, T2, bars } };
 };
+
+/* @copia r01_cta · X01 nel reel 1: «Commenta “Strategia” / Per Avere Il Video» su fondo chiaro, la card 16:9 del tuo video che
+ *   arriva da destra e cambia (reel 1, 110,777–115,115 s). La X01 di C2 (COPIA.X01, reel 5) ha un altro impaginato (fondo nero,
+ *   bordo acceso, titolo su due righe con la linea): da qui una funzione sua.
+ * kallaway: reel 1, 110,777 s · taglio su un fondo chiaro (grigio 226 con la griglia sottile); la card 16:9 del suo video (lui allo
+ *   studio) arriva in corsa da destra e frena (bordo sinistro x 211 → 177 → 159 → 146 → 137 → 130 → 125 → 120 → 117 → 114 → 111 →
+ *   109 → 108 → 106 → 105 px ogni 0,084 s fino a 112,5 s), 870×495; 110,9 s il titolo «Comment "Strategy"» (neretto scuro + corsivo
+ *   serif) che scivola a sinistra (x 260 → 203 px fino a 111,58 s) e a 111,03 s il riquadro rosso «To Get The Video» intero sotto;
+ *   111,528 s nella card il suo schema «6 Step Blueprint», 114,865 s di nuovo lui; 115,115 s taglio sulla faccia
+ * misure: card x 105–974, y 605–1100; titolo riga 1 x 203–879 (y ~245–310), riquadro x 219–872, y 325–405; niente notifica DM (U09:
+ *   nel reel 1 non c'è)
+ * scena: t0 (110,777), t1 (115,115), parent (hud) · opzioni: video (["cta_a", "cta_b", "cta_c"]: tre id diversi, un video del
+ *   pool non si può mostrare in due riquadri)
+ * colori: fondo chiaro come il suo (bianco del brand, grigio chiaro), scritte scure #1E1E1E, riquadro rosso → lime con la scritta scura
+ */
+COPIA.r01_cta = (scena, o) => {
+  o = o || {};
+  const t0 = scena.t0, t1 = scena.t1, a = (t) => t0 + (t - 110.777);
+  const P = layered(el(hud, { position: "absolute", left: 0, top: 0, width: 1080, height: 1332, overflow: "hidden", background: "#e4e4e2", zIndex: 80 }));
+  el(P, { position: "absolute", inset: 0, backgroundImage: "linear-gradient(rgba(0,0,0,.07) 1.5px, transparent 1.5px), linear-gradient(90deg, rgba(0,0,0,.07) 1.5px, transparent 1.5px)", backgroundSize: "27px 27px", opacity: 0.8 });
+  el(P, { position: "absolute", inset: 0, background: "radial-gradient(120% 80% at 50% 45%, rgba(255,255,255,.35) 0%, rgba(0,0,0,0) 60%, rgba(0,0,0,.08) 100%)" });
+  r1Finestra(P, t0, t1);
+  // la card 16:9 col tuo video (cambia a 111,528 e 114,865 s)
+  const v = o.video || ["cta_a", "cta_b", "cta_c"];
+  const card = r5Card(P, 540, 852, 870, 495, [[0, v[0]], [a(111.528), v[1]], [a(114.865), v[2]]], { r: 10, glow: "0 0 0 5px #f6f6f4, 0 0 0 6.5px rgba(0,0,0,.12), 0 18px 40px rgba(0,0,0,.25)" });
+  const fc = cpCurva([[110.777, 106], [110.864, 72], [110.948, 54], [111.032, 41], [111.116, 32], [111.2, 25], [111.284, 20], [111.368, 15], [111.452, 12], [111.536, 9], [111.62, 6], [111.704, 4], [111.788, 3], [112.0, 1], [112.5, 0]].map(([t, x]) => [a(t), x]));
+  // il titolo: riga 1 scura (Advercase + Patrick Hand), riga 2 nel riquadro lime
+  const tit = layered(el(P, { position: "absolute", left: 0, top: 236, width: 1080, zIndex: 5 }));
+  const r1 = el(tit, { position: "absolute", left: 0, top: 0, width: 1080, display: "flex", justifyContent: "center", alignItems: "baseline", whiteSpace: "nowrap" });
+  el(r1, { fontFamily: FD, fontWeight: 700, fontSize: 74, color: K.ink, letterSpacing: "-0.02em" }, "Commenta&nbsp;", "span");
+  el(r1, { fontFamily: FH, fontSize: 88, color: K.ink }, "“Strategia”", "span");
+  const r2 = layered(el(tit, { position: "absolute", left: 219, top: 89, width: 653, height: 80, background: K.lime, borderRadius: 3, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: FD, fontWeight: 700, fontSize: 70, color: K.ink, letterSpacing: "-0.02em", whiteSpace: "nowrap", boxShadow: "0 6px 18px rgba(0,0,0,.12)" }, "Per Avere Il Video"));
+  gsap.set(r1, { opacity: 0, filter: "blur(8px)" }); gsap.set(r2, { opacity: 0 });
+  tl.to(r1, { opacity: 1, filter: "blur(0px)", duration: 0.15, ease: "power2.out" }, a(110.88));
+  tl.set(r1, { filter: "none" }, a(111.04));
+  tl.set(r2, { opacity: 1 }, a(111.03));
+  const ft = cpCurva([[110.906, 57], [110.948, 47], [110.99, 40], [111.032, 34], [111.074, 29], [111.116, 25], [111.158, 21], [111.2, 18], [111.242, 15], [111.284, 12], [111.326, 10], [111.368, 7], [111.41, 6], [111.452, 4], [111.494, 2], [111.578, 0]].map(([t, x]) => [a(t), x]));
+  const st = { v: 0 };
+  gsap.set(card.g, { x: fc(t0) }); gsap.set(tit, { x: ft(t0) });
+  tl.fromTo(st, { v: 0 }, { v: 1, duration: 1.75, ease: "none", immediateRender: false, onUpdate: () => { const t = t0 + st.v * 1.75; gsap.set(card.g, { x: fc(t) }); gsap.set(tit, { x: ft(t) }); } }, t0);
+  return { rect: null, pose: null, ancore: {}, elementi: { P, card, tit } };
+};
