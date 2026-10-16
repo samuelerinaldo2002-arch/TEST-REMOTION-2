@@ -13,6 +13,10 @@
 // Questo file viene PRIMA di kit2-core.js e di kit2-copia-r05.js (ordine alfabetico): qui solo funzioni e costanti semplici;
 // gli aiuti r5* (r5Titolo, r5Card, r5Pulse, r5Chip, r5Strato) si usano solo dentro le funzioni.
 
+// ── finestra di un nodo dell'HUD: invisibile (autoAlpha) fuori dalla sua scena, così i titoli delle scene dopo non si
+// sovrappongono (per il check) a quelli della scena in corso
+const r1Finestra = (n, t0, t1) => { gsap.set(n, { autoAlpha: 0 }); tl.set(n, { autoAlpha: 1 }, t0 - 0.001); if (t1 != null) tl.set(n, { autoAlpha: 0 }, t1); };
+
 // ── omino di Kallaway (imbuti e anelli): testa tonda e busto arrotondato, grigio chiaro; d = lato (34 px) ──
 const R1_OMINO = (col) => `<svg width="100%" height="100%" viewBox="0 0 34 34" style="display:block"><circle cx="17" cy="9.6" r="7.4" fill="${col}"/><path d="M2.6 32.6 C2.6 23.4 8.6 19.2 17 19.2 C25.4 19.2 31.4 23.4 31.4 32.6 Z" fill="${col}"/></svg>`;
 const r1Omino = (parent, cx, cy, o) => {
@@ -349,7 +353,7 @@ COPIA.r01_tam = (scena, o) => {
   T1.inAt([12.6, 12.64, 12.72, 12.8, 12.88].map(a));
   const T2 = COPIA.T02({ t0: 0, parent: hud, y: 230, x0: 228 }, { testo: ["Per", "Avere", "Più", "Views"], ruoli: ["sans", "sans", "serif", "serif"], fs: 60, fsSerif: 70, h: 68,
     tempi: [13.18, 13.18, 13.43, 13.47].map(a), bordo: [[12.846, 229], [12.888, 247], [12.93, 277], [12.971, 323], [13.013, 362], [13.055, 414], [13.096, 474], [13.138, 527], [13.18, 590], [13.222, 646], [13.263, 701], [13.305, 746], [13.347, 788], [13.388, 821], [13.43, 845], [13.472, 851]].map(([t, x]) => [a(t), x]) });
-  tl.set([T1.root, T2.elementi.root], { opacity: 0 }, t1);
+  r1Finestra(T1.root, t0, t1); r1Finestra(T2.elementi.root, t0, t1);
   // la pillola «TAM Dell'Idea», la linea e «Mercato Totale Raggiungibile» (un gruppo che sale frenando)
   const grp = layered(el(L, { position: "absolute", left: 0, top: 0, width: 1, height: 1, zIndex: 12 }));
   const [px, py] = W(540, 722);
@@ -434,7 +438,7 @@ COPIA.r01_specifico = (scena, o) => {
   // due righe hanno la sua larghezza: riga 1 778 px, riga 2 799 px)
   const T = r5Titolo({ righe: R1_TIT_SPECIFICO, y: 92, interlinea: [64] });
   T.inAt([28.68, 28.7, 28.73, 28.78, 28.82, 29.15, 29.23].map(a));
-  if (o.titoloFine !== false) tl.set(T.root, { opacity: 0 }, o.titoloFine || t1);
+  r1Finestra(T.root, t0, o.titoloFine || t1);
   const [ax, ay] = W(540, 1038);
   // l'imbuto (forma misurata, mezze larghezze × 1,18 come in scena 1: gli omini dei bordi sono più scuri della soglia)
   const forma = [[29.4, 1000, 12], [29.5, 720, 24], [29.6, 407, 36], [29.8, 398, 101], [30.0, 392, 160], [30.2, 389, 192], [30.4, 388, 223], [30.6, 388, 235], [30.8, 388, 263], [31.0, 388, 282]].map(([t, y, w]) => [a(t), y, w * 1.18]);
@@ -501,7 +505,7 @@ COPIA.r01_agenzia = (scena, o) => {
   const st = { v: 0 };
   gsap.set(r1, { x: f1(t0) }); gsap.set(r2, { x: f2(t0) });
   tl.fromTo(st, { v: 0 }, { v: 1, duration: 1.95, ease: "none", immediateRender: false, onUpdate: () => { const t = t0 + st.v * 1.95; gsap.set(r1, { x: f1(t) }); gsap.set(r2, { x: f2(t) }); } }, t0);
-  tl.set(T.root, { opacity: 0 }, t1);
+  r1Finestra(T.root, t0, t1);
   // il logo e i tre argomenti (un gruppo che sale due volte)
   const grp = layered(el(L, { position: "absolute", left: 0, top: 0, width: 1, height: 1, zIndex: 14 }));
   const [lx, ly] = W(540, 510);
@@ -618,7 +622,7 @@ COPIA.r01_tremodi = (scena, o) => {
   const fu = cpCurva([[46.0, 0], [46.25, -3], [46.3, -6], [46.34, -9], [46.38, -13], [46.42, -18], [46.46, -25], [46.505, -34], [46.55, -47], [46.63, -70]].map(([t, d]) => [a(t), d]));
   const su = { v: 0 };
   tl.fromTo(su, { v: 0 }, { v: 1, duration: tc - a(46.0), ease: "none", immediateRender: false, onUpdate: () => gsap.set(T.root, { y: fu(a(46.0) + su.v * (tc - a(46.0))) }) }, a(46.0));
-  tl.set(T.root, { opacity: 0 }, tc);
+  r1Finestra(T.root, t0, tc);
   // il reel del creator e il badge che conta
   const [cx, cy] = W(557, 857);
   const card = r5Card(L, cx, cy, 377, 607, [[0, o.clip || "cr11"]], { r: 10, bw: 2.5, glow: "0 0 0 2.5px rgba(255,255,255,.8), 0 20px 50px rgba(0,0,0,.6), 0 0 26px rgba(255,255,255,.10)" });
@@ -646,7 +650,7 @@ COPIA.r01_tremodi2 = (scena, o) => {
   // sale nella riga 1, così le due righe hanno la sua larghezza, 815 e 756 px, senza un font gigante)
   const T = r5Titolo({ righe: [[{ t: "Ecco I 3 Modi Per Espandere", ruolo: "sans", size: 69 }], [{ t: "La Dimensione ", ruolo: "sans", size: 64 }, { t: "Del Tuo TAM", ruolo: "serif", size: 78 }]], y: 172, interlinea: [66], sottolinea: { y: 320, w: 695, h: 5, dx: -0.5 } });
   T.inAt([46.55, 46.56, 46.57, 46.58, 46.6, 46.62, 46.6, 46.62, 46.75, 46.9, 47.05].map(a));
-  tl.set(T.root, { opacity: 0 }, t1);
+  r1Finestra(T.root, t0, t1);
   T.sottolinea(a(46.68), 0.78, "power1.inOut");
   // l'imbuto e la tua foto che sale da sotto
   const forma = [[46.63, 694, 125], [46.713, 639, 159], [46.797, 605, 170], [46.88, 586, 195], [46.964, 571, 218], [47.047, 561, 227], [47.13, 552, 235], [47.214, 546, 254], [47.297, 540, 260], [47.381, 537, 267], [47.464, 533, 282], [47.547, 531, 288], [47.631, 527, 289]].map(([t, y, w]) => [a(t), y, w * 1.18]);
@@ -683,4 +687,191 @@ COPIA.r01_tremodi2 = (scena, o) => {
   cpCam.scala([[51.25, 1], [51.5, 1.034], [51.75, 1.046], [52.0, 1.069], [52.25, 1.103], [52.5, 1.138], [52.75, 1.184], [53.0, 1.195], [53.25, 1.218], [53.5, 1.22], [54.0, 1.23], [54.346, 1.232]].map(([t, k]) => [a(t), k]), [529, 894]);
   tl.set(L, { opacity: 0 }, t1);
   return { rect: null, pose: null, ancore: {}, elementi: { T, imb, av, bars } };
+};
+
+// ── i due copioni del reel 1 (scene 13, 15, 18): fogli scuri 410×616 col bordo sottile, il titolo «Script 1 / 2» in corsivo con lo
+// svolazzo, 2–3 righe bianche in cima e le righe grigie sotto (passo 30 px); uno alla volta viene avanti (scala ~1,87 attorno alla
+// prima riga e va al centro, l'altro resta fermo dietro) e la frase si scrive al posto delle righe bianche.
+// Coordinate dello schermo (scena senza camera): centri (305, 792) e (775, 792), alto 484. → api
+const r1Copioni = (L, X, Y, o) => {
+  o = o || {};
+  const W = (sx, sy) => [X - 540 + sx, Y - 880 + sy];
+  const w = 410, h = 616, top = 484, riga0 = 74, passo = 30;
+  const docs = [305, 775].map((sx, i) => {
+    const [x, y] = W(sx, top);
+    const d = layered(el(L, { position: "absolute", left: x - w / 2, top: y, width: w, height: h, borderRadius: 10, background: "linear-gradient(180deg,#141414 0%,#0e0e0e 100%)", boxShadow: "inset 0 0 0 1.5px rgba(255,255,255,.20), 0 0 30px rgba(255,255,255,.05), 0 20px 50px rgba(0,0,0,.6)", transformOrigin: `50% ${riga0}px`, zIndex: i === 0 ? 12 : 11 }));
+    el(d, { position: "absolute", left: 0, top: 10, width: w, textAlign: "center", fontFamily: FH, fontSize: 25, color: "rgba(255,255,255,.85)" }, `Copione ${i + 1}`);
+    el(d, { position: "absolute", left: w / 2 - 38, top: 40, width: 76, height: 7, borderBottom: "1.5px solid rgba(255,255,255,.55)", borderRadius: "0 0 50% 50%" });
+    const bianche = i === 0 ? 2 : 3, righe = [];
+    for (let k = 0; k < 18; k++) {
+      const r = el(d, { position: "absolute", left: 43, top: riga0 + passo * k - (k < bianche ? 3 : 2), width: 319, height: k < bianche ? 6 : 4, borderRadius: 2, background: k < bianche ? "#ffffff" : "rgba(255,255,255,.42)", boxShadow: k < bianche ? "0 0 8px rgba(255,255,255,.6)" : "none" });
+      righe.push(r);
+    }
+    const testo = layered(el(d, { position: "absolute", left: 43, top: riga0 - 12, width: 330, fontFamily: FS, fontWeight: 800, fontSize: 15, lineHeight: `${passo}px`, color: K.white, textShadow: "0 0 6px rgba(255,255,255,.45)", whiteSpace: "nowrap" }));
+    return { d, righe, testo, sx, bianche };
+  });
+  const api = {
+    docs,
+    // il copione i viene avanti / torna: pts = [[t, scala, centro x dello schermo]] (prima riga ferma in altezza)
+    muovi: (i, pts) => {
+      const D = docs[i], fs = cpCurva(pts.map((p) => [p[0], p[1]])), fx = cpCurva(pts.map((p) => [p[0], p[2]])), st = { v: 0 };
+      const t0 = pts[0][0], t1 = pts[pts.length - 1][0];
+      tl.fromTo(st, { v: 0 }, { v: 1, duration: t1 - t0, ease: "none", immediateRender: false, onUpdate: () => { const t = t0 + st.v * (t1 - t0); gsap.set(D.d, { scale: fs(t), x: fx(t) - D.sx }); } }, t0);
+      tl.set(D.d, { zIndex: 13 }, t0);
+    },
+    // posa fissa (scala, centro x) a partire da t
+    posa: (i, t, s, cx) => { gsap.set(docs[i].d, { scale: s, x: cx - docs[i].sx }); },
+    // la frase scritta lettera per lettera al posto delle righe bianche: righe = [[[parola, t], …], …] (una per riga)
+    scrivi: (i, righe, o2) => {
+      o2 = o2 || {};
+      const D = docs[i];
+      righe.forEach((riga, ri) => {
+        const r = layered(el(D.testo, { position: "relative", height: passo, whiteSpace: "nowrap" }));
+        tl.to(D.righe[ri], { opacity: 0, duration: 0.08, ease: "none" }, riga[0][1] - 0.02);
+        riga.forEach(([p, t], pi) => {
+          const parola = (pi ? " " : "") + p, dur = Math.min(0.32, 0.045 * parola.length);
+          [...parola].forEach((c, ci) => {
+            const s = el(r, { display: "inline", opacity: 0, whiteSpace: "pre" }, c === " " ? " " : c, "span");
+            tl.set(s, { opacity: 1 }, t + (dur * ci) / Math.max(1, parola.length));
+          });
+        });
+      });
+      if (o2.pieno) gsap.set(D.testo.querySelectorAll("span"), { opacity: 1 });
+    },
+    // le righe del copione si accendono di un colore per un attimo (Kallaway: rosso 67,78–67,96 s, verde 84,7 s → lime)
+    lampo: (i, t, dur, col) => {
+      const R = docs[i].righe.slice(docs[i].bianche);
+      tl.to(R, { background: col || K.lime, boxShadow: `0 0 10px ${col || K.lime}`, duration: 0.04, ease: "none" }, t);
+      tl.to(R, { background: "rgba(255,255,255,.42)", boxShadow: "none", duration: 0.08, ease: "none" }, t + (dur || 0.2));
+      tl.to(docs[i].d, { boxShadow: `inset 0 0 0 2px ${col || K.lime}, 0 0 40px rgba(207,251,80,.35)`, duration: 0.04 }, t);
+      tl.to(docs[i].d, { boxShadow: "inset 0 0 0 1.5px rgba(255,255,255,.20), 0 0 30px rgba(255,255,255,.05), 0 20px 50px rgba(0,0,0,.6)", duration: 0.1 }, t + (dur || 0.2));
+    },
+  };
+  return api;
+};
+// la barra d'intestazione (K14 del reel 1: la voce della lista in alto, 940×124, nell'HUD) · accesa a t
+const r1Intestazione = (num, testo, t, o) => {
+  o = o || {};
+  const B = r1Barra(hud, 540, o.top || 176, 940, 124, num, testo, { z: 60 });
+  gsap.set(B.g, { opacity: 0.45 });
+  tl.to(B.g, { opacity: 1, duration: 0.2, ease: "power1.out" }, t);
+  return B;
+};
+// le curve misurate del copione che viene avanti (scena 13: il copione 1, da 58,85 s) e del copione 2 (scena 15, a metà al taglio)
+const R1_AVANTI_1 = [[0, 1.0, 302.5], [0.084, 1.025, 308.5], [0.126, 1.063, 318.5], [0.168, 1.122, 334], [0.21, 1.26, 373], [0.252, 1.326, 390.5], [0.294, 1.379, 405], [0.336, 1.426, 417.5], [0.378, 1.467, 429], [0.42, 1.505, 439], [0.462, 1.536, 448], [0.504, 1.561, 456], [0.546, 1.589, 463.5], [0.588, 1.608, 469.5], [0.63, 1.636, 476], [0.672, 1.655, 481], [0.714, 1.677, 486.5], [0.756, 1.693, 491], [0.84, 1.72, 499.5], [0.924, 1.746, 506.5], [1.008, 1.765, 512], [1.092, 1.787, 517.5], [1.134, 1.796, 519.5], [1.4, 1.837, 530.5], [1.65, 1.862, 536.5], [1.9, 1.871, 539], [2.15, 1.875, 539.5]];
+const R1_AVANTI_2 = [[0, 1.245, 709.5], [0.084, 1.326, 686.5], [0.168, 1.392, 668], [0.252, 1.448, 653], [0.336, 1.502, 639.5], [0.42, 1.542, 628], [0.504, 1.577, 618.5], [0.588, 1.608, 609.5], [0.672, 1.636, 602], [0.756, 1.665, 595.5], [0.84, 1.687, 589], [0.924, 1.718, 581], [1.008, 1.734, 576.5], [1.092, 1.749, 572], [1.176, 1.765, 567.5], [2.0, 1.83, 548], [3.2, 1.856, 540]];
+// il copione che torna indietro (scena 15, 66,84–68,0 s): scala e centro x misurati
+const R1_INDIETRO_2 = [[0, 1.856, 540], [0.042, 1.846, 542.5], [0.084, 1.828, 547.5], [0.126, 1.793, 557], [0.168, 1.734, 571.5], [0.21, 1.643, 595], [0.252, 1.536, 623], [0.294, 1.42, 650], [0.378, 1.317, 685], [0.42, 1.266, 698], [0.462, 1.232, 708.5], [0.504, 1.194, 718.5], [0.546, 1.169, 725.5], [0.63, 1.122, 738], [0.714, 1.088, 748.5], [0.798, 1.06, 755], [1.16, 1.0, 774.5]];
+
+/* @copia r01_copione1 · Intestazione «01 Amplia La Cornice Del Risultato»; i due copioni, il primo viene avanti e si scrive
+ *   «Questa Strategia Porta Il Tuo ROAS / Da 2X A 4X» (reel 1, 58,851–62,312 s)
+ * kallaway: reel 1, 58,851 s · taglio: in alto la barra «01 Broaden The Outcome Frame» (940×124, spenta, si accende a 59,0 s); sotto
+ *   i due copioni affiancati («Script 1», «Script 2»: fogli scuri 410×616, due-tre righe bianche e le grigie); da 58,9 s il copione 1
+ *   viene avanti e va al centro (scala 1 → 1,26 → 1,51 → 1,64 → 1,72 → 1,79 → 1,87 a 59,06 · 59,27 · 59,48 · 59,69 · 59,93 · 60,25 ·
+ *   61,0 s, la prima riga ferma a y 555), il 2 resta dietro; la frase si scrive lettera per lettera al posto delle righe bianche
+ *   (59,55–61,98 s) sulle sue parole
+ * misure: copioni 410×616 coi centri x 305 e 775, alto 484; righe a passo 30 da y 558; prima riga larga 319 px; scrittura ~16 lettere
+ *   al secondo (striscia dei suoi fotogrammi)
+ * scena: t0 (58,851), t1 (62,312), X, Y, parent
+ * colori: l'accento rosso della barra → lime; il resto bianco e grigio come il suo
+ */
+COPIA.r01_copione1 = (scena, o) => {
+  o = o || {};
+  const L = scena.parent || layer(19), X = scena.X, Y = scena.Y;
+  const t0 = scena.t0, t1 = scena.t1, a = (t) => t0 + (t - 58.851);
+  const H = r1Intestazione("01", R1_VOCI[0], a(59.0));
+  r1Finestra(H.g, t0, t1);
+  const C = r1Copioni(L, X, Y);
+  C.muovi(0, R1_AVANTI_1.map(([u, s, x]) => [t0 + u, s, x]));
+  C.scrivi(0, [[["Questa", 59.55], ["Strategia", 59.7], ["Porta", 60.1], ["Il", 60.35], ["Tuo", 60.5], ["ROAS", 60.8]], [["Da", 61.2], ["2X", 61.4], ["A", 61.6], ["4X", 61.8]]].map((r) => r.map(([p, t]) => [p, a(t)])));
+  tl.set(L, { opacity: 0 }, t1);
+  return { rect: null, pose: null, ancore: {}, elementi: { H, C } };
+};
+
+/* @copia r01_copione2 · Il secondo copione si scrive «Questa Strategia Mi Ha Fatto 500.000 € / Nell'Ultimo Mese»; torna
+ *   indietro, si accende un attimo; i copioni scivolano a sinistra e a 69,44 s gli anelli di persone attorno al copione piccolo,
+ *   che diventano lime dal centro in fuori (reel 1, 63,605–72,322 s)
+ * kallaway: reel 1, 63,605 s · taglio: il copione 2 è già a metà della sua venuta avanti (scala 1,25, centro x 710) e arriva al
+ *   centro (1,77 a 64,78 s; 1,86 a 66,8 s); la frase si scrive 63,94–66,6 s; 66,84–68,0 s torna al suo posto (scala 1,86 → 1,64 →
+ *   1,32 → 1,19 → 1,09 → 1,0, centro x 540 → 595 → 685 → 719 → 749 → 775), le sue righe diventano rosse per un attimo (67,78–67,96 s);
+ *   68,3–69,4 s i copioni scivolano a sinistra sempre più veloci; 69,44 s taglio sugli anelli (4 anelli di persone grigie con le
+ *   orbite, il copione piccolo al centro); 70,0–71,15 s le persone diventano verdi dal centro in fuori; la camera si avvicina
+ *   (×1,5 fino a 72,3 s); da 71,9 s tutto sale (la barra in alto esce) verso la lista della scena dopo
+ * misure: come r01_copione1; anelli r 110 · 170 · 230 · 290 px (12 · 16 · 20 · 24 persone) attorno a (540, 790)
+ * scena: t0 (63,605), t1 (72,322), X, Y, parent · la seconda metà (dal taglio di 69,44 s) è COPIA.r01_copione2b
+ * colori: rosso e verde → lime (il lampo rosso sulle righe da noi è lime: «riduce la forza della promessa» resta un accento)
+ */
+COPIA.r01_copione2 = (scena, o) => {
+  o = o || {};
+  const L = scena.parent || layer(20), X = scena.X, Y = scena.Y;
+  const t0 = scena.t0, a = (t) => t0 + (t - 63.605), tc = a(69.44);
+  const H = r1Intestazione("01", R1_VOCI[0], t0 - 0.01);
+  gsap.set(H.g, { opacity: 1 });
+  r1Finestra(H.g, t0, scena.t1);
+  const fu = cpCurva([[71.9, 0], [72.0, -6], [72.1, -18], [72.2, -36], [72.322, -62]].map(([t, d]) => [a(t), d])), su = { v: 0 };
+  tl.fromTo(su, { v: 0 }, { v: 1, duration: a(72.322) - a(71.9), ease: "none", immediateRender: false, onUpdate: () => gsap.set(H.g, { y: fu(a(71.9) + su.v * (a(72.322) - a(71.9))) }) }, a(71.9));
+  const C = r1Copioni(L, X, Y);
+  // il copione 1 è già scritto (tre righe piccole), il 2 viene avanti
+  C.scrivi(0, [[["Questa", 0], ["Strategia", 0], ["Porta", 0], ["Il", 0], ["Tuo", 0], ["ROAS", 0]], [["Da", 0], ["2X", 0], ["A", 0], ["4X", 0]]], { pieno: true });
+  C.docs[0].righe.slice(0, 2).forEach((r) => gsap.set(r, { opacity: 0 }));
+  C.muovi(1, R1_AVANTI_2.map(([u, s, x]) => [t0 + u, s, x]));
+  C.scrivi(1, [[["Questa", 63.94], ["Strategia", 64.1], ["Mi", 64.6], ["Ha", 64.7], ["Fatto", 64.8], ["500.000", 65.0], ["€", 65.4]], [["Nell'Ultimo", 65.77], ["Mese", 66.27]]].map((r) => r.map(([p, t]) => [p, a(t)])));
+  C.muovi(1, R1_INDIETRO_2.map(([u, s, x]) => [a(66.84) + u, s, x]));
+  tl.to(C.docs[1].d, { filter: "blur(3px)", duration: 0.1 }, a(66.9));
+  tl.to(C.docs[1].d, { filter: "blur(0px)", duration: 0.25 }, a(67.1));
+  tl.set(C.docs[1].d, { filter: "none" }, a(67.36));
+  C.lampo(1, a(67.78), 0.18, K.lime);
+  // i copioni scivolano a sinistra sempre più veloci fino al taglio (68,3–69,44 s: −10 · −36 · −99 px a 68,5 · 69,0 · 69,35 s)
+  cpCam.percorso([[68.3, 0, 0], [68.5, -10, 0], [68.75, -20, 0], [69.0, -36, 0], [69.2, -62, 0], [69.35, -99, 0], [69.44, -125, 0]].map(([t, x, y]) => [a(t), x, y]));
+  tl.set(L, { opacity: 0 }, tc);
+  return { rect: null, pose: null, ancore: {}, elementi: { H, C } };
+};
+
+COPIA.r01_copione2b = (scena, o) => {
+  o = o || {};
+  const L = scena.parent || layer(21), X = scena.X, Y = scena.Y, W = (sx, sy) => [X - 540 + sx, Y - 880 + sy];
+  const t0 = scena.t0, t1 = scena.t1, a = (t) => t0 + (t - 69.44);
+  const [cx, cy] = W(540, 790);
+  const an = r1Anelli(L, cx, cy, { raggi: [110, 170, 230, 290], conte: [12, 16, 20, 24], orbite: [80, 110, 140, 170, 200, 230, 260, 290], d: 26, col: "#9c9c9c", z: 8 });
+  an.pieni(); an.orbiteIn(t0 - 0.01, 0.01);
+  // il copione piccolo al centro
+  const mini = layered(el(L, { position: "absolute", left: cx - 30, top: cy - 40, width: 60, height: 80, borderRadius: 4, background: "#121212", boxShadow: "inset 0 0 0 1.5px rgba(255,255,255,.45)", zIndex: 10 }));
+  for (let k = 0; k < 8; k++) el(mini, { position: "absolute", left: 9, top: 12 + 8 * k, width: 42, height: 3, background: k < 2 ? "#fff" : "rgba(255,255,255,.45)" });
+  // le persone diventano lime dal centro in fuori (il suo verde)
+  [[1, 70.0], [2, 70.3], [3, 70.6], [4, 70.9]].forEach(([k, t]) => an.colora(k, a(t), 0.25, K.lime));
+  // la camera si avvicina (×1,5) e alla fine sale verso la lista
+  cpCam.scala([[69.44, 1], [70.0, 1.06], [70.6, 1.13], [71.15, 1.2], [71.5, 1.27], [71.9, 1.4], [72.322, 1.5]].map(([t, k]) => [a(t), k]), [540, 790]);
+  cpCam.percorso([[71.9, 0, 0], [72.0, 0, -6], [72.1, 0, -18], [72.2, 0, -36], [72.322, 0, -62]].map(([t, x, y]) => [a(t), x, y]));
+  tl.set(L, { opacity: 0 }, t1);
+  return { rect: null, pose: null, ancore: {}, elementi: { an, mini } };
+};
+
+/* @copia r01_lista02 · «Ecco Come Puoi “Espandere” / La Dimensione Del Tuo TAM»: la lista, la 02 accesa che cresce
+ *   (reel 1, 72,322–73,782 s; è il K14 al contrario: la lista torna e la voce detta si allarga)
+ * kallaway: reel 1, 72,322 s · taglio in corsa (il contenuto sale ancora e frena: titolo in cima a y 248 → 237 → 231 → 227 → 225 ·
+ *   224 px fino a 73,5 s); la lista coi tre riquadri, 01 e 03 spenti (scritte grigie), 02 accesa e più grande, che si allarga ancora
+ *   (accento a x 130 → 102 → 84 → 70 → 63 → 57 → 53 → 48 px, alta 107 → 130 px) con il riflesso che la passa
+ * misure: barre 790×104 (01, 03), la 02 ×1,04 → ×1,22; titolo riga 1 y ~240–300 (x 160–915), riga 2 y ~305–360, linea y 375
+ * scena: t0 (72,322), t1 (73,782), X, Y, parent
+ */
+COPIA.r01_lista02 = (scena, o) => {
+  o = o || {};
+  const L = scena.parent || layer(22), X = scena.X, Y = scena.Y, W = (sx, sy) => [X - 540 + sx, Y - 880 + sy];
+  const t0 = scena.t0, t1 = scena.t1, a = (t) => t0 + (t - 72.322);
+  // titolo nel mondo (sale con la camera), già pieno al taglio
+  const T = r5Titolo({ righe: [[{ t: "Ecco Come Puoi “Espandere”", ruolo: "sans", size: 74 }], [{ t: "La Dimensione ", ruolo: "sans", size: 66 }, { t: "Del Tuo TAM", ruolo: "serif", size: 80 }]], parent: L, x: W(540, 0)[0], y: W(0, 236)[1], interlinea: [66], sottolinea: { y: W(0, 375)[1], w: 615, h: 5 } });
+  T.unita.forEach((u) => gsap.set(u.w, { opacity: 1, filter: "none", y: 0, color: K.white }));
+  T.sottolinea(t0 - 0.02, 0.01);
+  const voci = R1_VOCI, bars = voci.map((s, i) => {
+    const [bx, by] = W(540, 600 + 188 * i);
+    const B = r1Barra(L, bx, by, 790, 104, String(i + 1).padStart(2, "0"), s, { fs: 33 });
+    if (i !== 1) gsap.set(B.txt, { color: "rgba(255,255,255,.42)" });
+    return B;
+  });
+  gsap.set(bars[1].g, { scale: 1.04, transformOrigin: "50% 50%", boxShadow: "inset 0 0 0 1.5px rgba(255,255,255,.18), 0 16px 40px rgba(0,0,0,.6)" });
+  tl.to(bars[1].g, { scale: 1.22, duration: 1.2, ease: "power2.out" }, t0);
+  bars[1].accendi(a(72.4), 0.6);
+  cpCam.percorso([[72.322, 0, 0], [72.414, 0, -4], [72.498, 0, -7], [72.582, 0, -11], [72.666, 0, -13], [72.75, 0, -15], [72.834, 0, -17], [72.918, 0, -19], [73.002, 0, -20], [73.17, 0, -23], [73.5, 0, -24], [73.782, 0, -24]].map(([t, x, y]) => [a(t), x, y]));
+  tl.set(L, { opacity: 0 }, t1);
+  return { rect: null, pose: null, ancore: {}, elementi: { T, bars } };
 };

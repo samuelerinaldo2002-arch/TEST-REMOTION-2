@@ -191,6 +191,26 @@
         // ═══ 12 · 54,346–58,851 s · facecam piena ═══
         cpFacecam(54.346, 58.851);
 
+        // ═══ 13 · 58,851–62,312 s · r01_copione1: l'intestazione 01, i due copioni, il primo viene avanti e si scrive ═══
+        cpCam.taglio(58.851, { fx: 54000, fy: 880, s: 1 });
+        COPIA.r01_copione1({ t0: 58.851, t1: 62.312, X: 54000, Y: 880, parent: layer(19) }, {});
+
+        // ═══ 14 · 62,312–63,605 s · facecam piena ═══
+        cpFacecam(62.312, 63.605);
+
+        // ═══ 15 · 63,605–72,322 s · r01_copione2: il secondo copione si scrive, torna, lampo; 69,44 s gli anelli che diventano lime ═══
+        cpCam.taglio(63.605, { fx: 60000, fy: 880, s: 1 });
+        COPIA.r01_copione2({ t0: 63.605, t1: 72.322, X: 60000, Y: 880, parent: layer(20) }, {});
+        cpCam.taglio(69.44, { fx: 66000, fy: 880, s: 1 });
+        COPIA.r01_copione2b({ t0: 69.44, t1: 72.322, X: 66000, Y: 880, parent: layer(21) }, {});
+
+        // ═══ 16 · 72,322–73,782 s · r01_lista02: «Ecco Come Puoi “Espandere”», la lista con la 02 accesa che cresce ═══
+        cpCam.taglio(72.322, { fx: 72000, fy: 880, s: 1 });   // arriva in corsa dal basso: il contenuto sale ancora di 24 px (percorso nella funzione)
+        COPIA.r01_lista02({ t0: 72.322, t1: 73.782, X: 72000, Y: 880, parent: layer(22) }, {});
+
+        // ═══ 17 · 73,782–76,702 s · facecam piena ═══
+        cpFacecam(73.782, 76.702);
+
         //__SCENE__
 
         cpCam.gira(0, 122.462);

@@ -23,7 +23,7 @@ COPIA.T02 = (scena, o) => {
   const h = o.h || 91, fs = o.fs || 78, W = 1080 - 2 * x0;
   const root = layered(el(par, { position: "absolute", left: x0, top: y, width: W, height: h, zIndex: o.z || 52 }));
   const box = el(root, { position: "absolute", left: 0, top: 0, width: W, height: h, background: K.lime, borderRadius: 2, boxShadow: `0 0 22px rgba(207,251,80,.30)` });
-  const riga = (col, sh) => el(root, { position: "absolute", left: 0, top: 0, width: W, height: h, display: "flex", alignItems: "center", justifyContent: "center", whiteSpace: "nowrap", fontFamily: FD, fontWeight: 700, fontSize: fs, lineHeight: 1, letterSpacing: "-0.02em", color: col, textShadow: sh });
+  const riga = (col, sh) => layered(el(root, { position: "absolute", left: 0, top: 0, width: W, height: h, display: "flex", alignItems: "center", justifyContent: "center", whiteSpace: "nowrap", fontFamily: FD, fontWeight: 700, fontSize: fs, lineHeight: 1, letterSpacing: "-0.02em", color: col, textShadow: sh }));
   const bianca = riga(K.white, CP_GLOW_T), scura = riga(K.ink, "none");
   const testo = o.testo || ["Un", "Milione", "Di", "Views"];
   const ruoli = o.ruoli || [];

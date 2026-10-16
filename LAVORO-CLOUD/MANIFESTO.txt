@@ -35,3 +35,4 @@ CATALOGO-ANIMAZIONI/copia-07
 kw-kit/kit2-copia-r01.js
 kw-kit/kit2-copia-c2b-*.js
 CATALOGO-ANIMAZIONI/_analisi/ritmo/_script_copia07
+CATALOGO-ANIMAZIONI/_analisi/ritmo/fogli_regia/copia-07_*.jpg
