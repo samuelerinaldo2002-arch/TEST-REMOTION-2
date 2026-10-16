@@ -1,6 +1,6 @@
 # Blocco C2 · copia del REEL 5 intero (copia-02, porta :3042; in cloud niente anteprima)
 
-**Riga di stato (16/10, cloud):** FATTO, da rivedere con l'utente (in cloud niente anteprima :3042). 27 scene 0–122,09 s 1:1
+**Riga di stato (16/10, cloud):** FATTO + un giro di correzioni della regia (sezione sotto), da rivedere con l'utente (in cloud niente anteprima :3042). 27 scene 0–122,09 s 1:1
 sul tempo di Kallaway; build e check passati (0 errori); tre render di prova, l'ultimo è `_analisi/render/copia-02_bozza.mp4`
 (6 min 59 s; ridotto `copia-02_bozza_540.mp4`), lucchetto tolto. `scene.json` (27 righe), `transizioni.json` (56), misure una
 volta per voce coi valori di Kallaway (`_lavoro/misure.json`, `_lavoro/misure.log`), clip della pagina per L01 L02 K14 O21 F03
@@ -18,6 +18,32 @@ e contenitore 122,09 s. Trascrizione `_lavoro/r05_parole.json` (Parakeet tarato,
 - (a) O30 «La Finta» a 53,846 s: scena piena al taglio (`COPIA.O30(…, { pieno: true })` + salita della camera misurata).
 - (b) CTA 100,06 s: miniatura visibile, «2» grande nello zoom, chip della sua misura, tuffo ×3,3 (`{ ritocco: true }`).
 - render `copia-01` (6 min 37 s), fogli `copia-01_16_O30.jpg` e `copia-01_25_r79_cta.jpg`, clip `O30_copia` e `K06_copia`.
+
+## Correzioni della regia dopo i fogli (un giro, 16/10) — FATTE
+Solo le scene indicate; il resto non è stato toccato né rimisurato.
+- C1 · CTA (`copia-01`, scena 25, opzione `ritocco`): «Commenta» c'è già grigio al taglio e bianco a +0,1 s, «“storytelling”»
+  a +0,15 s; la card è già velata al primo fotogramma (dissolvenza da 0,07 s prima del taglio, sotto la copertura); il titolo
+  della miniatura più in alto e più piccolo (36 / 52 px, le sue proporzioni fra le righe): sta sopra i numeri, non tocca il «3».
+- 1 · al fotogramma 0 la stanghetta lime del riquadro e il «3» grigio (stato messo con `gsap.set`: un tween che parte a 0 non
+  si vede al fotogramma 0 del render).
+- 5 · è lime solo la riga sotto la banda (a +2 s solo «Content Marketing»).
+- 7 · banda misurata sul suo (sul bordo alto del reel a +0,545 s, 1100 px/s lineari, via a +1,25 s), il reel non si tinge;
+  il muro: 36 fotogrammi diversi dei tuoi reel già tagliati (`assets/img/wv01–18` col tuo viso, `wg01–18` di grafica), a
+  scacchiera, nessuno ripetuto.
+- 11 · il tuo reel ora è il tuo v01 col profilo che spieghi (giulia.fit, Nome / Foto / Bio, tu sotto) con in alto il titolo
+  «Come Far Crescere Una *Coach Fitness* / Sui Social Da 0 A 100K» (la fascia copre il «4» del tuo reel); a +4,35 s il
+  riquadro lime tratteggiato attorno al titolo e il resto del reel si scurisce, come il suo. Niente più tazza.
+- 13 · verificato: il quadrato verde con la spunta e la barra lime sono il contenuto del tuo reel (tuo3 = m05 a 2,06 s, la
+  scheda «19 MAR · Corsa · Carosello · Errore»), non oggetti nostri: restano (annotato nel kit).
+- 19 e 21 · i cloni sono 9 creator diversi di `_clip-esterni` (Leila Hormozi al centro, Dan Koe, Hormozi, Codie Sanchez,
+  Devin Jatho, Tony Robbins, Steven Bartlett, il cuoco, il fitness) con la stessa scritta «“Ecco Come Diventare Virale”»
+  sopra; tinti come prima (21: lime).
+- 25 · le tre barre entrano scorrendo da sinistra, tagliate dal bordo: misurato una volta (bordo destro fotogramma per
+  fotogramma): −288 px a +0,042 s, −88 a +0,25, −26 a +0,5, ferme a +0,875; la 2ª e la 3ª fanno la stessa corsa 0,083 e
+  ~0,2 s dopo (quasi insieme, scaglionate di 2 e 5 fotogrammi, come le sue). Titolo: stanghetta e «3» grigio al taglio,
+  «3 Motivi» a +0,1 s.
+- render nuovi di `copia-02` e `copia-01`, fogli rifatti solo per le scene corrette (copia-01 25; copia-02 1 5 7 11 13 19 21
+  25), ridotto e affiancato rifatti, clip della pagina di O28 e L01 rifatte.
 
 ## Scene (una riga per scena del reel)
 | # | copia = Kallaway (s) | cosa | funzione · voci | stato |

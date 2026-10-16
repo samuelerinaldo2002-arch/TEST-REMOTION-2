@@ -236,7 +236,16 @@ COPIA.r05_apertura = (scena, o) => {
   const t0 = scena.t0 || 0;
   // titolo nell'HUD: «3» al primo fotogramma, poi una parola ogni ~0,1 s (i suoi istanti: 0 · 0,17 · 0,38 · 0,5 · 0,62 · 0,75 · 0,88 · 1,0)
   const T = r5Titolo({ righe: o.titolo || R5_TITOLO, interlinea: [92] });
-  T.inAt(o.tempiTitolo || [-0.06, 0.12, 0.3, 0.38, 0.44, 0.5, 0.7, 0.84, 0.96]);
+  T.inAt(o.tempiTitolo || [t0, t0 + 0.12, t0 + 0.3, t0 + 0.38, t0 + 0.44, t0 + 0.5, t0 + 0.7, t0 + 0.84, t0 + 0.96]);
+  // (correzione) al primo fotogramma Kallaway ha già la stanghetta rossa del riquadro e il «3» grigio accanto: un tween che
+  // parte a 0 non si vede al fotogramma 0 del render, quindi lo stato del fotogramma 0 è messo con gsap.set (il riquadro
+  // scoperto al 7 %, il «3» grigio appena sfocato); da lì il riquadro si allunga e il «3» diventa scuro sul lime
+  if (!o.tempiTitolo) {
+    const u0 = T.unita[0];
+    gsap.set(u0.box.fondo, { clipPath: "inset(0% 93% 0% 0%)" });
+    gsap.set(u0.w, { opacity: 1, color: GREY, filter: "blur(1.5px)", y: 0 });
+    tl.to(u0.w, { color: K.ink, duration: 0.08, ease: "none" }, t0 + 0.03);
+  }
   tl.set(T.root, { opacity: 0 }, scena.t1);
   // la lista lampo: entra da sinistra (0,125 s, poi ogni 0,083 s), sale di 32 px da 0,75 s e si spegne a 1,08 s
   const [lx, lt] = W(544, 552);
@@ -392,9 +401,15 @@ COPIA.r05_problema = (scena, o) => {
   gsap.set(card, { opacity: 0 });
   tl.to(card, { opacity: 0.4, duration: 0.08 }, t0 + 0.03);
   tl.to(card, { opacity: 1, duration: 0.3 }, t0 + 0.12);
-  // la banda lime dall'alto in basso; le righe che tocca diventano lime per un attimo
+  // la banda lime dall'alto in basso; (correzione) è lime solo la riga che la banda sta coprendo, come la sua (a +2 s solo
+  // «Content Marketing»): la riga si accende quando il centro della banda entra nella riga e si spegne quando ne esce
+  // (banda alta 45 px che corre 498 px in 0,62 s; righe di 60 px dalla y 46,5 della card)
   r5Scan(card, t0 + 1.47, 0.62, { h: 0.1, tinta: 0.1, spegni: 0.25, z: 3, ease: "none" });
-  voci.forEach((v, k) => { const tk = t0 + 1.47 + 0.62 * ((k + 0.7) / 6.6); tl.to(v, { color: K.lime, duration: 0.06 }, tk); tl.to(v, { color: K.white, duration: 0.2 }, tk + 0.12); });
+  voci.forEach((v, k) => {
+    const a = t0 + 1.47 + 0.62 * (69 + 60 * k) / 498, b = t0 + 1.47 + 0.62 * (129 + 60 * k) / 498;
+    tl.to(v, { color: K.lime, duration: 0.03, ease: "none" }, a);
+    tl.to(v, { color: K.white, duration: k === voci.length - 1 ? 0.15 : 0.05, ease: "none" }, b);
+  });
   const fondo = el(card, { position: "absolute", left: 0, bottom: 0, width: 510, height: 60, background: "linear-gradient(180deg, rgba(207,251,80,0), rgba(207,251,80,.75))", opacity: 0, zIndex: 1 });
   tl.to(fondo, { opacity: 1, duration: 0.1 }, t0 + 2.05);
   tl.to(fondo, { opacity: 0, duration: 0.3 }, t0 + 2.2);
@@ -425,7 +440,9 @@ COPIA.r05_target = (scena, o) => {
   // il tuo reel al centro (pieno al taglio), la banda lime
   const [px, py] = W(540, 786);
   const tel = r5Card(L, px, py, 414, 737, [[0, o.clip || "tuo1"]], { r: 10, z: 14 });
-  r5Scan(tel.g, t0 + 0.54, 0.67, { h: 0.1, tinta: 0.3, spegni: 0.35 });
+  // (correzione, misurata sul suo: centro della banda sul bordo alto del reel a +0,545 s, poi 1100 px/s lineari, via a +1,25 s;
+  // il reel non si tinge)
+  r5Scan(tel.g, t0 + 0.51, 0.74, { h: 0.1, tinta: 0, ease: "none" });
   // a sinistra (26,4 → 26,8 s): x 540 → 335, ×0,95
   tl.to(tel.g, { x: -205, y: -24, scale: 0.95, duration: 0.42, ease: "power2.inOut" }, t0 + 1.6);
   // l'arco che lo lega al contatore (26,4–26,8 s)
@@ -460,16 +477,23 @@ COPIA.r05_target = (scena, o) => {
   tl.to([chip, gente, ln], { opacity: 0, duration: 0.2 }, t0 + 3.5);
   tl.to(tel.g, { x: 0, y: 0, scale: 1, duration: 1.0, ease: "power2.inOut" }, t0 + 3.5);
   // il muro: 30 reel attorno al tuo (passo 480×860 nel mondo = 110×198 sullo schermo a ×0,23); i bordi si spengono
-  const ids = o.muro || Array.from({ length: 10 }, (_, i) => `th-mio_${String(i + 1).padStart(2, "0")}`);
+  // (correzione) 36 fotogrammi DIVERSI dei tuoi reel (media.py: wv = col tuo viso, wg = grafica), alternati a scacchiera
+  // così due celle vicine non si somigliano; nessuna ripetuta
+  const MV = o.muroViso || Array.from({ length: 18 }, (_, i) => `c2-wv${String(i + 1).padStart(2, "0")}`);
+  const MG = o.muroGrafica || Array.from({ length: 18 }, (_, i) => `c2-wg${String(i + 1).padStart(2, "0")}`);
+  const ids = o.muro || null;
   const pxw = 478, pyw = 852, celle = [];
-  let k = 0;
+  let k = 0, kv = 0, kg = 0;
   for (let r = -3; r <= 3; r++) for (let c = -3; c <= 3; c++) {
     if (r === 0 && c === 0) continue;
     const d = Math.hypot(c * 1.0, r * 0.9);
     if (d > 3.3) continue;
     const [x, y] = [px + c * pxw, py + r * pyw];
     const cel = layered(el(L, { position: "absolute", left: x - 207, top: y - 368, width: 414, height: 737, borderRadius: 18, overflow: "hidden", background: "#222", boxShadow: "0 0 0 4px rgba(255,255,255,.18)", zIndex: 8 }));
-    imgIn(cel, ids[k++ % ids.length], { objectFit: "cover" });
+    const pari = (((r + c) % 2) + 2) % 2 === 0;
+    // (20 celle pari e 16 dispari: le ultime due pari, in fondo al muro, prendono le due grafiche che avanzano)
+    const id = ids ? ids[k++ % ids.length] : pari ? (kv < MV.length ? MV[kv++] : MG[kg++ % MG.length]) : (kg < MG.length ? MG[kg++] : MV[kv++ % MV.length]);
+    imgIn(cel, id, { objectFit: "cover" });
     const a = Math.max(0.12, 1 - Math.pow(d / 3.4, 1.6));
     gsap.set(cel, { opacity: 0 });
     tl.to(cel, { opacity: a, duration: 0.35, ease: "power1.out" }, t0 + 4.0 + 0.04 * d);
@@ -572,6 +596,22 @@ COPIA.r05_prove = (scena, o) => {
   tl.to(tel.g, { opacity: 1, duration: 0.15 }, t0 + 2.85);
   tl.to(tel.g, { y: -50, duration: 0.75, ease: "power2.out" }, t0 + 2.85);
   r5Scan(tel.g, t0 + 2.85, 0.75, { h: 0.1, tinta: 0.3, spegni: 0.3 });
+  // (correzione) il suo reel ha in alto il titolo «How To Grow A Plastic Surgeon's / Social Media From 0 To 100K» (sans neretto
+  // + la nicchia in corsivo) e a +4,4 s ci arriva il riquadro rosso tratteggiato mentre il resto del reel si scurisce. Il tuo
+  // reel (tuo2: il tuo v01 col profilo che spieghi, tu sotto) ha in alto il numero «4»: la fascia scura lo copre e porta lo
+  // stesso tipo di titolo in italiano; poi il riquadro lime tratteggiato. Misure (unità della card 367×655): riquadro x 48–318,
+  // y 22–96; titolo su due righe, largo ~63 % della card
+  const tr = o.titoloReel || ["Come Far Crescere Una ", "Coach Fitness", "Sui Social Da 0 A 100K"];
+  el(tel.g, { position: "absolute", left: 0, top: 0, width: 367, height: 118, background: "linear-gradient(180deg, #07080a 0%, #07080a 84%, rgba(7,8,10,0) 100%)", zIndex: 4 });
+  const tt = el(tel.g, { position: "absolute", left: 0, top: 38, width: 367, display: "flex", flexDirection: "column", alignItems: "center", zIndex: 7, whiteSpace: "nowrap" });
+  const r1 = el(tt, { display: "flex", alignItems: "baseline", height: 21 });
+  el(r1, { fontFamily: FD, fontWeight: 700, fontSize: 16.5, letterSpacing: "-0.02em", color: K.white, whiteSpace: "pre" }, tr[0]);
+  el(r1, { fontFamily: FH, fontWeight: 400, fontSize: 19, color: K.white }, tr[1]);
+  el(tt, { fontFamily: FD, fontWeight: 700, fontSize: 16.5, lineHeight: "21px", letterSpacing: "-0.02em", color: K.white }, tr[2]);
+  const scuro = el(tel.g, { position: "absolute", left: 0, top: 104, width: 367, height: 551, background: "rgba(6,7,4,.72)", zIndex: 6, opacity: 0 });
+  const giro = el(tel.g, { position: "absolute", left: 48, top: 22, width: 270, height: 74, boxSizing: "border-box", border: `2.5px dashed ${K.lime}`, borderRadius: 3, boxShadow: `0 0 14px rgba(207,251,80,.55), inset 0 0 12px rgba(207,251,80,.25)`, zIndex: 8, opacity: 0 });
+  tl.to(scuro, { opacity: 1, duration: 0.3, ease: "power1.out" }, t0 + 4.3);
+  tl.to(giro, { opacity: 1, duration: 0.1, ease: "none" }, t0 + 4.35);
   // il tuffo nel reel (48,3 → 49,4 s): ×1,94 attorno all'alto del reel; via a 50,1 s
   cpCam.zoom(t0 + 4.2, 1.1, 1.94, [540, 448], "power2.inOut");
   tl.to(tel.g, { opacity: 0, duration: 0.15 }, t0 + 5.95);
@@ -621,6 +661,9 @@ COPIA.r05_azione = (scena, o) => {
   T.sottolinea(t0 + 0.95, 0.45);
   tl.set(T.root, { opacity: 0 }, scena.t1);
   const [px, py] = W(537, 836);
+  // (nota della regia, verificata) il quadrato verde con la spunta e la barra lime che si vedono nel reel a +1 s NON sono
+  // oggetti nostri: sono il contenuto del tuo reel (tuo3 = il tuo m05 a 2,06 s, la scheda «19 MAR · Corsa · Carosello ·
+  // Errore» con la spunta). Restano; nostri sono solo il cerchio, le linee, le pillole e i lampi
   const tel = r5Card(L, px, py, 419, 750, [[0, o.clip || "tuo3"]], { r: 10, z: 14, bordo: "rgba(207,251,80,.85)", bw: 3 });
   // il cerchio dentro il reel (60,3 s): sottile, bianco, con le personcine lime attorno
   const S = svgLayer(L, 15, X - 700, Y - 900, 1400, 1800);
@@ -757,7 +800,14 @@ COPIA.r05_compra = (scena, o) => {
   return { rect: null, pose: null, ancore: {}, elementi: { chip, tel, roi } };
 };
 
-// il tablet coi 9 cloni della stessa copertina (scene 19 e 21): cornice scura col bordo, griglia 3×3; tinta (lime) facoltativa
+// (correzione) i cloni sono 9 creator DIVERSI con la stessa scritta (Kallaway: «“This Is How You Go Viral”» bianca, neretta,
+// al 24–37 % dell'altezza, larga ~79 %): R5_CLONI in ordine di cella (riga per riga; la 5ª, al centro, è la copertina)
+const R5_CLONI = ["c2-cl2", "c2-cl3", "c2-cl4", "c2-cl5", "c2-cl1", "c2-cl6", "c2-cl7", "c2-cl8", "c2-cl9"];
+const R5_VIRALE = ["“Ecco Come", "Diventare Virale”"];
+const r5Didascalia = (cel, w, h, righe) => el(cel, { position: "absolute", left: 0, top: Math.round(h * 0.235), width: w, textAlign: "center", fontFamily: FD, fontWeight: 700, fontSize: Math.round(w * 0.086 * 10) / 10, lineHeight: 1.02, letterSpacing: "-0.02em", color: "#ffffff", textShadow: "0 2px 7px rgba(0,0,0,.8), 0 0 2px rgba(0,0,0,.7)", whiteSpace: "nowrap", zIndex: 3 }, righe.join("<br>"));
+
+// il tablet coi 9 cloni (scene 19 e 21): cornice scura col bordo, griglia 3×3; tinta (lime) facoltativa
+// o: { imgs (R5_CLONI), img (una sola per tutte, il comportamento di prima), didascalia (R5_VIRALE; false = senza), … }
 const r5Tablet = (parent, cx, cy, o) => {
   o = o || {};
   const cw = o.cw || 359, ch = o.ch || 522, gx = o.gx || 420, gy = o.gy || 590, pad = o.pad || 70;
@@ -767,7 +817,9 @@ const r5Tablet = (parent, cx, cy, o) => {
   for (let r = -1; r <= 1; r++) for (let c = -1; c <= 1; c++) {
     if (o.senzaCentro && r === 0 && c === 0) { celle.push(null); continue; }
     const cel = el(tab, { position: "absolute", left: W2 / 2 + c * gx - cw / 2, top: H2 / 2 + r * gy - ch / 2, width: cw, height: ch, borderRadius: 18, overflow: "hidden", background: "#222" });
-    imgIn(cel, o.img || "c2-clone", { objectFit: "cover" });
+    const imgs = o.imgs || (o.img ? [o.img] : R5_CLONI);
+    imgIn(cel, imgs[((r + 1) * 3 + (c + 1)) % imgs.length], { objectFit: "cover" });
+    if (o.didascalia !== false) r5Didascalia(cel, cw, ch, o.didascalia || R5_VIRALE);
     if (o.tinta) { el(cel, { position: "absolute", inset: 0, background: K.lime, mixBlendMode: "multiply", opacity: o.tinta }); el(cel, { position: "absolute", inset: 0, background: K.lime, opacity: 0.28 }); }
     if (o.scuro) el(cel, { position: "absolute", inset: 0, background: `rgba(20,20,20,${o.scuro})` });
     celle.push(cel);
@@ -775,7 +827,7 @@ const r5Tablet = (parent, cx, cy, o) => {
   return { tab, celle, W: W2, H: H2 };
 };
 
-/* @copia r05_cloni · «Smetti Di Essere Uguale A Tutti»: la copertina di un creator, i suoi cloni nel tablet, la persona, «Sono
+/* @copia r05_cloni · «Smetti Di Essere Uguale A Tutti»: la copertina di un creator, gli altri 8 creator con la stessa scritta nel tablet, la persona, «Sono
  *   Tutti Uguali» (reel 5, 88,708–93,417 s)
  * kallaway: reel 5, 88,708 s · titolo su una riga, «More Of The Same» nel riquadro rosso che cresce con le parole; la copertina
  *   di un creator («This Is How You Go Viral») arriva in corsa da destra (centro x 641 → 534 in 0,9 s) e la camera si allontana
@@ -801,7 +853,8 @@ COPIA.r05_cloni = (scena, o) => {
   tb.celle.forEach((c, k) => { if (c) { gsap.set(c, { opacity: 0 }); tl.to(c, { opacity: 0.85, duration: 0.2 }, t0 + 1.08 + 0.02 * k); } });
   tl.to(tb.tab, { boxShadow: "inset 0 0 0 7px rgba(255,255,255,.55), 0 0 60px rgba(255,255,255,.12), 0 40px 100px rgba(0,0,0,.6)", background: "rgba(24,24,24,.92)", duration: 0.15 }, t0 + 1.22);
   const cop = layered(el(L, { position: "absolute", left: cx - 180, top: cy - 261, width: 359, height: 522, borderRadius: 18, overflow: "hidden", boxShadow: "0 0 0 3px rgba(255,255,255,.35), 0 20px 50px rgba(0,0,0,.6)", zIndex: 12 }));
-  imgIn(cop, "c2-clone", { objectFit: "cover" });
+  imgIn(cop, o.copertina || R5_CLONI[4], { objectFit: "cover" });
+  r5Didascalia(cop, 359, 522, o.didascalia || R5_VIRALE);
   tl.set([tb.tab, cop], { opacity: 0 }, 91.04);
   // la camera: arriva da destra (al taglio il contenuto è 107 px più a destra: lo mette la posa del taglio) e si allontana
   cpCam.percorso([[t0, 0, 0], [t0 + 0.1, -17, 0], [t0 + 0.25, -109, 0], [t0 + 0.5, -140, 0], [t0 + 0.9, -152, 0]]);
@@ -908,18 +961,29 @@ COPIA.r05_riepilogo = (scena, o) => {
   const L = scena.parent || layer(10), X = scena.X, Y = scena.Y, W = (sx, sy) => [X - 540 + sx, Y - 880 + sy];
   const t0 = scena.t0;
   const T = r5Titolo({ righe: o.titolo || R5_TITOLO, interlinea: [92] });
-  T.inAt([t0 + 0.02, t0 + 0.18, t0 + 0.33, t0 + 0.4, t0 + 0.45, t0 + 0.52, t0 + 0.75, t0 + 0.88, t0 + 1.0]);
+  // (correzione) come al taglio di Kallaway: al primo fotogramma la stanghetta del riquadro e il «3» grigio (messi sotto la
+  // copertura della facecam), «Motivi» a +0,1 s (a +0,21 s lui ha già «3 Reasons»)
+  T.inAt([t0, t0 + 0.08, t0 + 0.33, t0 + 0.4, t0 + 0.45, t0 + 0.52, t0 + 0.75, t0 + 0.88, t0 + 1.0]);
+  const u0 = T.unita[0];
+  tl.set(u0.box.fondo, { clipPath: "inset(0% 93% 0% 0%)" }, t0 - 0.02);
+  tl.set(u0.w, { opacity: 1, color: GREY, filter: "blur(1.5px)", y: 0 }, t0 - 0.02);
+  tl.to(u0.w, { color: K.ink, duration: 0.08, ease: "none" }, t0 + 0.03);
   tl.set(T.root, { opacity: 0 }, scena.t1);
   // la lista (mondo; la camera parte da ×1,013): barre attive (858 × 1,077 × 1,013 = 936 px sullo schermo), passo 164
   const [lx, lt] = W(540, 550.3);
   const lista = r5Lista(L, lx, lt, o.voci || R5_VOCI, { passo: 164 });
   lista.piene(3, [0, 1, 2]);
-  const f = cpCurva([[0, -100], [0.083, -78], [0.167, -56], [0.25, -39], [0.333, -28], [0.417, -17], [0.5, -11], [0.583, -6], [0.667, -3], [0.75, -1], [0.833, 0]]);
-  lista.rows.forEach((rw, i) => {
-    const ti = t0 + 0.09 + i * 0.083, st = { v: 0 };
-    gsap.set(rw.r, { scale: 1.077, x: -100, opacity: 0 });
-    tl.to(rw.r, { opacity: 1, duration: 0.06 }, ti);
-    tl.fromTo(st, { v: 0 }, { v: 1, duration: 0.833, ease: "none", immediateRender: false, onUpdate: () => gsap.set(rw.r, { x: f(st.v * 0.833) }) }, ti);
+  // (correzione) le barre entrano scorrendo da sinistra, tagliate dal bordo, come le sue. Misura (una volta, bordo destro di
+  // ogni barra fotogramma per fotogramma, 112,708–113,6 s): al taglio nessuna; la 1ª a +0,042 s è 288 px a sinistra del suo
+  // posto, poi −201 · −162 · −132 · −108 · −88 (+0,25) · −75 · −59 · −51 · −41 · −33 · −26 (+0,5) · −20 · −15 · −11 · −6 ·
+  // −3 · −1 · 0 (+0,875); la 2ª fa la stessa corsa 0,083 s dopo, la 3ª ~0,2 s dopo (a +0,25 s è a −274): entrano quasi
+  // insieme, scaglionate di 2 e 5 fotogrammi. Spostamenti dello schermo / 1,013 (la camera) = mondo
+  const f = cpCurva([[0, -560], [0.042, -288], [0.084, -201], [0.125, -162], [0.167, -132], [0.209, -108], [0.25, -88], [0.292, -75], [0.334, -59], [0.375, -51], [0.417, -41], [0.459, -33], [0.5, -26], [0.542, -20], [0.584, -15], [0.625, -11], [0.667, -6], [0.709, -3], [0.79, -1], [0.875, 0]].map(([a, b]) => [a, b / 1.013]));
+  [0, 0.083, 0.2].forEach((dt, i) => {
+    const rw = lista.rows[i], ti = t0 + dt, st = { v: 0 };
+    gsap.set(rw.r, { scale: 1.077, x: f(0), opacity: 0 });
+    tl.set(rw.r, { opacity: 1 }, ti + 0.02);
+    tl.fromTo(st, { v: 0 }, { v: 1, duration: 0.875, ease: "none", immediateRender: false, onUpdate: () => gsap.set(rw.r, { x: f(st.v * 0.875) }) }, ti);
   });
   cpCam.zoom(t0 + 1.1, scena.t1 - t0 - 1.1, 0.936, [540, 685], "none");
   return { rect: null, pose: null, ancore: {}, elementi: { T, lista } };

@@ -527,18 +527,33 @@ COPIA.r79_cta = (scena, o) => {
   const W = (sx, sy) => [scena.X - 540 + sx, scena.Y - 880 + sy];
   const tt = o.titolo || ["Commenta ", "“storytelling”", "e ti mando il video"];
   const T = cpTitolo({ righe: [[{ t: tt[0], ruolo: "sans", size: 54 }, { t: tt[1], ruolo: "serif", size: 66, unita: true }], [{ t: tt[2], ruolo: "sans", size: 50 }]], x: 540, y: 362, parent: hud, interlinea: [70] });
-  T.inAt([100.2, 100.35, 100.7, 100.9, 101.0, 101.2, 101.5]);
+  const RT = !!o.ritocco;
+  if (RT) {
+    // (ritocco 2) come Kallaway il titolo c'è dal taglio: «Commenta» già grigio al primo fotogramma (costruito sotto la
+    // copertura della facecam), bianco a +0,1 s; «“storytelling”» a +0,15 s, il resto come prima
+    const U = T.unita, t0 = scena.t0;
+    tl.set(U[0], { opacity: 1, filter: "blur(2px)", y: 2 }, t0 - 0.05);
+    tl.to(U[0], { filter: "blur(0px)", y: 0, color: K.white, duration: 0.1, ease: "power1.out" }, t0);
+    tl.set(U[0], { filter: "none" }, t0 + 0.11);
+    [t0 + 0.15, 100.7, 100.9, 101.0, 101.2, 101.5].forEach((t, j) => {
+      const w = U[j + 1]; if (!w) return;
+      tl.to(w, { opacity: 1, duration: 0.06, ease: "none" }, t);
+      tl.to(w, { filter: "blur(0px)", y: 0, color: K.white, duration: 0.2, ease: "power2.out" }, t);
+      tl.set(w, { filter: "none" }, t + 0.21);
+    });
+  } else T.inAt([100.2, 100.35, 100.7, 100.9, 101.0, 101.2, 101.5]);
   // mentre la camera è dentro la card il titolo non c'è (Kallaway: sparisce col tuffo e torna con l'uscita)
   tl.to(T.root, { opacity: 0, duration: 0.08 }, 102.42);
   tl.to(T.root, { opacity: 1, duration: 0.12 }, 105.5);
   // la card: miniatura + riga del canale
   const [cx, cy] = W(95, 537);
   const card = layered(el(L, { position: "absolute", left: cx, top: cy, width: 900, height: 600, zIndex: 12 }));
-  const RT = !!o.ritocco;
   if (RT) {
+    // (ritocco 2) al taglio la card si vede già appena (Kallaway: velata e sfocata al primo fotogramma): la dissolvenza
+    // parte sotto la copertura, 0,07 s prima del taglio
     gsap.set(card, { opacity: 0, filter: "blur(10px)" });
-    tl.to(card, { opacity: 1, filter: "blur(0px)", duration: 0.17, ease: "none" }, scena.t0);
-    tl.set(card, { filter: "none" }, scena.t0 + 0.18);
+    tl.to(card, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "none" }, scena.t0 - 0.07);
+    tl.set(card, { filter: "none" }, scena.t0 + 0.14);
   } else {
     gsap.set(card, { opacity: 0 });
     tl.to(card, { opacity: 1, duration: 0.3, ease: "power1.out" }, scena.t0);
@@ -580,9 +595,11 @@ COPIA.r79_cta = (scena, o) => {
   });
   // il titolo della miniatura (compare quando la camera torna fuori)
   const mt = o.miniatura || ["4 STEP", "LOOP DIPENDENZA"];
-  const tm = el(mini, { position: "absolute", left: 0, top: 36, width: 900, textAlign: "center", fontFamily: FD, fontWeight: 700, color: "#f6ffd9", textShadow: "0 0 18px rgba(207,251,80,.9), 0 0 50px rgba(207,251,80,.5)", lineHeight: 0.95, zIndex: 6 });
-  el(tm, { fontSize: 40, letterSpacing: "0.04em" }, mt[0]);
-  el(tm, { fontSize: 72, letterSpacing: "0.01em" }, mt[1]);
+  // (ritocco 2) come il suo «4 STEP / ADDICTION LOOP» il titolo sta sopra i numeri senza toccarli: più in alto e più
+  // piccolo (le sue proporzioni fra le due righe, 36 : 52), finisce ~15 px sopra il «3»
+  const tm = el(mini, { position: "absolute", left: 0, top: RT ? 4 : 36, width: 900, textAlign: "center", fontFamily: FD, fontWeight: 700, color: "#f6ffd9", textShadow: "0 0 18px rgba(207,251,80,.9), 0 0 50px rgba(207,251,80,.5)", lineHeight: 0.95, zIndex: 6 });
+  el(tm, { fontSize: RT ? 36 : 40, letterSpacing: "0.04em" }, mt[0]);
+  el(tm, { fontSize: RT ? 52 : 72, letterSpacing: "0.01em" }, mt[1]);
   gsap.set(tm, { opacity: 0 }); tl.to(tm, { opacity: 1, duration: 0.25 }, 105.55);
   [mini, ...mini.querySelectorAll("*")].forEach((e) => e.setAttribute("data-layout-allow-overlap", ""));   // miniatura: segnaposto e titolo sopra la strada
   // la miniatura scorre mentre la camera è dentro (mostra il segnaposto 2), poi torna

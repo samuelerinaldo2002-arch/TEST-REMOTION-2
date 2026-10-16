@@ -28,11 +28,6 @@
   "da": 0,
   "cosa": "tuo reel: tu e il profilo"
  },
- "tuo2": {
-  "sorgente": "CATALOGO-ANIMAZIONI/copia-01/assets/clips/mio/v03.mp4",
-  "da": 0,
-  "cosa": "tuo reel: interfaccia sopra, tu sotto"
- },
  "tuo3": {
   "sorgente": "CATALOGO-ANIMAZIONI/copia-01/assets/clips/mio/m05.mp4",
   "da": 0,
@@ -54,9 +49,235 @@
   "durata": 4.6,
   "cosa": "tu che parli in camera, 16:9"
  },
- "clone": {
-  "sorgente": "_clip-esterni/stevenbartlett/20261001_7DtkrTrTfF0.mp4",
-  "da": 0.6,
-  "cosa": "creator col microfono e la scritta, copertina"
+ "tuo2": {
+  "sorgente": "CATALOGO-ANIMAZIONI/copia-01/assets/clips/mio/v01.mp4",
+  "da": 3.15,
+  "durata": 2.85,
+  "cosa": "tuo reel: il profilo che spieghi, tu sotto (ultimo fotogramma tenuto 0,7 s)"
+ },
+ "wv01": {
+  "sorgente": "CATALOGO-ANIMAZIONI/copia-01/assets/clips/mio/m01.mp4",
+  "da": 1.6,
+  "cosa": "muro: il tuo reel m01 a 1.6 s"
+ },
+ "wv02": {
+  "sorgente": "CATALOGO-ANIMAZIONI/copia-01/assets/clips/mio/m01.mp4",
+  "da": 2.8,
+  "cosa": "muro: il tuo reel m01 a 2.8 s"
+ },
+ "wv03": {
+  "sorgente": "CATALOGO-ANIMAZIONI/copia-01/assets/clips/mio/m01.mp4",
+  "da": 4.0,
+  "cosa": "muro: il tuo reel m01 a 4.0 s"
+ },
+ "wv04": {
+  "sorgente": "CATALOGO-ANIMAZIONI/copia-01/assets/clips/mio/m02.mp4",
+  "da": 0.4,
+  "cosa": "muro: il tuo reel m02 a 0.4 s"
+ },
+ "wv05": {
+  "sorgente": "CATALOGO-ANIMAZIONI/copia-01/assets/clips/mio/m02.mp4",
+  "da": 1.6,
+  "cosa": "muro: il tuo reel m02 a 1.6 s"
+ },
+ "wv06": {
+  "sorgente": "CATALOGO-ANIMAZIONI/copia-01/assets/clips/mio/m03.mp4",
+  "da": 0.4,
+  "cosa": "muro: il tuo reel m03 a 0.4 s"
+ },
+ "wv07": {
+  "sorgente": "CATALOGO-ANIMAZIONI/copia-01/assets/clips/mio/m03.mp4",
+  "da": 1.6,
+  "cosa": "muro: il tuo reel m03 a 1.6 s"
+ },
+ "wv08": {
+  "sorgente": "CATALOGO-ANIMAZIONI/copia-01/assets/clips/mio/m03.mp4",
+  "da": 2.8,
+  "cosa": "muro: il tuo reel m03 a 2.8 s"
+ },
+ "wv09": {
+  "sorgente": "CATALOGO-ANIMAZIONI/copia-01/assets/clips/mio/m04.mp4",
+  "da": 4.0,
+  "cosa": "muro: il tuo reel m04 a 4.0 s"
+ },
+ "wv10": {
+  "sorgente": "CATALOGO-ANIMAZIONI/copia-01/assets/clips/mio/m04.mp4",
+  "da": 5.2,
+  "cosa": "muro: il tuo reel m04 a 5.2 s"
+ },
+ "wv11": {
+  "sorgente": "CATALOGO-ANIMAZIONI/copia-01/assets/clips/mio/m05.mp4",
+  "da": 0.4,
+  "cosa": "muro: il tuo reel m05 a 0.4 s"
+ },
+ "wv12": {
+  "sorgente": "CATALOGO-ANIMAZIONI/copia-01/assets/clips/mio/m06.mp4",
+  "da": 5.2,
+  "cosa": "muro: il tuo reel m06 a 5.2 s"
+ },
+ "wv13": {
+  "sorgente": "CATALOGO-ANIMAZIONI/copia-01/assets/clips/mio/m07.mp4",
+  "da": 5.2,
+  "cosa": "muro: il tuo reel m07 a 5.2 s"
+ },
+ "wv14": {
+  "sorgente": "CATALOGO-ANIMAZIONI/copia-01/assets/clips/mio/m09.mp4",
+  "da": 0.4,
+  "cosa": "muro: il tuo reel m09 a 0.4 s"
+ },
+ "wv15": {
+  "sorgente": "CATALOGO-ANIMAZIONI/copia-01/assets/clips/mio/m09.mp4",
+  "da": 1.6,
+  "cosa": "muro: il tuo reel m09 a 1.6 s"
+ },
+ "wv16": {
+  "sorgente": "CATALOGO-ANIMAZIONI/copia-01/assets/clips/mio/v01.mp4",
+  "da": 0.4,
+  "cosa": "muro: il tuo reel v01 a 0.4 s"
+ },
+ "wv17": {
+  "sorgente": "CATALOGO-ANIMAZIONI/copia-01/assets/clips/mio/v02.mp4",
+  "da": 0.4,
+  "cosa": "muro: il tuo reel v02 a 0.4 s"
+ },
+ "wv18": {
+  "sorgente": "CATALOGO-ANIMAZIONI/copia-01/assets/clips/mio/v03.mp4",
+  "da": 4.0,
+  "cosa": "muro: il tuo reel v03 a 4.0 s"
+ },
+ "wg01": {
+  "sorgente": "CATALOGO-ANIMAZIONI/copia-01/assets/clips/mio/m01.mp4",
+  "da": 5.2,
+  "cosa": "muro: il tuo reel m01 a 5.2 s"
+ },
+ "wg02": {
+  "sorgente": "CATALOGO-ANIMAZIONI/copia-01/assets/clips/mio/m05.mp4",
+  "da": 1.6,
+  "cosa": "muro: il tuo reel m05 a 1.6 s"
+ },
+ "wg03": {
+  "sorgente": "CATALOGO-ANIMAZIONI/copia-01/assets/clips/mio/m08.mp4",
+  "da": 0.4,
+  "cosa": "muro: il tuo reel m08 a 0.4 s"
+ },
+ "wg04": {
+  "sorgente": "CATALOGO-ANIMAZIONI/copia-01/assets/clips/mio/m06.mp4",
+  "da": 0.4,
+  "cosa": "muro: il tuo reel m06 a 0.4 s"
+ },
+ "wg05": {
+  "sorgente": "CATALOGO-ANIMAZIONI/copia-01/assets/clips/mio/m09.mp4",
+  "da": 5.2,
+  "cosa": "muro: il tuo reel m09 a 5.2 s"
+ },
+ "wg06": {
+  "sorgente": "CATALOGO-ANIMAZIONI/copia-01/assets/clips/mio/m02.mp4",
+  "da": 2.8,
+  "cosa": "muro: il tuo reel m02 a 2.8 s"
+ },
+ "wg07": {
+  "sorgente": "CATALOGO-ANIMAZIONI/copia-01/assets/clips/mio/m07.mp4",
+  "da": 1.6,
+  "cosa": "muro: il tuo reel m07 a 1.6 s"
+ },
+ "wg08": {
+  "sorgente": "CATALOGO-ANIMAZIONI/copia-01/assets/clips/mio/m03.mp4",
+  "da": 5.2,
+  "cosa": "muro: il tuo reel m03 a 5.2 s"
+ },
+ "wg09": {
+  "sorgente": "CATALOGO-ANIMAZIONI/copia-01/assets/clips/mio/m08.mp4",
+  "da": 2.8,
+  "cosa": "muro: il tuo reel m08 a 2.8 s"
+ },
+ "wg10": {
+  "sorgente": "CATALOGO-ANIMAZIONI/copia-01/assets/clips/mio/m04.mp4",
+  "da": 0.4,
+  "cosa": "muro: il tuo reel m04 a 0.4 s"
+ },
+ "wg11": {
+  "sorgente": "CATALOGO-ANIMAZIONI/copia-01/assets/clips/mio/m05.mp4",
+  "da": 5.2,
+  "cosa": "muro: il tuo reel m05 a 5.2 s"
+ },
+ "wg12": {
+  "sorgente": "CATALOGO-ANIMAZIONI/copia-01/assets/clips/mio/v01.mp4",
+  "da": 4.0,
+  "cosa": "muro: il tuo reel v01 a 4.0 s"
+ },
+ "wg13": {
+  "sorgente": "CATALOGO-ANIMAZIONI/copia-01/assets/clips/mio/m06.mp4",
+  "da": 2.8,
+  "cosa": "muro: il tuo reel m06 a 2.8 s"
+ },
+ "wg14": {
+  "sorgente": "CATALOGO-ANIMAZIONI/copia-01/assets/clips/mio/m09.mp4",
+  "da": 2.8,
+  "cosa": "muro: il tuo reel m09 a 2.8 s"
+ },
+ "wg15": {
+  "sorgente": "CATALOGO-ANIMAZIONI/copia-01/assets/clips/mio/v02.mp4",
+  "da": 5.2,
+  "cosa": "muro: il tuo reel v02 a 5.2 s"
+ },
+ "wg16": {
+  "sorgente": "CATALOGO-ANIMAZIONI/copia-01/assets/clips/mio/m06.mp4",
+  "da": 4.0,
+  "cosa": "muro: il tuo reel m06 a 4.0 s"
+ },
+ "wg17": {
+  "sorgente": "CATALOGO-ANIMAZIONI/copia-01/assets/clips/mio/m05.mp4",
+  "da": 2.8,
+  "cosa": "muro: il tuo reel m05 a 2.8 s"
+ },
+ "wg18": {
+  "sorgente": "CATALOGO-ANIMAZIONI/copia-01/assets/clips/mio/m08.mp4",
+  "da": 5.2,
+  "cosa": "muro: il tuo reel m08 a 5.2 s"
+ },
+ "cl1": {
+  "sorgente": "_clip-esterni/leilahormozi/20261005_8VufVUckSI0.mp4",
+  "da": 3.0,
+  "cosa": "clone: creator leilahormozi"
+ },
+ "cl2": {
+  "sorgente": "_clip-esterni/dankoe/20260325_ZM6JkNnOPbg.mp4",
+  "da": 12.0,
+  "cosa": "clone: creator dankoe"
+ },
+ "cl3": {
+  "sorgente": "_clip-esterni/hormozi/20261004_QeMo91RrrLw.mp4",
+  "da": 12.0,
+  "cosa": "clone: creator hormozi"
+ },
+ "cl4": {
+  "sorgente": "_clip-esterni/codiesanchez/20261002_jYz1mMYBa3k.mp4",
+  "da": 3.0,
+  "cosa": "clone: creator codiesanchez"
+ },
+ "cl5": {
+  "sorgente": "_clip-esterni/devinjatho/20260726_IcNMTcgvHh8.mp4",
+  "da": 12.0,
+  "cosa": "clone: creator devinjatho"
+ },
+ "cl6": {
+  "sorgente": "_clip-esterni/tonyrobbins/20260919_HzKribmODV0.mp4",
+  "da": 12.0,
+  "cosa": "clone: creator tonyrobbins"
+ },
+ "cl7": {
+  "sorgente": "_clip-esterni/stevenbartlett/20260930_TkAUoahM950.mp4",
+  "da": 12.0,
+  "cosa": "clone: creator stevenbartlett"
+ },
+ "cl8": {
+  "sorgente": "_clip-esterni/cucina/20260916_y6Uqnm3SN0A.mp4",
+  "da": 3.0,
+  "cosa": "clone: creator cucina"
+ },
+ "cl9": {
+  "sorgente": "_clip-esterni/fitness/20260817_-jB386MYxbc.mp4",
+  "da": 3.0,
+  "cosa": "clone: creator fitness"
  }
 }

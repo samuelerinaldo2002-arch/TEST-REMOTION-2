@@ -24,6 +24,10 @@ cambiate sono i rami `if (o.pieno)` / `if (RT)` e i loro `else` con il codice di
   sua misura (57×38 «Segui», 70×37 campanella con la freccia, nome 15 px) e tuffo ×3,3 attorno a (81, 1198) invece di ×4,5
   (misurato sulla riga del canale ferma: chip 57 → 186 px). Perché: richiesta della regia (miniatura quasi invisibile, «2»
   mancante, chip piccoli).
+  Correzione della regia (16/10, sempre solo dentro `if (RT)` / `RT ? … : …`, il ramo di prima invariato): il titolo
+  «Commenta» c'è già grigio al taglio e bianco a +0,1 s (prima entrava a +0,25 s), la card è già velata al primo fotogramma
+  (dissolvenza da 0,07 s prima del taglio, sotto la copertura della facecam), il titolo della miniatura più in alto e più
+  piccolo (top 4, 36 / 52 px invece di 36, 40 / 72 px) perché il «3» lo copriva: ora sta sopra i numeri come il suo.
 - `CATALOGO-ANIMAZIONI/copia-01/index.src.html` — passa le due opzioni; per O30 la posa del taglio è già la vista ravvicinata
   (prima era uno zoom di 0,001 s che al primo fotogramma dopo il taglio dava una posa a metà) col contenuto 221 px più in
   basso, che sale come nel suo video (`cpCam.percorso`: 0 · 53 · 141 · 197 · 209 · 216 · 221 px a +0 · 0,084 · 0,164 ·
@@ -47,6 +51,12 @@ cambiate sono i rami `if (o.pieno)` / `if (RT)` e i loro `else` con il codice di
 - `CATALOGO-ANIMAZIONI/copia-02/` — `index.src.html` (KW_RITMO, 122,09 s), `scene.json` (27), `transizioni.json` (56),
   `STATO.md`, `RAPPORTO.md`, `assets/` (clip e immagine, `_sorgenti.json`), `_lavoro/` (`media.py`, `r05_parole.json`, strisce
   dei suoi fotogrammi `k/`, misure).
+- Correzioni della regia al C2 (16/10, dentro i file nuovi): `copia-02/assets/img/` ora ha 36 fotogrammi diversi dei tuoi reel
+  per il muro della scena 7 (`wv01–18` col tuo viso, `wg01–18` di grafica) e 9 creator diversi per i cloni delle scene 19 e 21
+  (`cl1–cl9`; la vecchia `clone.jpg`, una sola copertina con la scritta inglese, è tolta); `tuo2.mp4` (scena 11) ora è il tuo
+  v01 dalle 3,15 s (il profilo che spieghi) invece di v03 (la tazza). Tutto da `copia-02/_lavoro/media.py`, sorgenti in
+  `assets/_sorgenti.json`. Nel kit: `r5Tablet` prende un'immagine per cella (`R5_CLONI`) con la scritta «“Ecco Come
+  Diventare Virale”» (`r5Didascalia`); scene 1, 5, 7, 11, 25 corrette come in `copia-02/STATO.md` («Correzioni della regia»).
 - `CATALOGO-ANIMAZIONI/_analisi/ritmo/_script_copia02/` — `tagli.py` (tagli fotogramma per fotogramma), `striscia_k.py`
   (strisce di fotogrammi della zona grafica, il fotogramma dopo il taglio), `barre.py` (le barre della lista fotogramma per
   fotogramma: accento rosso di Kallaway o lime della copia), `snap_kd.py` (KALLAWAY | COPIA dalle snapshot di HyperFrames, senza
@@ -111,6 +121,14 @@ cambiate sono i rami `if (o.pieno)` / `if (RT)` e i loro `else` con il codice di
   (luminanza ≤ 60), più visibili dove la camera è a ×1,13 (scena 5) o a una fase diversa della griglia (scena 1); con
   `--soglia 75` i campioni con qualcosa sotto la linea sono 0.
 - Render in cloud: 6 min 20 s – 7 min per i 122 s di C2 (6 min 37 s per i 107,6 s di C1).
+- Un tween GSAP che parte a 0 (o con posizione negativa) NON si vede al fotogramma 0 del render: al primo fotogramma la
+  timeline è già a 0 e non ridisegna. Lo stato del fotogramma 0 va messo con `gsap.set` (scena 1 di C2); dopo un taglio
+  invece basta un `tl.set` poco prima del taglio, sotto la copertura della facecam (scena 25 di C2, CTA di C1).
+- Scena 13 di C2: il quadrato verde con la spunta e la barra lime nel reel a +1 s sono il contenuto del tuo reel (m05 a
+  2,06 s, la scheda «19 MAR · Corsa · Carosello · Errore»), non oggetti della copia; la regia li aveva segnalati, restano.
+- Scena 11 di C2: il titolo «Come Far Crescere Una Coach Fitness / Sui Social Da 0 A 100K» sta sopra il tuo reel v01 (una
+  fascia scura copre il numero «4» in alto nel tuo reel): se hai un tuo reel col titolo già in alto, va messo quello
+  (`o.clip` di `COPIA.r05_prove`, e `o.titoloReel` per il testo).
 
 ## 4. Frammenti da aggiungere (voti_kit.json, tabelle)
 (si completa a fine lavoro)
@@ -129,7 +147,14 @@ Clip della pagina rifatte: `ritmo-clip/O30_copia.mp4`, `ritmo-clip/K06_copia.mp4
 Fogli: `_analisi/ritmo/fogli_regia/copia-01_16_O30.jpg`, `copia-01_25_r79_cta.jpg`. Safe zone sui due tratti: 0 campioni
 sotto la linea (O30 141, CTA 76). Render di `copia-01`: 6 min 37 s per 107,6 s (cloud, senza GPU).
 
+### C1 · correzione della regia (16/10)
+Nessuna voce del catalogo cambia (è la scena `r79_cta`): titolo al taglio come il suo, card velata al primo fotogramma, titolo
+della miniatura sopra i numeri. Foglio rifatto: `copia-01_25_r79_cta.jpg`; render di `copia-01` rifatto.
+
 ### C2
+Correzione della regia (16/10): cambiano solo le scene 1, 5, 7, 11, 19, 21, 25 (13 verificata, invariata); i voti e le misure
+delle 9 voci qui sotto non cambiano (nessuna voce rimisurata). Nel campo `manca` di O28 si può aggiungere: «i cloni a sinistra
+sono 9 creator diversi di `_clip-esterni` con la scritta italiana sopra (i suoi: 9 creator con «This Is How You Go Viral»)».
 Da aggiungere a mano in `_analisi/voti_kit.json` (giro «copia 16/10 (blocco C2)»; la voce corrente va in `storia`):
 ```json
 "L01": {"giro": "copia 16/10 (blocco C2)", "voti": {"movimento": 5, "materiali": 5, "frame": 5, "brand": 5}, "copia": "COPIA.L01 (kit2-copia-c2-liste.js) · scena 3, 8,917–12,5 s (anche scene 1, 9, 17, 25)", "scena": "CATALOGO-ANIMAZIONI/copia-02 (reel 5 di Kallaway copiato intero, 1:1 sul suo tempo)", "confronto": "_analisi/ritmo/fogli_regia/copia-02_NN_*.jpg (KALLAWAY | COPIA per scena) · _analisi/confronti-video/r05_copia_affiancato.mp4", "misure": {"prima barra al taglio (alto–basso)": "copia → 700–819 px · Kallaway → 696–818 px", "salita (alto della prima barra)": "copia → 632 · 598 · 562 · 556 px a 9,25 · 9,5 · 10,0 · 10,33 s · Kallaway → 636 · 600 · 564 · 560 px", "deriva (accento x, camera che si allontana)": "copia → 112 → 121 px (8,92 → 10,33 s), 109 a 13,0 s · Kallaway → 111 → 120 px, 108 a 13,0 s (×0,93)", "barre": "copia → 858×122, passo 160, accento 24 px · Kallaway → 858×122, passo 160"}, "manca": "il titolo in Advercase è più alto del suo neretto alla stessa larghezza", "sotto_4": false},

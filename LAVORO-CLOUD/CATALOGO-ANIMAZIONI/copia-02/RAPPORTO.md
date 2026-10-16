@@ -34,8 +34,12 @@ Camera presa dalle sue misure (barre.py, strisce dei fotogrammi): niente `CP_CAT
 
 **Cosa non torna:**
 - I suoi media sono sostituiti con media veri dello stesso tipo (`assets/_sorgenti.json`):
-  - creator del progetto al posto dei suoi (dankoe, garyvee, fitness con la tier list, una folla, una copertina di
-    stevenbartlett clonata);
+  - creator del progetto al posto dei suoi (dankoe, garyvee, fitness con la tier list, una folla; nei cloni 9 creator
+    diversi di `_clip-esterni` con la scritta «“Ecco Come Diventare Virale”» sopra, come i suoi 9 con «This Is How You Go
+    Viral»);
+  - il muro della scena 7: 36 fotogrammi diversi dei tuoi reel (i suoi sono 30 reel diversi);
+  - scena 11: il tuo reel col profilo (v01) con sopra un titolo italiano messo da noi (una fascia scura copre il «4» del tuo
+    reel), al posto del suo reel col titolo già dentro;
   - i tuoi reel già tagliati per C1 al posto dei suoi reel (i tuoi reel veri non ci sono in cloud);
   - la sua pagina e il suo template disegnati da noi.
 - Il suo rosso e il suo verde diventano tutti e due lime: dove lui contrappone rosso (sbagliato) e verde (giusto), da noi è
@@ -46,6 +50,13 @@ Camera presa dalle sue misure (barre.py, strisce dei fotogrammi): niente `CP_CAT
 - Il catalogo segna X01 a 118–125 s ma il file finisce a 122,09 s; K01 (7,1–7,9 s) è dentro la facecam 3,417–8,917 s.
 - safezone.py con la soglia automatica (49) segna 73 campioni su 733: è la griglia di puntini dello sfondo (luminanza ≤ 60, più
   visibile nelle scene 1, 3 e 5); con soglia 75 i campioni sotto la linea sono 0.
+
+**Correzioni della regia dopo i fogli (16/10, un giro):** C1 CTA (titolo al taglio, card velata al primo fotogramma, titolo
+della miniatura sopra i numeri); C2 scene 1 (titolo al fotogramma 0), 5 (lime solo la riga sotto la banda), 7 (banda che
+scorre misurata, senza tinta; muro di fotogrammi tutti diversi), 11 (il tuo profilo col titolo cerchiato in lime, niente
+tazza), 19 e 21 (creator diversi con la stessa scritta), 25 (barre da sinistra, misurate: −288 px a +0,042 s → ferme a
++0,875, scaglionate di 2 e 5 fotogrammi come le sue; «3 Motivi» a +0,1 s). Scena 13: la spunta verde e la barra sono del tuo
+reel, restano. Dettagli in `STATO.md`.
 
 **Fogli e video:**
 - `_analisi/ritmo/fogli_regia/copia-02_NN_<id>.jpg`: KALLAWAY | COPIA per ognuna delle 27 scene (`_tools/foglio_kd.py --copia`);
