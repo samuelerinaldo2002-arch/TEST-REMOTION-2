@@ -1,0 +1,117 @@
+{
+ "voce": "O14-test",
+ "kallaway": {
+  "sorgente": "O14 reel 79",
+  "t": [
+   7.5,
+   10.5
+  ],
+  "fps": 23.976,
+  "tagli": []
+ },
+ "nostro": {
+  "sorgente": "demo-oggetti",
+  "t": [
+   1.2,
+   4.2
+  ],
+  "fps": 30.0,
+  "tagli": [
+   2.8
+  ]
+ },
+ "misure": {
+  "kallaway": {
+   "locale": {
+    "nome": "locale",
+    "picco": 92.3,
+    "t_picco": 2.252,
+    "inizio": 0.042,
+    "fine": 3.003,
+    "durata": 2.961,
+    "attacco": 2.211,
+    "colpi": 2,
+    "bezier": [
+     1.0,
+     0.425,
+     0.575,
+     0.625
+    ],
+    "err_bezier": 0.0112
+   },
+   "camera": {
+    "nome": "camera",
+    "picco": 657.9,
+    "t_picco": 2.377,
+    "inizio": 0.042,
+    "fine": 3.003,
+    "durata": 2.961,
+    "attacco": 2.336,
+    "colpi": 2,
+    "bezier": [
+     1.0,
+     0.625,
+     0.5,
+     0.075
+    ],
+    "err_bezier": 0.0233
+   }
+  },
+  "nostro": {
+   "locale": {
+    "nome": "locale",
+    "picco": 38.4,
+    "t_picco": 0.567,
+    "inizio": 0.267,
+    "fine": 3.0,
+    "durata": 2.733,
+    "attacco": 0.3,
+    "colpi": 3,
+    "bezier": [
+     0.575,
+     1.075,
+     0.9,
+     0.65
+    ],
+    "err_bezier": 0.0113
+   },
+   "camera": {
+    "nome": "camera",
+    "picco": 24.6,
+    "t_picco": 2.867,
+    "inizio": 0.033,
+    "fine": 3.0,
+    "durata": 2.967,
+    "attacco": 2.833,
+    "colpi": 4,
+    "bezier": [
+     0.925,
+     1.2,
+     0.6,
+     0.45
+    ],
+    "err_bezier": 0.0201
+   }
+  }
+ },
+ "verdetto": {
+  "locale": {
+   "durata_%": -7.7,
+   "attacco_%": -86.4,
+   "rms_curva": 0.265,
+   "ok_durata": true,
+   "ok_curva": false,
+   "ok_colpi": false,
+   "ok": false
+  },
+  "camera": {
+   "durata_%": 0.2,
+   "attacco_%": 21.3,
+   "rms_curva": 0.223,
+   "ok_durata": true,
+   "ok_curva": false,
+   "ok_colpi": false,
+   "ok": false
+  }
+ }
+}

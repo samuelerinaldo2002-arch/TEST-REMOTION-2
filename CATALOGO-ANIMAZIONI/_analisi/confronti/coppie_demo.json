@@ -1,0 +1,152 @@
+[
+{
+"nostro": "CATALOGO-ANIMAZIONI/demo/composition/snapshots/frame-00-at-3s.png",
+"reel": 14,
+"t": 1.6,
+"voce": "O01 anello di reel + T01"
+},
+{
+"nostro": "CATALOGO-ANIMAZIONI/demo/composition/snapshots/frame-01-at-9s.png",
+"reel": 5,
+"t": 11.2,
+"voce": "L01/L02 lista"
+},
+{
+"nostro": "CATALOGO-ANIMAZIONI/demo/composition/snapshots/frame-02-at-14.5s.png",
+"reel": 9,
+"t": 12.6,
+"voce": "D01/D02 dati"
+},
+{
+"nostro": "CATALOGO-ANIMAZIONI/demo/composition/snapshots/frame-03-at-21.2s.png",
+"reel": 68,
+"t": 13.0,
+"voce": "L09 mappa"
+},
+{
+"nostro": "CATALOGO-ANIMAZIONI/demo/composition/snapshots/frame-04-at-26.8s.png",
+"reel": 91,
+"t": 33.5,
+"voce": "O10 bersaglio + C04"
+},
+{
+"nostro": "CATALOGO-ANIMAZIONI/demo/composition/snapshots/frame-05-at-32.5s.png",
+"reel": 61,
+"t": 11.5,
+"voce": "F04 riflettore"
+},
+{
+"nostro": "CATALOGO-ANIMAZIONI/demo-2/composition/snapshots/frame-00-at-3.5s.png",
+"reel": 68,
+"t": 94.6,
+"voce": "O24 calendario"
+},
+{
+"nostro": "CATALOGO-ANIMAZIONI/demo-2/composition/snapshots/frame-01-at-8.5s.png",
+"reel": 88,
+"t": 45.8,
+"voce": "O23 100 puntini"
+},
+{
+"nostro": "CATALOGO-ANIMAZIONI/demo-2/composition/snapshots/frame-02-at-13.5s.png",
+"reel": 117,
+"t": 51.5,
+"voce": "D07 formula"
+},
+{
+"nostro": "CATALOGO-ANIMAZIONI/demo-2/composition/snapshots/frame-03-at-18.8s.png",
+"reel": 6,
+"t": 10.5,
+"voce": "U01 chat AI"
+},
+{
+"nostro": "CATALOGO-ANIMAZIONI/demo-2/composition/snapshots/frame-04-at-22.6s.png",
+"reel": 22,
+"t": 50.0,
+"voce": "O13 cervello 3D"
+},
+{
+"nostro": "CATALOGO-ANIMAZIONI/demo-2/composition/snapshots/frame-05-at-26.5s.png",
+"reel": 16,
+"t": 64.0,
+"voce": "O18 neon"
+},
+{
+"nostro": "CATALOGO-ANIMAZIONI/demo-2/composition/snapshots/frame-06-at-32.5s.png",
+"reel": 50,
+"t": 16.5,
+"voce": "L04/L11 checklist+percorso"
+},
+{
+"nostro": "CATALOGO-ANIMAZIONI/demo-2/composition/snapshots/frame-07-at-37.5s.png",
+"reel": 109,
+"t": 12.6,
+"voce": "O07 scala"
+},
+{
+"nostro": "CATALOGO-ANIMAZIONI/demo-2/composition/snapshots/frame-08-at-42.5s.png",
+"reel": 46,
+"t": 5.6,
+"voce": "O06 imbuto"
+},
+{
+"nostro": "CATALOGO-ANIMAZIONI/demo-2/composition/snapshots/frame-09-at-47.5s.png",
+"reel": 110,
+"t": 9.5,
+"voce": "D04/D05 grafici"
+},
+{
+"nostro": "CATALOGO-ANIMAZIONI/demo-2/composition/snapshots/frame-10-at-51.5s.png",
+"reel": 35,
+"t": 2.0,
+"voce": "L12 copione"
+},
+{
+"nostro": "CATALOGO-ANIMAZIONI/demo-2/composition/snapshots/frame-11-at-56.8s.png",
+"reel": 23,
+"t": 7.0,
+"voce": "O05 piramide"
+},
+{
+"nostro": "CATALOGO-ANIMAZIONI/demo-2/composition/snapshots/frame-12-at-58s.png",
+"reel": 46,
+"t": 7.5,
+"voce": "O20 radar + foto vera"
+},
+{
+"nostro": "CATALOGO-ANIMAZIONI/demo-2/composition/snapshots/frame-13-at-63.4s.png",
+"reel": 98,
+"t": 1.0,
+"voce": "O02/O03 anello -> hub"
+},
+{
+"nostro": "CATALOGO-ANIMAZIONI/demo-2/composition/snapshots/frame-14-at-65.5s.png",
+"reel": 29,
+"t": 15.0,
+"voce": "L13 confronto pieno"
+},
+{
+"nostro": "CATALOGO-ANIMAZIONI/demo-2/composition/snapshots/frame-15-at-67.6s.png",
+"reel": 95,
+"t": 33.0,
+"voce": "U08/U07 impostazioni + dito"
+},
+{
+"nostro": "CATALOGO-ANIMAZIONI/demo-2/composition/snapshots/frame-16-at-68.9s.png",
+"reel": 76,
+"t": 15.0,
+"voce": "U08 effetto + H03 tag"
+},
+{
+"nostro": "CATALOGO-ANIMAZIONI/demo-2/composition/snapshots/frame-17-at-70.3s.png",
+"reel": 109,
+"t": 18.0,
+"voce": "L14 muro di reel"
+},
+{
+"nostro": "CATALOGO-ANIMAZIONI/demo-2/composition/snapshots/frame-18-at-75.5s.png",
+"reel": 12,
+"t": 86.0,
+"voce": "X01 CTA + DM"
+}
+]
