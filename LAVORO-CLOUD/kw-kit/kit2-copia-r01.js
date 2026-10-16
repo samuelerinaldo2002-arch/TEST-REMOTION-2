@@ -452,3 +452,104 @@ COPIA.r01_specifico = (scena, o) => {
   tl.set(L, { opacity: 0 }, t1);
   return { rect: null, pose: null, ancore: { avatar: [ax, ay] }, elementi: { T, imb, av, idea, ang } };
 };
+
+// ── il logo dell'agenzia del suo esempio («PeakAds»: cerchio scuro con l'anello bianco, la «A» a montagna bianca con la striscia
+// verde e la scritta «PeakAds») · da noi la striscia e «Ads» lime · r = raggio del cerchio → nodo centrato su cx, cy
+const r1Logo = (parent, cx, cy, r, o) => {
+  o = o || {};
+  const g = layered(el(parent, { position: "absolute", left: cx - r, top: cy - r, width: 2 * r, height: 2 * r, borderRadius: "50%", background: "radial-gradient(circle at 50% 40%, #262626 0%, #141414 70%, #0e0e0e 100%)", boxShadow: `inset 0 0 0 ${Math.max(1.6, r * 0.022)}px rgba(255,255,255,.72), 0 0 ${Math.round(r * 0.35)}px rgba(255,255,255,.14), 0 0 ${Math.round(r * 0.9)}px rgba(255,255,255,.05)`, zIndex: o.z || 16 }));
+  const S = `<svg width="${r * 0.62}" height="${r * 0.5}" viewBox="0 0 62 50" style="display:block"><path d="M31 2 L60 48 L44 48 L31 26 L18 48 L2 48 Z" fill="#ffffff"/><path d="M8 47 C18 36 30 30 46 27 L40 37 C30 38 20 42 12 48 Z" fill="${K.lime}"/></svg>`;
+  el(g, { position: "absolute", left: 0, top: r * 0.32, width: 2 * r, display: "flex", justifyContent: "center" }, S);
+  el(g, { position: "absolute", left: 0, top: r * 0.92, width: 2 * r, textAlign: "center", fontFamily: FS, fontWeight: 800, fontSize: Math.round(r * 0.27), letterSpacing: "-0.02em", color: K.white, whiteSpace: "nowrap" }, `Peak<span style="color:${K.lime}">Ads</span>`);
+  el(g, { position: "absolute", left: 0, top: r * 1.24, width: 2 * r, textAlign: "center", fontFamily: FS, fontWeight: 600, fontSize: Math.max(4, Math.round(r * 0.06)), letterSpacing: "0.18em", color: "rgba(255,255,255,.55)", whiteSpace: "nowrap" }, "PERFORMANCE · CRESCITA");
+  return g;
+};
+
+/* @copia r01_agenzia · Il logo dell'agenzia e i tre argomenti specifici; poi gli anelli di persone attorno al logo che si
+ *   stringono, si spengono e restano in pochi, lime (reel 1, 33,575–43,168 s)
+ * kallaway: reel 1, 33,575 s · taglio dalla faccia: il titolo di prima è già pieno ma le due righe arrivano in corsa da parti opposte
+ *   (riga 1 da −147 px, riga 2 da +123 px, ferme a ~35,2 s: 12 → 60 → 97 → 118 → 132 → 141 → 148 → 153 → 157 px il bordo sinistro
+ *   della riga 1 ogni 0,084 s); il logo «PeakAds» sale da sotto già in corsa (centro y 1163 → 1017 → 947 → 909 → 886 → 871 → 864 →
+ *   859 px a 33,6 … 34,78 s), poi sale ancora (35,0–37,25 s: 823 · 710 · 644 · 599 · 570 · 548 · 535 · 522 · 515 · 509) e sotto
+ *   compaiono i tre argomenti in corsivo nei riquadri (35,6 · 35,72 · 35,84 s); da 36,75 s la camera scivola a sinistra sempre più
+ *   veloce (logo x 530 · 515 · 495 · 434 a 37,0 … 37,75 s) e a 37,875 s taglia sugli anelli attorno al logo piccolo, che continuano
+ *   lo stesso movimento e frenano (centro x 682 → 625 → 596 → 578 → 561 → 547 → 541 a 37,9 … 39,65 s); l'anello interno si stringe
+ *   (r 190 → 125 px, 38,3–38,9 s), gli altri diventano grigi e si spengono uno alla volta fino a 41,6 s; la camera si avvicina
+ *   (×1,32 fino a 41,65 s, poi ×1,83 a 42,65 s) e l'anello che resta diventa rosso (42,7 s)
+ * misure: logo r 108 (34,3–37,7 s), r 56 negli anelli; riquadri 580×96 a passo 140 sotto il logo (centri y 775 · 915 · 1056 a
+ *   36,5 s); anelli: 12 persone a r 190 → 125, 18 a r 280, 24 a r 375; orbite a r 85 e 170
+ * scena: t0 (33,575), t1 (43,168), X, Y, parent · opzioni: argomenti (3 testi)
+ * colori: il suo verde del logo → lime; le persone rosse (il pubblico piccolo) → lime; le grigie restano grigie
+ */
+const R1_ARGOMENTI = ["Lead Generation Per Founder SaaS", "Script Di Cold Call Per Vendite B2B", "Video Brevi In Motion Graphics"];
+COPIA.r01_agenzia = (scena, o) => {
+  o = o || {};
+  const L = scena.parent || layer(15), X = scena.X, Y = scena.Y, W = (sx, sy) => [X - 540 + sx, Y - 880 + sy];
+  const t0 = scena.t0, t1 = scena.t1, a = (t) => t0 + (t - 33.575);
+  const tc = a(37.875);
+  // il titolo di prima, già pieno; le due righe arrivano in corsa da parti opposte
+  const T = r5Titolo({ righe: R1_TIT_SPECIFICO, y: 92, interlinea: [64] });
+  T.unita.forEach((u) => gsap.set(u.w, { opacity: 0, filter: "none", y: 0, color: K.white }));
+  tl.set(T.unita.map((u) => u.w), { opacity: 1 }, t0);
+  const [r1, r2] = [T.root.children[0], T.root.children[1]];
+  const f1 = cpCurva([[33.6, -147], [33.684, -126], [33.768, -99], [33.852, -78], [33.936, -62], [34.02, -50], [34.104, -41], [34.188, -33], [34.272, -27], [34.356, -22], [34.44, -18], [34.524, -14], [34.608, -11], [34.692, -9], [34.776, -6], [34.86, -4], [34.944, -3], [35.0, -2], [35.25, 0]].map(([t, x]) => [a(t), x]));
+  const f2 = cpCurva([[33.6, 123], [33.684, 105], [33.768, 83], [33.852, 66], [33.936, 52], [34.02, 43], [34.104, 35], [34.188, 28], [34.272, 23], [34.356, 19], [34.44, 15], [34.524, 12], [34.608, 10], [34.692, 8], [34.776, 6], [34.86, 4], [34.944, 3], [35.0, 2], [35.25, 1], [35.5, 0]].map(([t, x]) => [a(t), x]));
+  const st = { v: 0 };
+  gsap.set(r1, { x: f1(t0) }); gsap.set(r2, { x: f2(t0) });
+  tl.fromTo(st, { v: 0 }, { v: 1, duration: 1.95, ease: "none", immediateRender: false, onUpdate: () => { const t = t0 + st.v * 1.95; gsap.set(r1, { x: f1(t) }); gsap.set(r2, { x: f2(t) }); } }, t0);
+  tl.set(T.root, { opacity: 0 }, t1);
+  // il logo e i tre argomenti (un gruppo che sale due volte)
+  const grp = layered(el(L, { position: "absolute", left: 0, top: 0, width: 1, height: 1, zIndex: 14 }));
+  const [lx, ly] = W(540, 510);
+  const logo = r1Logo(grp, lx, ly, 108);
+  const args = (o.argomenti || R1_ARGOMENTI).map((s, i) => {
+    const [ax, ay] = W(540, 775 + 140 * i);
+    const c = layered(el(grp, { position: "absolute", left: ax - 290, top: ay - 48, width: 580, height: 96, borderRadius: 4, background: "rgba(24,24,24,.9)", boxShadow: "inset 0 0 0 2px rgba(255,255,255,.34), 0 10px 30px rgba(0,0,0,.5)", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: FH, fontSize: 44, color: K.white, whiteSpace: "nowrap", textShadow: "0 0 10px rgba(255,255,255,.25)", zIndex: 15 }, s));
+    r1Pop(c, a(35.6 + 0.12 * i), { da: 0.85, dur: 0.18 });
+    return c;
+  });
+  const fy = cpCurva([[33.6, 653], [33.684, 566], [33.768, 507], [33.852, 467], [33.936, 437], [34.02, 416], [34.104, 399], [34.188, 387], [34.272, 376], [34.356, 368], [34.44, 361], [34.608, 354], [34.776, 349], [34.95, 345], [35.0, 313], [35.25, 200], [35.5, 134], [35.75, 89], [36.0, 60], [36.25, 38], [36.5, 25], [36.75, 12], [37.0, 5], [37.25, 0]].map(([t, y]) => [a(t), y]));
+  const sg = { v: 0 };
+  gsap.set(grp, { y: fy(t0) });
+  tl.fromTo(sg, { v: 0 }, { v: 1, duration: 3.7, ease: "none", immediateRender: false, onUpdate: () => gsap.set(grp, { y: fy(t0 + sg.v * 3.7) }) }, t0);
+  gsap.set(logo, { filter: "blur(4px)" });
+  tl.to(logo, { filter: "blur(0px)", duration: 0.25 }, t0);
+  tl.set(logo, { filter: "none" }, t0 + 0.26);
+  // la camera scivola a sinistra fino al taglio (misurata sul logo)
+  cpCam.percorso([[36.75, 0, 0], [37.0, -10, 0], [37.25, -25, 0], [37.5, -45, 0], [37.75, -106, 0], [37.875, -150, 0]].map(([t, dx, dy]) => [a(t), dx, dy]));
+  tl.set(grp, { opacity: 0 }, tc);
+  return { rect: null, pose: null, ancore: {}, elementi: { T, logo, args } };
+};
+
+/* @copia r01_agenzia2 · seconda metà della scena 9 (dopo il taglio di 37,875 s, nello stesso movimento): gli anelli attorno al
+ *   logo piccolo che si stringono e si spengono; la camera si avvicina; l'anello che resta diventa lime (scheda: r01_agenzia)
+ * scena: t0 (37,875), t1 (43,168), X, Y, parent
+ */
+COPIA.r01_agenzia2 = (scena, o) => {
+  o = o || {};
+  const L = scena.parent || layer(16), X = scena.X, Y = scena.Y, W = (sx, sy) => [X - 540 + sx, Y - 880 + sy];
+  const t0 = scena.t0, t1 = scena.t1, a = (t) => t0 + (t - 37.875);
+  const [cx, cy] = W(540, 794);
+  const an = r1Anelli(L, cx, cy, { raggi: [190, 280, 375], conte: [12, 18, 24], orbite: [85, 170], d: 30, z: 8 });
+  an.pieni();
+  an.orbiteIn(t0 - 0.01, 0.01);
+  const logo = r1Logo(L, cx, cy, 56, { z: 12 });
+  // l'anello esterno è già grigio; il secondo diventa grigio mentre l'interno si stringe (190 → 125)
+  gsap.set(an.persone[2], { opacity: 0.42 });
+  tl.to(an.persone[1], { opacity: 0.45, duration: 0.3, ease: "power1.out" }, a(38.3));
+  const G0 = an.persone[0].G, k = { v: 0 };
+  tl.fromTo(k, { v: 0 }, { v: 1, duration: 0.6, ease: "power2.inOut", immediateRender: false, onUpdate: () => { const f = 1 - (1 - 125 / 190) * k.v; an.persone[0].forEach((p) => gsap.set(p, { x: p._dx * (f - 1), y: p._dy * (f - 1) })); } }, a(38.3));
+  // i grigi si spengono uno alla volta: l'anello esterno 38,3–39,3 s, il secondo 39,3–41,3 s (a 41 s ne restano 3–4, come i suoi)
+  an.persone[2].forEach((p, i) => tl.to(p, { opacity: 0, duration: 0.25, ease: "power1.in" }, a(38.3 + 1.0 * ((i * 7) % 24) / 24)));
+  an.persone[1].forEach((p, i) => tl.to(p, { opacity: 0, duration: 0.25, ease: "power1.in" }, a(39.3 + 2.0 * ((i * 5) % 18) / 18)));
+  // continua il movimento a sinistra della prima metà e frena (centro x 682 → 541): al taglio il contenuto è 142 px più a destra
+  // (la posa del taglio nella composizione: fx − 142), poi scorre di −142 px
+  cpCam.percorso([[37.875, 142, 0], [37.9, 142, 0], [38.15, 85, 0], [38.4, 56, 0], [38.65, 38, 0], [38.9, 21, 0], [39.15, 13, 0], [39.4, 7, 0], [39.65, 1, 0], [39.9, 0, 0]].map(([t, dx, dy]) => [a(t), dx - 142, dy]));
+  // si avvicina piano, poi deciso
+  cpCam.scala([[39.4, 1], [39.9, 1.06], [40.4, 1.14], [40.9, 1.2], [41.4, 1.26], [41.65, 1.32], [41.9, 1.48], [42.15, 1.6], [42.4, 1.66], [42.65, 1.83], [43.168, 1.85]].map(([t, z]) => [a(t), z]), [540, 794]);
+  // l'anello che resta diventa lime (il suo rosso)
+  an.colora(1, a(42.65), 0.12, K.lime);
+  tl.to(an.persone[0], { filter: "drop-shadow(0 0 6px rgba(207,251,80,.8))", duration: 0.15 }, a(42.7));
+  tl.set(L, { opacity: 0 }, t1);
+  return { rect: null, pose: null, ancore: { centro: [cx, cy] }, elementi: { an, logo } };
+};

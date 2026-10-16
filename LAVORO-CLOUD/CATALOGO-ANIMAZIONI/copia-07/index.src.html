@@ -170,6 +170,15 @@
         // ═══ 8 · 33,075–33,575 s · facecam piena ═══
         cpFacecam(33.075, 33.575);
 
+        // ═══ 9 · 33,575–43,168 s · r01_agenzia: il logo e i tre argomenti; 37,875 s (stesso movimento) gli anelli attorno al logo ═══
+        cpCam.taglio(33.575, { fx: 30000, fy: 880, s: 1 });
+        COPIA.r01_agenzia({ t0: 33.575, t1: 43.168, X: 30000, Y: 880, parent: layer(15) }, {});
+        cpCam.taglio(37.875, { fx: 36000 - 142, fy: 880, s: 1 });   // arriva in corsa da destra: al taglio il contenuto è 142 px più a destra
+        COPIA.r01_agenzia2({ t0: 37.875, t1: 43.168, X: 36000, Y: 880, parent: layer(16) }, {});
+
+        // ═══ 10 · 43,168–44,67 s · facecam piena ═══
+        cpFacecam(43.168, 44.67);
+
         //__SCENE__
 
         cpCam.gira(0, 122.462);
