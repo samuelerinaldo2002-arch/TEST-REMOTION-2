@@ -46,7 +46,7 @@
           <filter id="mb" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur id="mbn" in="SourceGraphic" stdDeviation="0 0" /></filter>
         </svg>
         <div id="c7pool" style="position:absolute;left:0;top:0;width:0;height:0;overflow:hidden">
-          <!-- scena 3: il muro di ~100 reel, 48 fotogrammi DIVERSI dei tuoi reel (36 del muro di C2 + 12 nuovi) -->
+          <!-- scena 3: il muro di ~100 reel, 68 fotogrammi DIVERSI dei tuoi reel (36 del muro di C2 + 32 nuovi) + le 10 copertine th-mio_* -->
           <img id="c7-wv01" src="assets/img/wv01.jpg" alt="">
           <img id="c7-wv02" src="assets/img/wv02.jpg" alt="">
           <img id="c7-wv03" src="assets/img/wv03.jpg" alt="">
@@ -95,6 +95,26 @@
           <img id="c7-wn10" src="assets/img/wn10.jpg" alt="">
           <img id="c7-wn11" src="assets/img/wn11.jpg" alt="">
           <img id="c7-wn12" src="assets/img/wn12.jpg" alt="">
+          <img id="c7-wx01" src="assets/img/wx01.jpg" alt="">
+          <img id="c7-wx02" src="assets/img/wx02.jpg" alt="">
+          <img id="c7-wx03" src="assets/img/wx03.jpg" alt="">
+          <img id="c7-wx04" src="assets/img/wx04.jpg" alt="">
+          <img id="c7-wx05" src="assets/img/wx05.jpg" alt="">
+          <img id="c7-wx06" src="assets/img/wx06.jpg" alt="">
+          <img id="c7-wx07" src="assets/img/wx07.jpg" alt="">
+          <img id="c7-wx08" src="assets/img/wx08.jpg" alt="">
+          <img id="c7-wx09" src="assets/img/wx09.jpg" alt="">
+          <img id="c7-wx10" src="assets/img/wx10.jpg" alt="">
+          <img id="c7-wx11" src="assets/img/wx11.jpg" alt="">
+          <img id="c7-wx12" src="assets/img/wx12.jpg" alt="">
+          <img id="c7-wx13" src="assets/img/wx13.jpg" alt="">
+          <img id="c7-wx14" src="assets/img/wx14.jpg" alt="">
+          <img id="c7-wx15" src="assets/img/wx15.jpg" alt="">
+          <img id="c7-wx16" src="assets/img/wx16.jpg" alt="">
+          <img id="c7-wx17" src="assets/img/wx17.jpg" alt="">
+          <img id="c7-wx18" src="assets/img/wx18.jpg" alt="">
+          <img id="c7-wx19" src="assets/img/wx19.jpg" alt="">
+          <img id="c7-wx20" src="assets/img/wx20.jpg" alt="">
         </div>
         <div id="safe"><div id="mbwrap"><div id="shake"><div class="cam" id="cam" data-layout-allow-overflow><div class="layer" id="zoom"><div class="layer" id="pan"></div></div></div></div></div></div>
         <!--VIDEOS
@@ -104,6 +124,9 @@
           g3 assets/clips/g3.mp4 0 2.9
           g4 assets/clips/g4.mp4 0 2.9
           g5 assets/clips/g5.mp4 0 2.9
+          # 3 · il SUO reel con le views (lui che parla, poi il tablet) → due tuoi reel
+          c3a assets/clips/c3a.mp4 5.55 1.3
+          c3b assets/clips/c3b.mp4 6.75 2.75
         -->
       </div>
       <div id="hudclip" class="clip" data-start="0" data-duration="122.462" data-track-index="2">
@@ -125,6 +148,13 @@
 
         // ═══ 2 · 4,63–5,589 s · facecam piena ═══
         cpFacecam(4.63, 5.589);
+
+        // ═══ 3 · 5,589–9,426 s · r01_cento (F02): il tuo reel con le views che contano, il disco, lo zoom indietro nel muro che scorre ═══
+        cpCam.taglio(5.589, { fx: 12000, fy: 880, s: 1 });
+        COPIA.r01_cento({ t0: 5.589, t1: 9.426, X: 12000, Y: 880, parent: layer(12) }, {});
+
+        // ═══ 4 · 9,426–12,554 s · facecam piena ═══
+        cpFacecam(9.426, 12.554);
 
         //__SCENE__
 

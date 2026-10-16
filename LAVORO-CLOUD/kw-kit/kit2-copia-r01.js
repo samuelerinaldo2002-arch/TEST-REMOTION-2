@@ -148,3 +148,113 @@ COPIA.r01_imbuto = (scena, o) => {
   tl.fromTo(st, { v: 0 }, { v: 1, duration: 0.65, ease: "none", immediateRender: false, onUpdate: () => gsap.set(av, { y: fa(t0 + st.v * 0.65) }) }, t0);
   return { rect: null, pose: null, ancore: { avatar: [ax, ay] }, elementi: { imb, av } };
 };
+
+/* @copia r01_disco · F02 nel reel 1: il disco pieno che nasce sul badge delle views e svanisce (reel 1, 6,381–6,92 s; anche 45,2 e
+ *   87,3 s). È la F02 del catalogo, ma più piccola e con altri tempi di quella del reel 79 (COPIA.F02): da qui una funzione sua.
+ * kallaway: reel 1, 6,381 s · sul badge rosso in basso a sinistra del suo reel (le views a 15M) compare un disco rosso pieno col
+ *   bordo chiaro sottile, già largo (r ~70 px), in un fotogramma è r 100, poi si allarga piano (124 · 135 · 149 · 160 · 167 · 172 ·
+ *   175 px a 6,465 … 6,715 s) mentre svanisce (da 6,63 s, via a 6,92 s); il badge si vede appena attraverso
+ * misure: centro sul badge (385, 1060 a 6,55 s); r 70 → 175 px in 0,33 s; opacità ~0,92 fino a +0,25 s, poi giù in 0,29 s
+ * quando: il numero (le views) «si accende» sulla parola chiave («million»)
+ * scena: t0, X, Y (centro, mondo o strato), parent · opzioni: r (175: il raggio finale), z
+ * restituisce: elementi { d }
+ * colori: il suo rosso pieno → lime pieno col bordo bianco (sul badge lime: il numero si legge appena, come il suo)
+ * chiamata: COPIA.r01_disco({ t0: 6.381, X: 385, Y: 1060, parent: L });
+ */
+COPIA.r01_disco = (scena, o) => {
+  o = o || {};
+  const R = o.r || 175, L = scena.parent || layer(9), t0 = scena.t0;
+  const d = layered(el(L, { position: "absolute", left: scena.X - R, top: scena.Y - R, width: 2 * R, height: 2 * R, borderRadius: "50%", zIndex: o.z || 30, pointerEvents: "none", background: "radial-gradient(circle at 50% 40%, #e2ff8a 0%, #d3fc5c 45%, #CFFB50 70%, #c2ec44 100%)", boxShadow: "inset 0 0 0 3px rgba(255,255,255,.85), 0 0 30px rgba(207,251,80,.45)", opacity: 0 }));
+  const f = cpCurva([[t0, 70], [t0 + 0.042, 100], [t0 + 0.084, 124], [t0 + 0.126, 135], [t0 + 0.167, 149], [t0 + 0.209, 160], [t0 + 0.25, 167], [t0 + 0.292, 172], [t0 + 0.334, 175], [t0 + 0.54, 178]].map(([t, r]) => [t, r / 175 * R]));
+  const st = { v: 0 };
+  gsap.set(d, { scale: f(t0) / R });
+  tl.set(d, { opacity: 0.93 }, t0);
+  tl.fromTo(st, { v: 0 }, { v: 1, duration: 0.54, ease: "none", immediateRender: false, onUpdate: () => gsap.set(d, { scale: f(t0 + st.v * 0.54) / R }) }, t0);
+  tl.to(d, { opacity: 0, duration: 0.29, ease: "power1.in" }, t0 + 0.25);
+  return { rect: [scena.X - R, scena.Y - R, scena.X + R, scena.Y + R], pose: null, ancore: {}, elementi: { d }, tempi: { fine: t0 + 0.54 } };
+};
+
+// ── il muro dei reel (scena 3): celle 550×842 (come la card) a passo 665×982 nel mondo, ognuna con un fotogramma DIVERSO dei tuoi
+// reel (pool c7-*, th-mio_*); la cella (0, 0) resta vuota per la card vera. ids: lista di id (uno per cella, mai ripetuti a vista)
+const R1_MURO = (() => {
+  const a = [];
+  for (let k = 1; k <= 18; k++) a.push("c7-wv" + String(k).padStart(2, "0"), "c7-wg" + String(k).padStart(2, "0"));
+  for (let k = 1; k <= 20; k++) a.push("c7-wx" + String(k).padStart(2, "0"));
+  for (let k = 1; k <= 12; k++) a.push("c7-wn" + String(k).padStart(2, "0"));
+  for (let k = 1; k <= 10; k++) a.push("th-mio_" + String(k).padStart(2, "0"));
+  return a;
+})();
+const r1Muro = (L, cx, cy, o) => {
+  o = o || {};
+  const w = o.w || 550, h = o.h || 842, px = o.px || 665, py = o.py || 982, ids = o.ids || R1_MURO;
+  const box = layered(el(L, { position: "absolute", left: 0, top: 0, width: 1, height: 1, zIndex: o.z || 9 }));
+  const celle = [];
+  let n = 0;
+  for (let r = o.r0 == null ? -3 : o.r0; r <= (o.r1 == null ? 7 : o.r1); r++) {
+    for (let c = -3; c <= 3; c++) {
+      if (r === 0 && c === 0) continue;
+      const id = ids[n++ % ids.length];
+      const g = el(box, { position: "absolute", left: cx + c * px - w / 2, top: cy + r * py - h / 2, width: w, height: h, borderRadius: 14, overflow: "hidden", background: "#151515", boxShadow: "0 0 0 2.5px rgba(255,255,255,.62), 0 18px 50px rgba(0,0,0,.55)" });
+      imgIn(g, id, { objectFit: "cover" });
+      celle.push(g);
+    }
+  }
+  return { box, celle, n };
+};
+
+/* @copia r01_cento · Il tuo reel con le views che contano, cambia reel, poi lo zoom indietro nel muro di ~100 tuoi reel che scorre
+ *   («I've personally gotten a million views or more on a hundred different videos») (reel 1, 5,589–9,426 s; dentro c'è F02)
+ * kallaway: reel 1, 5,589 s · taglio: il suo reel (lui che parla) è già in corsa e sale (alto della card 520 → 456 → 396 → 354 →
+ *   324 → 301 → 284 → 270 → 259 → 249 → 240 → 233 → 227 → 222 px a 5,589 · 5,71 · 5,84 · 5,96 · 6,09 · 6,21 · 6,34 · 6,46 · 6,59 ·
+ *   6,72 · 6,88 · 7,05 · 7,22 · 7,5 s); il badge rosso in basso a sinistra conta 0M → 16M (5,6–6,5 s), il disco (F02) a 6,381 s;
+ *   a 6,798 s il reel cambia (il tablet con la città) e il badge corre 16M → 43M (6,97–7,6 s); da 7,55 s la camera si allontana
+ *   di colpo (la card 550 → 500 → 400 → 328 → 280 → 240 → 216 → 200 px in 0,35 s, sfocato) e attorno c'è il muro dei suoi reel
+ *   (5 colonne); da 8,13 s il muro scorre in alto velocissimo (picco 137 px a fotogramma, mosso in verticale) e frena fino al
+ *   taglio sulla faccia (−1315 px in tutto)
+ * misure: card 550×842 col centro x 540; badge 200×50 nell'angolo in basso a sinistra; muro a passo 193 × 285 px a ×0,29 (celle
+ *   ~160×240); scorrimento misurato con la correlazione di fase fra fotogrammi (_script_copia07, in RAPPORTO)
+ * scena: t0 (5,589), t1 (9,426), X, Y, parent · opzioni: clip (["c3a", "c3b"]), muro (ids)
+ * colori: il badge rosso → lime con la scritta scura; il disco rosso → lime
+ */
+COPIA.r01_cento = (scena, o) => {
+  o = o || {};
+  const L = scena.parent || layer(12), X = scena.X, Y = scena.Y, W = (sx, sy) => [X - 540 + sx, Y - 880 + sy];
+  const t0 = scena.t0;
+  const cw = 550, ch = 842;
+  const [cx, cy] = W(540, 222 + ch / 2);
+  const grp = layered(el(L, { position: "absolute", left: 0, top: 0, width: 1, height: 1, zIndex: 14 }));
+  const cl = o.clip || ["c3a", "c3b"];
+  const card = r5Card(grp, cx, cy, cw, ch, [[0, cl[0]], [t0 + 1.209, cl[1]]], { r: 14, bw: 2.5, glow: "0 0 0 2.5px rgba(255,255,255,.8), 0 24px 60px rgba(0,0,0,.6), 0 0 30px rgba(255,255,255,.10)" });
+  // il badge delle views nell'angolo in basso a sinistra (conta)
+  const b = r1Badge(card.g, 4, ch - 29, "0M", { w: 200, h: 50, fs: 34, ancora: "sx", z: 20 });
+  const fmt = (x) => Math.round(x) + "M";
+  b.conta(t0 + 0.011, t0 + 0.92, 0, 16, fmt, "none");
+  b.conta(t0 + 1.38, t0 + 2.0, 16, 43, fmt, "power1.in");
+  // F02 · il disco sul badge (6,381 s)
+  const disco = COPIA.r01_disco({ t0: t0 + 0.792, X: cx - cw / 2 + 4 + 100, Y: cy + ch / 2 - 29, parent: grp });
+  // la salita misurata (alto della card), card e disco insieme
+  const su = cpCurva([[0, 298], [0.042, 279], [0.083, 257], [0.125, 234], [0.167, 212], [0.208, 192], [0.25, 174], [0.292, 158], [0.334, 144], [0.375, 132], [0.417, 121], [0.459, 111], [0.5, 102], [0.542, 94], [0.584, 86], [0.626, 79], [0.667, 73], [0.709, 67], [0.751, 62], [0.792, 57], [0.876, 48], [0.959, 40], [1.043, 33], [1.168, 25], [1.293, 18], [1.46, 11], [1.627, 7], [1.794, 4], [1.919, 0]].map(([u, d]) => [t0 + u, d]));
+  const st = { v: 0 };
+  gsap.set(grp, { y: su(t0) });
+  tl.fromTo(st, { v: 0 }, { v: 1, duration: 1.92, ease: "none", immediateRender: false, onUpdate: () => gsap.set(grp, { y: su(t0 + st.v * 1.92) }) }, t0);
+  // il muro attorno (compare quando la camera comincia ad allontanarsi)
+  const muro = r1Muro(L, cx, cy, { ids: o.muro });
+  gsap.set(muro.box, { opacity: 0 });
+  tl.to(muro.box, { opacity: 1, duration: 0.05, ease: "none" }, t0 + 1.95);
+  // lo zoom indietro (attorno a 540, 764 dello schermo: la card scende un poco mentre rimpicciolisce, come la sua)
+  cpCam.scala([[t0 + 1.961, 1], [t0 + 2.011, 0.91], [t0 + 2.051, 0.727], [t0 + 2.091, 0.596], [t0 + 2.131, 0.51], [t0 + 2.171, 0.44], [t0 + 2.211, 0.41], [t0 + 2.261, 0.385], [t0 + 2.311, 0.365], [t0 + 2.411, 0.328], [t0 + 2.511, 0.299], [t0 + 2.611, 0.29]], [540, 764]);
+  tl.to(L, { filter: "blur(5px)", duration: 0.06, ease: "none" }, t0 + 1.98);
+  tl.to(L, { filter: "blur(0px)", duration: 0.26, ease: "power1.out" }, t0 + 2.06);
+  tl.set(L, { filter: "none" }, t0 + 2.33);
+  // lo scorrimento verso l'alto (correlazione di fase fra i suoi fotogrammi: px dello schermo)
+  const dy = [[8.133, 0], [8.175, -36], [8.217, -124], [8.258, -261], [8.3, -396], [8.342, -511], [8.383, -607], [8.425, -690], [8.467, -760], [8.509, -822], [8.55, -876], [8.592, -924], [8.634, -966], [8.675, -1005], [8.717, -1039], [8.759, -1071], [8.8, -1099], [8.842, -1125], [8.884, -1149], [8.926, -1171], [8.967, -1190], [9.009, -1208], [9.051, -1224], [9.092, -1239], [9.134, -1252], [9.176, -1264], [9.218, -1275], [9.259, -1285], [9.301, -1294], [9.343, -1302], [9.384, -1309], [9.426, -1315]];
+  cpCam.percorso(dy.map(([t, d]) => [t0 + (t - 5.589), 0, d]));
+  // il mosso verticale dello scorrimento (filtro #mb del kit sul palco)
+  const P = { v: 0 }, wr = () => mbn.setAttribute("stdDeviation", `0 ${P.v.toFixed(2)}`);
+  tl.set(mbwrap, { filter: "url(#mb)" }, t0 + 2.54);
+  tl.to(P, { v: 26, duration: 0.12, ease: "power1.in", onUpdate: wr }, t0 + 2.55);
+  tl.to(P, { v: 0, duration: 0.6, ease: "power2.out", onUpdate: wr }, t0 + 2.67);
+  tl.set(mbwrap, { filter: "none" }, t0 + 3.28);
+  tl.set(L, { opacity: 0 }, scena.t1);
+  return { rect: null, pose: null, ancore: {}, elementi: { card, b, disco, muro } };
+};

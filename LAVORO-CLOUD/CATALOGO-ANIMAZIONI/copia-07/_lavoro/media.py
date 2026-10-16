@@ -47,7 +47,7 @@ for nome, r, ss, nota in [("g1", "m02", 0.0, "tuo reel: il profilo con le etiche
     clip(nome, mio(r), ss, 3.2, CARD_M if r.startswith("m") else CARD_V, nota)
 # scena 3 · il SUO reel con le views che contano, poi un altro suo reel (Kallaway: lui che parla, poi il tablet con la città)
 clip("c3a", mio("v02"), 0.4, 1.4, "scale=440:782:flags=lanczos,crop=440:672:0:40", "tuo reel: tu che parli in camera")
-clip("c3b", mio("v01"), 3.15, 1.4, "scale=440:782:flags=lanczos,crop=440:672:0:40", "tuo reel: il profilo che spieghi")
+clip("c3b", mio("v01"), 3.15, 2.85, "scale=440:782:flags=lanczos,crop=440:672:0:40", "tuo reel: il profilo che spieghi")
 # scena 11 · il reel di un piccolo creator (Kallaway: un creator alla scrivania con le scritte, 36 → 206 views)
 clip("cr11", est("devinjatho", 1), 3.0, 2.2, "scale=440:782:flags=lanczos,crop=440:672:0:40", "creator che parla con le scritte")
 # scena 18 · «Reel insights»: il SUO reel nella miniatura (lui che parla) → il tuo reel
@@ -73,5 +73,11 @@ NUOVI = [("v01", 1.6), ("v01", 2.8), ("v01", 5.0), ("v02", 1.6), ("v02", 2.8), (
          ("v03", 2.8), ("v03", 5.2), ("m02", 4.0), ("m07", 4.0)]
 for k, (r, t) in enumerate(NUOVI):
     foto(f"wn{k + 1:02d}", mio(r), t, "crop=270:480:45:0" if r.startswith("m") else "scale=270:480:flags=lanczos", f"muro: il tuo reel {r} a {t} s")
+# (il muro scorre di ~4,6 righe: servono ~78 reel diversi a vista) altri 20 fotogrammi a istanti non usati + le 10 copertine mio_*
+ALTRI = [("m01", 0.9), ("m02", 2.2), ("m03", 3.4), ("m04", 1.6), ("m04", 2.8), ("m05", 4.0), ("m06", 1.6), ("m07", 0.4), ("m07", 2.8),
+         ("m08", 1.6), ("m08", 4.0), ("m09", 4.0), ("v01", 3.4), ("v02", 3.4), ("v03", 3.4), ("m03", 4.0), ("m02", 5.4), ("m06", 5.6),
+         ("m01", 5.8), ("m05", 5.8)]
+for k, (r, t) in enumerate(ALTRI):
+    foto(f"wx{k + 1:02d}", mio(r), t, "crop=270:480:45:0" if r.startswith("m") else "scale=270:480:flags=lanczos", f"muro: il tuo reel {r} a {t} s")
 json.dump(REG, open(os.path.join(C7, "assets", "_sorgenti.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
 print("ok", len(REG))
