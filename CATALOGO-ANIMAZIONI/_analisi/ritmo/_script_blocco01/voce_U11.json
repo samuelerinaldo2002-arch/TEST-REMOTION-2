@@ -1,0 +1,44 @@
+{
+ "id": "U11",
+ "scena": {
+  "t0": 42.35,
+  "t1": 46.15,
+  "frase": "«Ora prendi la prima bozza e pubblicala come reel di prova.»",
+  "script": "03/10 · 14,9–18,3 s della voce",
+  "kallaway": {
+   "reel": 65,
+   "t0": 18.29,
+   "t1": 20.25
+  }
+ },
+ "voto": {
+  "voti": {
+   "movimento": 5,
+   "materiali": 5,
+   "frame": 4,
+   "brand": 5
+  },
+  "template": "TPL.U11 (kw-kit/kit2-tpl-ui.js)",
+  "scena": "CATALOGO-ANIMAZIONI/ritmo-01 42,35–46,15 s (03/10): «Nuovo reel» con la tua copertina (la copia 1), il dito accende «Reel di prova» e preme Condividi, il reel esce con l'etichetta PROVA",
+  "confronto": "_analisi/ritmo/blocco01/K_U03_r65.jpg (riferimento: Share premuto sulla schermata ferma) · _analisi/ritmo/deriva/U11_ritmo01.jpg · _analisi/ritmo/pop/U11_ritmo01_reel.jpg · _analisi/ritmo/pop/U11_ritmo01_reel.jpg · U11_ritmo01_tag.jpg",
+  "misure": {
+   "movimento principale": "arrivo di lato 175 px: 148 px/s a 0,25 s → 0,7 a 1 s, expo.out; poi ferma (+0,4%)",
+   "Kallaway (reel 65)": "schermata ferma dopo il taglio (9 px), il puntatore va su Share e clicca: il bottone cambia colore",
+   "reel che esce (pop.py)": "scala 0,38 → 1,00 in 0,43 s, 266 px, rimbalzo 0% (power3.out 0,55 s)",
+   "accenti": "interruttore su «pubblicala», Condividi su «reel»: il reel atterra e l'etichetta PROVA compare 0,8 s prima del taglio",
+   "rimbalzo": "0 (pop.py, strisce guardate)",
+   "scena": "3,8 s",
+   "telefono (regia 13/10)": "0,435 della larghezza (471 px; schermo 0,415), bordo alto a y 365, intero: Condividi finisce a y ~1277, sopra la banda; il reel pubblicato atterra a destra: telefono + reel occupano ~750 px · K (reel 65): schermo 0,415 (448 px) · prima: 0,376 (406 px)",
+   "pop.py · l'etichetta PROVA (regia 13/10)": "0,90 → 1,00 in 0,13 s (popK 0,8 → 1 in 0,18 s), rimbalzo 0,4% (rumore) · K: badge 0,66 → 1,00 in 0,13 s, rimbalzo 0% (reel 1)"
+  },
+  "manca": "l'interruttore si accende su «pubblicala» e non su «reel di prova» (sulla parola giusta il reel pubblicato si vedrebbe solo 0,1 s prima del taglio); telefono al 43,5% della larghezza come lo schermo del reel 65 (più grande Condividi finirebbe sotto y 1290)",
+  "da_fare": "",
+  "fatto": "template TPL.U11 con la scheda (prova o normale); tplReelCard e tplTagReel in kit2-tpl-ui.js; DOPO in ritmo-clip/U11_dopo.mp4 · regia 13/10: telefono nella proporzione del reel 65 (scala / alto / sfuma, default nuovo solo con KW_RITMO)"
+ },
+ "riga": {
+  "stato": "**fatto** (blocco 1)",
+  "template": "TPL.U11 · ritmo-01 42,35–46,15 s (03/10 «Ora prendi la prima bozza e pubblicala come reel di prova.»)",
+  "numeri": "telefono 0,435 della larghezza (K r65 schermo 0,415; prima 0,376) · arrivo 175 px expo.out 148 → 0,7 px/s · reel che esce e PROVA senza rimbalzo (pop.py) · camera poi ferma (K r65 ferma)",
+  "voto": "5·5·4·5"
+ }
+}

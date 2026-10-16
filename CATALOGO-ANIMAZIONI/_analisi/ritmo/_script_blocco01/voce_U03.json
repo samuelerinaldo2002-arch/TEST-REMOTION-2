@@ -1,0 +1,46 @@
+{
+ "id": "U03",
+ "scena": {
+  "t0": 19.15,
+  "t1": 26.95,
+  "frase": "«Per farne una, vai sul sito pfpmaker.com, carica una foto che ti faccia sembrare meglio di quello che sei e poi seleziona il tuo sfondo colorato.»",
+  "script": "05/10 · 47,3–54,8 s della voce",
+  "kallaway": {
+   "reel": 133,
+   "t0": 13.514,
+   "t1": 15.95
+  }
+ },
+ "voto": {
+  "voti": {
+   "movimento": 5,
+   "materiali": 5,
+   "frame": 4,
+   "brand": 5
+  },
+  "template": "TPL.U03 (kw-kit/kit2-tpl-ui.js)",
+  "scena": "CATALOGO-ANIMAZIONI/ritmo-01 19,15–26,95 s (05/10, pfpmaker): la foto caricata è un fotogramma di un tuo reel (v02), il risultato la tua foto profilo vera (sfondo lime)",
+  "confronto": "_analisi/ritmo/blocco01/K_U03_r65.jpg · K_U03_r133.jpg · _analisi/ritmo/deriva/K_U03_r65.jpg · K_U03_r133.jpg · U03_ritmo01.jpg · U03_ritmo01_seconda.jpg · _analisi/ritmo/pop/U03_ritmo01_foto.jpg",
+  "misure": {
+   "camera dopo il taglio": "ferma: +0,77% in 3 s, centro 0 px (deriva.py sulla finestra, esclusi foto, barra e cursore)",
+   "Kallaway (reel 65 · reel 133)": "ferma: 9 px · 0 px dopo il taglio; si muove solo il cursore",
+   "prima stesura (zoom d'arrivo +15%)": "+10,7% nei primi 0,25 s: Kallaway non lo fa → camera ferma",
+   "cursore": "entra al taglio e frena sulla barra (0,6 s power2.out: metà strada a 0,12 s), poi sul bottone su «carica» e sul lime su «sfondo»",
+   "Kallaway cursore (reel 133, dal foglio)": "metà strada in ~0,125 s, ~0,75 s in tutto, ~430 px, poi 0,35 s fermo prima del clic",
+   "seconda inquadratura": "+11,7% in 0,6 s power2.out (163 → 6 px/s a 0,25/1 s) sulla seconda cosa detta (lo sfondo); la barra dell'indirizzo si spegne per non passare sotto il titolo",
+   "clic": "bottone blu → lime con la spunta; colore scelto con l'anello bianco; la foto passa a quella col fondo lime con un disco F02 dietro",
+   "rimbalzo": "0 (click() del kit usava back.out(3): con KW_RITMO power2.out)",
+   "scena": "7,8 s (una frase sola, con la seconda inquadratura: R1 consente 7–8 s)",
+   "pop.py · la foto caricata (regia 13/10)": "0,95 → 1,00 in 0,13 s dal clic, rimbalzo 0% · K: badge 0,66 → 1,00 in 0,13 s, rimbalzo 0% (reel 1)"
+  },
+  "manca": "la pagina di pfpmaker è ricostruita (non è uno screenshot del sito vero); il titolo compare solo su «vai» (0,95 s dopo il taglio), perché la frase comincia con «Per farne una»",
+  "da_fare": "",
+  "fatto": "template TPL.U03 con la scheda; cursor().moveTo(t, x, y, dur, ease) con l'ease in coda (default power3.inOut di prima); DOPO in ritmo-clip/U03_dopo.mp4"
+ },
+ "riga": {
+  "stato": "**fatto** (blocco 1)",
+  "template": "TPL.U03 · ritmo-01 19,15–26,95 s (05/10 «…vai sul sito pfpmaker.com, carica una foto… seleziona il tuo sfondo colorato.»)",
+  "numeri": "camera ferma +0,8% (K 0–9 px) · cursore al taglio, metà strada 0,12 s (K ~0,125 s) · seconda inquadratura +11,7% · rimbalzo 0 (pop.py, strisce guardate)",
+  "voto": "5·5·4·5"
+ }
+}

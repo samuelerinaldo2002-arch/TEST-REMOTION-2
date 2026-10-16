@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>Lab D13 · ritmo come Kallaway (dopo)</title>
+    <script src="assets/vendor/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Advercase"; src: url("assets/fonts/Advercase-Bold.ttf") format("truetype"); font-weight: 700; font-style: normal; font-display: block; }
+      @font-face { font-family: "Advercase"; src: url("assets/fonts/Advercase-Regular.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: block; }
+      @font-face { font-family: "Patrick Hand"; src: url("assets/fonts/PatrickHand-Regular.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: block; }
+      @font-face { font-family: "Zalando Sans"; src: url("assets/fonts/ZalandoSans-Variable.ttf") format("truetype"); font-weight: 100 900; font-style: normal; font-display: block; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: #1e1e1e; }
+      body { font-family: "Zalando Sans", sans-serif; color: #f4f4f2; -webkit-font-smoothing: antialiased; }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; background: #1e1e1e; }
+      .clip { position: absolute; inset: 0; overflow: hidden; }
+      #glow { position: absolute; inset: 0; opacity: 0.35; background: radial-gradient(58% 32% at 50% 46%, rgba(207, 251, 80, 0.08), rgba(207, 251, 80, 0) 70%); }
+      #vignette { position: absolute; inset: 0; background: radial-gradient(110% 78% at 50% 44%, rgba(0, 0, 0, 0) 44%, rgba(0, 0, 0, 0.62) 100%); }
+      .cam { position: absolute; left: 540px; top: 880px; width: 1px; height: 1px; }
+      .layer { position: absolute; left: 0; top: 0; width: 1px; height: 1px; }
+      #dots { position: absolute; left: -6000px; top: -6000px; width: 40000px; height: 20000px; background-image: radial-gradient(circle, rgba(255, 255, 255, 0.095) 1.25px, rgba(255, 255, 255, 0) 1.95px); background-size: 24px 24px; }
+      #stage { position: absolute; inset: 0; overflow: hidden; }
+      #safe { position: absolute; inset: 0; -webkit-mask-image: linear-gradient(to bottom, #000 0px, #000 1385px, transparent 1450px); mask-image: linear-gradient(to bottom, #000 0px, #000 1385px, transparent 1450px); }
+      #mbwrap, #shake { position: absolute; inset: 0; }
+      #hud { position: absolute; inset: 0; }
+    </style>
+  </head>
+  <body>
+        <div id="root" data-composition-id="main" data-start="0" data-duration="6.4" data-width="1080" data-height="1920">
+      <div id="bg" class="clip" data-start="0" data-duration="6.4" data-track-index="0">
+        <div class="cam" id="gcam2" data-layout-allow-overflow><div class="layer" id="gzoom2"><div class="layer" id="gpan2"><div class="layer" id="bokeh"></div></div></div></div>
+        <div class="cam" id="gcam" data-layout-allow-overflow><div class="layer" id="gzoom"><div class="layer" id="gpan"><div id="dots"></div></div></div></div>
+        <div id="glow"></div>
+        <div id="vignette"></div>
+      </div>
+      <div id="stage">
+        <svg width="0" height="0" style="position: absolute" aria-hidden="true">
+          <filter id="mb" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur id="mbn" in="SourceGraphic" stdDeviation="0 0" /></filter>
+        </svg>
+        <div id="safe"><div id="mbwrap"><div id="shake"><div class="cam" id="cam" data-layout-allow-overflow><div class="layer" id="zoom"><div class="layer" id="pan"></div></div></div></div></div></div>
+      </div>
+      <div id="hudclip" class="clip" data-start="0" data-duration="6.4" data-track-index="2">
+        <div id="hud"></div>
+      </div>
+      <!--SFX
+        # D13 dopo: taglio, la barra sale, arrivo in cima
+        1.0 whoosh .14 ; 1.05 rise .06 ; 3.3 ding .1
+      -->
+    </div>
+    <script>
+      (() => {
+        const ICON = __ICONS__;
+        /*__KIT__*/
+
+        const L = layer(10);
+        const S = svgLayer(L, 6, -60000, -60000, 200000, 200000);
+        const head = (t, lines, times, out, size) => { const T = titleW({ lines, size: size || 80 }); T.inAt(times || t); if (out) T.outAt(out); return T; };
+        const Y = 900;
+        camInit(540, 900, 1);
+
+        // ═══ D13 · O07 "DOPO" — stesse parti della demo-6 (68,6 – 74), ritmo misurato sul reel 72 di Kallaway ═══
+        // Il taglio è a T0 = 1,0 s: nel secondo prima la scena si monta sotto una copertina (fotogramma del taglio già pieno,
+        // come il reel 72). Nel confronto si usa il render da 1,0 s. Nessuna funzione del kit cambia: le differenze sono qui.
+        const T0 = 1.0;
+        const X = 600;
+        const ld = ladder(L, X + 130, Y + 500, ["Ti scopre", "Ti segue", "Si fida", "Ti scrive", "Compra"], { gap: 180, w: 480, fs: 32 });
+        const th = thermo(L, X - 300, Y - 300, Y + 470, { w: 48, etichette: ["Base", "Ultimo gradino"] });
+        const thFill = L.children[L.children.length - 4].firstChild; // il riempimento lime del tubo (thermo non lo espone)
+        // 1) prima del taglio: scala e termometro già costruiti; i nomi dei gradini già scritti, attenuati (reel 72: si leggono
+        //    da subito e cambiano colore quando la barra li raggiunge)
+        ld.build(0.1, 0.5);
+        th.show(0.1);
+        ld.tags.forEach((g) => { g.nm.textContent = g.tx.toUpperCase(); gsap.set(g.nm, { opacity: 0.42 }); });
+        const cover = el(document.getElementById("hud"), { position: "absolute", left: 0, top: 0, width: 1080, height: 1920, background: "#1e1e1e", zIndex: 99 });
+        tl.set(cover, { opacity: 0 }, T0);
+        // 2) UN movimento principale, subito dopo il taglio: la barra sale a velocità costante (reel 72: lineare, 2,25 s) e ogni
+        //    gradino si accende quando la barra lo raggiunge (quota del gradino sul tubo)
+        const FILL = 2.25, yTop = Y - 300, yBot = Y + 470;
+        tl.to(thFill, { scaleY: 1, duration: FILL, ease: "none" }, T0 + 0.05);
+        [0, 1, 2, 3, 4].forEach((i) => {
+          const f = Math.max(0, (yBot - (Y + 500 - i * 180)) / (yBot - yTop));
+          const t = T0 + 0.05 + FILL * f;
+          const [g, b, c] = ld.rungs[i];
+          tl.to([g], { attr: { opacity: 0.4 }, duration: 0.2 }, t);
+          tl.to([b], { attr: { opacity: 1 }, duration: 0.2 }, t);
+          tl.to([c], { attr: { opacity: 0.9 }, duration: 0.2 }, t);
+          tl.to(ld.tags[i].lvl, { opacity: 1, duration: 0.2 }, t);
+          tl.to(ld.tags[i].nm, { opacity: 1, duration: 0.2 }, t);
+        });
+        // 3) camera: avvicinamento che frena (reel 72: +9,6% in 2,4 s, power2.out, il contenuto scivola un po' a destra e in
+        //    basso = verso la cima del termometro), poi quasi ferma (residuo di ~1% che si spegne: la scena si legge)
+        const p = cutRect(T0, [X - 470, Y - 440, X + 450, Y + 620], { top: 380 });
+        camK(T0, 2.4, p.fx - 60 / p.s, p.fy - 18 / p.s, p.s * 1.09, "power2.out");
+        camK(T0 + 2.4, 2.95, CAM.fx - 8 / CAM.s, CAM.fy - 4 / CAM.s, CAM.s * 1.01, "sine.out");
+        head(T0 + 0.05, [[{ t: "Dalla base " }], [{ t: "all'ultimo gradino", box: true }]], [T0 + 0.05, T0 + 0.2, T0 + 0.35, T0 + 0.5], T0 + 4.95);
+
+        window.__timelines = window.__timelines || {};
+        window.__timelines["main"] = tl;
+      })();
+    </script>
+  </body>
+</html>

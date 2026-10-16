@@ -1,0 +1,28 @@
+{
+ "id": "A01",
+ "scena": {"t0": 1.0, "t1": 5.95, "frase": "«Non ti mancano le idee. Stai guardando i contenuti degli altri invece di fare i tuoi.»", "script": "02/10 · 0–4,4 s della voce", "kallaway": {"reel": 25, "t0": 0.0, "t1": 3.0}},
+ "voto": {
+  "voti": {"movimento": 5, "materiali": 5, "frame": 4, "brand": 5},
+  "template": "TPL.A01 (kw-kit/kit2-tpl-aperture.js, file nuovo)",
+  "scena": "CATALOGO-ANIMAZIONI/ritmo-03 1,0–5,95 s (02/10, «Non ti mancano le idee. Stai guardando i contenuti degli altri invece di fare i tuoi.»): muro 3 × 2 di reel veri di altri creator (Steven Bartlett, Dan Koe, Tony Robbins, Hormozi, GaryVee) con le visualizzazioni vere; i badge poppano su «contenuti», su «tuoi» il muro si spegne e davanti compare il tuo posto vuoto con la tua foto e il «+»",
+  "confronto": "_analisi/ritmo/blocco03/K_A01_r25.jpg · K_A01_r84.jpg · K_A01_r96.jpg · K_D02_r1.jpg · D2_a.jpg (DOPO) · _analisi/ritmo/deriva/A01_ritmo03.jpg · _analisi/ritmo/pop/A01_ritmo03_badge.jpg · A01_ritmo03_tuo.jpg",
+  "misure": {
+   "movimento principale (deriva.py, maschera sul muro: i bordi delle card gialli nella verifica, i video dentro cambiano)": "zoom d'arrivo +9,4% in ~0,3 s, expo.out (angoli 109 → 4 px/s a 0,25 / 1 s), poi la camera ferma (+9,5% a 2 s)",
+   "Kallaway (reel 25, 84, 96 ai primi 3 s)": "la griglia 3 × 2 si costruisce in 0,25–0,4 s dal fotogramma 0 (card sfocate a cascata), camera ferma, i badge verdi a ~1,0–1,6 s; stacco sul volto a ~3 s",
+   "badge views (pop.py sui soli pixel lime)": "visibile da 0,96 → 1,00 in 0,03 s (popK 0,66 → 1 in 0,13 s insieme all'opacità), rimbalzo 0%; uno ogni 0,08 s, prima la riga in alto · K reel 1: 0,66 → 1 in 0,13 s, 0,07–0,13 s fra uno e l'altro, 0%",
+   "il tuo posto (pop.py sui soli pixel lime)": "0,96 → 1,00, rimbalzo 0%, spostamento 2 px",
+   "proporzioni (ingombro.py)": "muro 0,66 della larghezza dopo lo zoom (0,59 al taglio), y 400–1244 · K reel 1 0,68 (y 254–1236 col titolo); reel 84 a tutto schermo su fondo chiaro",
+   "rimbalzo": "0",
+   "scena": "4,95 s"
+  },
+  "manca": "Kallaway costruisce la griglia nei primi 0,3 s; qui (R2) la griglia è già piena al taglio e il movimento principale è lo zoom d'arrivo. Le clip degli altri creator sono spezzoni di YouTube Shorts (_clip-esterni): le visualizzazioni sono quelle vere di YouTube al download (1–6/10), in assets/clips/alt/_sorgenti.json",
+  "da_fare": "",
+  "fatto": "template TPL.A01 con la scheda (kit2-tpl-aperture.js); DOPO in ritmo-clip/A01_dopo.mp4"
+ },
+ "riga": {
+  "stato": "**fatto** (blocco 3)",
+  "template": "TPL.A01 · ritmo-03 1,0–5,95 s (02/10 «Non ti mancano le idee. Stai guardando i contenuti degli altri invece di fare i tuoi.»)",
+  "numeri": "zoom d'arrivo +9,4% in 0,3 s expo.out, poi ferma (K: griglia costruita in 0,3 s, camera ferma) · badge 0,66 → 1 in 0,13 s, uno ogni 0,08 s, rimbalzo 0 (pop.py; K r1 0,66 → 1 in 0,13 s, 0,07–0,13 s) · muro 0,66 della larghezza (K r1 0,68) · visualizzazioni vere",
+  "voto": "5·5·4·5"
+ }
+}

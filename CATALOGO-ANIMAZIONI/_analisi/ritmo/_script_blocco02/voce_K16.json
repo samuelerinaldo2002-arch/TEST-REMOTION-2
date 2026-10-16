@@ -1,0 +1,28 @@
+{
+ "id": "K16",
+ "scena": {"t0": 45.6, "t1": 51.2, "frase": "«(Infine,) organizza tutto in un calendario, alternando i filoni durante la settimana per non ripetere sempre lo stesso tema.»", "script": "15/10 · 29,7–34,9 s della voce", "kallaway": {"reel": 35, "t0": 0.16, "t1": 2.9}},
+ "voto": {
+  "voti": {"movimento": 5, "materiali": 4, "frame": 4, "brand": 5},
+  "template": "TPL.K16 (kw-kit/kit2-tpl-camera.js)",
+  "scena": "CATALOGO-ANIMAZIONI/ritmo-02 45,6–51,2 s (15/10, «…organizza tutto in un calendario, alternando i filoni durante la settimana per non ripetere sempre lo stesso tema.»): la camera spinge piano sulla settimana mentre si compila: le copertine dei tuoi reel nei giorni su «calendario», i filoni alternati su «alternando», «Profilo» (lunedì e venerdì, mai vicini) si accende su «stesso»",
+  "confronto": "_analisi/ritmo/blocco02/K_L12_r35.jpg (= K16 reel 35) · K_L12_r26.jpg · _analisi/ritmo/deriva/K_K16_r35.jpg · K_K16_r35_v.jpg · K16_ritmo02.jpg · K16_ritmo02_v.jpg · _analisi/ritmo/pop/K16_ritmo02_filone.jpg",
+  "misure": {
+   "movimento principale (deriva.py, maschera sulla scheda, pannello giallo)": "spinta dal taglio: +14,4% dal primo fotogramma (15% in tutto) in 2 s, +12,5% a 1 s, power3.out ≈ power2.out; angoli 115 → 37 → 0 px/s a 0,25 / 1 / 2 s; poi coda +1%",
+   "Kallaway (reel 35, il copione)": "+15,8% in ~2 s (deriva.py, angoli 163 → 102 → 120 px/s, comprende l'arrivo); il bordo del documento da 0,96 a 2,04 s: 518 → 574 px (+10,8%), rallenta (+6%, +3%, +1,4%); reel 26: solo l'arrivo che si spegne in ~1 s",
+   "accenti": "copertine nei giorni su «calendario» (popK sfalsati di 0,08 s), filoni su «alternando» (0,1 s), «Profilo» lime nei suoi due giorni su «stesso»",
+   "pop.py · la pill «Profilo» del lunedì (solo i pixel bianchi)": "0,98 → 1,00 in 0,05 s, rimbalzo 0%",
+   "proporzioni (ingombro.py)": "scheda 0,50 → 0,56 della larghezza con la spinta, y 400–1218 · K reel 35: documento 0,48 → 0,53 · prima stesura con le pill piccole (metà riga vuota): pill e giorni ingranditi",
+   "rimbalzo": "0",
+   "scena": "5,6 s"
+  },
+  "manca": "le copertine nei giorni sono statiche (th-mio_*), non video, per non pesare sul render (49 video in ritmo-02); la scheda verticale con 7 giorni resta stretta come il copione di Kallaway (0,5 della larghezza): il testo delle pill è piccolo sul telefono",
+  "da_fare": "",
+  "fatto": "template TPL.K16 con la scheda (kit2-tpl-camera.js), spinta() di kit2-ritmo con +15% in 2 s; DOPO in ritmo-clip/K16_dopo.mp4"
+ },
+ "riga": {
+  "stato": "**fatto** (blocco 2)",
+  "template": "TPL.K16 · ritmo-02 45,6–51,2 s (15/10 «…organizza tutto in un calendario, alternando i filoni durante la settimana…»)",
+  "numeri": "spinta +15% in 2 s power2/3.out, 115 → 37 → 0 px/s (K r35 +15,8% in ~2 s, il documento +10,8% e rallenta) · tre accenti sulle parole, pill senza rimbalzo (pop.py) · scheda 0,50 → 0,56 della larghezza (K r35 0,48 → 0,53)",
+  "voto": "5·4·4·5"
+ }
+}

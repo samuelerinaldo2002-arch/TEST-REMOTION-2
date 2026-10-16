@@ -1,0 +1,44 @@
+{
+ "id": "L09",
+ "scena": {
+  "t0": 36.65,
+  "t1": 39.5,
+  "frase": "«Scegli i tuoi filoni tematici dentro la tua nicchia.»",
+  "script": "15/10 · 16,1–18,3 s della voce",
+  "kallaway": {
+   "reel": 3,
+   "t0": 20.5,
+   "t1": 23.2
+  }
+ },
+ "voto": {
+  "voti": {
+   "movimento": 5,
+   "materiali": 5,
+   "frame": 4,
+   "brand": 5
+  },
+  "template": "TPL.L09 (kw-kit/kit2-tpl-liste.js)",
+  "scena": "CATALOGO-ANIMAZIONI/ritmo-02 36,65–39,5 s (15/10, «Scegli i tuoi filoni tematici dentro la tua nicchia.»): la radice «La tua nicchia», i rami crescono al taglio verso i filoni dei tuoi script (profilo, algoritmo, idee, psicologia), sotto ognuno un tuo reel vero su quel tema; la radice si accende su «nicchia»",
+  "confronto": "_analisi/ritmo/blocco02/K_L09_r3.jpg · K_L09_r23.jpg · K_L09_r68.jpg · L09_ritmo02_crescita_moto.json · K_L09_r3_crescita_moto.json · _analisi/ritmo/pop/L09_ritmo02_reel.jpg",
+  "misure": {
+   "al taglio": "la radice e i quattro filoni (sfocati, segnaposto L01) ci sono già; i rami partono al primo fotogramma",
+   "movimento principale (moto.py)": "crescita: linee 0,35 s sfalsate di 0,06 s, ogni filone a fuoco quando la linea lo raggiunge (0,25 s power2.out), finita a ~0,75 s dal taglio; poi i reel su «filoni» (movimento 36,7–37,53 s) · K reel 3: un livello cresce in ~0,5 s (22,16–22,62 s), linee 0,3–0,5 s; reel 23: i figli coi reel veri sotto",
+   "accenti": "i quattro reel compaiono sotto i rami su «filoni» (popK sfalsati di 0,05 s); la radice s'illumina su «nicchia»",
+   "pop.py · il reel del ramo «Profilo»": "entra a +0,13 s quasi pieno e si ferma a scala 1,00, rimbalzo 0% (striscia guardata: il video cambia inquadratura a +0,37 s)",
+   "proporzioni (ingombro.py)": "albero largo 0,79 della larghezza, y 457–1198 · K reel 3: 0,64 a 24,6 s · prima stesura con due reel piccoli per ramo: alta la metà (rifatta con un reel grande per ramo)",
+   "camera": "ferma (il movimento è la crescita), deriva 1,2%",
+   "rimbalzo": "0 (niente scala sui nodi: vanno a fuoco)",
+   "scena": "2,85 s"
+  },
+  "manca": "la scena è corta (la frase dura 2,2 s): in un reel si può unire alla frase dopo («Cerca argomenti e formati…») con un secondo livello di rami; i filoni sono quelli dei tuoi script, i reel sono spezzoni dei tuoi reel di ottobre su quei temi",
+  "da_fare": "",
+  "fatto": "template TPL.L09 con la scheda (kit2-tpl-liste.js), usa flowTree() del kit (i rami li disegna il template: i filoni sfocati sono già lì al taglio); DOPO in ritmo-clip/L09_dopo.mp4"
+ },
+ "riga": {
+  "stato": "**fatto** (blocco 2)",
+  "template": "TPL.L09 · ritmo-02 36,65–39,5 s (15/10 «Scegli i tuoi filoni tematici dentro la tua nicchia.»)",
+  "numeri": "filoni sfocati già al taglio, rami 0,35 s sfalsati di 0,06 s, a fuoco in ~0,75 s (K r3 un livello in ~0,5 s) · reel sotto i rami senza rimbalzo (pop.py) · albero 0,79 della larghezza (K r3 0,64) · camera ferma",
+  "voto": "5·5·4·5"
+ }
+}

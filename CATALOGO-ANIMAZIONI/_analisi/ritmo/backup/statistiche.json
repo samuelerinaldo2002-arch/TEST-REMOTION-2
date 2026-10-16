@@ -1,0 +1,250 @@
+{
+ "giu-ott-dark": {
+  "reel": 105,
+  "minuti": 158.2,
+  "tagli_al_minuto": 12.78,
+  "durata_segmenti_grafica_s": {
+   "mediana": 4.463,
+   "p25": 2.878,
+   "p75": 6.712,
+   "n": 971
+  },
+  "durata_segmenti_piena_s": {
+   "mediana": 2.92,
+   "n": 863
+  },
+  "quota_tempo": {
+   "grafica": 0.561,
+   "piena": 0.294,
+   "light": 0.146
+  },
+  "durata_segmenti_light_s": {
+   "mediana": 4.505,
+   "n": 293
+  },
+  "camera_in_moto_nelle_grafiche": {
+   "mediana": 0.589,
+   "p25": 0.385
+  },
+  "arrivi_in_moto": {
+   "n": 165,
+   "su_segmenti_grafica": 971,
+   "v0_px_s_mediana": 1410.0,
+   "decadimento_90_s_mediana": 0.32,
+   "decadimento_p25_p75": [
+    0.125,
+    0.44
+   ],
+   "spostamento_px_mediana": 333.0
+  },
+  "movimenti": {
+   "n": 5750,
+   "durata_mediana_s": 0.708,
+   "durata_p25_p75": [
+    0.292,
+    1.292
+   ],
+   "veloci_n": 402,
+   "veloci_durata_mediana_s": 1.167,
+   "veloci_picco_a_mediana": 0.2,
+   "zoom_in_frac": 0.203,
+   "zoom_out_frac": 0.228,
+   "easing": {
+    "linear": 987,
+    "sine.out": 821,
+    "power1.out": 692,
+    "power2.out": 668,
+    "power3.out": 266,
+    "power1.in": 260,
+    "sine.inOut": 167,
+    "expo.out": 138
+   }
+  }
+ },
+ "mag-misto": {
+  "reel": 28,
+  "minuti": 46.0,
+  "tagli_al_minuto": 16.43,
+  "durata_segmenti_grafica_s": {
+   "mediana": 3.75,
+   "p25": 1.897,
+   "p75": 5.625,
+   "n": 211
+  },
+  "durata_segmenti_piena_s": {
+   "mediana": 2.461,
+   "n": 352
+  },
+  "quota_tempo": {
+   "grafica": 0.318,
+   "piena": 0.382,
+   "light": 0.3
+  },
+  "durata_segmenti_light_s": {
+   "mediana": 3.357,
+   "n": 220
+  },
+  "camera_in_moto_nelle_grafiche": {
+   "mediana": 0.529,
+   "p25": 0.251
+  },
+  "arrivi_in_moto": {
+   "n": 22,
+   "su_segmenti_grafica": 211,
+   "v0_px_s_mediana": 1242.5,
+   "decadimento_90_s_mediana": 0.48,
+   "decadimento_p25_p75": [
+    0.177,
+    0.698
+   ],
+   "spostamento_px_mediana": 336.5
+  },
+  "movimenti": {
+   "n": 1658,
+   "durata_mediana_s": 0.625,
+   "durata_p25_p75": [
+    0.209,
+    1.323
+   ],
+   "veloci_n": 103,
+   "veloci_durata_mediana_s": 1.126,
+   "veloci_picco_a_mediana": 0.31,
+   "zoom_in_frac": 0.206,
+   "zoom_out_frac": 0.172,
+   "easing": {
+    "linear": 311,
+    "sine.out": 235,
+    "power1.out": 169,
+    "power2.out": 136,
+    "power3.out": 74,
+    "power1.in": 45,
+    "sine.inOut": 41,
+    "expo.out": 34
+   }
+  }
+ },
+ "apr-light": {
+  "reel": 11,
+  "minuti": 14.8,
+  "tagli_al_minuto": 24.92,
+  "durata_segmenti_grafica_s": {
+   "mediana": 2.002,
+   "p25": 1.082,
+   "p75": 2.96,
+   "n": 95
+  },
+  "durata_segmenti_piena_s": {
+   "mediana": 1.71,
+   "n": 181
+  },
+  "quota_tempo": {
+   "grafica": 0.243,
+   "piena": 0.445,
+   "light": 0.313
+  },
+  "durata_segmenti_light_s": {
+   "mediana": 2.346,
+   "n": 104
+  },
+  "camera_in_moto_nelle_grafiche": {
+   "mediana": 0.684,
+   "p25": 0.369
+  },
+  "arrivi_in_moto": {
+   "n": 7,
+   "su_segmenti_grafica": 95,
+   "v0_px_s_mediana": 1025.0,
+   "decadimento_90_s_mediana": 0.125,
+   "decadimento_p25_p75": [
+    0.083,
+    0.208
+   ],
+   "spostamento_px_mediana": 317.0
+  },
+  "movimenti": {
+   "n": 635,
+   "durata_mediana_s": 0.542,
+   "durata_p25_p75": [
+    0.167,
+    1.25
+   ],
+   "veloci_n": 62,
+   "veloci_durata_mediana_s": 0.962,
+   "veloci_picco_a_mediana": 0.31,
+   "zoom_in_frac": 0.233,
+   "zoom_out_frac": 0.169,
+   "easing": {
+    "linear": 128,
+    "power1.out": 76,
+    "sine.out": 73,
+    "power2.out": 50,
+    "power3.out": 21,
+    "power1.in": 19,
+    "sine.inOut": 13,
+    "expo.out": 11
+   }
+  }
+ },
+ "feb-podcast": {
+  "reel": 6,
+  "minuti": 6.3,
+  "tagli_al_minuto": 21.38,
+  "durata_segmenti_grafica_s": {
+   "mediana": 2.502,
+   "p25": 1.233,
+   "p75": 3.533,
+   "n": 129
+  },
+  "durata_segmenti_piena_s": {
+   "mediana": 0.133,
+   "n": 4
+  },
+  "quota_tempo": {
+   "grafica": 0.992,
+   "piena": 0.001,
+   "light": 0.006
+  },
+  "durata_segmenti_light_s": {
+   "mediana": 0.834,
+   "n": 3
+  },
+  "camera_in_moto_nelle_grafiche": {
+   "mediana": 0.807,
+   "p25": 0.603
+  },
+  "arrivi_in_moto": {
+   "n": 4,
+   "su_segmenti_grafica": 129,
+   "v0_px_s_mediana": 1001.5,
+   "decadimento_90_s_mediana": 0.133,
+   "decadimento_p25_p75": [
+    0.108,
+    0.133
+   ],
+   "spostamento_px_mediana": 405.0
+  },
+  "movimenti": {
+   "n": 617,
+   "durata_mediana_s": 0.133,
+   "durata_p25_p75": [
+    0.133,
+    0.233
+   ],
+   "veloci_n": 2,
+   "veloci_durata_mediana_s": 0.15,
+   "veloci_picco_a_mediana": 0.25,
+   "zoom_in_frac": 0.062,
+   "zoom_out_frac": 0.076,
+   "easing": {
+    "linear": 44,
+    "sine.out": 29,
+    "power1.out": 26,
+    "power2.out": 16,
+    "power1.in": 12,
+    "sine.inOut": 4,
+    "expo.out": 2,
+    "power3.out": 2
+   }
+  }
+ }
+}

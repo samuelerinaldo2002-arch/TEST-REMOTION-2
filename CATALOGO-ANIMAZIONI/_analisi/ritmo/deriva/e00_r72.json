@@ -1,0 +1,214 @@
+{
+ "voce": "e00_r72",
+ "sorgente": "Kallaway reel 72",
+ "fps": 24.0,
+ "t_taglio": 9.333,
+ "f0": 9.375,
+ "durata_misurata": 0.5,
+ "nostro": false,
+ "maschera": [
+  [
+   0,
+   58,
+   1080,
+   1017
+  ]
+ ],
+ "escludi": [
+  [
+   200.0,
+   150.0,
+   140.0,
+   930.0
+  ]
+ ],
+ "scala_finale_%": 1.5,
+ "scala_a_1s_%": null,
+ "scala_a_2s_%": null,
+ "centro_finale_px": [
+  46.9,
+  4.8
+ ],
+ "angoli_finale_px": 32.1,
+ "vel_angoli_px_s": {
+  "0.25": 62.27
+ },
+ "vel_scala_%_s": {
+  "0.25": 1.88
+ },
+ "curva": "sine.out",
+ "err_curva": 0.0737,
+ "curve_vicine": {
+  "sine.out": 0.0737,
+  "linear": 0.0789,
+  "power1.out": 0.0997,
+  "sine.inOut": 0.117
+ },
+ "inlier_mediana": 0.908,
+ "fotogrammi_falliti": 46,
+ "serie": [
+  {
+   "t": 0.0,
+   "scala_%": 0.0,
+   "rot": 0.0,
+   "dx": 0.0,
+   "dy": 0.0,
+   "angoli_px": 0.0,
+   "inlier": 1.0
+  },
+  {
+   "t": 0.0417,
+   "scala_%": 0.373,
+   "rot": -0.0,
+   "dx": 4.75,
+   "dy": 0.49,
+   "angoli_px": 3.76,
+   "inlier": 0.9936762240415912
+  },
+  {
+   "t": 0.0833,
+   "scala_%": 0.857,
+   "rot": -0.013,
+   "dx": 9.59,
+   "dy": 0.93,
+   "angoli_px": 7.83,
+   "inlier": 0.9805978251322632
+  },
+  {
+   "t": 0.125,
+   "scala_%": 1.357,
+   "rot": -0.024,
+   "dx": 13.92,
+   "dy": 1.36,
+   "angoli_px": 11.64,
+   "inlier": 0.964786925349801
+  },
+  {
+   "t": 0.1667,
+   "scala_%": 1.517,
+   "rot": -0.04,
+   "dx": 17.79,
+   "dy": 1.8,
+   "angoli_px": 14.38,
+   "inlier": 0.9479054032116199
+  },
+  {
+   "t": 0.2083,
+   "scala_%": 1.63,
+   "rot": -0.054,
+   "dx": 21.81,
+   "dy": 2.3,
+   "angoli_px": 17.14,
+   "inlier": 0.9278003582297069
+  },
+  {
+   "t": 0.25,
+   "scala_%": 1.733,
+   "rot": -0.075,
+   "dx": 25.69,
+   "dy": 2.63,
+   "angoli_px": 19.76,
+   "inlier": 0.9081521245474983
+  },
+  {
+   "t": 0.2917,
+   "scala_%": 1.823,
+   "rot": -0.092,
+   "dx": 28.89,
+   "dy": 3.15,
+   "angoli_px": 21.97,
+   "inlier": 0.8888458533626117
+  },
+  {
+   "t": 0.3333,
+   "scala_%": 1.869,
+   "rot": -0.113,
+   "dx": 31.97,
+   "dy": 3.5,
+   "angoli_px": 23.95,
+   "inlier": 0.8706744863641906
+  },
+  {
+   "t": 0.375,
+   "scala_%": 1.769,
+   "rot": -0.132,
+   "dx": 35.61,
+   "dy": 3.9,
+   "angoli_px": 25.94,
+   "inlier": 0.8525235418593302
+  },
+  {
+   "t": 0.4167,
+   "scala_%": 1.006,
+   "rot": -0.131,
+   "dx": 41.21,
+   "dy": 4.08,
+   "angoli_px": 27.72,
+   "inlier": 0.8341002861455374
+  },
+  {
+   "t": 0.4583,
+   "scala_%": 0.874,
+   "rot": -0.152,
+   "dx": 45.99,
+   "dy": 4.35,
+   "angoli_px": 30.36,
+   "inlier": 0.8149724585341334
+  },
+  {
+   "t": 0.5,
+   "scala_%": 1.502,
+   "rot": -0.189,
+   "dx": 46.93,
+   "dy": 4.75,
+   "angoli_px": 32.13,
+   "inlier": 0.8038490275260352
+  },
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null
+ ]
+}

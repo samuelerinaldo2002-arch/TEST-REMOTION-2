@@ -1,0 +1,45 @@
+{
+ "id": "U10",
+ "scena": {
+  "t0": 38.0,
+  "t1": 42.35,
+  "frase": "«Apri le bozze, tocca i tre puntini accanto al video e duplicalo.»",
+  "script": "03/10 · 10,6–14,6 s della voce (R8 morbida da L11: zoom-through)",
+  "kallaway": {
+   "reel": 65,
+   "t0": 18.29,
+   "t1": 20.25
+  }
+ },
+ "voto": {
+  "voti": {
+   "movimento": 5,
+   "materiali": 5,
+   "frame": 4,
+   "brand": 5
+  },
+  "template": "TPL.U10 (kw-kit/kit2-tpl-ui.js) + tplZoomThrough (kit2-template.js, R8)",
+  "scena": "CATALOGO-ANIMAZIONI/ritmo-01 38,0–42,35 s (03/10): le tue Bozze vere (le tue copertine), il dito che tocca i ⋯, la lente su Duplica, la copia che nasce accanto",
+  "confronto": "_analisi/ritmo/blocco01/K_U03_r65.jpg (stesso riferimento: schermata di IG ferma, si muove il puntatore) · N_U10_ritmo01.jpg · _analisi/ritmo/deriva/U10_ritmo01.jpg · _analisi/ritmo/pop/U10_ritmo01_foglio.jpg · U10_ritmo01_copia.jpg",
+  "misure": {
+   "ingresso (R8 morbida)": "zoom-through dal tuo video sulla tappa «Duplica» di L11: 0,16 s di corsa dentro (×1,5, power2.in, sfocatura 12 px), poi la schermata arriva a ×0,86 e si assesta in 0,45 s power3.out: +8,4%, 84 → 3 px/s a 0,25/1 s (deriva.py, bozze gialle nel pannello)",
+   "Kallaway (reel 65)": "schermata di Instagram ferma dopo il taglio (9 px), si muove solo il puntatore che va su Share e clicca",
+   "camera dopo l'ingresso": "ferma (+1,2% di tenuta)",
+   "accenti": "il dito tocca i ⋯ su «puntini» (sale il foglio, expo.out 0,45 s), la lente su «Duplica» (power3.out 0,42 s), il dito preme Duplica su «duplicalo»: la copia nasce accanto e le altre bozze scivolano",
+   "rimbalzo": "0 (strisce guardate)",
+   "scena": "4,35 s",
+   "telefono (regia 13/10)": "0,435 della larghezza (470 px; schermo 448 px = 0,415), bordo alto a y 365 sotto il titolo, intero: solo il telaio in fondo sfuma nella safe zone; la lente su Duplica sta fra y ~1005 e ~1250 · K (reel 65): schermo 0,415 (448 px), da y ~336 a ~1160 · prima: 0,376 (406 px)",
+   "pop.py · il foglio Modifica / Duplica / Elimina (regia 13/10)": "sale 180 px dal primo fotogramma in cui si vede, 90% in 0,13 s, expo.out, oltre l'arrivo 0% (misura a sola traslazione sulla scritta «Modifica»: pop.py non aggancia il foglio scuro sul fondo scuro)",
+   "pop.py · la copia che nasce accanto (regia 13/10)": "la striscia mostra la copia che scivola di uno slot (power2.out 0,5 s, era back.out(1,4)) e i numeri 1 e 2 che compaiono, senza rimbalzo; il tracciamento non regge perché la copia è identica alla bozza 0"
+  },
+  "manca": "il telefono intero (servono il foglio in basso e le bozze in alto) occupa il 43,5% della larghezza, come lo schermo del reel 65: ai lati resta fondo come in Kallaway (più grande non ci sta: la lente su Duplica finirebbe sotto y 1290); i numeri 1 e 2 compaiono da 0 in 0,4 s (pop del kit), più lenti del pop R5",
+  "da_fare": "",
+  "fatto": "template TPL.U10 con la scheda; igDrafts.duplicate(t, id, accanto) con l'opzione in coda (default di prima); tplZoomThrough e tplTenuta per le transizioni R8; DOPO in ritmo-clip/U10_dopo.mp4 · regia 13/10: telefono nella proporzione del reel 65 (scala / alto / sfuma, default nuovo solo con KW_RITMO); la composizione prende la posa dal template per lo zoom-through"
+ },
+ "riga": {
+  "stato": "**fatto** (blocco 1)",
+  "template": "TPL.U10 · ritmo-01 38,0–42,35 s (03/10 «Apri le bozze, tocca i tre puntini… e duplicalo.»), R8 morbida da L11 (zoom-through)",
+  "numeri": "telefono 0,435 della larghezza (K r65 schermo 0,415; prima 0,376) · zoom-through 0,16 + 0,45 s, assestamento +8,4% 84 → 3 px/s · camera poi ferma (K r65 ferma) · foglio expo.out senza rimbalzo · 3 accenti sulle parole",
+  "voto": "5·5·4·5"
+ }
+}

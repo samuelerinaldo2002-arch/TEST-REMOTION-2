@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "C:\Users\rinal\Desktop\REMOTION - TEST 2\TEST KALLAWAYMARKETING\_tools\idee.py", line 84, in <module>
+    main()
+    ~~~~^^
+  File "C:\Users\rinal\Desktop\REMOTION - TEST 2\TEST KALLAWAYMARKETING\_tools\idee.py", line 80, in main
+    print(json.dumps({k: v for k, v in res.items() if k != "per_reel"}, ensure_ascii=False))
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: I/O operation on closed file.

@@ -1,0 +1,45 @@
+{
+ "id": "U07",
+ "scena": {
+  "t0": 46.15,
+  "t1": 50.15,
+  "frase": "«Poi torna indietro e pubblica la seconda bozza come reel normale.»",
+  "script": "03/10 · 18,6–22,4 s della voce",
+  "kallaway": {
+   "reel": 65,
+   "t0": 18.29,
+   "t1": 20.25
+  }
+ },
+ "voto": {
+  "voti": {
+   "movimento": 5,
+   "materiali": 5,
+   "frame": 4,
+   "brand": 5
+  },
+  "template": "TPL.U07 (kw-kit/kit2-tpl-ui.js)",
+  "scena": "CATALOGO-ANIMAZIONI/ritmo-01 46,15–50,15 s (03/10): le tue Bozze (la copia 1 già pubblicata con la spunta), il dito preme la copia 2, la schermata diventa «Nuovo reel», preme Condividi: il reel esce con l'etichetta NORMALE",
+  "confronto": "_analisi/ritmo/blocco01/K_U03_r65.jpg (riferimento: Share premuto sulla schermata ferma) · _analisi/ritmo/deriva/U07_ritmo01.jpg · _analisi/ritmo/pop/U07_ritmo01_reel.jpg · U07_ritmo01_tag.jpg",
+  "misure": {
+   "movimento principale": "arrivo di lato (dall'altra parte rispetto a U11) 175 px: 148 px/s a 0,25 s → 0,7 a 1 s, expo.out; poi ferma (+0,4%)",
+   "Kallaway (reel 65)": "schermata ferma, il puntatore scivola su Share (~0,3 s) e clicca: il bottone cambia colore",
+   "dito": "entra dal basso (0,24 s power2.out), scivola sul bottone (0,34 s power2.inOut), preme a 0,74 in 0,07 s con l'anello bianco, torna in 0,24 s power2.out (era back.out(3))",
+   "accenti": "la bozza 2 su «seconda» (la schermata cambia), Condividi su «reel» (il reel normale esce in 0,55 s power3.out e l'etichetta NORMALE compare 0,8 s prima del taglio)",
+   "rimbalzo": "0 (pop.py, strisce guardate)",
+   "scena": "4,0 s",
+   "telefono (regia 13/10)": "0,435 della larghezza (471 px; schermo 0,415), bordo alto a y 365, intero: Condividi finisce a y ~1277, sopra la banda; il reel pubblicato atterra a sinistra: telefono + reel occupano ~750 px · K (reel 65): schermo 0,415 (448 px) · prima: 0,376 (406 px)",
+   "pop.py · il reel che esce (regia 13/10)": "scala 0,63 → 1,00 in 0,37 s, 418 px, rimbalzo 0% (power3.out 0,55 s; i primi 2 fotogrammi agganciano la copertina nel telefono)",
+   "pop.py · l'etichetta NORMALE (regia 13/10)": "0,88 → 1,00 in 0,13 s (popK 0,8 → 1 in 0,18 s), rimbalzo 0,8% (rumore) · K: badge 0,66 → 1,00 in 0,13 s, rimbalzo 0% (reel 1)"
+  },
+  "manca": "come in U11, Condividi è anticipato su «reel» per lasciar vedere il reel pubblicato; telefono al 43,5% della larghezza come lo schermo del reel 65 (più grande Condividi finirebbe sotto y 1290)",
+  "da_fare": "",
+  "fatto": "template TPL.U07 con la scheda (due schermate nello stesso telefono, il dito che preme); DOPO in ritmo-clip/U07_dopo.mp4 · regia 13/10: telefono nella proporzione del reel 65 (scala / alto / sfuma, default nuovo solo con KW_RITMO)"
+ },
+ "riga": {
+  "stato": "**fatto** (blocco 1)",
+  "template": "TPL.U07 · ritmo-01 46,15–50,15 s (03/10 «Poi torna indietro e pubblica la seconda bozza come reel normale.»)",
+  "numeri": "telefono 0,435 della larghezza (K r65 schermo 0,415; prima 0,376) · arrivo 175 px expo.out 148 → 0,7 px/s · reel che esce e NORMALE senza rimbalzo (pop.py) · camera poi ferma (K r65 ferma)",
+  "voto": "5·5·4·5"
+ }
+}

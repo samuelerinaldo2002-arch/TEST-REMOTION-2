@@ -1,0 +1,69 @@
+{
+ "n": 63,
+ "codice": "DbS_V27uOvC",
+ "fps": 24.0,
+ "nfr": 1845,
+ "step": 4,
+ "tagli_fr": [
+  91,
+  178,
+  290,
+  332,
+  406,
+  489,
+  570,
+  648,
+  690,
+  765,
+  939,
+  964,
+  1160,
+  1210,
+  1314,
+  1491,
+  1611,
+  1685
+ ],
+ "cand_fr": [
+  81,
+  244,
+  866,
+  870,
+  1000
+ ],
+ "tagli_s": [
+  3.792,
+  7.417,
+  12.083,
+  13.833,
+  16.917,
+  20.375,
+  23.75,
+  27.0,
+  28.75,
+  31.875,
+  39.125,
+  40.167,
+  48.333,
+  50.417,
+  54.75,
+  62.125,
+  67.125,
+  70.208
+ ],
+ "cand_s": [
+  3.375,
+  10.167,
+  36.083,
+  36.25,
+  41.667
+ ],
+ "fogli": [
+  "C:\\Users\\rinal\\Desktop\\REMOTION - TEST 2\\TEST KALLAWAYMARKETING\\CATALOGO-ANIMAZIONI\\_analisi\\ritmo\\fogli\\q1_reel063_p01.jpg",
+  "C:\\Users\\rinal\\Desktop\\REMOTION - TEST 2\\TEST KALLAWAYMARKETING\\CATALOGO-ANIMAZIONI\\_analisi\\ritmo\\fogli\\q1_reel063_p02.jpg",
+  "C:\\Users\\rinal\\Desktop\\REMOTION - TEST 2\\TEST KALLAWAYMARKETING\\CATALOGO-ANIMAZIONI\\_analisi\\ritmo\\fogli\\q1_reel063_p03.jpg",
+  "C:\\Users\\rinal\\Desktop\\REMOTION - TEST 2\\TEST KALLAWAYMARKETING\\CATALOGO-ANIMAZIONI\\_analisi\\ritmo\\fogli\\q1_reel063_p04.jpg",
+  "C:\\Users\\rinal\\Desktop\\REMOTION - TEST 2\\TEST KALLAWAYMARKETING\\CATALOGO-ANIMAZIONI\\_analisi\\ritmo\\fogli\\q1_reel063_d01.jpg",
+  "C:\\Users\\rinal\\Desktop\\REMOTION - TEST 2\\TEST KALLAWAYMARKETING\\CATALOGO-ANIMAZIONI\\_analisi\\ritmo\\fogli\\q1_reel063_d02.jpg"
+ ]
+}

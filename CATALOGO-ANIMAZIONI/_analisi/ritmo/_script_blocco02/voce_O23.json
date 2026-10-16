@@ -1,0 +1,28 @@
+{
+ "id": "O23",
+ "scena": {"t0": 31.15, "t1": 36.65, "frase": "«Io uso 70% valore, 20% fiducia, 10% conversione.»", "script": "15/10 · 10,3–15,4 s della voce", "kallaway": {"reel": 88, "t0": 38.78, "t1": 44.3}},
+ "voto": {
+  "voti": {"movimento": 5, "materiali": 4, "frame": 5, "brand": 5},
+  "template": "TPL.O23 (kw-kit/kit2-tpl-oggetti.js)",
+  "scena": "CATALOGO-ANIMAZIONI/ritmo-02 31,15–36,65 s (15/10, «Io uso 70% valore, 20% fiducia, 10% conversione.»): 100 puntini in vetro; su «valore» 70 diventano lime, su «fiducia» 20 bianchi, su «conversione» 10 anelli lime, ognuno con la sua voce di legenda sotto",
+  "confronto": "_analisi/ritmo/blocco02/K_O23_r88.jpg · _analisi/ritmo/deriva/O23_ritmo02.jpg · O23_ritmo02_v.jpg · _analisi/ritmo/pop/O23_ritmo02_voce.jpg",
+  "misure": {
+   "al taglio": "i 100 puntini grigi e la legenda spenta già in scena",
+   "movimento principale": "arrivo dal basso: 86 px dopo il primo fotogramma, 136 → 1,7 px/s a 0,25 / 1 s, expo.out (deriva.py, maschera sulla griglia); poi ferma",
+   "gruppi (pixel lime e bianchi)": "70 lime riga per riga: 10 → 90% in 0,7 s da «valore»; 20 bianchi in 0,2 s da «fiducia»; 10 anelli su «conversione» · K reel 88: la griglia compare a onda (~0,6 s), poi i puntini si accendono a caso in ~2 s e il colore cambia in un fotogramma",
+   "pop.py · la voce «70% Valore» (solo i pixel lime)": "non cambia scala (0,97–1,02 = rumore del modello), si accende di colore in 0,2 s",
+   "proporzioni (ingombro.py)": "griglia + legenda 0,69 della larghezza (griglia 0,72 nel fotogramma), y 398–1260 · K reel 88: 0,49 · prima stesura 0,56 (gap 70): ingrandita",
+   "rimbalzo": "0",
+   "scena": "5,5 s"
+  },
+  "manca": "Kallaway accende i puntini a caso (chi è scioccato su 100 persone); qui i gruppi sono a blocchi ordinati, perché la frase è una suddivisione; il terzo colore (conversione) è un anello lime, non un colore nuovo (brand: lime, bianco, grafite)",
+  "da_fare": "",
+  "fatto": "template TPL.O23 con la scheda (kit2-tpl-oggetti.js), usa dotGrid() del kit; DOPO in ritmo-clip/O23_dopo.mp4"
+ },
+ "riga": {
+  "stato": "**fatto** (blocco 2)",
+  "template": "TPL.O23 · ritmo-02 31,15–36,65 s (15/10 «Io uso 70% valore, 20% fiducia, 10% conversione.»)",
+  "numeri": "70 puntini lime in 0,7 s (10 → 90%) su «valore», 20 bianchi in 0,2 s, 10 anelli: un gruppo per parola, lineare (K r88 accensioni a caso in ~2 s, colore in 1 fotogramma) · arrivo 140 px expo.out 136 → 1,7 px/s · griglia 0,72 della larghezza (K r88 0,49; prima 0,56) · legenda senza crescere (pop.py)",
+  "voto": "5·4·5·5"
+ }
+}

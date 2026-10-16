@@ -1,0 +1,45 @@
+{
+ "id": "D01",
+ "scena": {
+  "t0": 55.0,
+  "t1": 59.4,
+  "frase": "«Stesso identico video ma raddoppi le visualizzazioni, gratis.»",
+  "script": "03/10 · 31,2–35,2 s della voce (R8 morbida da O21: la camera scorre di lato)",
+  "kallaway": {
+   "reel": 9,
+   "t0": 10.2,
+   "t1": 12.3
+  }
+ },
+ "voto": {
+  "voti": {
+   "movimento": 5,
+   "materiali": 5,
+   "frame": 4,
+   "brand": 5
+  },
+  "template": "TPL.D01 (kw-kit/kit2-tpl-dati.js) + tplPan (kit2-template.js, R8)",
+  "scena": "CATALOGO-ANIMAZIONI/ritmo-01 55,0–59,4 s (03/10): i due reel uguali (la tua copertina, NORMALE e PROVA) coi badge views, la card delle visualizzazioni totali che raddoppia",
+  "confronto": "_analisi/ritmo/blocco01/K_D01_r9.jpg · K_D01_r30.jpg · D01_ritmo01_spinta_viaggio.jpg · K_D01_r9_frusta_viaggio.jpg · _analisi/ritmo/pop/D01_ritmo01_x2.jpg",
+  "misure": {
+   "ingresso (R8 morbida)": "la camera scorre dagli anelli alla card: 973 px, 90% a 0,53 s, picco 2008 px/s, sine.out, rimbalzo 0",
+   "Kallaway (reel 9)": "la card dell'Inbox entra di lato: 736 px, 90% a 0,58 s, picco 1972 px/s, sine.out",
+   "prima stesura (frusta whip2 0,4 s, card a 1,4 schermate)": "1209 px in 0,23 s, picco 9374 px/s: 4,7 volte Kallaway → scena più vicina e scorrimento sine.out 0,75 s",
+   "conteggio": "1.240 → 2.420 lineare in 1,5 s su «raddoppi le visualizzazioni» con la linea del grafico; all'arrivo punto con l'anello e bagliore",
+   "Kallaway conteggio (reel 9 · 30)": "18.691 → 44.000 in ~0,7 s; 73K → 250K in ~1,0 s; 13K → 100K in ~1,0 s, quasi lineari, col grafico",
+   "accenti": "«=» fra i due reel su «identico», conteggio su «raddoppi», ×2 su «gratis»",
+   "rimbalzo": "0",
+   "scena": "4,4 s",
+   "pop.py · il badge «×2» (regia 13/10)": "0,80 → 1,00 in 0,10 s (popK 0,18 s power2.out), rimbalzo 0% · K: badge views 0,66 → 1,00 in 0,13 s, rimbalzo 0% (reel 1)"
+  },
+  "manca": "il conteggio dura 1,5 s (segue le parole) contro ~1 s di Kallaway; le views 1.240 e 1.180 sono d'esempio (come nel reel-03)",
+  "da_fare": "",
+  "fatto": "template TPL.D01 con la scheda; tplPan per la transizione R8 «spinta di lato»; DOPO in ritmo-clip/D01_dopo.mp4"
+ },
+ "riga": {
+  "stato": "**fatto** (blocco 1)",
+  "template": "TPL.D01 · ritmo-01 55,0–59,4 s (03/10 «Stesso identico video ma raddoppi le visualizzazioni, gratis.»), R8 morbida da O21 (scorre di lato)",
+  "numeri": "ingresso 973 px, 90% a 0,53 s, picco 2008 px/s sine.out (K r9 736 px, 0,58 s, 1972 px/s; prima 9374 px/s) · conteggio lineare 1,5 s (K 0,7–1 s) · rimbalzo 0 (pop.py, strisce guardate)",
+  "voto": "5·5·4·5"
+ }
+}

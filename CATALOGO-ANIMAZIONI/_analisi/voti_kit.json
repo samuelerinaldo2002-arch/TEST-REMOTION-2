@@ -1,0 +1,2805 @@
+{
+ "L01": {
+  "giro": "10/10 notte",
+  "voti": {
+   "movimento": 4,
+   "materiali": 4,
+   "frame": 5,
+   "brand": 5
+  },
+  "sotto_4": false,
+  "confronto": "_analisi/moto/L01-L02_demo8.jpg",
+  "video": "_analisi/confronti-video/blocco3bis_confronto.mp4",
+  "manca": "nel reel 5 le voci restano in scena più a lungo prima della successiva",
+  "da_fare": "",
+  "fatto": "demo-8 0–4,6 s: la lista c'è dal fotogramma 0, grande (960 × 168), le voci vanno a fuoco una alla volta",
+  "storia": [
+   {
+    "giro": "09/10 sera",
+    "voti": {
+     "movimento": 4,
+     "materiali": 4,
+     "frame": 4,
+     "brand": 5
+    },
+    "sotto_4": false,
+    "confronto": "_analisi/moto/L01.jpg",
+    "manca": "le voci-segnaposto arrivano a 0,3 s l'una (Kallaway reel 5: tutte in ~0,15 s, 0,07 s l'una)",
+    "da_fare": "demo: voci a 0,07 s",
+    "fatto": "demo: le tre voci-segnaposto arrivano a 0,07 s l'una"
+   }
+  ]
+ },
+ "X01": {
+  "giro": "09/10 sera",
+  "voti": {
+   "movimento": 4,
+   "materiali": 5,
+   "frame": 4,
+   "brand": 5
+  },
+  "sotto_4": false,
+  "confronto": "_analisi/moto/X01.jpg",
+  "manca": "il contenitore resta vuoto ~0,45 s prima della prima ondata di documenti",
+  "da_fare": "demo-2: prima ondata prima",
+  "fatto": "demo-2: la prima ondata di documenti parte con il whip (72,1 s)"
+ },
+ "F02": {
+  "giro": "copia 15/10 (blocco C1)",
+  "voti": {
+   "movimento": 5,
+   "materiali": 4,
+   "frame": 5,
+   "brand": 5
+  },
+  "copia": "COPIA.F02 (kit2-copia-luce.js) · scene 1 e 6",
+  "scena": "CATALOGO-ANIMAZIONI/copia-01 (reel 79 di Kallaway copiato intero, 1:1 sul suo tempo)",
+  "confronto": "_analisi/ritmo/fogli_regia/copia-01_NN_*.jpg (KALLAWAY | COPIA per scena) · _analisi/confronti-video/r79_copia_affiancato.mp4",
+  "misure": {
+   "disco (1,21 s)": "copia → Ø 632 → 770 px in 1 fotogramma, poi ~935 sfumando in 0,46 s · Kallaway → uguale (misurato)",
+   "ingombro a 1,3 s": "copia → 0,91 della larghezza, y 312–1174 · Kallaway → 0,87, y 347–1161",
+   "rimbalzo": "0"
+  },
+  "manca": "il suo disco è pieno di rosso scuro; il nostro è grafite con l'anello lime (niente lime trasparente sul nero): si legge meno pieno",
+  "sotto_4": false,
+  "storia": [
+   {
+    "giro": "ritmo 13/10 (blocco 02)",
+    "voti": {
+     "movimento": 5,
+     "materiali": 5,
+     "frame": 5,
+     "brand": 5
+    },
+    "template": "TPL.F02 (kw-kit/kit2-tpl-luce.js)",
+    "scena": "CATALOGO-ANIMAZIONI/ritmo-02 1,0–6,1 s (14/10, «Se non diventi virale, non stai andando da nessuna parte. E se si sbagliassero?»): la griglia dei tuoi reel veri in movimento, il disco su «virale» fa nascere «1M views», su «sbagliassero?» si spegne tutto e compare il «?»",
+    "confronto": "_analisi/ritmo/blocco02/K_F02_r14.jpg · K_F02_r7.jpg · K_F02_r79.jpg · K_F02_r14_disco.json · F02_ritmo02_disco.json · _analisi/ritmo/deriva/F02_ritmo02.jpg · F02_ritmo02_v.jpg · _analisi/ritmo/pop/F02_ritmo02_etichetta.jpg · K_F02_r14_etichetta.jpg",
+    "misure": {
+     "al taglio": "la griglia 3 × 2 dei tuoi reel è già piena e i video si muovono",
+     "movimento principale": "arrivo dal basso: 102 px dopo il primo fotogramma (140 in tutto), 162 px/s a 0,25 s, expo.out (deriva.py, maschera sulla griglia, pannello giallo sulle cornici); poi la camera tiene",
+     "Kallaway (reel 14, 7)": "camera ferma sull'anello / sulla lista; il disco è l'unico movimento",
+     "disco (disco.py)": "pieno in 0,07 s (diametro 0,50 della larghezza), resta pieno mentre nasce l'etichetta, si allarga a 0,62 e sparisce a 0,43 s dalla nascita · K reel 14: area piena in 0,17 s, svanisce in ~0,5 s; reel 7: diametro 0,47 → 0,57 in 0,32 s; reel 79: 0,52 → 0,63 in 0,1 s",
+     "pop.py · l'etichetta «1M views» (solo i pixel lime)": "0,90 → 1,00 in 0,15 s power2.out dentro il disco, rimbalzo 0% · K reel 14: l'etichetta nasce nel disco a 0,12 s, 0,83 → 1,10 → 1,00 in 0,45 s (cresce col disco e torna: +10%)",
+     "proporzioni (ingombro.py)": "griglia larga 0,69 della larghezza, da y 473 a 1267 · K reel 14: anello 0,68, y 352–1287; reel 7: lista 0,74",
+     "accenti": "disco + etichetta su «virale»; su «sbagliassero?» l'etichetta e i reel si spengono (0,12 s / 0,3 s) e il «?» a mano",
+     "rimbalzo": "0 (pop.py, striscia guardata)",
+     "scena": "5,1 s",
+     "filtro (14/10, dopo F04)": "su «sbagliassero?» c'era un fotogramma nero (il filtro animato da «none» partiva da brightness(0)): ora fromTo, la griglia scende 64 → 38 di luminosità senza salti",
+     "clip KALLAWAYMARKETING (regia 15/10)": "reel 7 dal suo taglio a 5,00 s (controllato a vista: 4,96 faccia, 5,00 la lista) fino al taglio di 7,18 s: il disco rosso pieno passa sulla lista a 6,22 s (+1,22 s dal taglio; da noi +0,98 s); prima puntava al reel 14, 0–2,25 s (l'anello di O01, dove il disco quasi non si vede)"
+    },
+    "manca": "in Kallaway l'etichetta cresce un po' oltre col disco e torna (+10% in 0,45 s): qui niente rimbalzo per R5; il disco lime davanti ai video li tinge per 0,4 s (Kallaway usa il rosso pieno)",
+    "da_fare": "",
+    "fatto": "template TPL.F02 con la scheda (kit2-tpl-luce.js); pulse() con le opzioni in coda cresce / svanisce / allarga (default di prima); DOPO in ritmo-clip/F02_dopo.mp4",
+    "sotto_4": false
+   },
+   {
+    "giro": "09/10 sera",
+    "voti": {
+     "movimento": 4,
+     "materiali": 5,
+     "frame": 4,
+     "brand": 5
+    },
+    "sotto_4": false,
+    "confronto": "_analisi/moto/F02.jpg",
+    "manca": "in linea con la misura (0,22 s + 0,5 s); il reel 79 è più secco ma la media misurata è questa",
+    "da_fare": "",
+    "fatto": ""
+   }
+  ]
+ },
+ "L02": {
+  "giro": "10/10 notte",
+  "voti": {
+   "movimento": 5,
+   "materiali": 4,
+   "frame": 5,
+   "brand": 5
+  },
+  "sotto_4": false,
+  "confronto": "_analisi/moto/L01-L02_demo8.jpg",
+  "video": "_analisi/confronti-video/blocco3bis_confronto.mp4",
+  "manca": "",
+  "da_fare": "",
+  "fatto": "sheen da destra con il testo che va a fuoco, come nel reel 5, su voci grandi da protagoniste",
+  "storia": [
+   {
+    "giro": "09/10 sera",
+    "voti": {
+     "movimento": 5,
+     "materiali": 4,
+     "frame": 4,
+     "brand": 5
+    },
+    "sotto_4": false,
+    "confronto": "_analisi/moto/L02.jpg",
+    "manca": "sheen da destra 0,75 s con il testo che va a fuoco: uguale al reel 5",
+    "da_fare": "",
+    "fatto": ""
+   }
+  ]
+ },
+ "D01": {
+  "giro": "ritmo 13/10 (blocco 01)",
+  "voti": {
+   "movimento": 5,
+   "materiali": 5,
+   "frame": 4,
+   "brand": 5
+  },
+  "template": "TPL.D01 (kw-kit/kit2-tpl-dati.js) + tplPan (kit2-template.js, R8)",
+  "scena": "CATALOGO-ANIMAZIONI/ritmo-01 55,0–59,4 s (03/10): i due reel uguali (la tua copertina, NORMALE e PROVA) coi badge views, la card delle visualizzazioni totali che raddoppia",
+  "confronto": "_analisi/ritmo/blocco01/K_D01_r9.jpg · K_D01_r30.jpg · D01_ritmo01_spinta_viaggio.jpg · K_D01_r9_frusta_viaggio.jpg · _analisi/ritmo/pop/D01_ritmo01_x2.jpg",
+  "misure": {
+   "ingresso (R8 morbida)": "la camera scorre dagli anelli alla card: 973 px, 90% a 0,53 s, picco 2008 px/s, sine.out, rimbalzo 0",
+   "Kallaway (reel 9)": "la card dell'Inbox entra di lato: 736 px, 90% a 0,58 s, picco 1972 px/s, sine.out",
+   "prima stesura (frusta whip2 0,4 s, card a 1,4 schermate)": "1209 px in 0,23 s, picco 9374 px/s: 4,7 volte Kallaway → scena più vicina e scorrimento sine.out 0,75 s",
+   "conteggio": "1.240 → 2.420 lineare in 1,5 s su «raddoppi le visualizzazioni» con la linea del grafico; all'arrivo punto con l'anello e bagliore",
+   "Kallaway conteggio (reel 9 · 30)": "18.691 → 44.000 in ~0,7 s; 73K → 250K in ~1,0 s; 13K → 100K in ~1,0 s, quasi lineari, col grafico",
+   "accenti": "«=» fra i due reel su «identico», conteggio su «raddoppi», ×2 su «gratis»",
+   "rimbalzo": "0",
+   "scena": "4,4 s",
+   "pop.py · il badge «×2» (regia 13/10)": "0,80 → 1,00 in 0,10 s (popK 0,18 s power2.out), rimbalzo 0% · K: badge views 0,66 → 1,00 in 0,13 s, rimbalzo 0% (reel 1)"
+  },
+  "manca": "il conteggio dura 1,5 s (segue le parole) contro ~1 s di Kallaway; le views 1.240 e 1.180 sono d'esempio (come nel reel-03)",
+  "da_fare": "",
+  "fatto": "template TPL.D01 con la scheda; tplPan per la transizione R8 «spinta di lato»; DOPO in ritmo-clip/D01_dopo.mp4",
+  "sotto_4": false,
+  "storia": [
+   {
+    "giro": "10/10 notte",
+    "voti": {
+     "movimento": 4,
+     "materiali": 4,
+     "frame": 5,
+     "brand": 5
+    },
+    "sotto_4": false,
+    "confronto": "_analisi/moto/D01.jpg",
+    "video": "_analisi/confronti-video/blocco3bis_confronto.mp4",
+    "manca": "",
+    "da_fare": "",
+    "fatto": "card grande (820 × 450, numero a 160 px) col grafico; 10/10 notte: il conteggio parte mentre la card entra (camera rms da 0,315 a 0,109)"
+   },
+   {
+    "giro": "09/10 sera",
+    "voti": {
+     "movimento": 4,
+     "materiali": 4,
+     "frame": 4,
+     "brand": 5
+    },
+    "sotto_4": false,
+    "confronto": "_analisi/moto/D01.jpg",
+    "manca": "conteggio 0,9 s come il reel 9 (0,8 s)",
+    "da_fare": "",
+    "fatto": ""
+   }
+  ]
+ },
+ "U02": {
+  "giro": "ritmo 13/10 (blocco 01)",
+  "voti": {
+   "movimento": 5,
+   "materiali": 5,
+   "frame": 5,
+   "brand": 5
+  },
+  "template": "TPL.U02 (kw-kit/kit2-tpl-ui.js)",
+  "scena": "CATALOGO-ANIMAZIONI/ritmo-01 13,75–19,15 s (05/10, «…in un profilo perfettamente ottimizzato che, ti garantisco, ti porterà più follower.»): il tuo profilo vero, i tuoi reel che si muovono nella griglia",
+  "confronto": "_analisi/ritmo/blocco01/K_U02_r3.jpg · K_U02_r9.jpg · _analisi/ritmo/deriva/K_U02_r3.jpg · U02_ritmo01.jpg · U02_ritmo01_colpo.jpg · _analisi/ritmo/pop/U02_ritmo01_bio_lime.jpg · U02_ritmo01_pill_lime.jpg",
+  "misure": {
+   "al taglio": "il telefono col profilo è già pieno (foto, bio, griglia coi reel in movimento); il numero parte da 245",
+   "movimento principale": "arrivo di lato 175 px: 148 px/s a 0,25 s → 0,6 a 1 s, expo.out (deriva.py, telefono giallo nel pannello)",
+   "Kallaway (reel 3)": "arrivo di lato −175 px power2.out: 241 → 35 px/s a 0,25/1 s; poi, quando il numero arriva, colpo di zoom +19,3% (+18% in ~0,8 s)",
+   "colpo sul conteggio": "+19,1% in 1,3 s (+18,7% a 1 s), power3.out, col numero fermo sullo schermo (Kallaway +19,3%)",
+   "prima stesura (spinta R4 +9% in 2,4 s)": "+8,8% in 3 s: la misura del reel 3 dice arrivo + colpo, non deriva lunga → cambiato",
+   "conteggio": "245 → 1.000 lineare in 0,94 s su «porterà più follower», la pill lime si accende all'arrivo (Kallaway 2K → 100K lineare in ~1,2 s, pill rossa all'arrivo)",
+   "accenti": "riquadro lime sulla bio su «ottimizzato»; il conteggio con la pill",
+   "rimbalzo": "0 (pop.py, strisce guardate)",
+   "scena": "5,4 s",
+   "telefono (regia 13/10)": "0,555 della larghezza prima del colpo (600 px) e 0,66 dopo (717 px); bordo alto a y 420, dopo il colpo a ~368 (sotto il titolo); il fondo sfuma in 150 px prima di y 1290: si vedono numeri, bio, bottoni e la prima riga della griglia · K (reel 3): 0,555 (598 px) prima del colpo, 0,65–0,66 dopo, il fondo sparisce dietro la faccia · prima: 0,376 (406 px), intero",
+   "pop.py · il riquadro lime sulla bio (regia 13/10, solo i pixel lime)": "compare a 1,03 e si stringe a 1,00 in 0,1 s (highlight 1,1 → 1 in 0,28 s, power2.out con KW_RITMO), mai sotto 1 · K: nessun rimbalzo visibile nelle entrate (8 su 8)",
+   "pop.py · la pill dei follower (regia 13/10, solo i pixel lime)": "0,93 → 1,00 in 0,1 s (0,8 → 1 in 0,18 s power2.out, dentro il colpo di zoom), rimbalzo 0% · K: badge 0,66 → 1,00 in 0,13 s, rimbalzo 0% (reel 1)"
+  },
+  "manca": "1.000 è un esempio (245 sono i follower veri dell'utente oggi): in un reel va messo un numero che si può dire; l'arrivo frena un po' più forte di Kallaway (expo.out contro power2.out); dopo il colpo il bordo alto del telefono resta a ~15 px dalla seconda riga del titolo",
+  "da_fare": "",
+  "fatto": "template TPL.U02 con la scheda (arrivo + colpo sul conteggio, oppure spinta); tplTitoloK (uscita del titolo finita prima del taglio) in kit2-template.js; DOPO in ritmo-clip/U02_dopo.mp4 · regia 13/10: telefono nella proporzione del reel 3 (opzioni scala / alto / sfuma, default nuovo solo con KW_RITMO; apertura con la posa in coda)",
+  "sotto_4": false,
+  "storia": [
+   {
+    "giro": "09/10 sera",
+    "voti": {
+     "movimento": 4,
+     "materiali": 4,
+     "frame": 4,
+     "brand": 5
+    },
+    "sotto_4": false,
+    "confronto": "_analisi/moto/U02.jpg",
+    "manca": "nel reel-01 v5 è la scena approvata; Kallaway spinge la camera mentre i follower salgono",
+    "da_fare": "",
+    "fatto": ""
+   }
+  ]
+ },
+ "K03": {
+  "giro": "copia 15/10 (blocco C1)",
+  "voti": {
+   "movimento": 5,
+   "materiali": 5,
+   "frame": 5,
+   "brand": 5
+  },
+  "copia": "COPIA.K03 (kit2-copia-camera.js, camera presa dal suo video) · scena 4–5",
+  "scena": "CATALOGO-ANIMAZIONI/copia-01 (reel 79 di Kallaway copiato intero, 1:1 sul suo tempo)",
+  "confronto": "_analisi/ritmo/fogli_regia/copia-01_NN_*.jpg (KALLAWAY | COPIA per scena) · _analisi/confronti-video/r79_copia_affiancato.mp4",
+  "misure": {
+   "verso la slot (camtrack + fitmove)": "copia → ×1,567, Δx −300 px · Kallaway → ×1,556, Δx −298 px, KW.arrive",
+   "verso la mappa": "copia → picco al 17% · Kallaway → −949 px in 1,42 s, picco 2124 px/s al 21%",
+   "rimbalzo": "0"
+  },
+  "manca": "sulla copia la misura del secondo tratto è sporcata dalla slot che sfuma (picco 6113 px/s di un fotogramma)",
+  "sotto_4": false,
+  "storia": [
+   {
+    "giro": "10/10 notte",
+    "voti": {
+     "movimento": 4,
+     "materiali": 4,
+     "frame": 4,
+     "brand": 5
+    },
+    "sotto_4": false,
+    "confronto": "_analisi/moto/D01.jpg",
+    "video": "_analisi/confronti-video/blocco3bis_confronto.mp4",
+    "manca": "",
+    "da_fare": "",
+    "fatto": "la camera viaggia dal tuo reel alla card dei dati"
+   },
+   {
+    "giro": "09/10 sera",
+    "voti": {
+     "movimento": 4,
+     "materiali": 4,
+     "frame": 4,
+     "brand": 5
+    },
+    "sotto_4": false,
+    "confronto": "_analisi/moto/K03.jpg",
+    "manca": "KW.move misurato (1,3 s)",
+    "da_fare": "",
+    "fatto": ""
+   }
+  ]
+ },
+ "L09": {
+  "giro": "ritmo 13/10 (blocco 02)",
+  "voti": {
+   "movimento": 5,
+   "materiali": 5,
+   "frame": 4,
+   "brand": 5
+  },
+  "template": "TPL.L09 (kw-kit/kit2-tpl-liste.js)",
+  "scena": "CATALOGO-ANIMAZIONI/ritmo-02 36,65–39,5 s (15/10, «Scegli i tuoi filoni tematici dentro la tua nicchia.»): la radice «La tua nicchia», i rami crescono al taglio verso i filoni dei tuoi script (profilo, algoritmo, idee, psicologia), sotto ognuno un tuo reel vero su quel tema; la radice si accende su «nicchia»",
+  "confronto": "_analisi/ritmo/blocco02/K_L09_r3.jpg · K_L09_r23.jpg · K_L09_r68.jpg · L09_ritmo02_crescita_moto.json · K_L09_r3_crescita_moto.json · _analisi/ritmo/pop/L09_ritmo02_reel.jpg",
+  "misure": {
+   "al taglio": "la radice e i quattro filoni (sfocati, segnaposto L01) ci sono già; i rami partono al primo fotogramma",
+   "movimento principale (moto.py)": "crescita: linee 0,35 s sfalsate di 0,06 s, ogni filone a fuoco quando la linea lo raggiunge (0,25 s power2.out), finita a ~0,75 s dal taglio; poi i reel su «filoni» (movimento 36,7–37,53 s) · K reel 3: un livello cresce in ~0,5 s (22,16–22,62 s), linee 0,3–0,5 s; reel 23: i figli coi reel veri sotto",
+   "accenti": "i quattro reel compaiono sotto i rami su «filoni» (popK sfalsati di 0,05 s); la radice s'illumina su «nicchia»",
+   "pop.py · il reel del ramo «Profilo»": "entra a +0,13 s quasi pieno e si ferma a scala 1,00, rimbalzo 0% (striscia guardata: il video cambia inquadratura a +0,37 s)",
+   "proporzioni (ingombro.py)": "albero largo 0,79 della larghezza, y 457–1198 · K reel 3: 0,64 a 24,6 s · prima stesura con due reel piccoli per ramo: alta la metà (rifatta con un reel grande per ramo)",
+   "camera": "ferma (il movimento è la crescita), deriva 1,2%",
+   "rimbalzo": "0 (niente scala sui nodi: vanno a fuoco)",
+   "scena": "2,85 s"
+  },
+  "manca": "la scena è corta (la frase dura 2,2 s): in un reel si può unire alla frase dopo («Cerca argomenti e formati…») con un secondo livello di rami; i filoni sono quelli dei tuoi script, i reel sono spezzoni dei tuoi reel di ottobre su quei temi",
+  "da_fare": "",
+  "fatto": "template TPL.L09 con la scheda (kit2-tpl-liste.js), usa flowTree() del kit (i rami li disegna il template: i filoni sfocati sono già lì al taglio); DOPO in ritmo-clip/L09_dopo.mp4",
+  "sotto_4": false,
+  "storia": [
+   {
+    "giro": "10/10 notte",
+    "voti": {
+     "movimento": 4,
+     "materiali": 4,
+     "frame": 5,
+     "brand": 5
+    },
+    "sotto_4": false,
+    "confronto": "_analisi/moto/L09.jpg",
+    "video": "_analisi/confronti-video/blocco3bis_confronto.mp4",
+    "manca": "nel reel 3 a 4–5 s arriva una cornice attorno all'albero con due archi ai lati; da noi arriva la formula",
+    "da_fare": "",
+    "fatto": "flowTree: l'albero 5 × 10 × 7 = 350 cresce riga per riga con la camera che scende (durata −7%, camera −14%)"
+   },
+   {
+    "giro": "09/10 sera",
+    "voti": {
+     "movimento": 4,
+     "materiali": 4,
+     "frame": 4,
+     "brand": 5
+    },
+    "sotto_4": false,
+    "confronto": "_analisi/moto/L09.jpg",
+    "manca": "albero fermo e rado: nel reel 3 la camera segue l'albero che cresce",
+    "da_fare": "demo: camera che segue la crescita + nodi più grandi",
+    "fatto": "demo: la camera parte stretta sul nodo (×1,3), si allarga mentre l'albero cresce e scende sul risultato"
+   }
+  ]
+ },
+ "T01": {
+  "giro": "copia 15/10 (blocco C1)",
+  "voti": {
+   "movimento": 5,
+   "materiali": 5,
+   "frame": 5,
+   "brand": 5
+  },
+  "copia": "COPIA.T01 (kit2-copia-testo.js) · scena 1, 0–4,17 s",
+  "scena": "CATALOGO-ANIMAZIONI/copia-01 (reel 79 di Kallaway copiato intero, 1:1 sul suo tempo)",
+  "confronto": "_analisi/ritmo/fogli_regia/copia-01_NN_*.jpg (KALLAWAY | COPIA per scena) · _analisi/confronti-video/r79_copia_affiancato.mp4",
+  "misure": {
+   "parole sugli istanti misurati": "copia → 0,04 · 0,125 · 0,25 · 0,33 · 0,50 · 0,71 s, grigio 52% + blur 9 px + 5 px → bianco in 0,2 s · Kallaway → stessi istanti, 4–5 fotogrammi",
+   "linea d'accento sotto il corsivo": "copia → curva presa per punti 0,85 → 2,6 s (5% a 0,9 · 63% a 1,3 · 92% a 1,8) · Kallaway → uguale (misurata sui fotogrammi)",
+   "ingombro del titolo (ingombro.py, y 120–320)": "copia → 0,78 della larghezza, 168 px · Kallaway → 0,68, 161 px",
+   "uscita": "copia → 4,17 s in 2 fotogrammi · Kallaway → 4,17 s"
+  },
+  "manca": "il corsivo italiano «Storytelling da dipendenza» è più lungo di «Storytelling addictive»: la riga è più larga (0,78 contro 0,68)",
+  "sotto_4": false,
+  "storia": [
+   {
+    "giro": "ritmo 13/10 (blocco 03)",
+    "voti": {
+     "movimento": 5,
+     "materiali": 5,
+     "frame": 4,
+     "brand": 5
+    },
+    "template": "TPL.T01 (kw-kit/kit2-tpl-testo.js), sopra tplTitoloK come tutte le scene",
+    "scena": "CATALOGO-ANIMAZIONI/ritmo-03 5,95–11,0 s (07/10, «Ci sono solo tre emozioni che tengono qualcuno davanti a un video fino alla fine.»): il titolo «Solo tre emozioni / fino alla fine» si scrive sulle parole dette; il tuo reel vero cambia clip su «Solo», «tre», «emozioni»; su «qualcuno» la sagoma di profilo davanti al reel; la barra di Instagram corre da «tengono» a «fine» e si accende",
+    "confronto": "_analisi/ritmo/blocco03/K_T01_r79.jpg · K_T01_r1.jpg · D2_a.jpg (DOPO) · _analisi/ritmo/pop/T01_ritmo03_chi.jpg",
+    "misure": {
+     "titolo (tplTitoloK → titleW)": "ogni parola sul suo tempo nella voce (Solo 6,42 · tre 6,68 · emozioni 7,15 · fino 9,95 · alla 10,18 · fine 10,32), grigia e sfocata 9 px → bianca e nitida in 0,2 s power2.out · K reel 79: ogni parola quando è detta, 0,17–0,21 s ease-out, 8–10 px",
+     "cambi di clip nel reel": "tagli secchi di 1 fotogramma su «Solo», «tre», «emozioni» (0,27 e 0,47 s fra i cambi) · K reel 79: 3 cambi in 0,5 s (0,17 · 0,33 · 0,5 s) sulle parole",
+     "movimento principale (bordo alto del reel, deriva.py non regge: il video dentro cambia)": "arrivo dal basso 120 px dal primo fotogramma, 90% in 0,25 s, expo.out, fermo a 0,45 s (y 520 → 400) · K reel 79: camera ferma sulla card fino alla corsa verso il cervello a 0,83 s",
+     "sagoma (pop.py sui soli pixel bianchi)": "0,97 → 1,00 in 0,03 s visibili (popK 0,8 → 1 in 0,15 s), rimbalzo 0%, guarda verso il reel",
+     "barra di avanzamento": "lineare da «tengono» a «fine» (1,9 s), poi lime con l'alone (R6)",
+     "proporzioni (ingombro.py)": "reel 0,45 della larghezza, alto 870 px (y 400–1270), con la sagoma 0,57 · K reel 79: card orizzontale 0,68 (y 258–1291 col titolo)",
+     "rimbalzo": "0",
+     "scena": "5,05 s"
+    },
+    "manca": "il reel è verticale (9:16) e quindi più stretto della card orizzontale di Kallaway: a sinistra e a destra resta fondo finché non entra la sagoma; il titolo si scrive in 4 s perché segue la voce (Kallaway dice il titolo in 0,8 s)",
+    "da_fare": "",
+    "fatto": "template TPL.T01 con la scheda (kit2-tpl-testo.js); DOPO in ritmo-clip/T01_dopo.mp4",
+    "sotto_4": false
+   },
+   {
+    "giro": "09/10 sera",
+    "voti": {
+     "movimento": 5,
+     "materiali": 4,
+     "frame": 4,
+     "brand": 5
+    },
+    "sotto_4": false,
+    "confronto": "_analisi/moto/T01.jpg",
+    "manca": "parola per parola sulla voce come il reel 79",
+    "da_fare": "",
+    "fatto": ""
+   }
+  ]
+ },
+ "F08": {
+  "giro": "ritmo 13/10 (blocco 01)",
+  "voti": {
+   "movimento": 5,
+   "materiali": 4,
+   "frame": 4,
+   "brand": 5
+  },
+  "template": "TPL.F08 (kw-kit/kit2-tpl-luce.js)",
+  "scena": "CATALOGO-ANIMAZIONI/ritmo-01 8,75–13,75 s (01/10, «In questo modo l'algoritmo non capisce di cosa parla il tuo profilo e nemmeno chi ti guarda.»)",
+  "confronto": "_analisi/ritmo/blocco01/K_F08_r13.jpg · K_F08_r88.jpg · _analisi/ritmo/deriva/F08_ritmo01.jpg (+ _v) · blocco01/*F08*_cambio.json · _analisi/ritmo/pop/F08_ritmo01_domanda.jpg · F08_ritmo01_riquadro_lime.jpg",
+  "misure": {
+   "al taglio": "telefono col profilo «di tutto», pill dell'algoritmo e 10 persone qualunque di profilo già in scena, accese",
+   "movimento principale": "arrivo dal basso: 139 px/s a 0,25 s → 1,6 a 1 s, expo.out; poi +0,8% in 3 s (deriva.py sulle persone, verifica gialla)",
+   "Kallaway (arrivi, RITMO.md §2)": "reel 31: −112 px expo.out, 175 → 11 px/s a 0,25/1 s · reel 65: −137 px, 230 → 1,5 px/s",
+   "cambio di stato delle persone (onda)": "10% → 90% in 0,40 s (12 fotogrammi), dalla cima in giù",
+   "Kallaway reel 13 (onda) · reel 88 (secco)": "0,33 s (10 fotogrammi) · 1 fotogramma",
+   "cambio di stato della pill (secco)": "1–3 fotogrammi su «non» (Kallaway reel 88: 1 fotogramma)",
+   "accenti": "3: la pill si spegne su «non», riquadro lime sulla griglia su «profilo», onda sulle persone su «nemmeno»",
+   "rimbalzo": "0 (il riquadro di igProfile.hl usava back.out(2): con KW_RITMO diventa power2.out)",
+   "scena": "5,0 s",
+   "pop.py · il «?» accanto alla pill (regia 13/10)": "0,86 → 1,00 in 0,10 s mentre si scrive, rimbalzo 0% · K: badge 0,66 → 1,00 in 0,13 s, rimbalzo 0% (reel 1)",
+   "pop.py · il riquadro lime sulla griglia (regia 13/10, solo i pixel lime)": "entra da 1,02 e si stringe a 1,00 in ~0,1 s dopo che compare (highlight: 1,1 → 1 in 0,28 s, power2.out con KW_RITMO), niente rimbalzo sotto 1 · K: nessun rimbalzo visibile nelle entrate (8 su 8)",
+   "filtro (regia 15/10, blocco 2)": "nell'onda ogni persona faceva un fotogramma più scuro (il filtro animato da «none» partiva da brightness(0): luminosità ai lati 46,5 → 40,0 → 40,9): ora TPL.F08 fa fromTo da grayscale(0) brightness(1) e la luminosità scende senza salti (48,0 → 34,0 in 0,5 s); il resto di ritmo-01 non cambia"
+  },
+  "manca": "il profilo è finto (iltuoprofilo, la bio con i temi a 11 px non si legge: la griglia mescolata lo dice per immagini); il rosso di Kallaway qui è «spento» (grigio), perché il brand ha un solo accento",
+  "da_fare": "",
+  "fatto": "template TPL.F08 con la scheda (onda o secco, verso spento/acceso); DOPO in ritmo-clip/F08_dopo.mp4; regia 15/10 (blocco 2): tolto il fotogramma nero dell'onda (fromTo sul filtro)",
+  "sotto_4": false,
+  "storia": [
+   {
+    "giro": "09/10 sera",
+    "voti": {
+     "movimento": 4,
+     "materiali": 4,
+     "frame": 4,
+     "brand": 5
+    },
+    "sotto_4": false,
+    "confronto": "da fare sul render di demo-7",
+    "manca": "nessun punto in una demo",
+    "da_fare": "demo-7",
+    "fatto": "demo-7 (vedi IMPL nel catalogo)"
+   }
+  ]
+ },
+ "D02": {
+  "giro": "10/10 notte",
+  "voti": {
+   "movimento": 4,
+   "materiali": 5,
+   "frame": 4,
+   "brand": 5
+  },
+  "sotto_4": false,
+  "confronto": "_analisi/moto/A01-D02_demo8.jpg",
+  "video": "_analisi/confronti-video/blocco3bis_confronto.mp4",
+  "manca": "",
+  "da_fare": "",
+  "fatto": "badge delle views che poppano a cascata sui reel veri",
+  "storia": [
+   {
+    "giro": "09/10 sera",
+    "voti": {
+     "movimento": 4,
+     "materiali": 4,
+     "frame": 4,
+     "brand": 5
+    },
+    "sotto_4": false,
+    "confronto": "_analisi/moto/D02.jpg",
+    "manca": "badge a 0,09 s (reel 1: ~0,07 s)",
+    "da_fare": "",
+    "fatto": ""
+   }
+  ]
+ },
+ "U05": {
+  "giro": "10/10 notte",
+  "voti": {
+   "movimento": 5,
+   "materiali": 4,
+   "frame": 5,
+   "brand": 5
+  },
+  "sotto_4": false,
+  "confronto": "_analisi/moto/D01.jpg",
+  "video": "_analisi/confronti-video/blocco3bis_confronto.mp4",
+  "manca": "",
+  "da_fare": "",
+  "fatto": "la card entra di lato in corsa mentre la camera viaggia dal tuo reel, come nel reel 9",
+  "storia": [
+   {
+    "giro": "09/10 sera",
+    "voti": {
+     "movimento": 4,
+     "materiali": 4,
+     "frame": 4,
+     "brand": 5
+    },
+    "sotto_4": false,
+    "confronto": "_analisi/moto/U05.jpg",
+    "manca": "la card arriva sfocata ferma; nel reel 9 entra di lato con la camera",
+    "da_fare": "kit: statCard().slideIn",
+    "fatto": "kit: statCard().slideIn() (entra di lato in corsa, reel 9) + velo bianco sotto la linea (il lime non è trasparente; KW_FISSO tiene il vecchio nei reel approvati)"
+   }
+  ]
+ },
+ "C01": {
+  "giro": "copia 15/10 (blocco C1)",
+  "voti": {
+   "movimento": 5,
+   "materiali": 5,
+   "frame": 5,
+   "brand": 5
+  },
+  "copia": "COPIA.C01 (kit2-copia-connettori.js) · scena 1, 0,63–1,42 s",
+  "scena": "CATALOGO-ANIMAZIONI/copia-01 (reel 79 di Kallaway copiato intero, 1:1 sul suo tempo)",
+  "confronto": "_analisi/ritmo/fogli_regia/copia-01_NN_*.jpg (KALLAWAY | COPIA per scena) · _analisi/confronti-video/r79_copia_affiancato.mp4",
+  "misure": {
+   "pan che segue la linea (camtrack + fitmove)": "copia → 0,63–1,37 s (0,73 s), picco 2943 px/s al 46% · Kallaway → 0,63–1,38 s (0,75 s), picco 2948 px/s al 44%, cubic-bezier(0.65, 0.057, 0.337, 0.913)",
+   "linea": "copia → 0,70 → 0,95 s fuori campo a destra, lampo dove tocca il cervello · Kallaway → uguale",
+   "rimbalzo": "0"
+  },
+  "manca": "lo spostamento misurato sulla copia (−722 px) è sporcato dal cervello che cresce; la camera della copia fa −870 px come Kallaway",
+  "sotto_4": false,
+  "storia": [
+   {
+    "giro": "ritmo 13/10 (blocco 01)",
+    "voti": {
+     "movimento": 5,
+     "materiali": 4,
+     "frame": 4,
+     "brand": 5
+    },
+    "template": "TPL.C01 (kw-kit/kit2-tpl-connettori.js)",
+    "scena": "CATALOGO-ANIMAZIONI/ritmo-01 5,6–8,75 s (01/10, «Lunedì parlo di fitness, martedì di viaggi, venerdì di motivazione.»); entra con la transizione morbida dall'anello di O01",
+    "confronto": "_analisi/ritmo/blocco01/K_C01_r79.jpg · N_C01_ritmo01.jpg · K_C01_r79_viaggio.jpg · K_C01_r14_viaggio.jpg · C01_ritmo01_viaggio.jpg · _analisi/ritmo/pop/C01_ritmo01_lun.jpg",
+    "misure": {
+     "viaggio della camera": "1113 px (1,0 schermata) in 0,7 s power1.out: 90% a 0,47 s dalla partenza, picco 3000 px/s, curva misurata sine.out/power1.out, rimbalzo 0,1%",
+     "Kallaway (reel 79 · reel 14)": "808 · 712 px, 90% a 0,42 · 0,71 s, picco 2970 · 2360 px/s, power2.inOut · power1.out, rimbalzo 0",
+     "prima stesura (power2.out 0,55 s, scena a 1,5 schermate)": "1565 px, 90% a 0,30 s, picco 7490 px/s: 2,5 volte Kallaway → scena più vicina e viaggio più lungo",
+     "linea": "parte con la camera e ha la stessa curva: la punta resta in campo; dopo l'arrivo va avanti da sola di tappa in tappa (0,24 s) su «martedì» e «venerdì»",
+     "all'arrivo": "le tre card ci sono già, fuori fuoco; si accendono sulle parole (nodo lime + card a fuoco + tema)",
+     "camera dopo l'arrivo": "ferma, +1,2% sine.out (Kallaway: ferma sul cervello, poi un secondo movimento a 1,8 s per un'altra idea)",
+     "scena": "3,15 s",
+     "pop.py · la card del lunedì (regia 13/10)": "va a fuoco col bordo lime in 0,2 s, scala 0,98 → 1,00, rimbalzo 0% (striscia guardata; prima del fuoco il tracciamento si aggancia alla pill) · K: la card sale e compare, rimbalzo 0% (reel 69)"
+    },
+    "manca": "il viaggio copre 1 schermata contro 0,7 di Kallaway (anello di O01 e fila di tre card 9:16 sono larghi; più vicine si vedrebbero durante la scena prima); i reel sono di esempio per tema, non dell'utente (qui spiegano «di tutto»)",
+    "da_fare": "",
+    "fatto": "template TPL.C01 con la scheda (anche come transizione morbida R8 da un'ancora della scena prima); DOPO in ritmo-clip/C01_dopo.mp4",
+    "sotto_4": false
+   },
+   {
+    "giro": "09/10 sera",
+    "voti": {
+     "movimento": 4,
+     "materiali": 4,
+     "frame": 4,
+     "brand": 5
+    },
+    "sotto_4": false,
+    "confronto": "da fare sul render di demo-7",
+    "manca": "nessun punto in una demo",
+    "da_fare": "demo-7",
+    "fatto": "demo-7 (vedi IMPL nel catalogo)"
+   }
+  ]
+ },
+ "T02": {
+  "giro": "09/10 sera",
+  "voti": {
+   "movimento": 5,
+   "materiali": 5,
+   "frame": 4,
+   "brand": 5
+  },
+  "sotto_4": false,
+  "confronto": "_analisi/moto/T02.jpg",
+  "manca": "box che cresce con le parole come il reel 1",
+  "da_fare": "",
+  "fatto": ""
+ },
+ "A01": {
+  "giro": "ritmo 13/10 (blocco 03)",
+  "voti": {
+   "movimento": 5,
+   "materiali": 5,
+   "frame": 4,
+   "brand": 5
+  },
+  "template": "TPL.A01 (kw-kit/kit2-tpl-aperture.js, file nuovo)",
+  "scena": "CATALOGO-ANIMAZIONI/ritmo-03 1,0–5,95 s (02/10, «Non ti mancano le idee. Stai guardando i contenuti degli altri invece di fare i tuoi.»): muro 3 × 2 di reel veri di altri creator (Steven Bartlett, Dan Koe, Tony Robbins, Hormozi, GaryVee) con le visualizzazioni vere; i badge poppano su «contenuti», su «tuoi» il muro si spegne e davanti compare il tuo posto vuoto con la tua foto e il «+»",
+  "confronto": "_analisi/ritmo/blocco03/K_A01_r25.jpg · K_A01_r84.jpg · K_A01_r96.jpg · K_D02_r1.jpg · D2_a.jpg (DOPO) · _analisi/ritmo/deriva/A01_ritmo03.jpg · _analisi/ritmo/pop/A01_ritmo03_badge.jpg · A01_ritmo03_tuo.jpg",
+  "misure": {
+   "movimento principale (deriva.py, maschera sul muro: i bordi delle card gialli nella verifica, i video dentro cambiano)": "zoom d'arrivo +9,4% in ~0,3 s, expo.out (angoli 109 → 4 px/s a 0,25 / 1 s), poi la camera ferma (+9,5% a 2 s)",
+   "Kallaway (reel 25, 84, 96 ai primi 3 s)": "la griglia 3 × 2 si costruisce in 0,25–0,4 s dal fotogramma 0 (card sfocate a cascata), camera ferma, i badge verdi a ~1,0–1,6 s; stacco sul volto a ~3 s",
+   "badge views (pop.py sui soli pixel lime)": "visibile da 0,96 → 1,00 in 0,03 s (popK 0,66 → 1 in 0,13 s insieme all'opacità), rimbalzo 0%; uno ogni 0,08 s, prima la riga in alto · K reel 1: 0,66 → 1 in 0,13 s, 0,07–0,13 s fra uno e l'altro, 0%",
+   "il tuo posto (pop.py sui soli pixel lime)": "0,96 → 1,00, rimbalzo 0%, spostamento 2 px",
+   "proporzioni (ingombro.py)": "muro 0,66 della larghezza dopo lo zoom (0,59 al taglio), y 400–1244 · K reel 1 0,68 (y 254–1236 col titolo); reel 84 a tutto schermo su fondo chiaro",
+   "rimbalzo": "0",
+   "scena": "4,95 s"
+  },
+  "manca": "Kallaway costruisce la griglia nei primi 0,3 s; qui (R2) la griglia è già piena al taglio e il movimento principale è lo zoom d'arrivo. Le clip degli altri creator sono spezzoni di YouTube Shorts (_clip-esterni): le visualizzazioni sono quelle vere di YouTube al download (1–6/10), in assets/clips/alt/_sorgenti.json",
+  "da_fare": "",
+  "fatto": "template TPL.A01 con la scheda (kit2-tpl-aperture.js); DOPO in ritmo-clip/A01_dopo.mp4",
+  "sotto_4": false,
+  "storia": [
+   {
+    "giro": "10/10 notte",
+    "voti": {
+     "movimento": 5,
+     "materiali": 5,
+     "frame": 5,
+     "brand": 5
+    },
+    "sotto_4": false,
+    "confronto": "_analisi/moto/A01-D02_demo8.jpg",
+    "video": "_analisi/confronti-video/blocco3bis_confronto.mp4",
+    "manca": "",
+    "da_fare": "",
+    "fatto": "muro di 9 reel veri di Hormozi con la riga del profilo sopra (curva rms 0,122, camera 0,105)"
+   },
+   {
+    "giro": "09/10 sera",
+    "voti": {
+     "movimento": 5,
+     "materiali": 5,
+     "frame": 5,
+     "brand": 5
+    },
+    "sotto_4": false,
+    "confronto": "_analisi/moto/A01.jpg",
+    "manca": "curva uguale al reel 25 (scarto 0,03, camera OK)",
+    "da_fare": "",
+    "fatto": ""
+   }
+  ]
+ },
+ "F01": {
+  "giro": "copia 15/10 (blocco C1)",
+  "voti": {
+   "movimento": 5,
+   "materiali": 4,
+   "frame": 5,
+   "brand": 5
+  },
+  "copia": "COPIA.F01 + CP_GLOW_T, cpNeonK (kit2-copia-0base.js, kit2-copia-luce.js)",
+  "scena": "CATALOGO-ANIMAZIONI/copia-01 (reel 79 di Kallaway copiato intero, 1:1 sul suo tempo)",
+  "confronto": "_analisi/ritmo/fogli_regia/copia-01_NN_*.jpg (KALLAWAY | COPIA per scena) · _analisi/confronti-video/r79_copia_affiancato.mp4",
+  "misure": {
+   "glow del titolo (misura_glow.py 1,6 s)": "copia → alone medio σ 4 px a 0,22 · largo σ 20 px a 0,005 · Kallaway → medio σ 7 px a 0,10 · largo σ 20 px a 0,007",
+   "glow del neon (5,6 s, prima di cpNeonK)": "copia → vicino σ 6 px a 0,66 · largo σ 20 px a 0,30 · Kallaway → vicino σ 7 px a 1,37 · largo σ 26 px a 0,04 (corretto con cpNeonK: largo 0,06, vicino più forte)"
+  },
+  "manca": "il bagliore del neon è stato corretto dopo la misura (cpNeonK) e non è stato rimisurato",
+  "sotto_4": false,
+  "storia": [
+   {
+    "giro": "09/10 sera",
+    "voti": {
+     "movimento": 5,
+     "materiali": 5,
+     "frame": 5,
+     "brand": 5
+    },
+    "sotto_4": false,
+    "confronto": "_analisi/moto/F01.jpg",
+    "manca": "glow misurato",
+    "da_fare": "",
+    "fatto": ""
+   }
+  ]
+ },
+ "K04": {
+  "giro": "copia 15/10 (blocco C1)",
+  "voti": {
+   "movimento": 5,
+   "materiali": 5,
+   "frame": 5,
+   "brand": 5
+  },
+  "copia": "COPIA.K04 (kit2-copia-camera.js) · scena 8, 18,4–19,8 e 20,8–22,6 s",
+  "scena": "CATALOGO-ANIMAZIONI/copia-01 (reel 79 di Kallaway copiato intero, 1:1 sul suo tempo)",
+  "confronto": "_analisi/ritmo/fogli_regia/copia-01_NN_*.jpg (KALLAWAY | COPIA per scena) · _analisi/confronti-video/r79_copia_affiancato.mp4",
+  "misure": {
+   "deriva (deriva.py sulla fiche 3 ferma, 20,81 s)": "copia → −86 px in 1,77 s, angoli 27 → 75 px/s, power1.inOut · Kallaway → −92 px in 1,75 s, angoli 28 → 76 px/s, power1.inOut",
+   "scala": "copia → +0,04% · Kallaway → −0,07%"
+  },
+  "manca": "",
+  "sotto_4": false,
+  "storia": [
+   {
+    "giro": "09/10 sera",
+    "voti": {
+     "movimento": 4,
+     "materiali": 4,
+     "frame": 4,
+     "brand": 5
+    },
+    "sotto_4": false,
+    "confronto": "_analisi/moto/K04.jpg",
+    "manca": "KW.drift misurato",
+    "da_fare": "",
+    "fatto": ""
+   }
+  ]
+ },
+ "F11": {
+  "giro": "10/10 notte",
+  "voti": {
+   "movimento": 4,
+   "materiali": 5,
+   "frame": 4,
+   "brand": 4
+  },
+  "sotto_4": false,
+  "confronto": "_analisi/moto/F11-F04_demo8.jpg",
+  "video": "_analisi/confronti-video/blocco3bis_confronto.mp4",
+  "manca": "il reel 136 tinge di rosso a ondata in 0,4 s; il grigio 'no' del brand si vede meno",
+  "da_fare": "",
+  "fatto": "",
+  "storia": [
+   {
+    "giro": "09/10 sera",
+    "voti": {
+     "movimento": 4,
+     "materiali": 4,
+     "frame": 4,
+     "brand": 4
+    },
+    "sotto_4": false,
+    "confronto": "_analisi/moto/F11.jpg",
+    "manca": "tinta 'no' grigia (nel brand niente rosso); il reel 136 la fa rossa in 0,15 s",
+    "da_fare": "",
+    "fatto": ""
+   }
+  ]
+ },
+ "L14": {
+  "giro": "10/10 notte",
+  "voti": {
+   "movimento": 4,
+   "materiali": 5,
+   "frame": 4,
+   "brand": 5
+  },
+  "sotto_4": false,
+  "confronto": "_analisi/moto/A01-D02_demo8.jpg",
+  "video": "_analisi/confronti-video/blocco3bis_confronto.mp4",
+  "manca": "",
+  "da_fare": "",
+  "fatto": "riga del profilo sopra il muro: foto vera, nome, 'Media: 390K views'",
+  "storia": [
+   {
+    "giro": "09/10 sera",
+    "voti": {
+     "movimento": 4,
+     "materiali": 5,
+     "frame": 4,
+     "brand": 5
+    },
+    "sotto_4": false,
+    "confronto": "_analisi/moto/L14.jpg",
+    "manca": "",
+    "da_fare": "",
+    "fatto": ""
+   }
+  ]
+ },
+ "O21": {
+  "giro": "ritmo 13/10 (blocco 01)",
+  "voti": {
+   "movimento": 5,
+   "materiali": 5,
+   "frame": 4,
+   "brand": 5
+  },
+  "template": "TPL.O21 (kw-kit/kit2-tpl-oggetti.js)",
+  "scena": "CATALOGO-ANIMAZIONI/ritmo-01 50,15–55,0 s (03/10): al centro il tuo reel del 04/10 che si muove con l'etichetta PROVA, l'anello dei tuoi follower si spegne, le persone nuove si accendono",
+  "confronto": "_analisi/ritmo/blocco01/K_O21_r44.jpg · K_O21_r5.jpg · _analisi/ritmo/deriva/O21_ritmo01.jpg · blocco01/O21_ritmo01_onda_cambio.json · _analisi/ritmo/pop/O21_ritmo01_centro.jpg",
+  "misure": {
+   "al taglio": "tre anelli con le persone, il tuo reel al centro e la legenda già costruiti (montati 1 s prima)",
+   "movimento principale": "zoom d'arrivo: +10,3% (dal primo fotogramma dopo il taglio), 109 → 2,8 px/s a 0,25/1 s, expo.out; poi ferma",
+   "Kallaway (reel 44 · reel 5)": "anelli pieni appena arriva la grafica e girano piano · cerchio + persone, poi il colore cambia",
+   "onda delle persone nuove": "10% → 90% in 0,40 s (12 fotogrammi) su «persone»",
+   "Kallaway (onda)": "reel 5: le persone diventano rosse in ~0,25 s; reel 13: 0,33 s",
+   "accenti": "i tuoi follower si spengono su «solo», le persone nuove si accendono su «persone»; gli anelli girano a 9°/s (elementi)",
+   "rimbalzo": "0 (i pop delle persone usavano back.out(2,5): con KW_RITMO power2.out, e qui sono prima del taglio)",
+   "scena": "4,85 s",
+   "pop.py · il tuo reel con PROVA al centro (regia 13/10)": "zoom d'arrivo 0,89 → 1,00 in 0,3 s, rimbalzo di scala 0% e di posizione 0% (il primo fotogramma, 0,67, è un aggancio sbagliato: striscia guardata) · K: arrivo con zoom ~+15% in ~0,4 s, poi ferma (reel 49)"
+  },
+  "manca": "le persone sono puntini (anonime, come in Kallaway) e non volti: per «persone nuove» qualunque è giusto; il centro (il reel) è un cerchio di ~145 px, il video si legge poco",
+  "da_fare": "",
+  "fatto": "template TPL.O21 con la scheda; spezzone r04 (il tuo reel del 04/10) in ritmo-01/assets/clips; DOPO in ritmo-clip/O21_dopo.mp4",
+  "sotto_4": false,
+  "storia": [
+   {
+    "giro": "09/10 sera",
+    "voti": {
+     "movimento": 5,
+     "materiali": 5,
+     "frame": 4,
+     "brand": 5
+    },
+    "sotto_4": false,
+    "confronto": "_analisi/moto/O21.jpg",
+    "manca": "",
+    "da_fare": "",
+    "fatto": ""
+   }
+  ]
+ },
+ "F04": {
+  "giro": "ritmo 13/10 (blocco 02)",
+  "voti": {
+   "movimento": 5,
+   "materiali": 5,
+   "frame": 4,
+   "brand": 5
+  },
+  "template": "TPL.F04 (kw-kit/kit2-tpl-luce.js)",
+  "scena": "CATALOGO-ANIMAZIONI/ritmo-02 13,6–17,3 s (14/10, «Ma da quel momento ogni video sotto quella soglia sembra un fallimento.»): la camera entra nell'eccezione del muro e dall'altra parte c'è il grafico: i tuoi reel veri con la loro barra, il reel virale sopra la soglia «1M views»; su «soglia» la linea si accende, su «fallimento» il riflettore: il virale acceso, i tuoi al 40% e grigi",
+  "confronto": "_analisi/ritmo/blocco02/K_F04_r54.jpg · K_K11_r61.jpg (la selezione a 11,0–11,4 s) · F04_ritmo02_zoomthrough_moto.json · _analisi/ritmo/pop/F04_ritmo02_scelto.jpg",
+  "misure": {
+   "al taglio (R8 morbida)": "zoom-through nell'eccezione accesa del muro: corsa 0,16 s (moto.py 13,47 → 13,6), scia fino a 13,73; dall'altra parte il grafico è già pieno",
+   "assestamento (misurato sulla barra lime)": "scala 0,86 → 0,98 in 0,2 s → 1,00 in 0,4 s, power3.out, nessun overshoot (deriva.py non regge sul primo fotogramma sfocato: misura sull'altezza della barra); poi la camera tiene",
+   "riflettore": "i tuoi reel scendono dal 100 al 67% di luminosità (43 → 29) in 0,27 s, grigi; il virale acceso senza crescere · K reel 61: la selezione si accende e il resto scende dal 100 al 72% in ~0,37 s; reel 54: le altre card si tingono in ~0,2 s",
+   "pop.py · la card scelta (solo i pixel lime)": "scala 0,97 → 1,00, rimbalzo 0% (spotlight con s: 1, prima 1,05)",
+   "accenti": "la soglia si accende su «soglia» (0,25 s), il riflettore su «fallimento» (0,4 s)",
+   "proporzioni (ingombro.py)": "grafico largo 0,78 della larghezza, dalla soglia (y ~485) alle card (y 1242) · K reel 54: la card del profilo ~0,65, le miniature 0,55; reel 61: muro a tutto schermo",
+   "rimbalzo": "0",
+   "filtro": "corretto un fotogramma nero: un filtro animato da «none» partiva da brightness(0); ora fromTo (anche in F02)",
+   "scena": "3,7 s"
+  },
+  "manca": "la soglia «1M views» e le altezze delle barre sono un esempio (non i numeri veri dei tuoi reel); il reel sopra la soglia è di Hormozi",
+  "da_fare": "",
+  "fatto": "template TPL.F04 con la scheda (kit2-tpl-luce.js), R8 con tplZoomThrough dall'ancora eccezione(2) di TPL.K11; DOPO in ritmo-clip/F04_dopo.mp4",
+  "sotto_4": false,
+  "storia": [
+   {
+    "giro": "10/10 notte",
+    "voti": {
+     "movimento": 5,
+     "materiali": 5,
+     "frame": 5,
+     "brand": 5
+    },
+    "sotto_4": false,
+    "confronto": "_analisi/moto/F11-F04_demo8.jpg",
+    "video": "_analisi/confronti-video/blocco3bis_confronto.mp4",
+    "manca": "",
+    "da_fare": "",
+    "fatto": "l'outlier col riflettore e la pill '4× la sua media', la camera ci entra"
+   },
+   {
+    "giro": "09/10 sera",
+    "voti": {
+     "movimento": 4,
+     "materiali": 4,
+     "frame": 4,
+     "brand": 5
+    },
+    "sotto_4": false,
+    "confronto": "_analisi/moto/F04.jpg",
+    "manca": "",
+    "da_fare": "",
+    "fatto": ""
+   }
+  ]
+ },
+ "O13": {
+  "giro": "copia 15/10 (blocco C1)",
+  "voti": {
+   "movimento": 5,
+   "materiali": 5,
+   "frame": 5,
+   "brand": 5
+  },
+  "copia": "COPIA.O13 (kit2-copia-oggetti.js) · scene 1, 4, 6",
+  "scena": "CATALOGO-ANIMAZIONI/copia-01 (reel 79 di Kallaway copiato intero, 1:1 sul suo tempo)",
+  "confronto": "_analisi/ritmo/fogli_regia/copia-01_NN_*.jpg (KALLAWAY | COPIA per scena) · _analisi/confronti-video/r79_copia_affiancato.mp4",
+  "misure": {
+   "cervello in fondo alla linea (bbox 1,17–1,55 s)": "copia → 282 px · Kallaway → 276–286 px",
+   "cresce e se ne va": "copia → ×1,13 in 0,4 s, sfuma 1,70–1,96 s salendo · Kallaway → uguale",
+   "sopra il telefono (scena 6)": "copia → sale da dietro (60 → 17 px in 0,07 s) e poi −52 px fino al taglio · Kallaway → uguale"
+  },
+  "manca": "il cervello a raggi X del kit è più dettagliato del suo, la stessa forma",
+  "sotto_4": false,
+  "storia": [
+   {
+    "giro": "ritmo 13/10 (blocco 02)",
+    "voti": {
+     "movimento": 5,
+     "materiali": 5,
+     "frame": 4,
+     "brand": 5
+    },
+    "template": "TPL.O13 (kw-kit/kit2-tpl-oggetti.js)",
+    "scena": "CATALOGO-ANIMAZIONI/ritmo-02 6,1–9,75 s (14/10, «E il cervello si convince che quello sia il livello normale.»): in alto tre reel virali veri (Hormozi, «1M views») collegati al cervello vero, che si accende col battito di Kallaway su «convince»; sotto entra il riquadro con «= il livello normale» che si scrive",
+    "confronto": "_analisi/ritmo/blocco02/K_O13_r34.jpg · K_O13_r48.jpg · K_O13_r22.jpg · K_O13_r48_battito_cambio.json · O13_ritmo02_battito_cambio.json · _analisi/ritmo/deriva/O13_ritmo02.jpg · O13_ritmo02_v.jpg · _analisi/ritmo/pop/O13_ritmo02_cervello.jpg · _analisi/ritmo/pop/O13_ritmo02_etichetta.jpg",
+    "misure": {
+     "al taglio": "card coi video, badge, linee e cervello già in scena; il riquadro dell'etichetta NO (correzione regia 15/10: prima c'era vuoto dal taglio fino alla scritta, ~2,3 s)",
+     "movimento principale": "zoom d'arrivo: +11,3% dal primo fotogramma (15% in tutto) in 0,4 s, 128 px/s agli angoli a 0,25 s, expo.out (deriva.py, maschera su cervello e riquadro, pannello giallo); poi la camera tiene",
+     "Kallaway (reel 34)": "il cervello sale da sotto il telefono e si assesta (arrivo), poi la camera è ferma; si accende a 0,73 s",
+     "battito (cambio.py, pixel lime del cervello)": "il disco con l'anello lime nasce 0,15 s prima; poi acceso / spento / acceso / spento / acceso a ogni fotogramma (7,02 → 7,15 s) e fisso con l'alone · K reel 48: acceso / spento / acceso / spento / acceso a ogni fotogramma (1,72 → 1,88 s), stesso schema",
+     "pop.py · il cervello acceso (solo i pixel lime)": "scala 1,00 fissa dal primo lampo, nessun pop né rimbalzo; l'anello del disco nasce a +0,07 s",
+     "proporzioni (ingombro.py)": "riga di card 0,65 della larghezza, cervello 0,43, y 400–1290 · K reel 34: cervello 0,50 (all'arrivo 0,64), telefono 0,18; reel 22: 0,26; reel 48: testa 0,43",
+     "rimbalzo": "0",
+     "scena": "3,65 s",
+     "etichetta (regia 15/10)": "il riquadro entra con la scritta su «livello» (8,38 s): popK 0,8 → 1 in 0,15 s, bordo già lime, la scritta si batte da +0,04 s e «= il livello normale» è completa in ~0,6 s · K reel 34: riquadro e «Two Hits Of Dopamine» compaiono insieme, ~0,6 s",
+     "pop.py · il riquadro dell'etichetta (pixel lime del bordo)": "compare a +0,13 s a 0,93 e arriva a 1,00 a +0,23 s, rimbalzo 0% (striscia guardata: dentro si muove solo il cursore che scrive)"
+    },
+    "manca": "le card in alto sono reel di Hormozi (in un reel vero: i contenuti virali della nicchia dell'utente); «1M views» è un'etichetta, non il numero vero di quei reel; la scena è un po' più stretta del brain di Kallaway all'arrivo (0,43 contro 0,50–0,64)",
+    "da_fare": "",
+    "fatto": "template TPL.O13 con la scheda (kit2-tpl-oggetti.js), usa brain().disco + .accendi del kit; DOPO in ritmo-clip/O13_dopo.mp4; regia 15/10: niente riquadro vuoto, entra con la scritta (popK)",
+    "sotto_4": false
+   },
+   {
+    "giro": "09/10 sera",
+    "voti": {
+     "movimento": 4,
+     "materiali": 5,
+     "frame": 4,
+     "brand": 5
+    },
+    "sotto_4": false,
+    "confronto": "_analisi/moto/O13.jpg",
+    "manca": "cervello vero (Adobe Stock) con pulse",
+    "da_fare": "",
+    "fatto": ""
+   }
+  ]
+ },
+ "D04": {
+  "giro": "10/10 notte",
+  "voti": {
+   "movimento": 5,
+   "materiali": 5,
+   "frame": 4,
+   "brand": 5
+  },
+  "sotto_4": false,
+  "confronto": "_analisi/moto/D04.jpg",
+  "video": "_analisi/confronti-video/blocco3bis_confronto.mp4",
+  "manca": "il reel 18 colora di rosso tutta la schermata; da noi la curva è bianca (il lime è per ciò che funziona)",
+  "da_fare": "",
+  "fatto": "Approfondimenti veri del tuo reel; 10/10 notte: curva in 0,8 s e crollo appena la curva lo raggiunge, col disco pieno che si gonfia come nel reel 18 (camera rms 0,042)",
+  "storia": [
+   {
+    "giro": "09/10 sera",
+    "voti": {
+     "movimento": 4,
+     "materiali": 4,
+     "frame": 4,
+     "brand": 5
+    },
+    "sotto_4": false,
+    "confronto": "_analisi/moto/D04.jpg",
+    "manca": "",
+    "da_fare": "",
+    "fatto": ""
+   }
+  ]
+ },
+ "L11": {
+  "giro": "ritmo 13/10 (blocco 01)",
+  "voti": {
+   "movimento": 5,
+   "materiali": 5,
+   "frame": 5,
+   "brand": 5
+  },
+  "template": "TPL.L11 (kw-kit/kit2-tpl-liste.js)",
+  "scena": "CATALOGO-ANIMAZIONI/ritmo-01 31,45–38,0 s (16/10): la copertina vera di un tuo reel corre di tappa in tappa (carica → salva in bozza → duplica), «Pubblica ×2» resta sfocata (la dicono le scene dopo)",
+  "confronto": "_analisi/ritmo/blocco01/K_L11_r124.jpg · K_L11_r14.jpg · K_L11_r124_linea_cambio.json · L11_ritmo01_linea_cambio.json · _analisi/ritmo/deriva/L11_ritmo01.jpg · _analisi/ritmo/pop/L11_ritmo01_video.jpg · L11_ritmo01_tappa2_lime.jpg",
+  "misure": {
+   "al taglio": "le 4 tappe con le etichette sfocate ci sono già; il tracciato (con i due tratti di bordo) si disegna dal taglio",
+   "tracciato": "10% → 90% in 0,43 s (da +0,30 a +0,73 s dopo il taglio), 1,0 s in tutto coi due tratti, una curva power1.inOut su tutta la lunghezza (cambio.py, pixel bianchi)",
+   "Kallaway (reel 124)": "10% → 90% in 0,50 s (da +0,2 a +0,72 s dopo il taglio), tappe già in scena, camera ferma",
+   "camera": "ferma: +0,35% in 1,4 s, angoli 2 px (deriva.py, tappe gialle nel pannello), poi tenuta +1,2% (Kallaway ferma)",
+   "accenti": "il tuo video arriva sulla prima tappa su «carichi», corre alla seconda su «bozza» e alla terza su «duplicalo» (0,7 s power2.inOut, il tratto fatto si accende di lime), poi si sdoppia",
+   "rimbalzo": "0 (pop.py, strisce guardate)",
+   "scena": "6,55 s (due frasi della stessa procedura: poco sopra i 6 s)",
+   "area (regia 13/10)": "il tracciato attraversa tutta la larghezza (entra dal bordo sinistro in alto, esce dal destro in basso); tappe, etichette e il tuo video da x ~90 a ~980 e da y ~410 a ~1245 · prima: S verticale stretta da x ~150 a ~840, y ~430–1160 · scala 0,915 (prima 0,805): etichette 46 px (37), video 165 × 293 px (135 × 241), tappe Ø 92 px (74) · K (reel 124): la curva va da bordo a bordo con 7 tappe",
+   "pop.py · il tuo video che arriva sulla prima tappa (regia 13/10)": "0,90 → 1,00 in 0,13 s (0,8 → 1 in 0,18 s power2.out), rimbalzo 0% · K: badge 0,66 → 1,00 in 0,13 s, rimbalzo 0% (reel 1)",
+   "pop.py · la tappa «Salva in bozza» che si accende (regia 13/10, solo i pixel lime)": "colpo dall'alto 1,14 → 1,00 in 0,25 s (1,3 → 1 power2.out con KW_RITMO, era back.out(2,6)), mai sotto 1: il 14% di pop.py è la partenza sopra la scala finale, non un rimbalzo"
+  },
+  "manca": "la scena dura 6,55 s (una procedura in due frasi); 4 tappe contro le 7 di Kallaway: fra un'etichetta e l'altra resta un po' di fondo; l'accensione delle tappe (1,3 → 1) è un colpo più grande del pop R5 (0,8 → 1)",
+  "da_fare": "",
+  "fatto": "template TPL.L11 con la scheda; metroPath.show(t, dur, piene) con l'opzione in coda (tappe già in scena, default di prima); DOPO in ritmo-clip/L11_dopo.mp4 · regia 13/10: layout «diagonale» (default con KW_RITMO) che riempie l'area utile, tratti di bordo, opzioni layout / area / durTracciato",
+  "sotto_4": false,
+  "storia": [
+   {
+    "giro": "09/10 sera",
+    "voti": {
+     "movimento": 4,
+     "materiali": 4,
+     "frame": 4,
+     "brand": 5
+    },
+    "sotto_4": false,
+    "confronto": "_analisi/moto/L11.jpg",
+    "manca": "percorso a tappe dritto e statico: nei reel 88/124 è un percorso curvo 'a metropolitana' con la pallina che corre e il tratto fatto che si accende",
+    "da_fare": "kit: metroPath",
+    "fatto": "kit: metroPath (percorso curvo a metropolitana, pallina che corre, tratto che si accende, stazioni con le etichette che vanno a fuoco); demo-2 30,15–32,5 s"
+   }
+  ]
+ },
+ "O03": {
+  "giro": "09/10 sera",
+  "voti": {
+   "movimento": 4,
+   "materiali": 5,
+   "frame": 4,
+   "brand": 5
+  },
+  "sotto_4": false,
+  "confronto": "_analisi/moto/O03.jpg",
+  "manca": "",
+  "da_fare": "",
+  "fatto": ""
+ },
+ "U01": {
+  "giro": "09/10 sera",
+  "voti": {
+   "movimento": 4,
+   "materiali": 5,
+   "frame": 4,
+   "brand": 5
+  },
+  "sotto_4": false,
+  "confronto": "_analisi/moto/U01.jpg",
+  "manca": "",
+  "da_fare": "",
+  "fatto": ""
+ },
+ "C04": {
+  "giro": "09/10 sera",
+  "voti": {
+   "movimento": 5,
+   "materiali": 4,
+   "frame": 4,
+   "brand": 5
+  },
+  "sotto_4": false,
+  "confronto": "_analisi/moto/C04.jpg",
+  "manca": "",
+  "da_fare": "",
+  "fatto": ""
+ },
+ "K14": {
+  "giro": "10/10 notte",
+  "voti": {
+   "movimento": 4,
+   "materiali": 4,
+   "frame": 5,
+   "brand": 5
+  },
+  "sotto_4": false,
+  "confronto": "_analisi/moto/K14_demo8.jpg",
+  "video": "_analisi/confronti-video/blocco3bis_confronto.mp4",
+  "manca": "nel reel 5 la promozione arriva con un colpo di camera (563 px/s); da noi si muove solo la voce",
+  "da_fare": "",
+  "fatto": "la prima voce sale e fa da intestazione (promote 4,75 s)",
+  "storia": [
+   {
+    "giro": "09/10 sera",
+    "voti": {
+     "movimento": 4,
+     "materiali": 4,
+     "frame": 4,
+     "brand": 5
+    },
+    "sotto_4": false,
+    "confronto": "_analisi/moto/K14.jpg",
+    "manca": "",
+    "da_fare": "",
+    "fatto": ""
+   }
+  ]
+ },
+ "L12": {
+  "giro": "ritmo 13/10 (blocco 02)",
+  "voti": {
+   "movimento": 5,
+   "materiali": 4,
+   "frame": 4,
+   "brand": 5
+  },
+  "template": "TPL.L12 (kw-kit/kit2-tpl-liste.js)",
+  "scena": "CATALOGO-ANIMAZIONI/ritmo-02 39,5–45,6 s (15/10, «Scrivi gli script con un metodo fisso. Io uso hook, spiega, mostra, insegna.»): la camera entra nel tuo reel del filone «Idee» e dall'altra parte c'è il copione con le righe già stese; ogni sezione si evidenzia di lime sulla sua parola, quella prima diventa bianca",
+  "confronto": "_analisi/ritmo/blocco02/K_L12_r26.jpg · K_L12_r35.jpg · K_L12_r4.jpg · _analisi/ritmo/pop/L12_ritmo02_hook.jpg",
+  "misure": {
+   "al taglio (R8 morbida)": "zoom-through nel reel del filone «Idee» (0,16 s), dall'altra parte il documento è già pieno di righe grigie con le etichette spente",
+   "assestamento (larghezza del documento)": "0,97 → 1,00 in 0,2 s dopo la scia (39,63 → 39,83 s), nessun overshoot; poi la camera tiene",
+   "Kallaway (reel 26)": "taglio a 3,41 s sul documento bianco già pieno, poi la riga «Hook» si colora sulla parola (4,0 s) e le «Lock-in zone» gialle (5,3 s); la camera spinge piano (K16)",
+   "sezioni (pixel lime)": "«Hook»: 3 righe evidenziate 10 → 90% in 0,23 s (0,3 s a riga, 0,07 s fra le righe), su ogni parola; la sezione prima diventa bianca in 0,25 s",
+   "pop.py · l'etichetta «Hook» (solo i pixel lime)": "si accende a +0,17 s già intera, non cresce; si stende solo la riga (evidenziatore)",
+   "proporzioni (ingombro.py)": "documento 0,64 della larghezza, y 303–1284 · K reel 26: 0,57; reel 35: ~0,5",
+   "rimbalzo": "0",
+   "scena": "6,1 s"
+  },
+  "manca": "Kallaway usa un colore per sezione (rosso, giallo, viola…): qui lime per quella detta e bianco per le fatte (brand); le etichette sono piccole come in Kallaway (si leggono a 1080, non sul telefono piccolo); scena lunga (6,1 s) perché la frase è una",
+  "da_fare": "",
+  "fatto": "template TPL.L12 con la scheda (kit2-tpl-liste.js); scriptDoc() con opzioni in coda fsTitolo, fsLab, top (default di prima); R8 con tplZoomThrough dall'ancora reel(2, 0) di TPL.L09; DOPO in ritmo-clip/L12_dopo.mp4",
+  "sotto_4": false,
+  "storia": [
+   {
+    "giro": "09/10 sera",
+    "voti": {
+     "movimento": 4,
+     "materiali": 4,
+     "frame": 4,
+     "brand": 5
+    },
+    "sotto_4": false,
+    "confronto": "_analisi/moto/L12.jpg",
+    "manca": "documento rado di righe grigie; nel reel 35 si riempie in ~0,7 s di righe fitte colorate per sezione",
+    "da_fare": "kit: scriptDoc più fitto, righe a sezioni",
+    "fatto": "kit: scriptDoc fitto (righe sottili ×1,7, cascata 0,014 s, sezioni a 0,05 s)"
+   }
+  ]
+ },
+ "K13": {
+  "giro": "09/10 sera",
+  "voti": {
+   "movimento": 4,
+   "materiali": 4,
+   "frame": 4,
+   "brand": 5
+  },
+  "sotto_4": false,
+  "confronto": "_analisi/moto/K13.jpg",
+  "manca": "",
+  "da_fare": "",
+  "fatto": ""
+ },
+ "L10": {
+  "giro": "09/10 sera",
+  "voti": {
+   "movimento": 4,
+   "materiali": 4,
+   "frame": 4,
+   "brand": 5
+  },
+  "sotto_4": false,
+  "confronto": "_analisi/moto/L10.jpg",
+  "manca": "",
+  "da_fare": "",
+  "fatto": ""
+ },
+ "O01": {
+  "giro": "ritmo 13/10 (blocco 01)",
+  "voti": {
+   "movimento": 5,
+   "materiali": 4,
+   "frame": 4,
+   "brand": 5
+  },
+  "template": "TPL.O01 (kw-kit/kit2-tpl-oggetti.js)",
+  "scena": "CATALOGO-ANIMAZIONI/ritmo-01 1,0–5,6 s (01/10, «L'errore numero uno che fanno i principianti? Pubblicare di tutto.»)",
+  "confronto": "_analisi/ritmo/blocco01/K_O01_r14.jpg · N_O01_ritmo01.jpg · K_O01_r14_radiale.jpg · O01_ritmo01_radiale.jpg · _analisi/ritmo/pop/O01_ritmo01_risposta.jpg",
+  "misure": {
+   "al taglio": "7 card già in scena vicine al centro (30% del raggio), la risposta sfocata dietro (non ancora detta)",
+   "movimento principale": "apertura dal primo fotogramma: raggio del contenuto 123 → 324 px, metà a 0,30 s, 90% a 0,63 s, quasi lineare (power1.out 0,85 s)",
+   "Kallaway (reel 14 · reel 13)": "raggio 106 → 304 px · 164 → 299 px, metà a 0,21 · 0,17 s, 90% a 0,67 s, power1.out",
+   "prima (expo.out 0,42 s, come demo e v5)": "90% a 0,17 s: quattro volte più veloce di Kallaway",
+   "camera": "ferma, tenuta +1,2% sine.out fino alla fine (Kallaway: nessun movimento di camera fino alla linea a 2,25 s)",
+   "rotazione": "24°/s continua, card dritte (catalogo 20–25°/s)",
+   "accenti": "disco lime su «uno» (0,83 s dopo il taglio), la risposta va a fuoco su «Pubblicare», sottolineatura su «tutto.»",
+   "rimbalzo": "1,8% (rumore della misura: niente back.out)",
+   "scena": "4,6 s",
+   "pop.py · la risposta «Pubblicare di tutto» (regia 13/10)": "da sfocata a nitida in 0,2 s a scala piena (0,97 → 1,00), rimbalzo 0% (striscia guardata) · K: gli elementi entrano in dissolvenza a scala piena in ~0,13 s (reel 6), rimbalzo 0"
+  },
+  "manca": "le card sono reel di esempio per tema (fitness, viaggi, cucina, animali, motivazione), non i reel dell'utente: qui spiegano «di tutto». Sotto l'anello resta ~150 px di fondo prima della safe zone: con il titolo su due righe l'anello non può crescere di più",
+  "da_fare": "",
+  "fatto": "template TPL.O01 con la scheda; reelRing.open(t, dur, ease) con l'ease in coda (default expo.out di prima); DOPO in ritmo-clip/O01_dopo.mp4",
+  "sotto_4": false,
+  "storia": [
+   {
+    "giro": "09/10 sera",
+    "voti": {
+     "movimento": 5,
+     "materiali": 5,
+     "frame": 4,
+     "brand": 5
+    },
+    "sotto_4": false,
+    "confronto": "_analisi/moto/O01.jpg",
+    "manca": "",
+    "da_fare": "",
+    "fatto": ""
+   }
+  ]
+ },
+ "O05": {
+  "giro": "10/10 notte",
+  "voti": {
+   "movimento": 4,
+   "materiali": 5,
+   "frame": 4,
+   "brand": 5
+  },
+  "sotto_4": false,
+  "confronto": "_analisi/moto/O05.jpg",
+  "video": "_analisi/confronti-video/blocco3bis_confronto.mp4",
+  "manca": "nel reel 4 la piramide arriva già fatta con una frusta della camera (2966 px/s) e le pill poppano dopo; da noi si costruisce e si accende un livello alla volta",
+  "da_fare": "",
+  "fatto": "piramide grande (600 × 1040) con le pill del valore a destra (pyramid labelsR)",
+  "storia": [
+   {
+    "giro": "09/10 sera",
+    "voti": {
+     "movimento": 4,
+     "materiali": 4,
+     "frame": 4,
+     "brand": 4
+    },
+    "sotto_4": false,
+    "confronto": "_analisi/moto/O05.jpg",
+    "manca": "piramide piccola e piatta (densità 0,25)",
+    "da_fare": "kit: piramide più grande, materiale lucido, bandiere",
+    "fatto": "rivisto sul fotogramma completo di demo-2 (56,3 s): la striscia l'aveva colto mentre si costruiva; inquadratura e materiali ok"
+   }
+  ]
+ },
+ "A02": {
+  "giro": "09/10 sera",
+  "voti": {
+   "movimento": 5,
+   "materiali": 5,
+   "frame": 5,
+   "brand": 5
+  },
+  "sotto_4": false,
+  "confronto": "_analisi/moto/A02.jpg",
+  "manca": "",
+  "da_fare": "",
+  "fatto": ""
+ },
+ "H03": {
+  "giro": "09/10 sera",
+  "voti": {
+   "movimento": 4,
+   "materiali": 4,
+   "frame": 4,
+   "brand": 5
+  },
+  "sotto_4": false,
+  "confronto": "_analisi/moto/H03.jpg",
+  "manca": "",
+  "da_fare": "",
+  "fatto": ""
+ },
+ "K02": {
+  "giro": "copia 15/10 (blocco C1)",
+  "voti": {
+   "movimento": 5,
+   "materiali": 5,
+   "frame": 5,
+   "brand": 5
+  },
+  "copia": "COPIA.K02 (kit2-copia-camera.js) · scena 11, 34,74–36,5 s",
+  "scena": "CATALOGO-ANIMAZIONI/copia-01 (reel 79 di Kallaway copiato intero, 1:1 sul suo tempo)",
+  "confronto": "_analisi/ritmo/fogli_regia/copia-01_NN_*.jpg (KALLAWAY | COPIA per scena) · _analisi/confronti-video/r79_copia_affiancato.mp4",
+  "misure": {
+   "arrivo in corsa sulla mappa (camtrack + fitmove)": "copia → (−606, −719) px in 1,50 s, KW.arrive (errore 0,018) · Kallaway → (−677, −802) px in 1,34 s dal taglio, 4428 px/s al primo fotogramma, KW.arrive (0,009)",
+   "scala": "copia → ×1,001 · Kallaway → ×1,002"
+  },
+  "manca": "la misura sulla copia parte da 34,77 s (un fotogramma dopo): il primo tratto, il più veloce, manca nel numero",
+  "sotto_4": false,
+  "storia": [
+   {
+    "giro": "09/10 sera",
+    "voti": {
+     "movimento": 4,
+     "materiali": 4,
+     "frame": 4,
+     "brand": 5
+    },
+    "sotto_4": false,
+    "confronto": "_analisi/moto/K02.jpg",
+    "manca": "KW.arrive misurato",
+    "da_fare": "",
+    "fatto": ""
+   }
+  ]
+ },
+ "T08": {
+  "giro": "09/10 sera",
+  "voti": {
+   "movimento": 4,
+   "materiali": 4,
+   "frame": 4,
+   "brand": 5
+  },
+  "sotto_4": false,
+  "confronto": "_analisi/moto/T08.jpg",
+  "manca": "",
+  "da_fare": "",
+  "fatto": ""
+ },
+ "H02": {
+  "giro": "09/10 sera",
+  "voti": {
+   "movimento": 4,
+   "materiali": 4,
+   "frame": 4,
+   "brand": 5
+  },
+  "sotto_4": false,
+  "confronto": "da fare sul render di demo-7",
+  "manca": "nessun punto in una demo",
+  "da_fare": "demo-7",
+  "fatto": "demo-7 (vedi IMPL nel catalogo)"
+ },
+ "K16": {
+  "giro": "ritmo 13/10 (blocco 02)",
+  "voti": {
+   "movimento": 5,
+   "materiali": 4,
+   "frame": 4,
+   "brand": 5
+  },
+  "template": "TPL.K16 (kw-kit/kit2-tpl-camera.js)",
+  "scena": "CATALOGO-ANIMAZIONI/ritmo-02 45,6–51,2 s (15/10, «…organizza tutto in un calendario, alternando i filoni durante la settimana per non ripetere sempre lo stesso tema.»): la camera spinge piano sulla settimana mentre si compila: le copertine dei tuoi reel nei giorni su «calendario», i filoni alternati su «alternando», «Profilo» (lunedì e venerdì, mai vicini) si accende su «stesso»",
+  "confronto": "_analisi/ritmo/blocco02/K_L12_r35.jpg (= K16 reel 35) · K_L12_r26.jpg · _analisi/ritmo/deriva/K_K16_r35.jpg · K_K16_r35_v.jpg · K16_ritmo02.jpg · K16_ritmo02_v.jpg · _analisi/ritmo/pop/K16_ritmo02_filone.jpg",
+  "misure": {
+   "movimento principale (deriva.py, maschera sulla scheda, pannello giallo)": "spinta dal taglio: +14,4% dal primo fotogramma (15% in tutto) in 2 s, +12,5% a 1 s, power3.out ≈ power2.out; angoli 115 → 37 → 0 px/s a 0,25 / 1 / 2 s; poi coda +1%",
+   "Kallaway (reel 35, il copione)": "+15,8% in ~2 s (deriva.py, angoli 163 → 102 → 120 px/s, comprende l'arrivo); il bordo del documento da 0,96 a 2,04 s: 518 → 574 px (+10,8%), rallenta (+6%, +3%, +1,4%); reel 26: solo l'arrivo che si spegne in ~1 s",
+   "accenti": "copertine nei giorni su «calendario» (popK sfalsati di 0,08 s), filoni su «alternando» (0,1 s), «Profilo» lime nei suoi due giorni su «stesso»",
+   "pop.py · la pill «Profilo» del lunedì (solo i pixel bianchi)": "0,98 → 1,00 in 0,05 s, rimbalzo 0%",
+   "proporzioni (ingombro.py)": "scheda 0,50 → 0,56 della larghezza con la spinta, y 400–1218 · K reel 35: documento 0,48 → 0,53 · prima stesura con le pill piccole (metà riga vuota): pill e giorni ingranditi",
+   "rimbalzo": "0",
+   "scena": "5,6 s"
+  },
+  "manca": "le copertine nei giorni sono statiche (th-mio_*), non video, per non pesare sul render (49 video in ritmo-02); la scheda verticale con 7 giorni resta stretta come il copione di Kallaway (0,5 della larghezza): il testo delle pill è piccolo sul telefono",
+  "da_fare": "",
+  "fatto": "template TPL.K16 con la scheda (kit2-tpl-camera.js), spinta() di kit2-ritmo con +15% in 2 s; DOPO in ritmo-clip/K16_dopo.mp4",
+  "sotto_4": false,
+  "storia": [
+   {
+    "giro": "09/10 sera",
+    "voti": {
+     "movimento": 4,
+     "materiali": 4,
+     "frame": 4,
+     "brand": 5
+    },
+    "sotto_4": false,
+    "confronto": "da fare sul render di demo-7",
+    "manca": "usata nel tablet di demo-4 (spinta lenta +8% in 1,8 s)",
+    "da_fare": "demo-7",
+    "fatto": "demo-7 (vedi IMPL nel catalogo)"
+   }
+  ]
+ },
+ "A03": {
+  "giro": "09/10 sera",
+  "voti": {
+   "movimento": 4,
+   "materiali": 4,
+   "frame": 4,
+   "brand": 5
+  },
+  "sotto_4": false,
+  "confronto": "da fare sul render di demo-7",
+  "manca": "nessun punto in una demo",
+  "da_fare": "demo-7",
+  "fatto": "demo-7 (vedi IMPL nel catalogo)"
+ },
+ "F06": {
+  "giro": "09/10 sera",
+  "voti": {
+   "movimento": 4,
+   "materiali": 4,
+   "frame": 4,
+   "brand": 5
+  },
+  "sotto_4": false,
+  "confronto": "da fare sul render di demo-7",
+  "manca": "nessun punto in una demo",
+  "da_fare": "demo-7",
+  "fatto": "demo-7 (vedi IMPL nel catalogo)"
+ },
+ "T07": {
+  "giro": "09/10 sera",
+  "voti": {
+   "movimento": 4,
+   "materiali": 4,
+   "frame": 4,
+   "brand": 5
+  },
+  "sotto_4": false,
+  "confronto": "da fare sul render di demo-7",
+  "manca": "da provare",
+  "da_fare": "demo-7",
+  "fatto": "demo-7 (vedi IMPL nel catalogo)"
+ },
+ "U03": {
+  "giro": "ritmo 13/10 (blocco 01)",
+  "voti": {
+   "movimento": 5,
+   "materiali": 5,
+   "frame": 4,
+   "brand": 5
+  },
+  "template": "TPL.U03 (kw-kit/kit2-tpl-ui.js)",
+  "scena": "CATALOGO-ANIMAZIONI/ritmo-01 19,15–26,95 s (05/10, pfpmaker): la foto caricata è un fotogramma di un tuo reel (v02), il risultato la tua foto profilo vera (sfondo lime)",
+  "confronto": "_analisi/ritmo/blocco01/K_U03_r65.jpg · K_U03_r133.jpg · _analisi/ritmo/deriva/K_U03_r65.jpg · K_U03_r133.jpg · U03_ritmo01.jpg · U03_ritmo01_seconda.jpg · _analisi/ritmo/pop/U03_ritmo01_foto.jpg",
+  "misure": {
+   "camera dopo il taglio": "ferma: +0,77% in 3 s, centro 0 px (deriva.py sulla finestra, esclusi foto, barra e cursore)",
+   "Kallaway (reel 65 · reel 133)": "ferma: 9 px · 0 px dopo il taglio; si muove solo il cursore",
+   "prima stesura (zoom d'arrivo +15%)": "+10,7% nei primi 0,25 s: Kallaway non lo fa → camera ferma",
+   "cursore": "entra al taglio e frena sulla barra (0,6 s power2.out: metà strada a 0,12 s), poi sul bottone su «carica» e sul lime su «sfondo»",
+   "Kallaway cursore (reel 133, dal foglio)": "metà strada in ~0,125 s, ~0,75 s in tutto, ~430 px, poi 0,35 s fermo prima del clic",
+   "seconda inquadratura": "+11,7% in 0,6 s power2.out (163 → 6 px/s a 0,25/1 s) sulla seconda cosa detta (lo sfondo); la barra dell'indirizzo si spegne per non passare sotto il titolo",
+   "clic": "bottone blu → lime con la spunta; colore scelto con l'anello bianco; la foto passa a quella col fondo lime con un disco F02 dietro",
+   "rimbalzo": "0 (click() del kit usava back.out(3): con KW_RITMO power2.out)",
+   "scena": "7,8 s (una frase sola, con la seconda inquadratura: R1 consente 7–8 s)",
+   "pop.py · la foto caricata (regia 13/10)": "0,95 → 1,00 in 0,13 s dal clic, rimbalzo 0% · K: badge 0,66 → 1,00 in 0,13 s, rimbalzo 0% (reel 1)"
+  },
+  "manca": "la pagina di pfpmaker è ricostruita (non è uno screenshot del sito vero); il titolo compare solo su «vai» (0,95 s dopo il taglio), perché la frase comincia con «Per farne una»",
+  "da_fare": "",
+  "fatto": "template TPL.U03 con la scheda; cursor().moveTo(t, x, y, dur, ease) con l'ease in coda (default power3.inOut di prima); DOPO in ritmo-clip/U03_dopo.mp4",
+  "sotto_4": false,
+  "storia": [
+   {
+    "giro": "09/10 sera",
+    "voti": {
+     "movimento": 4,
+     "materiali": 4,
+     "frame": 4,
+     "brand": 5
+    },
+    "sotto_4": false,
+    "confronto": "_analisi/moto/U03.jpg",
+    "manca": "",
+    "da_fare": "",
+    "fatto": ""
+   }
+  ]
+ },
+ "O24": {
+  "giro": "ritmo 13/10 (blocco 02)",
+  "voti": {
+   "movimento": 5,
+   "materiali": 5,
+   "frame": 5,
+   "brand": 5
+  },
+  "template": "TPL.O24 (kw-kit/kit2-tpl-oggetti.js)",
+  "scena": "CATALOGO-ANIMAZIONI/ritmo-02 27,2–31,15 s (15/10, «Scegli un volume. Uno al giorno vuol dire 30 video al mese.»): il mese vuoto arriva su «Scegli un volume», su «Uno» un tuo reel vero per giorno (30 mini-clip dei tuoi 10 reel di ottobre), il contatore conta 0 → 30 video e si accende su «video»",
+  "confronto": "_analisi/ritmo/blocco02/K_O24_r67.jpg · K_O24_r94.jpg · K_O24_r139.jpg · _analisi/ritmo/deriva/O24_ritmo02.jpg · O24_ritmo02_v.jpg · _analisi/ritmo/pop/O24_ritmo02_giorno2.jpg",
+  "misure": {
+   "al taglio": "il mese vuoto (vetro, 30 giorni) e il contatore a 0 già in scena",
+   "movimento principale": "arrivo dal basso: 101 px dopo il primo fotogramma, 161 → 2 px/s a 0,25 / 1 s, expo.out (deriva.py, maschera sul calendario, pannello giallo); poi ferma",
+   "riempimento": "un reel per giorno ogni 0,04 s, in ordine: 10 / 50 / 90% del mese a 28,70 / 29,17 / 29,63 s (lineare, 1,2 s in tutto); il contatore conta insieme · K reel 67: 31 giorni accesi in ~1,1 s, lineari (~0,037 s a giorno)",
+   "pop.py · un giorno (il reel del 2)": "entra a +0,10 s a 0,96 e si ferma a 1,00 in 0,13 s, rimbalzo 0% (popK 0,8 → 1 in 0,15 s; prima back.out(2,2) da 0,5)",
+   "proporzioni (ingombro.py)": "calendario largo 0,78 della larghezza, y 303–1221 (5 righe: mese generico che parte di lunedì) · K reel 67: ~0,7 · prima stesura con Novembre (6 righe): 0,69",
+   "accento": "il contatore diventa lime su «video»",
+   "rimbalzo": "0",
+   "scena": "3,95 s"
+  },
+  "manca": "il riempimento parte su «Uno» (1,37 s dopo il taglio, mentre si dice «Scegli un volume»): in Kallaway parte ~0,3 s dopo l'arrivo; con 30 video nella composizione il render è più lento (44 video in tutto, 3,5 min per 31 s)",
+  "da_fare": "",
+  "fatto": "template TPL.O24 con la scheda; 30 mini-clip dei reel dell'utente in ritmo-02/assets/clips/cal (o01–o30, 180 × 320, 5 s); DOPO in ritmo-clip/O24_dopo.mp4",
+  "sotto_4": false,
+  "storia": [
+   {
+    "giro": "09/10 sera",
+    "voti": {
+     "movimento": 5,
+     "materiali": 5,
+     "frame": 5,
+     "brand": 5
+    },
+    "sotto_4": false,
+    "confronto": "_analisi/moto/O24.jpg",
+    "manca": "",
+    "da_fare": "",
+    "fatto": ""
+   }
+  ]
+ },
+ "C02": {
+  "giro": "09/10 sera",
+  "voti": {
+   "movimento": 4,
+   "materiali": 4,
+   "frame": 4,
+   "brand": 5
+  },
+  "sotto_4": false,
+  "confronto": "_analisi/moto/C02.jpg",
+  "manca": "",
+  "da_fare": "",
+  "fatto": ""
+ },
+ "D06": {
+  "giro": "ritmo 13/10 (blocco 02)",
+  "voti": {
+   "movimento": 5,
+   "materiali": 5,
+   "frame": 5,
+   "brand": 5
+  },
+  "template": "TPL.D06 (kw-kit/kit2-tpl-dati.js)",
+  "scena": "CATALOGO-ANIMAZIONI/ritmo-02 51,2–55,75 s (15/10, «Ecco come pianifici 30 giorni di contenuti in meno di 30 secondi.»): la camera scorre di lato dalla settimana al lettore col tuo reel vero; sotto la timeline a 5 segmenti (i passi del reel: volume, suddivisione, filoni, script, calendario) si riempie col tempo 0:00 → 0:28 / 0:30 e i capitoli si accendono quando la testina li passa; il tempo diventa lime su «secondi»",
+  "confronto": "_analisi/ritmo/blocco02/K_D06_r24.jpg · K_D06_r115.jpg · D06_ritmo02_pan_viaggio.jpg · _analisi/ritmo/pop/D06_ritmo02_capitolo.jpg",
+  "misure": {
+   "al taglio (R8 morbida, viaggio.py)": "la camera scorre di lato dalla settimana: 1146 px, 90% in 0,53 s, picco 2337 px/s, sine.out, rimbalzo 0 · K reel 9 (la card che entra di lato, già usata per D01): 736 px, 0,58 s, 1972 px/s",
+   "movimento principale (la testina)": "lineare dal primo fotogramma: +31,5 px ogni 0,1 s costanti fino a 53,95 s (2,7 s), il contatore insieme 0:00 → 0:28 · K reel 24: il tempo «12:20 / 22:20» corre e i segmenti si colorano in ordine; reel 115: la barra a segmenti sotto le clip",
+   "pop.py · il capitolo «Filoni» (solo i pixel lime)": "il bordo lime compare in 0,15 s a scala 1,00, rimbalzo 0%",
+   "proporzioni (ingombro.py)": "lettore + capitoli + timeline 0,82 della larghezza, y 305–1252 · K reel 24: lettore + barra 0,74",
+   "accento": "il tempo diventa lime con un bagliore su «secondi»",
+   "rimbalzo": "0",
+   "scena": "4,55 s"
+  },
+  "manca": "lo scorrimento è più lungo di quello misurato (1146 contro 736 px): la scena dopo può stare più vicina; nel lettore c'è un tuo reel d'esempio (in un reel vero: il reel stesso o il passo detto)",
+  "da_fare": "",
+  "fatto": "template TPL.D06 con la scheda (kit2-tpl-dati.js); R8 con tplPan dalla posa di TPL.K16; DOPO in ritmo-clip/D06_dopo.mp4",
+  "sotto_4": false,
+  "storia": [
+   {
+    "giro": "09/10 sera",
+    "voti": {
+     "movimento": 4,
+     "materiali": 4,
+     "frame": 4,
+     "brand": 5
+    },
+    "sotto_4": false,
+    "confronto": "_analisi/moto/D06.jpg",
+    "manca": "tre grafici piccoli nella stessa scena di demo-2",
+    "da_fare": "",
+    "fatto": "rivisto sul fotogramma completo di demo-2 (46,5 s): la striscia l'aveva colto mentre si costruiva; inquadratura e materiali ok"
+   }
+  ]
+ },
+ "L13": {
+  "giro": "09/10 sera",
+  "voti": {
+   "movimento": 4,
+   "materiali": 5,
+   "frame": 4,
+   "brand": 5
+  },
+  "sotto_4": false,
+  "confronto": "_analisi/moto/L13.jpg",
+  "manca": "",
+  "da_fare": "",
+  "fatto": ""
+ },
+ "O06": {
+  "giro": "09/10 sera",
+  "voti": {
+   "movimento": 4,
+   "materiali": 4,
+   "frame": 4,
+   "brand": 5
+  },
+  "sotto_4": false,
+  "confronto": "_analisi/moto/O06.jpg",
+  "manca": "",
+  "da_fare": "",
+  "fatto": ""
+ },
+ "O22": {
+  "giro": "09/10 sera",
+  "voti": {
+   "movimento": 4,
+   "materiali": 4,
+   "frame": 4,
+   "brand": 5
+  },
+  "sotto_4": false,
+  "confronto": "_analisi/moto/O22.jpg",
+  "manca": "",
+  "da_fare": "",
+  "fatto": ""
+ },
+ "D05": {
+  "giro": "09/10 sera",
+  "voti": {
+   "movimento": 4,
+   "materiali": 4,
+   "frame": 4,
+   "brand": 5
+  },
+  "sotto_4": false,
+  "confronto": "_analisi/moto/D05.jpg",
+  "manca": "piccolo nella scena dei tre grafici di demo-2",
+  "da_fare": "",
+  "fatto": "rivisto sul fotogramma completo di demo-2 (46,5 s): la striscia l'aveva colto mentre si costruiva; inquadratura e materiali ok"
+ },
+ "F07": {
+  "giro": "09/10 sera",
+  "voti": {
+   "movimento": 5,
+   "materiali": 5,
+   "frame": 5,
+   "brand": 5
+  },
+  "sotto_4": false,
+  "confronto": "_analisi/moto/F07.jpg",
+  "manca": "",
+  "da_fare": "",
+  "fatto": ""
+ },
+ "L04": {
+  "giro": "09/10 sera",
+  "voti": {
+   "movimento": 4,
+   "materiali": 4,
+   "frame": 4,
+   "brand": 5
+  },
+  "sotto_4": false,
+  "confronto": "_analisi/moto/L04.jpg",
+  "manca": "",
+  "da_fare": "",
+  "fatto": ""
+ },
+ "O04": {
+  "giro": "09/10 sera",
+  "voti": {
+   "movimento": 4,
+   "materiali": 4,
+   "frame": 4,
+   "brand": 5
+  },
+  "sotto_4": false,
+  "confronto": "da fare sul render di demo-7",
+  "manca": "da provare",
+  "da_fare": "demo-7",
+  "fatto": "demo-7 (vedi IMPL nel catalogo)"
+ },
+ "O07": {
+  "giro": "09/10 sera",
+  "voti": {
+   "movimento": 4,
+   "materiali": 4,
+   "frame": 4,
+   "brand": 5
+  },
+  "sotto_4": false,
+  "confronto": "_analisi/moto/O07.jpg",
+  "manca": "manca il termometro a fianco (reel 72)",
+  "da_fare": "vedi D13 nel Blocco 5",
+  "fatto": ""
+ },
+ "O10": {
+  "giro": "ritmo 13/10 (blocco 02)",
+  "voti": {
+   "movimento": 5,
+   "materiali": 4,
+   "frame": 5,
+   "brand": 5
+  },
+  "template": "TPL.O10 (kw-kit/kit2-tpl-oggetti.js)",
+  "scena": "CATALOGO-ANIMAZIONI/ritmo-02 17,3–22,75 s (14/10, «L'obiettivo non è un milione di visualizzazioni. È arrivare alle persone giuste col messaggio giusto.»): il bersaglio si costruisce dal centro (le persone giuste, silhouette), «1M di views» sull'anello esterno va a fuoco e si spegne barrato, il centro si accende, la freccetta (il messaggio) si pianta al centro",
+  "confronto": "_analisi/ritmo/blocco02/K_O10_r42.jpg · K_O10_r91.jpg · _analisi/ritmo/pop/O10_ritmo02_centro.jpg",
+  "misure": {
+   "al taglio": "il centro con le tre persone e le etichette sfocate ci sono già",
+   "movimento principale (raggio dell'anello esterno, pixel lime)": "costruzione dal centro: raggio 162 → 440 px da 17,40 a 18,07 s (0,77 s dal taglio), quasi lineare, nessun overshoot (max 441) · K reel 42: dal punto (15,33 s) al bersaglio pieno a 16,18 s (0,85 s), lineare, poi torna indietro del 6% · prima: 0,32 s expo.out per anello, uno per parola",
+   "accenti": "«1M di views» a fuoco su «milione» e spento + barrato su «visualizzazioni» (anelli esterni al 22%); centro acceso con disco e etichetta lime su «persone»; freccetta su «messaggio» (0,24 s, trema: colpo voluto), niente scossa della camera",
+   "pop.py · l'etichetta «Le persone giuste» (solo i pixel lime)": "scala 0,98 → 1,00, rimbalzo 0% (cambia colore, non cresce)",
+   "proporzioni": "bersaglio largo 0,81 della larghezza (le etichette sono pill sul bersaglio, non a lato) · K reel 42: 0,63 al centro; a 27,6 s spinto fuori dal bordo a sinistra con le etichette a destra · prima stesura: 0,58 con le etichette a destra (troppo piccolo)",
+   "camera": "ferma (il movimento è la costruzione), deriva 1,2% · K reel 42: ferma fino a 17,6 s",
+   "rimbalzo": "0 sugli anelli (back.out del colpo convertito da KW_RITMO)",
+   "scena": "5,45 s"
+  },
+  "manca": "Kallaway fa crescere il bersaglio con un piccolo ritorno (−6%), qui senza; le persone sono silhouette (giusto per «chi ti guarda»), Kallaway mette miniature di contenuti nel centro",
+  "da_fare": "",
+  "fatto": "template TPL.O10 con la scheda; bullseye().ring con dur, ease in coda (default di prima); DOPO in ritmo-clip/O10_dopo.mp4",
+  "sotto_4": false,
+  "storia": [
+   {
+    "giro": "09/10 sera",
+    "voti": {
+     "movimento": 4,
+     "materiali": 4,
+     "frame": 4,
+     "brand": 5
+    },
+    "sotto_4": false,
+    "confronto": "_analisi/moto/O10.jpg",
+    "manca": "",
+    "da_fare": "",
+    "fatto": ""
+   }
+  ]
+ },
+ "O18": {
+  "giro": "copia 15/10 (blocco C1)",
+  "voti": {
+   "movimento": 5,
+   "materiali": 5,
+   "frame": 5,
+   "brand": 5
+  },
+  "copia": "COPIA.O18 (kit2-copia-oggetti.js) · scena 3, 4,25–6,67 s",
+  "scena": "CATALOGO-ANIMAZIONI/copia-01 (reel 79 di Kallaway copiato intero, 1:1 sul suo tempo)",
+  "confronto": "_analisi/ritmo/fogli_regia/copia-01_NN_*.jpg (KALLAWAY | COPIA per scena) · _analisi/confronti-video/r79_copia_affiancato.mp4",
+  "misure": {
+   "ingombro del ∞ (5,35 s)": "copia → 0,428 × 241 px, corretto ×0,93 (≈0,40 × 224) · Kallaway → 0,395 × 210 px",
+   "tracciatura": "copia → 0,95 s lineare, dal centro verso l'alto a sinistra · Kallaway → 4,25–5,2 s lineare, stesso verso",
+   "pan verticale sotto (TRANS.panVerticale)": "copia → +628 px in 1,68 s, picco al 23% · Kallaway → uguale (tabella misurata)"
+  },
+  "manca": "la dimensione corretta (×0,93) non è stata rimisurata; le molecole nel tubo sono più semplici delle sue",
+  "sotto_4": false,
+  "storia": [
+   {
+    "giro": "09/10 sera",
+    "voti": {
+     "movimento": 5,
+     "materiali": 5,
+     "frame": 4,
+     "brand": 5
+    },
+    "sotto_4": false,
+    "confronto": "_analisi/moto/O18.jpg",
+    "manca": "",
+    "da_fare": "",
+    "fatto": ""
+   }
+  ]
+ },
+ "K07": {
+  "giro": "09/10 sera",
+  "voti": {
+   "movimento": 4,
+   "materiali": 4,
+   "frame": 4,
+   "brand": 5
+  },
+  "sotto_4": false,
+  "confronto": "_analisi/moto/K07.jpg",
+  "manca": "",
+  "da_fare": "",
+  "fatto": ""
+ },
+ "K10": {
+  "giro": "09/10 sera",
+  "voti": {
+   "movimento": 4,
+   "materiali": 4,
+   "frame": 4,
+   "brand": 5
+  },
+  "sotto_4": false,
+  "confronto": "_analisi/moto/K10.jpg",
+  "manca": "in demo la messa a fuoco avviene su un fotogramma vuoto (l'anello arriva a 1,35 s)",
+  "da_fare": "demo: anello già in scena al fotogramma 0",
+  "fatto": "demo: l'anello di reel è in scena dal fotogramma 0 (fuori fuoco) e si apre a 0 s"
+ },
+ "O02": {
+  "giro": "09/10 sera",
+  "voti": {
+   "movimento": 4,
+   "materiali": 4,
+   "frame": 4,
+   "brand": 5
+  },
+  "sotto_4": false,
+  "confronto": "_analisi/moto/O02.jpg",
+  "manca": "in demo-2 l'anello è inquadrato basso: la metà inferiore esce dall'area grafica",
+  "da_fare": "demo-2: inquadratura",
+  "fatto": "demo-2: taglio secco sull'anello (i loghi esplodono a camera ferma)"
+ },
+ "O14": {
+  "giro": "copia 15/10 (blocco C1)",
+  "voti": {
+   "movimento": 5,
+   "materiali": 4,
+   "frame": 4,
+   "brand": 5
+  },
+  "copia": "COPIA.O14 (kit2-copia-oggetti.js) · scena 4–5, 8,6–10,9 s",
+  "scena": "CATALOGO-ANIMAZIONI/copia-01 (reel 79 di Kallaway copiato intero, 1:1 sul suo tempo)",
+  "confronto": "_analisi/ritmo/fogli_regia/copia-01_NN_*.jpg (KALLAWAY | COPIA per scena) · _analisi/confronti-video/r79_copia_affiancato.mp4",
+  "misure": {
+   "ingombro (10,2 s)": "copia → 0,239 × 345 px (prima della correzione ×1,15) · Kallaway → 0,291 × 419 px (con l'insegna luminosa)",
+   "cresce da sola": "copia → ×1,7 fra 9,35 e 9,62 s attorno al piede · Kallaway → ×1,7 fra 9,35 e 9,62 s",
+   "rulli": "copia → 9,95–10,65 s, si fermano sui 7 · Kallaway → ~0,7 s, 7-7-7"
+  },
+  "manca": "la sua slot cromata ha l'insegna luminosa in alto: la nostra grafite è più scura e si stacca meno dal fondo",
+  "sotto_4": false,
+  "storia": [
+   {
+    "giro": "09/10 sera",
+    "voti": {
+     "movimento": 4,
+     "materiali": 5,
+     "frame": 4,
+     "brand": 5
+    },
+    "sotto_4": false,
+    "confronto": "_analisi/moto/O14.jpg",
+    "manca": "",
+    "da_fare": "",
+    "fatto": ""
+   }
+  ]
+ },
+ "T06": {
+  "giro": "09/10 sera",
+  "voti": {
+   "movimento": 5,
+   "materiali": 4,
+   "frame": 4,
+   "brand": 5
+  },
+  "sotto_4": false,
+  "confronto": "_analisi/moto/T06.jpg",
+  "manca": "",
+  "da_fare": "",
+  "fatto": ""
+ },
+ "A04": {
+  "giro": "09/10 sera",
+  "voti": {
+   "movimento": 4,
+   "materiali": 4,
+   "frame": 4,
+   "brand": 5
+  },
+  "sotto_4": false,
+  "confronto": "da fare sul render di demo-7",
+  "manca": "nessun punto in una demo",
+  "da_fare": "demo-7",
+  "fatto": "demo-7 (vedi IMPL nel catalogo)"
+ },
+ "A05": {
+  "giro": "copia 15/10 (blocco C1)",
+  "voti": {
+   "movimento": 5,
+   "materiali": 4,
+   "frame": 5,
+   "brand": 5
+  },
+  "copia": "COPIA.A05 (kit2-copia-aperture.js) · scena 1, 0–1,88 s",
+  "scena": "CATALOGO-ANIMAZIONI/copia-01 (reel 79 di Kallaway copiato intero, 1:1 sul suo tempo)",
+  "confronto": "_analisi/ritmo/fogli_regia/copia-01_NN_*.jpg (KALLAWAY | COPIA per scena) · _analisi/confronti-video/r79_copia_affiancato.mp4",
+  "misure": {
+   "card al fotogramma 0 (ingombro.py 0,4 s)": "copia → 0,737 della larghezza, y 604–1055 · Kallaway → 0,738, y 587–1051",
+   "cambi di clip": "copia → 0,167 · 0,334 · 0,48 s · Kallaway → 0,167 · 0,334 · 0,48 s",
+   "arrivo (K02)": "copia → −125 px a 0,53 s, picco al primo fotogramma (camtrack) · Kallaway → −75 px a 0,125 s, −146 px a 0,5 s (bbox; camtrack non regge: i cambi di clip)",
+   "rimbalzo": "0"
+  },
+  "manca": "i 4 storyteller sono creator veri del progetto (Dan Koe, Leila Hormozi, Gary Vee, Tony Robbins), non i suoi; la card di Kallaway ha i colori caldi dei suoi video",
+  "sotto_4": false,
+  "storia": [
+   {
+    "giro": "09/10 sera",
+    "voti": {
+     "movimento": 4,
+     "materiali": 4,
+     "frame": 4,
+     "brand": 5
+    },
+    "sotto_4": false,
+    "confronto": "da fare sul render di demo-7",
+    "manca": "nessun punto in una demo",
+    "da_fare": "demo-7",
+    "fatto": "demo-7 (vedi IMPL nel catalogo)"
+   }
+  ]
+ },
+ "K05": {
+  "giro": "09/10 sera",
+  "voti": {
+   "movimento": 4,
+   "materiali": 4,
+   "frame": 4,
+   "brand": 5
+  },
+  "sotto_4": false,
+  "confronto": "_analisi/moto/K05.jpg",
+  "manca": "",
+  "da_fare": "",
+  "fatto": ""
+ },
+ "L03": {
+  "giro": "09/10 sera",
+  "voti": {
+   "movimento": 4,
+   "materiali": 4,
+   "frame": 4,
+   "brand": 5
+  },
+  "sotto_4": false,
+  "confronto": "da fare sul render di demo-7",
+  "manca": "da provare",
+  "da_fare": "demo-7",
+  "fatto": "kit: cascade con il riflesso sheenK che scende di barra in barra; demo-7 33,2 s"
+ },
+ "O11": {
+  "giro": "09/10 sera",
+  "voti": {
+   "movimento": 4,
+   "materiali": 4,
+   "frame": 4,
+   "brand": 5
+  },
+  "sotto_4": false,
+  "confronto": "da fare sul render di demo-7",
+  "manca": "da provare",
+  "da_fare": "demo-7",
+  "fatto": "kit: venn v2 (vetro, intersezione lime piena con lampeggio); demo-7 38,2–43,6 s"
+ },
+ "O20": {
+  "giro": "09/10 sera",
+  "voti": {
+   "movimento": 5,
+   "materiali": 5,
+   "frame": 5,
+   "brand": 5
+  },
+  "sotto_4": false,
+  "confronto": "_analisi/moto/O20.jpg",
+  "manca": "",
+  "da_fare": "",
+  "fatto": ""
+ },
+ "T03": {
+  "giro": "09/10 sera",
+  "voti": {
+   "movimento": 4,
+   "materiali": 4,
+   "frame": 4,
+   "brand": 5
+  },
+  "sotto_4": false,
+  "confronto": "_analisi/moto/T03.jpg",
+  "manca": "",
+  "da_fare": "",
+  "fatto": ""
+ },
+ "T04": {
+  "giro": "09/10 sera",
+  "voti": {
+   "movimento": 4,
+   "materiali": 4,
+   "frame": 4,
+   "brand": 5
+  },
+  "sotto_4": false,
+  "confronto": "_analisi/moto/T04.jpg",
+  "manca": "",
+  "da_fare": "",
+  "fatto": ""
+ },
+ "O23": {
+  "giro": "ritmo 13/10 (blocco 02)",
+  "voti": {
+   "movimento": 5,
+   "materiali": 4,
+   "frame": 5,
+   "brand": 5
+  },
+  "template": "TPL.O23 (kw-kit/kit2-tpl-oggetti.js)",
+  "scena": "CATALOGO-ANIMAZIONI/ritmo-02 31,15–36,65 s (15/10, «Io uso 70% valore, 20% fiducia, 10% conversione.»): 100 puntini in vetro; su «valore» 70 diventano lime, su «fiducia» 20 bianchi, su «conversione» 10 anelli lime, ognuno con la sua voce di legenda sotto",
+  "confronto": "_analisi/ritmo/blocco02/K_O23_r88.jpg · _analisi/ritmo/deriva/O23_ritmo02.jpg · O23_ritmo02_v.jpg · _analisi/ritmo/pop/O23_ritmo02_voce.jpg",
+  "misure": {
+   "al taglio": "i 100 puntini grigi e la legenda spenta già in scena",
+   "movimento principale": "arrivo dal basso: 86 px dopo il primo fotogramma, 136 → 1,7 px/s a 0,25 / 1 s, expo.out (deriva.py, maschera sulla griglia); poi ferma",
+   "gruppi (pixel lime e bianchi)": "70 lime riga per riga: 10 → 90% in 0,7 s da «valore»; 20 bianchi in 0,2 s da «fiducia»; 10 anelli su «conversione» · K reel 88: la griglia compare a onda (~0,6 s), poi i puntini si accendono a caso in ~2 s e il colore cambia in un fotogramma",
+   "pop.py · la voce «70% Valore» (solo i pixel lime)": "non cambia scala (0,97–1,02 = rumore del modello), si accende di colore in 0,2 s",
+   "proporzioni (ingombro.py)": "griglia + legenda 0,69 della larghezza (griglia 0,72 nel fotogramma), y 398–1260 · K reel 88: 0,49 · prima stesura 0,56 (gap 70): ingrandita",
+   "rimbalzo": "0",
+   "scena": "5,5 s"
+  },
+  "manca": "Kallaway accende i puntini a caso (chi è scioccato su 100 persone); qui i gruppi sono a blocchi ordinati, perché la frase è una suddivisione; il terzo colore (conversione) è un anello lime, non un colore nuovo (brand: lime, bianco, grafite)",
+  "da_fare": "",
+  "fatto": "template TPL.O23 con la scheda (kit2-tpl-oggetti.js), usa dotGrid() del kit; DOPO in ritmo-clip/O23_dopo.mp4",
+  "sotto_4": false,
+  "storia": [
+   {
+    "giro": "09/10 sera",
+    "voti": {
+     "movimento": 4,
+     "materiali": 4,
+     "frame": 4,
+     "brand": 5
+    },
+    "sotto_4": false,
+    "confronto": "_analisi/moto/O23.jpg",
+    "manca": "",
+    "da_fare": "",
+    "fatto": ""
+   }
+  ]
+ },
+ "D07": {
+  "giro": "09/10 sera",
+  "voti": {
+   "movimento": 4,
+   "materiali": 4,
+   "frame": 4,
+   "brand": 5
+  },
+  "sotto_4": false,
+  "confronto": "_analisi/moto/D07.jpg",
+  "manca": "formula al limite della densità (0,22)",
+  "da_fare": "demo-2: formula più grande",
+  "fatto": "rivisto sul fotogramma completo di demo-2 (12,8 s): la striscia l'aveva colto mentre si costruiva; inquadratura e materiali ok"
+ },
+ "T05": {
+  "giro": "ritmo 13/10 (blocco 01)",
+  "voti": {
+   "movimento": 5,
+   "materiali": 4,
+   "frame": 4,
+   "brand": 5
+  },
+  "template": "TPL.T05 (kw-kit/kit2-tpl-testo.js)",
+  "scena": "CATALOGO-ANIMAZIONI/ritmo-01 26,95–31,45 s (14/10, «L'algoritmo ci mostra soprattutto i contenuti con tantissima interazione.»): reel veri di Hormozi coi numeri d'interazione",
+  "confronto": "_analisi/ritmo/blocco01/K_T05_r149.jpg · N_T05_ritmo01.jpg · _analisi/ritmo/deriva/T05_ritmo01.jpg · _analisi/ritmo/pop/T05_ritmo01_pill.jpg",
+  "misure": {
+   "decodifica": "glifi a caso da 0,05 s dopo il taglio, parola ferma a 0,27 s: 7 fotogrammi (un glifo nuovo a ogni fotogramma), monospazio",
+   "Kallaway (reel 149)": "4–5 fotogrammi di glifi (~0,2 s a 24 fps), tutte le lettere si fermano insieme; l'etichetta entra subito dopo il taglio",
+   "movimento principale": "arrivo dal basso: 136 px/s a 0,25 s → 2,9 a 1 s, expo.out (deriva.py sulle card)",
+   "accenti": "linee dall'algoritmo ai tre reel su «mostra»; i numeri corrono lineari in 0,6 s su «tantissima» e si accendono di lime",
+   "rimbalzo": "0",
+   "scena": "4,5 s",
+   "pop.py · la pill dell'etichetta (regia 13/10)": "arriva con la scena 86 px dal basso a scala piena, ferma in 0,3 s, rimbalzo di posizione 0% · K: la card entra di lato e frena senza rimbalzo visibile (reel 9)"
+  },
+  "manca": "le lettere si fermano a scalare (decode() del kit), in Kallaway insieme; i numeri d'interazione sono d'esempio; sopra la pill e sotto i numeri resta ~110 px di fondo (tre card 9:16 riempiono la larghezza)",
+  "da_fare": "",
+  "fatto": "template TPL.T05 con la scheda (algoPill con decode al taglio); DOPO in ritmo-clip/T05_dopo.mp4",
+  "sotto_4": false,
+  "storia": [
+   {
+    "giro": "09/10 sera",
+    "voti": {
+     "movimento": 4,
+     "materiali": 4,
+     "frame": 4,
+     "brand": 5
+    },
+    "sotto_4": false,
+    "confronto": "_analisi/moto/T05.jpg",
+    "manca": "",
+    "da_fare": "",
+    "fatto": ""
+   }
+  ]
+ },
+ "K06": {
+  "giro": "copia 15/10 (blocco C1)",
+  "voti": {
+   "movimento": 4,
+   "materiali": 5,
+   "frame": 5,
+   "brand": 5
+  },
+  "copia": "COPIA.K06 (kit2-copia-camera.js) · scena 25, 102,17–105,6 s",
+  "scena": "CATALOGO-ANIMAZIONI/copia-01 (reel 79 di Kallaway copiato intero, 1:1 sul suo tempo)",
+  "confronto": "_analisi/ritmo/fogli_regia/copia-01_NN_*.jpg (KALLAWAY | COPIA per scena) · _analisi/confronti-video/r79_copia_affiancato.mp4",
+  "misure": {
+   "tuffo nella riga del canale": "copia → ×4,5 in 0,33 s power3.inOut con la scia, misurato fino a ×1,37 a 102,30 s · Kallaway → 102,19–102,52 s, 3 fotogrammi mossi (la misura non regge), poi fermo grande",
+   "uscita": "copia → ×1/4,5 in 0,25 s a 105,35 · Kallaway → 105,35–105,6 s",
+   "rimbalzo": "0"
+  },
+  "manca": "nel tratto 12,6–13,6 s indicato dal catalogo Kallaway non muove la camera (telefono fermo, 333 px): il punch-in vero del reel è questo",
+  "sotto_4": false,
+  "storia": [
+   {
+    "giro": "09/10 sera",
+    "voti": {
+     "movimento": 4,
+     "materiali": 4,
+     "frame": 4,
+     "brand": 5
+    },
+    "sotto_4": false,
+    "confronto": "_analisi/moto/K06.jpg",
+    "manca": "",
+    "da_fare": "",
+    "fatto": ""
+   }
+  ]
+ },
+ "O15": {
+  "giro": "09/10 sera",
+  "voti": {
+   "movimento": 4,
+   "materiali": 4,
+   "frame": 4,
+   "brand": 5
+  },
+  "sotto_4": false,
+  "confronto": "da fare sul render di demo-7",
+  "manca": "manca il capovolgimento (reel 60)",
+  "da_fare": "demo-7",
+  "fatto": "kit: hourglass (vetro, sabbia lime, flip 0,5 s); demo-7 21,6–27,4 s"
+ },
+ "U04": {
+  "giro": "09/10 sera",
+  "voti": {
+   "movimento": 5,
+   "materiali": 5,
+   "frame": 5,
+   "brand": 5
+  },
+  "sotto_4": false,
+  "confronto": "_analisi/moto/U04.jpg",
+  "manca": "",
+  "da_fare": "",
+  "fatto": ""
+ },
+ "A08": {
+  "giro": "09/10 sera",
+  "voti": {
+   "movimento": 4,
+   "materiali": 4,
+   "frame": 4,
+   "brand": 5
+  },
+  "sotto_4": false,
+  "confronto": "da fare sul render di demo-7",
+  "manca": "nessun punto in una demo",
+  "da_fare": "demo-7",
+  "fatto": "demo-7 (vedi IMPL nel catalogo)"
+ },
+ "F05": {
+  "giro": "09/10 sera",
+  "voti": {
+   "movimento": 4,
+   "materiali": 4,
+   "frame": 4,
+   "brand": 5
+  },
+  "sotto_4": false,
+  "confronto": "da fare sul render di demo-7",
+  "manca": "da provare",
+  "da_fare": "demo-7",
+  "fatto": "demo-7 (vedi IMPL nel catalogo)"
+ },
+ "K15": {
+  "giro": "09/10 sera",
+  "voti": {
+   "movimento": 4,
+   "materiali": 4,
+   "frame": 4,
+   "brand": 5
+  },
+  "sotto_4": false,
+  "confronto": "_analisi/moto/K15.jpg",
+  "manca": "",
+  "da_fare": "",
+  "fatto": ""
+ },
+ "U07": {
+  "giro": "ritmo 13/10 (blocco 01)",
+  "voti": {
+   "movimento": 5,
+   "materiali": 5,
+   "frame": 4,
+   "brand": 5
+  },
+  "template": "TPL.U07 (kw-kit/kit2-tpl-ui.js)",
+  "scena": "CATALOGO-ANIMAZIONI/ritmo-01 46,15–50,15 s (03/10): le tue Bozze (la copia 1 già pubblicata con la spunta), il dito preme la copia 2, la schermata diventa «Nuovo reel», preme Condividi: il reel esce con l'etichetta NORMALE",
+  "confronto": "_analisi/ritmo/blocco01/K_U03_r65.jpg (riferimento: Share premuto sulla schermata ferma) · _analisi/ritmo/deriva/U07_ritmo01.jpg · _analisi/ritmo/pop/U07_ritmo01_reel.jpg · U07_ritmo01_tag.jpg",
+  "misure": {
+   "movimento principale": "arrivo di lato (dall'altra parte rispetto a U11) 175 px: 148 px/s a 0,25 s → 0,7 a 1 s, expo.out; poi ferma (+0,4%)",
+   "Kallaway (reel 65)": "schermata ferma, il puntatore scivola su Share (~0,3 s) e clicca: il bottone cambia colore",
+   "dito": "entra dal basso (0,24 s power2.out), scivola sul bottone (0,34 s power2.inOut), preme a 0,74 in 0,07 s con l'anello bianco, torna in 0,24 s power2.out (era back.out(3))",
+   "accenti": "la bozza 2 su «seconda» (la schermata cambia), Condividi su «reel» (il reel normale esce in 0,55 s power3.out e l'etichetta NORMALE compare 0,8 s prima del taglio)",
+   "rimbalzo": "0 (pop.py, strisce guardate)",
+   "scena": "4,0 s",
+   "telefono (regia 13/10)": "0,435 della larghezza (471 px; schermo 0,415), bordo alto a y 365, intero: Condividi finisce a y ~1277, sopra la banda; il reel pubblicato atterra a sinistra: telefono + reel occupano ~750 px · K (reel 65): schermo 0,415 (448 px) · prima: 0,376 (406 px)",
+   "pop.py · il reel che esce (regia 13/10)": "scala 0,63 → 1,00 in 0,37 s, 418 px, rimbalzo 0% (power3.out 0,55 s; i primi 2 fotogrammi agganciano la copertina nel telefono)",
+   "pop.py · l'etichetta NORMALE (regia 13/10)": "0,88 → 1,00 in 0,13 s (popK 0,8 → 1 in 0,18 s), rimbalzo 0,8% (rumore) · K: badge 0,66 → 1,00 in 0,13 s, rimbalzo 0% (reel 1)"
+  },
+  "manca": "come in U11, Condividi è anticipato su «reel» per lasciar vedere il reel pubblicato; telefono al 43,5% della larghezza come lo schermo del reel 65 (più grande Condividi finirebbe sotto y 1290)",
+  "da_fare": "",
+  "fatto": "template TPL.U07 con la scheda (due schermate nello stesso telefono, il dito che preme); DOPO in ritmo-clip/U07_dopo.mp4 · regia 13/10: telefono nella proporzione del reel 65 (scala / alto / sfuma, default nuovo solo con KW_RITMO)",
+  "sotto_4": false,
+  "storia": [
+   {
+    "giro": "09/10 sera",
+    "voti": {
+     "movimento": 5,
+     "materiali": 5,
+     "frame": 5,
+     "brand": 5
+    },
+    "sotto_4": false,
+    "confronto": "_analisi/moto/U07.jpg",
+    "manca": "",
+    "da_fare": "",
+    "fatto": ""
+   }
+  ]
+ },
+ "U08": {
+  "giro": "09/10 sera",
+  "voti": {
+   "movimento": 5,
+   "materiali": 5,
+   "frame": 5,
+   "brand": 5
+  },
+  "sotto_4": false,
+  "confronto": "_analisi/moto/U08.jpg",
+  "manca": "",
+  "da_fare": "",
+  "fatto": ""
+ },
+ "U09": {
+  "giro": "09/10 sera",
+  "voti": {
+   "movimento": 5,
+   "materiali": 5,
+   "frame": 5,
+   "brand": 5
+  },
+  "sotto_4": false,
+  "confronto": "_analisi/moto/U09.jpg",
+  "manca": "",
+  "da_fare": "",
+  "fatto": ""
+ },
+ "U10": {
+  "giro": "ritmo 13/10 (blocco 01)",
+  "voti": {
+   "movimento": 5,
+   "materiali": 5,
+   "frame": 4,
+   "brand": 5
+  },
+  "template": "TPL.U10 (kw-kit/kit2-tpl-ui.js) + tplZoomThrough (kit2-template.js, R8)",
+  "scena": "CATALOGO-ANIMAZIONI/ritmo-01 38,0–42,35 s (03/10): le tue Bozze vere (le tue copertine), il dito che tocca i ⋯, la lente su Duplica, la copia che nasce accanto",
+  "confronto": "_analisi/ritmo/blocco01/K_U03_r65.jpg (stesso riferimento: schermata di IG ferma, si muove il puntatore) · N_U10_ritmo01.jpg · _analisi/ritmo/deriva/U10_ritmo01.jpg · _analisi/ritmo/pop/U10_ritmo01_foglio.jpg · U10_ritmo01_copia.jpg",
+  "misure": {
+   "ingresso (R8 morbida)": "zoom-through dal tuo video sulla tappa «Duplica» di L11: 0,16 s di corsa dentro (×1,5, power2.in, sfocatura 12 px), poi la schermata arriva a ×0,86 e si assesta in 0,45 s power3.out: +8,4%, 84 → 3 px/s a 0,25/1 s (deriva.py, bozze gialle nel pannello)",
+   "Kallaway (reel 65)": "schermata di Instagram ferma dopo il taglio (9 px), si muove solo il puntatore che va su Share e clicca",
+   "camera dopo l'ingresso": "ferma (+1,2% di tenuta)",
+   "accenti": "il dito tocca i ⋯ su «puntini» (sale il foglio, expo.out 0,45 s), la lente su «Duplica» (power3.out 0,42 s), il dito preme Duplica su «duplicalo»: la copia nasce accanto e le altre bozze scivolano",
+   "rimbalzo": "0 (strisce guardate)",
+   "scena": "4,35 s",
+   "telefono (regia 13/10)": "0,435 della larghezza (470 px; schermo 448 px = 0,415), bordo alto a y 365 sotto il titolo, intero: solo il telaio in fondo sfuma nella safe zone; la lente su Duplica sta fra y ~1005 e ~1250 · K (reel 65): schermo 0,415 (448 px), da y ~336 a ~1160 · prima: 0,376 (406 px)",
+   "pop.py · il foglio Modifica / Duplica / Elimina (regia 13/10)": "sale 180 px dal primo fotogramma in cui si vede, 90% in 0,13 s, expo.out, oltre l'arrivo 0% (misura a sola traslazione sulla scritta «Modifica»: pop.py non aggancia il foglio scuro sul fondo scuro)",
+   "pop.py · la copia che nasce accanto (regia 13/10)": "la striscia mostra la copia che scivola di uno slot (power2.out 0,5 s, era back.out(1,4)) e i numeri 1 e 2 che compaiono, senza rimbalzo; il tracciamento non regge perché la copia è identica alla bozza 0"
+  },
+  "manca": "il telefono intero (servono il foglio in basso e le bozze in alto) occupa il 43,5% della larghezza, come lo schermo del reel 65: ai lati resta fondo come in Kallaway (più grande non ci sta: la lente su Duplica finirebbe sotto y 1290); i numeri 1 e 2 compaiono da 0 in 0,4 s (pop del kit), più lenti del pop R5",
+  "da_fare": "",
+  "fatto": "template TPL.U10 con la scheda; igDrafts.duplicate(t, id, accanto) con l'opzione in coda (default di prima); tplZoomThrough e tplTenuta per le transizioni R8; DOPO in ritmo-clip/U10_dopo.mp4 · regia 13/10: telefono nella proporzione del reel 65 (scala / alto / sfuma, default nuovo solo con KW_RITMO); la composizione prende la posa dal template per lo zoom-through",
+  "sotto_4": false,
+  "storia": [
+   {
+    "giro": "09/10 sera",
+    "voti": {
+     "movimento": 5,
+     "materiali": 5,
+     "frame": 5,
+     "brand": 5
+    },
+    "sotto_4": false,
+    "confronto": "_analisi/moto/U10.jpg",
+    "manca": "",
+    "da_fare": "",
+    "fatto": ""
+   }
+  ]
+ },
+ "U11": {
+  "giro": "ritmo 13/10 (blocco 01)",
+  "voti": {
+   "movimento": 5,
+   "materiali": 5,
+   "frame": 4,
+   "brand": 5
+  },
+  "template": "TPL.U11 (kw-kit/kit2-tpl-ui.js)",
+  "scena": "CATALOGO-ANIMAZIONI/ritmo-01 42,35–46,15 s (03/10): «Nuovo reel» con la tua copertina (la copia 1), il dito accende «Reel di prova» e preme Condividi, il reel esce con l'etichetta PROVA",
+  "confronto": "_analisi/ritmo/blocco01/K_U03_r65.jpg (riferimento: Share premuto sulla schermata ferma) · _analisi/ritmo/deriva/U11_ritmo01.jpg · _analisi/ritmo/pop/U11_ritmo01_reel.jpg · _analisi/ritmo/pop/U11_ritmo01_reel.jpg · U11_ritmo01_tag.jpg",
+  "misure": {
+   "movimento principale": "arrivo di lato 175 px: 148 px/s a 0,25 s → 0,7 a 1 s, expo.out; poi ferma (+0,4%)",
+   "Kallaway (reel 65)": "schermata ferma dopo il taglio (9 px), il puntatore va su Share e clicca: il bottone cambia colore",
+   "reel che esce (pop.py)": "scala 0,38 → 1,00 in 0,43 s, 266 px, rimbalzo 0% (power3.out 0,55 s)",
+   "accenti": "interruttore su «pubblicala», Condividi su «reel»: il reel atterra e l'etichetta PROVA compare 0,8 s prima del taglio",
+   "rimbalzo": "0 (pop.py, strisce guardate)",
+   "scena": "3,8 s",
+   "telefono (regia 13/10)": "0,435 della larghezza (471 px; schermo 0,415), bordo alto a y 365, intero: Condividi finisce a y ~1277, sopra la banda; il reel pubblicato atterra a destra: telefono + reel occupano ~750 px · K (reel 65): schermo 0,415 (448 px) · prima: 0,376 (406 px)",
+   "pop.py · l'etichetta PROVA (regia 13/10)": "0,90 → 1,00 in 0,13 s (popK 0,8 → 1 in 0,18 s), rimbalzo 0,4% (rumore) · K: badge 0,66 → 1,00 in 0,13 s, rimbalzo 0% (reel 1)"
+  },
+  "manca": "l'interruttore si accende su «pubblicala» e non su «reel di prova» (sulla parola giusta il reel pubblicato si vedrebbe solo 0,1 s prima del taglio); telefono al 43,5% della larghezza come lo schermo del reel 65 (più grande Condividi finirebbe sotto y 1290)",
+  "da_fare": "",
+  "fatto": "template TPL.U11 con la scheda (prova o normale); tplReelCard e tplTagReel in kit2-tpl-ui.js; DOPO in ritmo-clip/U11_dopo.mp4 · regia 13/10: telefono nella proporzione del reel 65 (scala / alto / sfuma, default nuovo solo con KW_RITMO)",
+  "sotto_4": false,
+  "storia": [
+   {
+    "giro": "09/10 sera",
+    "voti": {
+     "movimento": 5,
+     "materiali": 5,
+     "frame": 5,
+     "brand": 5
+    },
+    "sotto_4": false,
+    "confronto": "_analisi/moto/U11.jpg",
+    "manca": "",
+    "da_fare": "",
+    "fatto": ""
+   }
+  ]
+ },
+ "D03": {
+  "giro": "09/10 sera",
+  "voti": {
+   "movimento": 5,
+   "materiali": 5,
+   "frame": 4,
+   "brand": 5
+  },
+  "confronto": null,
+  "manca": "",
+  "da_fare": "",
+  "fatto": "kit: lineChart({playhead}) barra a segmenti sotto l'asse che avanza con la punta (reel 110); demo-3",
+  "sotto_4": false
+ },
+ "H04": {
+  "giro": "10/10 notte",
+  "voti": {
+   "movimento": 4,
+   "materiali": 4,
+   "frame": 4,
+   "brand": 5
+  },
+  "sotto_4": false,
+  "confronto": "_analisi/moto/H04.jpg",
+  "video": "_analisi/confronti-video/blocco5_confronto.mp4",
+  "manca": "nel reel 56 la camera si sposta mentre gli angoli si aprono (574 px/s); da noi la griglia resta ferma · 13/10: la «deriva che manca» annotata qui veniva dal profilo camera di confronto_moto, sporcato dalle animazioni locali e dai tagli verso la faccia; misurata sugli elementi fermi (deriva.py) la camera di Kallaway dopo questo taglio non deriva (vedi _analisi/ritmo/RITMO.md §2)",
+  "da_fare": "",
+  "fatto": "demo-6 0,6–2,6 s: angoli lime sul tuo reel vero da spostare nella griglia (scena H04 · L16)"
+ },
+ "L16": {
+  "giro": "10/10 notte",
+  "voti": {
+   "movimento": 4,
+   "materiali": 5,
+   "frame": 4,
+   "brand": 5
+  },
+  "sotto_4": false,
+  "confronto": "_analisi/moto/L16.jpg",
+  "video": "_analisi/confronti-video/blocco5_confronto.mp4",
+  "manca": "il reel 69 apre con una spinta della camera sulla lista (505 px/s); da noi la griglia è ferma all'inizio. Durata uguale (+0%) · 13/10: la «deriva che manca» annotata qui veniva dal profilo camera di confronto_moto, sporcato dalle animazioni locali e dai tagli verso la faccia; misurata sugli elementi fermi (deriva.py) la spinta iniziale del reel 69 è vera (+16% in ~0,35 s da 0,55 s, poi ferma), la deriva continua invece no (vedi _analisi/ritmo/RITMO.md §2)",
+  "da_fare": "",
+  "fatto": "swapPlaces: un elemento alla volta, curva a S + scivolata, con i tuoi reel veri in movimento"
+ },
+ "T13": {
+  "giro": "10/10 notte",
+  "voti": {
+   "movimento": 5,
+   "materiali": 5,
+   "frame": 4,
+   "brand": 5
+  },
+  "sotto_4": false,
+  "confronto": "_analisi/moto/T13.jpg",
+  "video": "_analisi/confronti-video/blocco5_confronto.mp4",
+  "manca": "",
+  "da_fare": "",
+  "fatto": "la bio del tuo igProfile si corregge con la camera dentro il telefono, come nel reel 31 (curva rms 0,066, camera 0,019)"
+ },
+ "F12": {
+  "giro": "10/10 notte",
+  "voti": {
+   "movimento": 4,
+   "materiali": 4,
+   "frame": 4,
+   "brand": 5
+  },
+  "sotto_4": false,
+  "confronto": "_analisi/moto/F12.jpg",
+  "video": "_analisi/confronti-video/blocco5_confronto.mp4",
+  "manca": "nel reel 80 il timbro cala a camera ferma; da noi cala subito dopo l'uscita della camera dal telefono (il picco della striscia è quell'uscita)",
+  "da_fare": "",
+  "fatto": "stamp: il timbro cala col colpo sub"
+ },
+ "O28": {
+  "giro": "10/10 notte",
+  "voti": {
+   "movimento": 4,
+   "materiali": 4,
+   "frame": 4,
+   "brand": 5
+  },
+  "sotto_4": false,
+  "confronto": "_analisi/moto/O28.jpg",
+  "video": "_analisi/confronti-video/blocco5_confronto.mp4",
+  "manca": "i mattoncini del reel 90 sono render lucidi a colori; i nostri sono SVG isometrici grafite/lime (brand). Lo snap finale è nostro: i cinque pezzi fanno un profilo",
+  "da_fare": "",
+  "fatto": "10/10 notte: la torre si monta in mezzo secondo come nel reel 90 (prima in 2 s), poi le etichette vanno a fuoco una alla volta"
+ },
+ "L15": {
+  "giro": "10/10 notte",
+  "voti": {
+   "movimento": 4,
+   "materiali": 5,
+   "frame": 4,
+   "brand": 5
+  },
+  "sotto_4": false,
+  "confronto": "_analisi/moto/L15.jpg",
+  "video": "_analisi/confronti-video/blocco5_confronto.mp4",
+  "manca": "nel reel 15 il cambio di card è una frusta della camera; da noi si muovono le card",
+  "da_fare": "",
+  "fatto": "10/10 notte: la card vista sale in 0,9 s mentre entra la nuova (picco di velocità dimezzato, da 5691 a 2774 px/s); ventaglio finale in 0,75 s"
+ },
+ "D10": {
+  "giro": "10/10 notte",
+  "voti": {
+   "movimento": 4,
+   "materiali": 5,
+   "frame": 4,
+   "brand": 5
+  },
+  "sotto_4": false,
+  "confronto": "_analisi/moto/D10.jpg",
+  "video": "_analisi/confronti-video/blocco5_confronto.mp4",
+  "manca": "",
+  "da_fare": "",
+  "fatto": "anelli concentrici attorno al tuo profilo vero, 4 pezzi che si accendono come nel reel 46 (camera rms 0,047)"
+ },
+ "U15": {
+  "giro": "ritmo 13/10 (blocco 02)",
+  "voti": {
+   "movimento": 5,
+   "materiali": 5,
+   "frame": 5,
+   "brand": 5
+  },
+  "template": "TPL.U15 (kw-kit/kit2-tpl-ui.js)",
+  "scena": "CATALOGO-ANIMAZIONI/ritmo-02 22,75–27,2 s (15/10, «30 giorni di contenuti pianificati in meno di 30 secondi.»): il cronometro d'acciaio conta in tempo reale da 30 e attorno l'anello dei 30 giorni si riempie in 1,5 s col contatore «0 → 30 giorni»",
+  "confronto": "_analisi/ritmo/blocco02/K_U15_r13.jpg · K_U15_r146.jpg · K_U15_r11.jpg · _analisi/ritmo/pop/U15_ritmo02_segmento.jpg",
+  "misure": {
+   "al taglio": "cronometro (30) e anello vuoto già in scena",
+   "movimento principale (pixel lime nell'anello)": "riempimento dal primo fotogramma: 10 → 90% fra 23,0 e 24,2 s, pieno a ~24,35 (1,57 s), quasi lineare; il contatore conta insieme 0 → 30 giorni · K reel 13: la scansione verde passa sul calendario in ~0,85 s",
+   "cronometro": "conta alla rovescia in tempo reale, un secondo al secondo (30 → 26 in 4,4 s), l'arco del tempo si accorcia lineare · K reel 146: 2:00 → 1:58 in tempo reale; reel 13: 30:00 → 29:59",
+   "accento": "bagliore sul numero su «secondi»; il bordo del contatore si accende quando l'anello è pieno",
+   "pop.py · i segmenti dell'anello (solo i pixel lime)": "si accendono interi, di colpo, uno dopo l'altro: niente crescita né rimbalzo (striscia guardata)",
+   "proporzioni (ingombro.py)": "anello largo 0,78 della larghezza, da y 396 a 1272 · K reel 13: calendario 0,45 con il timer sotto; reel 11: timer piccolo in un angolo della finestra",
+   "camera": "ferma (il movimento è il riempimento), deriva 1,2%",
+   "rimbalzo": "0 (lo show() del kit con back.out non si usa)",
+   "scena": "4,45 s"
+  },
+  "manca": "in Kallaway il timer è un elemento piccolo accanto all'oggetto (calendario, app); qui il cronometro è il protagonista e l'anello dei giorni è l'oggetto misurato (scelta per non ripetere il calendario di O24 subito dopo)",
+  "da_fare": "",
+  "fatto": "template TPL.U15 con la scheda (kit2-tpl-ui.js); stopwatch() restituisce anche num (in coda, non cambia niente); DOPO in ritmo-clip/U15_dopo.mp4",
+  "sotto_4": false,
+  "storia": [
+   {
+    "giro": "10/10 notte",
+    "voti": {
+     "movimento": 4,
+     "materiali": 4,
+     "frame": 4,
+     "brand": 5
+    },
+    "sotto_4": false,
+    "confronto": "_analisi/moto/U15.jpg",
+    "video": "_analisi/confronti-video/blocco5_confronto.mp4",
+    "manca": "il timer del reel 11 è più corto e secco; il nostro cronometro scende da 60 a 0 in 3,4 s insieme all'anello",
+    "da_fare": "",
+    "fatto": "stopwatch accanto all'anello del profilo"
+   }
+  ]
+ },
+ "D11": {
+  "giro": "10/10 notte",
+  "voti": {
+   "movimento": 4,
+   "materiali": 5,
+   "frame": 4,
+   "brand": 5
+  },
+  "sotto_4": false,
+  "confronto": "_analisi/moto/D11.jpg",
+  "video": "_analisi/confronti-video/blocco5_confronto.mp4",
+  "manca": "",
+  "da_fare": "",
+  "fatto": "10/10 notte: la corsa parte subito dopo gli assi e sale a passo costante come nel reel 65 (curva rms da 0,374 a 0,265, camera da 0,272 a 0,185); pill dei follower accanto alle teste"
+ },
+ "O29": {
+  "giro": "10/10 notte",
+  "voti": {
+   "movimento": 5,
+   "materiali": 5,
+   "frame": 5,
+   "brand": 5
+  },
+  "sotto_4": false,
+  "confronto": "_analisi/moto/O29.jpg",
+  "video": "_analisi/confronti-video/blocco5_confronto.mp4",
+  "manca": "nel reel 48 due archi rossi collegano la testa alla lista; da noi la lista sta sotto senza archi",
+  "da_fare": "",
+  "fatto": "gesti misurati fotogramma per fotogramma sul reel 48 (disco, lampeggio, strobo); 10/10 notte: prima la testa da vicino, poi la camera scende sulla lista in ~1 s (curva rms da 0,397 a 0,045, camera da 0,308 a 0,133)"
+ },
+ "D12": {
+  "giro": "10/10 notte",
+  "voti": {
+   "movimento": 4,
+   "materiali": 5,
+   "frame": 4,
+   "brand": 5
+  },
+  "sotto_4": false,
+  "confronto": "_analisi/moto/D12.jpg",
+  "video": "_analisi/confronti-video/blocco5_confronto.mp4",
+  "manca": "",
+  "da_fare": "",
+  "fatto": "fotocamera vera in basso, faro vero che illumina la cima; 10/10 notte: faro e riempimento ~0,9 s prima, la barra piena resta da leggere come nel reel 12 (curva rms da 0,314 a 0,262)"
+ },
+ "U12": {
+  "giro": "10/10 notte",
+  "voti": {
+   "movimento": 4,
+   "materiali": 5,
+   "frame": 4,
+   "brand": 5
+  },
+  "sotto_4": false,
+  "confronto": "_analisi/moto/U12.jpg",
+  "video": "_analisi/confronti-video/blocco5_confronto.mp4",
+  "manca": "nel reel 119 la camera entra sulle azioni più forte (3636 px/s contro 2827)",
+  "da_fare": "",
+  "fatto": "colonna delle azioni dentro il tuo reel vero, si accendono una a una e i numeri raddoppiano"
+ },
+ "O31": {
+  "giro": "10/10 notte",
+  "voti": {
+   "movimento": 5,
+   "materiali": 5,
+   "frame": 4,
+   "brand": 5
+  },
+  "sotto_4": false,
+  "confronto": "_analisi/moto/O31.jpg",
+  "video": "_analisi/confronti-video/blocco5_confronto.mp4",
+  "manca": "orbita meno fitta del reel 59 (10 volti); numeri credibili per il tuo profilo (12,4K → 24,8K) invece di centinaia di migliaia",
+  "da_fare": "",
+  "fatto": "10/10 notte: l'orbita gira, il contatore sale da subito e quasi lineare, i volti esplodono verso l'esterno al decollo (curva rms da 0,155 a 0,065)"
+ },
+ "U14": {
+  "giro": "10/10 notte",
+  "voti": {
+   "movimento": 4,
+   "materiali": 5,
+   "frame": 4,
+   "brand": 5
+  },
+  "sotto_4": false,
+  "confronto": "_analisi/moto/U14.jpg",
+  "video": "_analisi/confronti-video/blocco5_confronto.mp4",
+  "manca": "il riferimento (reel 144) è un video girato a mano con tagli: il confronto del movimento non dice molto",
+  "da_fare": "",
+  "fatto": "mirino vero sopra il tuo video (REC, timecode, fuoco)"
+ },
+ "D14": {
+  "giro": "10/10 notte",
+  "voti": {
+   "movimento": 4,
+   "materiali": 4,
+   "frame": 4,
+   "brand": 5
+  },
+  "sotto_4": false,
+  "confronto": "_analisi/moto/D14.jpg",
+  "video": "_analisi/confronti-video/blocco5_confronto.mp4",
+  "manca": "",
+  "da_fare": "",
+  "fatto": "forma d'onda delle 3 prese, la terza lime (curva rms 0,099, camera 0,048)"
+ },
+ "U13": {
+  "giro": "10/10 notte",
+  "voti": {
+   "movimento": 4,
+   "materiali": 4,
+   "frame": 4,
+   "brand": 5
+  },
+  "sotto_4": false,
+  "confronto": "_analisi/moto/U13.jpg",
+  "video": "_analisi/confronti-video/blocco5_confronto.mp4",
+  "manca": "nel reel 123 i commenti poi si dividono in due colonne (Agree / Disagree); da noi volano nella cartella (O32)",
+  "da_fare": "",
+  "fatto": "10/10 notte: i commenti esplodono quasi tutti insieme in ~0,6 s e restano da leggere, come nel reel 123 (curva rms da 0,360 a 0,161; prima arrivavano sempre più in fretta); commentBurst.burst(t, dur, esp)"
+ },
+ "O32": {
+  "giro": "10/10 notte",
+  "voti": {
+   "movimento": 4,
+   "materiali": 4,
+   "frame": 4,
+   "brand": 5
+  },
+  "sotto_4": false,
+  "confronto": "_analisi/moto/O32.jpg",
+  "video": "_analisi/confronti-video/blocco5_confronto.mp4",
+  "manca": "",
+  "da_fare": "",
+  "fatto": "cartella 'Lista IDEE' che risucchia i commenti e si apre a ventaglio (curva rms 0,066)"
+ },
+ "O30": {
+  "giro": "copia 15/10 (blocco C1)",
+  "voti": {
+   "movimento": 5,
+   "materiali": 4,
+   "frame": 5,
+   "brand": 5
+  },
+  "copia": "COPIA.O30 (kit2-copia-oggetti.js) · scena 16, 53,85–67,86 s",
+  "scena": "CATALOGO-ANIMAZIONI/copia-01 (reel 79 di Kallaway copiato intero, 1:1 sul suo tempo)",
+  "confronto": "_analisi/ritmo/fogli_regia/copia-01_NN_*.jpg (KALLAWAY | COPIA per scena) · _analisi/confronti-video/r79_copia_affiancato.mp4",
+  "misure": {
+   "ingombro (63,5 s)": "copia → 0,61 della larghezza, y 303–1174 · Kallaway → 0,51, y 302–1177",
+   "strade": "copia → si disegnano in 0,3 s dal basso, la finta si accende a 54,7 s, vista larga ×0,85 a 57,55 s · Kallaway → uguale",
+   "pallina coi fari": "copia → i fari puntano A (59,0) e girano su B in 0,4 s (60,9) · Kallaway → uguale",
+   "pop «A» (pop.py)": "copia → aggancio dubbio (il fascio di luce), rimbalzo 0% · Kallaway → già in campo, 0%"
+  },
+  "manca": "la finta lime è più larga della sua (ingombro 0,61 contro 0,51) per il bagliore; pop.py non regge sulle lettere vicine al fascio",
+  "sotto_4": false,
+  "storia": [
+   {
+    "giro": "10/10 notte",
+    "voti": {
+     "movimento": 4,
+     "materiali": 4,
+     "frame": 4,
+     "brand": 5
+    },
+    "sotto_4": false,
+    "confronto": "_analisi/moto/O30.jpg",
+    "video": "_analisi/confronti-video/blocco5_confronto.mp4",
+    "manca": "nel reel 79 la camera segue la pallina lungo la strada; da noi è quasi ferma",
+    "da_fare": "",
+    "fatto": "roadFork: strada tratteggiata in prospettiva, la finta al neon, la pallina coi fari"
+   }
+  ]
+ },
+ "D13": {
+  "giro": "ritmo 14/10 (D13 riempimento 2,25 s)",
+  "voti": {
+   "movimento": 5,
+   "materiali": 4,
+   "frame": 4,
+   "brand": 5
+  },
+  "sotto_4": false,
+  "template": "TPL.D13 (kw-kit/kit2-template.js)",
+  "scena": "CATALOGO-ANIMAZIONI/ritmo-09 1,0–6,1 s (06/10, «Non serve rifare il profilo da zero, serve salire di uno step alla volta.»), senza parole.arriva",
+  "confronto": "_analisi/ritmo/deriva/D13_ritmo09.jpg · D13_ritmo09_v.jpg · _analisi/ritmo/blocco02/D13_ritmo09_riempimento_cambio.json",
+  "misure": {
+   "al taglio": "scala, tubo e nomi già in scena (montati 1 s prima, sotto la copertina)",
+   "riempimento": "uno, lineare, 2,25 s dal primo fotogramma (1,05 → 3,3 s), poi la tenuta fino a 6,1 s; pixel lime nel tubo 10 → 90% in 1,6 s, quasi costante fra 1,3 e 3,2 s (cambio.py) · Kallaway (reel 72): lineare 2,25 s dal primo fotogramma · prima (13/10): 4,05 s fino a «volta.»",
+   "movimento principale": "spinta della camera dal primo fotogramma: +9,0% in 3 s (+7,0% a 1 s, +8,5% a 2 s), centro +66/+28 px, power3.out ≈ power2.out (deriva.py, maschera sulla scala, pannello giallo sui montanti)",
+   "Kallaway (reel 72)": "+9,6% in 2,4 s, centro +78/+23 px, power2.out",
+   "velocità degli angoli": "79 · 35 · 2 px/s a 0,25 · 1 · 2 s (Kallaway 86 · 41 · 8)",
+   "gradini": "si accendono quando la barra li raggiunge: tutti entro 3,3 s",
+   "rimbalzo": "0 (niente back.out)",
+   "scena": "5,1 s"
+  },
+  "manca": "dopo l'arrivo (3,3 s) restano 2,8 s di tenuta: in un reel la scena può finire prima (Kallaway taglia ~0,25 s dopo l'arrivo); parole.arriva resta un'opzione per far arrivare la barra su una parola",
+  "da_fare": "",
+  "fatto": "ritmo-09 senza parole.arriva (TPL.D13 usa i 2,25 s di default, template non cambiato; scheda: chiamata senza arriva); render ritmo-09_bozza.mp4; DOPO in ritmo-clip/D13_dopo.mp4",
+  "storia": [
+   {
+    "giro": "ritmo 13/10 (passo 0)",
+    "voti": {
+     "movimento": 5,
+     "materiali": 4,
+     "frame": 4,
+     "brand": 5
+    },
+    "sotto_4": false,
+    "template": "TPL.D13 (kw-kit/kit2-template.js)",
+    "scena": "CATALOGO-ANIMAZIONI/ritmo-09 1,0–6,1 s (06/10, «Non serve rifare il profilo da zero, serve salire di uno step alla volta.»)",
+    "confronto": "_analisi/ritmo/deriva/D13_ritmo09.jpg",
+    "misure": {
+     "al taglio": "scala, tubo e nomi già in scena (montati 1 s prima, sotto la scena precedente)",
+     "movimento principale": "spinta della camera dal primo fotogramma: +8,9% in 3 s (+7,0% a 1 s, +8,5% a 2 s), centro +66/+27 px, power2.out",
+     "Kallaway (reel 72)": "+9,6% in 2,4 s, centro +78/+23 px, power2.out",
+     "velocità degli angoli": "79 · 35 · 2 px/s a 0,25 · 1 · 2 s (Kallaway 86 · 41 · 8)",
+     "riempimento": "uno, lineare, 4,05 s fino a «volta.» (Kallaway 2,25 s dal primo fotogramma)",
+     "rimbalzo": "0 (niente back.out)",
+     "scena": "5,1 s"
+    },
+    "manca": "il riempimento dura 4 s perché arriva in cima sull'ultima parola della frase; Kallaway riempie in 2,25 s e lascia il tempo di leggere. Senza parole.arriva il template usa 2,25 s",
+    "da_fare": "",
+    "fatto": "template TPL.D13 con la scheda; DOPO in ritmo-clip/D13_dopo.mp4"
+   },
+   {
+    "giro": "10/10 notte",
+    "voti": {
+     "movimento": 4,
+     "materiali": 4,
+     "frame": 4,
+     "brand": 5
+    },
+    "sotto_4": false,
+    "confronto": "_analisi/moto/D13.jpg",
+    "video": "_analisi/confronti-video/blocco5_confronto.mp4",
+    "manca": "misurato (13/10, _analisi/ritmo/RITMO.md): nel reel 72 dopo il taglio la scala è già piena, il termometro si riempie in modo lineare in 2,25 s dal primo fotogramma e la camera si avvicina del 9,6% in 2,4 s frenando (power2.out); nella demo-6 la scala si costruisce, il riempimento va a 5 scatti e float fa +2% in 5,4 s",
+    "da_fare": "dopo l'ok dell'utente sulle regole del ritmo: portare il «dopo» del lab (_analisi/ritmo/lab-d13) nella demo-6 o in demo-9 (marcatore KW_RITMO); float() non va alzato per tutti: la deriva lunga c'è solo in 2 tagli su 12",
+    "fatto": "prima/dopo: _analisi/confronti-video/D13_prima_dopo.mp4 (il dopo: +8,6% in 2,4 s power2.out contro +9,6% di Kallaway)"
+   }
+  ]
+ },
+ "O27": {
+  "giro": "10/10 notte",
+  "voti": {
+   "movimento": 4,
+   "materiali": 4,
+   "frame": 4,
+   "brand": 5
+  },
+  "sotto_4": false,
+  "confronto": "_analisi/moto/O27.jpg",
+  "video": "_analisi/confronti-video/blocco5_confronto.mp4",
+  "manca": "nel reel 100 il pesce abbocca a pelo d'acqua; da noi il volto viene strappato fino alla canna (più leggibile). Camera quasi ferma (vedi D13) · 13/10: la «deriva che manca» annotata qui veniva dal profilo camera di confronto_moto, sporcato dalle animazioni locali e dai tagli verso la faccia; misurata sugli elementi fermi (deriva.py) la camera di Kallaway dopo questo taglio non deriva (vedi _analisi/ritmo/RITMO.md §2)",
+  "da_fare": "",
+  "fatto": "hookCatch come il reel 100: cornice, canna, lenza ad arco, acqua a bande, amo d'acciaio"
+ },
+ "O26": {
+  "giro": "10/10 notte",
+  "voti": {
+   "movimento": 4,
+   "materiali": 5,
+   "frame": 4,
+   "brand": 5
+  },
+  "sotto_4": false,
+  "confronto": "_analisi/moto/O26.jpg",
+  "video": "_analisi/confronti-video/blocco5_confronto.mp4",
+  "manca": "",
+  "da_fare": "",
+  "fatto": "manichino bianco luminoso (obj-manichino) come nei reel 18, 52 e 62, col tuo profilo vero sul telefono (camera rms 0,028)"
+ },
+ "K11": {
+  "giro": "ritmo 13/10 (blocco 02)",
+  "voti": {
+   "movimento": 5,
+   "materiali": 5,
+   "frame": 5,
+   "brand": 4
+  },
+  "template": "TPL.K11 (kw-kit/kit2-tpl-camera.js)",
+  "scena": "CATALOGO-ANIMAZIONI/ritmo-02 9,75–13,6 s (14/10, «Non lo è. È l'eccezione mostrata in continuazione.»): il muro di reel veri si apre al taglio, l'eccezione si accende col badge «1M», su «mostrata» il muro scorre come una slot e si ferma su altre eccezioni accese",
+  "confronto": "_analisi/ritmo/blocco02/K_K11_r61.jpg · K_K11_r90.jpg · K_K11_r61_moto.json · K11_ritmo02_moto.json · _analisi/ritmo/pop/K11_ritmo02_eccezione.jpg",
+  "misure": {
+   "al taglio": "il muro c'è già (riga ravvicinata); le eccezioni delle righe d'arrivo sono già accese fuori campo",
+   "movimento principale (moto.py)": "apertura: movimento 9,75 → 10,1 s (0,35 s), scia 0,27 s · K reel 61: 9,33 → 9,75 s (0,42 s), scia 0,375 s",
+   "scorrimento (moto.py)": "0,6 s (11,77 → 12,37), scia 0,43 s, poi ferma (+1%) · K reel 61: 10,25 → 10,79 s (0,54 s)",
+   "accento": "l'eccezione si accende su «eccezione»: bordo lime + alone + badge «1M» in 0,25 s (K reel 61: la selezione si accende in ~0,25 s)",
+   "pop.py · la miniatura accesa (solo i pixel lime)": "compare a 0,13 s e resta a scala 1,00 (0,98 → 1,00), rimbalzo 0% · K: la selezione verde non cambia scala",
+   "proporzioni (ingombro.py)": "muro a tutto schermo, 0,97 della larghezza (esce dai bordi), da sotto il titolo a y 1288 · K reel 61: 0,98, a tutto schermo senza titolo",
+   "rimbalzo": "0 (la .spot() del kit con back.out non si usa)",
+   "scena": "3,85 s"
+  },
+  "manca": "Kallaway toglie il titolo e mostra il muro a tutto schermo (fondo chiaro): qui il titolo resta su una fascia scura nell'HUD; la selezione di Kallaway è un blocco 3 × 3, qui una miniatura sola (l'eccezione) più quelle che tornano dopo lo scorrimento",
+  "da_fare": "",
+  "fatto": "template TPL.K11 con la scheda (nuovo file kit2-tpl-camera.js, con tplFasciaTitolo); build.cjs mette l'atlante del muro nel pool anche per TPL.K11(; DOPO in ritmo-clip/K11_dopo.mp4",
+  "sotto_4": false
+ },
+ "K17": {
+  "giro": "copia 15/10 (blocco C1)",
+  "voti": {
+   "movimento": 5,
+   "materiali": 5,
+   "frame": 4,
+   "brand": 5
+  },
+  "copia": "COPIA.K17 (kit2-copia-camera.js) + CP_CATTURE r79_mappa12 / r79_mappa23 / r79_mappa34 · scene 5, 11, 14, 19",
+  "scena": "CATALOGO-ANIMAZIONI/copia-01 (reel 79 di Kallaway copiato intero, 1:1 sul suo tempo)",
+  "confronto": "_analisi/ritmo/fogli_regia/copia-01_NN_*.jpg (KALLAWAY | COPIA per scena) · _analisi/confronti-video/r79_copia_affiancato.mp4",
+  "misure": {
+   "tuffo sulla tappa 3 (50,93 s)": "copia → camera presa dal suo video (×2,235 in ~1,4 s, cubic-bezier(0.03, 0.71, 0.575, 0.9)) · Kallaway → ×1,77 da 50,97 s, KW.arrive",
+   "viaggi lungo il simbolo": "copia → 1→2: 1,34 s · 3→4: 2,7 s, già in corsa al primo fotogramma · Kallaway → uguale (catture)",
+   "numero e nome": "copia → numero grigio → bianco +0,12–0,55 s, nome sulla parola · Kallaway → uguale"
+  },
+  "manca": "sulla copia camtrack non regge il tuffo (lo sfondo è uniforme: il tubo lime riempie lo schermo); i nomi italiani su due righe («Posta / in gioco», «Grande / domanda») sono più stretti dei suoi",
+  "sotto_4": false,
+  "storia": []
+ }
+}

@@ -1,0 +1,46 @@
+{
+ "id": "O01",
+ "scena": {
+  "t0": 1.0,
+  "t1": 5.6,
+  "frase": "«L'errore numero uno che fanno i principianti? Pubblicare di tutto.»",
+  "script": "01/10 · 0–4,1 s della voce",
+  "kallaway": {
+   "reel": 14,
+   "t0": 0.0,
+   "t1": 2.25
+  }
+ },
+ "voto": {
+  "voti": {
+   "movimento": 5,
+   "materiali": 4,
+   "frame": 4,
+   "brand": 5
+  },
+  "template": "TPL.O01 (kw-kit/kit2-tpl-oggetti.js)",
+  "scena": "CATALOGO-ANIMAZIONI/ritmo-01 1,0–5,6 s (01/10, «L'errore numero uno che fanno i principianti? Pubblicare di tutto.»)",
+  "confronto": "_analisi/ritmo/blocco01/K_O01_r14.jpg · N_O01_ritmo01.jpg · K_O01_r14_radiale.jpg · O01_ritmo01_radiale.jpg · _analisi/ritmo/pop/O01_ritmo01_risposta.jpg",
+  "misure": {
+   "al taglio": "7 card già in scena vicine al centro (30% del raggio), la risposta sfocata dietro (non ancora detta)",
+   "movimento principale": "apertura dal primo fotogramma: raggio del contenuto 123 → 324 px, metà a 0,30 s, 90% a 0,63 s, quasi lineare (power1.out 0,85 s)",
+   "Kallaway (reel 14 · reel 13)": "raggio 106 → 304 px · 164 → 299 px, metà a 0,21 · 0,17 s, 90% a 0,67 s, power1.out",
+   "prima (expo.out 0,42 s, come demo e v5)": "90% a 0,17 s: quattro volte più veloce di Kallaway",
+   "camera": "ferma, tenuta +1,2% sine.out fino alla fine (Kallaway: nessun movimento di camera fino alla linea a 2,25 s)",
+   "rotazione": "24°/s continua, card dritte (catalogo 20–25°/s)",
+   "accenti": "disco lime su «uno» (0,83 s dopo il taglio), la risposta va a fuoco su «Pubblicare», sottolineatura su «tutto.»",
+   "rimbalzo": "1,8% (rumore della misura: niente back.out)",
+   "scena": "4,6 s",
+   "pop.py · la risposta «Pubblicare di tutto» (regia 13/10)": "da sfocata a nitida in 0,2 s a scala piena (0,97 → 1,00), rimbalzo 0% (striscia guardata) · K: gli elementi entrano in dissolvenza a scala piena in ~0,13 s (reel 6), rimbalzo 0"
+  },
+  "manca": "le card sono reel di esempio per tema (fitness, viaggi, cucina, animali, motivazione), non i reel dell'utente: qui spiegano «di tutto». Sotto l'anello resta ~150 px di fondo prima della safe zone: con il titolo su due righe l'anello non può crescere di più",
+  "da_fare": "",
+  "fatto": "template TPL.O01 con la scheda; reelRing.open(t, dur, ease) con l'ease in coda (default expo.out di prima); DOPO in ritmo-clip/O01_dopo.mp4"
+ },
+ "riga": {
+  "stato": "**fatto** (blocco 1)",
+  "template": "TPL.O01 · ritmo-01 1,0–5,6 s (01/10 «L'errore numero uno… Pubblicare di tutto.»)",
+  "numeri": "apertura 90% a 0,63 s quasi lineare (K 0,67 s power1.out; prima 0,17 s) · camera ferma +1,2% · 24°/s · rimbalzo 0 (pop.py, strisce guardate)",
+  "voto": "5·4·4·5"
+ }
+}

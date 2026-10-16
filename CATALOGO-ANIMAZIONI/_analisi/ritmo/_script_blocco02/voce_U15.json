@@ -1,0 +1,30 @@
+{
+ "id": "U15",
+ "scena": {"t0": 22.75, "t1": 27.2, "frase": "«30 giorni di contenuti pianificati in meno di 30 secondi.»", "script": "15/10 · 0–4,0 s della voce", "kallaway": {"reel": 146, "t0": 0.833, "t1": 3.4}},
+ "voto": {
+  "voti": {"movimento": 5, "materiali": 5, "frame": 5, "brand": 5},
+  "template": "TPL.U15 (kw-kit/kit2-tpl-ui.js)",
+  "scena": "CATALOGO-ANIMAZIONI/ritmo-02 22,75–27,2 s (15/10, «30 giorni di contenuti pianificati in meno di 30 secondi.»): il cronometro d'acciaio conta in tempo reale da 30 e attorno l'anello dei 30 giorni si riempie in 1,5 s col contatore «0 → 30 giorni»",
+  "confronto": "_analisi/ritmo/blocco02/K_U15_r13.jpg · K_U15_r146.jpg · K_U15_r11.jpg · _analisi/ritmo/pop/U15_ritmo02_segmento.jpg",
+  "misure": {
+   "al taglio": "cronometro (30) e anello vuoto già in scena",
+   "movimento principale (pixel lime nell'anello)": "riempimento dal primo fotogramma: 10 → 90% fra 23,0 e 24,2 s, pieno a ~24,35 (1,57 s), quasi lineare; il contatore conta insieme 0 → 30 giorni · K reel 13: la scansione verde passa sul calendario in ~0,85 s",
+   "cronometro": "conta alla rovescia in tempo reale, un secondo al secondo (30 → 26 in 4,4 s), l'arco del tempo si accorcia lineare · K reel 146: 2:00 → 1:58 in tempo reale; reel 13: 30:00 → 29:59",
+   "accento": "bagliore sul numero su «secondi»; il bordo del contatore si accende quando l'anello è pieno",
+   "pop.py · i segmenti dell'anello (solo i pixel lime)": "si accendono interi, di colpo, uno dopo l'altro: niente crescita né rimbalzo (striscia guardata)",
+   "proporzioni (ingombro.py)": "anello largo 0,78 della larghezza, da y 396 a 1272 · K reel 13: calendario 0,45 con il timer sotto; reel 11: timer piccolo in un angolo della finestra",
+   "camera": "ferma (il movimento è il riempimento), deriva 1,2%",
+   "rimbalzo": "0 (lo show() del kit con back.out non si usa)",
+   "scena": "4,45 s"
+  },
+  "manca": "in Kallaway il timer è un elemento piccolo accanto all'oggetto (calendario, app); qui il cronometro è il protagonista e l'anello dei giorni è l'oggetto misurato (scelta per non ripetere il calendario di O24 subito dopo)",
+  "da_fare": "",
+  "fatto": "template TPL.U15 con la scheda (kit2-tpl-ui.js); stopwatch() restituisce anche num (in coda, non cambia niente); DOPO in ritmo-clip/U15_dopo.mp4"
+ },
+ "riga": {
+  "stato": "**fatto** (blocco 2)",
+  "template": "TPL.U15 · ritmo-02 22,75–27,2 s (15/10 «30 giorni di contenuti pianificati in meno di 30 secondi.»)",
+  "numeri": "cronometro in tempo reale, lineare (K r146 e r13 in tempo reale) · anello dei 30 giorni pieno in 1,57 s dal primo fotogramma, quasi lineare (K r13 scansione del calendario ~0,85 s) · segmenti accesi interi, senza rimbalzo (pop.py) · anello 0,78 della larghezza",
+  "voto": "5·5·5·5"
+ }
+}

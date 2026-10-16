@@ -1,0 +1,45 @@
+{
+ "id": "O21",
+ "scena": {
+  "t0": 50.15,
+  "t1": 55.0,
+  "frase": "«…ma il reel di prova verrà mostrato solo a persone nuove che non ti seguono ancora.»",
+  "script": "03/10 · 26,4–30,9 s della voce (seconda metà della frase: il reel di prova)",
+  "kallaway": {
+   "reel": 44,
+   "t0": 7.8,
+   "t1": 9.6
+  }
+ },
+ "voto": {
+  "voti": {
+   "movimento": 5,
+   "materiali": 5,
+   "frame": 4,
+   "brand": 5
+  },
+  "template": "TPL.O21 (kw-kit/kit2-tpl-oggetti.js)",
+  "scena": "CATALOGO-ANIMAZIONI/ritmo-01 50,15–55,0 s (03/10): al centro il tuo reel del 04/10 che si muove con l'etichetta PROVA, l'anello dei tuoi follower si spegne, le persone nuove si accendono",
+  "confronto": "_analisi/ritmo/blocco01/K_O21_r44.jpg · K_O21_r5.jpg · _analisi/ritmo/deriva/O21_ritmo01.jpg · blocco01/O21_ritmo01_onda_cambio.json · _analisi/ritmo/pop/O21_ritmo01_centro.jpg",
+  "misure": {
+   "al taglio": "tre anelli con le persone, il tuo reel al centro e la legenda già costruiti (montati 1 s prima)",
+   "movimento principale": "zoom d'arrivo: +10,3% (dal primo fotogramma dopo il taglio), 109 → 2,8 px/s a 0,25/1 s, expo.out; poi ferma",
+   "Kallaway (reel 44 · reel 5)": "anelli pieni appena arriva la grafica e girano piano · cerchio + persone, poi il colore cambia",
+   "onda delle persone nuove": "10% → 90% in 0,40 s (12 fotogrammi) su «persone»",
+   "Kallaway (onda)": "reel 5: le persone diventano rosse in ~0,25 s; reel 13: 0,33 s",
+   "accenti": "i tuoi follower si spengono su «solo», le persone nuove si accendono su «persone»; gli anelli girano a 9°/s (elementi)",
+   "rimbalzo": "0 (i pop delle persone usavano back.out(2,5): con KW_RITMO power2.out, e qui sono prima del taglio)",
+   "scena": "4,85 s",
+   "pop.py · il tuo reel con PROVA al centro (regia 13/10)": "zoom d'arrivo 0,89 → 1,00 in 0,3 s, rimbalzo di scala 0% e di posizione 0% (il primo fotogramma, 0,67, è un aggancio sbagliato: striscia guardata) · K: arrivo con zoom ~+15% in ~0,4 s, poi ferma (reel 49)"
+  },
+  "manca": "le persone sono puntini (anonime, come in Kallaway) e non volti: per «persone nuove» qualunque è giusto; il centro (il reel) è un cerchio di ~145 px, il video si legge poco",
+  "da_fare": "",
+  "fatto": "template TPL.O21 con la scheda; spezzone r04 (il tuo reel del 04/10) in ritmo-01/assets/clips; DOPO in ritmo-clip/O21_dopo.mp4"
+ },
+ "riga": {
+  "stato": "**fatto** (blocco 1)",
+  "template": "TPL.O21 · ritmo-01 50,15–55,0 s (03/10 «…il reel di prova verrà mostrato solo a persone nuove che non ti seguono ancora.»)",
+  "numeri": "zoom d'arrivo +10% expo.out 109 → 2,8 px/s · onda 0,40 s (K 0,25–0,33 s) · anelli pieni al taglio · rimbalzo 0 (pop.py, strisce guardate)",
+  "voto": "5·5·4·5"
+ }
+}

@@ -1,0 +1,48 @@
+{
+ "id": "F08",
+ "scena": {
+  "t0": 8.75,
+  "t1": 13.75,
+  "frase": "«In questo modo l'algoritmo non capisce di cosa parla il tuo profilo e nemmeno chi ti guarda.»",
+  "script": "01/10 · 7,8–12,3 s della voce",
+  "kallaway": {
+   "reel": 13,
+   "t0": 7.95,
+   "t1": 9.6
+  }
+ },
+ "voto": {
+  "voti": {
+   "movimento": 5,
+   "materiali": 4,
+   "frame": 4,
+   "brand": 5
+  },
+  "template": "TPL.F08 (kw-kit/kit2-tpl-luce.js)",
+  "scena": "CATALOGO-ANIMAZIONI/ritmo-01 8,75–13,75 s (01/10, «In questo modo l'algoritmo non capisce di cosa parla il tuo profilo e nemmeno chi ti guarda.»)",
+  "confronto": "_analisi/ritmo/blocco01/K_F08_r13.jpg · K_F08_r88.jpg · _analisi/ritmo/deriva/F08_ritmo01.jpg (+ _v) · blocco01/*F08*_cambio.json · _analisi/ritmo/pop/F08_ritmo01_domanda.jpg · F08_ritmo01_riquadro_lime.jpg",
+  "misure": {
+   "al taglio": "telefono col profilo «di tutto», pill dell'algoritmo e 10 persone qualunque di profilo già in scena, accese",
+   "movimento principale": "arrivo dal basso: 139 px/s a 0,25 s → 1,6 a 1 s, expo.out; poi +0,8% in 3 s (deriva.py sulle persone, verifica gialla)",
+   "Kallaway (arrivi, RITMO.md §2)": "reel 31: −112 px expo.out, 175 → 11 px/s a 0,25/1 s · reel 65: −137 px, 230 → 1,5 px/s",
+   "cambio di stato delle persone (onda)": "10% → 90% in 0,40 s (12 fotogrammi), dalla cima in giù",
+   "Kallaway reel 13 (onda) · reel 88 (secco)": "0,33 s (10 fotogrammi) · 1 fotogramma",
+   "cambio di stato della pill (secco)": "1–3 fotogrammi su «non» (Kallaway reel 88: 1 fotogramma)",
+   "accenti": "3: la pill si spegne su «non», riquadro lime sulla griglia su «profilo», onda sulle persone su «nemmeno»",
+   "rimbalzo": "0 (il riquadro di igProfile.hl usava back.out(2): con KW_RITMO diventa power2.out)",
+   "scena": "5,0 s",
+   "pop.py · il «?» accanto alla pill (regia 13/10)": "0,86 → 1,00 in 0,10 s mentre si scrive, rimbalzo 0% · K: badge 0,66 → 1,00 in 0,13 s, rimbalzo 0% (reel 1)",
+   "pop.py · il riquadro lime sulla griglia (regia 13/10, solo i pixel lime)": "entra da 1,02 e si stringe a 1,00 in ~0,1 s dopo che compare (highlight: 1,1 → 1 in 0,28 s, power2.out con KW_RITMO), niente rimbalzo sotto 1 · K: nessun rimbalzo visibile nelle entrate (8 su 8)",
+   "filtro (regia 15/10, blocco 2)": "nell'onda ogni persona faceva un fotogramma più scuro (il filtro animato da «none» partiva da brightness(0): luminosità ai lati 46,5 → 40,0 → 40,9): ora TPL.F08 fa fromTo da grayscale(0) brightness(1) e la luminosità scende senza salti (48,0 → 34,0 in 0,5 s); il resto di ritmo-01 non cambia"
+  },
+  "manca": "il profilo è finto (iltuoprofilo, la bio con i temi a 11 px non si legge: la griglia mescolata lo dice per immagini); il rosso di Kallaway qui è «spento» (grigio), perché il brand ha un solo accento",
+  "da_fare": "",
+  "fatto": "template TPL.F08 con la scheda (onda o secco, verso spento/acceso); DOPO in ritmo-clip/F08_dopo.mp4; regia 15/10 (blocco 2): tolto il fotogramma nero dell'onda (fromTo sul filtro)"
+ },
+ "riga": {
+  "stato": "**fatto** (blocco 1)",
+  "template": "TPL.F08 · ritmo-01 8,75–13,75 s (01/10 «…l'algoritmo non capisce… e nemmeno chi ti guarda.»)",
+  "numeri": "onda 0,40 s (K r13 0,33 s) · pill secca 1–3 fotogrammi (K r88 1) · arrivo 139 → 1,6 px/s expo.out (K 175 → 11) · rimbalzo 0 (pop.py, strisce guardate)",
+  "voto": "5·4·4·5"
+ }
+}

@@ -1,0 +1,30 @@
+{
+ "_legenda": {
+  "regola_taglio": "taglio = la composizione precedente (grafica principale o inquadratura) e' sostituita in <=3 fotogrammi, qualunque sia la transizione (netto, sfocatura/frusta, spinta, rotazione, dissolvenza breve). Movimenti di camera piu' lenti in cui vecchio e nuovo oggetto sono visibili insieme = S (non taglio).",
+  "V": "taglio rilevato e vero; sottotipo: faccia (grafica<->volto), grafica (grafica->altra grafica, titolo nuovo), titolo (stesso titolo, grafica principale sostituita di colpo)",
+  "F": "taglio rilevato ma falso (flash, elemento che entra/esce, animazione, frusta nello stesso mondo)",
+  "M": "taglio vero non rilevato (t in s)",
+  "S": "cambio di composizione senza taglio: movimento di camera/animazione verso un oggetto o una seconda composizione",
+  "amb": "giudizio incerto"
+ },
+ "63": {
+  "falsi": [],
+  "sottotipi": {"3": "titolo", "8": "titolo"},
+  "mancati": [{"t": 10.21, "tipo": "frusta", "nota": "griglia Top Hook Formats -> logo Claude, titolo nuovo in 1 fotogramma, scia orizzontale", "amb": true}],
+  "S": [{"t": 1.6, "nota": "logo Claude -> pagina/cervello, pan verticale nello stesso mondo"}, {"t": 51.6, "nota": "Original -> AI Slop, pan orizzontale ~1,5 s"}],
+  "tipi_errati": []
+ },
+ "45": {
+  "falsi": [3],
+  "note_falsi": {"3": "10.76: la box di Claude entra scorrendo e le carte ci volano dentro, stesso titolo (animazione)"},
+  "sottotipi": {"1": "grafica", "4": "grafica", "11": "grafica"},
+  "mancati": [
+   {"t": 23.77, "tipo": "sfocatura", "nota": "box Claude -> documento Reverse-Engineer; salto anche nella facecam"},
+   {"t": 29.36, "tipo": "netto", "nota": "documento -> altro documento (bianco su bianco)"},
+   {"t": 33.07, "tipo": "spinta", "nota": "documento esce a sinistra e il nuovo 3-5 Tactical Changes entra da destra in 1 fotogramma", "amb": true},
+   {"t": 52.09, "tipo": "sfocatura", "nota": "box Your Channel -> documento Automate The Entire Analysis"}
+  ],
+  "S": [],
+  "tipi_errati": []
+ }
+}

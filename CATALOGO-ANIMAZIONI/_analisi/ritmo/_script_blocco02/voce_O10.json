@@ -1,0 +1,29 @@
+{
+ "id": "O10",
+ "scena": {"t0": 17.3, "t1": 22.75, "frase": "«L'obiettivo non è un milione di visualizzazioni. È arrivare alle persone giuste col messaggio giusto.»", "script": "14/10 · 37,2–42,0 s della voce", "kallaway": {"reel": 42, "t0": 15.242, "t1": 18.4}},
+ "voto": {
+  "voti": {"movimento": 5, "materiali": 4, "frame": 5, "brand": 5},
+  "template": "TPL.O10 (kw-kit/kit2-tpl-oggetti.js)",
+  "scena": "CATALOGO-ANIMAZIONI/ritmo-02 17,3–22,75 s (14/10, «L'obiettivo non è un milione di visualizzazioni. È arrivare alle persone giuste col messaggio giusto.»): il bersaglio si costruisce dal centro (le persone giuste, silhouette), «1M di views» sull'anello esterno va a fuoco e si spegne barrato, il centro si accende, la freccetta (il messaggio) si pianta al centro",
+  "confronto": "_analisi/ritmo/blocco02/K_O10_r42.jpg · K_O10_r91.jpg · _analisi/ritmo/pop/O10_ritmo02_centro.jpg",
+  "misure": {
+   "al taglio": "il centro con le tre persone e le etichette sfocate ci sono già",
+   "movimento principale (raggio dell'anello esterno, pixel lime)": "costruzione dal centro: raggio 162 → 440 px da 17,40 a 18,07 s (0,77 s dal taglio), quasi lineare, nessun overshoot (max 441) · K reel 42: dal punto (15,33 s) al bersaglio pieno a 16,18 s (0,85 s), lineare, poi torna indietro del 6% · prima: 0,32 s expo.out per anello, uno per parola",
+   "accenti": "«1M di views» a fuoco su «milione» e spento + barrato su «visualizzazioni» (anelli esterni al 22%); centro acceso con disco e etichetta lime su «persone»; freccetta su «messaggio» (0,24 s, trema: colpo voluto), niente scossa della camera",
+   "pop.py · l'etichetta «Le persone giuste» (solo i pixel lime)": "scala 0,98 → 1,00, rimbalzo 0% (cambia colore, non cresce)",
+   "proporzioni": "bersaglio largo 0,81 della larghezza (le etichette sono pill sul bersaglio, non a lato) · K reel 42: 0,63 al centro; a 27,6 s spinto fuori dal bordo a sinistra con le etichette a destra · prima stesura: 0,58 con le etichette a destra (troppo piccolo)",
+   "camera": "ferma (il movimento è la costruzione), deriva 1,2% · K reel 42: ferma fino a 17,6 s",
+   "rimbalzo": "0 sugli anelli (back.out del colpo convertito da KW_RITMO)",
+   "scena": "5,45 s"
+  },
+  "manca": "Kallaway fa crescere il bersaglio con un piccolo ritorno (−6%), qui senza; le persone sono silhouette (giusto per «chi ti guarda»), Kallaway mette miniature di contenuti nel centro",
+  "da_fare": "",
+  "fatto": "template TPL.O10 con la scheda; bullseye().ring con dur, ease in coda (default di prima); DOPO in ritmo-clip/O10_dopo.mp4"
+ },
+ "riga": {
+  "stato": "**fatto** (blocco 2)",
+  "template": "TPL.O10 · ritmo-02 17,3–22,75 s (14/10 «L'obiettivo non è un milione di visualizzazioni. È arrivare alle persone giuste…»)",
+  "numeri": "costruzione dal centro 0,77 s quasi lineare senza overshoot (K r42 0,85 s lineare, −6% di ritorno; prima 0,32 s a anello) · bersaglio 0,81 della larghezza (K r42 0,63; prima stesura 0,58) · camera ferma · etichetta del centro senza crescere (pop.py) · freccetta senza scossa",
+  "voto": "5·4·5·5"
+ }
+}

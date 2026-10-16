@@ -1,0 +1,162 @@
+{
+ "voce": "F04_ritmo02",
+ "sorgente": "ritmo-02_bozza.mp4",
+ "fps": 30.0,
+ "t_taglio": 13.6,
+ "f0": 13.633,
+ "durata_misurata": 0.433,
+ "nostro": true,
+ "maschera": [
+  [
+   60.0,
+   380.0,
+   960.0,
+   900.0
+  ]
+ ],
+ "escludi": [],
+ "scala_finale_%": 0.0,
+ "scala_a_1s_%": null,
+ "scala_a_2s_%": null,
+ "centro_finale_px": [
+  0.0,
+  0.0
+ ],
+ "angoli_finale_px": 0.0,
+ "vel_angoli_px_s": {
+  "0.25": -17.9
+ },
+ "vel_scala_%_s": {
+  "0.25": -2.55
+ },
+ "curva": "ferma",
+ "err_curva": 0,
+ "curve_vicine": {},
+ "inlier_mediana": 13.0,
+ "fotogrammi_falliti": 15,
+ "serie": [
+  {
+   "t": 0.0,
+   "scala_%": 0.0,
+   "rot": 0.0,
+   "dx": 0.0,
+   "dy": 0.0,
+   "angoli_px": 0.0,
+   "inlier": 287
+  },
+  {
+   "t": 0.0333,
+   "scala_%": 3.073,
+   "rot": -0.03,
+   "dx": -0.06,
+   "dy": 3.04,
+   "angoli_px": 21.56,
+   "inlier": 25
+  },
+  {
+   "t": 0.0667,
+   "scala_%": 0.0,
+   "rot": 0.0,
+   "dx": 0.0,
+   "dy": 0.0,
+   "angoli_px": 0.0,
+   "inlier": 12
+  },
+  {
+   "t": 0.1,
+   "scala_%": 0.0,
+   "rot": 0.0,
+   "dx": 0.0,
+   "dy": 0.0,
+   "angoli_px": 0.0,
+   "inlier": 10
+  },
+  {
+   "t": 0.1333,
+   "scala_%": 0.0,
+   "rot": 0.0,
+   "dx": 0.0,
+   "dy": 0.0,
+   "angoli_px": 0.0,
+   "inlier": 12
+  },
+  {
+   "t": 0.1667,
+   "scala_%": 0.0,
+   "rot": 0.0,
+   "dx": 0.0,
+   "dy": 0.0,
+   "angoli_px": 0.0,
+   "inlier": 10
+  },
+  {
+   "t": 0.2,
+   "scala_%": 0.0,
+   "rot": 0.0,
+   "dx": 0.0,
+   "dy": 0.0,
+   "angoli_px": 0.0,
+   "inlier": 15
+  },
+  {
+   "t": 0.2333,
+   "scala_%": 0.0,
+   "rot": 0.0,
+   "dx": 0.0,
+   "dy": 0.0,
+   "angoli_px": 0.0,
+   "inlier": 14
+  },
+  {
+   "t": 0.2667,
+   "scala_%": 0.0,
+   "rot": 0.0,
+   "dx": 0.0,
+   "dy": 0.0,
+   "angoli_px": 0.0,
+   "inlier": 14
+  },
+  {
+   "t": 0.3,
+   "scala_%": 0.0,
+   "rot": 0.0,
+   "dx": 0.0,
+   "dy": 0.0,
+   "angoli_px": 0.0,
+   "inlier": 14
+  },
+  {
+   "t": 0.3333,
+   "scala_%": 0.0,
+   "rot": 0.0,
+   "dx": 0.0,
+   "dy": 0.0,
+   "angoli_px": 0.0,
+   "inlier": 12
+  },
+  null,
+  null,
+  {
+   "t": 0.4333,
+   "scala_%": 0.0,
+   "rot": 0.0,
+   "dx": 0.0,
+   "dy": 0.0,
+   "angoli_px": 0.0,
+   "inlier": 8
+  },
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null
+ ]
+}

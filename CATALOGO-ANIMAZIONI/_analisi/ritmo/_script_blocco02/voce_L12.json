@@ -1,0 +1,29 @@
+{
+ "id": "L12",
+ "scena": {"t0": 39.5, "t1": 45.6, "frase": "«Scrivi gli script con un metodo fisso. Io uso hook, spiega, mostra, insegna.»", "script": "15/10 · 22,8–28,4 s della voce (R8 morbida da L09: zoom-through nel tuo reel del filone «Idee»)", "kallaway": {"reel": 26, "t0": 3.409, "t1": 6.1}},
+ "voto": {
+  "voti": {"movimento": 5, "materiali": 4, "frame": 4, "brand": 5},
+  "template": "TPL.L12 (kw-kit/kit2-tpl-liste.js)",
+  "scena": "CATALOGO-ANIMAZIONI/ritmo-02 39,5–45,6 s (15/10, «Scrivi gli script con un metodo fisso. Io uso hook, spiega, mostra, insegna.»): la camera entra nel tuo reel del filone «Idee» e dall'altra parte c'è il copione con le righe già stese; ogni sezione si evidenzia di lime sulla sua parola, quella prima diventa bianca",
+  "confronto": "_analisi/ritmo/blocco02/K_L12_r26.jpg · K_L12_r35.jpg · K_L12_r4.jpg · _analisi/ritmo/pop/L12_ritmo02_hook.jpg",
+  "misure": {
+   "al taglio (R8 morbida)": "zoom-through nel reel del filone «Idee» (0,16 s), dall'altra parte il documento è già pieno di righe grigie con le etichette spente",
+   "assestamento (larghezza del documento)": "0,97 → 1,00 in 0,2 s dopo la scia (39,63 → 39,83 s), nessun overshoot; poi la camera tiene",
+   "Kallaway (reel 26)": "taglio a 3,41 s sul documento bianco già pieno, poi la riga «Hook» si colora sulla parola (4,0 s) e le «Lock-in zone» gialle (5,3 s); la camera spinge piano (K16)",
+   "sezioni (pixel lime)": "«Hook»: 3 righe evidenziate 10 → 90% in 0,23 s (0,3 s a riga, 0,07 s fra le righe), su ogni parola; la sezione prima diventa bianca in 0,25 s",
+   "pop.py · l'etichetta «Hook» (solo i pixel lime)": "si accende a +0,17 s già intera, non cresce; si stende solo la riga (evidenziatore)",
+   "proporzioni (ingombro.py)": "documento 0,64 della larghezza, y 303–1284 · K reel 26: 0,57; reel 35: ~0,5",
+   "rimbalzo": "0",
+   "scena": "6,1 s"
+  },
+  "manca": "Kallaway usa un colore per sezione (rosso, giallo, viola…): qui lime per quella detta e bianco per le fatte (brand); le etichette sono piccole come in Kallaway (si leggono a 1080, non sul telefono piccolo); scena lunga (6,1 s) perché la frase è una",
+  "da_fare": "",
+  "fatto": "template TPL.L12 con la scheda (kit2-tpl-liste.js); scriptDoc() con opzioni in coda fsTitolo, fsLab, top (default di prima); R8 con tplZoomThrough dall'ancora reel(2, 0) di TPL.L09; DOPO in ritmo-clip/L12_dopo.mp4"
+ },
+ "riga": {
+  "stato": "**fatto** (blocco 2)",
+  "template": "TPL.L12 · ritmo-02 39,5–45,6 s (15/10 «Scrivi gli script con un metodo fisso. Io uso hook, spiega, mostra, insegna.»), R8 morbida da L09 (zoom-through)",
+  "numeri": "documento pieno al taglio (K r26 pieno al taglio) · una sezione per parola: 3 righe in 0,23 s (0,3 s a riga), la prima diventa bianca · zoom-through + assestamento 0,97 → 1 in 0,2 s senza overshoot · etichette senza crescere (pop.py) · documento 0,64 della larghezza (K r26 0,57)",
+  "voto": "5·4·4·5"
+ }
+}

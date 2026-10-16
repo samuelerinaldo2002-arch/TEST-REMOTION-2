@@ -1,0 +1,43 @@
+{
+ "id": "T05",
+ "scena": {
+  "t0": 26.95,
+  "t1": 31.45,
+  "frase": "«L'algoritmo ci mostra soprattutto i contenuti con tantissima interazione.»",
+  "script": "14/10 · 6,7–10,8 s della voce",
+  "kallaway": {
+   "reel": 149,
+   "t0": 3.6,
+   "t1": 4.9
+  }
+ },
+ "voto": {
+  "voti": {
+   "movimento": 5,
+   "materiali": 4,
+   "frame": 4,
+   "brand": 5
+  },
+  "template": "TPL.T05 (kw-kit/kit2-tpl-testo.js)",
+  "scena": "CATALOGO-ANIMAZIONI/ritmo-01 26,95–31,45 s (14/10, «L'algoritmo ci mostra soprattutto i contenuti con tantissima interazione.»): reel veri di Hormozi coi numeri d'interazione",
+  "confronto": "_analisi/ritmo/blocco01/K_T05_r149.jpg · N_T05_ritmo01.jpg · _analisi/ritmo/deriva/T05_ritmo01.jpg · _analisi/ritmo/pop/T05_ritmo01_pill.jpg",
+  "misure": {
+   "decodifica": "glifi a caso da 0,05 s dopo il taglio, parola ferma a 0,27 s: 7 fotogrammi (un glifo nuovo a ogni fotogramma), monospazio",
+   "Kallaway (reel 149)": "4–5 fotogrammi di glifi (~0,2 s a 24 fps), tutte le lettere si fermano insieme; l'etichetta entra subito dopo il taglio",
+   "movimento principale": "arrivo dal basso: 136 px/s a 0,25 s → 2,9 a 1 s, expo.out (deriva.py sulle card)",
+   "accenti": "linee dall'algoritmo ai tre reel su «mostra»; i numeri corrono lineari in 0,6 s su «tantissima» e si accendono di lime",
+   "rimbalzo": "0",
+   "scena": "4,5 s",
+   "pop.py · la pill dell'etichetta (regia 13/10)": "arriva con la scena 86 px dal basso a scala piena, ferma in 0,3 s, rimbalzo di posizione 0% · K: la card entra di lato e frena senza rimbalzo visibile (reel 9)"
+  },
+  "manca": "le lettere si fermano a scalare (decode() del kit), in Kallaway insieme; i numeri d'interazione sono d'esempio; sopra la pill e sotto i numeri resta ~110 px di fondo (tre card 9:16 riempiono la larghezza)",
+  "da_fare": "",
+  "fatto": "template TPL.T05 con la scheda (algoPill con decode al taglio); DOPO in ritmo-clip/T05_dopo.mp4"
+ },
+ "riga": {
+  "stato": "**fatto** (blocco 1)",
+  "template": "TPL.T05 · ritmo-01 26,95–31,45 s (14/10 «L'algoritmo ci mostra soprattutto i contenuti con tantissima interazione.»)",
+  "numeri": "decodifica 7 fotogrammi da 0,05 s dopo il taglio (K 4–5 fotogrammi) · arrivo 136 → 2,9 px/s expo.out · numeri lineari 0,6 s · rimbalzo 0 (pop.py, strisce guardate)",
+  "voto": "5·4·4·5"
+ }
+}

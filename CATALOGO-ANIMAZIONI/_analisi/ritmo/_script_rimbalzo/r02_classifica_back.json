@@ -1,0 +1,4109 @@
+[
+ {
+  "file": "kw-kit/kit.js",
+  "riga": 147,
+  "parametro": 2.2,
+  "tipo": "default di helper",
+  "chiamata": "tl.to",
+  "target": "target",
+  "chiavi": [
+   "duration",
+   "ease",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.to(target, { scale: 1, duration: dur || 0.45, ease: ease || \"back.out(2.2)\" }, t);",
+  "helper": "pop",
+  "codice_catalogo_vicino": null,
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "kw-kit/kit.js",
+  "riga": 243,
+  "parametro": 2.0,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.to",
+  "target": "b",
+  "chiavi": [
+   "duration",
+   "ease",
+   "opacity",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.to(b, { opacity: 1, scale: 1, duration: 0.28, ease: \"back.out(2)\" }, t);",
+  "helper": "b",
+  "codice_catalogo_vicino": null,
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "kw-kit/kit.js",
+  "riga": 293,
+  "parametro": 2.0,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.to",
+  "target": "badge",
+  "chiavi": [
+   "duration",
+   "ease",
+   "filter",
+   "opacity",
+   "scale"
+  ],
+  "elemento": "pill/badge/tag",
+  "codice": "tl.to(badge, { opacity: 1, scale: 1, filter: \"blur(0px)\", duration: 0.45, ease: \"back.out(2)\" }, t - 0.06);",
+  "helper": "inAt",
+  "codice_catalogo_vicino": null,
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "kw-kit/kit2-blocco5.js",
+  "riga": 138,
+  "parametro": 3.0,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.fromTo",
+  "target": "g",
+  "chiavi": [
+   "duration",
+   "ease",
+   "immediateRender",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.fromTo(g, { scale: 0.95 }, { scale: 1, duration: 0.28, ease: \"back.out(3)\", immediateRender: false }, t + 0.16);",
+  "helper": "tx",
+  "codice_catalogo_vicino": "F12",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "kw-kit/kit2-blocco5.js",
+  "riga": 204,
+  "parametro": 3.0,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.fromTo",
+  "target": "b.g",
+  "chiavi": [
+   "duration",
+   "ease",
+   "immediateRender",
+   "scaleY",
+   "transformOrigin"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.fromTo(b.g, { scaleY: 0.9 }, { scaleY: 1, duration: 0.25, ease: \"back.out(3)\", transformOrigin: \"50% 100%\", immediateRender: false }, t + 0.3);",
+  "helper": "n",
+  "codice_catalogo_vicino": "O28",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "kw-kit/kit2-blocco5.js",
+  "riga": 213,
+  "parametro": 2.5,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.fromTo",
+  "target": "b.g",
+  "chiavi": [
+   "duration",
+   "ease",
+   "immediateRender",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.fromTo(b.g, { scale: 1.06 }, { scale: 1, duration: 0.3, ease: \"back.out(2.5)\", immediateRender: false }, t);",
+  "helper": "n",
+  "codice_catalogo_vicino": "O28",
+  "sottotipo": "impulso/assestamento (scala cala)"
+ },
+ {
+  "file": "kw-kit/kit2-blocco5.js",
+  "riga": 285,
+  "parametro": 1.8,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.fromTo",
+  "target": "g",
+  "chiavi": [
+   "duration",
+   "ease",
+   "immediateRender",
+   "opacity",
+   "rotation",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "show: (t) => tl.fromTo(g, { opacity: 0, scale: 0.8, rotation: -8 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.45, ease: \"back.out(1.8)\", immediateRender: false }, t),",
+  "helper": "num",
+  "codice_catalogo_vicino": "U15",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "kw-kit/kit2-blocco5.js",
+  "riga": 486,
+  "parametro": 3.0,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.fromTo",
+  "target": "it.box",
+  "chiavi": [
+   "duration",
+   "ease",
+   "immediateRender",
+   "scale"
+  ],
+  "elemento": "card/riquadro",
+  "codice": "tl.fromTo(it.box, { scale: 1.45 }, { scale: 1, duration: 0.4, ease: \"back.out(3)\", immediateRender: false }, t);",
+  "helper": "items",
+  "codice_catalogo_vicino": "U12",
+  "sottotipo": "impulso/assestamento (scala cala)"
+ },
+ {
+  "file": "kw-kit/kit2-blocco5.js",
+  "riga": 536,
+  "parametro": 2.0,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.fromTo",
+  "target": "pas",
+  "chiavi": [
+   "duration",
+   "ease",
+   "immediateRender",
+   "opacity",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "if (pas.length) tl.fromTo(pas, { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.4, ease: \"back.out(2)\", immediateRender: false }, t);",
+  "helper": "top",
+  "codice_catalogo_vicino": "O31",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "kw-kit/kit2-blocco5.js",
+  "riga": 691,
+  "parametro": 1.6,
+  "tipo": "spostamento (x/y)",
+  "chiamata": "tl.to",
+  "target": "p",
+  "chiavi": [
+   "duration",
+   "ease",
+   "rotation",
+   "x",
+   "y"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.to(p, { y: -ph * 0.25, x: f * w * 0.95, rotation: f * 50, duration: 0.5, ease: \"back.out(1.6)\" }, t + i * 0.05);",
+  "helper": "n",
+  "codice_catalogo_vicino": "O32",
+  "sottotipo": null
+ },
+ {
+  "file": "kw-kit/kit2-blocco5.js",
+  "riga": 730,
+  "parametro": 2.2,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.to",
+  "target": "c",
+  "chiavi": [
+   "duration",
+   "ease",
+   "opacity",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.to(c, { opacity: 1, scale: 1, duration: 0.28, ease: \"back.out(2.2)\" }, tt);",
+  "helper": "rows",
+  "codice_catalogo_vicino": "U13",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "kw-kit/kit2-blocco5.js",
+  "riga": 772,
+  "parametro": 3.0,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.fromTo",
+  "target": "node",
+  "chiavi": [
+   "duration",
+   "ease",
+   "immediateRender",
+   "opacity",
+   "scale"
+  ],
+  "elemento": "avatar/persona",
+  "codice": "tl.fromTo(node, { opacity: 0, scale: 0.3 }, { opacity: 1, scale: 1, duration: 0.25, ease: \"back.out(3)\", immediateRender: false }, t + 0.35);",
+  "helper": "labs",
+  "codice_catalogo_vicino": "O30",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "kw-kit/kit2-blocco5.js",
+  "riga": 1029,
+  "parametro": 2.0,
+  "tipo": "altro",
+  "chiamata": "tl.to",
+  "target": "P",
+  "chiavi": [
+   "bend",
+   "duration",
+   "ease",
+   "onUpdate"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.to(P, { bend: 0.35, duration: 0.5, ease: \"back.out(2)\", onUpdate: setLine }, t + 0.6);",
+  "helper": "waves",
+  "codice_catalogo_vicino": "O27",
+  "sottotipo": null
+ },
+ {
+  "file": "kw-kit/kit2-blocco5.js",
+  "riga": 1089,
+  "parametro": 3.0,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.fromTo",
+  "target": "dot",
+  "chiavi": [
+   "duration",
+   "ease",
+   "immediateRender",
+   "opacity",
+   "scale"
+  ],
+  "elemento": "icona/spunta/punto",
+  "codice": "dot: (t) => tl.fromTo(dot, { opacity: 0, scale: 0.2 }, { opacity: 1, scale: 1, duration: 0.18, ease: \"back.out(3)\", immediateRender: false }, t),",
+  "helper": "bx",
+  "codice_catalogo_vicino": "O26",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "kw-kit/kit2-blocco5.js",
+  "riga": 1291,
+  "parametro": 2.2,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.fromTo",
+  "target": "nd.b",
+  "chiavi": [
+   "duration",
+   "ease",
+   "filter",
+   "immediateRender",
+   "opacity",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.fromTo(nd.b, { opacity: 0, scale: 0.7, filter: \"blur(6px)\" }, { opacity: 1, scale: 1, filter: \"blur(0px)\", duration: 0.25, ease: \"back.out(2.2)\", immediateRender: false }, tt + (nd.cn ? dur * 0.7 :",
+  "helper": "minX",
+  "codice_catalogo_vicino": "L09",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "kw-kit/kit2-blocco5.js",
+  "riga": 1299,
+  "parametro": 2.5,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.fromTo",
+  "target": "nd.b",
+  "chiavi": [
+   "duration",
+   "ease",
+   "immediateRender",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.fromTo(nd.b, { scale: 1.08 }, { scale: 1, duration: 0.3, ease: \"back.out(2.5)\", immediateRender: false }, t);",
+  "helper": "minX",
+  "codice_catalogo_vicino": "L09",
+  "sottotipo": "impulso/assestamento (scala cala)"
+ },
+ {
+  "file": "kw-kit/kit2-core.js",
+  "riga": 496,
+  "parametro": 3.0,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.fromTo",
+  "target": "rw.lk",
+  "chiavi": [
+   "duration",
+   "ease",
+   "immediateRender",
+   "scale"
+  ],
+  "elemento": "icona/spunta/punto",
+  "codice": "tl.fromTo(rw.lk, { scale: 1.35 }, { scale: 1, duration: 0.35, ease: \"back.out(3)\", immediateRender: false }, t + 0.06);",
+  "helper": "unlock",
+  "codice_catalogo_vicino": "L05",
+  "sottotipo": "impulso/assestamento (scala cala)"
+ },
+ {
+  "file": "kw-kit/kit2-core.js",
+  "riga": 498,
+  "parametro": 2.5,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.fromTo",
+  "target": "rw.r",
+  "chiavi": [
+   "duration",
+   "ease",
+   "immediateRender",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.fromTo(rw.r, { scale: 1.04 }, { scale: 1, duration: 0.3, ease: \"back.out(2.5)\", immediateRender: false }, t);",
+  "helper": "unlock",
+  "codice_catalogo_vicino": "L05",
+  "sottotipo": "impulso/assestamento (scala cala)"
+ },
+ {
+  "file": "kw-kit/kit2-core.js",
+  "riga": 574,
+  "parametro": 2.4,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.to",
+  "target": "e",
+  "chiavi": [
+   "duration",
+   "ease",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.to(e, { scale: 1, duration: 0.32, ease: \"back.out(2.4)\" }, t + i * (gap || 0.08));",
+  "helper": "popSeq",
+  "codice_catalogo_vicino": "D02",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "kw-kit/kit2-core.js",
+  "riga": 625,
+  "parametro": 2.5,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.fromTo",
+  "target": "ring",
+  "chiavi": [
+   "duration",
+   "ease",
+   "immediateRender",
+   "scale"
+  ],
+  "elemento": "icona/spunta/punto",
+  "codice": "tl.fromTo(ring, { scale: 0.4 }, { scale: 1, duration: 0.35, ease: \"back.out(2.5)\", immediateRender: false }, t + dur - 0.05);",
+  "helper": "count",
+  "codice_catalogo_vicino": "D01",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "kw-kit/kit2-core.js",
+  "riga": 655,
+  "parametro": 3.0,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.fromTo",
+  "target": "dot",
+  "chiavi": [
+   "duration",
+   "ease",
+   "immediateRender",
+   "opacity",
+   "scale"
+  ],
+  "elemento": "icona/spunta/punto",
+  "codice": "draw: (t, dur) => { if (dot) tl.fromTo(dot, { opacity: 0, scale: 0.3 }, { opacity: 1, scale: 1, duration: 0.25, ease: \"back.out(3)\", immediateRender: false }, t); cn.draw(t, dur || 0.4, \"power2.out\");",
+  "helper": "dot",
+  "codice_catalogo_vicino": "C04",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "kw-kit/kit2-oggetti.js",
+  "riga": 75,
+  "parametro": 2.5,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.fromTo",
+  "target": "cl.b",
+  "chiavi": [
+   "duration",
+   "ease",
+   "immediateRender",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.fromTo(cl.b, { scale: 0.86 }, { scale: 1, duration: 0.3, ease: \"back.out(2.5)\", immediateRender: false }, tt);",
+  "helper": "fill",
+  "codice_catalogo_vicino": "O24",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "kw-kit/kit2-oggetti.js",
+  "riga": 92,
+  "parametro": 2.2,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.to",
+  "target": "tile",
+  "chiavi": [
+   "duration",
+   "ease",
+   "scale"
+  ],
+  "elemento": "card/riquadro",
+  "codice": "tl.to(tile, { scale: 1, duration: 0.3, ease: \"back.out(2.2)\" }, tt);",
+  "helper": "fillVideos",
+  "codice_catalogo_vicino": "O24",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "kw-kit/kit2-oggetti.js",
+  "riga": 104,
+  "parametro": 2.2,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.to",
+  "target": "m",
+  "chiavi": [
+   "duration",
+   "ease",
+   "opacity",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.to(m, { opacity: 1, scale: 1, duration: 0.3, ease: \"back.out(2.2)\" }, t);",
+  "helper": "put",
+  "codice_catalogo_vicino": "O24",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "kw-kit/kit2-oggetti.js",
+  "riga": 173,
+  "parametro": 1.8,
+  "tipo": "pop + spostamento",
+  "chiamata": "tl.to",
+  "target": "it.col",
+  "chiavi": [
+   "duration",
+   "ease",
+   "filter",
+   "opacity",
+   "scale",
+   "y"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.to(it.col, { opacity: 1, filter: \"blur(0px)\", y: 0, scale: 1, duration: 0.32, ease: \"back.out(1.8)\" }, t);",
+  "helper": "show",
+  "codice_catalogo_vicino": "D07",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "kw-kit/kit2-oggetti.js",
+  "riga": 254,
+  "parametro": 3.0,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.to",
+  "target": "c",
+  "chiavi": [
+   "duration",
+   "ease",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.to(c, { scale: 1, duration: 0.18, ease: \"back.out(3)\" }, t + 0.08);",
+  "helper": "cx0",
+  "codice_catalogo_vicino": "U03",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "kw-kit/kit2-oggetti.js",
+  "riga": 388,
+  "parametro": 1.8,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.to",
+  "target": "rod",
+  "chiavi": [
+   "duration",
+   "ease",
+   "scaleY"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.to(rod, { scaleY: 1, duration: 0.6, ease: \"back.out(1.8)\" }, t + 0.34);",
+  "helper": "blink",
+  "codice_catalogo_vicino": "O14",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "kw-kit/kit2-oggetti.js",
+  "riga": 389,
+  "parametro": 1.8,
+  "tipo": "pop + spostamento",
+  "chiamata": "tl.to",
+  "target": "knob",
+  "chiavi": [
+   "duration",
+   "ease",
+   "scale",
+   "y"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.to(knob, { y: 0, scale: 1, duration: 0.6, ease: \"back.out(1.8)\" }, t + 0.34);",
+  "helper": "blink",
+  "codice_catalogo_vicino": "O14",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "kw-kit/kit2-oggetti.js",
+  "riga": 401,
+  "parametro": 1.25,
+  "tipo": "spostamento (x/y)",
+  "chiamata": "tl.to",
+  "target": "r.strip",
+  "chiavi": [
+   "duration",
+   "ease",
+   "y"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.to(r.strip, { y: -(end - 1) * r.ch, duration: ti, ease: \"back.out(1.25)\" }, t + 0.12);",
+  "helper": "blink",
+  "codice_catalogo_vicino": "O14",
+  "sottotipo": null
+ },
+ {
+  "file": "kw-kit/kit2-oggetti.js",
+  "riga": 602,
+  "parametro": 3.0,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.fromTo",
+  "target": "rw.bx",
+  "chiavi": [
+   "duration",
+   "ease",
+   "immediateRender",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.fromTo(rw.bx, { scale: 1.18 }, { scale: 1, duration: 0.35, ease: \"back.out(3)\", immediateRender: false }, t);",
+  "helper": "rows",
+  "codice_catalogo_vicino": "L04",
+  "sottotipo": "impulso/assestamento (scala cala)"
+ },
+ {
+  "file": "kw-kit/kit2-oggetti.js",
+  "riga": 641,
+  "parametro": 2.5,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.fromTo",
+  "target": "nd.n",
+  "chiavi": [
+   "duration",
+   "ease",
+   "immediateRender",
+   "scale"
+  ],
+  "elemento": "avatar/persona",
+  "codice": "tl.fromTo(nd.n, { scale: 1.25 }, { scale: 1, duration: 0.35, ease: \"back.out(2.5)\", immediateRender: false }, tt);",
+  "helper": "runner",
+  "codice_catalogo_vicino": "L11",
+  "sottotipo": "impulso/assestamento (scala cala)"
+ },
+ {
+  "file": "kw-kit/kit2-oggetti.js",
+  "riga": 708,
+  "parametro": 2.6,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.fromTo",
+  "target": "s.n",
+  "chiavi": [
+   "duration",
+   "ease",
+   "immediateRender",
+   "scale"
+  ],
+  "elemento": "avatar/persona",
+  "codice": "tl.fromTo(s.n, { scale: 1.3 }, { scale: 1, duration: 0.38, ease: \"back.out(2.6)\", immediateRender: false }, t);",
+  "helper": "lightSt",
+  "codice_catalogo_vicino": "L11",
+  "sottotipo": "impulso/assestamento (scala cala)"
+ },
+ {
+  "file": "kw-kit/kit2-oggetti.js",
+  "riga": 721,
+  "parametro": 2.4,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.fromTo",
+  "target": "s.n",
+  "chiavi": [
+   "duration",
+   "ease",
+   "immediateRender",
+   "opacity",
+   "scale"
+  ],
+  "elemento": "avatar/persona",
+  "codice": "tl.fromTo(s.n, { opacity: 0, scale: 0.4 }, { opacity: 1, scale: 1, duration: 0.3, ease: \"back.out(2.4)\", immediateRender: false }, tt);",
+  "helper": "lightSt",
+  "codice_catalogo_vicino": "L11",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "kw-kit/kit2-oggetti.js",
+  "riga": 856,
+  "parametro": 3.0,
+  "tipo": "spostamento (x/y)",
+  "chiamata": "tl.fromTo",
+  "target": "[L.g, L.lb]",
+  "chiavi": [
+   "duration",
+   "ease",
+   "immediateRender",
+   "y"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.fromTo([L.g, L.lb], { y: -6 }, { y: 0, duration: 0.35, ease: \"back.out(3)\", immediateRender: false }, t);",
+  "helper": "light",
+  "codice_catalogo_vicino": "O06",
+  "sottotipo": null
+ },
+ {
+  "file": "kw-kit/kit2-oggetti.js",
+  "riga": 861,
+  "parametro": 2.5,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.fromTo",
+  "target": "orb",
+  "chiavi": [
+   "duration",
+   "ease",
+   "immediateRender",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.fromTo(orb, { scale: 1.15 }, { scale: 1, duration: 0.45, ease: \"back.out(2.5)\", immediateRender: false }, t);",
+  "helper": "lightOrb",
+  "codice_catalogo_vicino": "O06",
+  "sottotipo": "impulso/assestamento (scala cala)"
+ },
+ {
+  "file": "kw-kit/kit2-oggetti.js",
+  "riga": 873,
+  "parametro": 2.0,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.to",
+  "target": "orb",
+  "chiavi": [
+   "duration",
+   "ease",
+   "opacity",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.to(orb, { opacity: 1, scale: 1, duration: 0.45, ease: \"back.out(2)\" }, to);",
+  "helper": "lightOrb",
+  "codice_catalogo_vicino": "O06",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "kw-kit/kit2-oggetti.js",
+  "riga": 959,
+  "parametro": 2.4,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.to",
+  "target": "it.av",
+  "chiavi": [
+   "duration",
+   "ease",
+   "opacity",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "if (it.av) tl.to(it.av, { opacity: 1, scale: 1, duration: 0.4, ease: \"back.out(2.4)\" }, tt + 0.4);",
+  "helper": "items",
+  "codice_catalogo_vicino": "D05",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "kw-kit/kit2-oggetti.js",
+  "riga": 1006,
+  "parametro": 1.6,
+  "tipo": "pop + spostamento",
+  "chiamata": "tl.to",
+  "target": "docs[k]",
+  "chiavi": [
+   "duration",
+   "ease",
+   "opacity",
+   "scale",
+   "y"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "waves.forEach((upto, wi) => { for (; k < upto && k < n; k++) tl.to(docs[k], { opacity: 1, y: 0, scale: 1, duration: 0.45, ease: \"back.out(1.6)\" }, t + 0.5 + wi * 0.35 + (k % cols) * 0.05); });",
+  "helper": "docs",
+  "codice_catalogo_vicino": "X01",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "kw-kit/kit2-oggetti.js",
+  "riga": 1066,
+  "parametro": 2.0,
+  "tipo": "spostamento (x/y)",
+  "chiamata": "tl.to",
+  "target": "kn",
+  "chiavi": [
+   "duration",
+   "ease",
+   "x"
+  ],
+  "elemento": "avatar/persona",
+  "codice": "return { tr, kn, on: (t) => { tl.to(tr, { background: K.lime, borderColor: K.lime, boxShadow: GLOW_A(0.7), duration: 0.2 }, t); tl.to(kn, { x: w - h, duration: 0.25, ease: \"back.out(2)\" }, t); } };",
+  "helper": "kn",
+  "codice_catalogo_vicino": "U04",
+  "sottotipo": null
+ },
+ {
+  "file": "kw-kit/kit2-oggetti.js",
+  "riga": 1097,
+  "parametro": 2.4,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.to",
+  "target": "b",
+  "chiavi": [
+   "duration",
+   "ease",
+   "opacity",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "return { b, cn, show: (t) => { if (cn) cn.draw(t, 0.25, \"power2.out\"); tl.to(b, { opacity: 1, scale: 1, duration: 0.3, ease: \"back.out(2.4)\" }, t + 0.12); } };",
+  "helper": "tags",
+  "codice_catalogo_vicino": "H03",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "kw-kit/kit2-oggetti.js",
+  "riga": 1153,
+  "parametro": 3.0,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.fromTo",
+  "target": "rg",
+  "chiavi": [
+   "duration",
+   "ease",
+   "immediateRender",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "rings.forEach((rg, i) => tl.fromTo(rg, { scale: 1 - 0.03 * (n - i) }, { scale: 1, duration: 0.45, ease: \"back.out(3)\", immediateRender: false }, t + i * 0.025));",
+  "helper": "hit",
+  "codice_catalogo_vicino": "O10",
+  "sottotipo": "impulso/assestamento (scala cala)"
+ },
+ {
+  "file": "kw-kit/kit2-oggetti.js",
+  "riga": 1235,
+  "parametro": 3.0,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.to",
+  "target": "send",
+  "chiavi": [
+   "duration",
+   "ease",
+   "scale"
+  ],
+  "elemento": "icona/spunta/punto",
+  "codice": "sendAt: (t) => { tl.to(send, { scale: 0.85, duration: 0.08 }, t); tl.to(send, { scale: 1, duration: 0.25, ease: \"back.out(3)\" }, t + 0.08); },",
+  "helper": "send",
+  "codice_catalogo_vicino": "U01",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "kw-kit/kit2-oggetti.js",
+  "riga": 1302,
+  "parametro": 2.4,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.fromTo",
+  "target": "[l.gA, l.gB, l.lA, l.lB]",
+  "chiavi": [
+   "duration",
+   "ease",
+   "immediateRender",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.fromTo([l.gA, l.gB, l.lA, l.lB], { scale: 1.05 }, { scale: 1, duration: 0.4, ease: \"back.out(2.4)\", immediateRender: false }, t);",
+  "helper": "light",
+  "codice_catalogo_vicino": "O05",
+  "sottotipo": "impulso/assestamento (scala cala)"
+ },
+ {
+  "file": "kw-kit/kit2-oggetti.js",
+  "riga": 1330,
+  "parametro": 2.2,
+  "tipo": "pop + spostamento",
+  "chiamata": "tl.fromTo",
+  "target": "l.labR",
+  "chiavi": [
+   "duration",
+   "ease",
+   "immediateRender",
+   "opacity",
+   "scale",
+   "x"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.fromTo(l.labR, { opacity: 0, x: -20, scale: 0.8 }, { opacity: 1, x: 0, scale: 1, duration: 0.32, ease: \"back.out(2.2)\", immediateRender: false }, t + 0.36);",
+  "helper": "light",
+  "codice_catalogo_vicino": "O05",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "kw-kit/kit2-oggetti.js",
+  "riga": 1394,
+  "parametro": 2.6,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.fromTo",
+  "target": "ic",
+  "chiavi": [
+   "duration",
+   "ease",
+   "opacity",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.fromTo(ic, { opacity: 0, scale: 0.5 }, { opacity: 1, scale: 1, duration: 0.3, ease: \"back.out(2.6)\" }, tf);",
+  "helper": "found",
+  "codice_catalogo_vicino": "O20",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "kw-kit/kit2-oggetti.js",
+  "riga": 1406,
+  "parametro": 2.5,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.fromTo",
+  "target": "node",
+  "chiavi": [
+   "duration",
+   "ease",
+   "immediateRender",
+   "opacity",
+   "scale"
+  ],
+  "elemento": "avatar/persona",
+  "codice": "reveal: (node, t, ang, dur) => tl.fromTo(node, { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.25, ease: \"back.out(2.5)\", immediateRender: false }, t + (ang / 360) * dur),",
+  "helper": "found",
+  "codice_catalogo_vicino": "O20",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "kw-kit/kit2-oggetti.js",
+  "riga": 1518,
+  "parametro": 3.0,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.fromTo",
+  "target": "c.dot",
+  "chiavi": [
+   "duration",
+   "ease",
+   "immediateRender",
+   "scale"
+  ],
+  "elemento": "icona/spunta/punto",
+  "codice": "tl.fromTo(c.dot, { scale: 1.8 }, { scale: 1, duration: 0.4, ease: \"back.out(3)\", immediateRender: false }, t);",
+  "helper": "cells",
+  "codice_catalogo_vicino": "O24",
+  "sottotipo": "impulso/assestamento (scala cala)"
+ },
+ {
+  "file": "kw-kit/kit2-oggetti.js",
+  "riga": 1534,
+  "parametro": 2.6,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.fromTo",
+  "target": "c.tile",
+  "chiavi": [
+   "duration",
+   "ease",
+   "immediateRender",
+   "scale"
+  ],
+  "elemento": "card/riquadro",
+  "codice": "tl.fromTo(c.tile, { scale: 0.96 }, { scale: 1, duration: 0.42, ease: \"back.out(2.6)\", immediateRender: false }, t);",
+  "helper": "cells",
+  "codice_catalogo_vicino": "L01",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "kw-kit/kit2-oggetti.js",
+  "riga": 1538,
+  "parametro": 2.4,
+  "tipo": "pop + spostamento",
+  "chiamata": "tl.fromTo",
+  "target": "c.chip",
+  "chiavi": [
+   "duration",
+   "ease",
+   "immediateRender",
+   "opacity",
+   "scale",
+   "y"
+  ],
+  "elemento": "pill/badge/tag",
+  "codice": "tl.fromTo(c.chip, { opacity: 0, y: 14, scale: 0.85 }, { opacity: 1, y: 0, scale: 1, duration: 0.3, ease: \"back.out(2.4)\", immediateRender: false }, t + 0.12);",
+  "helper": "cells",
+  "codice_catalogo_vicino": "L01",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "kw-kit/kit2-oggetti.js",
+  "riga": 1544,
+  "parametro": 1.6,
+  "tipo": "pop + spostamento",
+  "chiamata": "tl.fromTo",
+  "target": "c.tile",
+  "chiavi": [
+   "duration",
+   "ease",
+   "immediateRender",
+   "opacity",
+   "scale",
+   "y"
+  ],
+  "elemento": "card/riquadro",
+  "codice": "tl.fromTo(c.tile, { opacity: 0, y: -90, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.42, ease: \"back.out(1.6)\", immediateRender: false }, t);",
+  "helper": "cells",
+  "codice_catalogo_vicino": "L01",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "kw-kit/kit2-oggetti.js",
+  "riga": 1551,
+  "parametro": 2.4,
+  "tipo": "pop + spostamento",
+  "chiamata": "tl.fromTo",
+  "target": "c.chip",
+  "chiavi": [
+   "duration",
+   "ease",
+   "immediateRender",
+   "opacity",
+   "scale",
+   "y"
+  ],
+  "elemento": "pill/badge/tag",
+  "codice": "tl.fromTo(c.chip, { opacity: 0, y: 14, scale: 0.85 }, { opacity: 1, y: 0, scale: 1, duration: 0.3, ease: \"back.out(2.4)\", immediateRender: false }, t + 0.22);",
+  "helper": "cells",
+  "codice_catalogo_vicino": "L01",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "kw-kit/kit2-oggetti.js",
+  "riga": 1661,
+  "parametro": 1.8,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.to",
+  "target": "A",
+  "chiavi": [
+   "duration",
+   "ease",
+   "opacity",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "one: (t) => tl.to(A, { opacity: 1, scale: 1, duration: 0.3, ease: \"back.out(1.8)\" }, t),",
+  "helper": "lab",
+  "codice_catalogo_vicino": "F05",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "kw-kit/kit2-oggetti.js",
+  "riga": 1662,
+  "parametro": 1.8,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.to",
+  "target": "B",
+  "chiavi": [
+   "duration",
+   "ease",
+   "opacity",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "two: (t, dx) => { tl.to(A, { x: -(dx || r * 1.12), duration: 0.3, ease: \"power3.inOut\" }, t); tl.set(B, { x: dx || r * 1.12 }, t); tl.to(B, { opacity: 1, scale: 1, duration: 0.3, ease: \"back.out(1.8)\"",
+  "helper": "lab",
+  "codice_catalogo_vicino": "F05",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "kw-kit/kit2-oggetti.js",
+  "riga": 1802,
+  "parametro": 1.6,
+  "tipo": "pop + spostamento",
+  "chiamata": "tl.fromTo",
+  "target": "docs[k]",
+  "chiavi": [
+   "duration",
+   "ease",
+   "immediateRender",
+   "opacity",
+   "scale",
+   "y"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "wv.forEach((upto, wi) => { for (; k < upto && k < n; k++) tl.fromTo(docs[k], { opacity: 0, y: 40, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.45, ease: \"back.out(1.6)\", immediateRender: fa",
+  "helper": "docs",
+  "codice_catalogo_vicino": "X01",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "kw-kit/kit2-oggetti.js",
+  "riga": 1912,
+  "parametro": 2.0,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.to",
+  "target": "av",
+  "chiavi": [
+   "duration",
+   "ease",
+   "opacity",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.to(av, { opacity: 1, scale: 1, duration: 0.45, ease: \"back.out(2)\" }, t);",
+  "helper": "leg",
+  "codice_catalogo_vicino": "D09",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "kw-kit/kit2-oggetti.js",
+  "riga": 1921,
+  "parametro": 2.5,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.to",
+  "target": "x.d",
+  "chiavi": [
+   "duration",
+   "ease",
+   "opacity",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "} else tl.to(x.d, { opacity: 1, scale: 1, duration: 0.25, ease: \"back.out(2.5)\" }, tt);",
+  "helper": "leg",
+  "codice_catalogo_vicino": "D09",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "kw-kit/kit2-oggetti.js",
+  "riga": 2019,
+  "parametro": 2.4,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.fromTo",
+  "target": "x",
+  "chiavi": [
+   "duration",
+   "ease",
+   "immediateRender",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.fromTo(x, { scale: 1 }, { scale: 1.1, duration: 0.35, ease: \"back.out(2.4)\", immediateRender: false }, t + i * 0.07);",
+  "helper": "poseRows",
+  "codice_catalogo_vicino": "K11",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "kw-kit/kit2-oggetti.js",
+  "riga": 2118,
+  "parametro": 2.6,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.to",
+  "target": "ics[i]",
+  "chiavi": [
+   "duration",
+   "ease",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "if (ics[i]) { tl.to(ics[i], { opacity: 1, duration: 0.1 }, t); tl.to(ics[i], { scale: 1, duration: 0.4, ease: \"back.out(2.6)\" }, t); }",
+  "helper": "on",
+  "codice_catalogo_vicino": "O08",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "kw-kit/kit2-oggetti.js",
+  "riga": 2200,
+  "parametro": 2.6,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.fromTo",
+  "target": "c",
+  "chiavi": [
+   "duration",
+   "ease",
+   "immediateRender",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.fromTo(c, { scale: 0.55 }, { scale: 1, duration: 0.3, ease: \"back.out(2.6)\", immediateRender: false }, t);",
+  "helper": "pop",
+  "codice_catalogo_vicino": "L08",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "kw-kit/kit2-oggetti.js",
+  "riga": 2231,
+  "parametro": 3.0,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.fromTo",
+  "target": "c",
+  "chiavi": [
+   "duration",
+   "ease",
+   "immediateRender",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.fromTo(c, { scale: 1.18 }, { scale: 1, duration: 0.35, ease: \"back.out(3)\", immediateRender: false }, t);",
+  "helper": "pillEl",
+  "codice_catalogo_vicino": "L08",
+  "sottotipo": "impulso/assestamento (scala cala)"
+ },
+ {
+  "file": "kw-kit/kit2-oggetti.js",
+  "riga": 2357,
+  "parametro": 2.5,
+  "tipo": "spostamento (x/y)",
+  "chiamata": "tl.fromTo",
+  "target": "x.b",
+  "chiavi": [
+   "duration",
+   "ease",
+   "immediateRender",
+   "y"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "if (ghost) { tl.to(x.b, { opacity: 1, borderColor: \"rgba(255,255,255,.3)\", duration: 0.25 }, tb); tl.fromTo(x.b, { y: 6 }, { y: 0, duration: 0.35, ease: \"back.out(2.5)\", immediateRender: false }, tb);",
+  "helper": "dots",
+  "codice_catalogo_vicino": "L01",
+  "sottotipo": null
+ },
+ {
+  "file": "kw-kit/kit2-oggetti.js",
+  "riga": 2371,
+  "parametro": 3.0,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.to",
+  "target": "x.dt",
+  "chiavi": [
+   "duration",
+   "ease",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.to(x.dt, { scale: 1, duration: 0.3, ease: \"back.out(3)\" }, td);",
+  "helper": "dots",
+  "codice_catalogo_vicino": "L01",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "kw-kit/kit2-oggetti.js",
+  "riga": 2385,
+  "parametro": 2.4,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.to",
+  "target": "ring",
+  "chiavi": [
+   "duration",
+   "ease",
+   "scale"
+  ],
+  "elemento": "icona/spunta/punto",
+  "codice": "tl.to(ring, { scale: 1, duration: 0.42, ease: \"back.out(2.4)\" }, t);",
+  "helper": "dots",
+  "codice_catalogo_vicino": "L01",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "kw-kit/kit2-oggetti.js",
+  "riga": 2415,
+  "parametro": 2.6,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.to",
+  "target": "v",
+  "chiavi": [
+   "duration",
+   "ease",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.to(v, { scale: 1, duration: 0.3, ease: \"back.out(2.6)\" }, end + 0.05);",
+  "helper": "dots",
+  "codice_catalogo_vicino": "T03",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "kw-kit/kit2-oggetti.js",
+  "riga": 2554,
+  "parametro": 2.6,
+  "tipo": "spostamento (x/y)",
+  "chiamata": "tl.fromTo",
+  "target": "it.card",
+  "chiavi": [
+   "duration",
+   "ease",
+   "immediateRender",
+   "y"
+  ],
+  "elemento": "card/riquadro",
+  "codice": "tl.fromTo(it.card, { y: -14 }, { y: 0, duration: 0.4, ease: \"back.out(2.6)\", immediateRender: false }, t);",
+  "helper": "items",
+  "codice_catalogo_vicino": "K12",
+  "sottotipo": null
+ },
+ {
+  "file": "kw-kit/kit2-oggetti.js",
+  "riga": 2840,
+  "parametro": 3.0,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.fromTo",
+  "target": "node",
+  "chiavi": [
+   "duration",
+   "ease",
+   "immediateRender",
+   "scale"
+  ],
+  "elemento": "avatar/persona",
+  "codice": "tl.fromTo(node, { scale: 1.1 }, { scale: 1, duration: 0.3, ease: \"back.out(3)\", immediateRender: false }, t + 0.15 * nh);",
+  "helper": "R",
+  "codice_catalogo_vicino": "L07",
+  "sottotipo": "impulso/assestamento (scala cala)"
+ },
+ {
+  "file": "kw-kit/kit2-oggetti.js",
+  "riga": 2950,
+  "parametro": 3.0,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.to",
+  "target": "dots[i]",
+  "chiavi": [
+   "duration",
+   "ease",
+   "opacity",
+   "scale"
+  ],
+  "elemento": "icona/spunta/punto",
+  "codice": "tl.to(dots[i], { opacity: 1, scale: 1, duration: 0.22, ease: \"back.out(3)\" }, tt);",
+  "helper": "labs",
+  "codice_catalogo_vicino": "O19",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "kw-kit/kit2-reel11.js",
+  "riga": 224,
+  "parametro": 3.0,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.fromTo",
+  "target": "ombra",
+  "chiavi": [
+   "duration",
+   "ease",
+   "immediateRender",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.fromTo(ombra, { scale: 1.2 }, { scale: 1, duration: 0.4, ease: \"back.out(3)\", immediateRender: false }, t);",
+  "helper": "num",
+  "codice_catalogo_vicino": "F05",
+  "sottotipo": "impulso/assestamento (scala cala)"
+ },
+ {
+  "file": "kw-kit/kit2-reel11.js",
+  "riga": 256,
+  "parametro": 2.0,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.fromTo",
+  "target": "quadro",
+  "chiavi": [
+   "duration",
+   "ease",
+   "immediateRender",
+   "opacity",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.fromTo(quadro, { opacity: 0, scale: 1.6 }, { opacity: 1, scale: 1, duration: 0.22, ease: \"back.out(2)\", immediateRender: false }, t);",
+  "helper": "quadro",
+  "codice_catalogo_vicino": "F05",
+  "sottotipo": "impulso/assestamento (scala cala)"
+ },
+ {
+  "file": "kw-kit/kit2-reel11.js",
+  "riga": 394,
+  "parametro": 2.0,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.fromTo",
+  "target": "g",
+  "chiavi": [
+   "duration",
+   "ease",
+   "immediateRender",
+   "opacity",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "show: (t) => tl.fromTo(g, { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.35, ease: \"back.out(2)\", immediateRender: false }, t),",
+  "helper": "polv",
+  "codice_catalogo_vicino": "U14",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "kw-kit/kit2-reel11.js",
+  "riga": 395,
+  "parametro": 2.5,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.to",
+  "target": "g",
+  "chiavi": [
+   "duration",
+   "ease",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "giorno: (t) => { tl.fromTo(g, { scale: 1 }, { scale: 1.04, duration: 0.12, ease: \"power2.out\", immediateRender: false }, t); tl.to(g, { scale: 1, duration: 0.3, ease: \"back.out(2.5)\" }, t + 0.12); tl.",
+  "helper": "polv",
+  "codice_catalogo_vicino": "U14",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "kw-kit/kit2-reel11.js",
+  "riga": 447,
+  "parametro": 2.6,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.to",
+  "target": "tu",
+  "chiavi": [
+   "duration",
+   "ease",
+   "opacity",
+   "scale"
+  ],
+  "elemento": "avatar/persona",
+  "codice": "te: (t) => { tl.to(tu, { opacity: 1, scale: 1, duration: 0.34, ease: \"back.out(2.6)\" }, t); tl.to(dots[io], { opacity: 0, duration: 0.1 }, t); },",
+  "helper": "colora",
+  "codice_catalogo_vicino": "F11",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "kw-kit/kit2-reel11.js",
+  "riga": 451,
+  "parametro": 2.5,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.to",
+  "target": "acc",
+  "chiavi": [
+   "duration",
+   "ease",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.to(acc, { scale: 1, duration: 0.3, ease: \"back.out(2.5)\" }, t + 0.09);",
+  "helper": "colora",
+  "codice_catalogo_vicino": "F11",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "kw-kit/kit2-reel11.js",
+  "riga": 495,
+  "parametro": 1.5,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.fromTo",
+  "target": "b.g",
+  "chiavi": [
+   "duration",
+   "ease",
+   "immediateRender",
+   "scaleY",
+   "transformOrigin"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.fromTo(b.g, { scaleY: 0.03 }, { scaleY: 1, duration: 0.34, ease: \"back.out(1.5)\", transformOrigin: \"50% 100%\", immediateRender: false }, tt);",
+  "helper": "B",
+  "codice_catalogo_vicino": "O05",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "kw-kit/kit2-reel11.js",
+  "riga": 497,
+  "parametro": 2.4,
+  "tipo": "pop + spostamento",
+  "chiamata": "tl.fromTo",
+  "target": "B[i].num",
+  "chiavi": [
+   "duration",
+   "ease",
+   "immediateRender",
+   "opacity",
+   "scale",
+   "y"
+  ],
+  "elemento": "numero/testo",
+  "codice": "num: (i, t) => { tl.fromTo(B[i].num, { opacity: 0, y: 34, scale: 0.7 }, { opacity: 1, y: 0, scale: 1, duration: 0.32, ease: \"back.out(2.4)\", immediateRender: false }, t); glowFlash(B[i].num, t + 0.22)",
+  "helper": "B",
+  "codice_catalogo_vicino": "O05",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "kw-kit/kit2-reel11.js",
+  "riga": 499,
+  "parametro": 2.6,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.fromTo",
+  "target": "B[i].pill",
+  "chiavi": [
+   "duration",
+   "ease",
+   "immediateRender",
+   "opacity",
+   "scale"
+  ],
+  "elemento": "pill/badge/tag",
+  "codice": "pill: (i, t) => tl.fromTo(B[i].pill, { opacity: 0, scale: 0.5 }, { opacity: 1, scale: 1, duration: 0.36, ease: \"back.out(2.6)\", immediateRender: false }, t),",
+  "helper": "B",
+  "codice_catalogo_vicino": "O05",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "kw-kit/kit2-reel12.js",
+  "riga": 92,
+  "parametro": 2.0,
+  "tipo": "spostamento (x/y)",
+  "chiamata": "tl.fromTo",
+  "target": "lamps",
+  "chiavi": [
+   "duration",
+   "ease",
+   "immediateRender",
+   "opacity",
+   "y"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.fromTo(lamps, { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.3, ease: \"back.out(2)\", immediateRender: false }, t + 0.22);",
+  "helper": "api",
+  "codice_catalogo_vicino": "F05",
+  "sottotipo": null
+ },
+ {
+  "file": "kw-kit/kit2-reel12.js",
+  "riga": 105,
+  "parametro": 2.4,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.fromTo",
+  "target": "vw",
+  "chiavi": [
+   "duration",
+   "ease",
+   "immediateRender",
+   "opacity",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "viewsIn: (t) => tl.fromTo(vw, { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.3, ease: \"back.out(2.4)\", immediateRender: false }, t),",
+  "helper": "api",
+  "codice_catalogo_vicino": "F05",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "kw-kit/kit2-reel12.js",
+  "riga": 143,
+  "parametro": 3.0,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.to",
+  "target": "btn",
+  "chiavi": [
+   "duration",
+   "ease",
+   "scale"
+  ],
+  "elemento": "pill/badge/tag",
+  "codice": "tl.to(btn, { scale: 1, duration: 0.3, ease: \"back.out(3)\" }, t + 0.12);",
+  "helper": "api",
+  "codice_catalogo_vicino": "F05",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "kw-kit/kit2-reel12.js",
+  "riga": 221,
+  "parametro": 3.0,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.to",
+  "target": "nums[i]",
+  "chiavi": [
+   "duration",
+   "ease",
+   "scale"
+  ],
+  "elemento": "numero/testo",
+  "codice": "tl.to(nums[i], { scale: 1, duration: 0.3, ease: \"back.out(3)\" }, t + 0.1);",
+  "helper": "fills",
+  "codice_catalogo_vicino": "U04",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "kw-kit/kit2-reel12.js",
+  "riga": 281,
+  "parametro": 2.4,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.fromTo",
+  "target": "g",
+  "chiavi": [
+   "duration",
+   "ease",
+   "immediateRender",
+   "opacity",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "show: (t) => tl.fromTo(g, { opacity: 0, scale: 0.5 }, { opacity: 1, scale: 1, duration: 0.3, ease: \"back.out(2.4)\", immediateRender: false }, t),",
+  "helper": "solid",
+  "codice_catalogo_vicino": "U04",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "kw-kit/kit2-reel12.js",
+  "riga": 288,
+  "parametro": 3.0,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.fromTo",
+  "target": "ok",
+  "chiavi": [
+   "duration",
+   "ease",
+   "immediateRender",
+   "opacity",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.fromTo(ok, { opacity: 0, scale: 0.4 }, { opacity: 1, scale: 1, duration: 0.3, ease: \"back.out(3)\", immediateRender: false }, t + 0.08);",
+  "helper": "solid",
+  "codice_catalogo_vicino": "U04",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "kw-kit/kit2-reel12.js",
+  "riga": 310,
+  "parametro": 2.4,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.fromTo",
+  "target": "dots",
+  "chiavi": [
+   "duration",
+   "ease",
+   "immediateRender",
+   "opacity",
+   "scale"
+  ],
+  "elemento": "icona/spunta/punto",
+  "codice": "tl.fromTo(dots, { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.2, ease: \"back.out(2.4)\", immediateRender: false }, t);",
+  "helper": "ds",
+  "codice_catalogo_vicino": "U04",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "kw-kit/kit2-reel12.js",
+  "riga": 314,
+  "parametro": 2.2,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.fromTo",
+  "target": "b",
+  "chiavi": [
+   "duration",
+   "ease",
+   "immediateRender",
+   "opacity",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "show: (t) => tl.fromTo(b, { opacity: 0, scale: 0.55 }, { opacity: 1, scale: 1, duration: 0.32, ease: \"back.out(2.2)\", immediateRender: false }, t),",
+  "helper": "ds",
+  "codice_catalogo_vicino": "U04",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "kw-kit/kit2-reel13.js",
+  "riga": 178,
+  "parametro": 2.6,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.fromTo",
+  "target": "numOn",
+  "chiavi": [
+   "duration",
+   "ease",
+   "immediateRender",
+   "scale"
+  ],
+  "elemento": "numero/testo",
+  "codice": "numOn: (t) => { tl.to(numOn, { opacity: 1, duration: 0.12 }, t); tl.fromTo(numOn, { scale: 0.4 }, { scale: 1, duration: 0.35, ease: \"back.out(2.6)\", immediateRender: false }, t); tl.to(num, { opacity:",
+  "helper": "api",
+  "codice_catalogo_vicino": "L01",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "kw-kit/kit2-reel13.js",
+  "riga": 271,
+  "parametro": 2.6,
+  "tipo": "pop + spostamento",
+  "chiamata": "tl.fromTo",
+  "target": "g",
+  "chiavi": [
+   "duration",
+   "ease",
+   "immediateRender",
+   "opacity",
+   "scale",
+   "y"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "show: (t) => tl.fromTo(g, { opacity: 0, scale: 0.5, y: 16 }, { opacity: 1, scale: 1, y: 0, duration: 0.35, ease: \"back.out(2.6)\", immediateRender: false }, t),",
+  "helper": "on",
+  "codice_catalogo_vicino": "L01",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "kw-kit/kit2-reel13.js",
+  "riga": 274,
+  "parametro": 3.0,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.to",
+  "target": "g",
+  "chiavi": [
+   "duration",
+   "ease",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "accendi: (t) => { tl.to(on, { opacity: 1, duration: 0.12 }, t); tl.fromTo(g, { scale: 1 }, { scale: 1.2, duration: 0.12, ease: \"power2.out\", immediateRender: false }, t); tl.to(g, { scale: 1, duration",
+  "helper": "on",
+  "codice_catalogo_vicino": "L01",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "kw-kit/kit2-reel13.js",
+  "riga": 287,
+  "parametro": 2.6,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.fromTo",
+  "target": "s",
+  "chiavi": [
+   "duration",
+   "ease",
+   "immediateRender",
+   "opacity",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "return { s, b, show: (t) => tl.fromTo(s, { opacity: 0, scale: 0.3 }, { opacity: 1, scale: 1, duration: 0.38, ease: \"back.out(2.6)\", immediateRender: false }, t) };",
+  "helper": "b",
+  "codice_catalogo_vicino": "L01",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "kw-kit/kit2-reel13.js",
+  "riga": 317,
+  "parametro": 2.2,
+  "tipo": "pop + spostamento",
+  "chiamata": "tl.fromTo",
+  "target": "p",
+  "chiavi": [
+   "duration",
+   "ease",
+   "immediateRender",
+   "opacity",
+   "scale",
+   "y"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "show: (t) => tl.fromTo(p, { opacity: 0, scale: 0.6, y: 30 }, { opacity: 1, scale: 1, y: 0, duration: 0.4, ease: \"back.out(2.2)\", immediateRender: false }, t),",
+  "helper": "api",
+  "codice_catalogo_vicino": "L01",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "kw-kit/kit2-reel13.js",
+  "riga": 321,
+  "parametro": 2.4,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.fromTo",
+  "target": "B.b",
+  "chiavi": [
+   "duration",
+   "ease",
+   "immediateRender",
+   "opacity",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.fromTo(B.b, { opacity: 0, scale: 0.4 }, { opacity: 1, scale: 1, duration: 0.35, ease: \"back.out(2.4)\", immediateRender: false }, t + 0.1);",
+  "helper": "api",
+  "codice_catalogo_vicino": "L01",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "kw-kit/kit2-reel13.js",
+  "riga": 333,
+  "parametro": 3.0,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.to",
+  "target": "B.b",
+  "chiavi": [
+   "duration",
+   "ease",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.to(B.b, { scale: 1, duration: 0.3, ease: \"back.out(3)\" }, t + 0.1);",
+  "helper": "api",
+  "codice_catalogo_vicino": "L01",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "kw-kit/kit2-reel13.js",
+  "riga": 372,
+  "parametro": 3.0,
+  "tipo": "spostamento (x/y)",
+  "chiamata": "tl.to",
+  "target": "arc",
+  "chiavi": [
+   "duration",
+   "ease",
+   "rotation",
+   "y"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.to(arc, { y: -h * 0.16, rotation: 32, duration: 0.18, ease: \"back.out(3)\" }, t);",
+  "helper": "hole",
+  "codice_catalogo_vicino": "L01",
+  "sottotipo": null
+ },
+ {
+  "file": "kw-kit/kit2-reel13.js",
+  "riga": 378,
+  "parametro": 3.0,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.to",
+  "target": "g",
+  "chiavi": [
+   "duration",
+   "ease",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.to(g, { scale: 1, duration: 0.35, ease: \"back.out(3)\" }, t + 0.24);",
+  "helper": "hole",
+  "codice_catalogo_vicino": "L01",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "kw-kit/kit2-reel13.js",
+  "riga": 452,
+  "parametro": 3.0,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.fromTo",
+  "target": "s",
+  "chiavi": [
+   "duration",
+   "ease",
+   "immediateRender",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "return { g, stars, stelle: (t) => stars.forEach((s, k) => { tl.to(s, { opacity: 1, duration: 0.06 }, t + k * 0.06); tl.fromTo(s, { scale: 0.4 }, { scale: 1, duration: 0.25, ease: \"back.out(3)\", immedi",
+  "helper": "stars",
+  "codice_catalogo_vicino": "F11",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "kw-kit/kit2-reel13.js",
+  "riga": 522,
+  "parametro": 2.2,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.fromTo",
+  "target": "b",
+  "chiavi": [
+   "duration",
+   "ease",
+   "immediateRender",
+   "opacity",
+   "scale",
+   "transformOrigin"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.fromTo(b, { opacity: 0, scale: 0.6, transformOrigin: \"0% 100%\" }, { opacity: 1, scale: 1, duration: 0.35, ease: \"back.out(2.2)\", immediateRender: false }, t + (oo.typing || 0.45));",
+  "helper": "by",
+  "codice_catalogo_vicino": "F11",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "kw-kit/kit2-storie.js",
+  "riga": 165,
+  "parametro": 3.0,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.to",
+  "target": "you",
+  "chiavi": [
+   "duration",
+   "ease",
+   "scale"
+  ],
+  "elemento": "avatar/persona",
+  "codice": "tl.to(you, { scale: 1, duration: 0.25, ease: \"back.out(3)\" }, t + 0.08);",
+  "helper": "cf",
+  "codice_catalogo_vicino": null,
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "kw-kit/kit2-storie.js",
+  "riga": 242,
+  "parametro": 3.2,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.fromTo",
+  "target": "heartOn",
+  "chiavi": [
+   "duration",
+   "ease",
+   "immediateRender",
+   "scale"
+  ],
+  "elemento": "icona/spunta/punto",
+  "codice": "tl.fromTo(heartOn, { scale: 0.4 }, { scale: 1, duration: 0.4, ease: \"back.out(3.2)\", immediateRender: false }, t);",
+  "helper": "W2",
+  "codice_catalogo_vicino": null,
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "kw-kit/kit2-storie.js",
+  "riga": 267,
+  "parametro": 3.0,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.to",
+  "target": "send",
+  "chiavi": [
+   "duration",
+   "ease",
+   "scale"
+  ],
+  "elemento": "icona/spunta/punto",
+  "codice": "tl.to(send, { scale: 1, duration: 0.3, ease: \"back.out(3)\" }, t + 0.08);",
+  "helper": "W2",
+  "codice_catalogo_vicino": null,
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "kw-kit/kit2-storie.js",
+  "riga": 301,
+  "parametro": 2.2,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.fromTo",
+  "target": "g",
+  "chiavi": [
+   "duration",
+   "ease",
+   "immediateRender",
+   "opacity",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.fromTo(g, { opacity: 0, scale: 0.7 }, { opacity: 1, scale: 1, duration: 0.3, ease: \"back.out(2.2)\", immediateRender: false }, t);",
+  "helper": "off",
+  "codice_catalogo_vicino": null,
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "kw-kit/kit2-storie.js",
+  "riga": 315,
+  "parametro": 3.0,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.to",
+  "target": "g",
+  "chiavi": [
+   "duration",
+   "ease",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.to(g, { scale: 1, duration: 0.3, ease: \"back.out(3)\" }, t + 0.08);",
+  "helper": "off",
+  "codice_catalogo_vicino": null,
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "kw-kit/kit2-storie.js",
+  "riga": 351,
+  "parametro": 1.8,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.fromTo",
+  "target": "g",
+  "chiavi": [
+   "duration",
+   "ease",
+   "immediateRender",
+   "opacity",
+   "rotation",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "show: (t) => tl.fromTo(g, { opacity: 0, scale: 0.8, rotation: -8 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.45, ease: \"back.out(1.8)\", immediateRender: false }, t),",
+  "helper": "cur",
+  "codice_catalogo_vicino": "U15",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "kw-kit/kit2-ui.js",
+  "riga": 36,
+  "parametro": 3.0,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.to",
+  "target": "f",
+  "chiavi": [
+   "duration",
+   "ease",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.to(f, { scale: 1, duration: 0.24, ease: \"back.out(3)\" }, t + 0.05);",
+  "helper": "P",
+  "codice_catalogo_vicino": "U07",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "kw-kit/kit2-ui.js",
+  "riga": 63,
+  "parametro": 2.0,
+  "tipo": "spostamento (x/y)",
+  "chiamata": "tl.to",
+  "target": "kn",
+  "chiavi": [
+   "duration",
+   "ease",
+   "x"
+  ],
+  "elemento": "avatar/persona",
+  "codice": "return { tr, kn, w, h, on: (t) => { tl.to(tr, { backgroundColor: \"#CFFB50\", boxShadow: GLOW_A(0.7), duration: 0.18 }, t); tl.to(kn, { x: w - h, duration: 0.26, ease: \"back.out(2)\" }, t); } };",
+  "helper": "kn",
+  "codice_catalogo_vicino": "U07",
+  "sottotipo": null
+ },
+ {
+  "file": "kw-kit/kit2-ui.js",
+  "riga": 139,
+  "parametro": 2.2,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.fromTo",
+  "target": "att",
+  "chiavi": [
+   "duration",
+   "ease",
+   "immediateRender",
+   "opacity",
+   "rotation",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "if (att) tl.fromTo(att, { scale: 0.4, opacity: 0, rotation: -10 }, { scale: 1, opacity: 1, rotation: 0, duration: 0.4, ease: \"back.out(2.2)\", immediateRender: false }, t + 0.2);",
+  "helper": "att",
+  "codice_catalogo_vicino": "U09",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "kw-kit/kit2-ui.js",
+  "riga": 209,
+  "parametro": 1.4,
+  "tipo": "spostamento (x/y)",
+  "chiamata": "tl.to",
+  "target": "c.t0",
+  "chiavi": [
+   "duration",
+   "ease",
+   "x"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.to(c.t0, { x: 0, duration: 0.5, ease: \"back.out(1.4)\" }, t);",
+  "helper": "rows",
+  "codice_catalogo_vicino": "U10",
+  "sottotipo": null
+ },
+ {
+  "file": "kw-kit/kit2-ui.js",
+  "riga": 210,
+  "parametro": 3.0,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.to",
+  "target": "x.num",
+  "chiavi": [
+   "duration",
+   "ease",
+   "opacity",
+   "scale"
+  ],
+  "elemento": "numero/testo",
+  "codice": "[tiles[0], c].forEach((x, i) => tl.to(x.num, { opacity: 1, scale: 1, duration: 0.4, ease: \"back.out(3)\" }, t + 0.3 + i * 0.08));",
+  "helper": "rows",
+  "codice_catalogo_vicino": "U10",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "kw-kit/kit2-ui.js",
+  "riga": 275,
+  "parametro": 3.0,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.to",
+  "target": "b",
+  "chiavi": [
+   "duration",
+   "ease",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.to(b, { scale: 1, duration: 0.25, ease: \"back.out(3)\" }, t + 0.08);",
+  "helper": "SWX",
+  "codice_catalogo_vicino": "U11",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "kw-kit/kit2-ui.js",
+  "riga": 288,
+  "parametro": 2.0,
+  "tipo": "spostamento (x/y)",
+  "chiamata": "tl.to",
+  "target": "b",
+  "chiavi": [
+   "duration",
+   "ease",
+   "opacity",
+   "y"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "return { b, show: (t, dur) => { tl.to(b, { y: 0, opacity: 1, duration: 0.45, ease: \"back.out(2)\" }, t); tl.to(b, { y: -150, opacity: 0, duration: 0.3, ease: \"power2.in\" }, t + (dur || 1.0)); } };",
+  "helper": "b",
+  "codice_catalogo_vicino": "U11",
+  "sottotipo": null
+ },
+ {
+  "file": "kw-kit/kit2-ui.js",
+  "riga": 384,
+  "parametro": 2.6,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.fromTo",
+  "target": "s.pill",
+  "chiavi": [
+   "duration",
+   "ease",
+   "immediateRender",
+   "scale"
+  ],
+  "elemento": "pill/badge/tag",
+  "codice": "tl.fromTo(s.pill, { scale: 0.6 }, { scale: 1, duration: 0.35, ease: \"back.out(2.6)\", immediateRender: false }, t);",
+  "helper": "partRect",
+  "codice_catalogo_vicino": "U02",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "kw-kit/kit2-ui.js",
+  "riga": 389,
+  "parametro": 3.0,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.fromTo",
+  "target": "fol",
+  "chiavi": [
+   "duration",
+   "ease",
+   "immediateRender",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "follow: (t) => { tl.to(folOn, { opacity: 1, duration: 0.2 }, t); tl.fromTo(fol, { scale: 0.94 }, { scale: 1, duration: 0.3, ease: \"back.out(3)\", immediateRender: false }, t); },",
+  "helper": "partRect",
+  "codice_catalogo_vicino": "U02",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "kw-kit/kit2-ui.js",
+  "riga": 415,
+  "parametro": 2.0,
+  "tipo": "pop + spostamento",
+  "chiamata": "blurIn",
+  "target": "av",
+  "chiavi": [
+   "blur",
+   "dur",
+   "ease",
+   "scale",
+   "y"
+  ],
+  "elemento": "avatar/persona",
+  "codice": "blurIn(av, t + 0.12, { y: 0, blur: 12, scale: 0.7, dur: 0.4, ease: \"back.out(2)\" });",
+  "helper": "vids",
+  "codice_catalogo_vicino": "U02",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "kw-kit/kit2-ui.js",
+  "riga": 459,
+  "parametro": 2.0,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.to",
+  "target": "pn.p",
+  "chiavi": [
+   "duration",
+   "ease",
+   "opacity",
+   "scale"
+  ],
+  "elemento": "avatar/persona",
+  "codice": "panels.forEach((pn, i) => tl.to(pn.p, { opacity: 1, scale: 1, duration: 0.3, ease: \"back.out(2)\" }, t + 0.45 + i * 0.2));",
+  "helper": "panels",
+  "codice_catalogo_vicino": "O25",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "kw-kit/kit2-ui.js",
+  "riga": 530,
+  "parametro": 2.6,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.to",
+  "target": "delta",
+  "chiavi": [
+   "duration",
+   "ease",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.to(delta, { scale: 1, duration: 0.4, ease: \"back.out(2.6)\" }, t + (dur || 1) - 0.05);",
+  "helper": "skip",
+  "codice_catalogo_vicino": "D04",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "kw-kit/kit2-ui.js",
+  "riga": 554,
+  "parametro": 2.2,
+  "tipo": "pop + spostamento",
+  "chiamata": "tl.fromTo",
+  "target": "pl",
+  "chiavi": [
+   "duration",
+   "ease",
+   "immediateRender",
+   "opacity",
+   "scale",
+   "y"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.fromTo(pl, { opacity: 0, y: 10, scale: 0.85 }, { opacity: 1, y: 0, scale: 1, duration: 0.3, ease: \"back.out(2.2)\", immediateRender: false }, t + 0.25);",
+  "helper": "skip",
+  "codice_catalogo_vicino": "D04",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "reel-01-v5/index.src.html",
+  "riga": 143,
+  "parametro": 3.0,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.to",
+  "target": "dot",
+  "chiavi": [
+   "duration",
+   "ease",
+   "scale"
+  ],
+  "elemento": "icona/spunta/punto",
+  "codice": "tl.to(dot, { scale: 1, duration: 0.25, ease: \"back.out(3)\" }, W(\"numero\"));",
+  "helper": null,
+  "codice_catalogo_vicino": "K13",
+  "scena": "// ═══ 1 · HOOK — \"L'errore numero uno che fanno i principianti?\" (0 – 2.95) ═══",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "reel-01-v5/index.src.html",
+  "riga": 150,
+  "parametro": 1.6,
+  "tipo": "pop + spostamento",
+  "chiamata": "blurIn",
+  "target": "BAR.r",
+  "chiavi": [
+   "blur",
+   "dur",
+   "ease",
+   "scale",
+   "y"
+  ],
+  "elemento": "numero/testo",
+  "codice": "blurIn(BAR.r, 1.08, { scale: 0.5, blur: 20, y: 0, dur: 0.5, ease: \"back.out(1.6)\" });",
+  "helper": null,
+  "codice_catalogo_vicino": "K13",
+  "scena": "// ═══ 1 · HOOK — \"L'errore numero uno che fanno i principianti?\" (0 – 2.95) ═══",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "reel-01-v5/index.src.html",
+  "riga": 230,
+  "parametro": 2.0,
+  "tipo": "pop + spostamento",
+  "chiamata": "blurIn",
+  "target": "IG",
+  "chiavi": [
+   "blur",
+   "dur",
+   "ease",
+   "scale",
+   "y"
+  ],
+  "elemento": "avatar/persona",
+  "codice": "blurIn(IG, 8.25, { y: -20, blur: 16, scale: 0.7, dur: 0.5, ease: \"back.out(2)\" });",
+  "helper": null,
+  "codice_catalogo_vicino": "O24",
+  "scena": "// ═══ 4 · L'ALGORITMO — \"…l'algoritmo non capisce di cosa parla il tuo profilo\"",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "reel-01-v5/index.src.html",
+  "riga": 278,
+  "parametro": 3.0,
+  "tipo": "spostamento (x/y)",
+  "chiamata": "tl.fromTo",
+  "target": "rd2",
+  "chiavi": [
+   "duration",
+   "ease",
+   "immediateRender",
+   "x"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.fromTo(rd2, { x: 10 }, { x: 0, duration: 0.25, ease: \"back.out(3)\", immediateRender: false }, W(\"profilo\") + 0.03);",
+  "helper": null,
+  "codice_catalogo_vicino": "O24",
+  "scena": "// ═══ 4 · L'ALGORITMO — \"…l'algoritmo non capisce di cosa parla il tuo profilo\"",
+  "sottotipo": null
+ },
+ {
+  "file": "reel-01-v5/index.src.html",
+  "riga": 365,
+  "parametro": 3.0,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.to",
+  "target": "tick5",
+  "chiavi": [
+   "duration",
+   "ease",
+   "opacity",
+   "scale"
+  ],
+  "elemento": "icona/spunta/punto",
+  "codice": "tl.to(tick5, { opacity: 1, scale: 1, duration: 0.35, ease: \"back.out(3)\" }, W(\"risolvi.\"));",
+  "helper": null,
+  "codice_catalogo_vicino": "D04",
+  "scena": "// ═══ 5 · LA TRIADE — \"nicchia, pubblico target, problema specifico che risolvi",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "reel-01-v5/index.src.html",
+  "riga": 443,
+  "parametro": 3.0,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "",
+  "target": "() => {\n        const ICON = __ICONS__;\n        /*__KIT__*/\n",
+  "chiavi": [],
+  "elemento": "pill/badge/tag",
+  "codice": "pop(ok, 22.5, 0, \"back.out(3)\", 0.45);",
+  "helper": " -> pop()",
+  "codice_catalogo_vicino": "U02",
+  "scena": "// ═══ 6 · TRE SECONDI — \"…deve capire in tre secondi di cosa parli\" (18.5 – 22.",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "reel-01-v5/index.src.html",
+  "riga": 494,
+  "parametro": 2.2,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.to",
+  "target": "a",
+  "chiavi": [
+   "duration",
+   "ease",
+   "opacity",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "vis.forEach(([a, xb], k) => { tl.to(a, { opacity: 1, scale: 1, duration: 0.3, ease: \"back.out(2.2)\" }, 24.95 + k * 0.06); tl.to(xb, { opacity: 1, scale: 1, duration: 0.25, ease: \"back.out(3)\" }, 25.15",
+  "helper": null,
+  "codice_catalogo_vicino": "D01",
+  "scena": "// ═══ 7 · \"Se non lo capisce, non ti segue.\" (22.95 – 25.83) — il pollice esita",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "reel-01-v5/index.src.html",
+  "riga": 494,
+  "parametro": 3.0,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.to",
+  "target": "xb",
+  "chiavi": [
+   "duration",
+   "ease",
+   "opacity",
+   "scale"
+  ],
+  "elemento": "icona/spunta/punto",
+  "codice": "vis.forEach(([a, xb], k) => { tl.to(a, { opacity: 1, scale: 1, duration: 0.3, ease: \"back.out(2.2)\" }, 24.95 + k * 0.06); tl.to(xb, { opacity: 1, scale: 1, duration: 0.25, ease: \"back.out(3)\" }, 25.15",
+  "helper": null,
+  "codice_catalogo_vicino": "D01",
+  "scena": "// ═══ 7 · \"Se non lo capisce, non ti segue.\" (22.95 – 25.83) — il pollice esita",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "reel-01-v5/index.src.html",
+  "riga": 501,
+  "parametro": 2.4,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.to",
+  "target": "zeroTag",
+  "chiavi": [
+   "duration",
+   "ease",
+   "opacity",
+   "scale"
+  ],
+  "elemento": "pill/badge/tag",
+  "codice": "tl.to(zeroTag, { opacity: 1, scale: 1, duration: 0.32, ease: \"back.out(2.4)\" }, 25.2);",
+  "helper": null,
+  "codice_catalogo_vicino": "D01",
+  "scena": "// ═══ 7 · \"Se non lo capisce, non ti segue.\" (22.95 – 25.83) — il pollice esita",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "reel-01/index.src.html",
+  "riga": 161,
+  "parametro": 3.0,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.to",
+  "target": "dot",
+  "chiavi": [
+   "duration",
+   "ease",
+   "scale"
+  ],
+  "elemento": "icona/spunta/punto",
+  "codice": "tl.to(dot, { scale: 1, duration: 0.25, ease: \"back.out(3)\" }, 0.5);",
+  "helper": null,
+  "codice_catalogo_vicino": null,
+  "scena": "// ═══ 1 · HOOK — \"L'errore numero uno che fanno i principianti?\" (0 – 2.95s) ══",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "reel-01/index.src.html",
+  "riga": 168,
+  "parametro": 1.6,
+  "tipo": "pop + spostamento",
+  "chiamata": "blurIn",
+  "target": "BAR.r",
+  "chiavi": [
+   "blur",
+   "dur",
+   "ease",
+   "scale",
+   "y"
+  ],
+  "elemento": "numero/testo",
+  "codice": "blurIn(BAR.r, 1.08, { scale: 0.5, blur: 20, y: 0, dur: 0.5, ease: \"back.out(1.6)\" });",
+  "helper": null,
+  "codice_catalogo_vicino": null,
+  "scena": "// ═══ 1 · HOOK — \"L'errore numero uno che fanno i principianti?\" (0 – 2.95s) ══",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "reel-01/index.src.html",
+  "riga": 235,
+  "parametro": 3.0,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.fromTo",
+  "target": "nodes[k].n",
+  "chiavi": [
+   "duration",
+   "ease",
+   "immediateRender",
+   "scale"
+  ],
+  "elemento": "avatar/persona",
+  "codice": "tl.fromTo(nodes[k].n, { scale: 1.6 }, { scale: 1, duration: 0.4, ease: \"back.out(3)\", immediateRender: false }, t);",
+  "helper": null,
+  "codice_catalogo_vicino": null,
+  "scena": "// ═══ 3 · THE WEEK — \"Lunedì fitness, martedì viaggi, venerdì motivazione\" (4.5",
+  "sottotipo": "impulso/assestamento (scala cala)"
+ },
+ {
+  "file": "reel-01/index.src.html",
+  "riga": 278,
+  "parametro": 2.0,
+  "tipo": "pop + spostamento",
+  "chiamata": "blurIn",
+  "target": "IG",
+  "chiavi": [
+   "blur",
+   "dur",
+   "ease",
+   "scale",
+   "y"
+  ],
+  "elemento": "avatar/persona",
+  "codice": "blurIn(IG, 8.25, { y: -20, blur: 16, scale: 0.7, dur: 0.5, ease: \"back.out(2)\" });",
+  "helper": null,
+  "codice_catalogo_vicino": null,
+  "scena": "// ═══ 4 · THE ALGORITHM — \"…l'algoritmo non capisce di cosa parla il tuo profil",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "reel-01/index.src.html",
+  "riga": 328,
+  "parametro": 3.0,
+  "tipo": "spostamento (x/y)",
+  "chiamata": "tl.fromTo",
+  "target": "rd2",
+  "chiavi": [
+   "duration",
+   "ease",
+   "immediateRender",
+   "x"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.fromTo(rd2, { x: 10 }, { x: 0, duration: 0.25, ease: \"back.out(3)\", immediateRender: false }, 10.45);",
+  "helper": null,
+  "codice_catalogo_vicino": null,
+  "scena": "// ═══ 4 · THE ALGORITHM — \"…l'algoritmo non capisce di cosa parla il tuo profil",
+  "sottotipo": null
+ },
+ {
+  "file": "reel-01/index.src.html",
+  "riga": 354,
+  "parametro": 2.0,
+  "tipo": "pop + spostamento",
+  "chiamata": "blurIn",
+  "target": "av",
+  "chiavi": [
+   "blur",
+   "dur",
+   "ease",
+   "scale",
+   "y"
+  ],
+  "elemento": "avatar/persona",
+  "codice": "blurIn(av, 10.9, { scale: 0.6, blur: 14, y: 0, dur: 0.45, ease: \"back.out(2)\" });",
+  "helper": null,
+  "codice_catalogo_vicino": null,
+  "scena": "// ═══ 4b · \"…e nemmeno chi ti guarda\" (10.75 – 12.75s) — the audience orbit emp",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "reel-01/index.src.html",
+  "riga": 426,
+  "parametro": 3.0,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.to",
+  "target": "tick5",
+  "chiavi": [
+   "duration",
+   "ease",
+   "opacity",
+   "scale"
+  ],
+  "elemento": "icona/spunta/punto",
+  "codice": "tl.to(tick5, { opacity: 1, scale: 1, duration: 0.35, ease: \"back.out(3)\" }, 16.67);",
+  "helper": null,
+  "codice_catalogo_vicino": null,
+  "scena": "// ═══ 5 · THE TRIAD — \"nicchia, pubblico target, problema specifico che risolvi",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "reel-01/index.src.html",
+  "riga": 522,
+  "parametro": 3.0,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "",
+  "target": "() => {\n        const ICON = __ICONS__;\n        /*__KIT__*/\n",
+  "chiavi": [],
+  "elemento": "pill/badge/tag",
+  "codice": "pop(ok, 22.5, 0, \"back.out(3)\", 0.45);",
+  "helper": " -> pop()",
+  "codice_catalogo_vicino": null,
+  "scena": "// ═══ 6 · THREE SECONDS — \"…deve capire in tre secondi di cosa parli\" (18.5 – 2",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "reel-01_v3-concept-derivato/index.src.html",
+  "riga": 202,
+  "parametro": 2.0,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.fromTo",
+  "target": "P1.cells[cell]",
+  "chiavi": [
+   "duration",
+   "ease",
+   "immediateRender",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.fromTo(P1.cells[cell], { scale: 1.12 }, { scale: 1, duration: 0.35, ease: \"back.out(2)\", immediateRender: false }, land);",
+  "helper": null,
+  "codice_catalogo_vicino": null,
+  "scena": "// ═══ 2 · PUBBLICARE DI TUTTO — Lun fitness / Mar viaggi / Ven motivazione (2.9",
+  "sottotipo": "impulso/assestamento (scala cala)"
+ },
+ {
+  "file": "reel-01_v3-concept-derivato/index.src.html",
+  "riga": 232,
+  "parametro": 2.0,
+  "tipo": "pop + spostamento",
+  "chiamata": "blurIn",
+  "target": "IG",
+  "chiavi": [
+   "blur",
+   "dur",
+   "ease",
+   "scale",
+   "y"
+  ],
+  "elemento": "avatar/persona",
+  "codice": "blurIn(IG, 8.2, { y: -24, blur: 16, scale: 0.7, dur: 0.5, ease: \"back.out(2)\" });",
+  "helper": null,
+  "codice_catalogo_vicino": null,
+  "scena": "// ═══ 3 · L'ALGORITMO NON CAPISCE — \"…e nemmeno chi ti guarda\" (7.6 – 12.8s) ══",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "reel-01_v3-concept-derivato/index.src.html",
+  "riga": 273,
+  "parametro": 3.0,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.fromTo",
+  "target": "QQ",
+  "chiavi": [
+   "duration",
+   "ease",
+   "immediateRender",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.fromTo(QQ, { scale: 1.25 }, { scale: 1, duration: 0.3, ease: \"back.out(3)\", immediateRender: false }, tQ);",
+  "helper": null,
+  "codice_catalogo_vicino": null,
+  "scena": "// ═══ 3 · L'ALGORITMO NON CAPISCE — \"…e nemmeno chi ti guarda\" (7.6 – 12.8s) ══",
+  "sottotipo": "impulso/assestamento (scala cala)"
+ },
+ {
+  "file": "reel-01_v3-concept-derivato/index.src.html",
+  "riga": 304,
+  "parametro": 2.0,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.to",
+  "target": "crowd",
+  "chiavi": [
+   "duration",
+   "ease",
+   "opacity",
+   "scale",
+   "stagger"
+  ],
+  "elemento": "numero/testo",
+  "codice": "tl.to(crowd, { opacity: 1, scale: 1, duration: 0.35, ease: \"back.out(2)\", stagger: 0.012 }, 10.98);",
+  "helper": null,
+  "codice_catalogo_vicino": null,
+  "scena": "// ═══ 3 · L'ALGORITMO NON CAPISCE — \"…e nemmeno chi ti guarda\" (7.6 – 12.8s) ══",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "reel-01_v3-concept-derivato/index.src.html",
+  "riga": 307,
+  "parametro": 2.6,
+  "tipo": "pop + spostamento",
+  "chiamata": "tl.to",
+  "target": "qs",
+  "chiavi": [
+   "duration",
+   "ease",
+   "opacity",
+   "scale",
+   "stagger",
+   "y"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.to(qs, { opacity: 1, scale: 1, y: 0, duration: 0.3, ease: \"back.out(2.6)\", stagger: 0.024 }, 11.3);",
+  "helper": null,
+  "codice_catalogo_vicino": null,
+  "scena": "// ═══ 3 · L'ALGORITMO NON CAPISCE — \"…e nemmeno chi ti guarda\" (7.6 – 12.8s) ══",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "reel-01_v3-concept-derivato/index.src.html",
+  "riga": 357,
+  "parametro": 2.4,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.to",
+  "target": "rings[k]",
+  "chiavi": [
+   "duration",
+   "ease",
+   "scale"
+  ],
+  "elemento": "icona/spunta/punto",
+  "codice": "tl.to(rings[k], { scale: 1, duration: k === 3 ? 0.5 : 0.75, ease: k === 3 ? \"back.out(2.4)\" : \"expo.out\" }, TM + j * 0.08);",
+  "helper": null,
+  "codice_catalogo_vicino": null,
+  "scena": "// ═══ 4 · IL BERSAGLIO — nicchia / pubblico target / problema specifico. Punto.",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "reel-01_v3-concept-derivato/index.src.html",
+  "riga": 370,
+  "parametro": 2.0,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.to",
+  "target": "aud",
+  "chiavi": [
+   "duration",
+   "ease",
+   "opacity",
+   "scale",
+   "stagger"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.to(aud, { opacity: 1, scale: 1, duration: 0.35, ease: \"back.out(2)\", stagger: 0.012 }, TM + 0.2);",
+  "helper": null,
+  "codice_catalogo_vicino": null,
+  "scena": "// ═══ 4 · IL BERSAGLIO — nicchia / pubblico target / problema specifico. Punto.",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "reel-01_v3-concept-derivato/index.src.html",
+  "riga": 383,
+  "parametro": 3.0,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.to",
+  "target": "dt",
+  "chiavi": [
+   "duration",
+   "ease",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.to(dt, { scale: 1, duration: 0.25, ease: \"back.out(3)\" }, t);",
+  "helper": null,
+  "codice_catalogo_vicino": null,
+  "scena": "// ═══ 4 · IL BERSAGLIO — nicchia / pubblico target / problema specifico. Punto.",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "reel-01_v3-concept-derivato/index.src.html",
+  "riga": 396,
+  "parametro": 3.0,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.to",
+  "target": "tick3",
+  "chiavi": [
+   "duration",
+   "ease",
+   "opacity",
+   "scale"
+  ],
+  "elemento": "icona/spunta/punto",
+  "codice": "tl.to(tick3, { opacity: 1, scale: 1, duration: 0.35, ease: \"back.out(3)\" }, 16.7);",
+  "helper": null,
+  "codice_catalogo_vicino": null,
+  "scena": "// ═══ 4 · IL BERSAGLIO — nicchia / pubblico target / problema specifico. Punto.",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "reel-01_v3-concept-derivato/index.src.html",
+  "riga": 424,
+  "parametro": 3.0,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.fromTo",
+  "target": "rings[3]",
+  "chiavi": [
+   "duration",
+   "ease",
+   "immediateRender",
+   "scale"
+  ],
+  "elemento": "icona/spunta/punto",
+  "codice": "tl.fromTo(rings[3], { scale: 1.2 }, { scale: 1, duration: 0.35, ease: \"back.out(3)\", immediateRender: false }, 17.67);",
+  "helper": null,
+  "codice_catalogo_vicino": null,
+  "scena": "// ═══ 4 · IL BERSAGLIO — nicchia / pubblico target / problema specifico. Punto.",
+  "sottotipo": "impulso/assestamento (scala cala)"
+ },
+ {
+  "file": "reel-01_v3-concept-derivato/index.src.html",
+  "riga": 483,
+  "parametro": 3.0,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.fromTo",
+  "target": "nums[0]",
+  "chiavi": [
+   "duration",
+   "ease",
+   "immediateRender",
+   "scale"
+  ],
+  "elemento": "numero/testo",
+  "codice": "tl.fromTo(nums[0], { scale: 1.3 }, { scale: 1, duration: 0.3, ease: \"back.out(3)\", immediateRender: false }, 21.17);",
+  "helper": null,
+  "codice_catalogo_vicino": null,
+  "scena": "// ═══ 5 · TRE SECONDI — \"deve capire in tre secondi di cosa parli\" (18.5 – 22.9",
+  "sottotipo": "impulso/assestamento (scala cala)"
+ },
+ {
+  "file": "reel-01_v3-concept-derivato/index.src.html",
+  "riga": 487,
+  "parametro": 3.0,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.fromTo",
+  "target": "nums[b]",
+  "chiavi": [
+   "duration",
+   "ease",
+   "immediateRender",
+   "scale"
+  ],
+  "elemento": "numero/testo",
+  "codice": "tl.fromTo(nums[b], { scale: 1.3 }, { scale: 1, duration: 0.3, ease: \"back.out(3)\", immediateRender: false }, t);",
+  "helper": null,
+  "codice_catalogo_vicino": null,
+  "scena": "// ═══ 5 · TRE SECONDI — \"deve capire in tre secondi di cosa parli\" (18.5 – 22.9",
+  "sottotipo": "impulso/assestamento (scala cala)"
+ },
+ {
+  "file": "reel-01_v3-concept-derivato/index.src.html",
+  "riga": 492,
+  "parametro": 3.0,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.fromTo",
+  "target": "swOk",
+  "chiavi": [
+   "duration",
+   "ease",
+   "immediateRender",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.fromTo(swOk, { scale: 0.4 }, { scale: 1, duration: 0.45, ease: \"back.out(3)\", immediateRender: false }, 22.5);",
+  "helper": null,
+  "codice_catalogo_vicino": null,
+  "scena": "// ═══ 5 · TRE SECONDI — \"deve capire in tre secondi di cosa parli\" (18.5 – 22.9",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "reel-01_v3-concept-derivato/index.src.html",
+  "riga": 501,
+  "parametro": 2.4,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.to",
+  "target": "lens",
+  "chiavi": [
+   "duration",
+   "ease",
+   "opacity",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.to(lens, { scale: 1, opacity: 1, duration: 0.3, ease: \"back.out(2.4)\" }, 20.95);",
+  "helper": null,
+  "codice_catalogo_vicino": null,
+  "scena": "// ═══ 5 · TRE SECONDI — \"deve capire in tre secondi di cosa parli\" (18.5 – 22.9",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "reel-01_v3-concept-derivato/index.src.html",
+  "riga": 560,
+  "parametro": 2.6,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "",
+  "target": "() => {\n        const ICON = __ICONS__;\n        /*__KIT__*/\n",
+  "chiavi": [],
+  "elemento": "pill/badge/tag",
+  "codice": "pop(yesR, 24.7, 0.6, \"back.out(2.6)\", 0.4);",
+  "helper": " -> pop()",
+  "codice_catalogo_vicino": null,
+  "scena": "// ═══ 6 · SE NON LO CAPISCE, NON TI SEGUE (22.95 – 25.83s) ═══",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "reel-03/index.src.html",
+  "riga": 139,
+  "parametro": 2.4,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.to",
+  "target": "IGb",
+  "chiavi": [
+   "duration",
+   "ease",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.to(IGb, { scale: 1, duration: 0.5, ease: \"back.out(2.4)\" }, 0.02);",
+  "helper": null,
+  "codice_catalogo_vicino": "A02",
+  "scena": "// ═══ 1 · HOOK — \"Instagram ti ha appena dato il più grande trucco di sempre.\" ",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "reel-03/index.src.html",
+  "riga": 148,
+  "parametro": 1.5,
+  "tipo": "pop + spostamento",
+  "chiamata": "tl.to",
+  "target": "RA.wrap",
+  "chiavi": [
+   "duration",
+   "ease",
+   "scale",
+   "y"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.to(RA.wrap, { scale: 1, y: HY, duration: 0.55, ease: \"back.out(1.5)\" }, W(\"trucco\") + 0.04);",
+  "helper": null,
+  "codice_catalogo_vicino": "A02",
+  "scena": "// ═══ 1 · HOOK — \"Instagram ti ha appena dato il più grande trucco di sempre.\" ",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "reel-03/index.src.html",
+  "riga": 163,
+  "parametro": 3.0,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.to",
+  "target": "X2",
+  "chiavi": [
+   "duration",
+   "ease",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.to(X2, { scale: 1, duration: 0.35, ease: \"back.out(3)\" }, 3.29);",
+  "helper": null,
+  "codice_catalogo_vicino": "A02",
+  "scena": "// ═══ 1 · HOOK — \"Instagram ti ha appena dato il più grande trucco di sempre.\" ",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "reel-03/index.src.html",
+  "riga": 394,
+  "parametro": 3.0,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.to",
+  "target": "x2b",
+  "chiavi": [
+   "duration",
+   "ease",
+   "opacity",
+   "rotation",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.to(x2b, { opacity: 1, scale: 1, rotation: -6, duration: 0.4, ease: \"back.out(3)\" }, W(\"visualizzazioni,\", \"raddoppi\") + 0.1);",
+  "helper": null,
+  "codice_catalogo_vicino": "O21",
+  "scena": "// ═══ 8 · \"Stesso identico video ma raddoppi le visualizzazioni, gratis.\" (31.2",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "reel-03/index.src.html",
+  "riga": 412,
+  "parametro": 3.0,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.to",
+  "target": "fb",
+  "chiavi": [
+   "duration",
+   "ease",
+   "opacity",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.to(fb, { opacity: 1, scale: 1, duration: 0.25, ease: \"back.out(3)\" }, 36.9 + i * 0.03);",
+  "helper": null,
+  "codice_catalogo_vicino": "O24",
+  "scena": "// ═══ 9 · \"Fallo ogni volta che pubblichi per la tua attività.\" (35.8 – 38.77) ",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "reel-09/index.src.html",
+  "riga": 239,
+  "parametro": 3.0,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.to",
+  "target": "btn",
+  "chiavi": [
+   "duration",
+   "ease",
+   "scale"
+  ],
+  "elemento": "pill/badge/tag",
+  "codice": "tl.to(btn, { scale: 1, duration: 0.3, ease: \"back.out(3)\" }, 4.62);",
+  "helper": null,
+  "codice_catalogo_vicino": "O13",
+  "scena": "// ═══ 2 · \"Comprano per come si sono sentiti.\" (2,7 – 4,9) ════════════════════",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "reel-09/index.src.html",
+  "riga": 288,
+  "parametro": 3.0,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.fromTo",
+  "target": "k.ok",
+  "chiavi": [
+   "duration",
+   "ease",
+   "immediateRender",
+   "opacity",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.fromTo(k.ok, { opacity: 0, scale: 0.4 }, { opacity: 1, scale: 1, duration: 0.22, ease: \"back.out(3)\", immediateRender: false }, t);",
+  "helper": null,
+  "codice_catalogo_vicino": "C03",
+  "scena": "// ═══ 4 · \"può essere corretto in ogni singola parola\" (7,1 – 9,3) ════════════",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "reel-09/index.src.html",
+  "riga": 295,
+  "parametro": 2.6,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.fromTo",
+  "target": "okPill",
+  "chiavi": [
+   "duration",
+   "ease",
+   "immediateRender",
+   "scale"
+  ],
+  "elemento": "pill/badge/tag",
+  "codice": "tl.fromTo(okPill, { scale: 0.5 }, { scale: 1, duration: 0.35, ease: \"back.out(2.6)\", immediateRender: false }, wt(30));",
+  "helper": null,
+  "codice_catalogo_vicino": "C03",
+  "scena": "// ═══ 4 · \"può essere corretto in ogni singola parola\" (7,1 – 9,3) ════════════",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "reel-09/index.src.html",
+  "riga": 354,
+  "parametro": 3.0,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.to",
+  "target": "u.rod",
+  "chiavi": [
+   "duration",
+   "ease",
+   "scaleY"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.to(u.rod, { scaleY: 0.3, duration: 0.35, ease: \"back.out(3)\" }, t + 0.2);",
+  "helper": null,
+  "codice_catalogo_vicino": "K02",
+  "scena": "// ═══ 6 · LA CONSOLE — \"Le emozioni che conta capire sono tre.\" (11,7 – 14,4) ═",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "reel-09/index.src.html",
+  "riga": 355,
+  "parametro": 3.0,
+  "tipo": "pop + spostamento",
+  "chiamata": "tl.to",
+  "target": "u.knob",
+  "chiavi": [
+   "duration",
+   "ease",
+   "scale",
+   "y"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.to(u.knob, { y: sl * 0.7, scale: 1.3, duration: 0.35, ease: \"back.out(3)\" }, t + 0.2);",
+  "helper": null,
+  "codice_catalogo_vicino": "K02",
+  "scena": "// ═══ 6 · LA CONSOLE — \"Le emozioni che conta capire sono tre.\" (11,7 – 14,4) ═",
+  "sottotipo": "impulso verso >1"
+ },
+ {
+  "file": "reel-09/index.src.html",
+  "riga": 412,
+  "parametro": 2.2,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.to",
+  "target": "h",
+  "chiavi": [
+   "duration",
+   "ease",
+   "opacity",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.to(h, { opacity: 1, scale: 1, duration: 0.28, ease: \"back.out(2.2)\" }, wt(49) - 0.05 + k * 0.045);",
+  "helper": null,
+  "codice_catalogo_vicino": "K06",
+  "scena": "// ═══ 8 · \"Ogni persona vuole qualcosa di preciso.\" (16,1 – 18,3) ═════════════",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "reel-09/index.src.html",
+  "riga": 435,
+  "parametro": 2.2,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.to",
+  "target": "orb",
+  "chiavi": [
+   "duration",
+   "ease",
+   "opacity",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.to(orb, { opacity: 1, scale: 1, duration: 0.35, ease: \"back.out(2.2)\" }, t + 0.12);",
+  "helper": null,
+  "codice_catalogo_vicino": "T09",
+  "scena": "// ═══ 9 · \"Più tempo, più margine, più libertà di servire chi servire, più rico",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "reel-09/index.src.html",
+  "riga": 463,
+  "parametro": 3.0,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.fromTo",
+  "target": "c",
+  "chiavi": [
+   "duration",
+   "ease",
+   "immediateRender",
+   "scaleY",
+   "transformOrigin"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.fromTo(c, { scaleY: 0.86 }, { scaleY: 1, duration: 0.22, ease: \"back.out(3)\", immediateRender: false, transformOrigin: \"50% 100%\" }, t + 0.2);",
+  "helper": null,
+  "codice_catalogo_vicino": "T09",
+  "scena": "// ═══ 9 · \"Più tempo, più margine, più libertà di servire chi servire, più rico",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "reel-09/index.src.html",
+  "riga": 478,
+  "parametro": 2.0,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.to",
+  "target": "h",
+  "chiavi": [
+   "duration",
+   "ease",
+   "opacity",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "faces.forEach(({ h }, k) => tl.to(h, { opacity: 1, scale: 1, duration: 0.3, ease: \"back.out(2)\" }, 19.84 + k * 0.04));",
+  "helper": null,
+  "codice_catalogo_vicino": "T09",
+  "scena": "// ═══ 9 · \"Più tempo, più margine, più libertà di servire chi servire, più rico",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "reel-09/index.src.html",
+  "riga": 498,
+  "parametro": 2.2,
+  "tipo": "pop + spostamento",
+  "chiamata": "tl.fromTo",
+  "target": "star",
+  "chiavi": [
+   "duration",
+   "ease",
+   "immediateRender",
+   "opacity",
+   "scale",
+   "y"
+  ],
+  "elemento": "icona/spunta/punto",
+  "codice": "tl.fromTo(star, { opacity: 0, scale: 0.5, y: 40 }, { opacity: 1, scale: 1, y: 0, duration: 0.4, ease: \"back.out(2.2)\", immediateRender: false }, wt(65));",
+  "helper": null,
+  "codice_catalogo_vicino": "T09",
+  "scena": "// ═══ 9 · \"Più tempo, più margine, più libertà di servire chi servire, più rico",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "reel-09/index.src.html",
+  "riga": 629,
+  "parametro": 2.2,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.to",
+  "target": "eyeD",
+  "chiavi": [
+   "duration",
+   "ease",
+   "opacity",
+   "scale"
+  ],
+  "elemento": "icona/spunta/punto",
+  "codice": "tl.to(eyeD, { opacity: 1, scale: 1, duration: 0.3, ease: \"back.out(2.2)\" }, 33.95);",
+  "helper": null,
+  "codice_catalogo_vicino": "O30",
+  "scena": "// ═══ 12 · \"E qui hai due strade.\" (33,5 – 34,9) — O30: la strada si divide in ",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "reel-09/index.src.html",
+  "riga": 631,
+  "parametro": 3.0,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.fromTo",
+  "target": "fNode",
+  "chiavi": [
+   "duration",
+   "ease",
+   "immediateRender",
+   "scale"
+  ],
+  "elemento": "avatar/persona",
+  "codice": "tl.fromTo(fNode, { scale: 0.3 }, { scale: 1, duration: 0.3, ease: \"back.out(3)\", immediateRender: false }, 33.62);",
+  "helper": null,
+  "codice_catalogo_vicino": "O30",
+  "scena": "// ═══ 12 · \"E qui hai due strade.\" (33,5 – 34,9) — O30: la strada si divide in ",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "reel-09/index.src.html",
+  "riga": 655,
+  "parametro": 2.0,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.fromTo",
+  "target": "FR2.g",
+  "chiavi": [
+   "duration",
+   "ease",
+   "immediateRender",
+   "opacity",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.fromTo(FR2.g, { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.3, ease: \"back.out(2)\", immediateRender: false }, wt(104));",
+  "helper": null,
+  "codice_catalogo_vicino": "O30",
+  "scena": "// ═══ 13 · \"Puoi fargli vedere il muro oppure puoi buttarlo giù.\" (34,9 – 38,0)",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "reel-09/index.src.html",
+  "riga": 712,
+  "parametro": 2.2,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.to",
+  "target": "av",
+  "chiavi": [
+   "duration",
+   "ease",
+   "opacity",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.to(av, { opacity: 1, scale: 1, duration: 0.3, ease: \"back.out(2.2)\" }, wt(130) - 0.1 + k * 0.05);",
+  "helper": null,
+  "codice_catalogo_vicino": "O30",
+  "scena": "// ═══ 15 · \"E la terza è quella che quasi nessuno tocca.\" (42,7 – 45,0) ═══════",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "reel-09/index.src.html",
+  "riga": 886,
+  "parametro": 3.0,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.to",
+  "target": "csend",
+  "chiavi": [
+   "duration",
+   "ease",
+   "scale"
+  ],
+  "elemento": "icona/spunta/punto",
+  "codice": "tl.to(csend, { scale: 1, duration: 0.28, ease: \"back.out(3)\" }, wt(173) + 0.23);",
+  "helper": null,
+  "codice_catalogo_vicino": "X01",
+  "scena": "// ═══ 20 · CTA — \"Commenta emozioni e ti mando le tre leve con un esempio per o",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "reel-09/index.src.html",
+  "riga": 909,
+  "parametro": 1.6,
+  "tipo": "pop + spostamento",
+  "chiamata": "tl.to",
+  "target": "pg",
+  "chiavi": [
+   "duration",
+   "ease",
+   "rotation",
+   "scale",
+   "x",
+   "y"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.to(pg, { x: (k - 1) * 315, y: Math.abs(k - 1) * 34, rotation: (k - 1) * 12, scale: 1, duration: 0.5, ease: \"back.out(1.6)\" }, wt(179) + k * 0.05);",
+  "helper": null,
+  "codice_catalogo_vicino": "X01",
+  "scena": "// ═══ 20 · CTA — \"Commenta emozioni e ti mando le tre leve con un esempio per o",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "reel-10/index.src.html",
+  "riga": 142,
+  "parametro": 3.0,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.to",
+  "target": "HOME.tray[0].g",
+  "chiavi": [
+   "duration",
+   "ease",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.to(HOME.tray[0].g, { scale: 1, duration: 0.35, ease: \"back.out(3)\" }, wt(3) + 0.12);",
+  "helper": null,
+  "codice_catalogo_vicino": "F02",
+  "scena": "// ═══ 1 · HOOK — \"Ecco come funziona davvero l'algoritmo delle storie su Instag",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "reel-10/index.src.html",
+  "riga": 157,
+  "parametro": 3.0,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.to",
+  "target": "c.g",
+  "chiavi": [
+   "duration",
+   "ease",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.to(c.g, { scale: 1, duration: 0.3, ease: \"back.out(3)\" }, t + 0.1);",
+  "helper": null,
+  "codice_catalogo_vicino": "F02",
+  "scena": "// ═══ 1 · HOOK — \"Ecco come funziona davvero l'algoritmo delle storie su Instag",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "reel-10/index.src.html",
+  "riga": 189,
+  "parametro": 2.2,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.fromTo",
+  "target": "SC0.g",
+  "chiavi": [
+   "duration",
+   "ease",
+   "immediateRender",
+   "opacity",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.fromTo(SC0.g, { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.35, ease: \"back.out(2.2)\", immediateRender: false }, wt(13) + 0.32);",
+  "helper": null,
+  "codice_catalogo_vicino": "O21",
+  "scena": "// ═══ 2 · \"Quando pubblici una storia, Instagram non la mostra a tutti,\" (4,2 –",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "reel-10/index.src.html",
+  "riga": 237,
+  "parametro": 3.0,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.to",
+  "target": "p.h",
+  "chiavi": [
+   "duration",
+   "ease",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.to(p.h, { scale: 1, duration: 0.3, ease: \"back.out(3)\" }, t1 + 0.1);",
+  "helper": null,
+  "codice_catalogo_vicino": "O21",
+  "scena": "// ═══ 3 · \"la fa vedere prima ai follower che interagiscono di più con te\" (7,3",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "reel-10/index.src.html",
+  "riga": 246,
+  "parametro": 3.0,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.to",
+  "target": "b",
+  "chiavi": [
+   "duration",
+   "ease",
+   "opacity",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.to(b, { opacity: 1, scale: 1, duration: 0.3, ease: \"back.out(3)\" }, wt(27) + i * 0.06);",
+  "helper": null,
+  "codice_catalogo_vicino": "O21",
+  "scena": "// ═══ 3 · \"la fa vedere prima ai follower che interagiscono di più con te\" (7,3",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "reel-10/index.src.html",
+  "riga": 252,
+  "parametro": 2.6,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.to",
+  "target": "meB",
+  "chiavi": [
+   "duration",
+   "ease",
+   "opacity",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.to(meB, { opacity: 1, scale: 1, duration: 0.35, ease: \"back.out(2.6)\" }, wt(31) - 0.05);",
+  "helper": null,
+  "codice_catalogo_vicino": "O21",
+  "scena": "// ═══ 3 · \"la fa vedere prima ai follower che interagiscono di più con te\" (7,3",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "reel-10/index.src.html",
+  "riga": 276,
+  "parametro": 3.0,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.to",
+  "target": "HC.tray[1].g",
+  "chiavi": [
+   "duration",
+   "ease",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.to(HC.tray[1].g, { scale: 1, duration: 0.3, ease: \"back.out(3)\" }, wt(35) + 0.12);",
+  "helper": null,
+  "codice_catalogo_vicino": "H04",
+  "scena": "// ═══ 4 · \"e misura una cosa sola,\" (10,3 – 12,0) ═════════════════════════════",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "reel-10/index.src.html",
+  "riga": 346,
+  "parametro": 2.4,
+  "tipo": "pop + spostamento",
+  "chiamata": "tl.fromTo",
+  "target": "pl",
+  "chiavi": [
+   "duration",
+   "ease",
+   "immediateRender",
+   "opacity",
+   "scale",
+   "y"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "show: (t) => tl.fromTo(pl, { opacity: 0, scale: 0.6, y: 20 }, { opacity: 1, scale: 1, y: 0, duration: 0.35, ease: \"back.out(2.4)\", immediateRender: false }, t),",
+  "helper": null,
+  "codice_catalogo_vicino": "K08",
+  "scena": "// ═══ 6 · \"Se non la aprono o entrano e scorrono subito, la storia viene sepolt",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "reel-10/index.src.html",
+  "riga": 455,
+  "parametro": 2.2,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.fromTo",
+  "target": "UP.g",
+  "chiavi": [
+   "duration",
+   "ease",
+   "immediateRender",
+   "opacity",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.fromTo(UP.g, { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.24, ease: \"back.out(2.2)\", immediateRender: false }, wt(75) + 0.05);",
+  "helper": null,
+  "codice_catalogo_vicino": "L16",
+  "scena": "// ═══ 8 · \"viene spinta in cima alle storie di tutti gli altri.\" (25,0 – 27,4) ",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "reel-10/index.src.html",
+  "riga": 488,
+  "parametro": 2.6,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.fromTo",
+  "target": "me.g",
+  "chiavi": [
+   "duration",
+   "ease",
+   "immediateRender",
+   "opacity",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.fromTo(me.g, { opacity: 0, scale: 0.3 }, { opacity: 1, scale: 1, duration: 0.3, ease: \"back.out(2.6)\", immediateRender: false }, t + 0.05);",
+  "helper": null,
+  "codice_catalogo_vicino": "O31",
+  "scena": "// ═══ 8 · \"viene spinta in cima alle storie di tutti gli altri.\" (25,0 – 27,4) ",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "reel-10/index.src.html",
+  "riga": 521,
+  "parametro": 1.6,
+  "tipo": "pop + spostamento",
+  "chiamata": "tl.to",
+  "target": "c",
+  "chiavi": [
+   "duration",
+   "ease",
+   "rotation",
+   "scale",
+   "x",
+   "y"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "FAN.forEach((c, k) => tl.to(c, { rotation: (k - 2) * 12, x: (k - 2) * 178, y: Math.abs(k - 2) * 30, scale: 1, duration: 0.5, ease: \"back.out(1.6)\" }, wt(87) + k * 0.03));",
+  "helper": null,
+  "codice_catalogo_vicino": "U15",
+  "scena": "// ═══ 9 · \"Non conta quante storie pubblichi, non conta l'ora,\" (27,5 – 31,1) ═",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "reel-10/index.src.html",
+  "riga": 546,
+  "parametro": 2.4,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.to",
+  "target": "pl",
+  "chiavi": [
+   "duration",
+   "ease",
+   "opacity",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "ORE.forEach((pl, k) => tl.to(pl, { opacity: 1, scale: 1, duration: 0.3, ease: \"back.out(2.4)\" }, wt(90) + 0.05 + k * 0.05));",
+  "helper": null,
+  "codice_catalogo_vicino": "U15",
+  "scena": "// ═══ 9 · \"Non conta quante storie pubblichi, non conta l'ora,\" (27,5 – 31,1) ═",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "reel-10/index.src.html",
+  "riga": 575,
+  "parametro": 3.0,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.to",
+  "target": "b",
+  "chiavi": [
+   "duration",
+   "ease",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.to(b, { scale: 1, duration: 0.3, ease: \"back.out(3)\" }, t + 0.1);",
+  "helper": null,
+  "codice_catalogo_vicino": "K02",
+  "scena": "// ═══ 10 · \"conta solo cosa fanno i primi che le vedono.\" (31,2 – 34,1) ═══════",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "reel-11/index.src.html",
+  "riga": 165,
+  "parametro": 3.0,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.fromTo",
+  "target": "FAROG",
+  "chiavi": [
+   "duration",
+   "ease",
+   "immediateRender",
+   "scaleY",
+   "transformOrigin"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.fromTo(FAROG, { scaleY: 0.9 }, { scaleY: 1, duration: 0.3, ease: \"back.out(3)\", transformOrigin: \"420px 2650px\", immediateRender: false }, wt(10) + 0.12);",
+  "helper": null,
+  "codice_catalogo_vicino": "F11",
+  "scena": "// ═══ 2 · \"è dove metti la luce.\" (2,5 – 4,1) ═════════════════════════════════",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "reel-11/index.src.html",
+  "riga": 207,
+  "parametro": 3.0,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.to",
+  "target": "TAG.g",
+  "chiavi": [
+   "duration",
+   "ease",
+   "scale"
+  ],
+  "elemento": "pill/badge/tag",
+  "codice": "tl.to(TAG.g, { scale: 1, duration: 0.3, ease: \"back.out(3)\" }, wt(27) + 0.1);",
+  "helper": null,
+  "codice_catalogo_vicino": "D01",
+  "scena": "// ═══ 4 · \"anche l'attrezzatura da 5.000 euro\" (6,6 – 8,2) ════════════════════",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "reel-11/index.src.html",
+  "riga": 327,
+  "parametro": 3.0,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.fromTo",
+  "target": "TEL.g",
+  "chiavi": [
+   "duration",
+   "ease",
+   "immediateRender",
+   "scaleY",
+   "transformOrigin"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.fromTo(TEL.g, { scaleY: 0.93 }, { scaleY: 1, duration: 0.3, ease: \"back.out(3)\", transformOrigin: \"50% 100%\", immediateRender: false }, JMP + JD);",
+  "helper": null,
+  "codice_catalogo_vicino": "F08",
+  "scena": "// ═══ 8 · GRADINO 2 — \"Se usi il telefono ma cerchi una buona luce naturale, se",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "reel-11/index.src.html",
+  "riga": 435,
+  "parametro": 3.0,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.to",
+  "target": "ME2.hd",
+  "chiavi": [
+   "duration",
+   "ease",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.to(ME2.hd, { scale: 1, duration: 0.3, ease: \"back.out(3)\" }, wt(90) + 0.12);",
+  "helper": null,
+  "codice_catalogo_vicino": "F11",
+  "scena": "// ═══ 10 · GRADINO 4 — \"E se aggiungi un controluce dietro di te, che è la cosa",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "reel-12/index.src.html",
+  "riga": 190,
+  "parametro": 2.0,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.to",
+  "target": "N1.b",
+  "chiavi": [
+   "duration",
+   "ease",
+   "opacity",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.to(N1.b, { opacity: 1, scale: 1, duration: 0.3, ease: \"back.out(2)\" }, wt(27));",
+  "helper": null,
+  "codice_catalogo_vicino": "L03",
+  "scena": "// ═══ 2 · \"Nel momento in cui pretendi che ogni contenuto porti un cliente, suc",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "reel-12/index.src.html",
+  "riga": 191,
+  "parametro": 2.0,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.to",
+  "target": "N2.b",
+  "chiavi": [
+   "duration",
+   "ease",
+   "opacity",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.to(N2.b, { opacity: 1, scale: 1, duration: 0.3, ease: \"back.out(2)\" }, wt(28));",
+  "helper": null,
+  "codice_catalogo_vicino": "L03",
+  "scena": "// ═══ 2 · \"Nel momento in cui pretendi che ogni contenuto porti un cliente, suc",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "reel-12/index.src.html",
+  "riga": 210,
+  "parametro": 2.0,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.to",
+  "target": "T1.b",
+  "chiavi": [
+   "duration",
+   "ease",
+   "opacity",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.to(T1.b, { opacity: 1, scale: 1, duration: 0.3, ease: \"back.out(2)\" }, S3 + 0.25);",
+  "helper": null,
+  "codice_catalogo_vicino": "F12",
+  "scena": "// ═══ 3 · \"La prima, il contenuto peggiora perché inizi a vendere invece che a ",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "reel-12/index.src.html",
+  "riga": 221,
+  "parametro": 2.0,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.fromTo",
+  "target": "bub",
+  "chiavi": [
+   "duration",
+   "ease",
+   "immediateRender",
+   "opacity",
+   "scale",
+   "transformOrigin"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.fromTo(bub, { opacity: 0, scale: 0.4, transformOrigin: \"10% 100%\" }, { opacity: 1, scale: 1, duration: 0.35, ease: \"back.out(2)\", immediateRender: false }, 12.95);",
+  "helper": null,
+  "codice_catalogo_vicino": "F12",
+  "scena": "// ═══ 3 · \"La prima, il contenuto peggiora perché inizi a vendere invece che a ",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "reel-12/index.src.html",
+  "riga": 245,
+  "parametro": 2.0,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.to",
+  "target": "T2.b",
+  "chiavi": [
+   "duration",
+   "ease",
+   "opacity",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.to(T2.b, { opacity: 1, scale: 1, duration: 0.3, ease: \"back.out(2)\" }, S4 + 0.3);",
+  "helper": null,
+  "codice_catalogo_vicino": "D01",
+  "scena": "// ═══ 4 · \"La seconda, il ritorno non arriva comunque,\" (17,9 – 21,0) ═════════",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "reel-12/index.src.html",
+  "riga": 281,
+  "parametro": 2.0,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.to",
+  "target": "ME",
+  "chiavi": [
+   "duration",
+   "ease",
+   "opacity",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.to(ME, { opacity: 1, scale: 1, duration: 0.35, ease: \"back.out(2)\" }, wt(52));",
+  "helper": null,
+  "codice_catalogo_vicino": "F10",
+  "scena": "// ═══ 5 · \"quindi ti convinci che non funzioni e smetti, buttando via anche tut",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "reel-13/index.src.html",
+  "riga": 175,
+  "parametro": 2.5,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.to",
+  "target": "b",
+  "chiavi": [
+   "duration",
+   "ease",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.to(b, { scale: 1, duration: 0.3, ease: \"back.out(2.5)\" }, t + 0.1);",
+  "helper": null,
+  "codice_catalogo_vicino": "D02",
+  "scena": "// ═══ 1 · HOOK — \"Ti sei mai chiesto perché arrivano sul profilo e non ti scriv",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "CATALOGO-ANIMAZIONI/demo-2/index.src.html",
+  "riga": 306,
+  "parametro": 2.0,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.to",
+  "target": "hero",
+  "chiavi": [
+   "duration",
+   "ease",
+   "opacity",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.to(hero, { opacity: 1, scale: 1, duration: 0.45, ease: \"back.out(2)\" }, 62.15);",
+  "helper": null,
+  "codice_catalogo_vicino": "O02",
+  "scena": "// ═══ O02 anello al neon che implode nella tua foto vera · O03 i canali tornano",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "CATALOGO-ANIMAZIONI/demo-3/index.src.html",
+  "riga": 167,
+  "parametro": 3.0,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "",
+  "target": "() => {\n        const ICON = __ICONS__;\n        /*__KIT__*/\n",
+  "chiavi": [],
+  "elemento": "pill/badge/tag",
+  "codice": "pop(qm, 25.25, 0.3, \"back.out(3)\");",
+  "helper": " -> pop()",
+  "codice_catalogo_vicino": "C03",
+  "scena": "// ═══ C03 · i segnali \"−\" tornano all'algoritmo: non capisce (01/10: \"l'algorit",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "CATALOGO-ANIMAZIONI/demo-5/index.src.html",
+  "riga": 91,
+  "parametro": 2.6,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.fromTo",
+  "target": "peb",
+  "chiavi": [
+   "duration",
+   "ease",
+   "immediateRender",
+   "opacity",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.fromTo(peb, { opacity: 0, scale: 0.4 }, { opacity: 1, scale: 1, duration: 0.25, ease: \"back.out(2.6)\", immediateRender: false }, 1.02);",
+  "helper": null,
+  "codice_catalogo_vicino": "O16",
+  "scena": "// ═══ K08 · O16 — \"una condivisione è un sasso nello stagno: le onde arrivano a",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "CATALOGO-ANIMAZIONI/demo-5/index.src.html",
+  "riga": 107,
+  "parametro": 2.0,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.to",
+  "target": "f",
+  "chiavi": [
+   "duration",
+   "ease",
+   "opacity",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.to(f, { opacity: 1, scale: 1, duration: 0.3, ease: \"back.out(2)\" }, 1.45 + i * 0.03);",
+  "helper": null,
+  "codice_catalogo_vicino": "O16",
+  "scena": "// ═══ K08 · O16 — \"una condivisione è un sasso nello stagno: le onde arrivano a",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "CATALOGO-ANIMAZIONI/demo-5/index.src.html",
+  "riga": 244,
+  "parametro": 2.0,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.to",
+  "target": "hero9",
+  "chiavi": [
+   "duration",
+   "ease",
+   "opacity",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.to(hero9, { opacity: 1, scale: 1, duration: 0.35, ease: \"back.out(2)\" }, 43.85);",
+  "helper": null,
+  "codice_catalogo_vicino": "C05",
+  "scena": "// ═══ C05 — \"tutto parte dal tuo profilo\" (43,8 – 49,4) ═══",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "CATALOGO-ANIMAZIONI/demo-5/index.src.html",
+  "riga": 252,
+  "parametro": 2.4,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.to",
+  "target": "n",
+  "chiavi": [
+   "duration",
+   "ease",
+   "opacity",
+   "scale"
+  ],
+  "elemento": "avatar/persona",
+  "codice": "tl.to(n, { opacity: 1, scale: 1, duration: 0.3, ease: \"back.out(2.4)\" }, 44.55 + i * 0.3);",
+  "helper": null,
+  "codice_catalogo_vicino": "C05",
+  "scena": "// ═══ C05 — \"tutto parte dal tuo profilo\" (43,8 – 49,4) ═══",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "CATALOGO-ANIMAZIONI/demo-6/index.src.html",
+  "riga": 248,
+  "parametro": 2.0,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.to",
+  "target": "av5",
+  "chiavi": [
+   "duration",
+   "ease",
+   "opacity",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.to(av5, { opacity: 1, scale: 1, duration: 0.4, ease: \"back.out(2)\" }, 22.05);",
+  "helper": null,
+  "codice_catalogo_vicino": "U15",
+  "scena": "// ═══ D10 · U15 — \"profilo ottimizzato in 60 secondi\" (05/10) (22 – 27,4) ═══",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "CATALOGO-ANIMAZIONI/demo-6/index.src.html",
+  "riga": 259,
+  "parametro": 2.4,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.to",
+  "target": "ch",
+  "chiavi": [
+   "duration",
+   "ease",
+   "opacity",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.to(ch, { opacity: 1, scale: 1, duration: 0.3, ease: \"back.out(2.4)\" }, t + 0.45);",
+  "helper": null,
+  "codice_catalogo_vicino": "U15",
+  "scena": "// ═══ D10 · U15 — \"profilo ottimizzato in 60 secondi\" (05/10) (22 – 27,4) ═══",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "CATALOGO-ANIMAZIONI/demo-7/index.src.html",
+  "riga": 107,
+  "parametro": 2.4,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.fromTo",
+  "target": "pl",
+  "chiavi": [
+   "duration",
+   "ease",
+   "immediateRender",
+   "opacity",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.fromTo(pl, { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.3, ease: \"back.out(2.4)\", immediateRender: false }, 4.35 + i * 0.1);",
+  "helper": null,
+  "codice_catalogo_vicino": "A05",
+  "scena": "// ═══ A05 · C01 · F02 — \"lunedì fitness, martedì viaggi…: l'algoritmo non capis",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "CATALOGO-ANIMAZIONI/demo-7/index.src.html",
+  "riga": 146,
+  "parametro": 2.4,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.to",
+  "target": "eyeP",
+  "chiavi": [
+   "duration",
+   "ease",
+   "opacity",
+   "scale"
+  ],
+  "elemento": "icona/spunta/punto",
+  "codice": "tl.to(eyeP, { opacity: 1, scale: 1, duration: 0.3, ease: \"back.out(2.4)\" }, 6.75);",
+  "helper": null,
+  "codice_catalogo_vicino": "F08",
+  "scena": "// ═══ F08 · cambio di colore = cambio di stato — \"se la guardano, viene spinta ",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "CATALOGO-ANIMAZIONI/demo-7/index.src.html",
+  "riga": 158,
+  "parametro": 2.6,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.fromTo",
+  "target": "stories[3].g",
+  "chiavi": [
+   "duration",
+   "ease",
+   "immediateRender",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.fromTo(stories[3].g, { scale: 1.18 }, { scale: 1, duration: 0.4, ease: \"back.out(2.6)\", immediateRender: false }, 8.95);",
+  "helper": null,
+  "codice_catalogo_vicino": "F08",
+  "scena": "// ═══ F08 · cambio di colore = cambio di stato — \"se la guardano, viene spinta ",
+  "sottotipo": "impulso/assestamento (scala cala)"
+ },
+ {
+  "file": "CATALOGO-ANIMAZIONI/demo-7/index.src.html",
+  "riga": 233,
+  "parametro": 2.0,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.to",
+  "target": "hero6",
+  "chiavi": [
+   "duration",
+   "ease",
+   "opacity",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.to(hero6, { opacity: 1, scale: 1, duration: 0.35, ease: \"back.out(2)\" }, 27.42);",
+  "helper": null,
+  "codice_catalogo_vicino": "O04",
+  "scena": "// ═══ A04 · O04 — \"distribuzione ovunque\" (25/09) (27,4 – 32,8) ═══",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "CATALOGO-ANIMAZIONI/demo-7/index.src.html",
+  "riga": 246,
+  "parametro": 2.4,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.to",
+  "target": "pill6",
+  "chiavi": [
+   "duration",
+   "ease",
+   "opacity",
+   "scale"
+  ],
+  "elemento": "pill/badge/tag",
+  "codice": "tl.to(pill6, { opacity: 1, scale: 1, duration: 0.32, ease: \"back.out(2.4)\" }, 28.4);",
+  "helper": null,
+  "codice_catalogo_vicino": "O04",
+  "scena": "// ═══ A04 · O04 — \"distribuzione ovunque\" (25/09) (27,4 – 32,8) ═══",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "CATALOGO-ANIMAZIONI/demo-8/index.src.html",
+  "riga": 164,
+  "parametro": 2.4,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.to",
+  "target": "op4",
+  "chiavi": [
+   "duration",
+   "ease",
+   "opacity",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.to(op4, { opacity: 1, scale: 1, duration: 0.32, ease: \"back.out(2.4)\" }, 19.75);",
+  "helper": null,
+  "codice_catalogo_vicino": "F04",
+  "scena": "// ═══ A01 · L14 · D02 · F11 · F04 — \"trova i video fuori scala dei creatori del",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "CATALOGO-ANIMAZIONI/demo-8/index.src.html",
+  "riga": 204,
+  "parametro": 2.2,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.to",
+  "target": "fp6",
+  "chiavi": [
+   "duration",
+   "ease",
+   "opacity",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.to(fp6, { opacity: 1, scale: 1, duration: 0.35, ease: \"back.out(2.2)\" }, 33.9);",
+  "helper": null,
+  "codice_catalogo_vicino": "L09",
+  "scena": "// ═══ L09 — \"non ti mancano le idee: 5 argomenti × 10 angoli × 7 formati = 350\"",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "CATALOGO-ANIMAZIONI/demo/index.src.html",
+  "riga": 97,
+  "parametro": 2.0,
+  "tipo": "pop + spostamento",
+  "chiamata": "blurIn",
+  "target": "ic",
+  "chiavi": [
+   "blur",
+   "dur",
+   "ease",
+   "scale",
+   "y"
+  ],
+  "elemento": "avatar/persona",
+  "codice": "blurIn(ic, 0.35, { y: 20, blur: 14, scale: 0.7, dur: 0.45, ease: \"back.out(2)\" });",
+  "helper": null,
+  "codice_catalogo_vicino": "O01",
+  "scena": "// ═══ A · T01/T02 titolo parola per parola + K10 messa a fuoco + F02 pulse (0 –",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "CATALOGO-ANIMAZIONI/demo/index.src.html",
+  "riga": 170,
+  "parametro": 2.2,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.to",
+  "target": "res",
+  "chiavi": [
+   "duration",
+   "ease",
+   "opacity",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.to(res, { opacity: 1, scale: 1, duration: 0.35, ease: \"back.out(2.2)\" }, 20.5);",
+  "helper": null,
+  "codice_catalogo_vicino": "T05",
+  "scena": "// ═══ D · mappa delle sotto-nicchie (17 – 22): T03 nodo scritto a macchina · L0",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "CATALOGO-ANIMAZIONI/demo/index.src.html",
+  "riga": 202,
+  "parametro": 2.4,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.fromTo",
+  "target": "pav",
+  "chiavi": [
+   "duration",
+   "ease",
+   "immediateRender",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tl.fromTo(pav, { scale: 0.5 }, { scale: 1, duration: 0.4, ease: \"back.out(2.4)\", immediateRender: false }, 26.28);",
+  "helper": null,
+  "codice_catalogo_vicino": "O10",
+  "scena": "// ═══ E · O10 bersaglio · C04 linee guida con etichetta · la scheda del cliente",
+  "sottotipo": "entrata (scala cresce)"
+ },
+ {
+  "file": "CATALOGO-ANIMAZIONI/demo/index.src.html",
+  "riga": 204,
+  "parametro": 2.4,
+  "tipo": "pop scala (scale/opacity)",
+  "chiamata": "tl.to",
+  "target": "c",
+  "chiavi": [
+   "duration",
+   "ease",
+   "scale"
+  ],
+  "elemento": "altro/non chiaro",
+  "codice": "tratti.forEach((c, k) => { gsap.set(c, { opacity: 0, scale: 0.7 }); tl.to(c, { opacity: 1, duration: 0.08 }, 26.55 + k * 0.14); tl.to(c, { scale: 1, duration: 0.32, ease: \"back.out(2.4)\" }, 26.55 + k ",
+  "helper": null,
+  "codice_catalogo_vicino": "O10",
+  "scena": "// ═══ E · O10 bersaglio · C04 linee guida con etichetta · la scheda del cliente",
+  "sottotipo": "entrata (scala cresce)"
+ }
+]

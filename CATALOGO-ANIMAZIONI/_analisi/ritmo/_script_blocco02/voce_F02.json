@@ -1,0 +1,47 @@
+{
+ "id": "F02",
+ "scena": {
+  "t0": 1.0,
+  "t1": 6.1,
+  "frase": "«Se non diventi virale, non stai andando da nessuna parte. E se si sbagliassero?»",
+  "script": "14/10 · 1,4–6,1 s della voce",
+  "kallaway": {
+   "reel": 7,
+   "t0": 5.0,
+   "t1": 7.16
+  }
+ },
+ "voto": {
+  "voti": {
+   "movimento": 5,
+   "materiali": 5,
+   "frame": 5,
+   "brand": 5
+  },
+  "template": "TPL.F02 (kw-kit/kit2-tpl-luce.js)",
+  "scena": "CATALOGO-ANIMAZIONI/ritmo-02 1,0–6,1 s (14/10, «Se non diventi virale, non stai andando da nessuna parte. E se si sbagliassero?»): la griglia dei tuoi reel veri in movimento, il disco su «virale» fa nascere «1M views», su «sbagliassero?» si spegne tutto e compare il «?»",
+  "confronto": "_analisi/ritmo/blocco02/K_F02_r14.jpg · K_F02_r7.jpg · K_F02_r79.jpg · K_F02_r14_disco.json · F02_ritmo02_disco.json · _analisi/ritmo/deriva/F02_ritmo02.jpg · F02_ritmo02_v.jpg · _analisi/ritmo/pop/F02_ritmo02_etichetta.jpg · K_F02_r14_etichetta.jpg",
+  "misure": {
+   "al taglio": "la griglia 3 × 2 dei tuoi reel è già piena e i video si muovono",
+   "movimento principale": "arrivo dal basso: 102 px dopo il primo fotogramma (140 in tutto), 162 px/s a 0,25 s, expo.out (deriva.py, maschera sulla griglia, pannello giallo sulle cornici); poi la camera tiene",
+   "Kallaway (reel 14, 7)": "camera ferma sull'anello / sulla lista; il disco è l'unico movimento",
+   "disco (disco.py)": "pieno in 0,07 s (diametro 0,50 della larghezza), resta pieno mentre nasce l'etichetta, si allarga a 0,62 e sparisce a 0,43 s dalla nascita · K reel 14: area piena in 0,17 s, svanisce in ~0,5 s; reel 7: diametro 0,47 → 0,57 in 0,32 s; reel 79: 0,52 → 0,63 in 0,1 s",
+   "pop.py · l'etichetta «1M views» (solo i pixel lime)": "0,90 → 1,00 in 0,15 s power2.out dentro il disco, rimbalzo 0% · K reel 14: l'etichetta nasce nel disco a 0,12 s, 0,83 → 1,10 → 1,00 in 0,45 s (cresce col disco e torna: +10%)",
+   "proporzioni (ingombro.py)": "griglia larga 0,69 della larghezza, da y 473 a 1267 · K reel 14: anello 0,68, y 352–1287; reel 7: lista 0,74",
+   "accenti": "disco + etichetta su «virale»; su «sbagliassero?» l'etichetta e i reel si spengono (0,12 s / 0,3 s) e il «?» a mano",
+   "rimbalzo": "0 (pop.py, striscia guardata)",
+   "scena": "5,1 s",
+   "filtro (14/10, dopo F04)": "su «sbagliassero?» c'era un fotogramma nero (il filtro animato da «none» partiva da brightness(0)): ora fromTo, la griglia scende 64 → 38 di luminosità senza salti",
+   "clip KALLAWAYMARKETING (regia 15/10)": "reel 7 dal suo taglio a 5,00 s (controllato a vista: 4,96 faccia, 5,00 la lista) fino al taglio di 7,18 s: il disco rosso pieno passa sulla lista a 6,22 s (+1,22 s dal taglio; da noi +0,98 s); prima puntava al reel 14, 0–2,25 s (l'anello di O01, dove il disco quasi non si vede)"
+  },
+  "manca": "in Kallaway l'etichetta cresce un po' oltre col disco e torna (+10% in 0,45 s): qui niente rimbalzo per R5; il disco lime davanti ai video li tinge per 0,4 s (Kallaway usa il rosso pieno)",
+  "da_fare": "",
+  "fatto": "template TPL.F02 con la scheda (kit2-tpl-luce.js); pulse() con le opzioni in coda cresce / svanisce / allarga (default di prima); DOPO in ritmo-clip/F02_dopo.mp4"
+ },
+ "riga": {
+  "stato": "**fatto** (blocco 2)",
+  "template": "TPL.F02 · ritmo-02 1,0–6,1 s (14/10 «Se non diventi virale… E se si sbagliassero?»)",
+  "numeri": "disco pieno in 0,07 s, diametro 0,50 → 0,62 della larghezza, via in 0,43 s (K r14 0,17 s, ~0,5 s; r7 0,47 → 0,57 in 0,32 s) · etichetta 0,90 → 1 in 0,15 s senza rimbalzo (pop.py; K r14 +10% e torna) · griglia 0,69 della larghezza (K r14 0,68) · arrivo 140 px expo.out 162 px/s a 0,25 s",
+  "voto": "5·5·5·5"
+ }
+}

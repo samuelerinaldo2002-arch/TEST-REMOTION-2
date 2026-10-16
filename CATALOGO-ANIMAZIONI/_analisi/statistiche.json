@@ -1,0 +1,848 @@
+{
+ "giu-ott-dark": {
+  "reel": 105,
+  "minuti": 158.2,
+  "tagli_al_minuto": 12.78,
+  "durata_segmenti_grafica_s": {
+   "mediana": 4.463,
+   "p25": 2.878,
+   "p75": 6.712,
+   "n": 971
+  },
+  "durata_segmenti_piena_s": {
+   "mediana": 2.92,
+   "n": 863
+  },
+  "quota_tempo": {
+   "grafica": 0.561,
+   "piena": 0.294,
+   "light": 0.146
+  },
+  "durata_segmenti_light_s": {
+   "mediana": 4.505,
+   "n": 293
+  },
+  "camera_in_moto_nelle_grafiche": {
+   "mediana": 0.589,
+   "p25": 0.385
+  },
+  "arrivi_in_moto": {
+   "n": 165,
+   "su_segmenti_grafica": 971,
+   "v0_px_s_mediana": 1410.0,
+   "decadimento_90_s_mediana": 0.32,
+   "decadimento_p25_p75": [
+    0.125,
+    0.44
+   ],
+   "spostamento_px_mediana": 333.0
+  },
+  "movimenti": {
+   "n": 5750,
+   "durata_mediana_s": 0.708,
+   "durata_p25_p75": [
+    0.292,
+    1.292
+   ],
+   "veloci_n": 402,
+   "veloci_durata_mediana_s": 1.167,
+   "veloci_picco_a_mediana": 0.2,
+   "zoom_in_frac": 0.203,
+   "zoom_out_frac": 0.228,
+   "easing": {
+    "linear": 987,
+    "sine.out": 821,
+    "power1.out": 692,
+    "power2.out": 668,
+    "power3.out": 266,
+    "power1.in": 260,
+    "sine.inOut": 167,
+    "expo.out": 138
+   },
+   "easing_firmata": {
+    "power2.out": 579,
+    "sine.out": 554,
+    "power1.out": 462,
+    "linear": 306,
+    "power1.in": 293,
+    "power3.out": 219,
+    "back.out(2.5)": 197,
+    "power2.in": 174,
+    "expo.out": 134,
+    "sine.inOut": 132,
+    "power4.in": 125,
+    "power2.inOut": 124,
+    "back.out(1)": 104,
+    "power1.inOut": 92,
+    "expo.inOut": 89,
+    "power4.out": 70,
+    "power4.inOut": 68,
+    "back.out(1.7)": 67,
+    "power3.in": 65,
+    "power3.inOut": 61
+   },
+   "easing_firmata_significative": {
+    "power2.out": 492,
+    "sine.out": 370,
+    "power1.out": 351,
+    "power1.in": 236,
+    "linear": 212,
+    "power3.out": 202,
+    "power2.in": 123,
+    "expo.out": 118,
+    "back.out(2.5)": 102,
+    "sine.inOut": 97,
+    "power2.inOut": 90,
+    "power4.in": 78,
+    "power1.inOut": 70,
+    "back.out(1)": 68,
+    "power4.out": 59,
+    "expo.inOut": 49,
+    "power3.inOut": 45,
+    "power3.in": 44,
+    "back.out(1.7)": 44,
+    "power4.inOut": 37
+   },
+   "overshoot": {
+    "nota": "overshoot = picco oltre il valore finale / spostamento finale, sulla curva con segno (finestra +0,6 s). Valutate: dur >= 0,3 s, spostamento >= 40 px o zoom >= 4%, senza inversioni e senza i tratti che sono la fase di ritorno della mossa precedente.",
+    "valutate": {
+     "n": 2887,
+     "oltre_2": 0.2944,
+     "oltre_5": 0.2286,
+     "oltre_10": 0.1728,
+     "percentili": {
+      "p50": 0.0,
+      "p75": 0.0378,
+      "p90": 0.2223,
+      "p95": 0.4064,
+      "p99": 0.8209
+     },
+     "istogramma": {
+      "0-1%": 1925,
+      "1-2%": 110,
+      "2-5%": 191,
+      "5-10%": 161,
+      "10-20%": 181,
+      ">20%": 319
+     }
+    },
+    "pan": {
+     "n": 1769,
+     "oltre_2": 0.3036,
+     "oltre_5": 0.2533,
+     "oltre_10": 0.199,
+     "percentili": {
+      "p50": 0.0,
+      "p75": 0.0521,
+      "p90": 0.2759,
+      "p95": 0.468,
+      "p99": 0.8677
+     },
+     "istogramma": {
+      "0-1%": 1177,
+      "1-2%": 54,
+      "2-5%": 90,
+      "5-10%": 95,
+      "10-20%": 114,
+      ">20%": 239
+     }
+    },
+    "zoom": {
+     "n": 1118,
+     "oltre_2": 0.28,
+     "oltre_5": 0.1896,
+     "oltre_10": 0.1315,
+     "percentili": {
+      "p50": 0.0001,
+      "p75": 0.0275,
+      "p90": 0.1391,
+      "p95": 0.2681,
+      "p99": 0.6234
+     },
+     "istogramma": {
+      "0-1%": 748,
+      "1-2%": 56,
+      "2-5%": 101,
+      "5-10%": 66,
+      "10-20%": 67,
+      ">20%": 80
+     }
+    },
+    "veloci": {
+     "n": 328,
+     "oltre_2": 0.1372,
+     "oltre_5": 0.0976,
+     "oltre_10": 0.0793,
+     "percentili": {
+      "p50": 0.0,
+      "p75": 0.0013,
+      "p90": 0.0473,
+      "p95": 0.2151,
+      "p99": 0.6907
+     },
+     "istogramma": {
+      "0-1%": 270,
+      "1-2%": 13,
+      "2-5%": 13,
+      "5-10%": 6,
+      "10-20%": 7,
+      ">20%": 19
+     }
+    },
+    "tutte_senza_soglia": {
+     "n": 3489,
+     "oltre_2": 0.3265,
+     "oltre_5": 0.2645,
+     "oltre_10": 0.2092,
+     "percentili": {
+      "p50": 0.0001,
+      "p75": 0.0611,
+      "p90": 0.3054,
+      "p95": 0.5177,
+      "p99": 0.8893
+     },
+     "istogramma": {
+      "0-1%": 2217,
+      "1-2%": 131,
+      "2-5%": 217,
+      "5-10%": 193,
+      "10-20%": 229,
+      ">20%": 502
+     }
+    },
+    "inversioni_n": 325,
+    "ritorni_di_precedente_n": 492,
+    "n_base": 4240
+   }
+  }
+ },
+ "mag-misto": {
+  "reel": 28,
+  "minuti": 46.0,
+  "tagli_al_minuto": 16.43,
+  "durata_segmenti_grafica_s": {
+   "mediana": 3.75,
+   "p25": 1.897,
+   "p75": 5.625,
+   "n": 211
+  },
+  "durata_segmenti_piena_s": {
+   "mediana": 2.461,
+   "n": 352
+  },
+  "quota_tempo": {
+   "grafica": 0.318,
+   "piena": 0.382,
+   "light": 0.3
+  },
+  "durata_segmenti_light_s": {
+   "mediana": 3.357,
+   "n": 220
+  },
+  "camera_in_moto_nelle_grafiche": {
+   "mediana": 0.529,
+   "p25": 0.251
+  },
+  "arrivi_in_moto": {
+   "n": 22,
+   "su_segmenti_grafica": 211,
+   "v0_px_s_mediana": 1242.5,
+   "decadimento_90_s_mediana": 0.48,
+   "decadimento_p25_p75": [
+    0.177,
+    0.698
+   ],
+   "spostamento_px_mediana": 336.5
+  },
+  "movimenti": {
+   "n": 1658,
+   "durata_mediana_s": 0.625,
+   "durata_p25_p75": [
+    0.209,
+    1.323
+   ],
+   "veloci_n": 103,
+   "veloci_durata_mediana_s": 1.126,
+   "veloci_picco_a_mediana": 0.31,
+   "zoom_in_frac": 0.206,
+   "zoom_out_frac": 0.172,
+   "easing": {
+    "linear": 311,
+    "sine.out": 235,
+    "power1.out": 169,
+    "power2.out": 136,
+    "power3.out": 74,
+    "power1.in": 45,
+    "sine.inOut": 41,
+    "expo.out": 34
+   },
+   "easing_firmata": {
+    "sine.out": 139,
+    "power2.out": 138,
+    "power1.out": 114,
+    "linear": 83,
+    "power1.in": 72,
+    "power3.out": 56,
+    "back.out(2.5)": 55,
+    "power2.in": 38,
+    "power2.inOut": 38,
+    "power4.in": 35,
+    "sine.inOut": 33,
+    "expo.out": 31,
+    "power1.inOut": 27,
+    "expo.inOut": 26,
+    "power3.inOut": 21,
+    "back.out(1)": 20,
+    "power4.out": 19,
+    "back.out(1.7)": 19,
+    "power3.in": 15,
+    "power4.inOut": 14
+   },
+   "easing_firmata_significative": {
+    "power2.out": 118,
+    "sine.out": 104,
+    "power1.out": 88,
+    "power1.in": 56,
+    "linear": 49,
+    "power3.out": 49,
+    "power2.inOut": 35,
+    "back.out(2.5)": 33,
+    "power2.in": 31,
+    "expo.out": 25,
+    "power1.inOut": 23,
+    "sine.inOut": 23,
+    "expo.inOut": 22,
+    "power4.in": 19,
+    "power4.out": 18,
+    "power3.inOut": 16,
+    "back.out(1.7)": 13,
+    "back.out(1)": 12,
+    "power4.inOut": 10,
+    "power3.in": 9
+   },
+   "overshoot": {
+    "nota": "overshoot = picco oltre il valore finale / spostamento finale, sulla curva con segno (finestra +0,6 s). Valutate: dur >= 0,3 s, spostamento >= 40 px o zoom >= 4%, senza inversioni e senza i tratti che sono la fase di ritorno della mossa precedente.",
+    "valutate": {
+     "n": 753,
+     "oltre_2": 0.344,
+     "oltre_5": 0.2776,
+     "oltre_10": 0.2125,
+     "percentili": {
+      "p50": 0.0008,
+      "p75": 0.0701,
+      "p90": 0.282,
+      "p95": 0.484,
+      "p99": 0.8644
+     },
+     "istogramma": {
+      "0-1%": 458,
+      "1-2%": 35,
+      "2-5%": 51,
+      "5-10%": 49,
+      "10-20%": 51,
+      ">20%": 109
+     }
+    },
+    "pan": {
+     "n": 492,
+     "oltre_2": 0.3272,
+     "oltre_5": 0.2744,
+     "oltre_10": 0.2154,
+     "percentili": {
+      "p50": 0.0004,
+      "p75": 0.0698,
+      "p90": 0.3081,
+      "p95": 0.5025,
+      "p99": 0.8758
+     },
+     "istogramma": {
+      "0-1%": 312,
+      "1-2%": 18,
+      "2-5%": 27,
+      "5-10%": 29,
+      "10-20%": 26,
+      ">20%": 80
+     }
+    },
+    "zoom": {
+     "n": 261,
+     "oltre_2": 0.3755,
+     "oltre_5": 0.2835,
+     "oltre_10": 0.2069,
+     "percentili": {
+      "p50": 0.0043,
+      "p75": 0.0757,
+      "p90": 0.2494,
+      "p95": 0.4439,
+      "p99": 0.7799
+     },
+     "istogramma": {
+      "0-1%": 146,
+      "1-2%": 17,
+      "2-5%": 24,
+      "5-10%": 20,
+      "10-20%": 25,
+      ">20%": 29
+     }
+    },
+    "veloci": {
+     "n": 82,
+     "oltre_2": 0.1463,
+     "oltre_5": 0.1098,
+     "oltre_10": 0.1098,
+     "percentili": {
+      "p50": 0.0001,
+      "p75": 0.004,
+      "p90": 0.0935,
+      "p95": 0.2713,
+      "p99": 0.5507
+     },
+     "istogramma": {
+      "0-1%": 67,
+      "1-2%": 3,
+      "2-5%": 3,
+      "5-10%": 0,
+      "10-20%": 3,
+      ">20%": 6
+     }
+    },
+    "tutte_senza_soglia": {
+     "n": 907,
+     "oltre_2": 0.366,
+     "oltre_5": 0.3043,
+     "oltre_10": 0.237,
+     "percentili": {
+      "p50": 0.0014,
+      "p75": 0.0903,
+      "p90": 0.3436,
+      "p95": 0.5391,
+      "p99": 0.9034
+     },
+     "istogramma": {
+      "0-1%": 532,
+      "1-2%": 42,
+      "2-5%": 57,
+      "5-10%": 61,
+      "10-20%": 63,
+      ">20%": 152
+     }
+    },
+    "inversioni_n": 114,
+    "ritorni_di_precedente_n": 103,
+    "n_base": 1107
+   }
+  }
+ },
+ "apr-light": {
+  "reel": 11,
+  "minuti": 14.8,
+  "tagli_al_minuto": 24.92,
+  "durata_segmenti_grafica_s": {
+   "mediana": 2.002,
+   "p25": 1.082,
+   "p75": 2.96,
+   "n": 95
+  },
+  "durata_segmenti_piena_s": {
+   "mediana": 1.71,
+   "n": 181
+  },
+  "quota_tempo": {
+   "grafica": 0.243,
+   "piena": 0.445,
+   "light": 0.313
+  },
+  "durata_segmenti_light_s": {
+   "mediana": 2.346,
+   "n": 104
+  },
+  "camera_in_moto_nelle_grafiche": {
+   "mediana": 0.684,
+   "p25": 0.369
+  },
+  "arrivi_in_moto": {
+   "n": 7,
+   "su_segmenti_grafica": 95,
+   "v0_px_s_mediana": 1025.0,
+   "decadimento_90_s_mediana": 0.125,
+   "decadimento_p25_p75": [
+    0.083,
+    0.208
+   ],
+   "spostamento_px_mediana": 317.0
+  },
+  "movimenti": {
+   "n": 635,
+   "durata_mediana_s": 0.542,
+   "durata_p25_p75": [
+    0.167,
+    1.25
+   ],
+   "veloci_n": 62,
+   "veloci_durata_mediana_s": 0.962,
+   "veloci_picco_a_mediana": 0.31,
+   "zoom_in_frac": 0.233,
+   "zoom_out_frac": 0.169,
+   "easing": {
+    "linear": 128,
+    "power1.out": 76,
+    "sine.out": 73,
+    "power2.out": 50,
+    "power3.out": 21,
+    "power1.in": 19,
+    "sine.inOut": 13,
+    "expo.out": 11
+   },
+   "easing_firmata": {
+    "power2.out": 54,
+    "sine.out": 53,
+    "linear": 43,
+    "power1.out": 37,
+    "power1.in": 33,
+    "power4.in": 18,
+    "power3.out": 17,
+    "back.out(2.5)": 16,
+    "power2.in": 13,
+    "power1.inOut": 12,
+    "sine.inOut": 11,
+    "power2.inOut": 11,
+    "expo.out": 10,
+    "back.out(1.7)": 10,
+    "expo.inOut": 10,
+    "power3.in": 9,
+    "power4.inOut": 7,
+    "back.out(1)": 7,
+    "power3.inOut": 5,
+    "power4.out": 2
+   },
+   "easing_firmata_significative": {
+    "power2.out": 49,
+    "sine.out": 42,
+    "linear": 35,
+    "power1.out": 30,
+    "power1.in": 29,
+    "power3.out": 14,
+    "back.out(2.5)": 12,
+    "power2.in": 11,
+    "expo.out": 10,
+    "power1.inOut": 10,
+    "power4.in": 9,
+    "expo.inOut": 9,
+    "back.out(1.7)": 9,
+    "power3.in": 8,
+    "sine.inOut": 8,
+    "power2.inOut": 8,
+    "power3.inOut": 4,
+    "power4.inOut": 4,
+    "back.out(1)": 4,
+    "power4.out": 2
+   },
+   "overshoot": {
+    "nota": "overshoot = picco oltre il valore finale / spostamento finale, sulla curva con segno (finestra +0,6 s). Valutate: dur >= 0,3 s, spostamento >= 40 px o zoom >= 4%, senza inversioni e senza i tratti che sono la fase di ritorno della mossa precedente.",
+    "valutate": {
+     "n": 307,
+     "oltre_2": 0.3746,
+     "oltre_5": 0.2997,
+     "oltre_10": 0.2345,
+     "percentili": {
+      "p50": 0.0,
+      "p75": 0.092,
+      "p90": 0.3027,
+      "p95": 0.3934,
+      "p99": 0.5207
+     },
+     "istogramma": {
+      "0-1%": 177,
+      "1-2%": 14,
+      "2-5%": 24,
+      "5-10%": 20,
+      "10-20%": 25,
+      ">20%": 47
+     }
+    },
+    "pan": {
+     "n": 191,
+     "oltre_2": 0.3874,
+     "oltre_5": 0.3403,
+     "oltre_10": 0.288,
+     "percentili": {
+      "p50": 0.0,
+      "p75": 0.1446,
+      "p90": 0.3675,
+      "p95": 0.4149,
+      "p99": 0.6113
+     },
+     "istogramma": {
+      "0-1%": 112,
+      "1-2%": 5,
+      "2-5%": 9,
+      "5-10%": 10,
+      "10-20%": 15,
+      ">20%": 40
+     }
+    },
+    "zoom": {
+     "n": 116,
+     "oltre_2": 0.3534,
+     "oltre_5": 0.2328,
+     "oltre_10": 0.1466,
+     "percentili": {
+      "p50": 0.0,
+      "p75": 0.0407,
+      "p90": 0.1405,
+      "p95": 0.2247,
+      "p99": 0.4259
+     },
+     "istogramma": {
+      "0-1%": 65,
+      "1-2%": 9,
+      "2-5%": 15,
+      "5-10%": 10,
+      "10-20%": 10,
+      ">20%": 7
+     }
+    },
+    "veloci": {
+     "n": 44,
+     "oltre_2": 0.2273,
+     "oltre_5": 0.2273,
+     "oltre_10": 0.1591,
+     "percentili": {
+      "p50": 0.0,
+      "p75": 0.0147,
+      "p90": 0.2563,
+      "p95": 0.4004,
+      "p99": 0.4347
+     },
+     "istogramma": {
+      "0-1%": 31,
+      "1-2%": 3,
+      "2-5%": 0,
+      "5-10%": 3,
+      "10-20%": 2,
+      ">20%": 5
+     }
+    },
+    "tutte_senza_soglia": {
+     "n": 350,
+     "oltre_2": 0.3686,
+     "oltre_5": 0.2971,
+     "oltre_10": 0.2286,
+     "percentili": {
+      "p50": 0.0,
+      "p75": 0.0815,
+      "p90": 0.2955,
+      "p95": 0.3944,
+      "p99": 0.6208
+     },
+     "istogramma": {
+      "0-1%": 206,
+      "1-2%": 14,
+      "2-5%": 26,
+      "5-10%": 24,
+      "10-20%": 28,
+      ">20%": 52
+     }
+    },
+    "inversioni_n": 36,
+    "ritorni_di_precedente_n": 38,
+    "n_base": 414
+   }
+  }
+ },
+ "feb-podcast": {
+  "reel": 6,
+  "minuti": 6.3,
+  "tagli_al_minuto": 21.38,
+  "durata_segmenti_grafica_s": {
+   "mediana": 2.502,
+   "p25": 1.233,
+   "p75": 3.533,
+   "n": 129
+  },
+  "durata_segmenti_piena_s": {
+   "mediana": 0.133,
+   "n": 4
+  },
+  "quota_tempo": {
+   "grafica": 0.992,
+   "piena": 0.001,
+   "light": 0.006
+  },
+  "durata_segmenti_light_s": {
+   "mediana": 0.834,
+   "n": 3
+  },
+  "camera_in_moto_nelle_grafiche": {
+   "mediana": 0.807,
+   "p25": 0.603
+  },
+  "arrivi_in_moto": {
+   "n": 4,
+   "su_segmenti_grafica": 129,
+   "v0_px_s_mediana": 1001.5,
+   "decadimento_90_s_mediana": 0.133,
+   "decadimento_p25_p75": [
+    0.108,
+    0.133
+   ],
+   "spostamento_px_mediana": 405.0
+  },
+  "movimenti": {
+   "n": 617,
+   "durata_mediana_s": 0.133,
+   "durata_p25_p75": [
+    0.133,
+    0.233
+   ],
+   "veloci_n": 2,
+   "veloci_durata_mediana_s": 0.15,
+   "veloci_picco_a_mediana": 0.25,
+   "zoom_in_frac": 0.062,
+   "zoom_out_frac": 0.076,
+   "easing": {
+    "linear": 44,
+    "sine.out": 29,
+    "power1.out": 26,
+    "power2.out": 16,
+    "power1.in": 12,
+    "sine.inOut": 4,
+    "expo.out": 2,
+    "power3.out": 2
+   },
+   "easing_firmata": {
+    "linear": 18,
+    "power2.out": 15,
+    "sine.out": 13,
+    "power1.out": 12,
+    "back.out(2.5)": 10,
+    "power1.in": 7,
+    "back.out(1)": 7,
+    "sine.inOut": 6,
+    "power4.in": 5,
+    "expo.inOut": 5,
+    "power2.inOut": 4,
+    "power3.out": 4,
+    "power4.out": 3,
+    "power1.inOut": 2,
+    "expo.out": 2,
+    "power3.inOut": 1,
+    "power2.in": 1,
+    "power4.inOut": 1,
+    "power3.in": 1,
+    "back.out(1.7)": 1
+   },
+   "easing_firmata_significative": {
+    "power2.out": 9,
+    "power1.out": 8,
+    "sine.out": 7,
+    "linear": 7,
+    "sine.inOut": 5,
+    "power3.out": 3,
+    "back.out(1)": 2,
+    "power1.in": 2,
+    "expo.inOut": 2,
+    "power4.out": 1,
+    "power1.inOut": 1,
+    "power4.inOut": 1,
+    "power4.in": 1,
+    "power3.in": 1,
+    "back.out(2.5)": 1,
+    "expo.out": 1
+   },
+   "overshoot": {
+    "nota": "overshoot = picco oltre il valore finale / spostamento finale, sulla curva con segno (finestra +0,6 s). Valutate: dur >= 0,3 s, spostamento >= 40 px o zoom >= 4%, senza inversioni e senza i tratti che sono la fase di ritorno della mossa precedente.",
+    "valutate": {
+     "n": 52,
+     "oltre_2": 0.3269,
+     "oltre_5": 0.2692,
+     "oltre_10": 0.1154,
+     "percentili": {
+      "p50": 0.0,
+      "p75": 0.0644,
+      "p90": 0.1089,
+      "p95": 0.5039,
+      "p99": 0.8451
+     },
+     "istogramma": {
+      "0-1%": 33,
+      "1-2%": 2,
+      "2-5%": 3,
+      "5-10%": 8,
+      "10-20%": 1,
+      ">20%": 5
+     }
+    },
+    "pan": {
+     "n": 18,
+     "oltre_2": 0.4444,
+     "oltre_5": 0.2778,
+     "oltre_10": 0.1111,
+     "percentili": {
+      "p50": 0.0029,
+      "p75": 0.0583,
+      "p90": 0.1006,
+      "p95": 0.2174,
+      "p99": 0.7031
+     },
+     "istogramma": {
+      "0-1%": 10,
+      "1-2%": 0,
+      "2-5%": 3,
+      "5-10%": 3,
+      "10-20%": 1,
+      ">20%": 1
+     }
+    },
+    "zoom": {
+     "n": 34,
+     "oltre_2": 0.2647,
+     "oltre_5": 0.2647,
+     "oltre_10": 0.1176,
+     "percentili": {
+      "p50": 0.0,
+      "p75": 0.0529,
+      "p90": 0.2251,
+      "p95": 0.4957,
+      "p99": 0.7618
+     },
+     "istogramma": {
+      "0-1%": 23,
+      "1-2%": 2,
+      "2-5%": 0,
+      "5-10%": 5,
+      "10-20%": 0,
+      ">20%": 4
+     }
+    },
+    "veloci": {
+     "n": 0
+    },
+    "tutte_senza_soglia": {
+     "n": 83,
+     "oltre_2": 0.3976,
+     "oltre_5": 0.3373,
+     "oltre_10": 0.2048,
+     "percentili": {
+      "p50": 0.0066,
+      "p75": 0.0849,
+      "p90": 0.2753,
+      "p95": 0.5421,
+      "p99": 0.8849
+     },
+     "istogramma": {
+      "0-1%": 45,
+      "1-2%": 5,
+      "2-5%": 5,
+      "5-10%": 11,
+      "10-20%": 4,
+      ">20%": 13
+     }
+    },
+    "inversioni_n": 21,
+    "ritorni_di_precedente_n": 44,
+    "n_base": 139
+   }
+  }
+ }
+}

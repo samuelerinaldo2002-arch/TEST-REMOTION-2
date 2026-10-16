@@ -1,0 +1,44 @@
+{
+ "id": "C01",
+ "scena": {
+  "t0": 5.6,
+  "t1": 8.75,
+  "frase": "«Lunedì parlo di fitness, martedì di viaggi, venerdì di motivazione.»",
+  "script": "01/10 · 4,7–7,5 s della voce (R8 morbida da O01)",
+  "kallaway": {
+   "reel": 79,
+   "t0": 0.7,
+   "t1": 1.8
+  }
+ },
+ "voto": {
+  "voti": {
+   "movimento": 5,
+   "materiali": 4,
+   "frame": 4,
+   "brand": 5
+  },
+  "template": "TPL.C01 (kw-kit/kit2-tpl-connettori.js)",
+  "scena": "CATALOGO-ANIMAZIONI/ritmo-01 5,6–8,75 s (01/10, «Lunedì parlo di fitness, martedì di viaggi, venerdì di motivazione.»); entra con la transizione morbida dall'anello di O01",
+  "confronto": "_analisi/ritmo/blocco01/K_C01_r79.jpg · N_C01_ritmo01.jpg · K_C01_r79_viaggio.jpg · K_C01_r14_viaggio.jpg · C01_ritmo01_viaggio.jpg · _analisi/ritmo/pop/C01_ritmo01_lun.jpg",
+  "misure": {
+   "viaggio della camera": "1113 px (1,0 schermata) in 0,7 s power1.out: 90% a 0,47 s dalla partenza, picco 3000 px/s, curva misurata sine.out/power1.out, rimbalzo 0,1%",
+   "Kallaway (reel 79 · reel 14)": "808 · 712 px, 90% a 0,42 · 0,71 s, picco 2970 · 2360 px/s, power2.inOut · power1.out, rimbalzo 0",
+   "prima stesura (power2.out 0,55 s, scena a 1,5 schermate)": "1565 px, 90% a 0,30 s, picco 7490 px/s: 2,5 volte Kallaway → scena più vicina e viaggio più lungo",
+   "linea": "parte con la camera e ha la stessa curva: la punta resta in campo; dopo l'arrivo va avanti da sola di tappa in tappa (0,24 s) su «martedì» e «venerdì»",
+   "all'arrivo": "le tre card ci sono già, fuori fuoco; si accendono sulle parole (nodo lime + card a fuoco + tema)",
+   "camera dopo l'arrivo": "ferma, +1,2% sine.out (Kallaway: ferma sul cervello, poi un secondo movimento a 1,8 s per un'altra idea)",
+   "scena": "3,15 s",
+   "pop.py · la card del lunedì (regia 13/10)": "va a fuoco col bordo lime in 0,2 s, scala 0,98 → 1,00, rimbalzo 0% (striscia guardata; prima del fuoco il tracciamento si aggancia alla pill) · K: la card sale e compare, rimbalzo 0% (reel 69)"
+  },
+  "manca": "il viaggio copre 1 schermata contro 0,7 di Kallaway (anello di O01 e fila di tre card 9:16 sono larghi; più vicine si vedrebbero durante la scena prima); i reel sono di esempio per tema, non dell'utente (qui spiegano «di tutto»)",
+  "da_fare": "",
+  "fatto": "template TPL.C01 con la scheda (anche come transizione morbida R8 da un'ancora della scena prima); DOPO in ritmo-clip/C01_dopo.mp4"
+ },
+ "riga": {
+  "stato": "**fatto** (blocco 1)",
+  "template": "TPL.C01 · ritmo-01 5,6–8,75 s (01/10 «Lunedì parlo di fitness, martedì di viaggi, venerdì di motivazione.»), R8 morbida da O01",
+  "numeri": "viaggio 1113 px, 90% a 0,47 s, picco 3000 px/s, power1.out (K 712–808 px, 0,42–0,71 s, 2360–2970 px/s; prima 7490 px/s) · rimbalzo 0 (pop.py, strisce guardate)",
+  "voto": "5·4·4·5"
+ }
+}

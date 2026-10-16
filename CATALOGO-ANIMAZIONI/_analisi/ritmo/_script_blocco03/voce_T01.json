@@ -1,0 +1,29 @@
+{
+ "id": "T01",
+ "scena": {"t0": 5.95, "t1": 11.0, "frase": "«Ci sono solo tre emozioni che tengono qualcuno davanti a un video fino alla fine.»", "script": "07/10 · 0–4,5 s della voce", "kallaway": {"reel": 79, "t0": 0.0, "t1": 1.6}},
+ "voto": {
+  "voti": {"movimento": 5, "materiali": 5, "frame": 4, "brand": 5},
+  "template": "TPL.T01 (kw-kit/kit2-tpl-testo.js), sopra tplTitoloK come tutte le scene",
+  "scena": "CATALOGO-ANIMAZIONI/ritmo-03 5,95–11,0 s (07/10, «Ci sono solo tre emozioni che tengono qualcuno davanti a un video fino alla fine.»): il titolo «Solo tre emozioni / fino alla fine» si scrive sulle parole dette; il tuo reel vero cambia clip su «Solo», «tre», «emozioni»; su «qualcuno» la sagoma di profilo davanti al reel; la barra di Instagram corre da «tengono» a «fine» e si accende",
+  "confronto": "_analisi/ritmo/blocco03/K_T01_r79.jpg · K_T01_r1.jpg · D2_a.jpg (DOPO) · _analisi/ritmo/pop/T01_ritmo03_chi.jpg",
+  "misure": {
+   "titolo (tplTitoloK → titleW)": "ogni parola sul suo tempo nella voce (Solo 6,42 · tre 6,68 · emozioni 7,15 · fino 9,95 · alla 10,18 · fine 10,32), grigia e sfocata 9 px → bianca e nitida in 0,2 s power2.out · K reel 79: ogni parola quando è detta, 0,17–0,21 s ease-out, 8–10 px",
+   "cambi di clip nel reel": "tagli secchi di 1 fotogramma su «Solo», «tre», «emozioni» (0,27 e 0,47 s fra i cambi) · K reel 79: 3 cambi in 0,5 s (0,17 · 0,33 · 0,5 s) sulle parole",
+   "movimento principale (bordo alto del reel, deriva.py non regge: il video dentro cambia)": "arrivo dal basso 120 px dal primo fotogramma, 90% in 0,25 s, expo.out, fermo a 0,45 s (y 520 → 400) · K reel 79: camera ferma sulla card fino alla corsa verso il cervello a 0,83 s",
+   "sagoma (pop.py sui soli pixel bianchi)": "0,97 → 1,00 in 0,03 s visibili (popK 0,8 → 1 in 0,15 s), rimbalzo 0%, guarda verso il reel",
+   "barra di avanzamento": "lineare da «tengono» a «fine» (1,9 s), poi lime con l'alone (R6)",
+   "proporzioni (ingombro.py)": "reel 0,45 della larghezza, alto 870 px (y 400–1270), con la sagoma 0,57 · K reel 79: card orizzontale 0,68 (y 258–1291 col titolo)",
+   "rimbalzo": "0",
+   "scena": "5,05 s"
+  },
+  "manca": "il reel è verticale (9:16) e quindi più stretto della card orizzontale di Kallaway: a sinistra e a destra resta fondo finché non entra la sagoma; il titolo si scrive in 4 s perché segue la voce (Kallaway dice il titolo in 0,8 s)",
+  "da_fare": "",
+  "fatto": "template TPL.T01 con la scheda (kit2-tpl-testo.js); DOPO in ritmo-clip/T01_dopo.mp4"
+ },
+ "riga": {
+  "stato": "**fatto** (blocco 3)",
+  "template": "TPL.T01 · ritmo-03 5,95–11,0 s (07/10 «Ci sono solo tre emozioni che tengono qualcuno davanti a un video fino alla fine.»)",
+  "numeri": "parole sulla voce, 9 px → nitide in 0,2 s (K r79 0,17–0,21 s) · 3 cambi di clip secchi sulle parole (K r79 3 cambi in 0,5 s) · arrivo 120 px, 90% in 0,25 s expo.out, poi fermo · sagoma senza rimbalzo (pop.py) · barra lineare 1,9 s · reel 0,45 della larghezza (K r79 card orizzontale 0,68)",
+  "voto": "5·5·4·5"
+ }
+}

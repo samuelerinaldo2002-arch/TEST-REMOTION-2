@@ -1,0 +1,48 @@
+{
+ "id": "U02",
+ "scena": {
+  "t0": 13.75,
+  "t1": 19.15,
+  "frase": "«…in un profilo perfettamente ottimizzato che, ti garantisco, ti porterà più follower.»",
+  "script": "05/10 · 4,3–9,2 s della voce (seconda metà della frase d'apertura: il risultato)",
+  "kallaway": {
+   "reel": 3,
+   "t0": 5.0,
+   "t1": 7.6
+  }
+ },
+ "voto": {
+  "voti": {
+   "movimento": 5,
+   "materiali": 5,
+   "frame": 5,
+   "brand": 5
+  },
+  "template": "TPL.U02 (kw-kit/kit2-tpl-ui.js)",
+  "scena": "CATALOGO-ANIMAZIONI/ritmo-01 13,75–19,15 s (05/10, «…in un profilo perfettamente ottimizzato che, ti garantisco, ti porterà più follower.»): il tuo profilo vero, i tuoi reel che si muovono nella griglia",
+  "confronto": "_analisi/ritmo/blocco01/K_U02_r3.jpg · K_U02_r9.jpg · _analisi/ritmo/deriva/K_U02_r3.jpg · U02_ritmo01.jpg · U02_ritmo01_colpo.jpg · _analisi/ritmo/pop/U02_ritmo01_bio_lime.jpg · U02_ritmo01_pill_lime.jpg",
+  "misure": {
+   "al taglio": "il telefono col profilo è già pieno (foto, bio, griglia coi reel in movimento); il numero parte da 245",
+   "movimento principale": "arrivo di lato 175 px: 148 px/s a 0,25 s → 0,6 a 1 s, expo.out (deriva.py, telefono giallo nel pannello)",
+   "Kallaway (reel 3)": "arrivo di lato −175 px power2.out: 241 → 35 px/s a 0,25/1 s; poi, quando il numero arriva, colpo di zoom +19,3% (+18% in ~0,8 s)",
+   "colpo sul conteggio": "+19,1% in 1,3 s (+18,7% a 1 s), power3.out, col numero fermo sullo schermo (Kallaway +19,3%)",
+   "prima stesura (spinta R4 +9% in 2,4 s)": "+8,8% in 3 s: la misura del reel 3 dice arrivo + colpo, non deriva lunga → cambiato",
+   "conteggio": "245 → 1.000 lineare in 0,94 s su «porterà più follower», la pill lime si accende all'arrivo (Kallaway 2K → 100K lineare in ~1,2 s, pill rossa all'arrivo)",
+   "accenti": "riquadro lime sulla bio su «ottimizzato»; il conteggio con la pill",
+   "rimbalzo": "0 (pop.py, strisce guardate)",
+   "scena": "5,4 s",
+   "telefono (regia 13/10)": "0,555 della larghezza prima del colpo (600 px) e 0,66 dopo (717 px); bordo alto a y 420, dopo il colpo a ~368 (sotto il titolo); il fondo sfuma in 150 px prima di y 1290: si vedono numeri, bio, bottoni e la prima riga della griglia · K (reel 3): 0,555 (598 px) prima del colpo, 0,65–0,66 dopo, il fondo sparisce dietro la faccia · prima: 0,376 (406 px), intero",
+   "pop.py · il riquadro lime sulla bio (regia 13/10, solo i pixel lime)": "compare a 1,03 e si stringe a 1,00 in 0,1 s (highlight 1,1 → 1 in 0,28 s, power2.out con KW_RITMO), mai sotto 1 · K: nessun rimbalzo visibile nelle entrate (8 su 8)",
+   "pop.py · la pill dei follower (regia 13/10, solo i pixel lime)": "0,93 → 1,00 in 0,1 s (0,8 → 1 in 0,18 s power2.out, dentro il colpo di zoom), rimbalzo 0% · K: badge 0,66 → 1,00 in 0,13 s, rimbalzo 0% (reel 1)"
+  },
+  "manca": "1.000 è un esempio (245 sono i follower veri dell'utente oggi): in un reel va messo un numero che si può dire; l'arrivo frena un po' più forte di Kallaway (expo.out contro power2.out); dopo il colpo il bordo alto del telefono resta a ~15 px dalla seconda riga del titolo",
+  "da_fare": "",
+  "fatto": "template TPL.U02 con la scheda (arrivo + colpo sul conteggio, oppure spinta); tplTitoloK (uscita del titolo finita prima del taglio) in kit2-template.js; DOPO in ritmo-clip/U02_dopo.mp4 · regia 13/10: telefono nella proporzione del reel 3 (opzioni scala / alto / sfuma, default nuovo solo con KW_RITMO; apertura con la posa in coda)"
+ },
+ "riga": {
+  "stato": "**fatto** (blocco 1)",
+  "template": "TPL.U02 · ritmo-01 13,75–19,15 s (05/10 «…un profilo perfettamente ottimizzato… ti porterà più follower.»)",
+  "numeri": "telefono 0,555 → 0,66 della larghezza col colpo (K r3 0,555 → 0,65; prima 0,376) · arrivo 175 px expo.out 148 → 0,6 px/s (K −175 px 241 → 35) · colpo +19,1% (K +19,3%) · conteggio lineare 0,94 s (K ~1,2 s) · riquadro e pill senza rimbalzo (pop.py)",
+  "voto": "5·5·5·5"
+ }
+}

@@ -1,0 +1,268 @@
+{
+ "voce": "e07_r98",
+ "sorgente": "Kallaway reel 98",
+ "fps": 23.976,
+ "t_taglio": 36.62,
+ "f0": 36.662,
+ "durata_misurata": 0.751,
+ "nostro": false,
+ "maschera": [
+  [
+   90.0,
+   480.0,
+   900.0,
+   620.0
+  ]
+ ],
+ "escludi": [],
+ "scala_finale_%": -0.01,
+ "scala_a_1s_%": null,
+ "scala_a_2s_%": null,
+ "centro_finale_px": [
+  0.1,
+  -160.3
+ ],
+ "angoli_finale_px": 160.1,
+ "vel_angoli_px_s": {
+  "0.25": 278.08
+ },
+ "vel_scala_%_s": {
+  "0.25": -0.06
+ },
+ "curva": "power1.out",
+ "err_curva": 0.0336,
+ "curve_vicine": {
+  "power1.out": 0.0336,
+  "sine.out": 0.0593,
+  "power2.out": 0.0862,
+  "power3.out": 0.141
+ },
+ "inlier_mediana": 0.955,
+ "fotogrammi_falliti": 53,
+ "serie": [
+  {
+   "t": 0.0,
+   "scala_%": 0.0,
+   "rot": 0.0,
+   "dx": 0.0,
+   "dy": 0.0,
+   "angoli_px": 0.0,
+   "inlier": 1.0
+  },
+  {
+   "t": 0.0417,
+   "scala_%": -0.001,
+   "rot": 0.009,
+   "dx": -0.0,
+   "dy": -18.93,
+   "angoli_px": 20.85,
+   "inlier": 0.9981173810048736
+  },
+  {
+   "t": 0.0834,
+   "scala_%": -0.002,
+   "rot": 0.01,
+   "dx": -0.01,
+   "dy": -39.85,
+   "angoli_px": 41.04,
+   "inlier": 0.9971080853534758
+  },
+  {
+   "t": 0.1251,
+   "scala_%": -0.006,
+   "rot": -0.005,
+   "dx": -0.0,
+   "dy": -57.9,
+   "angoli_px": 58.21,
+   "inlier": 0.9898489269505113
+  },
+  {
+   "t": 0.1668,
+   "scala_%": -0.006,
+   "rot": 0.005,
+   "dx": -0.0,
+   "dy": -72.4,
+   "angoli_px": 72.72,
+   "inlier": 0.987161538847783
+  },
+  {
+   "t": 0.2085,
+   "scala_%": -0.011,
+   "rot": 0.001,
+   "dx": 0.01,
+   "dy": -84.53,
+   "angoli_px": 84.69,
+   "inlier": 0.9770599968906691
+  },
+  {
+   "t": 0.2503,
+   "scala_%": -0.014,
+   "rot": 0.004,
+   "dx": 0.0,
+   "dy": -94.97,
+   "angoli_px": 95.19,
+   "inlier": 0.9623356639939872
+  },
+  {
+   "t": 0.292,
+   "scala_%": -0.015,
+   "rot": -0.001,
+   "dx": 0.01,
+   "dy": -104.13,
+   "angoli_px": 104.22,
+   "inlier": 0.9618945108228593
+  },
+  {
+   "t": 0.3337,
+   "scala_%": -0.024,
+   "rot": -0.001,
+   "dx": 0.01,
+   "dy": -112.27,
+   "angoli_px": 112.25,
+   "inlier": 0.9557868352605438
+  },
+  {
+   "t": 0.3754,
+   "scala_%": -0.021,
+   "rot": 0.003,
+   "dx": 0.01,
+   "dy": -119.4,
+   "angoli_px": 119.5,
+   "inlier": 0.9493857769585204
+  },
+  {
+   "t": 0.4171,
+   "scala_%": -0.024,
+   "rot": -0.008,
+   "dx": 0.02,
+   "dy": -125.93,
+   "angoli_px": 125.88,
+   "inlier": 0.9549697745249829
+  },
+  {
+   "t": 0.4588,
+   "scala_%": -0.019,
+   "rot": 0.006,
+   "dx": 0.02,
+   "dy": -131.76,
+   "angoli_px": 131.62,
+   "inlier": 0.9436459635366214
+  },
+  {
+   "t": 0.5005,
+   "scala_%": -0.02,
+   "rot": 0.002,
+   "dx": 0.02,
+   "dy": -137.01,
+   "angoli_px": 136.9,
+   "inlier": 0.9371150229587102
+  },
+  {
+   "t": 0.5422,
+   "scala_%": -0.016,
+   "rot": 0.006,
+   "dx": 0.04,
+   "dy": -141.88,
+   "angoli_px": 141.72,
+   "inlier": 0.9138405459961112
+  },
+  {
+   "t": 0.5839,
+   "scala_%": -0.013,
+   "rot": 0.014,
+   "dx": 0.04,
+   "dy": -146.32,
+   "angoli_px": 146.18,
+   "inlier": 0.8902552154745101
+  },
+  {
+   "t": 0.6256,
+   "scala_%": -0.009,
+   "rot": 0.002,
+   "dx": 0.05,
+   "dy": -150.24,
+   "angoli_px": 149.99,
+   "inlier": 0.8678171909085617
+  },
+  {
+   "t": 0.6673,
+   "scala_%": -0.004,
+   "rot": 0.001,
+   "dx": 0.06,
+   "dy": -153.93,
+   "angoli_px": 153.71,
+   "inlier": 0.8422027588490733
+  },
+  {
+   "t": 0.709,
+   "scala_%": -0.0,
+   "rot": 0.007,
+   "dx": 0.06,
+   "dy": -157.26,
+   "angoli_px": 157.11,
+   "inlier": 0.8200209042832872
+  },
+  {
+   "t": 0.7508,
+   "scala_%": -0.012,
+   "rot": 0.004,
+   "dx": 0.15,
+   "dy": -160.33,
+   "angoli_px": 160.1,
+   "inlier": 0.8127864167327303
+  },
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null
+ ]
+}

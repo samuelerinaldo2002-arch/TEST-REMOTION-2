@@ -1,0 +1,28 @@
+{
+ "id": "D06",
+ "scena": {"t0": 51.2, "t1": 55.75, "frase": "«Ecco come pianifici 30 giorni di contenuti in meno di 30 secondi.»", "script": "15/10 · 35,4–39,4 s della voce (R8 morbida da K16: la camera scorre di lato)", "kallaway": {"reel": 24, "t0": 32.734, "t1": 36.4}},
+ "voto": {
+  "voti": {"movimento": 5, "materiali": 5, "frame": 5, "brand": 5},
+  "template": "TPL.D06 (kw-kit/kit2-tpl-dati.js)",
+  "scena": "CATALOGO-ANIMAZIONI/ritmo-02 51,2–55,75 s (15/10, «Ecco come pianifici 30 giorni di contenuti in meno di 30 secondi.»): la camera scorre di lato dalla settimana al lettore col tuo reel vero; sotto la timeline a 5 segmenti (i passi del reel: volume, suddivisione, filoni, script, calendario) si riempie col tempo 0:00 → 0:28 / 0:30 e i capitoli si accendono quando la testina li passa; il tempo diventa lime su «secondi»",
+  "confronto": "_analisi/ritmo/blocco02/K_D06_r24.jpg · K_D06_r115.jpg · D06_ritmo02_pan_viaggio.jpg · _analisi/ritmo/pop/D06_ritmo02_capitolo.jpg",
+  "misure": {
+   "al taglio (R8 morbida, viaggio.py)": "la camera scorre di lato dalla settimana: 1146 px, 90% in 0,53 s, picco 2337 px/s, sine.out, rimbalzo 0 · K reel 9 (la card che entra di lato, già usata per D01): 736 px, 0,58 s, 1972 px/s",
+   "movimento principale (la testina)": "lineare dal primo fotogramma: +31,5 px ogni 0,1 s costanti fino a 53,95 s (2,7 s), il contatore insieme 0:00 → 0:28 · K reel 24: il tempo «12:20 / 22:20» corre e i segmenti si colorano in ordine; reel 115: la barra a segmenti sotto le clip",
+   "pop.py · il capitolo «Filoni» (solo i pixel lime)": "il bordo lime compare in 0,15 s a scala 1,00, rimbalzo 0%",
+   "proporzioni (ingombro.py)": "lettore + capitoli + timeline 0,82 della larghezza, y 305–1252 · K reel 24: lettore + barra 0,74",
+   "accento": "il tempo diventa lime con un bagliore su «secondi»",
+   "rimbalzo": "0",
+   "scena": "4,55 s"
+  },
+  "manca": "lo scorrimento è più lungo di quello misurato (1146 contro 736 px): la scena dopo può stare più vicina; nel lettore c'è un tuo reel d'esempio (in un reel vero: il reel stesso o il passo detto)",
+  "da_fare": "",
+  "fatto": "template TPL.D06 con la scheda (kit2-tpl-dati.js); R8 con tplPan dalla posa di TPL.K16; DOPO in ritmo-clip/D06_dopo.mp4"
+ },
+ "riga": {
+  "stato": "**fatto** (blocco 2)",
+  "template": "TPL.D06 · ritmo-02 51,2–55,75 s (15/10 «Ecco come pianifici 30 giorni di contenuti in meno di 30 secondi.»), R8 morbida da K16 (scorre di lato)",
+  "numeri": "testina lineare dal primo fotogramma, 2,7 s, contatore 0:00 → 0:28 (K r24 tempo che corre, segmenti in ordine) · scorrimento 1146 px, 90% in 0,53 s, picco 2337 px/s sine.out (K r9 736 px, 0,58 s, 1972 px/s) · capitoli senza rimbalzo (pop.py) · 0,82 della larghezza (K r24 0,74)",
+  "voto": "5·5·5·5"
+ }
+}

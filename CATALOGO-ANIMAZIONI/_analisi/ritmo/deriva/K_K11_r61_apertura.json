@@ -1,0 +1,202 @@
+{
+ "voce": "K_K11_r61_apertura",
+ "sorgente": "Kallaway reel 61",
+ "fps": 24.0,
+ "t_taglio": 9.333,
+ "f0": 9.375,
+ "durata_misurata": 0.875,
+ "nostro": false,
+ "maschera": [
+  [
+   0.0,
+   250.0,
+   1080.0,
+   1000.0
+  ]
+ ],
+ "escludi": [],
+ "scala_finale_%": -100.0,
+ "scala_a_1s_%": null,
+ "scala_a_2s_%": null,
+ "centro_finale_px": [
+  191.9,
+  -92.1
+ ],
+ "angoli_finale_px": 713.6,
+ "vel_angoli_px_s": {
+  "0.25": 1362.0
+ },
+ "vel_scala_%_s": {
+  "0.25": -186.47
+ },
+ "curva": "power2.inOut",
+ "err_curva": 0.3593,
+ "curve_vicine": {
+  "power2.inOut": 0.3593,
+  "power1.inOut": 0.3598,
+  "sine.inOut": 0.3618,
+  "linear": 0.3692
+ },
+ "inlier_mediana": 45.0,
+ "fotogrammi_falliti": 5,
+ "serie": [
+  {
+   "t": 0.0,
+   "scala_%": 0.0,
+   "rot": 0.0,
+   "dx": 0.0,
+   "dy": 0.0,
+   "angoli_px": 0.0,
+   "inlier": 1590
+  },
+  {
+   "t": 0.0417,
+   "scala_%": 0.0,
+   "rot": 0.0,
+   "dx": 0.0,
+   "dy": 0.0,
+   "angoli_px": 0.0,
+   "inlier": 1210
+  },
+  {
+   "t": 0.0833,
+   "scala_%": 0.0,
+   "rot": 0.0,
+   "dx": 0.0,
+   "dy": 0.0,
+   "angoli_px": 0.0,
+   "inlier": 994
+  },
+  {
+   "t": 0.125,
+   "scala_%": 0.0,
+   "rot": 0.0,
+   "dx": 0.0,
+   "dy": 0.0,
+   "angoli_px": 0.0,
+   "inlier": 428
+  },
+  {
+   "t": 0.1667,
+   "scala_%": -27.408,
+   "rot": -0.048,
+   "dx": 0.38,
+   "dy": 157.67,
+   "angoli_px": 290.59,
+   "inlier": 34
+  },
+  {
+   "t": 0.2083,
+   "scala_%": -31.17,
+   "rot": -0.039,
+   "dx": 0.25,
+   "dy": 179.3,
+   "angoli_px": 330.46,
+   "inlier": 29
+  },
+  {
+   "t": 0.25,
+   "scala_%": 0.0,
+   "rot": 0.0,
+   "dx": 0.0,
+   "dy": 0.0,
+   "angoli_px": 0.0,
+   "inlier": 122
+  },
+  {
+   "t": 0.2917,
+   "scala_%": 0.0,
+   "rot": 0.0,
+   "dx": 0.0,
+   "dy": 0.0,
+   "angoli_px": 0.0,
+   "inlier": 196
+  },
+  {
+   "t": 0.3333,
+   "scala_%": 0.0,
+   "rot": 0.0,
+   "dx": 0.0,
+   "dy": 0.0,
+   "angoli_px": 0.0,
+   "inlier": 47
+  },
+  {
+   "t": 0.375,
+   "scala_%": 0.0,
+   "rot": 0.0,
+   "dx": 0.0,
+   "dy": 0.0,
+   "angoli_px": 0.0,
+   "inlier": 45
+  },
+  {
+   "t": 0.4167,
+   "scala_%": -100.0,
+   "rot": 0.0,
+   "dx": -111.2,
+   "dy": 33.44,
+   "angoli_px": 738.18,
+   "inlier": 32
+  },
+  {
+   "t": 0.4583,
+   "scala_%": -100.0,
+   "rot": 0.0,
+   "dx": 105.97,
+   "dy": 121.96,
+   "angoli_px": 770.81,
+   "inlier": 26
+  },
+  {
+   "t": 0.5,
+   "scala_%": -100.0,
+   "rot": 29.711,
+   "dx": 106.04,
+   "dy": 36.28,
+   "angoli_px": 738.85,
+   "inlier": 20
+  },
+  {
+   "t": 0.5417,
+   "scala_%": -100.0,
+   "rot": -60.794,
+   "dx": -108.63,
+   "dy": -178.04,
+   "angoli_px": 692.91,
+   "inlier": 25
+  },
+  {
+   "t": 0.5833,
+   "scala_%": -100.0,
+   "rot": 0.0,
+   "dx": -108.53,
+   "dy": -178.04,
+   "angoli_px": 692.9,
+   "inlier": 103
+  },
+  null,
+  null,
+  null,
+  null,
+  null,
+  {
+   "t": 0.8333,
+   "scala_%": 0.0,
+   "rot": 0.0,
+   "dx": 0.0,
+   "dy": 0.0,
+   "angoli_px": 0.0,
+   "inlier": 8
+  },
+  {
+   "t": 0.875,
+   "scala_%": -100.0,
+   "rot": -150.108,
+   "dx": 191.9,
+   "dy": -92.09,
+   "angoli_px": 713.6,
+   "inlier": 25
+  }
+ ]
+}

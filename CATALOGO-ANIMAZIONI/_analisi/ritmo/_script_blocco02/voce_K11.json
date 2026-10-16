@@ -1,0 +1,29 @@
+{
+ "id": "K11",
+ "scena": {"t0": 9.75, "t1": 13.6, "frase": "«Non lo è. È l'eccezione mostrata in continuazione.»", "script": "14/10 · 14,5–18,0 s della voce", "kallaway": {"reel": 61, "t0": 9.333, "t1": 11.9}},
+ "voto": {
+  "voti": {"movimento": 5, "materiali": 5, "frame": 5, "brand": 4},
+  "template": "TPL.K11 (kw-kit/kit2-tpl-camera.js)",
+  "scena": "CATALOGO-ANIMAZIONI/ritmo-02 9,75–13,6 s (14/10, «Non lo è. È l'eccezione mostrata in continuazione.»): il muro di reel veri si apre al taglio, l'eccezione si accende col badge «1M», su «mostrata» il muro scorre come una slot e si ferma su altre eccezioni accese",
+  "confronto": "_analisi/ritmo/blocco02/K_K11_r61.jpg · K_K11_r90.jpg · K_K11_r61_moto.json · K11_ritmo02_moto.json · _analisi/ritmo/pop/K11_ritmo02_eccezione.jpg",
+  "misure": {
+   "al taglio": "il muro c'è già (riga ravvicinata); le eccezioni delle righe d'arrivo sono già accese fuori campo",
+   "movimento principale (moto.py)": "apertura: movimento 9,75 → 10,1 s (0,35 s), scia 0,27 s · K reel 61: 9,33 → 9,75 s (0,42 s), scia 0,375 s",
+   "scorrimento (moto.py)": "0,6 s (11,77 → 12,37), scia 0,43 s, poi ferma (+1%) · K reel 61: 10,25 → 10,79 s (0,54 s)",
+   "accento": "l'eccezione si accende su «eccezione»: bordo lime + alone + badge «1M» in 0,25 s (K reel 61: la selezione si accende in ~0,25 s)",
+   "pop.py · la miniatura accesa (solo i pixel lime)": "compare a 0,13 s e resta a scala 1,00 (0,98 → 1,00), rimbalzo 0% · K: la selezione verde non cambia scala",
+   "proporzioni (ingombro.py)": "muro a tutto schermo, 0,97 della larghezza (esce dai bordi), da sotto il titolo a y 1288 · K reel 61: 0,98, a tutto schermo senza titolo",
+   "rimbalzo": "0 (la .spot() del kit con back.out non si usa)",
+   "scena": "3,85 s"
+  },
+  "manca": "Kallaway toglie il titolo e mostra il muro a tutto schermo (fondo chiaro): qui il titolo resta su una fascia scura nell'HUD; la selezione di Kallaway è un blocco 3 × 3, qui una miniatura sola (l'eccezione) più quelle che tornano dopo lo scorrimento",
+  "da_fare": "",
+  "fatto": "template TPL.K11 con la scheda (nuovo file kit2-tpl-camera.js, con tplFasciaTitolo); build.cjs mette l'atlante del muro nel pool anche per TPL.K11(; DOPO in ritmo-clip/K11_dopo.mp4"
+ },
+ "riga": {
+  "stato": "**fatto** (blocco 2)",
+  "template": "TPL.K11 · ritmo-02 9,75–13,6 s (14/10 «Non lo è. È l'eccezione mostrata in continuazione.»)",
+  "numeri": "apertura 0,35 s con la scia 0,27 s (K r61 0,42 s, scia 0,375 s) · scorrimento 0,6 s (K r61 0,54 s) · eccezione accesa in 0,25 s a scala fissa (pop.py, K ~0,25 s) · muro a tutto schermo 0,97 della larghezza (K 0,98)",
+  "voto": "5·5·5·4"
+ }
+}

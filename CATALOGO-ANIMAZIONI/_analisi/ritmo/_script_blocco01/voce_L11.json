@@ -1,0 +1,46 @@
+{
+ "id": "L11",
+ "scena": {
+  "t0": 31.45,
+  "t1": 38.0,
+  "frase": "«La prossima volta che carichi un video, prima di pubblicarlo, salvalo come bozza. Poi, duplicalo.»",
+  "script": "16/10 · 6,5–12,8 s della voce",
+  "kallaway": {
+   "reel": 124,
+   "t0": 78.33,
+   "t1": 81.5
+  }
+ },
+ "voto": {
+  "voti": {
+   "movimento": 5,
+   "materiali": 5,
+   "frame": 5,
+   "brand": 5
+  },
+  "template": "TPL.L11 (kw-kit/kit2-tpl-liste.js)",
+  "scena": "CATALOGO-ANIMAZIONI/ritmo-01 31,45–38,0 s (16/10): la copertina vera di un tuo reel corre di tappa in tappa (carica → salva in bozza → duplica), «Pubblica ×2» resta sfocata (la dicono le scene dopo)",
+  "confronto": "_analisi/ritmo/blocco01/K_L11_r124.jpg · K_L11_r14.jpg · K_L11_r124_linea_cambio.json · L11_ritmo01_linea_cambio.json · _analisi/ritmo/deriva/L11_ritmo01.jpg · _analisi/ritmo/pop/L11_ritmo01_video.jpg · L11_ritmo01_tappa2_lime.jpg",
+  "misure": {
+   "al taglio": "le 4 tappe con le etichette sfocate ci sono già; il tracciato (con i due tratti di bordo) si disegna dal taglio",
+   "tracciato": "10% → 90% in 0,43 s (da +0,30 a +0,73 s dopo il taglio), 1,0 s in tutto coi due tratti, una curva power1.inOut su tutta la lunghezza (cambio.py, pixel bianchi)",
+   "Kallaway (reel 124)": "10% → 90% in 0,50 s (da +0,2 a +0,72 s dopo il taglio), tappe già in scena, camera ferma",
+   "camera": "ferma: +0,35% in 1,4 s, angoli 2 px (deriva.py, tappe gialle nel pannello), poi tenuta +1,2% (Kallaway ferma)",
+   "accenti": "il tuo video arriva sulla prima tappa su «carichi», corre alla seconda su «bozza» e alla terza su «duplicalo» (0,7 s power2.inOut, il tratto fatto si accende di lime), poi si sdoppia",
+   "rimbalzo": "0 (pop.py, strisce guardate)",
+   "scena": "6,55 s (due frasi della stessa procedura: poco sopra i 6 s)",
+   "area (regia 13/10)": "il tracciato attraversa tutta la larghezza (entra dal bordo sinistro in alto, esce dal destro in basso); tappe, etichette e il tuo video da x ~90 a ~980 e da y ~410 a ~1245 · prima: S verticale stretta da x ~150 a ~840, y ~430–1160 · scala 0,915 (prima 0,805): etichette 46 px (37), video 165 × 293 px (135 × 241), tappe Ø 92 px (74) · K (reel 124): la curva va da bordo a bordo con 7 tappe",
+   "pop.py · il tuo video che arriva sulla prima tappa (regia 13/10)": "0,90 → 1,00 in 0,13 s (0,8 → 1 in 0,18 s power2.out), rimbalzo 0% · K: badge 0,66 → 1,00 in 0,13 s, rimbalzo 0% (reel 1)",
+   "pop.py · la tappa «Salva in bozza» che si accende (regia 13/10, solo i pixel lime)": "colpo dall'alto 1,14 → 1,00 in 0,25 s (1,3 → 1 power2.out con KW_RITMO, era back.out(2,6)), mai sotto 1: il 14% di pop.py è la partenza sopra la scala finale, non un rimbalzo"
+  },
+  "manca": "la scena dura 6,55 s (una procedura in due frasi); 4 tappe contro le 7 di Kallaway: fra un'etichetta e l'altra resta un po' di fondo; l'accensione delle tappe (1,3 → 1) è un colpo più grande del pop R5 (0,8 → 1)",
+  "da_fare": "",
+  "fatto": "template TPL.L11 con la scheda; metroPath.show(t, dur, piene) con l'opzione in coda (tappe già in scena, default di prima); DOPO in ritmo-clip/L11_dopo.mp4 · regia 13/10: layout «diagonale» (default con KW_RITMO) che riempie l'area utile, tratti di bordo, opzioni layout / area / durTracciato"
+ },
+ "riga": {
+  "stato": "**fatto** (blocco 1)",
+  "template": "TPL.L11 · ritmo-01 31,45–38,0 s (16/10 «…salvalo come bozza. Poi, duplicalo.»)",
+  "numeri": "tracciato da bordo a bordo, 10→90% in 0,43 s dal taglio (K r124 0,50 s) · area x 90–980, y 410–1245 (prima x 150–840, y 430–1160), scala 0,915 (prima 0,805) · camera ferma (+0,35%) · video che arriva 0,9 → 1 in 0,13 s senza rimbalzo (pop.py)",
+  "voto": "5·5·5·5"
+ }
+}

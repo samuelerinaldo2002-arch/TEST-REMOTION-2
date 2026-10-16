@@ -1,0 +1,29 @@
+{
+ "id": "O24",
+ "scena": {"t0": 27.2, "t1": 31.15, "frase": "«Scegli un volume. Uno al giorno vuol dire 30 video al mese.»", "script": "15/10 · 4,4–7,9 s della voce", "kallaway": {"reel": 67, "t0": 52.75, "t1": 56.1}},
+ "voto": {
+  "voti": {"movimento": 5, "materiali": 5, "frame": 5, "brand": 5},
+  "template": "TPL.O24 (kw-kit/kit2-tpl-oggetti.js)",
+  "scena": "CATALOGO-ANIMAZIONI/ritmo-02 27,2–31,15 s (15/10, «Scegli un volume. Uno al giorno vuol dire 30 video al mese.»): il mese vuoto arriva su «Scegli un volume», su «Uno» un tuo reel vero per giorno (30 mini-clip dei tuoi 10 reel di ottobre), il contatore conta 0 → 30 video e si accende su «video»",
+  "confronto": "_analisi/ritmo/blocco02/K_O24_r67.jpg · K_O24_r94.jpg · K_O24_r139.jpg · _analisi/ritmo/deriva/O24_ritmo02.jpg · O24_ritmo02_v.jpg · _analisi/ritmo/pop/O24_ritmo02_giorno2.jpg",
+  "misure": {
+   "al taglio": "il mese vuoto (vetro, 30 giorni) e il contatore a 0 già in scena",
+   "movimento principale": "arrivo dal basso: 101 px dopo il primo fotogramma, 161 → 2 px/s a 0,25 / 1 s, expo.out (deriva.py, maschera sul calendario, pannello giallo); poi ferma",
+   "riempimento": "un reel per giorno ogni 0,04 s, in ordine: 10 / 50 / 90% del mese a 28,70 / 29,17 / 29,63 s (lineare, 1,2 s in tutto); il contatore conta insieme · K reel 67: 31 giorni accesi in ~1,1 s, lineari (~0,037 s a giorno)",
+   "pop.py · un giorno (il reel del 2)": "entra a +0,10 s a 0,96 e si ferma a 1,00 in 0,13 s, rimbalzo 0% (popK 0,8 → 1 in 0,15 s; prima back.out(2,2) da 0,5)",
+   "proporzioni (ingombro.py)": "calendario largo 0,78 della larghezza, y 303–1221 (5 righe: mese generico che parte di lunedì) · K reel 67: ~0,7 · prima stesura con Novembre (6 righe): 0,69",
+   "accento": "il contatore diventa lime su «video»",
+   "rimbalzo": "0",
+   "scena": "3,95 s"
+  },
+  "manca": "il riempimento parte su «Uno» (1,37 s dopo il taglio, mentre si dice «Scegli un volume»): in Kallaway parte ~0,3 s dopo l'arrivo; con 30 video nella composizione il render è più lento (44 video in tutto, 3,5 min per 31 s)",
+  "da_fare": "",
+  "fatto": "template TPL.O24 con la scheda; 30 mini-clip dei reel dell'utente in ritmo-02/assets/clips/cal (o01–o30, 180 × 320, 5 s); DOPO in ritmo-clip/O24_dopo.mp4"
+ },
+ "riga": {
+  "stato": "**fatto** (blocco 2)",
+  "template": "TPL.O24 · ritmo-02 27,2–31,15 s (15/10 «Scegli un volume. Uno al giorno vuol dire 30 video al mese.»)",
+  "numeri": "30 reel veri dell'utente in 1,2 s, 0,04 s a giorno, lineare (K r67 31 giorni in ~1,1 s) · ogni reel 0,96 → 1 in 0,13 s senza rimbalzo (pop.py; prima back.out da 0,5) · arrivo 140 px expo.out 161 → 2 px/s · calendario 0,78 della larghezza (K r67 ~0,7)",
+  "voto": "5·5·5·5"
+ }
+}

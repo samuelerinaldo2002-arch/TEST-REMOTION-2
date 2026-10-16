@@ -1,0 +1,30 @@
+{
+ "id": "F04",
+ "scena": {"t0": 13.6, "t1": 17.3, "frase": "«Ma da quel momento ogni video sotto quella soglia sembra un fallimento.»", "script": "14/10 · 18,4–21,7 s della voce (R8 morbida da K11: zoom-through nell'eccezione)", "kallaway": {"reel": 54, "t0": 40.5, "t1": 45.0}},
+ "voto": {
+  "voti": {"movimento": 5, "materiali": 5, "frame": 4, "brand": 5},
+  "template": "TPL.F04 (kw-kit/kit2-tpl-luce.js)",
+  "scena": "CATALOGO-ANIMAZIONI/ritmo-02 13,6–17,3 s (14/10, «Ma da quel momento ogni video sotto quella soglia sembra un fallimento.»): la camera entra nell'eccezione del muro e dall'altra parte c'è il grafico: i tuoi reel veri con la loro barra, il reel virale sopra la soglia «1M views»; su «soglia» la linea si accende, su «fallimento» il riflettore: il virale acceso, i tuoi al 40% e grigi",
+  "confronto": "_analisi/ritmo/blocco02/K_F04_r54.jpg · K_K11_r61.jpg (la selezione a 11,0–11,4 s) · F04_ritmo02_zoomthrough_moto.json · _analisi/ritmo/pop/F04_ritmo02_scelto.jpg",
+  "misure": {
+   "al taglio (R8 morbida)": "zoom-through nell'eccezione accesa del muro: corsa 0,16 s (moto.py 13,47 → 13,6), scia fino a 13,73; dall'altra parte il grafico è già pieno",
+   "assestamento (misurato sulla barra lime)": "scala 0,86 → 0,98 in 0,2 s → 1,00 in 0,4 s, power3.out, nessun overshoot (deriva.py non regge sul primo fotogramma sfocato: misura sull'altezza della barra); poi la camera tiene",
+   "riflettore": "i tuoi reel scendono dal 100 al 67% di luminosità (43 → 29) in 0,27 s, grigi; il virale acceso senza crescere · K reel 61: la selezione si accende e il resto scende dal 100 al 72% in ~0,37 s; reel 54: le altre card si tingono in ~0,2 s",
+   "pop.py · la card scelta (solo i pixel lime)": "scala 0,97 → 1,00, rimbalzo 0% (spotlight con s: 1, prima 1,05)",
+   "accenti": "la soglia si accende su «soglia» (0,25 s), il riflettore su «fallimento» (0,4 s)",
+   "proporzioni (ingombro.py)": "grafico largo 0,78 della larghezza, dalla soglia (y ~485) alle card (y 1242) · K reel 54: la card del profilo ~0,65, le miniature 0,55; reel 61: muro a tutto schermo",
+   "rimbalzo": "0",
+   "filtro": "corretto un fotogramma nero: un filtro animato da «none» partiva da brightness(0); ora fromTo (anche in F02)",
+   "scena": "3,7 s"
+  },
+  "manca": "la soglia «1M views» e le altezze delle barre sono un esempio (non i numeri veri dei tuoi reel); il reel sopra la soglia è di Hormozi",
+  "da_fare": "",
+  "fatto": "template TPL.F04 con la scheda (kit2-tpl-luce.js), R8 con tplZoomThrough dall'ancora eccezione(2) di TPL.K11; DOPO in ritmo-clip/F04_dopo.mp4"
+ },
+ "riga": {
+  "stato": "**fatto** (blocco 2)",
+  "template": "TPL.F04 · ritmo-02 13,6–17,3 s (14/10 «…ogni video sotto quella soglia sembra un fallimento.»), R8 morbida da K11 (zoom-through)",
+  "numeri": "riflettore: il resto dal 100 al 67% in 0,27 s, grigio (K r61 al 72% in 0,37 s; r54 ~0,2 s) · scelto senza crescere né rimbalzo (pop.py; prima 1,05) · zoom-through 0,16 s + assestamento 0,86 → 1 in 0,4 s power3.out senza overshoot · grafico 0,78 della larghezza (K r54 card 0,65)",
+  "voto": "5·5·4·5"
+ }
+}
