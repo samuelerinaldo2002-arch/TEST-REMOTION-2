@@ -1,0 +1,62 @@
+{
+ "cr_a": {
+  "sorgente": "_clip-esterni/dankoe/20260519_2yJUzTBHcLs.mp4",
+  "da": 10.0,
+  "durata": 2.6,
+  "cosa": "creator in studio (felpa)"
+ },
+ "cr_b": {
+  "sorgente": "_clip-esterni/garyvee/20261003_vNeW21vW66Q.mp4",
+  "da": 8.0,
+  "durata": 2.6,
+  "cosa": "creator col cappellino"
+ },
+ "metro": {
+  "sorgente": "_clip-esterni/fitness/20260628_W9-m9PH6NTE.mp4",
+  "da": 40.0,
+  "durata": 2.3,
+  "cosa": "creator con la tier list colorata a sinistra"
+ },
+ "folla": {
+  "sorgente": "_clip-esterni/viaggi/20260909_ufpZt8HrFhQ.mp4",
+  "da": 24.0,
+  "durata": 3.0,
+  "cosa": "folla in una sala"
+ },
+ "tuo1": {
+  "sorgente": "CATALOGO-ANIMAZIONI/copia-01/assets/clips/mio/v01.mp4",
+  "da": 0,
+  "cosa": "tuo reel: tu e il profilo"
+ },
+ "tuo2": {
+  "sorgente": "CATALOGO-ANIMAZIONI/copia-01/assets/clips/mio/v03.mp4",
+  "da": 0,
+  "cosa": "tuo reel: interfaccia sopra, tu sotto"
+ },
+ "tuo3": {
+  "sorgente": "CATALOGO-ANIMAZIONI/copia-01/assets/clips/mio/m05.mp4",
+  "da": 0,
+  "cosa": "tuo reel: grafica sopra, tu sotto"
+ },
+ "tuo4": {
+  "sorgente": "CATALOGO-ANIMAZIONI/copia-01/assets/clips/tel_c.mp4",
+  "da": 0,
+  "cosa": "tuo reel (telefono di C1)"
+ },
+ "tuo5": {
+  "sorgente": "CATALOGO-ANIMAZIONI/copia-01/assets/clips/mio/m01.mp4",
+  "da": 0,
+  "cosa": "tuo reel: tu in primo piano"
+ },
+ "cta_tu": {
+  "sorgente": "CATALOGO-ANIMAZIONI/copia-01/assets/clips/mio/v02.mp4",
+  "da": 0.0,
+  "durata": 4.6,
+  "cosa": "tu che parli in camera, 16:9"
+ },
+ "clone": {
+  "sorgente": "_clip-esterni/stevenbartlett/20261001_7DtkrTrTfF0.mp4",
+  "da": 0.6,
+  "cosa": "creator col microfono e la scritta, copertina"
+ }
+}

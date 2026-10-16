@@ -1,9 +1,11 @@
 # Blocco C2 · copia del REEL 5 intero (copia-02, porta :3042; in cloud niente anteprima)
 
-**Riga di stato (16/10, cloud):** IN CORSO. Passo 0 (ritocchi a C1) fatto e consegnato. Tagli del reel verificati fotogramma per
-fotogramma (`_analisi/ritmo/_script_copia02/tagli.py`: 26 tagli, uguali a `_dati/q1_reel005_auto.json`) → 27 scene, 11 facecam
-piene. Strisce dei suoi fotogrammi per scena in `copia-02/_lavoro/k/sNN.jpg`. Prossimo: media, kit `kit2-copia-r05.js` +
-`kit2-copia-c2-*.js`, `index.src.html`, scena per scena.
+**Riga di stato (16/10, cloud):** IN CORSO — scene 1–9 scritte e guardate sulle snapshot (KALLAWAY | COPIA con
+`_script_copia02/snap_kd.py`); prossima: scena 11. Media in `copia-02/assets` (`_lavoro/media.py`), kit in
+`kw-kit/kit2-copia-r05.js` (aiuti del reel + scene `COPIA.r05_*`) e `kit2-copia-c2-{liste,luce,camera,testo,oggetti}.js` (voci
+L01 L02 F03 K14 K01 T08 O21). Tagli verificati fotogramma per fotogramma (`_script_copia02/tagli.py`: 26 tagli, uguali a
+`_dati/q1_reel005_auto.json`) → 27 scene, 13 facecam piene. Strisce dei suoi fotogrammi in `copia-02/_lavoro/k/sNN.jpg`.
+Render di prova e fogli per scena: alla fine (pochi render, più scene insieme).
 
 Reel 5 = `03_2026-10-04_DeFA_f1uwLt.mp4` (radice; inventario n = 5), 720×1280, 24 fps, video 122,0 s (2928 fotogrammi), audio
 e contenitore 122,09 s. Trascrizione `_lavoro/r05_parole.json` (Parakeet tarato, vedi NOTE-DI-RIENTRO §3).
@@ -16,15 +18,15 @@ e contenitore 122,09 s. Trascrizione `_lavoro/r05_parole.json` (Parakeet tarato,
 ## Scene (una riga per scena del reel)
 | # | copia = Kallaway (s) | cosa | funzione · voci | stato |
 |---|---|---|---|---|
-| 1 | 0–3,417 | titolo «3 Motivi…» + lista lampo; due reel di creator, banda di scansione, card «Clienti» col grafico che scende | COPIA.r05_apertura | da fare |
-| 2 | 3,417–8,917 | facecam piena (K01) | cpFacecam | da fare |
-| 3 | 8,917–18,542 | lista coi segnaposto sfocati, voce 01 risolta, sale a intestazione; reel del creator, argomenti, anelli di persone | COPIA.L01 · L02 · K14 · O21 + r05_argomenti | da fare |
-| 4 | 18,542–20,083 | facecam piena | cpFacecam | da fare |
-| 5 | 20,083–22,625 | «Il Tuo Vero Problema»: la card degli argomenti, banda che la scorre | COPIA.r05_problema | da fare |
-| 6 | 22,625–24,792 | facecam piena | cpFacecam | da fare |
-| 7 | 24,792–30,833 | «Fai Solo Video Che / Aiutano Il Tuo Pubblico»: il tuo reel, contatore, persone, muro di 30 reel | COPIA.r05_target | da fare |
-| 8 | 30,833–32,75 | facecam piena | cpFacecam | da fare |
-| 9 | 32,75–38,833 | lista, voce 02 risolta (sheen), titolo esce, 02 a intestazione; «Fiducia» e il titolo in borsa | COPIA.L02 · F03 · T08 · K14 + r05_fiducia | da fare |
+| 1 | 0–3,417 | titolo «3 Motivi…» + lista lampo; due reel di creator, banda di scansione, card «Clienti» col grafico che scende | COPIA.r05_apertura | scritta, snapshot guardata |
+| 2 | 3,417–8,917 | facecam piena (K01) | cpFacecam | scritta, snapshot guardata |
+| 3 | 8,917–18,542 | lista coi segnaposto sfocati, voce 01 risolta, sale a intestazione; reel del creator, argomenti, anelli di persone | COPIA.L01 · L02 · K14 · O21 + r05_argomenti | scritta, snapshot guardata |
+| 4 | 18,542–20,083 | facecam piena | cpFacecam | scritta, snapshot guardata |
+| 5 | 20,083–22,625 | «Il Tuo Vero Problema»: la card degli argomenti, banda che la scorre | COPIA.r05_problema | scritta, snapshot guardata |
+| 6 | 22,625–24,792 | facecam piena | cpFacecam | scritta, snapshot guardata |
+| 7 | 24,792–30,833 | «Fai Solo Video Che / Aiutano Il Tuo Pubblico»: il tuo reel, contatore, persone, muro di 30 reel | COPIA.r05_target | scritta, snapshot guardata |
+| 8 | 30,833–32,75 | facecam piena | cpFacecam | scritta, snapshot guardata |
+| 9 | 32,75–38,833 | lista, voce 02 risolta (sheen), titolo esce, 02 a intestazione; «Fiducia» e il titolo in borsa | COPIA.L02 · F03 · T08 · K14 + r05_fiducia | scritta, snapshot guardata |
 | 10 | 38,833–44,125 | facecam piena | cpFacecam | da fare |
 | 11 | 44,125–54,292 | «La Fiducia Nasce Da Due Cose»: due pillole, il tuo reel, profilo, «Il Posto Giusto…», copione con la zona d'aggancio | COPIA.r05_prove | da fare |
 | 12 | 54,292–59,458 | facecam piena | cpFacecam | da fare |

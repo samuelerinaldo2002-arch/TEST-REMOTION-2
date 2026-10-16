@@ -12,3 +12,5 @@ CATALOGO-ANIMAZIONI/ritmo-clip/O30_copia.mp4
 CATALOGO-ANIMAZIONI/ritmo-clip/K06_copia.mp4
 # blocco C2 (reel 5)
 CATALOGO-ANIMAZIONI/_analisi/ritmo/_script_copia02
+kw-kit/kit2-copia-r05.js
+kw-kit/kit2-copia-c2-*.js

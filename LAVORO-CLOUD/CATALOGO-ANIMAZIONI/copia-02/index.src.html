@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>Copia · reel 5 di Kallaway (blocco C2)</title>
+    <script src="assets/vendor/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Advercase"; src: url("assets/fonts/Advercase-Bold.ttf") format("truetype"); font-weight: 700; font-style: normal; font-display: block; }
+      @font-face { font-family: "Advercase"; src: url("assets/fonts/Advercase-Regular.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: block; }
+      @font-face { font-family: "Patrick Hand"; src: url("assets/fonts/PatrickHand-Regular.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: block; }
+      @font-face { font-family: "Zalando Sans"; src: url("assets/fonts/ZalandoSans-Variable.ttf") format("truetype"); font-weight: 100 900; font-style: normal; font-display: block; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: #1e1e1e; }
+      body { font-family: "Zalando Sans", sans-serif; color: #f4f4f2; -webkit-font-smoothing: antialiased; }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; background: #1e1e1e; }
+      .clip { position: absolute; inset: 0; overflow: hidden; }
+      #glow { position: absolute; inset: 0; opacity: 0.35; background: radial-gradient(58% 32% at 50% 46%, rgba(207, 251, 80, 0.08), rgba(207, 251, 80, 0) 70%); }
+      #vignette { position: absolute; inset: 0; background: radial-gradient(110% 78% at 50% 44%, rgba(0, 0, 0, 0) 44%, rgba(0, 0, 0, 0.62) 100%); }
+      .cam { position: absolute; left: 540px; top: 880px; width: 1px; height: 1px; }
+      .layer { position: absolute; left: 0; top: 0; width: 1px; height: 1px; }
+      #dots { position: absolute; left: -12000px; top: -9000px; width: 40000px; height: 24000px; background-image: radial-gradient(circle, rgba(255, 255, 255, 0.095) 1.25px, rgba(255, 255, 255, 0) 1.95px); background-size: 24px 24px; }
+      #stage { position: absolute; inset: 0; overflow: hidden; }
+      /* safe zone dell'utente (SAFEZONE.jpg): da y = 1332 in giù c'è la sua faccia → la grafica sfuma nel fondo prima della linea */
+      #safe { position: absolute; inset: 0; -webkit-mask-image: linear-gradient(to bottom, #000 0px, #000 1288px, transparent 1330px); mask-image: linear-gradient(to bottom, #000 0px, #000 1288px, transparent 1330px); }
+      #mbwrap, #shake { position: absolute; inset: 0; }
+      #hud { position: absolute; inset: 0; -webkit-mask-image: linear-gradient(to bottom, #000 0px, #000 1288px, transparent 1330px); mask-image: linear-gradient(to bottom, #000 0px, #000 1288px, transparent 1330px); }
+    </style>
+  </head>
+  <body>
+    <!-- KW_RITMO: regole del ritmo e template (kw-kit/kit2-ritmo.js); qui la COPIA FEDELE del reel 5 di Kallaway (giro 2, blocco C2):
+         Kallaway vince sulle regole R1–R8 dove un suo valore misurato è diverso (annotato nelle schede di kw-kit/kit2-copia-*.js). -->
+    <!-- Copia 1:1 sul tempo del suo reel (122,09 s): ogni scena e ogni transizione al suo istante (copia-02/scene.json,
+         copia-02/transizioni.json). Dove lui è a tutto schermo in camera lo spazio resta scuro («facecam piena»). Niente audio. -->
+    <div id="root" data-composition-id="main" data-start="0" data-duration="122.09" data-width="1080" data-height="1920">
+      <div id="bg" class="clip" data-start="0" data-duration="122.09" data-track-index="0">
+        <div class="cam" id="gcam2" data-layout-allow-overflow><div class="layer" id="gzoom2"><div class="layer" id="gpan2"><div class="layer" id="bokeh"></div></div></div></div>
+        <div class="cam" id="gcam" data-layout-allow-overflow><div class="layer" id="gzoom"><div class="layer" id="gpan"><div id="dots"></div></div></div></div>
+        <div id="glow"></div>
+        <div id="vignette"></div>
+      </div>
+      <div id="stage">
+        <svg width="0" height="0" style="position: absolute" aria-hidden="true">
+          <filter id="mb" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur id="mbn" in="SourceGraphic" stdDeviation="0 0" /></filter>
+        </svg>
+        <div id="c2pool" style="position:absolute;left:0;top:0;width:0;height:0;overflow:hidden">
+          <img id="c2-clone" src="assets/img/clone.jpg" alt="">
+        </div>
+        <div id="safe"><div id="mbwrap"><div id="shake"><div class="cam" id="cam" data-layout-allow-overflow><div class="layer" id="zoom"><div class="layer" id="pan"></div></div></div></div></div></div>
+        <!--VIDEOS
+          # 1 · due reel di altri creator (Kallaway: due creator, uno in studio, uno col cappellino e il microfono)
+          cr_a assets/clips/cr_a.mp4 1.0 2.5
+          cr_b assets/clips/cr_b.mp4 1.0 2.5
+          # 3 · il reel di un creator con la classifica colorata (Kallaway: «DOG BREED TRAINABILITY»), poi una folla
+          metro assets/clips/metro.mp4 13.7 2.2
+          folla assets/clips/folla.mp4 15.7 2.9
+          # 7 · 11 · 13 · 17 · 23 · i TUOI reel (Kallaway: i suoi reel) — dai reel già tagliati per C1
+          tuo1 assets/clips/tuo1.mp4 24.75 6.0
+          tuo2 assets/clips/tuo2.mp4 46.9 3.4
+          tuo3 assets/clips/tuo3.mp4 59.4 3.95
+          tuo4 assets/clips/tuo4.mp4 82.7 0.8
+          tuo5 assets/clips/tuo5.mp4 105.8 2.0
+          # 27 · il TUO video 16:9 (Kallaway: lui nello studio col microfono)
+          cta_tu assets/clips/cta_tu.mp4 117.7 4.39
+        -->
+      </div>
+      <div id="hudclip" class="clip" data-start="0" data-duration="122.09" data-track-index="2">
+        <div id="hud"></div>
+      </div>
+    </div>
+    <script>
+      (() => {
+        const ICON = __ICONS__;
+        /*__KIT__*/
+
+        camInit(540, 880, 1);
+
+        // ═══ 1 · 0–3,417 s · r05_apertura: titolo, lista lampo, due reel di creator scansionati, la card «Clienti» ═══
+        cpCam.taglio(0, { fx: 540, fy: 880, s: 1 });
+        COPIA.r05_apertura({ t0: 0, t1: 3.417, X: 540, Y: 880, parent: layer(10) }, {});
+
+        // ═══ 2 · 3,417–8,917 s · facecam piena (K01) ═══
+        COPIA.K01({ t0: 3.417, t1: 8.917 });
+
+        // ═══ 3 · 8,917–18,542 s · L01 · L02 · K14 · r05_argomenti (O21): la lista, la voce 01, il reel, gli argomenti, gli anelli ═══
+        cpCam.taglio(8.917, { fx: 6000, fy: 880, s: 1 });
+        const T3 = r5TitoloPieno(8.917, null);
+        T3.outAt(13.42, { grigio: 0.15, dopo: 0.12, via: 0.25 });
+        const l3 = COPIA.L01({ t0: 8.917, X: 6000, Y: 880, parent: layer(12) }, { deriva: [9.0, 4.4, 0.93] });
+        COPIA.L02({ lista: l3.elementi.lista, i: 0, t: 10.79 });
+        COPIA.K14({ lista: l3.elementi.lista, i: 0, t0: 12.9, t1: 18.542 });
+        // (stesso mondo, nessun taglio: lo strato ha le coordinate dello schermo alla posa delle 13,79 s)
+        COPIA.r05_argomenti({ t0: 13.79, t1: 18.542, X: 540, Y: 880, parent: r5Strato(13.79, 13) }, {});
+
+        // ═══ 4 · 18,542–20,083 s · facecam piena ═══
+        cpFacecam(18.542, 20.083);
+
+        // ═══ 5 · 20,083–22,625 s · r05_problema: «Il Tuo Vero Problema», la card degli argomenti, la banda ═══
+        cpCam.taglio(20.083, { fx: 24000, fy: 880, s: 1 });
+        COPIA.r05_problema({ t0: 20.083, t1: 22.625, X: 24000, Y: 880, parent: layer(11) }, {});
+
+        // ═══ 6 · 22,625–24,792 s · facecam piena ═══
+        cpFacecam(22.625, 24.792);
+
+        // ═══ 7 · 24,792–30,833 s · r05_target: il tuo reel, la banda, il contatore, le persone, il muro di 30 reel ═══
+        cpCam.taglio(24.792, { fx: 30000, fy: 880, s: 1 });
+        COPIA.r05_target({ t0: 24.792, t1: 30.833, X: 30000, Y: 880, parent: layer(12) }, {});
+
+        // ═══ 8 · 30,833–32,75 s · facecam piena ═══
+        cpFacecam(30.833, 32.75);
+
+        // ═══ 9 · 32,75–38,833 s · L01 · L02 · F03 · T08 · K14 · r05_fiducia: la lista arriva in corsa, la voce 02 si risolve e sale,
+        //     il titolo si spegne; «Fiducia» e il titolo in borsa ═══
+        cpCam.taglio(32.75, { fx: 36000, fy: 880, s: 0.93 });   // la camera è rimasta a ×0,93 (barre.py: barre a riposo alte 113 px)
+        const T9 = r5TitoloPieno(32.75, null, { y: 184 });
+        COPIA.T08(T9, 35.42);
+        const l9 = COPIA.L01({ t0: 32.75, X: 36000, Y: 853.8, parent: layer(14) }, {
+          piene: 3, nitide: [0], arrivi: [], deriva: null,
+          // la prima barra in alto sullo schermo 617 → 558 px in 1,17 s (barre.py), riportata nel mondo a ×0,93
+          salita: [[0, 623.4], [0.167, 598.7], [0.333, 582.6], [0.5, 574.0], [0.667, 568.6], [0.833, 563.2], [1.0, 562.2], [1.167, 560]],
+        });
+        gsap.set(l9.elementi.lista.rows[0].r, { scale: 1.077 });
+        COPIA.L02({ lista: l9.elementi.lista, i: 1, t: 34.25 }, { ritardo: 0.25, durAttiva: 0.75 });
+        COPIA.K14({ lista: l9.elementi.lista, i: 1, t0: 34.92, t1: 38.833 }, {
+          percorso: [[0, 707], [0.167, 696], [0.333, 674], [0.5, 638], [0.667, 576], [0.833, 483], [1.0, 390], [1.167, 330], [1.333, 294], [1.5, 273], [1.667, 261], [1.9, 256], [2.1, 255]],
+          via: 0.66, su: 140,
+        });
+        COPIA.r05_fiducia({ t0: 35.9, t1: 38.833, X: 540, Y: 880, parent: r5Strato(35.9, 15) }, {});
+
+        // ═══ 10 · 38,833–44,125 s · facecam piena ═══
+        cpFacecam(38.833, 44.125);
+        // ═══ 12 · 54,292–59,458 s · facecam piena ═══
+        cpFacecam(54.292, 59.458);
+        // ═══ 14 · 63,333–66,875 s · facecam piena ═══
+        cpFacecam(63.333, 66.875);
+        // ═══ 16 · 72,0–76,792 s · facecam piena ═══
+        cpFacecam(72.0, 76.792);
+        // ═══ 18 · 85,125–88,708 s · facecam piena ═══
+        cpFacecam(85.125, 88.708);
+        // ═══ 20 · 93,417–94,375 s · facecam piena ═══
+        cpFacecam(93.417, 94.375);
+        // ═══ 22 · 98,333–105,833 s · facecam piena ═══
+        cpFacecam(98.333, 105.833);
+        // ═══ 24 · 110,042–112,708 s · facecam piena ═══
+        cpFacecam(110.042, 112.708);
+        // ═══ 26 · 115,958–117,708 s · facecam piena ═══
+        cpFacecam(115.958, 117.708);
+
+        cpCam.gira(0, 122.09);
+        window.__timelines = window.__timelines || {};
+        window.__timelines["main"] = tl;
+      })();
+    </script>
+  </body>
+</html>
