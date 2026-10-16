@@ -1,6 +1,6 @@
 # Blocco C2b · copia del REEL 1 intero (copia-07, porta :3047; in cloud niente anteprima)
 
-**Riga di stato (16/10, cloud):** IN CORSO. Fatte le scene 1–6 (build; snapshot guardate contro Kallaway con snap_kd.py). Prossima: scena 7 (r01_specifico, 28,654–33,075 s). Chi riprende: `bash LAVORO-CLOUD/_tools/ripristina.sh`, poi riparte dalla prima riga «da fare» qui sotto (codice in `kw-kit/kit2-copia-r01.js`, `kit2-copia-c2b-*.js`; composizione `copia-07/index.src.html`, segnaposto `//__SCENE__`).
+**Riga di stato (16/10, cloud):** IN CORSO. Fatte le scene 1–8 (build; snapshot guardate contro Kallaway con snap_kd.py; larghezze dei titoli tarate sulle sue con larghezza_titolo.py). Prossima: scena 9 (r01_agenzia, 33,575–43,168 s). Chi riprende: `bash LAVORO-CLOUD/_tools/ripristina.sh`, poi riparte dalla prima riga «da fare» qui sotto (codice in `kw-kit/kit2-copia-r01.js`, `kit2-copia-c2b-*.js`; composizione `copia-07/index.src.html`, segnaposto `//__SCENE__`).
 
 Reel 1 = `TUTTI-I-REEL/2026-10-08_DePIvvKub8b.mp4` (inventario n = 1), 720×1280, 23,976 fps, video 119,33 s (2861 fotogrammi), audio
 119,42 s. Trascrizione `_lavoro/r01_parole.json` (Parakeet tarato). Dopo la fine del reel, la coda A01 dal reel 25 (0–3,042 s):
@@ -15,8 +15,8 @@ composizione 122,462 s. Media: `_lavoro/media.py` → `assets/` (`_sorgenti.json
 | 4 | 9,426–12,554 | facecam piena | cpFacecam | fatto |
 | 5 | 12,554–23,732 | «Devi Espandere Il Tuo “TAM” / Per Avere Più Views»: «TAM Dell'Idea», la linea, «Mercato Totale Raggiungibile»; gli anelli di persone attorno alla tua foto che crescono | COPIA.r01_tam | fatto |
 | 6 | 23,732–28,654 | facecam piena (stacco sulla faccia a 27,82 s) | cpFacecam | fatto |
-| 7 | 28,654–33,075 | «I Contenuti Specifici / Raggiungono Meno Persone»: la tua foto, l'imbuto che sale, «Idea» e «Angolo» | COPIA.r01_specifico | da fare |
-| 8 | 33,075–33,575 | facecam piena | cpFacecam | da fare |
+| 7 | 28,654–33,075 | «I Contenuti Specifici Raggiungono / Sempre Meno Persone»: la tua foto, l'imbuto che sale, «Idea» e «Angolo» | COPIA.r01_specifico | fatto |
+| 8 | 33,075–33,575 | facecam piena | cpFacecam | fatto |
 | 9 | 33,575–43,168 | il logo dell'agenzia, i tre argomenti specifici; gli anelli di persone che si stringono e diventano lime | COPIA.r01_agenzia | da fare |
 | 10 | 43,168–44,67 | facecam piena | cpFacecam | da fare |
 | 11 | 44,67–54,346 | il reel di un piccolo creator con le views (36 → 206, F02); «Ecco I 3 Modi / Per Espandere Il Tuo TAM», l'imbuto, la lista 01 · 02 · 03 | COPIA.r01_tremodi | da fare |

@@ -84,7 +84,7 @@ const r1Imbuto = (L, X, Y, forma, o) => {
  * scena: t0 (0), t1 (2,753), X, Y, parent · opzioni: clip (5 id del pool), titolo ({ riga1: [[testo, ruolo]], riga2: [parole] })
  * colori: il suo verde (views) → lime; il riquadro rosso → lime con la scritta scura
  */
-const R1_TITOLO_1 = { righe: [[{ t: "Il Modo ", ruolo: "sans", size: 64 }, { t: "Più Rapido Per Fare", ruolo: "serif", size: 76 }]], tempi: [0.21, 0.21, 0.33, 0.37, 0.42, 0.46] };
+const R1_TITOLO_1 = { righe: [[{ t: "Il Modo ", ruolo: "sans", size: 68 }, { t: "Più Rapido Per Fare", ruolo: "serif", size: 80 }]], tempi: [0.21, 0.21, 0.33, 0.37, 0.42, 0.46] };
 COPIA.r01_apertura = (scena, o) => {
   o = o || {};
   const L = scena.parent || layer(10), X = scena.X, Y = scena.Y, W = (sx, sy) => [X - 540 + sx, Y - 880 + sy];
@@ -395,4 +395,60 @@ COPIA.r01_tam = (scena, o) => {
   cpCam.scala([[17.27, 1], [17.52, 1.02], [17.77, 1.067], [18.02, 1.137], [18.27, 1.187], [18.52, 1.223], [18.77, 1.247], [19.02, 1.267], [19.27, 1.277], [19.52, 1.287], [19.8, 1.29], [20.0, 1.27], [20.3, 1.15], [20.6, 1.0], [21.0, 0.92], [21.4, 0.89], [21.8, 0.887], [22.27, 0.9], [22.52, 0.92], [22.77, 0.935], [23.02, 0.945], [23.27, 0.955], [23.52, 0.963], [23.73, 0.97]].map(([t, k]) => [a(t), k]), [540, 784]);
   tl.set(L, { opacity: 0 }, t1);
   return { rect: null, pose: null, ancore: { avatar: [cx, cy] }, elementi: { T1, T2, chip, lin, TM, an, av } };
+};
+
+// ── etichetta a riquadro di Kallaway («Idea», «Angle», i tre argomenti): bordo bianco sottile arrotondato, fondo scuro, scritta
+// bianca neretta (o corsiva serif) · o: { fs (30), h, padX, serif, z } → nodo centrato su cx, cy
+const r1Etichetta = (parent, cx, cy, testo, o) => {
+  o = o || {};
+  const fs = o.fs || 30, h = o.h || Math.round(fs * 1.75);
+  const c = layered(el(parent, { position: "absolute", left: cx, top: cy - h / 2, height: h, padding: `0 ${o.padX == null ? Math.round(fs * 0.9) : o.padX}px`, display: "flex", alignItems: "center", justifyContent: "center", whiteSpace: "nowrap", borderRadius: o.r == null ? Math.round(h * 0.2) : o.r, background: o.fondo || "rgba(20,20,20,.88)", boxShadow: `inset 0 0 0 ${o.bw || 2.2}px rgba(255,255,255,.85), 0 0 14px rgba(255,255,255,.10)`, fontFamily: o.serif ? FH : FS, fontWeight: o.serif ? 400 : 700, fontSize: o.serif ? Math.round(fs * 1.12) : fs, color: K.white, letterSpacing: o.serif ? "0" : "-0.01em", zIndex: o.z || 16 }, testo));
+  gsap.set(c, { xPercent: -50 });
+  return c;
+};
+// il pop di un'etichetta (Kallaway: da piccola a intera in ~0,2 s, senza rimbalzo)
+const r1Pop = (n, t, o) => { o = o || {}; gsap.set(n, { opacity: 0, scale: o.da || 0.3 }); tl.to(n, { opacity: 1, duration: 0.08, ease: "none" }, t); tl.to(n, { scale: 1, duration: o.dur || 0.21, ease: "power2.out" }, t); };
+
+/* @copia r01_specifico · «I Contenuti Specifici / Raggiungono Meno Persone»: la tua foto sale, l'imbuto cresce sopra di lei,
+ *   «Idea» e «Angolo» ai lati (reel 1, 28,654–33,075 s)
+ * kallaway: reel 1, 28,654 s · taglio: il titolo parola per parola («Specific Content Always» 28,90–28,95 · «Reaches» 28,99 ·
+ *   «Fewer» 29,32 · «People» 29,40 s bianche); il suo avatar sale da sotto (centro y 1247 → 1195 → 1145 → 1115 → 1095 → 1080 →
+ *   1060 → 1048 → 1042 → 1038 px a 28,66 … 30,3 s); da 29,45 s l'imbuto di omini grigi sale dall'avatar come una colonna stretta
+ *   (in cima a y 407 a 29,6 s) e si allarga (mezza larghezza in cima 36 · 101 · 160 · 192 · 223 · 235 · 263 · 282 px a 29,6 … 31,0 s);
+ *   31,0–31,5 s la camera si allontana (×0,85) e va a sinistra (−48 px) mentre a destra spunta «Idea» (31,2–31,5 s); 32,3–32,9 s
+ *   torna a destra (+68 px) mentre a sinistra spunta «Angle» (32,4–32,6 s)
+ * misure: avatar Ø 166 (anello grigio); omini 40 px a passo 65 × 54; etichette 172×52 e 192×52 px sullo schermo (a ×0,85), bordo
+ *   bianco, a y 1028; titolo riga 1 x 149–926 (y ~100–145), riga 2 x 141–939 (y ~160–220)
+ * scena: t0 (28,654), t1 (33,075), X, Y, parent
+ * colori: omini grigi come i suoi; etichette bianche su scuro come le sue; la sua foto → la tua
+ */
+const R1_TIT_SPECIFICO = [[{ t: "I Contenuti Specifici Raggiungono", ruolo: "sans", size: 54 }], [{ t: "Sempre ", ruolo: "sans", size: 82 }, { t: "Meno Persone", ruolo: "serif", size: 100 }]];
+COPIA.r01_specifico = (scena, o) => {
+  o = o || {};
+  const L = scena.parent || layer(14), X = scena.X, Y = scena.Y, W = (sx, sy) => [X - 540 + sx, Y - 880 + sy];
+  const t0 = scena.t0, t1 = scena.t1, a = (t) => t0 + (t - 28.654);
+  // (la frase intera: «I contenuti specifici raggiungono sempre meno persone»; «Always Reaches» → «Raggiungono Sempre», così le
+  // due righe hanno la sua larghezza: riga 1 778 px, riga 2 799 px)
+  const T = r5Titolo({ righe: R1_TIT_SPECIFICO, y: 92, interlinea: [64] });
+  T.inAt([28.68, 28.7, 28.73, 28.78, 28.82, 29.15, 29.23].map(a));
+  if (o.titoloFine !== false) tl.set(T.root, { opacity: 0 }, o.titoloFine || t1);
+  const [ax, ay] = W(540, 1038);
+  // l'imbuto (forma misurata, mezze larghezze × 1,18 come in scena 1: gli omini dei bordi sono più scuri della soglia)
+  const forma = [[29.4, 1000, 12], [29.5, 720, 24], [29.6, 407, 36], [29.8, 398, 101], [30.0, 392, 160], [30.2, 389, 192], [30.4, 388, 223], [30.6, 388, 235], [30.8, 388, 263], [31.0, 388, 282]].map(([t, y, w]) => [a(t), y, w * 1.18]);
+  const imb = r1Imbuto(L, X, Y, forma, { yV: 1050, yBasso: 923, righe: 11, passoY: 54, passoX: 65, d: 40, col: "#c4c4c4", a: 0.85 });
+  const av = r1Avatar(L, ax, ay, { r: 83 });
+  const fa = cpCurva([[28.654, 209], [28.785, 157], [28.91, 107], [29.035, 77], [29.16, 57], [29.285, 42], [29.41, 30], [29.535, 22], [29.66, 15], [29.785, 10], [29.91, 6], [30.035, 4], [30.16, 1], [30.3, 0]].map(([t, d]) => [a(t), d]));
+  const st = { v: 0 };
+  gsap.set(av, { y: fa(t0) });
+  tl.fromTo(st, { v: 0 }, { v: 1, duration: 1.65, ease: "none", immediateRender: false, onUpdate: () => gsap.set(av, { y: fa(t0 + st.v * 1.65) }) }, t0);
+  // «Idea» a destra, «Angolo» a sinistra (posizioni nel mondo ricavate dallo schermo con la camera a ×0,85)
+  const idea = r1Etichetta(L, ...W(872, 1038), "Idea", { fs: 34, h: 61, padX: 52 });
+  r1Pop(idea, a(31.2));
+  const ang = r1Etichetta(L, ...W(175, 1038), "Angolo", { fs: 34, h: 61, padX: 40 });
+  r1Pop(ang, a(32.4));
+  // la camera: indietro ×0,85 attorno a (540, 950) e a sinistra; poi a destra
+  cpCam.scala([[31.0, 1], [31.1, 0.975], [31.2, 0.935], [31.3, 0.9], [31.4, 0.87], [31.55, 0.855], [31.8, 0.85]].map(([t, k]) => [a(t), k]), [540, 950]);
+  cpCam.percorso([[31.0, 0, 0], [31.16, -26, -3], [31.29, -37, -6], [31.41, -43, -9], [31.54, -45, -10], [31.79, -49, -12], [32.16, -49, -13], [32.29, -42, -13], [32.41, -26, -13], [32.54, -9, -13], [32.66, 3, -12], [32.79, 12, -12], [32.91, 18, -12], [33.075, 21, -12]].map(([t, dx, dy]) => [a(t), dx, dy]));
+  tl.set(L, { opacity: 0 }, t1);
+  return { rect: null, pose: null, ancore: { avatar: [ax, ay] }, elementi: { T, imb, av, idea, ang } };
 };
