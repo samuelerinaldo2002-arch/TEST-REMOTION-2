@@ -1,0 +1,14 @@
+# generati / ricreabili
+node_modules/
+.thumbnails/
+__pycache__/
+*.pyc
+_tools/venv/
+# render 4K e intermedi (consegnati altrove, si rifanno)
+raw-4k.mp4
+*(4K*.mp4
+# render di prova e confronti (si rigenerano)
+CATALOGO-ANIMAZIONI/_analisi/render/
+CATALOGO-ANIMAZIONI/_analisi/confronti-video/
+# lucchetto render
+.lock-render/
