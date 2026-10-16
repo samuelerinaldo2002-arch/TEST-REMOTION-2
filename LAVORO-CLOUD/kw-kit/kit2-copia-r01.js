@@ -820,7 +820,7 @@ COPIA.r01_copione2 = (scena, o) => {
   tl.to(C.docs[1].d, { filter: "blur(3px)", duration: 0.1 }, a(66.9));
   tl.to(C.docs[1].d, { filter: "blur(0px)", duration: 0.25 }, a(67.1));
   tl.set(C.docs[1].d, { filter: "none" }, a(67.36));
-  C.lampo(1, a(67.78), 0.18, K.lime);
+  C.lampo(1, a(67.3), 0.66, K.lime);   // (da lui rosso 67,3–67,96 s, a fotogrammi alterni nell'ultimo tratto)
   // i copioni scivolano a sinistra sempre più veloci fino al taglio (68,3–69,44 s: −10 · −36 · −99 px a 68,5 · 69,0 · 69,35 s)
   cpCam.percorso([[68.3, 0, 0], [68.5, -10, 0], [68.75, -20, 0], [69.0, -36, 0], [69.2, -62, 0], [69.35, -99, 0], [69.44, -125, 0]].map(([t, x, y]) => [a(t), x, y]));
   tl.set(L, { opacity: 0 }, tc);
@@ -874,4 +874,84 @@ COPIA.r01_lista02 = (scena, o) => {
   cpCam.percorso([[72.322, 0, 0], [72.414, 0, -4], [72.498, 0, -7], [72.582, 0, -11], [72.666, 0, -13], [72.75, 0, -15], [72.834, 0, -17], [72.918, 0, -19], [73.002, 0, -20], [73.17, 0, -23], [73.5, 0, -24], [73.782, 0, -24]].map(([t, x, y]) => [a(t), x, y]));
   tl.set(L, { opacity: 0 }, t1);
   return { rect: null, pose: null, ancore: {}, elementi: { T, bars } };
+};
+
+// ── il pannello «Reel insights» (scena 18): vetro scuro 500×826 col bordo sottile, il titolo, la miniatura del tuo reel, la pillola
+// delle views che conta, «Virality Graph» col grafico: la curva rossa (conversioni) a gobba e la verde (views) che sale → la rossa
+// resta grafite chiara, la verde diventa lime. Coordinate dello schermo a ×1 (alto a sinistra 306, 380). → api
+const r1Insights = (L, X, Y, o) => {
+  o = o || {};
+  const W = (sx, sy) => [X - 540 + sx, Y - 880 + sy];
+  const [px, py] = W(306, 380), w = 500, h = 826;
+  const g = layered(el(L, { position: "absolute", left: px, top: py, width: w, height: h, borderRadius: 12, background: "linear-gradient(180deg,rgba(40,40,40,.92) 0%,rgba(24,24,24,.94) 100%)", boxShadow: "inset 0 0 0 1.5px rgba(255,255,255,.28), 0 0 40px rgba(255,255,255,.06), 0 24px 60px rgba(0,0,0,.6)", zIndex: 14 }));
+  el(g, { position: "absolute", left: 0, top: 22, width: w, textAlign: "center", fontFamily: FS, fontWeight: 600, fontSize: 22, color: "rgba(255,255,255,.9)" }, "Statistiche del reel");
+  el(g, { position: "absolute", left: 20, top: 62, width: w - 40, height: 1.5, background: "rgba(255,255,255,.18)" });
+  const th = layered(el(g, { position: "absolute", left: 180, top: 96, width: 140, height: 246, borderRadius: 6, overflow: "hidden", background: "#111", zIndex: 2 }));
+  mediaTile(th, 0, 0, 140, 246, o.clip || "ins", 1).style.borderRadius = "0px";
+  const b = r1Badge(g, 250, 382, "0k", { w: 104, h: 32, fs: 20, z: 3 });
+  el(g, { position: "absolute", left: 0, top: 428, width: w, textAlign: "center", fontFamily: FS, fontWeight: 600, fontSize: 21, color: "rgba(255,255,255,.9)" }, "Grafico Viralità");
+  const S = svgLayer(g, 4, 0, 0, w, h);
+  const ax = (d, sw, op) => pathEl(S, d, { fill: "none", stroke: `rgba(255,255,255,${op})`, "stroke-width": sw });
+  ax("M90 450 L90 690", 2, 0.75); ax("M84 670 L440 670", 2, 0.75); ax("M90 478 L440 478", 1.5, 0.6); ax("M90 576 L440 576", 1.5, 0.6);
+  el(g, { position: "absolute", left: 40, top: 466, fontFamily: FS, fontWeight: 600, fontSize: 15, color: "rgba(255,255,255,.75)" }, "1M");
+  el(g, { position: "absolute", left: 26, top: 564, fontFamily: FS, fontWeight: 600, fontSize: 15, color: "rgba(255,255,255,.75)" }, "200K");
+  const rossa = pathEl(S, "M84 670 C150 650 220 632 300 630 C360 628 400 645 436 662", { fill: "none", stroke: "rgba(225,225,225,.85)", "stroke-width": 5, "stroke-linecap": "round" });
+  rossa.style.filter = "drop-shadow(0 0 6px rgba(255,255,255,.45))";
+  const verde = pathEl(S, "M84 660 C190 640 280 610 340 560 C380 528 405 500 425 455", { fill: "none", stroke: K.lime, "stroke-width": 5, "stroke-linecap": "round" });
+  verde.style.filter = `drop-shadow(0 0 8px ${K.lime})`;
+  const LR = drawable(rossa), LV = drawable(verde);
+  return {
+    g, b, rossa, verde,
+    rossaIn: (t, dur) => tl.to(rossa, { attr: { "stroke-dashoffset": 0 }, duration: dur || 0.6, ease: "power1.out" }, t),
+    verdeIn: (t, dur, ease) => tl.to(verde, { attr: { "stroke-dashoffset": 0 }, duration: dur || 1.5, ease: ease || "power1.in" }, t),
+    centroGrafico: () => W(306 + 260, 380 + 600),
+  };
+};
+
+/* @copia r01_avatar · Intestazione «02 Amplia La Cornice Dell'Avatar»; i copioni: «Ecco Come Fare Ads Per Brand E-Commerce / Che
+ *   Fatturano 30 Milioni O Più» e «Ecco La Migliore Strategia Ads / Per Brand E-Commerce»; il secondo si accende; il pannello delle
+ *   statistiche col tuo reel, le views che contano e il grafico, il disco (F02) (reel 1, 76,702–88,672 s)
+ * kallaway: reel 1, 76,702 s · taglio: la barra «02 Broaden The Avatar Frame» in alto, i due copioni vuoti; il copione 1 viene avanti
+ *   come in scena 13 (da 76,75 s) e si scrive (77,0–80,1 s); 80,2 s torna indietro sfocato e il 2 viene avanti (80,55–81,6 s), si
+ *   scrive (81,2–83,9 s); 83,9 s torna al suo posto; le sue righe diventano verdi un attimo (84,65–84,85 s) mentre i copioni
+ *   scivolano a sinistra; 84,88 s arriva da destra in corsa il pannello «Reel insights» (centro x 745 → 667 → 628 → 572 → 556 px a
+ *   84,88 · 85,09 · 85,25 · 85,63 · 85,9 s): la sua miniatura, la pillola delle views che conta 0k → 92k → 246k → 412k → 565k →
+ *   731k → 885k (85,3–88,63 s), il grafico con la curva rossa a gobba e da 86,9 s la verde che sale; 86,75–87,3 s la camera si
+ *   avvicina ×1,46 (il pannello esce in alto sotto la barra); 87,3 s il disco rosso (F02) sul grafico
+ * misure: pannello 500×826 (x 306–806, y 380–1206); miniatura 140×246; grafico x 396–740, y 830–1070; copioni come scena 13
+ * scena: t0 (76,702), t1 (88,672), X, Y, parent · opzioni: clip ("ins")
+ * colori: accento rosso della barra → lime; il verde (views) → lime; il rosso (conversioni) → grafite chiara; il disco rosso → lime
+ */
+COPIA.r01_avatar = (scena, o) => {
+  o = o || {};
+  const L = scena.parent || layer(23), X = scena.X, Y = scena.Y;
+  const t0 = scena.t0, t1 = scena.t1, a = (t) => t0 + (t - 76.702);
+  const H = r1Intestazione("02", R1_VOCI[1], a(76.85));
+  r1Finestra(H.g, t0, t1);
+  const C = r1Copioni(L, X, Y);
+  C.muovi(0, R1_AVANTI_1.map(([u, s, x]) => [a(76.75) + u, s, x]));
+  C.scrivi(0, [[["Ecco", 77.0], ["Come", 77.3], ["Fare", 77.45], ["Ads", 77.75], ["Per", 78.0], ["Brand", 78.2], ["E-Commerce", 78.4]], [["Che", 78.79], ["Fatturano", 79.0], ["30", 79.25], ["Milioni", 79.4], ["O", 79.7], ["Più", 79.9]]].map((r) => r.map(([p, t]) => [p, a(t)])));
+  // il copione 1 torna e il 2 viene avanti
+  C.muovi(0, R1_INDIETRO_2.map(([u, s, x]) => [a(80.2) + u * 0.6, s, 302.5 + (237.5 * (x - 774.5)) / (540 - 774.5)]));
+  tl.to(C.docs[0].d, { filter: "blur(3px)", duration: 0.08 }, a(80.22)); tl.to(C.docs[0].d, { filter: "blur(0px)", duration: 0.2 }, a(80.4)); tl.set(C.docs[0].d, { filter: "none", zIndex: 11 }, a(80.62));
+  const av2 = R1_AVANTI_1.map(([u, s, x]) => [a(80.55) + u * 0.75, s, 774.5 - (x - 302.5)]);
+  C.muovi(1, av2);
+  C.scrivi(1, [[["Ecco", 81.21], ["La", 81.6], ["Migliore", 81.8], ["Strategia", 82.2], ["Ads", 82.5]], [["Per", 82.9], ["Brand", 83.2], ["E-Commerce", 83.5]]].map((r) => r.map(([p, t]) => [p, a(t)])));
+  C.muovi(1, R1_INDIETRO_2.map(([u, s, x]) => [a(83.9) + u * 0.8, s, x]));
+  C.lampo(1, a(84.65), 0.2, K.lime);
+  // i copioni scivolano a sinistra e il pannello arriva in corsa da destra (stesso movimento)
+  cpCam.percorso([[84.4, 0, 0], [84.6, -20, 0], [84.75, -60, 0], [84.88, -120, 0]].map(([t, x, y]) => [a(t), x, y]));
+  tl.set(C.docs.map((d) => d.d), { opacity: 0 }, a(84.88));
+  // nel mondo 309 px più a destra: con lo scorrimento (−120 prima del taglio, −191 dopo) arriva al centro x 745 → 556
+  const P = r1Insights(L, X + 309, Y, { clip: o.clip });
+  gsap.set(P.g, { opacity: 0 }); tl.set(P.g, { opacity: 1 }, a(84.88));
+  cpCam.percorso([[84.88, 0, 0], [85.09, -78, 0], [85.25, -117, 0], [85.45, -150, 0], [85.63, -173, 0], [85.9, -189, 0], [86.3, -191, 0]].map(([t, x, y]) => [a(t), x, y]));
+  P.rossaIn(a(85.0), 0.8);
+  P.b.conta(a(85.3), a(88.63), 0, 885, (x) => Math.round(x) + "k", "none");
+  P.verdeIn(a(86.85), 0.75, "power1.out");
+  cpCam.scala([[86.75, 1], [86.9, 1.08], [87.05, 1.22], [87.2, 1.36], [87.3, 1.42], [87.5, 1.46], [88.672, 1.5]].map(([t, k]) => [a(t), k]), [590, 1150]);
+  const [gx, gy] = P.centroGrafico();
+  COPIA.r01_disco({ t0: a(87.3), X: gx - 30, Y: gy - 60, parent: L }, { r: 80, z: 20 });
+  tl.set(L, { opacity: 0 }, t1);
+  return { rect: null, pose: null, ancore: {}, elementi: { H, C, P } };
 };

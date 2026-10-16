@@ -1,6 +1,6 @@
 # Blocco C2b · copia del REEL 1 intero (copia-07, porta :3047; in cloud niente anteprima)
 
-**Riga di stato (16/10, cloud):** IN CORSO. Fatte le scene 1–17 (build; check: 0 errori di runtime, restano ~29 sovrapposizioni di testo segnalate a 64–66 s: il copione 2 che viene avanti copre il testo del copione 1, voluto come il suo). Snapshot guardate contro Kallaway per 1–11; un render di prova (5 min 54 s) e i fogli delle scene 1–9 guardati. Le scene 13–16 sono scritte e compilano ma NON sono ancora state guardate in snapshot/render. Prossima: scena 18 (r01_avatar, 76,702–88,672 s: intestazione 02, i copioni con le due frasi, il pannello delle statistiche col grafico e F02). Chi riprende: `bash LAVORO-CLOUD/_tools/ripristina.sh`, poi riparte dalla prima riga «da fare» qui sotto (codice in `kw-kit/kit2-copia-r01.js`, `kit2-copia-c2b-*.js`; composizione `copia-07/index.src.html`, segnaposto `//__SCENE__`).
+**Riga di stato (16/10, cloud):** IN CORSO. Fatte le scene 1–19 (build; check: 0 errori di runtime, restano ~29 sovrapposizioni di testo segnalate a 64–66 s: il copione 2 che viene avanti copre il testo del copione 1, voluto come il suo). Snapshot guardate contro Kallaway per tutte le scene 1–18; un render di prova (5 min 54 s) e i fogli delle scene 1–9 guardati. Prossima: scena 20 (r01_termini, 93,385–97,931 s: il riquadro di persone, il disco «Termini Complessi», 5 restano). Chi riprende: `bash LAVORO-CLOUD/_tools/ripristina.sh`, poi riparte dalla prima riga «da fare» qui sotto (codice in `kw-kit/kit2-copia-r01.js`, `kit2-copia-c2b-*.js`; composizione `copia-07/index.src.html`, segnaposto `//__SCENE__`).
 
 Reel 1 = `TUTTI-I-REEL/2026-10-08_DePIvvKub8b.mp4` (inventario n = 1), 720×1280, 23,976 fps, video 119,33 s (2861 fotogrammi), audio
 119,42 s. Trascrizione `_lavoro/r01_parole.json` (Parakeet tarato). Dopo la fine del reel, la coda A01 dal reel 25 (0–3,042 s):
@@ -26,8 +26,8 @@ composizione 122,462 s. Media: `_lavoro/media.py` → `assets/` (`_sorgenti.json
 | 15 | 63,605–72,322 | il secondo copione si scrive; i due copioni, il secondo si accende; gli anelli di persone che diventano lime | COPIA.r01_copione2 | fatto |
 | 16 | 72,322–73,782 | «Ecco Come Puoi “Espandere” / La Dimensione Del Tuo TAM»: la lista, 02 attiva | COPIA.r01_lista02 | fatto |
 | 17 | 73,782–76,702 | facecam piena | cpFacecam | fatto |
-| 18 | 76,702–88,672 | intestazione 02; i copioni che si scrivono; il pannello delle statistiche col grafico | COPIA.r01_avatar (F02) | da fare |
-| 19 | 88,672–93,385 | facecam piena | cpFacecam | da fare |
+| 18 | 76,702–88,672 | intestazione 02; i copioni che si scrivono; il pannello delle statistiche col grafico | COPIA.r01_avatar (F02) | fatto |
+| 19 | 88,672–93,385 | facecam piena | cpFacecam | fatto |
 | 20 | 93,385–97,931 | «Termini Più Complessi / Meno Persone Guardano»: il riquadro di persone, il disco, 5 restano | COPIA.r01_termini | da fare |
 | 21 | 97,931–99,474 | facecam piena | cpFacecam | da fare |
 | 22 | 99,474–102,144 | «Più Views Non Vuol Dire / Più Conversioni»: gli anelli pieni | COPIA.r01_conversioni | da fare |

@@ -129,6 +129,8 @@
           c3b assets/clips/c3b.mp4 6.75 2.75
           # 11 · il reel di un piccolo creator (Kallaway: un creator alla scrivania con le scritte, 36 → 206 views)
           cr11 assets/clips/cr11.mp4 44.6 2.1
+          # 18 · «Reel insights»: il SUO reel nella miniatura → il tuo reel
+          ins assets/clips/ins.mp4 84.8 3.9
         -->
       </div>
       <div id="hudclip" class="clip" data-start="0" data-duration="122.462" data-track-index="2">
@@ -210,6 +212,13 @@
 
         // ═══ 17 · 73,782–76,702 s · facecam piena ═══
         cpFacecam(73.782, 76.702);
+
+        // ═══ 18 · 76,702–88,672 s · r01_avatar (F02): l'intestazione 02, i copioni con le due frasi, il pannello delle statistiche ═══
+        cpCam.taglio(76.702, { fx: 78000, fy: 880, s: 1 });
+        COPIA.r01_avatar({ t0: 76.702, t1: 88.672, X: 78000, Y: 880, parent: layer(23) }, {});
+
+        // ═══ 19 · 88,672–93,385 s · facecam piena ═══
+        cpFacecam(88.672, 93.385);
 
         //__SCENE__
 
