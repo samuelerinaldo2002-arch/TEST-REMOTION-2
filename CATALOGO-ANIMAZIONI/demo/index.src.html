@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>Demo kit v2 — catalogo Kallaway</title>
+    <script src="assets/vendor/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Advercase"; src: url("assets/fonts/Advercase-Bold.ttf") format("truetype"); font-weight: 700; font-style: normal; font-display: block; }
+      @font-face { font-family: "Advercase"; src: url("assets/fonts/Advercase-Regular.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: block; }
+      @font-face { font-family: "Patrick Hand"; src: url("assets/fonts/PatrickHand-Regular.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: block; }
+      @font-face { font-family: "Zalando Sans"; src: url("assets/fonts/ZalandoSans-Variable.ttf") format("truetype"); font-weight: 100 900; font-style: normal; font-display: block; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: #1e1e1e; }
+      body { font-family: "Zalando Sans", sans-serif; color: #f4f4f2; -webkit-font-smoothing: antialiased; }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; background: #1e1e1e; }
+      .clip { position: absolute; inset: 0; overflow: hidden; }
+      #glow { position: absolute; inset: 0; opacity: 0.35; background: radial-gradient(58% 32% at 50% 46%, rgba(207, 251, 80, 0.08), rgba(207, 251, 80, 0) 70%); }
+      #vignette { position: absolute; inset: 0; background: radial-gradient(110% 78% at 50% 44%, rgba(0, 0, 0, 0) 44%, rgba(0, 0, 0, 0.62) 100%); }
+      .cam { position: absolute; left: 540px; top: 880px; width: 1px; height: 1px; }
+      .layer { position: absolute; left: 0; top: 0; width: 1px; height: 1px; }
+      #dots { position: absolute; left: -6000px; top: -6000px; width: 20000px; height: 20000px; background-image: radial-gradient(circle, rgba(255, 255, 255, 0.095) 1.25px, rgba(255, 255, 255, 0) 1.95px); background-size: 24px 24px; }
+      #stage { position: absolute; inset: 0; overflow: hidden; }
+      #safe { position: absolute; inset: 0; -webkit-mask-image: linear-gradient(to bottom, #000 0px, #000 1385px, transparent 1450px); mask-image: linear-gradient(to bottom, #000 0px, #000 1385px, transparent 1450px); }
+      #mbwrap, #shake { position: absolute; inset: 0; }
+      #hud { position: absolute; inset: 0; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="36" data-width="1080" data-height="1920">
+      <div id="bg" class="clip" data-start="0" data-duration="36" data-track-index="0">
+        <div class="cam" id="gcam2" data-layout-allow-overflow><div class="layer" id="gzoom2"><div class="layer" id="gpan2"><div class="layer" id="bokeh"></div></div></div></div>
+        <div class="cam" id="gcam" data-layout-allow-overflow><div class="layer" id="gzoom"><div class="layer" id="gpan"><div id="dots"></div></div></div></div>
+        <div id="glow"></div>
+        <div id="vignette"></div>
+      </div>
+      <div id="stage">
+        <svg width="0" height="0" style="position: absolute" aria-hidden="true">
+          <filter id="mb" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur id="mbn" in="SourceGraphic" stdDeviation="0 0" /></filter>
+        </svg>
+        <div id="safe"><div id="mbwrap"><div id="shake"><div class="cam" id="cam" data-layout-allow-overflow><div class="layer" id="zoom"><div class="layer" id="pan"></div></div></div></div></div></div>
+        <!--VIDEOS
+          # O01 · anello di reel veri (0 – 5)
+          rA1 assets/clips/t_fit1.mp4 0 5.2
+          rA2 assets/clips/t_via1.mp4 0 5.2
+          rA3 assets/clips/t_cuc1.mp4 0 5.2
+          rA4 assets/clips/t_ani1.mp4 0 5.2
+          rA5 assets/clips/t_mot1.mp4 0 5.2
+          rA6 assets/clips/t_via2.mp4 0 5.2
+          rA7 assets/clips/cal/c05.mp4 0 5.2
+          # L01 · i 3 reel "di tutto" sotto la lista
+          L1 assets/clips/t_fit1.mp4 6.3 3.9 1.2
+          L2 assets/clips/t_cuc1.mp4 6.3 3.9 0.6
+          L3 assets/clips/t_via1.mp4 6.3 3.9 1.5
+          # chiusura: la scheda profilo con 3 reel
+          e1 assets/clips/t_mot1.mp4 33.6 2.4
+          e2 assets/clips/cal/c21.mp4 33.6 2.4
+          e3 assets/clips/t_via2.mp4 33.6 2.4 1
+          v1 assets/clips/t_fit1.mp4 11.5 6
+          v2 assets/clips/t_via1.mp4 11.5 6
+          v3 assets/clips/t_cuc1.mp4 11.5 6
+          w1 assets/clips/t_fit1.mp4 28 5.5
+          w2 assets/clips/t_via1.mp4 28 5.5
+          w3 assets/clips/t_cuc1.mp4 28 5.5
+          w4 assets/clips/t_ani1.mp4 28 5.5
+          w5 assets/clips/t_mot1.mp4 28 5.5
+          w6 assets/clips/t_via2.mp4 28 5.5
+        -->
+      </div>
+      <div id="hudclip" class="clip" data-start="0" data-duration="36" data-track-index="2">
+        <div id="hud"></div>
+      </div>
+      <!--SFX
+        0.3 whoosh .12 ; 2.6 pop .12 ; 5.0 whoosh .2 ; 6.8 tick .08 ; 8.4 tick .08 ; 10.2 whoosh .14
+        11.5 whoosh .2 ; 12.3 tick .06 ; 13.4 ding .14 ; 17 whoosh .2 ; 22 whoosh .2 ; 28 whoosh .2 ; 30.5 pop .1 ; 33.5 whoosh .18
+      -->
+    </div>
+    <script>
+      (() => {
+        const ICON = __ICONS__;
+        /*__KIT__*/
+
+        const L = layer(10);
+        const S = svgLayer(L, 6, -60000, -60000, 200000, 200000);
+
+        // ═══ A · T01/T02 titolo parola per parola + K10 messa a fuoco + F02 pulse (0 – 5) ═══
+        { const p0 = fitPose(120, 420, 960, 1380, { fill: 0.97, top: 380 }); camInit(p0.fx, p0.fy, p0.s); }
+        rackFocus(0, 0.5);
+        float(0, 2.6, 0, -15, 0.03);
+        const TA = titleW({ lines: [[{ t: "L'errore " }, { t: "numero uno", box: true }], [{ t: "dei principianti", hand: true }]], size: 88 });
+        TA.inAt([0.3, 0.55, 0.78, 1.0, 1.25]);
+        // O01 · reel veri che partono raggruppati, si aprono in cerchio sul tratteggio e ruotano lenti (reel 13–14 di Kallaway)
+        const rr = reelRing(L, 540, 900, ["rA1", "rA2", "rA3", "rA4", "rA5", "rA6", "rA7"], { r: 330, w: 150, r0: 55 });
+        rr.open(0.0);
+        rr.spin(0.0, 5.0, 30);
+        const ic = appIcon(L, 540, 900, 150, "instagram", 14);
+        blurIn(ic, 0.35, { y: 20, blur: 14, scale: 0.7, dur: 0.45, ease: "back.out(2)" });
+        pulse(L, 540, 900, 2.6, { r: 190, z: 13 });
+        camK(2.6, 0.3, CAM.fx, CAM.fy, CAM.s * 1.06, "power4.out");
+        float(2.9, 2.1, 0, -10, 0.02);
+        TA.outAt(4.6);
+        // [catalogo] T01 · T02 · K10 · F02 — titolo parola per parola, box che cresce, messa a fuoco, pulse
+        // ═══ B · K02 arrivo in movimento + L01/L02 lista con sheen + K14 voce → intestazione (5 – 11.5) ═══
+        const BX = 3000, BY = 900;
+        const LB = listK(L, BX, BY, 960, ["Il profilo parla di tutto", "La bio non dice chi aiuti", "Nessuna prova dei risultati"], { h: 124, gap: 24, fs: 42 });
+        arriveRect(5.0, [BX - 480, BY - 215, BX + 480, BY + 700], { dy: 380, top: 400 });
+        float(6.1, 4.0, 0, -20, 0.02);
+        const TB = titleW({ lines: [[{ t: "3 motivi " }, { t: "per cui", hand: true }], [{ t: "non ti seguono" }]], size: 84 });
+        TB.inAt([5.15, 5.3, 5.45, 5.62, 5.78, 5.9]);
+        LB.show(1, 5.3); LB.show(2, 5.37); LB.show(3, 5.44);
+        // under the list: the profile that is the cause (3 real-looking post tiles that don't match)
+        const PROW = [["L1", "Fitness", "dumbbell"], ["L2", "Ricette", "pizza"], ["L3", "Viaggi", "plane"]].map(([id, lb, icn], i) => {
+          const vc = videoCard(L, BX - 320 + i * 320, BY + 480, 250, 420, id, { label: lb, icon: icn, z: 11 });
+          blurIn(vc.body, 6.4 + i * 0.08, { y: 30, blur: 14, dur: 0.45 });
+          return vc.body;
+        });
+        LB.resolve(0, 6.8);
+        tint(PROW, 7.6, "no", { stagger: 0.1 });
+        LB.deactivate(0, 8.3); LB.resolve(1, 8.4);
+        TB.outAt(9.9);
+        blurOut(PROW, 9.9, { dur: 0.3 });
+        LB.promote(1, 10.2, BX, BY - 300, 0.82);
+        // [catalogo] K02 · L01 · L02 · K14 — arrivo in corsa, lista con sheen, voce → intestazione
+        // ═══ C · D01 card dati + D02 badge views (11.5 – 17) ═══
+        const CX = 6000, CY = 900;
+        arrive(11.5, CX, CY, 1, { dx: 420, dy: 0 });
+        float(12.6, 4.4, 20, 0, 0.03);
+        const cards = [["v1", -330], ["v2", 0], ["v3", 330]].map(([v, dx]) => videoCard(L, CX + dx, CY - 230, 290, 515, v, { z: 9 }));
+        cards.forEach((c, i) => blurIn(c.body, 11.6 + i * 0.07, { y: 40, blur: 16, dur: 0.5 }));
+        const bdg = [["15,1M", -330], ["11M", 0], ["4,4M", 330]].map(([tx, dx]) => viewBadge(L, CX + dx, CY + 70, tx, { fs: 28 }));
+        popSeq(bdg, 12.3, 0.09);
+        const sc = statCard(L, CX - 280, CY + 150, { label: "Email ricevute", icon: "mail", w: 560, h: 330, hidden: true });
+        sc.slideIn(12.85, { from: 1 });
+        sc.count(13.0, 0, 44000, 0.9, (v) => itNum(v) + "+");
+        // [catalogo] D01 · D02 — card dati che conta + bagliore finale, badge views in sequenza
+        // ═══ D · mappa delle sotto-nicchie (17 – 22): T03 nodo scritto a macchina · L09 albero · T04 etichette a lettere
+        //     casuali · T05 risultato che si decodifica — sempre dentro un'infografica con titolo (mai testo da solo)
+        const DX = 9000, DY = 900;
+        arrive(17, DX, DY - 100, 1.3, { dy: 340 });
+        camK(18.35, 1.5, DX, DY + 20, 1.0, KW.move);
+        camK(20.15, 0.9, DX, DY + 110, 1.0, KW.move);
+        float(21.05, 0.95, 0, -8, 0.01);
+        const TD = titleW({ lines: [[{ t: "Le tue " }, { t: "5 sotto-nicchie", box: true }]], size: 80 });
+        TD.inAt([17.15, 17.3, 17.45, 17.6]);
+        TD.outAt(21.6);
+        const cN = el(L, { position: "absolute", left: DX - 290, top: DY - 150, width: 580, height: 104, borderRadius: 52, background: "linear-gradient(180deg,#363636,#222)", border: `2.5px solid ${K.lime}`, boxShadow: `${GLOW_A(0.6)}, 0 30px 70px rgba(0,0,0,.55)`, display: "flex", alignItems: "center", justifyContent: "center", gap: 16, zIndex: 14, fontFamily: FS, fontWeight: 800, fontSize: 40, color: K.white, whiteSpace: "nowrap" }, svg("target", 40, K.lime, 2.4));
+        const cT = el(cN, { display: "inline-block", whiteSpace: "nowrap" }, null, "span");
+        blurIn(cN, 17.5, { y: 24, blur: 12, dur: 0.45, scale: 0.9 });
+        typeIn(cT, "Fitness per mamme", 17.85, 26, { caret: true, size: 40 });
+        const KIDS = [["Allenamento a casa", -250, -390], ["Alimentazione", 250, -390], ["Post-parto", -330, 120], ["Tempo per sé", 0, 160], ["Motivazione", 330, 120]];
+        const kidEl = KIDS.map(([txt, dx, dy]) => {
+          const k = el(L, { position: "absolute", left: DX + dx - 150, top: DY + dy - 39, width: 300, height: 78, borderRadius: 39, background: "linear-gradient(180deg,#323232,#212121)", border: "1.5px solid rgba(255,255,255,.2)", boxShadow: "0 18px 40px rgba(0,0,0,.5)", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: FS, fontWeight: 800, fontSize: 27, color: K.white, whiteSpace: "nowrap", zIndex: 14 });
+          gsap.set(k, { opacity: 0 });
+          return { k, txt };
+        });
+        const up = tree(S, [DX, DY - 150], [[DX - 250, DY - 351], [DX + 250, DY - 351]], { curve: "v", color: "rgba(255,255,255,.55)" });
+        const dn = tree(S, [DX, DY - 46], [[DX - 330, DY + 81], [DX, DY + 121], [DX + 330, DY + 81]], { curve: "v", color: "rgba(255,255,255,.55)" });
+        up.draw(18.45, 0.08, 0.35);
+        dn.draw(18.6, 0.08, 0.35);
+        kidEl.forEach((kd, i) => {
+          const t = 18.75 + i * 0.22;
+          blurIn(kd.k, t, { y: 16, blur: 10, dur: 0.35, scale: 0.9 });
+          scrambleIn(kd.k, kd.txt, t + 0.08, 0.3, i + 3);
+        });
+        tl.to(kidEl[3].k, { borderColor: K.lime, boxShadow: `${GLOW_A(0.6)}, 0 18px 40px rgba(0,0,0,.5)`, duration: 0.25 }, 20.15);
+        const toRes = connector(S, [[DX, DY + 199], [DX, DY + 322]], { color: K.lime, w: 4, glow: true });
+        toRes.draw(20.3, 0.25, "power2.out");
+        const res = el(L, { position: "absolute", left: DX - 260, top: DY + 322, width: 520, height: 96, borderRadius: 48, background: limeFill(1), boxShadow: GLOW_A(0.9), display: "flex", alignItems: "center", justifyContent: "center", fontFamily: FS, fontWeight: 800, fontSize: 34, letterSpacing: "0.04em", color: K.ink, whiteSpace: "nowrap", zIndex: 14 });
+        gsap.set(res, { opacity: 0, scale: 0.7 });
+        tl.to(res, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(2.2)" }, 20.5);
+        decode(res, "UN MESE DI IDEE", 20.55, 0.45);
+        // ═══ E · O10 bersaglio · C04 linee guida con etichetta · la scheda del cliente ideale (22 – 28) ═══
+        const EX = 12000, EY = 900;
+        arriveRect(22, [EX - 560, EY - 350, EX + 560, EY + 625], { dy: -340, top: 340, fill: 0.98 });
+        float(23.1, 4.9, 0, 15, 0.02);
+        const TE = titleW({ lines: [[{ t: "Chi è " }, { t: "il tuo cliente", box: true }]], size: 84 });
+        TE.inAt([22.1, 22.25, 22.4, 22.55]);
+        TE.outAt(27.6);
+        const be1 = bullseye(L, EX, EY, [66, 152, 240, 330]);
+        [22.3, 23.6, 24.6, 25.4].forEach((t, i) => be1.ring(i, t));
+        const ld1 = leader(L, S, EX + 40, EY - 10, EX + 560, EY - 10, "Mamme che si allenano", { fs: 38 });
+        ld1.draw(22.7); ld1.write(22.85);
+        const ld2 = leader(L, S, EX - 140, EY - 110, EX - 560, EY - 110, "Donne 30–45", { fs: 38 });
+        ld2.draw(23.75); ld2.write(23.9);
+        const ld3 = leader(L, S, EX + 220, EY + 130, EX + 560, EY + 130, "Chi fa fitness", { fs: 38 });
+        ld3.draw(24.75); ld3.write(24.9);
+        const ld4 = leader(L, S, EX - 300, EY + 180, EX - 560, EY + 180, "Tutti", { fs: 38 });
+        ld4.draw(25.55); ld4.write(25.7);
+        be1.hit(25.95, { dx: 0.95, dy: 0.75, amp: 9 });
+        be1.dimOuter(2, 26.45);
+        // dove si pianta la freccetta esce la scheda del cliente ideale: chi è, in tre tratti (spiega il centro del bersaglio)
+        const CW = 900, CH = 200, CY0 = EY + 410;
+        connector(S, [[EX, EY + 334], [EX, CY0 - 4]], { color: K.lime, w: 4, glow: true }).draw(26.05, 0.22, "power2.out");
+        const pc = glass(L, EX - CW / 2, CY0, CW, CH, { zIndex: 30, border: "2px solid rgba(207,251,80,.7)", boxShadow: `0 34px 90px rgba(0,0,0,.6), ${GLOW_A(0.35)}` });
+        const pav = avatar(pc, 30 + 70, CH / 2, 140, "anon", { ring: K.lime, bw: 5, z: 2 });
+        el(pc, { position: "absolute", left: 200, top: 26, fontFamily: FS, fontWeight: 700, fontSize: 22, letterSpacing: "0.14em", color: "rgba(255,255,255,.55)", whiteSpace: "nowrap" }, "IL TUO CLIENTE IDEALE");
+        const pnm = el(pc, { position: "absolute", left: 198, top: 56, fontFamily: FD, fontWeight: 700, fontSize: 50, lineHeight: 1.1, color: K.white, textShadow: GLOW_T, whiteSpace: "nowrap" }, "Mamma che si allena");
+        const tratti = [["calendar", "30–45 anni"], ["house", "Si allena a casa"], ["clock", "20 min al giorno"]].map(([ic, tx], k) =>
+          el(pc, { position: "absolute", left: 200 + [0, 196, 432][k], top: 130, height: 48, display: "flex", alignItems: "center", gap: 8, padding: "0 16px", borderRadius: 24, background: "linear-gradient(180deg,#3a3a3a,#262626)", border: "1.5px solid rgba(255,255,255,.18)", fontFamily: FS, fontWeight: 800, fontSize: 22, color: K.white, whiteSpace: "nowrap" }, svg(ic, 22, K.lime, 2.4) + tx));
+        gsap.set(pc, { opacity: 0 });
+        blurIn(pc, 26.18, { y: 28, blur: 14, dur: 0.42 });
+        tl.fromTo(pav, { scale: 0.5 }, { scale: 1, duration: 0.4, ease: "back.out(2.4)", immediateRender: false }, 26.28);
+        blurIn(pnm, 26.32, { y: 10, blur: 8, dur: 0.3 });
+        tratti.forEach((c, k) => { gsap.set(c, { opacity: 0, scale: 0.7 }); tl.to(c, { opacity: 1, duration: 0.08 }, 26.55 + k * 0.14); tl.to(c, { scale: 1, duration: 0.32, ease: "back.out(2.4)" }, 26.55 + k * 0.14); });
+        // [catalogo] O10 · C04 — bersaglio con linee guida che si scrivono; la freccetta indica chi è il cliente ideale
+        // ═══ F · K07 zoom-through · F04 riflettore · F11 tinta (28 – 33) ═══
+        const FX = 15000, FY = 900;
+        zoomThrough(28, FX, FY, 1);
+        float(28.5, 4.5, 0, -20, 0.03);
+        const grid = ["w1", "w2", "w3", "w4", "w5", "w6"].map((v, i) => videoCard(L, FX - 300 + (i % 3) * 300, FY - 250 + Math.floor(i / 3) * 470, 260, 440, v, { z: 9 }));
+        grid.forEach((g, i) => blurIn(g.body, 28.05 + i * 0.05, { y: 30, blur: 12, dur: 0.4 }));
+        spotlight([grid[1].body, grid[4].body], [0, 2, 3, 5].map((i) => grid[i].body), 30.5);
+        tint([grid[1].body, grid[4].body], 31.4, "si", { stagger: 0.1 });
+        // [catalogo] K07 · F04 · F11 — zoom-through, riflettore, tinta lime sui giusti
+        // ═══ G · K15 light leak (33 – 36) ═══
+        lightLeak(33.5);
+        const pcard = profileCard(L, FX, FY + 2000 - 430, { user: "tu", handle: "@samuelerinaldo.media", numero: "Un profilo chiaro", vids: ["e1", "e2", "e3"] });
+        cutRect(33.67, pcard.rect, { top: 400 });
+        float(33.7, 2.3, 0, -12, 0.03);
+        pcard.show(33.72);
+        const TG = titleW({ lines: [[{ t: "Il tuo profilo " }], [{ t: "in 3 secondi", box: true }]], size: 84 });
+        TG.inAt([33.8, 33.95, 34.1, 34.25, 34.4]);
+        // [catalogo] K15 — light leak (era podcast)
+        window.__timelines = window.__timelines || {};
+        window.__timelines["main"] = tl;
+      })();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>Ritmo · blocco 9 (template)</title>
+    <script src="assets/vendor/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Advercase"; src: url("assets/fonts/Advercase-Bold.ttf") format("truetype"); font-weight: 700; font-style: normal; font-display: block; }
+      @font-face { font-family: "Advercase"; src: url("assets/fonts/Advercase-Regular.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: block; }
+      @font-face { font-family: "Patrick Hand"; src: url("assets/fonts/PatrickHand-Regular.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: block; }
+      @font-face { font-family: "Zalando Sans"; src: url("assets/fonts/ZalandoSans-Variable.ttf") format("truetype"); font-weight: 100 900; font-style: normal; font-display: block; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: #1e1e1e; }
+      body { font-family: "Zalando Sans", sans-serif; color: #f4f4f2; -webkit-font-smoothing: antialiased; }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; background: #1e1e1e; }
+      .clip { position: absolute; inset: 0; overflow: hidden; }
+      #glow { position: absolute; inset: 0; opacity: 0.35; background: radial-gradient(58% 32% at 50% 46%, rgba(207, 251, 80, 0.08), rgba(207, 251, 80, 0) 70%); }
+      #vignette { position: absolute; inset: 0; background: radial-gradient(110% 78% at 50% 44%, rgba(0, 0, 0, 0) 44%, rgba(0, 0, 0, 0.62) 100%); }
+      .cam { position: absolute; left: 540px; top: 880px; width: 1px; height: 1px; }
+      .layer { position: absolute; left: 0; top: 0; width: 1px; height: 1px; }
+      #dots { position: absolute; left: -12000px; top: -9000px; width: 40000px; height: 24000px; background-image: radial-gradient(circle, rgba(255, 255, 255, 0.095) 1.25px, rgba(255, 255, 255, 0) 1.95px); background-size: 24px 24px; }
+      #stage { position: absolute; inset: 0; overflow: hidden; }
+      /* safe zone dell'11/10 (SAFEZONE.jpg): da y = 1332 in giù c'è la tua faccia → la grafica sfuma nel fondo prima della linea */
+      #safe { position: absolute; inset: 0; -webkit-mask-image: linear-gradient(to bottom, #000 0px, #000 1288px, transparent 1330px); mask-image: linear-gradient(to bottom, #000 0px, #000 1288px, transparent 1330px); }
+      #mbwrap, #shake { position: absolute; inset: 0; }
+      #hud { position: absolute; inset: 0; }
+    </style>
+  </head>
+  <body>
+    <!-- KW_RITMO: regole del ritmo R1–R6 e template (kw-kit/kit2-ritmo.js, kit2-template.js) -->
+    <!-- Blocco 9 del rifacimento (RIFACIMENTO-RITMO.md). Ogni scena = una voce, costruita SOLO chiamando il suo template, su
+         una frase vera degli script. Il primo secondo è una copertina scura: fa da «scena prima», così il template monta gli
+         oggetti prima del taglio come in un reel; le clip DOPO si tagliano da t0 (scene.json). -->
+    <!--WORDS ../../../my-video-ottobre-p1-test/src/words/d06.ts-->
+    <div id="root" data-composition-id="main" data-start="0" data-duration="6.1" data-width="1080" data-height="1920">
+      <div id="bg" class="clip" data-start="0" data-duration="6.1" data-track-index="0">
+        <div class="cam" id="gcam2" data-layout-allow-overflow><div class="layer" id="gzoom2"><div class="layer" id="gpan2"><div class="layer" id="bokeh"></div></div></div></div>
+        <div class="cam" id="gcam" data-layout-allow-overflow><div class="layer" id="gzoom"><div class="layer" id="gpan"><div id="dots"></div></div></div></div>
+        <div id="glow"></div>
+        <div id="vignette"></div>
+      </div>
+      <div id="stage">
+        <svg width="0" height="0" style="position: absolute" aria-hidden="true">
+          <filter id="mb" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur id="mbn" in="SourceGraphic" stdDeviation="0 0" /></filter>
+        </svg>
+        <div id="safe"><div id="mbwrap"><div id="shake"><div class="cam" id="cam" data-layout-allow-overflow><div class="layer" id="zoom"><div class="layer" id="pan"></div></div></div></div></div></div>
+      </div>
+      <div id="hudclip" class="clip" data-start="0" data-duration="6.1" data-track-index="2">
+        <div id="hud"></div>
+      </div>
+      <!--SFX
+        # D13 (1,0–6,1 s): taglio, la barra sale dal primo fotogramma e arriva in cima in 2,25 s (come Kallaway), poi tiene
+        1.0 whoosh .14 ; 1.05 rise .06 ; 3.3 ding .1
+      -->
+    </div>
+    <script>
+      (() => {
+        const ICON = __ICONS__;
+        /*__KIT__*/
+
+        camInit(540, 900, 1);
+        // copertina della «scena prima» (0–1 s): sotto, il template monta la sua scena (R2: piena al taglio)
+        const cover = el(document.getElementById("hud"), { position: "absolute", left: 0, top: 0, width: 1080, height: 1920, background: "#1e1e1e", zIndex: 99 });
+
+        // ═══ D13 · termometro accanto alla scala — 06/10, «Non serve rifare il profilo da zero, serve salire di uno step alla
+        // volta.» (29,13–34,2 s della voce, qui spostata a 1,0 s) ═══
+        const OFF = at("Non", 87) - 1.0, W = (p, i) => at(p, i) - OFF;
+        const d13 = TPL.D13({ t0: W("Non", 87), t1: 6.1, X: 600, Y: 900 }, { // riempimento in 2,25 s come Kallaway (scelta dell'utente 14/10), poi la tenuta
+          titolo: [[{ t: "Uno step " }, { t: "alla volta", box: true }]],
+          gradini: ["Foto profilo", "Nome + cosa fai", "Chi aiuti", "Perché fidarti", "Parola nei DM"],
+          etichette: ["Base", "Ultimo gradino"], tu: true,
+        });
+        tl.set(cover, { opacity: 0 }, d13.tempi.taglio);
+
+        window.__timelines = window.__timelines || {};
+        window.__timelines["main"] = tl;
+      })();
+    </script>
+  </body>
+</html>

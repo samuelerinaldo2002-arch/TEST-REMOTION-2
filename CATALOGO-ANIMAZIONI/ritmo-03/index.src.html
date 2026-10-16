@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>Ritmo · blocco 3 (template)</title>
+    <script src="assets/vendor/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Advercase"; src: url("assets/fonts/Advercase-Bold.ttf") format("truetype"); font-weight: 700; font-style: normal; font-display: block; }
+      @font-face { font-family: "Advercase"; src: url("assets/fonts/Advercase-Regular.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: block; }
+      @font-face { font-family: "Patrick Hand"; src: url("assets/fonts/PatrickHand-Regular.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: block; }
+      @font-face { font-family: "Zalando Sans"; src: url("assets/fonts/ZalandoSans-Variable.ttf") format("truetype"); font-weight: 100 900; font-style: normal; font-display: block; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: #1e1e1e; }
+      body { font-family: "Zalando Sans", sans-serif; color: #f4f4f2; -webkit-font-smoothing: antialiased; }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; background: #1e1e1e; }
+      .clip { position: absolute; inset: 0; overflow: hidden; }
+      #glow { position: absolute; inset: 0; opacity: 0.35; background: radial-gradient(58% 32% at 50% 46%, rgba(207, 251, 80, 0.08), rgba(207, 251, 80, 0) 70%); }
+      #vignette { position: absolute; inset: 0; background: radial-gradient(110% 78% at 50% 44%, rgba(0, 0, 0, 0) 44%, rgba(0, 0, 0, 0.62) 100%); }
+      .cam { position: absolute; left: 540px; top: 880px; width: 1px; height: 1px; }
+      .layer { position: absolute; left: 0; top: 0; width: 1px; height: 1px; }
+      #dots, #dotsFermi { position: absolute; left: -12000px; top: -9000px; width: 40000px; height: 24000px; background-image: radial-gradient(circle, rgba(255, 255, 255, 0.095) 1.25px, rgba(255, 255, 255, 0) 1.95px); background-size: 24px 24px; }
+      #stage { position: absolute; inset: 0; overflow: hidden; }
+      /* safe zone dell'11/10 (SAFEZONE.jpg): da y = 1332 in giù c'è la tua faccia → la grafica sfuma nel fondo prima della linea */
+      #safe { position: absolute; inset: 0; -webkit-mask-image: linear-gradient(to bottom, #000 0px, #000 1288px, transparent 1330px); mask-image: linear-gradient(to bottom, #000 0px, #000 1288px, transparent 1330px); }
+      #mbwrap, #shake { position: absolute; inset: 0; }
+      #hud { position: absolute; inset: 0; }
+    </style>
+  </head>
+  <body>
+    <!-- KW_RITMO: regole del ritmo R1–R8 e template (kw-kit/kit2-ritmo.js, kit2-template.js, kit2-tpl-*.js) -->
+    <!-- Blocco 3 del rifacimento (RIFACIMENTO-RITMO.md). Ogni scena = una voce, costruita SOLO chiamando il suo template, su
+         una frase vera degli script dell'utente (02/10, 07/10, 09/10, 12/10, 10/10, 11/10, 05/10, 13/10, 15/10); i tempi delle
+         parole sono scritti a mano da _tools/parole.py e spostati sulla scena. Il primo secondo è una copertina scura: fa da
+         «scena prima». Le clip DOPO si tagliano da t0 (scene.json). R7 approvata (tplFermo() in fondo). Transizioni (nota
+         dell'utente del 15/10, al posto del «morbida 1 volta su 3» di R8): la MAGGIOR PARTE dei cambi è un movimento di camera
+         continuo (tplPan, tplZoomThrough, la lista che continua), il taglio netto solo per enfasi; ogni scena è segnata «CAMBIO:
+         …» qui sotto e in scene.json (campo cambio). A01 → T01 resta il taglio già misurato. -->
+    <div id="root" data-composition-id="main" data-start="0" data-duration="51.0" data-width="1080" data-height="1920">
+      <div id="bg" class="clip" data-start="0" data-duration="51.0" data-track-index="0">
+        <div class="cam" id="gcam2" data-layout-allow-overflow><div class="layer" id="gzoom2"><div class="layer" id="gpan2"><div class="layer" id="bokeh"></div></div></div></div>
+        <div class="cam" id="gcam" data-layout-allow-overflow><div class="layer" id="gzoom"><div class="layer" id="gpan"><div id="dots"></div></div></div></div>
+        <div id="glow"></div>
+        <div id="vignette"></div>
+      </div>
+      <div id="stage">
+        <svg width="0" height="0" style="position: absolute" aria-hidden="true">
+          <filter id="mb" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur id="mbn" in="SourceGraphic" stdDeviation="0 0" /></filter>
+        </svg>
+        <div id="safe"><div id="mbwrap"><div id="shake"><div class="cam" id="cam" data-layout-allow-overflow><div class="layer" id="zoom"><div class="layer" id="pan"></div></div></div></div></div></div>
+        <!--VIDEOS
+          # A01 · i contenuti degli altri: reel veri di altri creator (assets/clips/alt/_sorgenti.json: visualizzazioni vere)
+          a1 assets/clips/alt/a1.mp4 0.0 6.0
+          a2 assets/clips/alt/a2.mp4 0.0 6.0
+          a3 assets/clips/alt/a3.mp4 0.0 6.0
+          a4 assets/clips/alt/a4.mp4 0.0 6.0
+          a5 assets/clips/alt/a5.mp4 0.0 6.0
+          a6 assets/clips/alt/a6.mp4 0.0 6.0
+          # T01 · il tuo reel che cambia clip sulle prime parole del titolo (i tuoi reel veri)
+          t1 assets/clips/mio/m02.mp4 4.95 6.1
+          t2 assets/clips/mio/v01.mp4 4.95 6.1
+          t3 assets/clips/mio/m06.mp4 4.95 6.1
+          t4 assets/clips/mio/v03.mp4 4.95 6.1
+          # K03 · 10 tuoi reel veri: 8 danno qualcosa, 2 chiedono qualcosa
+          k1 assets/clips/mio/m01.mp4 17.3 5.6
+          k2 assets/clips/mio/m03.mp4 17.3 5.6
+          k3 assets/clips/mio/m04.mp4 17.3 5.6
+          k4 assets/clips/mio/m05.mp4 17.3 5.6
+          k5 assets/clips/mio/m07.mp4 17.3 5.6
+          k6 assets/clips/mio/m08.mp4 17.3 5.6
+          k7 assets/clips/mio/m09.mp4 17.3 5.6
+          k8 assets/clips/mio/v02.mp4 17.3 5.6
+          k9 assets/clips/mio/m02.mp4 17.3 5.6
+          k10 assets/clips/mio/v01.mp4 17.3 5.6
+          # D02 · formati che funzionano: reel veri (fitness, cucina) con le loro visualizzazioni vere
+          f1 assets/clips/alt/f1.mp4 40.55 5.2
+          f2 assets/clips/alt/f2.mp4 40.55 5.2
+          f3 assets/clips/alt/f3.mp4 40.55 5.2
+          f4 assets/clips/alt/f4.mp4 40.55 5.2
+        -->
+      </div>
+      <div id="hudclip" class="clip" data-start="0" data-duration="51.0" data-track-index="2">
+        <div id="hud"></div>
+      </div>
+      <!--SFX
+        # A01 (1,0–5,95 s): zoom d'arrivo sul muro, i badge su «contenuti», il tuo posto su «tuoi»
+        1.0 whoosh .14 ; 3.6 tick .04 ; 3.76 tick .04 ; 5.31 pop .1
+        # T01 (5,95–11,0 s): il reel cambia clip su «Solo», «tre», «emozioni», la barra da «tengono» a «fine»
+        5.95 whoosh .14 ; 6.42 tick .04 ; 6.68 tick .04 ; 7.15 tick .04 ; 8.42 rise .05 ; 10.32 ding .08
+        # L01 (11,0–14,0 s, PAN dal reel di T01): la scia del pan, le barre arrivano mentre frena, i numeri su «tre»
+        10.95 whoosh .1 ; 11.25 tick .04 ; 11.4 tick .04 ; 13.28 pop .06
+        # L02 (14,0–18,3 s, LA LISTA CONTINUA): lo sheen su «desiderio», il fuoco su «preciso»
+        15.08 sub .05 ; 17.42 tick .05
+        # K03 (18,3–22,85 s, TAGLIO): arrivo sugli 8, accesi su «danno», la camera va ai 2 su «2», accesi su «chiedono»
+        18.3 whoosh .14 ; 19.58 tick .05 ; 20.92 whoosh .1 ; 21.22 tick .05
+        # T02 (22,85–27,0 s, PAN che continua il viaggio di K03): il box cresce su «l'algoritmo delle storie», le storie su «storie», la tua su «Instagram»
+        22.8 whoosh .1 ; 24.88 key1 .05 ; 25.78 tick .05 ; 26.22 ding .08
+        # F01 (27,0–31,4 s, ZOOM-THROUGH nella tua storia): la fotocamera si spegne su «fotocamera», la luce si accende su «luce»
+        26.84 whoosh .14 ; 27.5 drop .06 ; 30.63 ding .1
+        # K04 (31,4–36,7 s, TAGLIO): la spinta sulla bio, il riquadro su «bio», le righe su «tre righe»
+        31.4 whoosh .12 ; 31.42 rise .04 ; 33.52 tick .05 ; 35.75 pop .05
+        # F03 (36,7–41,55 s, PAN IN BASSO dalla bio alle storie in evidenza): il primo posto, la card + la banda, le scritte
+        36.65 whoosh .14 ; 37.25 tick .05 ; 38.22 card .1 ; 38.54 sub .05 ; 39.18 key1 .04 ; 40.35 key2 .04
+        # D02 (41,55–45,7 s, PAN A DESTRA): i formati su «formati», i badge su «funzionando», il periodo su «momento»
+        41.5 whoosh .1 ; 42.5 tick .04 ; 43.27 tick .04 ; 43.43 tick .04 ; 44.37 ding .06
+        # X01 (45,7–48,2 s, TAGLIO): le pagine a ondate su «Commenta», «sistema» e «mando», la risorsa su «comando»
+        45.7 whoosh .14 ; 46.2 card .05 ; 46.74 card .06 ; 47.5 card .06 ; 47.83 tick .06
+        # U01 (48,2–51,0 s, ZOOM-THROUGH nella pagina del comando): il comando si scrive, l'invio su «metodo»
+        48.04 whoosh .16 ; 48.3 key1 .03 ; 48.7 key3 .03 ; 49.1 key5 .03 ; 49.5 key2 .03 ; 49.93 click .08 ; 50.4 pop .05
+      -->
+    </div>
+    <script>
+      (() => {
+        const ICON = __ICONS__;
+        /*__KIT__*/
+
+        camInit(540, 900, 1);
+        // copertina della «scena prima» (0–1 s): sotto, il primo template monta la sua scena (R2: piena al taglio)
+        const cover = el(document.getElementById("hud"), { position: "absolute", left: 0, top: 0, width: 1080, height: 1920, background: "#1e1e1e", zIndex: 99 });
+        const sottoCopertina = (L) => [L, ...L.querySelectorAll("*")].forEach((n) => n.setAttribute("data-layout-allow-occlusion", ""));
+        const S = {}; // i risultati dei template (ancore, tempi) per legare le scene fra loro (R8)
+
+        // ═══ 1 · A01 · muro di reel veri con badge views — 02/10 «Non ti mancano le idee. Stai guardando i contenuti degli altri
+        // invece di fare i tuoi.» (d02 0–4,43 s → +1,1 s). Reel veri di altri creator (Steven Bartlett, Dan Koe, Tony Robbins,
+        // Hormozi, GaryVee) con le loro visualizzazioni vere; su «tuoi» il muro si spegne e compare il tuo posto vuoto ═══
+        { const o = 1.1;
+          S.A01 = TPL.A01({ t0: 1.0, t1: 5.95, X: 600, Y: 900,
+            parole: { badge: o + 2.5, tuoi: o + 4.167, titolo: [o + 0, o + 0.2, o + 0.367, o + 0.8, o + 0.967] } }, {
+            titolo: [[{ t: "Non ti mancano " }], [{ t: "le idee", box: true }]],
+            media: ["a1", "a2", "a3", "a4", "a5", "a6"], views: ["2,2M", "114K", "136K", "675K", "75K", "19K"], tu: "tu" });
+          tl.set(cover, { opacity: 0 }, S.A01.tempi.taglio);
+          sottoCopertina(S.A01.elementi.L);
+        }
+
+        // ═══ 2 · T01 · titolo parola per parola sulla voce — 07/10 «Ci sono solo tre emozioni che tengono qualcuno davanti a un
+        // video fino alla fine.» (d07 0–4,53 s → +6,05 s). Il tuo reel cambia clip su «Solo», «tre», «emozioni»; la sagoma di
+        // chi guarda su «qualcuno»; la barra corre da «tengono» a «fine». R8: taglio netto ═══
+        { const o = 6.05;
+          S.T01 = TPL.T01({ t0: 5.95, t1: 11.0, X: 3600, Y: 880,
+            parole: { titolo: [o + 0.367, o + 0.633, o + 1.1, o + 3.9, o + 4.133, o + 4.267], cambi: [o + 0.367, o + 0.633, o + 1.1],
+              chi: o + 2.733, barra: o + 2.367, fine: o + 4.267 } }, {
+            titolo: [[{ t: "Solo tre " }, { t: "emozioni", box: true }], [{ t: "fino alla fine", hand: true }]],
+            media: ["t1", "t2", "t3", "t4"], chi: true });
+        }
+
+        // ═══ 3 · L01 · lista coi segnaposto sfocati — 09/10 «Le emozioni che conta capire sono tre.» (d09 11,67–14,03 s →
+        // −0,517 s). Le tre emozioni dello script, sfocate finché non le dici. CAMBIO: PAN (le idee si toccano: «tre emozioni» →
+        // la lista delle tre): la camera scorre di lato dal reel di T01 alla lista, vicina (~1 schermata); le barre arrivano
+        // mentre la camera frena ═══
+        { const o = -0.517, t0 = 11.0;
+          S.L01 = TPL.L01({ t0, t1: 14.0, X: 4600, Y: 860,
+            parole: { numeri: o + 13.8, titolo: [o + 11.667, o + 12.2, o + 13.4, o + 13.8] } }, {
+            titolo: [[{ t: "Le emozioni sono " }, { t: "tre", box: true }]],
+            voci: ["Il desiderio", "La paura", "Cosa crede di sé"], passi: [0.25, 0.4], ingresso: "nessuno", fermoDa: t0 + 0.7 });
+          tplTenuta(tplPan(t0 - 0.05, S.L01.pose, { dur: 0.75 }), 14.0, 0.008);
+        }
+
+        // ═══ 4 · L02 · una voce si risolve con lo sheen — 09/10 «La prima è il desiderio. Ogni persona vuole qualcosa di
+        // preciso.» (d09 14,43–18,13 s → −0,283 s). CAMBIO: LA LISTA CONTINUA (le idee si toccano: la lista annunciata → la sua
+        // prima voce): niente taglio, la camera fa una seconda inquadratura verso la voce ═══
+        { const o = -0.283;
+          S.L02 = TPL.L02({ t0: 14.0, t1: 18.3, X: 4600, Y: 860,
+            parole: { risolve: o + 15.367, fuoco: o + 17.7, titolo: [o + 14.433, o + 14.833, o + 15.267, o + 15.367] } }, {
+            titolo: [[{ t: "La prima: " }, { t: "il desiderio", box: true }]], lista: S.L01.elementi.lista, voce: 0 });
+        }
+
+        // ═══ 5 · K03 · spostamento di camera tra due oggetti — 12/10 «8 contenuti su 10 danno qualcosa, 2 chiedono qualcosa.»
+        // (d12 29,03–32,97 s → −10,583 s). I tuoi reel veri: 8 che danno (regalo), 2 che chiedono (borsa della spesa); la camera
+        // va dagli 8 ai 2 su «2». CAMBIO: TAGLIO NETTO (enfasi sul dato «8 su 10», idea nuova) ═══
+        { const o = -10.583;
+          S.K03 = TPL.K03({ t0: 18.3, t1: 22.85, X: 9600, Y: 900,
+            parole: { a: o + 30.167, sposta: o + 31.5, b: o + 31.8, titolo: [o + 29.033, o + 29.733, o + 29.9, o + 30.167, o + 31.5, o + 31.8] } }, {
+            titolo: [[{ t: "8 su 10 " }, { t: "danno", box: true }], [{ t: "2 chiedono", hand: true }]],
+            a: { media: ["k1", "k2", "k3", "k4", "k5", "k6", "k7", "k8"], etichetta: "Danno qualcosa", icona: "gift" },
+            b: { media: ["k9", "k10"], etichetta: "Chiedono", icona: "shopping-bag" } });
+        }
+
+        // ═══ 6 · T02 · box evidenziatore che cresce con le lettere — 10/10 «Ecco come funziona davvero l'algoritmo delle storie su
+        // Instagram.» (d10 0–3,63 s → +22,95 s). Sotto, la fila delle storie (la tua prima, gli altri come sagome) con
+        // l'algoritmo che le distribuisce. CAMBIO: PAN (la camera continua il viaggio di K03 verso destra: dai 2 che chiedono
+        // alla fila delle storie, vicina) ═══
+        { const o = 22.95, t0 = 22.85;
+          S.T02 = TPL.T02({ t0, t1: 27.0, X: S.K03.ancore.b[0] + 1000, Y: 1000,
+            parole: { storie: o + 2.833, tu: o + 3.267, titolo: [o + 0.267, o + 0.467, o + 1.033, o + 1.933, o + 2.667, o + 2.833] } }, {
+            titolo: [[{ t: "Come funziona davvero" }], [{ t: "l'algoritmo delle storie", box: true }]], titoloSize: 66,
+            ingresso: "nessuno", fermoDa: t0 + 0.7 });
+          tplTenuta(tplPan(t0 - 0.05, S.T02.pose, { dur: 0.75 }), 27.0, 0.008);
+        }
+
+        // ═══ 7 · F01 · glow: la cosa che conta si accende — 11/10 «Non è la fotocamera a farti sembrare professionale, è dove
+        // metti la luce.» (d11 0–3,8 s → +27,1 s). La fotocamera si spegne, il faro si accende col suo alone e illumina la tua
+        // foto. CAMBIO: ZOOM-THROUGH (match cut su «tu»: la camera entra nella tua storia di T02 e dall'altra parte c'è la tua
+        // foto, in ombra, sotto il faro) ═══
+        { const o = 27.1, t0 = 27.0;
+          S.F01 = TPL.F01({ t0, t1: 31.4, X: 16600, Y: 860,
+            parole: { spegni: o + 0.4, accendi: o + 3.533, titolo: [o + 0, o + 0.333, o + 0.4, o + 3.4, o + 3.533] } }, {
+            titolo: [[{ t: "Non la " }, { t: "fotocamera", box: true }], [{ t: "la luce", hand: true }]], tu: "tu",
+            ingresso: "nessuno", fermoDa: t0 + 0.45 });
+          tplTenuta(tplZoomThrough(t0, S.T02.ancore.storia(0), S.F01.pose), 31.4);
+        }
+
+        // ═══ 8 · K04 · la camera si avvicina a un oggetto solo che si legge (R4) — 05/10 «Al penultimo posto hai la tua bio
+        // ottimizzata e dovrebbe essere fatta di tre righe.» (d05 54,83–59,57 s → −23,283 s). La tua bio vera: cosa fai, un
+        // risultato, la call to action. CAMBIO: TAGLIO NETTO (il movimento della voce è la spinta stessa, che parte al taglio) ═══
+        { const o = -23.283;
+          S.K04 = TPL.K04({ t0: 31.4, t1: 36.7, X: 19600, Y: 860,
+            parole: { bio: o + 56.8, righe: o + 59.033, titolo: [o + 56.533, o + 56.667, o + 56.8, o + 59.033, o + 59.2] } }, {
+            titolo: [[{ t: "La tua bio:" }], [{ t: "tre righe", box: true }]],
+            profilo: { user: "tu", nome: "Samuele Rinaldo", categoria: "Creatore digitale" },
+            righe: ["Video · Foto · Content Creation", "Meno contenuti casuali. Più risultati.", "Scrivimi «PROFILO» nei DM ↓"] });
+        }
+
+        // ═══ 9 · F03 · sheen sulla card importante — 13/10 «Al primo posto va la presentazione. Chi sei e di cosa ti occupi?»
+        // (d13 12,67–16,93 s → +24,183 s). Le tue storie in evidenza: la «Presentazione» (la tua foto vera) arriva al primo posto
+        // e la banda di luce la attraversa. CAMBIO: PAN IN BASSO (le idee si toccano: la bio → le storie in evidenza, sullo
+        // stesso profilo): la camera scende dalla bio (tplPan) ═══
+        { const o = 24.183, t0 = 36.7;
+          S.F03 = TPL.F03({ t0, t1: 41.55, X: 19600, Y: 2280,
+            parole: { posto: o + 13.067, arriva: o + 14.033, righe: [o + 15.0, o + 16.167], titolo: [o + 12.667, o + 13.067, o + 13.233, o + 13.9, o + 14.033] } }, {
+            titolo: [[{ t: "Al primo posto:" }], [{ t: "la presentazione", box: true }]], evidenze: ["Risultati", "Domande", "Extra"],
+            card: { user: "tu", handle: "samuelerinaldo.media", righe: ["Ciao, sono Samuele", "Video per attività locali"] },
+            ingresso: "nessuno", fermoDa: t0 + 0.7 });
+          tplTenuta(tplPan(t0 - 0.05, S.F03.pose, { dur: 0.75 }), 41.55);
+        }
+
+        // ═══ 10 · D02 · badge views in sequenza — 15/10 «Cerca argomenti e formati che stanno funzionando in questo momento sui
+        // social.» (d15 18,67–22,23 s → +23,033 s). Quattro formati veri (classifica, prima e dopo, economico vs costoso,
+        // giornata tipo) con le visualizzazioni vere. CAMBIO: PAN A DESTRA (dalle tue storie in evidenza ai formati degli altri,
+        // vicini) ═══
+        { const o = 23.033, t0 = 41.55;
+          S.D02 = TPL.D02({ t0, t1: 45.7, X: 20900, Y: 2320,
+            parole: { formati: o + 19.467, badge: o + 20.233, adesso: o + 21.333, titolo: [o + 18.667, o + 19.467, o + 19.833, o + 19.967, o + 20.233] } }, {
+            titolo: [[{ t: "Cerca " }, { t: "formati", box: true }], [{ t: "che stanno funzionando", hand: true }]],
+            formati: [{ media: "f1", nome: "Classifica", views: "9,1M" }, { media: "f2", nome: "Prima e dopo", views: "2,2M" },
+              { media: "f3", nome: "1 € vs 100.000 €", views: "23,4M" }, { media: "f4", nome: "Giornata tipo", views: "2,9M" }],
+            periodo: "Questa settimana", ingresso: "nessuno", fermoDa: t0 + 0.7 });
+          tplTenuta(tplPan(t0 - 0.05, S.D02.pose, { dur: 0.75 }), 45.7, 0.008);
+        }
+
+        // ═══ 11 · X01 · «Commenta X» + anteprima della risorsa — 15/10 «Commenta sistema e ti mando il comando…» (d15
+        // 39,83–41,83 s → +6,367 s). Le pagine della risorsa arrivano a ondate su «sistema» e «mando»; «Il comando» si accende su
+        // «comando». CAMBIO: TAGLIO NETTO (enfasi: la chiamata all'azione). Le pagine arrivano una o due alla volta come nel reel 12
+        // (1 → 2 → 4 → 6, opzione ondate) su «Commenta», «sistema», «mando» ═══
+        { const o = 6.367;
+          S.X01 = TPL.X01({ t0: 45.7, t1: 48.2, X: 25600, Y: 900,
+            parole: { ondate: [o + 39.833, o + 40.367, o + 41.133], risorsa: o + 41.467, titolo: [o + 39.833, o + 40.367] } }, {
+            titolo: [[{ t: "Commenta " }, { t: "«sistema»", box: true }]], ondate: [1, 2, 4, 6],
+            pagine: ["Il comando", "Hook", "Spiega", "Mostra", "Insegna", "Esempi"] });
+        }
+
+        // ═══ 12 · U01 · chat AI ricreata + il comando che si scrive — 15/10 «…il comando che uso per scrivere i copioni con
+        // questo metodo.» (d15 41,83–43,93 s → +6,367 s). La chat vera (Claude, tema scuro, la tua foto): il comando si scrive,
+        // su «metodo» parte e la risposta arriva con le quattro sezioni del metodo. CAMBIO: ZOOM-THROUGH (le idee si toccano: la
+        // risorsa → la risorsa aperta): la camera entra nella pagina «Il comando» di X01 (tplZoomThrough). L'altezza della finestra
+        // ora segue il contenuto (default nuovo di U01 senza h: con 4 sezioni la risposta non copre più il campo) ═══
+        { const o = 6.367, t0 = 48.2;
+          S.U01 = TPL.U01({ t0, t1: 51.0, X: 28600, Y: 900,
+            parole: { scrive: t0 + 0.08, invia: o + 43.567, titolo: [o + 42.167, o + 42.333, o + 42.633, o + 42.767] } }, {
+            titolo: [[{ t: "Per scrivere i " }, { t: "copioni", box: true }]], prompt: "/copione metodo: hook, spiega, mostra, insegna",
+            risposta: { intro: "Ecco il copione del tuo reel:", sezioni: ["Hook", "Spiega", "Mostra", "Insegna"] },
+            ingresso: "nessuno", fermoDa: t0 + 0.45 });
+          S.U01.elementi.seconda(tplZoomThrough(t0, S.X01.ancore.risorsa, S.U01.pose));
+        }
+
+        // R7 (approvata 14/10): sfondo fermo nella tenuta di ogni scena
+        tplFermo();
+
+        window.__timelines = window.__timelines || {};
+        window.__timelines["main"] = tl;
+      })();
+    </script>
+  </body>
+</html>

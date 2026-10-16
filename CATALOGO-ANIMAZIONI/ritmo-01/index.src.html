@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>Ritmo · blocco 1 (template)</title>
+    <script src="assets/vendor/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Advercase"; src: url("assets/fonts/Advercase-Bold.ttf") format("truetype"); font-weight: 700; font-style: normal; font-display: block; }
+      @font-face { font-family: "Advercase"; src: url("assets/fonts/Advercase-Regular.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: block; }
+      @font-face { font-family: "Patrick Hand"; src: url("assets/fonts/PatrickHand-Regular.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: block; }
+      @font-face { font-family: "Zalando Sans"; src: url("assets/fonts/ZalandoSans-Variable.ttf") format("truetype"); font-weight: 100 900; font-style: normal; font-display: block; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: #1e1e1e; }
+      body { font-family: "Zalando Sans", sans-serif; color: #f4f4f2; -webkit-font-smoothing: antialiased; }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; background: #1e1e1e; }
+      .clip { position: absolute; inset: 0; overflow: hidden; }
+      #glow { position: absolute; inset: 0; opacity: 0.35; background: radial-gradient(58% 32% at 50% 46%, rgba(207, 251, 80, 0.08), rgba(207, 251, 80, 0) 70%); }
+      #vignette { position: absolute; inset: 0; background: radial-gradient(110% 78% at 50% 44%, rgba(0, 0, 0, 0) 44%, rgba(0, 0, 0, 0.62) 100%); }
+      .cam { position: absolute; left: 540px; top: 880px; width: 1px; height: 1px; }
+      .layer { position: absolute; left: 0; top: 0; width: 1px; height: 1px; }
+      #dots, #dotsFermi { position: absolute; left: -12000px; top: -9000px; width: 40000px; height: 24000px; background-image: radial-gradient(circle, rgba(255, 255, 255, 0.095) 1.25px, rgba(255, 255, 255, 0) 1.95px); background-size: 24px 24px; }
+      #stage { position: absolute; inset: 0; overflow: hidden; }
+      /* safe zone dell'11/10 (SAFEZONE.jpg): da y = 1332 in giù c'è la tua faccia → la grafica sfuma nel fondo prima della linea */
+      #safe { position: absolute; inset: 0; -webkit-mask-image: linear-gradient(to bottom, #000 0px, #000 1288px, transparent 1330px); mask-image: linear-gradient(to bottom, #000 0px, #000 1288px, transparent 1330px); }
+      #mbwrap, #shake { position: absolute; inset: 0; }
+      #hud { position: absolute; inset: 0; }
+    </style>
+  </head>
+  <body>
+    <!-- KW_RITMO: regole del ritmo R1–R6 e template (kw-kit/kit2-ritmo.js, kit2-template.js, kit2-tpl-*.js) -->
+    <!-- Blocco 1 del rifacimento (RIFACIMENTO-RITMO.md). Ogni scena = una voce, costruita SOLO chiamando il suo template, su
+         una frase vera degli script (i tempi delle parole sono scritti a mano da _tools/parole.py e spostati sulla scena).
+         Il primo secondo è una copertina scura: fa da «scena prima». Le clip DOPO si tagliano da t0 (scene.json).
+         Prova di R7 (sfondo fermo nella tenuta: tplFermo() in fondo) e di R8 (taglio netto + arrivo; morbida circa 1 volta
+         su 3 dove le idee si toccano: segnate «R8 morbida» qui sotto). -->
+    <div id="root" data-composition-id="main" data-start="0" data-duration="59.4" data-width="1080" data-height="1920">
+      <div id="bg" class="clip" data-start="0" data-duration="59.4" data-track-index="0">
+        <div class="cam" id="gcam2" data-layout-allow-overflow><div class="layer" id="gzoom2"><div class="layer" id="gpan2"><div class="layer" id="bokeh"></div></div></div></div>
+        <div class="cam" id="gcam" data-layout-allow-overflow><div class="layer" id="gzoom"><div class="layer" id="gpan"><div id="dots"></div></div></div></div>
+        <div id="glow"></div>
+        <div id="vignette"></div>
+      </div>
+      <div id="stage">
+        <svg width="0" height="0" style="position: absolute" aria-hidden="true">
+          <filter id="mb" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur id="mbn" in="SourceGraphic" stdDeviation="0 0" /></filter>
+        </svg>
+        <div id="safe"><div id="mbwrap"><div id="shake"><div class="cam" id="cam" data-layout-allow-overflow><div class="layer" id="zoom"><div class="layer" id="pan"></div></div></div></div></div></div>
+        <!--VIDEOS
+          # O01 · l'anello «di tutto»: un tema diverso per card (fitness, viaggi, cucina, animali, motivazione)
+          c1 assets/clips/t_fit1.mp4 0 6.6
+          c2 assets/clips/t_via1.mp4 0 6.6
+          c3 assets/clips/t_cuc1.mp4 0 6.6
+          c4 assets/clips/t_ani1.mp4 0 6.6
+          c5 assets/clips/t_mot1.mp4 0 6.6
+          c6 assets/clips/t_via2.mp4 0 6.6
+          c7 assets/clips/t_cuc2.mp4 0 6.6
+          # C01 · la settimana: lunedì fitness, martedì viaggi, venerdì motivazione
+          w1 assets/clips/t_fit1.mp4 4.6 4.25 1.0
+          w2 assets/clips/t_via1.mp4 4.6 4.25 2.4
+          w3 assets/clips/t_mot2.mp4 4.6 4.25
+          # F08 · la griglia del profilo «di tutto» (un tema per riquadro)
+          g1 assets/clips/t_fit2.mp4 7.75 6.1
+          g2 assets/clips/t_cuc1.mp4 7.75 6.1 3.0
+          g3 assets/clips/t_via2.mp4 7.75 6.1 1.0
+          g4 assets/clips/t_ani2.mp4 7.75 6.1 1.0
+          g5 assets/clips/t_mot1.mp4 7.75 6.1 2.0
+          g6 assets/clips/t_via1.mp4 7.75 6.1 4.0
+          # U02 · la griglia del tuo profilo vero: i tuoi reel in movimento
+          p1 assets/clips/mio/m01.mp4 13.2 5.95
+          p2 assets/clips/mio/m02.mp4 13.2 5.95
+          p3 assets/clips/mio/m03.mp4 13.2 5.95
+          p4 assets/clips/mio/m04.mp4 13.2 5.95
+          p5 assets/clips/mio/m05.mp4 13.2 5.95
+          p6 assets/clips/mio/m06.mp4 13.2 5.95
+          p7 assets/clips/mio/m07.mp4 13.2 5.95
+          p8 assets/clips/mio/m08.mp4 13.2 5.95
+          p9 assets/clips/mio/m09.mp4 13.2 5.95
+          # T05 · i contenuti con tantissima interazione: reel veri di Hormozi (virali)
+          e1 assets/clips/est/h01.mp4 25.95 5.6
+          e2 assets/clips/est/h03.mp4 25.95 5.6
+          e3 assets/clips/est/h05.mp4 25.95 5.6
+          # O21 · il reel di prova al centro degli anelli: il tuo reel del 04/10 (spezzone r04, da «primo»)
+          r04v assets/clips/r04.mp4 49.15 6.3
+        -->
+        <!-- immagini della composizione (il render vede solo i media dell'HTML statico): U03 · la foto caricata = un fotogramma
+             di un tuo reel (v02, nella tua stanza); il risultato è la tua foto profilo vera (av-tu, sfondo lime) -->
+        <div style="position:absolute;left:0;top:0;width:0;height:0;overflow:hidden"><img id="img-tu-prima" src="assets/img/tu_prima.jpg" alt="" /></div>
+      </div>
+      <div id="hudclip" class="clip" data-start="0" data-duration="59.4" data-track-index="2">
+        <div id="hud"></div>
+      </div>
+      <!--SFX
+        # O01 (1,0–5,6 s): l'anello si apre al taglio, disco su «uno», la risposta su «Pubblicare»
+        1.0 whoosh .14 ; 1.83 pop .12 ; 4.1 card .1
+        # C01 (5,6–8,75 s, R8 morbida): la linea parte dall'anello e la camera la segue, poi le tappe sulle parole
+        5.6 whoosh .16 ; 6.25 land .12 ; 6.93 tick .06 ; 7.63 tick .06
+        # F08 (8,75–13,75 s): arrivo, la pill si spegne di colpo su «non», riquadro sulla griglia, le persone a onda su «nemmeno»
+        8.75 whoosh .14 ; 10.17 glitch .1 ; 11.5 tick .05 ; 12.37 drop .12
+        # U02 (13,75–19,15 s): spinta sul telefono, riquadro sulla bio su «ottimizzato», i follower contano su «porterà più follower»
+        13.75 whoosh .14 ; 15.6 tick .05 ; 17.8 rise .06 ; 18.74 ding .1
+        # U03 (19,15–26,95 s): zoom sulla finestra, l'indirizzo si scrive, clic su «carica», seconda inquadratura, clic su «sfondo»
+        19.15 whoosh .14 ; 20.64 key1 .06 ; 22.34 click .2 ; 25.4 whoosh .06 ; 26.0 click .2 ; 26.08 pop .1
+        # T05 (26,95–31,45 s): arrivo e l'etichetta si decodifica, le linee su «mostra», i numeri su «tantissima»
+        26.95 whoosh .14 ; 27.0 glitch .1 ; 28.34 tick .05 ; 30.0 rise .06
+        # L11 (31,45–38,0 s): il tracciato si disegna al taglio, il tuo video arriva su «carichi», corre su «bozza» e «duplicalo»
+        31.45 whoosh .14 ; 32.9 pop .1 ; 35.8 tick .06 ; 37.26 tick .06 ; 37.3 card .1
+        # U10 (38,0–42,35 s, R8 morbida: zoom-through nel tuo video): il dito tocca i ⋯, la lente su Duplica, preme, la copia
+        37.84 whoosh .16 ; 39.68 tap .2 ; 39.78 card .1 ; 41.15 tap .2 ; 41.6 pop .12
+        # U11 (42,35–46,15 s): arrivo di lato, il dito accende «Reel di prova» su «pubblicala», preme Condividi su «reel», il reel esce
+        42.35 whoosh .14 ; 44.3 tap .2 ; 44.32 toggle .14 ; 44.92 tap .2 ; 44.97 whoosh .12 ; 45.37 pop .12
+        # U07 (46,15–50,15 s): arrivo di lato sulle Bozze, il dito preme la seconda bozza, poi Condividi: il reel normale esce
+        46.15 whoosh .14 ; 47.98 tap .2 ; 48.12 card .08 ; 48.88 tap .2 ; 48.93 whoosh .12 ; 49.33 pop .12
+        # O21 (50,15–55,0 s): zoom d'arrivo, i tuoi follower si spengono su «solo», le persone nuove si accendono su «persone»
+        50.15 whoosh .14 ; 52.36 drop .1 ; 52.9 rise .06
+        # D01 (55,0–59,4 s, R8 morbida: frusta dagli anelli): «=» su «identico», il conteggio su «raddoppi», il ×2 su «gratis»
+        54.98 whoosh .16 ; 55.73 tick .05 ; 56.8 rise .06 ; 58.3 ding .12 ; 58.5 pop .12
+      -->
+    </div>
+    <script>
+      (() => {
+        const ICON = __ICONS__;
+        /*__KIT__*/
+
+        camInit(540, 900, 1);
+        // copertina della «scena prima» (0–1 s): sotto, il primo template monta la sua scena (R2: piena al taglio)
+        const cover = el(document.getElementById("hud"), { position: "absolute", left: 0, top: 0, width: 1080, height: 1920, background: "#1e1e1e", zIndex: 99 });
+        // copre apposta la prima scena che si monta sotto (i suoi testi sono nascosti di proposito: allow-occlusion)
+        const sottoCopertina = (L) => [L, ...L.querySelectorAll("*")].forEach((n) => n.setAttribute("data-layout-allow-occlusion", ""));
+        const S = {}; // i risultati dei template (ancore, tempi) per legare le scene fra loro (R8)
+
+        // ═══ 1 · O01 · anello di reel — 01/10 «L'errore numero uno che fanno i principianti? Pubblicare di tutto.»
+        // (d01 0–4,07 s → +1,1 s) ═══
+        { const o = 1.1;
+          S.O01 = TPL.O01({ t0: 1.0, t1: 5.6, X: 600, Y: 900,
+            parole: { accento: o + 0.733, risposta: o + 3.0, sottolinea: o + 3.767, titolo: [o + 0, o + 0.533, o + 0.733, o + 1.4, o + 1.5] } }, {
+            titolo: [[{ t: "L'errore " }, { t: "numero uno", box: true }], [{ t: "dei principianti", hand: true }]],
+            media: ["c1", "c2", "c3", "c4", "c5", "c6", "c7"], risposta: ["Pubblicare", "di tutto"] });
+          tl.set(cover, { opacity: 0 }, S.O01.tempi.taglio);
+          sottoCopertina(S.O01.elementi.L);
+        }
+
+        // ═══ 2 · C01 · linea che si allunga mentre la camera viaggia — 01/10 «Lunedì parno di fitness, martedì di viaggi, venerdì
+        // di motivazione.» (d01 4,73–7,53 s → +1,1 s). R8 MORBIDA: le idee si toccano («di tutto» → gli esempi), la linea parte
+        // dall'anello e porta la camera alla settimana ═══
+        { const o = 1.1;
+          S.C01 = TPL.C01({ t0: 5.6, t1: 8.75, X: 1850, Y: 900,
+            parole: { tappe: [o + 5.1, o + 5.833, o + 6.533], titolo: [o + 4.733, o + 5.067, o + 5.833, o + 6.167, o + 6.533] } }, {
+            da: S.O01.ancore.bordo(0), titolo: [[{ t: "Ogni giorno " }, { t: "un tema", box: true }], [{ t: "diverso", hand: true }]],
+            tappe: [{ media: "w1", giorno: "LUN", tema: "Fitness", icona: "dumbbell" },
+                    { media: "w2", giorno: "MAR", tema: "Viaggi", icona: "plane" },
+                    { media: "w3", giorno: "VEN", tema: "Motivazione", icona: "flame" }] });
+        }
+
+        // ═══ 3 · F08 · cambio di stato — 01/10 «In questo modo l'algoritmo non capisce di cosa parla il tuo profilo e nemmeno
+        // chi ti guarda.» (d01 7,77–12,33 s → +1,1 s). R8: taglio netto + arrivo ═══
+        { const o = 1.1;
+          S.F08 = TPL.F08({ t0: 8.75, t1: 13.75, X: 5000, Y: 900,
+            parole: { algoritmo: o + 9.067, profilo: o + 10.4, persone: o + 11.267,
+              titolo: [o + 8.533, o + 9.067, o + 9.233, o + 10.767, o + 11.267, o + 11.633, o + 11.767, o + 11.867] } }, {
+            titolo: [[{ t: "L'algoritmo " }, { t: "non capisce", box: true }], [{ t: "e nemmeno chi ti guarda", hand: true }]],
+            profilo: { handle: "iltuoprofilo", nome: "Il tuo profilo", bio: ["Fitness · viaggi · cucina · gatti", "Motivazione · ricette · vlog"],
+              grid: ["g1", "g2", "g3", "g4", "g5", "g6"] } });
+        }
+
+        // ═══ 4 · U02 · profilo coi numeri che salgono — 05/10 «…in un profilo perfettamente ottimizzato che, ti garantisco, ti
+        // porterà più follower.» (d05 4,33–9,17 s → +9,57 s; la frase intera parte a 0 s: qui la sua seconda metà, il risultato).
+        // Il tuo profilo vero (foto, bio, i tuoi reel che si muovono); 245 = i tuoi follower di oggi, 1.000 è un esempio.
+        // R8: taglio netto (la camera parte già in spinta) ═══
+        { const o = 9.57;
+          S.U02 = TPL.U02({ t0: 13.75, t1: 19.15, X: 8000, Y: 900,
+            parole: { evidenzia: o + 6.033, conta: o + 8.233, arriva: o + 9.167, titolo: [o + 4.533, o + 4.633, o + 6.033, o + 8.233, o + 8.633, o + 8.767] } }, {
+            titolo: [[{ t: "Un profilo " }, { t: "ottimizzato", box: true }], [{ t: "porta più follower", hand: true }]],
+            profilo: { user: "tu", handle: "samuelerinaldo.media", nome: "Samuele Rinaldo | Content creator", mio: true, ring: "lime",
+              bio: ["Video · Foto · Content Creation", "Meno contenuti casuali. Più risultati.", "Padova · Scrivimi INFO per iniziare"],
+              post: "25", follower: "245", seguiti: "…", blurStats: true, chiaro: "follower", grid: ["p1", "p2", "p3", "p4", "p5", "p6", "p7", "p8", "p9"] },
+            conta: { campo: "follower", da: 245, a: 1000 }, evidenzia: "bio" });
+        }
+
+        // ═══ 5 · U03 · cursore che clicca — 05/10 «Per farne una, vai sul sito pfpmaker.com, carica una foto che ti faccia sembrare
+        // meglio di quello che sei e poi seleziona il tuo sfondo colorato.» (d05 47,33–54,83 s → −28,03 s). 7,8 s: una frase sola
+        // con la seconda inquadratura (R1). La foto caricata è un fotogramma di un tuo reel, il risultato la tua foto profilo vera.
+        // R8: taglio netto + zoom d'arrivo ═══
+        { const o = -28.03;
+          S.U03 = TPL.U03({ t0: 19.15, t1: 26.95, X: 11000, Y: 900,
+            parole: { url: o + 48.667, clic1: o + 50.367, seconda: o + 53.433, clic2: o + 54.033,
+              titolo: [o + 48.133, o + 48.267, o + 48.667, o + 50.367, o + 52.833, o + 53.433, o + 53.867, o + 54.033] } }, {
+            titolo: [[{ t: "Vai su " }, { t: "pfpmaker", box: true }], [{ t: "carica e scegli lo sfondo", hand: true }]],
+            url: "pfpmaker.com", prima: "img-tu-prima", dopo: "av-tu", colori: ["#CFFB50", "#6fc8ff", "#ff8fb1", "#ffb35c", "#b18cff"] });
+        }
+
+        // ═══ 6 · T05 · etichetta che si decodifica — 14/10 «L'algoritmo ci mostra soprattutto i contenuti con tantissima
+        // interazione.» (d14 6,73–10,83 s → +20,37 s). I contenuti sono reel veri di altri (Hormozi), virali. R8: taglio netto ═══
+        { const o = 20.37;
+          S.T05 = TPL.T05({ t0: 26.95, t1: 31.45, X: 14000, Y: 900,
+            parole: { mostra: o + 7.967, interazione: o + 9.633, titolo: [o + 6.733, o + 7.833, o + 7.967, o + 9.633, o + 10.167] } }, {
+            titolo: [[{ t: "L'algoritmo " }, { t: "ci mostra", box: true }], [{ t: "tantissima interazione", hand: true }]],
+            media: ["e1", "e2", "e3"], numeri: [{ da: 120, a: 1200 }, { da: 86, a: 860 }, { da: 240, a: 2400 }] });
+        }
+
+        // ═══ 7 · L11 · catena di passi — 16/10 «La prossima volta che carichi un video, prima di pubblicarlo, salvalo come bozza.
+        // Poi, duplicalo.» (d16 6,47–12,77 s → +25,13 s). Il video che corre è la copertina vera di un tuo reel. R8: taglio netto ═══
+        { const o = 25.13;
+          S.L11 = TPL.L11({ t0: 31.45, t1: 38.0, X: 17000, Y: 900,
+            parole: { tappe: [o + 7.767, o + 10.667, o + 12.133], copia: o + 12.17, titolo: [o + 7.767, o + 10.167, o + 11.4, o + 12.133] } }, {
+            titolo: [[{ t: "Carica, " }, { t: "salva", box: true }], [{ t: "e duplica", hand: true }]], media: "th-mio_04", copia: true,
+            tappe: [{ t: "Carica il video", icona: "upload" }, { t: "Salva in bozza", icona: "save" }, { t: "Duplica", icona: "copy" }, { t: "Pubblica ×2", icona: "send" }] });
+        }
+
+        // ═══ 8 · U10 · Bozze → ⋯ → Duplica — 03/10 «Apri le bozze, tocca i tre puntini accanto al video e duplicalo.»
+        // (d03 10,6–14,57 s → +27,55 s; la stessa voce continua in U11 e U07). R8 MORBIDA: le idee si toccano («duplicalo» →
+        // come si duplica): zoom-through dentro il tuo video sulla tappa «Duplica», dall'altra parte la stessa bozza ═══
+        { const o = 27.55, t0 = 38.0;
+          const r = { t0, t1: 42.35, X: 20000, Y: 900, parole: { tocca: o + 11.767, puntini: o + 12.133, lente: o + 12.55, duplica: o + 13.6,
+            titolo: [o + 10.6, o + 11.0, o + 11.133, o + 11.767, o + 11.933, o + 12.033, o + 12.133] } };
+          // il template (ingresso «nessuno»: non muove la camera) dà la posa del telefono (proporzione del reel 65), poi la corsa
+          S.U10 = TPL.U10(r, { titolo: [[{ t: "Apri le " }, { t: "bozze", box: true }], [{ t: "tocca i 3 puntini", hand: true }]],
+            media: "th-mio_04", altre: ["th-mio_02", "th-mio_07", "th-mio_09"], ingresso: "nessuno", fermoDa: t0 + 0.45 });
+          const fine = tplZoomThrough(t0, S.L11.ancore.videoXY(2), S.U10.pose);
+          tplTenuta(fine, r.t1);
+        }
+
+        // ═══ 9 · U11 · Nuovo reel: «Reel di prova» e Condividi — 03/10 «Ora prendi la prima bozza e pubblicala come reel di
+        // prova.» (d03 14,93–18,33 s → +27,55 s). R8: taglio netto + arrivo di lato ═══
+        { const o = 27.55;
+          S.U11 = TPL.U11({ t0: 42.35, t1: 46.15, X: 23000, Y: 900,
+            parole: { interruttore: o + 16.75, condividi: o + 17.367, titolo: [o + 15.633, o + 15.733, o + 15.867, o + 17.1, o + 17.367, o + 17.833, o + 18.033] } }, {
+            titolo: [[{ t: "La prima " }, { t: "bozza", box: true }], [{ t: "come reel di prova", hand: true }]], media: "th-mio_04", numero: 1 });
+        }
+
+        // ═══ 10 · U07 · il dito che preme — 03/10 «Poi torna indietro e pubblica la seconda bozza come reel normale.»
+        // (d03 18,63–22,37 s → +27,55 s). R8: taglio netto + arrivo dall'altro lato ═══
+        { const o = 27.55;
+          S.U07 = TPL.U07({ t0: 46.15, t1: 50.15, X: 26000, Y: 900,
+            parole: { bozza: o + 20.433, condividi: o + 21.333, titolo: [o + 18.633, o + 19.033, o + 19.3, o + 20.333, o + 20.433, o + 21.333, o + 21.833] } }, {
+            titolo: [[{ t: "Poi torna " }, { t: "indietro", box: true }], [{ t: "la seconda: reel normale", hand: true }]],
+            media: "th-mio_04", altre: ["th-mio_02", "th-mio_07", "th-mio_09"], pubblicata: true });
+        }
+
+        // ═══ 11 · O21 · anelli di persone — 03/10 «…ma il reel di prova verrà mostrato solo a persone nuove che non ti seguono
+        // ancora.» (d03 26,37–30,87 s → +23,93 s; la frase comincia a 22,8 s con «Il reel normale…»: qui la sua seconda metà, il
+        // reel di prova). Al centro il tuo reel vero che si muove. R8: taglio netto + zoom d'arrivo ═══
+        { const o = 23.93;
+          S.O21 = TPL.O21({ t0: 50.15, t1: 55.0, X: 17000, Y: 4400,
+            parole: { spegni: o + 28.433, accendi: o + 28.967, titolo: [o + 26.867, o + 27.067, o + 27.233, o + 27.367, o + 28.433, o + 28.867, o + 28.967, o + 29.333] } }, {
+            titolo: [[{ t: "Il reel " }, { t: "di prova", box: true }], [{ t: "solo a persone nuove", hand: true }]],
+            media: "r04v", tag: true, legenda: [["#ececec", "I tuoi follower"], ["#CFFB50", "Persone nuove"]] });
+        }
+
+        // ═══ 12 · D01 · contatore + grafico — 03/10 «Stesso identico video ma raddoppi le visualizzazioni, gratis.» (d03
+        // 31,2–35,17 s → +23,93 s). R8 MORBIDA: le idee si toccano (le persone nuove → il doppio delle views): la camera scorre
+        // di lato dagli anelli alla card, che sta vicina (una schermata), come la card che entra di lato nel reel 9 ═══
+        { const o = 23.93, t0 = 55.0;
+          S.D01 = TPL.D01({ t0, t1: 59.4, X: 18170, Y: 4400,
+            parole: { uguale: o + 31.8, conta: o + 32.867, arriva: o + 34.367, finale: o + 34.567, titolo: [o + 31.2, o + 32.2, o + 32.867, o + 33.5, o + 34.567] } }, {
+            titolo: [[{ t: "Stesso video, " }, { t: "×2 views", box: true }], [{ t: "gratis", hand: true }]], da: 1240, a: 2420,
+            fonti: [{ media: "th-mio_04", badge: "1.240", tag: "NORMALE" }, { media: "th-mio_04", badge: "1.180", tag: "PROVA" }],
+            ingresso: "nessuno", fermoDa: t0 + 0.7 });
+          tplTenuta(tplPan(t0 - 0.05, S.D01.pose, { dur: 0.75 }), 59.4);
+        }
+
+        // R7 (da provare): sfondo fermo nella tenuta di ogni scena — per toglierlo basta cancellare questa riga
+        tplFermo();
+
+        window.__timelines = window.__timelines || {};
+        window.__timelines["main"] = tl;
+      })();
+    </script>
+  </body>
+</html>

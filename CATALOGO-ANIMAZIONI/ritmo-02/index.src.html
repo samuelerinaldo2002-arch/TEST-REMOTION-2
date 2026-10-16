@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>Ritmo · blocco 2 (template)</title>
+    <script src="assets/vendor/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Advercase"; src: url("assets/fonts/Advercase-Bold.ttf") format("truetype"); font-weight: 700; font-style: normal; font-display: block; }
+      @font-face { font-family: "Advercase"; src: url("assets/fonts/Advercase-Regular.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: block; }
+      @font-face { font-family: "Patrick Hand"; src: url("assets/fonts/PatrickHand-Regular.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: block; }
+      @font-face { font-family: "Zalando Sans"; src: url("assets/fonts/ZalandoSans-Variable.ttf") format("truetype"); font-weight: 100 900; font-style: normal; font-display: block; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: #1e1e1e; }
+      body { font-family: "Zalando Sans", sans-serif; color: #f4f4f2; -webkit-font-smoothing: antialiased; }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; background: #1e1e1e; }
+      .clip { position: absolute; inset: 0; overflow: hidden; }
+      #glow { position: absolute; inset: 0; opacity: 0.35; background: radial-gradient(58% 32% at 50% 46%, rgba(207, 251, 80, 0.08), rgba(207, 251, 80, 0) 70%); }
+      #vignette { position: absolute; inset: 0; background: radial-gradient(110% 78% at 50% 44%, rgba(0, 0, 0, 0) 44%, rgba(0, 0, 0, 0.62) 100%); }
+      .cam { position: absolute; left: 540px; top: 880px; width: 1px; height: 1px; }
+      .layer { position: absolute; left: 0; top: 0; width: 1px; height: 1px; }
+      #dots, #dotsFermi { position: absolute; left: -12000px; top: -9000px; width: 40000px; height: 24000px; background-image: radial-gradient(circle, rgba(255, 255, 255, 0.095) 1.25px, rgba(255, 255, 255, 0) 1.95px); background-size: 24px 24px; }
+      #stage { position: absolute; inset: 0; overflow: hidden; }
+      /* safe zone dell'11/10 (SAFEZONE.jpg): da y = 1332 in giù c'è la tua faccia → la grafica sfuma nel fondo prima della linea */
+      #safe { position: absolute; inset: 0; -webkit-mask-image: linear-gradient(to bottom, #000 0px, #000 1288px, transparent 1330px); mask-image: linear-gradient(to bottom, #000 0px, #000 1288px, transparent 1330px); }
+      #mbwrap, #shake { position: absolute; inset: 0; }
+      #hud { position: absolute; inset: 0; }
+    </style>
+  </head>
+  <body>
+    <!-- KW_RITMO: regole del ritmo R1–R8 e template (kw-kit/kit2-ritmo.js, kit2-template.js, kit2-tpl-*.js) -->
+    <!-- Blocco 2 del rifacimento (RIFACIMENTO-RITMO.md). Ogni scena = una voce, costruita SOLO chiamando il suo template, su
+         una frase vera degli script dei reel 14 (14/10 «Se non diventi virale…») e 15 (15/10 «30 giorni di contenuti in 30
+         secondi»); i tempi delle parole sono scritti a mano da _tools/parole.py e spostati sulla scena. Il primo secondo è una
+         copertina scura: fa da «scena prima». Le clip DOPO si tagliano da t0 (scene.json).
+         R7 approvata (tplFermo() in fondo); R8 approvata: taglio netto + arrivo, morbida circa 1 volta su 3 dove le idee si
+         toccano (segnate «R8 morbida» qui sotto). -->
+    <div id="root" data-composition-id="main" data-start="0" data-duration="55.75" data-width="1080" data-height="1920">
+      <div id="bg" class="clip" data-start="0" data-duration="55.75" data-track-index="0">
+        <div class="cam" id="gcam2" data-layout-allow-overflow><div class="layer" id="gzoom2"><div class="layer" id="gpan2"><div class="layer" id="bokeh"></div></div></div></div>
+        <div class="cam" id="gcam" data-layout-allow-overflow><div class="layer" id="gzoom"><div class="layer" id="gpan"><div id="dots"></div></div></div></div>
+        <div id="glow"></div>
+        <div id="vignette"></div>
+      </div>
+      <div id="stage">
+        <svg width="0" height="0" style="position: absolute" aria-hidden="true">
+          <filter id="mb" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur id="mbn" in="SourceGraphic" stdDeviation="0 0" /></filter>
+        </svg>
+        <div id="safe"><div id="mbwrap"><div id="shake"><div class="cam" id="cam" data-layout-allow-overflow><div class="layer" id="zoom"><div class="layer" id="pan"></div></div></div></div></div></div>
+        <!--VIDEOS
+          # F02 · la griglia dei tuoi reel veri (in movimento)
+          m1 assets/clips/mio/m01.mp4 0.1 6.0
+          m2 assets/clips/mio/m02.mp4 0.1 6.0
+          m3 assets/clips/mio/m03.mp4 0.1 6.0
+          m4 assets/clips/mio/m04.mp4 0.1 6.0
+          m5 assets/clips/mio/m05.mp4 0.1 6.0
+          m6 assets/clips/mio/m06.mp4 0.1 6.0
+          # O13 · quello che il cervello vede: reel veri di Hormozi (virali, i contenuti con tantissima interazione)
+          h1 assets/clips/est/h01.mp4 5.1 4.65
+          h2 assets/clips/est/h03.mp4 5.1 4.65
+          h3 assets/clips/est/h05.mp4 5.1 4.65
+          # F04 · i tuoi reel sotto la soglia e il reel virale (Hormozi) sopra
+          m7 assets/clips/mio/m07.mp4 12.6 4.7
+          m8 assets/clips/mio/m08.mp4 12.6 4.7
+          h4 assets/clips/est/h03.mp4 12.6 4.7
+          m9 assets/clips/mio/m09.mp4 12.6 4.7
+          m10 assets/clips/mio/v01.mp4 12.6 4.7
+          # O24 · 30 mini-clip dei tuoi reel veri (10 reel di ottobre × 3 punti), un giorno ciascuno
+          g01 assets/clips/cal/o01.mp4 26.2 5.0
+          g02 assets/clips/cal/o02.mp4 26.2 5.0
+          g03 assets/clips/cal/o03.mp4 26.2 5.0
+          g04 assets/clips/cal/o04.mp4 26.2 5.0
+          g05 assets/clips/cal/o05.mp4 26.2 5.0
+          g06 assets/clips/cal/o06.mp4 26.2 5.0
+          g07 assets/clips/cal/o07.mp4 26.2 5.0
+          g08 assets/clips/cal/o08.mp4 26.2 5.0
+          g09 assets/clips/cal/o09.mp4 26.2 5.0
+          g10 assets/clips/cal/o10.mp4 26.2 5.0
+          g11 assets/clips/cal/o11.mp4 26.2 5.0
+          g12 assets/clips/cal/o12.mp4 26.2 5.0
+          g13 assets/clips/cal/o13.mp4 26.2 5.0
+          g14 assets/clips/cal/o14.mp4 26.2 5.0
+          g15 assets/clips/cal/o15.mp4 26.2 5.0
+          g16 assets/clips/cal/o16.mp4 26.2 5.0
+          g17 assets/clips/cal/o17.mp4 26.2 5.0
+          g18 assets/clips/cal/o18.mp4 26.2 5.0
+          g19 assets/clips/cal/o19.mp4 26.2 5.0
+          g20 assets/clips/cal/o20.mp4 26.2 5.0
+          g21 assets/clips/cal/o21.mp4 26.2 5.0
+          g22 assets/clips/cal/o22.mp4 26.2 5.0
+          g23 assets/clips/cal/o23.mp4 26.2 5.0
+          g24 assets/clips/cal/o24.mp4 26.2 5.0
+          g25 assets/clips/cal/o25.mp4 26.2 5.0
+          g26 assets/clips/cal/o26.mp4 26.2 5.0
+          g27 assets/clips/cal/o27.mp4 26.2 5.0
+          g28 assets/clips/cal/o28.mp4 26.2 5.0
+          g29 assets/clips/cal/o29.mp4 26.2 5.0
+          g30 assets/clips/cal/o30.mp4 26.2 5.0
+          # L09 · sotto ogni filone un tuo reel vero (profilo: 04/10 · algoritmo: 03/10 · idee: 02/10 · psicologia: 07/10)
+          f1 assets/clips/cal/o14.mp4 35.65 3.9
+          f3 assets/clips/cal/o13.mp4 35.65 3.9
+          f5 assets/clips/cal/o12.mp4 35.65 3.9
+          f7 assets/clips/cal/o17.mp4 35.65 3.9
+          # D06 · nel lettore un tuo reel vero
+          d1 assets/clips/mio/m03.mp4 50.2 5.55
+        -->
+      </div>
+      <div id="hudclip" class="clip" data-start="0" data-duration="55.75" data-track-index="2">
+        <div id="hud"></div>
+      </div>
+      <!--SFX
+        # F02 (1,0–6,1 s): arrivo, il disco e l'etichetta su «virale», il dubbio su «sbagliassero?»
+        1.0 whoosh .14 ; 1.98 pop .12 ; 5.25 glitch .08
+        # O13 (6,1–9,75 s): zoom d'arrivo, il cervello si accende su «convince» (disco + lampeggio), la conclusione si scrive su «livello»
+        6.1 whoosh .14 ; 6.98 sub .1 ; 6.98 glitch .06 ; 8.38 key1 .05
+        # K11 (9,75–13,6 s): il muro si apre, l'eccezione si accende, il muro scorre su «mostrata» e si ferma su altre eccezioni
+        9.75 whoosh .14 ; 11.18 tick .06 ; 11.78 whoosh .12 ; 12.43 land .1
+        # F04 (13,6–17,3 s, R8 morbida: zoom-through nell'eccezione): la soglia si accende su «soglia», il riflettore su «fallimento»
+        13.44 whoosh .16 ; 15.65 tick .06 ; 16.32 drop .1
+        # O10 (17,3–22,75 s): il bersaglio si costruisce dal centro, «1M di views» a fuoco e barrato, il centro si accende, la freccetta
+        17.3 whoosh .14 ; 17.32 rise .05 ; 18.47 tick .05 ; 18.9 drop .08 ; 20.47 pop .1 ; 21.47 slam .12
+        # U15 (22,75–27,2 s): il cronometro parte al taglio e l'anello dei 30 giorni si riempie, bagliore su «secondi»
+        22.75 whoosh .14 ; 22.78 rise .06 ; 26.18 ding .1
+        # O24 (27,2–31,15 s): arrivo sul mese vuoto, su «Uno» i tuoi reel riempiono i giorni in 1,2 s, il contatore si accende su «video»
+        27.2 whoosh .14 ; 28.57 rise .06 ; 30.1 ding .1
+        # O23 (31,15–36,65 s): arrivo sui 100 puntini, i gruppi si colorano su «valore», «fiducia», «conversione»
+        31.15 whoosh .14 ; 32.7 tick .05 ; 34.17 tick .05 ; 35.53 tick .05
+        # L09 (36,65–39,5 s): i rami crescono al taglio, i tuoi reel sotto i filoni su «filoni», la radice si accende su «nicchia»
+        36.65 whoosh .14 ; 36.75 tick .05 ; 37.23 pop .08 ; 38.57 ding .08
+        # L12 (39,5–45,6 s, R8 morbida: zoom-through nel tuo reel del filone «Idee»): le sezioni si accendono su hook, spiega, mostra, insegna
+        39.34 whoosh .16 ; 42.55 tick .05 ; 43.15 tick .05 ; 44.02 tick .05 ; 44.75 tick .05
+        # K16 (45,6–51,2 s): la spinta lenta sulla settimana, i reel nei giorni su «calendario», i filoni su «alternando», «Profilo» si accende su «stesso»
+        45.6 whoosh .14 ; 45.62 rise .05 ; 46.53 tick .04 ; 47.33 pop .06 ; 50.17 ding .08
+        # D06 (51,2–55,75 s, R8 morbida: la camera scorre di lato dalla settimana): la testina corre, i capitoli si accendono, il tempo su «secondi»
+        51.15 whoosh .14 ; 51.75 tick .04 ; 52.3 tick .04 ; 52.85 tick .04 ; 53.4 tick .04 ; 53.95 tick .04 ; 54.75 ding .1
+      -->
+    </div>
+    <script>
+      (() => {
+        const ICON = __ICONS__;
+        /*__KIT__*/
+
+        camInit(540, 900, 1);
+        // copertina della «scena prima» (0–1 s): sotto, il primo template monta la sua scena (R2: piena al taglio)
+        const cover = el(document.getElementById("hud"), { position: "absolute", left: 0, top: 0, width: 1080, height: 1920, background: "#1e1e1e", zIndex: 99 });
+        const sottoCopertina = (L) => [L, ...L.querySelectorAll("*")].forEach((n) => n.setAttribute("data-layout-allow-occlusion", ""));
+        const S = {}; // i risultati dei template (ancore, tempi) per legare le scene fra loro (R8)
+
+        // ═══ 1 · F02 · pulse a disco pieno — 14/10 «Se non diventi virale, non stai andando da nessuna parte. E se si
+        // sbagliassero?» (d14 1,37–6,1 s → −0,25 s). I tuoi reel veri; «1M views» è il «virale» dello script («un milione di
+        // visualizzazioni», 37,2 s) ═══
+        { const o = -0.25;
+          S.F02 = TPL.F02({ t0: 1.0, t1: 6.1, X: 600, Y: 900,
+            parole: { parola: o + 2.233, dubbio: o + 5.5, titolo: [o + 1.367, o + 1.667, o + 1.8, o + 2.233, o + 4.633, o + 5.233, o + 5.367, o + 5.5] } }, {
+            titolo: [[{ t: "Se non diventi " }, { t: "virale", box: true }], [{ t: "e se si sbagliassero?", hand: true }]],
+            media: ["m1", "m2", "m3", "m4", "m5", "m6"], etichetta: { testo: "1M views", icona: "eye" }, dubbio: true });
+          tl.set(cover, { opacity: 0 }, S.F02.tempi.taglio);
+          sottoCopertina(S.F02.elementi.L);
+        }
+
+        // ═══ 2 · O13 · cervello luminoso — 14/10 «E il cervello si convince che quello sia il livello normale.» (d14 11,0–13,97 s
+        // → −4,85 s). «Quello» = i contenuti con tantissima interazione della frase prima: reel veri di Hormozi col badge «1M
+        // views» (lo stesso «virale» della scena 1). R8: taglio netto + zoom d'arrivo ═══
+        { const o = -4.85;
+          S.O13 = TPL.O13({ t0: 6.1, t1: 9.75, X: 3600, Y: 900,
+            parole: { accende: o + 11.833, etichetta: o + 13.233, titolo: [o + 11.267, o + 11.333, o + 11.733, o + 11.833] } }, {
+            titolo: [[{ t: "Il cervello " }, { t: "si convince", box: true }]],
+            media: ["h1", "h2", "h3"], ratio: 4 / 3, badge: "1M views", etichetta: "= il livello normale" });
+        }
+
+        // ═══ 3 · K11 · muro di reel veri che scorre (slot) — 14/10 «Non lo è. È l'eccezione mostrata in continuazione.» (d14
+        // 14,53–17,97 s → −4,65 s). Il muro = il feed (fotogrammi veri di reel, atlante muro); l'eccezione accesa col badge «1M»,
+        // lo scorrimento su «mostrata»: all'arrivo ce ne sono altre accese. R8: taglio netto (il muro si apre) ═══
+        { const o = -4.65;
+          S.K11 = TPL.K11({ t0: 9.75, t1: 13.6, X: 7000, Y: 900,
+            parole: { eccezione: o + 15.833, scorre: o + 16.433, titolo: [o + 15.333, o + 15.7, o + 17.133, o + 17.267] } }, {
+            titolo: [[{ t: "È " }, { t: "l'eccezione", box: true }], [{ t: "in continuazione", hand: true }]], badge: "1M" });
+        }
+
+        // ═══ 4 · F04 · riflettore + oscuramento — 14/10 «Ma da quel momento ogni video sotto quella soglia sembra un fallimento.»
+        // (d14 18,43–21,67 s → −4,75 s; «soia» nella trascrizione = «soglia»). I tuoi reel veri sotto la soglia, il reel virale
+        // sopra. R8 MORBIDA: le idee si toccano (l'eccezione → la soglia): la camera entra nell'eccezione accesa del muro
+        // (tplZoomThrough) e dall'altra parte c'è il grafico, col reel virale sopra la soglia ═══
+        { const o = -4.75, t0 = 13.6;
+          const r = { t0, t1: 17.3, X: 10200, Y: 900, parole: { soglia: o + 20.4, riflettore: o + 21.067,
+            titolo: [o + 19.933, o + 20.167, o + 20.4, o + 20.7, o + 21.033, o + 21.067] } };
+          S.F04 = TPL.F04(r, { titolo: [[{ t: "Sotto la " }, { t: "soglia", box: true }], [{ t: "sembra un fallimento", hand: true }]],
+            colonne: [{ media: "m7", v: 0.3 }, { media: "m8", v: 0.44 }, { media: "h4", v: 1, scelto: true }, { media: "m9", v: 0.22 }, { media: "m10", v: 0.36 }],
+            soglia: { v: 0.8, testo: "1M views" }, ingresso: "nessuno", fermoDa: t0 + 0.45 });
+          tplTenuta(tplZoomThrough(t0, S.K11.ancore.eccezione(2), S.F04.pose), r.t1);
+        }
+
+        // ═══ 5 · O10 · bersaglio costruito dal centro — 14/10 «L'obiettivo non è un milione di visualizzazioni. È arrivare alle
+        // persone giuste col messaggio giusto.» (d14 37,2–42,03 s → −19,7 s). Al centro le persone giuste (silhouette, mai volti
+        // veri), fuori il pubblico largo «1M di views» che si spegne; la freccetta = il messaggio giusto. R8: taglio netto ═══
+        { const o = -19.7;
+          S.O10 = TPL.O10({ t0: 17.3, t1: 22.75, X: 13400, Y: 900,
+            parole: { fuori: o + 38.167, spegni: o + 38.6, centro: o + 40.167, freccia: o + 41.167,
+              titolo: [o + 37.767, o + 38.033, o + 38.167, o + 40.067, o + 40.167, o + 40.533] } }, {
+            titolo: [[{ t: "Non " }, { t: "un milione", box: true }], [{ t: "le persone giuste", hand: true }]],
+            etichette: { fuori: "1M di views", centro: "Le persone giuste" } });
+        }
+
+        // ═══ 6 · U15 · timer, conto alla rovescia — 15/10 «30 giorni di contenuti pianificati in meno di 30 secondi.» (d15
+        // 0–4,03 s → +22,85 s). Il cronometro conta in tempo reale da 30, l'anello dei 30 giorni pianificati si riempie in 1,5 s.
+        // Dal reel 15 in poi. R8: taglio netto (cambia reel) ═══
+        { const o = 22.85;
+          S.U15 = TPL.U15({ t0: 22.75, t1: 27.2, X: 16600, Y: 900,
+            parole: { pieno: o + 1.5, secondi: o + 3.333, titolo: [o + 0, o + 0.333, o + 1.967, o + 2.767, o + 3.333] } }, {
+            titolo: [[{ t: "30 giorni " }, { t: "in 30 secondi", box: true }]] });
+        }
+
+        // ═══ 7 · O24 · calendario che si riempie — 15/10 «Scegli un volume. Uno al giorno vuol dire 30 video al mese.» (d15
+        // 4,37–7,9 s → +22,9 s). Il mese vuoto è il volume da scegliere; su «Uno» un tuo reel vero per giorno. R8: taglio netto ═══
+        { const o = 22.9;
+          S.O24 = TPL.O24({ t0: 27.2, t1: 31.15, X: 19600, Y: 900,
+            parole: { riempie: o + 5.667, conta: o + 7.2, titolo: [o + 4.367, o + 4.967, o + 5.067, o + 5.667, o + 5.967, o + 6.1, o + 6.867, o + 6.867, o + 7.2] } }, {
+            titolo: [[{ t: "Scegli un " }, { t: "volume", box: true }], [{ t: "uno al giorno = 30 video", hand: true }]],
+            media: Array.from({ length: 30 }, (_, i) => "g" + String(i + 1).padStart(2, "0")) });
+        }
+
+        // ═══ 8 · O23 · griglia di 100 puntini — 15/10 «Io uso 70% valore, 20% fiducia, 10% conversione.» (d15 10,3–15,43 s →
+        // +20,9 s). Ogni gruppo si colora sulla sua parola, con la sua voce di legenda. R8: taglio netto ═══
+        { const o = 20.9;
+          S.O23 = TPL.O23({ t0: 31.15, t1: 36.65, X: 22600, Y: 900,
+            parole: { gruppi: [o + 11.8, o + 13.267, o + 14.633], titolo: [o + 11.8, o + 13.267, o + 14.633] } }, {
+            titolo: [[{ t: "Valore, fiducia, " }, { t: "conversione", box: true }]],
+            gruppi: [{ n: 70, nome: "Valore", stile: "lime" }, { n: 20, nome: "Fiducia", stile: "bianco" }, { n: 10, nome: "Conversione", stile: "anello" }] });
+        }
+
+        // ═══ 9 · L09 · albero che cresce — 15/10 «Scegli i tuoi filoni tematici dentro la tua nicchia.» (d15 16,07–18,27 s →
+        // +20,7 s). La tua nicchia → i filoni dei tuoi script (profilo, algoritmo, idee, psicologia) coi tuoi reel veri sotto.
+        // R8: taglio netto ═══
+        { const o = 20.7;
+          S.L09 = TPL.L09({ t0: 36.65, t1: 39.5, X: 25600, Y: 900,
+            parole: { esempi: o + 16.533, radice: o + 17.867, titolo: [o + 16.067, o + 16.333, o + 16.467, o + 16.533] } }, {
+            titolo: [[{ t: "Scegli i tuoi " }, { t: "filoni", box: true }]], radice: "La tua nicchia",
+            rami: [{ t: "Profilo", media: ["f1"] }, { t: "Algoritmo", media: ["f3"] }, { t: "Idee", media: ["f5"] }, { t: "Psicologia", media: ["f7"] }] });
+        }
+
+        // ═══ 10 · L12 · documento «Script» — 15/10 «Scrivi gli script con un metodo fisso. Io uso hook, spiega, mostra,
+        // insegna.» (d15 22,77–28,43 s → +16,85 s). R8 MORBIDA: le idee si toccano (il filone → il suo script): la camera entra
+        // nel tuo reel del filone «Idee» (tplZoomThrough) e dall'altra parte c'è il copione ═══
+        { const o = 16.85, t0 = 39.5;
+          const r = { t0, t1: 45.6, X: 28600, Y: 900, parole: { sezioni: [o + 25.7, o + 26.3, o + 27.167, o + 27.9],
+            titolo: [o + 22.767, o + 23.233, o + 23.333, o + 23.667, o + 24.0, o + 24.1, o + 24.367] } };
+          S.L12 = TPL.L12(r, { titolo: [[{ t: "Scrivi gli " }, { t: "script", box: true }], [{ t: "con un metodo fisso", hand: true }]],
+            sezioni: [{ label: "Hook", rows: 3 }, { label: "Spiega", rows: 5 }, { label: "Mostra", rows: 5 }, { label: "Insegna", rows: 4 }],
+            ingresso: "nessuno", fermoDa: t0 + 0.45 });
+          tplTenuta(tplZoomThrough(t0, S.L09.ancore.reel(2, 0), S.L12.pose), r.t1);
+        }
+
+        // ═══ 11 · K16 · push-in lento su un oggetto che si costruisce — 15/10 «Infine, organizza tutto in un calendario, alternando
+        // i filoni durante la settimana per non ripetere sempre lo stesso tema.» (d15 29,73–34,9 s → +16,0 s; «Infine» resta fuori).
+        // La tua settimana: in ogni giorno la copertina di un tuo reel del filone, i filoni alternati (profilo il lunedì e il
+        // venerdì: mai vicini). R8: taglio netto (la spinta parte al taglio) ═══
+        { const o = 16.0;
+          S.K16 = TPL.K16({ t0: 45.6, t1: 51.2, X: 31600, Y: 900,
+            parole: { riempie: o + 30.533, filoni: o + 31.333, tema: o + 34.167, titolo: [o + 30.067, o + 30.3, o + 30.433, o + 30.533] } }, {
+            titolo: [[{ t: "Tutto in un " }, { t: "calendario", box: true }]], evidenzia: "Profilo",
+            giorni: [{ g: "LUN", filone: "Profilo", icona: "user-round", media: "th-mio_04" }, { g: "MAR", filone: "Algoritmo", icona: "cpu", media: "th-mio_03" },
+              { g: "MER", filone: "Idee", icona: "lightbulb", media: "th-mio_02" }, { g: "GIO", filone: "Psicologia", icona: "brain", media: "th-mio_07" },
+              { g: "VEN", filone: "Profilo", icona: "user-round", media: "th-mio_05" }, { g: "SAB", filone: "Algoritmo", icona: "cpu", media: "th-mio_10" },
+              { g: "DOM", filone: "Psicologia", icona: "brain", media: "th-mio_09" }] });
+        }
+
+        // ═══ 12 · D06 · timeline del video — 15/10 «Ecco come pianifici 30 giorni di contenuti in meno di 30 secondi.» (d15
+        // 35,37–39,43 s → +15,95 s). Il tuo reel nel lettore, la timeline coi 5 passi del reel (volume, suddivisione, filoni,
+        // script, calendario) che si riempie col tempo. R8 MORBIDA: le idee si toccano (il calendario è l'ultimo passo → il
+        // riassunto dei passi): la camera scorre di lato dalla settimana al lettore, vicino (tplPan) ═══
+        { const o = 15.95, t0 = 51.2;
+          S.D06 = TPL.D06({ t0, t1: 55.75, X: 32900, Y: 900,
+            parole: { fine: o + 38.0, tempo: o + 38.8, titolo: [o + 35.367, o + 35.833, o + 36.0, o + 37.7, o + 38.0, o + 38.233, o + 38.367, o + 38.8] } }, {
+            titolo: [[{ t: "Ecco come " }, { t: "pianifici", box: true }], [{ t: "in meno di 30 secondi", hand: true }]], media: "d1",
+            capitoli: [{ t: "Volume", icona: "layers" }, { t: "Suddivisione", icona: "chart-pie" }, { t: "Filoni", icona: "git-branch" },
+              { t: "Script", icona: "file-text" }, { t: "Calendario", icona: "calendar-days" }],
+            ingresso: "nessuno", fermoDa: t0 + 0.7 });
+          tplTenuta(tplPan(t0 - 0.05, S.D06.pose, { dur: 0.75 }), 55.75);
+        }
+
+        // R7 (approvata 14/10): sfondo fermo nella tenuta di ogni scena
+        tplFermo();
+
+        window.__timelines = window.__timelines || {};
+        window.__timelines["main"] = tl;
+      })();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>Demo 8 · blocco 3 bis (le più usate, da protagoniste)</title>
+    <script src="assets/vendor/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Advercase"; src: url("assets/fonts/Advercase-Bold.ttf") format("truetype"); font-weight: 700; font-style: normal; font-display: block; }
+      @font-face { font-family: "Advercase"; src: url("assets/fonts/Advercase-Regular.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: block; }
+      @font-face { font-family: "Patrick Hand"; src: url("assets/fonts/PatrickHand-Regular.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: block; }
+      @font-face { font-family: "Zalando Sans"; src: url("assets/fonts/ZalandoSans-Variable.ttf") format("truetype"); font-weight: 100 900; font-style: normal; font-display: block; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: #1e1e1e; }
+      body { font-family: "Zalando Sans", sans-serif; color: #f4f4f2; -webkit-font-smoothing: antialiased; }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; background: #1e1e1e; }
+      .clip { position: absolute; inset: 0; overflow: hidden; }
+      #glow { position: absolute; inset: 0; opacity: 0.35; background: radial-gradient(58% 32% at 50% 46%, rgba(207, 251, 80, 0.08), rgba(207, 251, 80, 0) 70%); }
+      #vignette { position: absolute; inset: 0; background: radial-gradient(110% 78% at 50% 44%, rgba(0, 0, 0, 0) 44%, rgba(0, 0, 0, 0.62) 100%); }
+      .cam { position: absolute; left: 540px; top: 880px; width: 1px; height: 1px; }
+      .layer { position: absolute; left: 0; top: 0; width: 1px; height: 1px; }
+      #dots { position: absolute; left: -6000px; top: -6000px; width: 40000px; height: 20000px; background-image: radial-gradient(circle, rgba(255, 255, 255, 0.095) 1.25px, rgba(255, 255, 255, 0) 1.95px); background-size: 24px 24px; }
+      #stage { position: absolute; inset: 0; overflow: hidden; }
+      #safe { position: absolute; inset: 0; -webkit-mask-image: linear-gradient(to bottom, #000 0px, #000 1385px, transparent 1450px); mask-image: linear-gradient(to bottom, #000 0px, #000 1385px, transparent 1450px); }
+      #mbwrap, #shake { position: absolute; inset: 0; }
+      #hud { position: absolute; inset: 0; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="36.2" data-width="1080" data-height="1920">
+      <div id="bg" class="clip" data-start="0" data-duration="36.2" data-track-index="0">
+        <div class="cam" id="gcam2" data-layout-allow-overflow><div class="layer" id="gzoom2"><div class="layer" id="gpan2"><div class="layer" id="bokeh"></div></div></div></div>
+        <div class="cam" id="gcam" data-layout-allow-overflow><div class="layer" id="gzoom"><div class="layer" id="gpan"><div id="dots"></div></div></div></div>
+        <div id="glow"></div>
+        <div id="vignette"></div>
+      </div>
+      <div id="stage">
+        <svg width="0" height="0" style="position: absolute" aria-hidden="true">
+          <filter id="mb" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur id="mbn" in="SourceGraphic" stdDeviation="0 0" /></filter>
+        </svg>
+        <div id="safe"><div id="mbwrap"><div id="shake"><div class="cam" id="cam" data-layout-allow-overflow><div class="layer" id="zoom"><div class="layer" id="pan"></div></div></div></div></div></div>
+        <!--VIDEOS
+          # D01 · U05 · il tuo reel che racconta una storia
+          sR assets/clips/mio/v03.mp4 6.0 5.6
+          # D04 · la copertina del reel negli Approfondimenti
+          iR assets/clips/mio/v01.mp4 11.6 5.6
+          # A01 · L14 · D02 · F11 · F04 · nove reel veri di un creator del settore (Hormozi)
+          h1 assets/clips/est/h01.mp4 17.2 6.0
+          h2 assets/clips/est/h02.mp4 17.2 6.0
+          h3 assets/clips/est/h03.mp4 17.2 6.0
+          h4 assets/clips/est/h04.mp4 17.2 6.0
+          h5 assets/clips/est/h05.mp4 17.2 6.0
+          h6 assets/clips/est/h06.mp4 17.2 6.0
+          h7 assets/clips/est/h07.mp4 17.2 6.0
+          h8 assets/clips/est/h08.mp4 17.2 6.0
+          h9 assets/clips/est/h09.mp4 17.2 6.0
+        -->
+      </div>
+      <div id="hudclip" class="clip" data-start="0" data-duration="36.2" data-track-index="2">
+        <div id="hud"></div>
+      </div>
+      <!--SFX
+        # L01 · L02 · K14: le quattro voci vanno a fuoco con lo sheen, la prima diventa l'intestazione
+        0.0 whoosh .1 ; 1.5 tick .06 ; 2.3 tick .06 ; 3.1 tick .06 ; 3.9 tick .06 ; 4.75 whoosh .08
+        # D01 · U05 · K03: la camera va alla card, il numero conta, la seconda card
+        6.0 whoosh .14 ; 6.55 whoosh .08 ; 6.75 card .08 ; 6.85 rise .06 ; 7.82 ding .1 ; 8.6 card .08 ; 8.7 rise .06 ; 9.67 ding .1
+        # D04: la curva tiene, poi crolla su «seguimi» (disco pieno che si gonfia, come nel reel 18)
+        11.6 whoosh .14 ; 12.05 tick .05 ; 12.75 sub .14 ; 12.77 drop .1 ; 14.4 whoosh .06
+        # A01 · D02 · F11 · F04: il muro, i badge, la media si spegne, l'outlier si accende
+        17.2 whoosh .14 ; 17.8 pop .05 ; 17.88 pop .05 ; 17.96 pop .05 ; 18.04 pop .05 ; 18.12 pop .05 ; 18.2 pop .05 ; 18.28 pop .05 ; 18.36 pop .05 ; 18.44 pop .05 ; 19.2 tick .05 ; 19.55 ding .12 ; 20.4 whoosh .08
+        # O05: la piramide arriva in corsa e si costruisce, un livello per gradino
+        23.2 whoosh .16 ; 23.4 land .07 ; 23.52 land .07 ; 23.64 land .07 ; 23.76 land .07 ; 24.2 pop .07 ; 25.0 pop .07 ; 25.8 pop .07 ; 26.6 ding .12
+        # L09: l'albero cresce, la camera scende, il ramo si accende, la formula
+        29.2 whoosh .14 ; 29.3 pop .06 ; 29.6 tick .05 ; 30.6 pop .07 ; 30.8 whoosh .06 ; 31.1 tick .05 ; 32.2 pop .07 ; 32.4 whoosh .06 ; 32.7 tick .05 ; 33.9 ding .12
+      -->
+    </div>
+    <script>
+      (() => {
+        const ICON = __ICONS__;
+        /*__KIT__*/
+
+        const L = layer(10);
+        const S = svgLayer(L, 6, -60000, -60000, 200000, 200000);
+        const head = (t, lines, times, out, size) => { const T = titleW({ lines, size: size || 80 }); T.inAt(times || t); if (out) T.outAt(out); return T; };
+        const Y = 900;
+        camInit(540, 900, 1);
+
+        // ═══ L01 · L02 · K14 — "un profilo che funziona risponde a quattro domande" (04/10) (0 – 6) ═══
+        // come il reel 5 di Kallaway: la lista è già in scena al fotogramma 0 con le voci sfocate (A02); ogni voce va a fuoco con lo
+        // sheen da destra quando viene detta; alla fine la prima ("Chi sei") sale e diventa l'intestazione della parte dopo (K14)
+        let X = 600;
+        const q1 = listK(L, X, Y + 100, 960, ["Chi sei", "Che problema risolvi", "Come lo risolvi", "Perché dovrei fidarmi"], { h: 168, gap: 30, fs: 60 });
+        q1.show(4, 0);
+        gsap.set(q1.rows.map((r) => r.r), { opacity: 1, filter: "blur(0px)", y: 0, scale: 1 });
+        q1.resolve(0, 1.5); q1.resolve(1, 2.3); q1.resolve(2, 3.1); q1.resolve(3, 3.9);
+        const p1 = cutRect(0, q1.rect(4), { top: 380 });
+        float(0, 4.7, 0, -12, 0.02);
+        q1.promote(0, 4.75, X, Y - 330, 0.9);
+        head(0.05, [[{ t: "Un profilo che funziona" }], [{ t: "risponde a " }, { t: "4 domande", box: true }]], [0.05, 0.18, 0.31, 0.44, 0.62, 0.75, 0.88, 1.01], 5.55);
+        // [catalogo] L01 · L02 · K14 — reel 5: lista presente dal fotogramma 0, voci sfocate che vanno a fuoco con lo sheen; la prima sale e fa da intestazione
+
+        // ═══ D01 · U05 · K03 — "le storie: +27% di visualizzazioni, +31% di condivisioni" (06/09) (6 – 11,6) ═══
+        // come il reel 9 di Kallaway: si parte sul contenuto (il tuo reel che racconta una storia), la camera viaggia a destra e la
+        // card dei dati entra di lato in corsa (U05); il numero conta in ~0,9 s mentre il grafico si disegna, poi il bagliore (D01);
+        // arriva la seconda card. Il numero ha sempre la sua etichetta: cosa misura e rispetto a cosa.
+        X = 4600;
+        const vc2 = videoCard(L, X - 470, Y + 20, 440, 782, "sR", { z: 12, label: "Racconta una storia", icon: "book-open" });
+        blurIn(vc2.body, 6.02, { y: 24, blur: 10, dur: 0.35 });
+        const sc2a = statCard(L, X + 40, Y - 470, { label: "Visualizzazioni in più", icon: "eye", w: 820, h: 450, fs: 160, hidden: true, start: "+0%" });
+        sc2a.slideIn(6.75, { from: 1, dist: 560 });
+        sc2a.count(6.85, 0, 27, 0.95, (v) => "+" + Math.round(v) + "%");
+        const sc2b = statCard(L, X + 40, Y + 10, { label: "Condivisioni in più", icon: "send", w: 820, h: 450, fs: 160, hidden: true, start: "+0%", points: [[0, 0], [0.2, 0.1], [0.36, 0.34], [0.5, 0.4], [0.66, 0.66], [0.82, 0.76], [1, 1]] });
+        sc2b.slideIn(8.6, { from: 1, dist: 560 });
+        sc2b.count(8.7, 0, 31, 0.95, (v) => "+" + Math.round(v) + "%");
+        const vs2 = el(L, { position: "absolute", left: X + 40, top: Y + 490, width: 820, textAlign: "center", fontFamily: FS, fontWeight: 800, fontSize: 32, color: "rgba(255,255,255,.7)", whiteSpace: "nowrap", zIndex: 13 }, "rispetto a qualsiasi altro tipo di contenuto");
+        blurIn(vs2, 9.9, { y: 10, blur: 8, dur: 0.35 });
+        cutRect(6.0, [X - 720, Y - 400, X + 230, Y + 440], { top: 380 });
+        float(6.0, 0.5, 0, -6, 0.01);
+        move(6.55, 1.0, X + 450, Y + 20, 1);
+        frameRect(8.4, 0.8, [X - 40, Y - 500, X + 900, Y + 560], { top: 380 });
+        float(9.2, 2.4, 0, -10, 0.015);
+        head(6.05, [[{ t: "Le storie " }, { t: "rendono di più", box: true }]], [6.05, 6.2, 6.35, 6.5], 11.15);
+        // [catalogo] D01 · U05 · K03 — reel 9: dal tuo reel la camera viaggia alla card che entra di lato; numero, grafico e bagliore
+
+        // ═══ D04 — "il tempo medio di visualizzazione crolla" (30/09: mai chiudere con «seguimi») (11,6 – 17,2) ═══
+        // come il reel 18 di Kallaway: gli Approfondimenti veri del reel; la curva della fidelizzazione tiene e poi crolla proprio dove
+        // arriva «seguimi per altri contenuti»: lì nasce il disco del crollo (bianco: il lime è per ciò che funziona) con la causa sopra
+        X = 8600;
+        const ig3 = igInsights(L, X - 280, Y - 570, { media: "iR", views: [4210, 4210], skip: "41%", colore: "#ffffff", didascalia: "Il loop che non ti fa capire dove finisce…", data: "30 set · Durata 0:42", punti: [[0, 0.04], [0.1, 0.13], [0.3, 0.19], [0.5, 0.23], [0.7, 0.27], [0.79, 0.3], [0.84, 0.62], [0.9, 0.8], [1, 0.86]], z: 12 });
+        blurIn(ig3.frame, 11.62, { y: 30, blur: 12, dur: 0.4 });
+        ig3.curve(12.05, 0.8);
+        ig3.crash(12.75, 0.835, "«Seguimi per altri…»");
+        arriveRect(11.6, ig3.rect, { top: 380, dy: 280 });
+        // la camera entra sul grafico: la parte alta dello schermo si spegne (regola 20, come dimTop in reel-03), così niente
+        // interfaccia finisce sotto il titolo
+        const top3 = [...ig3.screen.children].filter((n) => (parseFloat(n.style.top) || 0) < 520);
+        tl.to(top3, { opacity: 0, duration: 0.3 }, 14.25);
+        frameRect(14.3, 0.55, [ig3.chartRect()[0] - 20, ig3.chartRect()[1] - 330, ig3.chartRect()[2] + 20, ig3.chartRect()[3] + 120], { top: 380 });
+        float(14.85, 2.35, 0, -8, 0.015);
+        head(11.65, [[{ t: "Il tempo medio " }, { t: "crolla", box: true }]], [11.65, 11.8, 11.95, 13.3], 16.75);
+        // [catalogo] D04 — reel 18: negli Approfondimenti veri la curva crolla su «seguimi»; disco del crollo e causa sulla linea guida
+
+        // ═══ A01 · L14 · D02 · F11 · F04 — "trova i video fuori scala dei creatori del tuo settore" (08/09) (17,2 – 23,2) ═══
+        // il muro dei reel veri di un creator (Hormozi) con le views che poppano (D02); quelli nella sua media si spengono (F11, nel
+        // brand il "no" è grigio), quello che ha fatto 4 volte la sua media si accende col riflettore (F04) e la pill che lo spiega
+        X = 12600;
+        const views4 = ["410K", "380K", "1,6M", "420K", "390K", "360K", "400K", "430K", "370K"];
+        const rw4 = reelWall(L, X, Y + 90, ["h1", "h2", "h3", "h4", "h5", "h6", "h7", "h8", "h9"], { cols: 3, tw: 270, th: 360, views: views4 });
+        rw4.show(17.25);
+        const hd4 = el(L, { position: "absolute", left: X - rw4.W / 2, top: Y + 90 - rw4.H / 2 - 110, width: rw4.W, height: 90, display: "flex", alignItems: "center", gap: 18, zIndex: 13 });
+        const ha4 = el(hd4, { position: "relative", width: 84, height: 84, flex: "none" });
+        avatar(ha4, 42, 42, 84, "hormozi", { bw: 3, ring: "#ffffff", z: 1 });
+        el(hd4, { fontFamily: FS, fontWeight: 800, fontSize: 34, color: K.white, whiteSpace: "nowrap" }, "hormozi");
+        el(hd4, { marginLeft: "auto", padding: "8px 18px", borderRadius: 14, background: "linear-gradient(180deg,#4a4a4a,#2c2c2c)", border: "1.5px solid rgba(255,255,255,.22)", fontFamily: FS, fontWeight: 800, fontSize: 28, color: K.white, whiteSpace: "nowrap" }, "Media: 390K views");
+        blurIn(hd4, 17.4, { y: 12, blur: 8, dur: 0.35 });
+        const avg4 = rw4.tiles.filter((x, i) => i !== 2).map((x) => x.t0), out4 = rw4.tiles[2].t0;
+        tint(avg4, 19.2, "no", { stagger: 0.03 });
+        tl.to(rw4.tiles.filter((x, i) => i !== 2).map((x) => x.bd), { opacity: 0, duration: 0.3 }, 19.3);
+        tl.to(hd4, { opacity: 0, duration: 0.3 }, 20.3);
+        spotlight([out4], [], 19.55, { s: 1.06 });
+        const op4 = el(rw4.box, { position: "absolute", left: 30 + 2 * (270 + 18) + 135 - 140, top: 30 - 6, width: 280, height: 52, borderRadius: 14, display: "flex", alignItems: "center", justifyContent: "center", background: limeFill(1), boxShadow: GLOW_A(0.7), fontFamily: FS, fontWeight: 800, fontSize: 28, color: K.ink, whiteSpace: "nowrap", zIndex: 30 }, "4× la sua media");
+        op4.setAttribute("data-layout-allow-overlap", "");
+        gsap.set(op4, { opacity: 0, scale: 0.7 });
+        tl.to(op4, { opacity: 1, scale: 1, duration: 0.32, ease: "back.out(2.4)" }, 19.75);
+        cutRect(17.2, [X - rw4.W / 2 - 10, Y + 90 - rw4.H / 2 - 130, X + rw4.W / 2 + 10, Y + 90 + rw4.H / 2 + 10], { top: 380 });
+        float(17.2, 3.2, 0, -10, 0.015);
+        const tx4 = X - rw4.W / 2 + 30 + 2 * 288, ty4 = Y + 90 - rw4.H / 2 + 30;
+        frameRect(20.4, 0.7, [tx4 - 120, ty4 - 60, tx4 + 270 + 120, ty4 + 360 + 150], { top: 380 });
+        float(21.1, 2.1, 0, -6, 0.015);
+        head(17.25, [[{ t: "Trova i video " }], [{ t: "fuori scala", box: true }]], [17.25, 17.4, 17.55, 17.7, 17.85], 22.75);
+        // [catalogo] A01 · L14 · D02 · F11 · F04 — muro di reel veri, badge che poppano, la media si spegne, l'outlier col riflettore
+
+        // ═══ O05 — "c'è una scala e ha quattro gradini" (11/10) (23,2 – 29,2) ═══
+        // come il reel 4 di Kallaway: la piramide arriva in corsa e si costruisce dal basso; ogni livello si accende quando è detto, con
+        // l'etichetta a sinistra (cosa usi) e la pill a destra (dove ti mette): il primo 10% in cima, lime
+        X = 16600;
+        const py5 = pyramid(L, S, X, Y + 640, ["Solo telefono", "+ luce naturale", "Fotocamera + luce", "+ controluce"], { w: 600, h: 1040, fs: 32, labelsR: ["99%", "Primo 50%", "Primo 30%", "Primo 10%"] });
+        py5.build(23.3, 0.12);
+        py5.flag(0, 24.2); py5.flag(1, 25.0); py5.flag(2, 25.8); py5.flag(3, 26.6);
+        arriveRect(23.2, py5.rect, { top: 380, dy: 420 });
+        float(24.3, 4.9, 0, -12, 0.02);
+        head(23.25, [[{ t: "Una scala " }, { t: "con 4 gradini", box: true }]], [23.25, 23.4, 23.55, 23.7, 23.85], 28.75);
+        // [catalogo] O05 — reel 4: piramide a 4 livelli con l'etichetta a sinistra e la pill del valore a destra; il primo 10% in lime
+
+        // ═══ L09 — "non ti mancano le idee: 5 argomenti × 10 angoli × 7 formati = 350" (02/10) (29,2 – 36,2) ═══
+        // come il reel 3 di Kallaway: l'albero cresce riga per riga e la camera scende con lui; si segue un ramo (lime) fino ai
+        // formati, poi la camera si allarga sull'albero intero e arriva la formula
+        X = 20600;
+        const ft6 = flowTree(L, S, X, Y - 600, [
+          { nodi: [{ t: "La tua nicchia" }] },
+          { nodi: ["Profilo", "Contenuti", "Storie", "DM", "Vendita"].map((t) => ({ t, p: 0 })) },
+          { nodi: ["Errore", "Mito", "Tutorial", "Racconto", "Confronto", "Lista", "Caso reale", "Opinione", "Backstage", "Domanda"].map((t) => ({ t, p: 1 })), cols: 5 },
+          { nodi: ["Reel", "Carosello", "Storie IG", "Diretta", "Post", "Collab", "Newsletter"].map((t) => ({ t, p: 0 })), cols: 4, w: 800 },
+        ], { fs: 27, h: 66, dy: 170, w: 1000 });
+        ft6.grow(0, 29.3);
+        ft6.grow(1, 29.6, { step: 0.07 });
+        ft6.light(1, 1, 30.6);
+        ft6.grow(2, 31.1, { step: 0.05 });
+        ft6.light(2, 0, 32.2);
+        ft6.grow(3, 32.7, { step: 0.06 });
+        const fy6 = ft6.L[3].y1 + 60;
+        const fp6 = el(L, { position: "absolute", left: X - 330, top: fy6, width: 660, height: 96, borderRadius: 24, display: "flex", alignItems: "center", justifyContent: "center", gap: 18, background: limeFill(1), boxShadow: `${GLOW_A(0.85)}, 0 20px 44px rgba(0,0,0,.5)`, fontFamily: FD, fontWeight: 700, fontSize: 56, color: K.ink, whiteSpace: "nowrap", zIndex: 14 }, "5 × 10 × 7 = 350 idee");
+        gsap.set(fp6, { opacity: 0, scale: 0.7 });
+        tl.to(fp6, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(2.2)" }, 33.9);
+        cutRect(29.2, ft6.rowRect(0, 1), { top: 380 });
+        frameRect(30.8, 0.7, ft6.rowRect(1, 2), { top: 380 });
+        // regola 11/17: quando la camera scende sulle ultime righe la radice (che finirebbe sotto il titolo) si spegne; torna sull'albero intero
+        const root6 = ft6.L[0].nodes.map((n) => n.b).concat(ft6.L[1].nodes.map((n) => n.b), ft6.L[1].nodes.map((n) => n.cn.p));
+        tl.to(root6, { opacity: 0, duration: 0.25 }, 32.35);
+        tl.to(root6, { opacity: 1, duration: 0.35 }, 34.4);
+        frameRect(32.4, 0.7, ft6.rowRect(2, 3), { top: 380 });
+        frameRect(33.95, 0.8, [ft6.rect[0], ft6.rect[1], ft6.rect[2], fy6 + 120], { top: 380 });
+        float(34.75, 1.45, 0, -8, 0.015);
+        head(29.25, [[{ t: "Non ti mancano " }], [{ t: "le idee", box: true }]], [29.25, 29.4, 29.55, 29.7, 29.85], 35.75);
+        // [catalogo] L09 — reel 3: l'albero cresce riga per riga con la camera che scende; il ramo seguito è lime; finale sull'albero intero
+
+        window.__timelines = window.__timelines || {};
+        window.__timelines["main"] = tl;
+      })();
+    </script>
+  </body>
+</html>

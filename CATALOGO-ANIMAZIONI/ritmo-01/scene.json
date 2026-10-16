@@ -1,0 +1,14 @@
+[
+ {"id": "O01", "t0": 1.0, "t1": 5.6, "frase": "«L'errore numero uno che fanno i principianti? Pubblicare di tutto.»", "script": "01/10 · 0–4,1 s della voce", "kallaway": {"reel": 14, "t0": 0.0, "t1": 2.25}},
+ {"id": "C01", "t0": 5.6, "t1": 8.75, "frase": "«Lunedì parlo di fitness, martedì di viaggi, venerdì di motivazione.»", "script": "01/10 · 4,7–7,5 s della voce (R8 morbida da O01)", "kallaway": {"reel": 79, "t0": 0.7, "t1": 1.8}},
+ {"id": "F08", "t0": 8.75, "t1": 13.75, "frase": "«In questo modo l'algoritmo non capisce di cosa parla il tuo profilo e nemmeno chi ti guarda.»", "script": "01/10 · 7,8–12,3 s della voce", "kallaway": {"reel": 13, "t0": 7.95, "t1": 9.6}},
+ {"id": "U02", "t0": 13.75, "t1": 19.15, "frase": "«…in un profilo perfettamente ottimizzato che, ti garantisco, ti porterà più follower.»", "script": "05/10 · 4,3–9,2 s della voce (seconda metà della frase d'apertura: il risultato)", "kallaway": {"reel": 3, "t0": 5.0, "t1": 7.6}},
+ {"id": "U03", "t0": 19.15, "t1": 26.95, "frase": "«Per farne una, vai sul sito pfpmaker.com, carica una foto che ti faccia sembrare meglio di quello che sei e poi seleziona il tuo sfondo colorato.»", "script": "05/10 · 47,3–54,8 s della voce", "kallaway": {"reel": 133, "t0": 13.514, "t1": 15.95}},
+ {"id": "T05", "t0": 26.95, "t1": 31.45, "frase": "«L'algoritmo ci mostra soprattutto i contenuti con tantissima interazione.»", "script": "14/10 · 6,7–10,8 s della voce", "kallaway": {"reel": 149, "t0": 3.6, "t1": 4.9}},
+ {"id": "L11", "t0": 31.45, "t1": 38.0, "frase": "«La prossima volta che carichi un video, prima di pubblicarlo, salvalo come bozza. Poi, duplicalo.»", "script": "16/10 · 6,5–12,8 s della voce", "kallaway": {"reel": 124, "t0": 78.33, "t1": 81.5}},
+ {"id": "U10", "t0": 38.0, "t1": 42.35, "frase": "«Apri le bozze, tocca i tre puntini accanto al video e duplicalo.»", "script": "03/10 · 10,6–14,6 s della voce (R8 morbida da L11: zoom-through)", "kallaway": {"reel": 65, "t0": 18.29, "t1": 20.25}},
+ {"id": "U11", "t0": 42.35, "t1": 46.15, "frase": "«Ora prendi la prima bozza e pubblicala come reel di prova.»", "script": "03/10 · 14,9–18,3 s della voce", "kallaway": {"reel": 65, "t0": 18.29, "t1": 20.25}},
+ {"id": "U07", "t0": 46.15, "t1": 50.15, "frase": "«Poi torna indietro e pubblica la seconda bozza come reel normale.»", "script": "03/10 · 18,6–22,4 s della voce", "kallaway": {"reel": 65, "t0": 18.29, "t1": 20.25}},
+ {"id": "O21", "t0": 50.15, "t1": 55.0, "frase": "«…ma il reel di prova verrà mostrato solo a persone nuove che non ti seguono ancora.»", "script": "03/10 · 26,4–30,9 s della voce (seconda metà della frase: il reel di prova)", "kallaway": {"reel": 44, "t0": 7.8, "t1": 9.6}},
+ {"id": "D01", "t0": 55.0, "t1": 59.4, "frase": "«Stesso identico video ma raddoppi le visualizzazioni, gratis.»", "script": "03/10 · 31,2–35,2 s della voce (R8 morbida da O21: la camera scorre di lato)", "kallaway": {"reel": 9, "t0": 10.2, "t1": 12.3}}
+]

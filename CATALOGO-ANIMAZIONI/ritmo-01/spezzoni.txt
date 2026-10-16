@@ -1,0 +1,3 @@
+# spezzoni dei tuoi reel finiti per ritmo-01 (_tools/spezzoni.py): id giorno inizio durata [larghezza]
+# O21 · il reel di prova al centro degli anelli: il reel del 04/10 dal momento della copertina («primo»), dopo il flash a 4,55 s
+r04 04 4.6 6.5 540

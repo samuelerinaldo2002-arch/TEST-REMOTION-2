@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>Demo oggetti Adobe</title>
+    <script src="assets/vendor/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Advercase"; src: url("assets/fonts/Advercase-Bold.ttf") format("truetype"); font-weight: 700; font-style: normal; font-display: block; }
+      @font-face { font-family: "Advercase"; src: url("assets/fonts/Advercase-Regular.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: block; }
+      @font-face { font-family: "Patrick Hand"; src: url("assets/fonts/PatrickHand-Regular.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: block; }
+      @font-face { font-family: "Zalando Sans"; src: url("assets/fonts/ZalandoSans-Variable.ttf") format("truetype"); font-weight: 100 900; font-style: normal; font-display: block; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: #1e1e1e; }
+      body { font-family: "Zalando Sans", sans-serif; color: #f4f4f2; -webkit-font-smoothing: antialiased; }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; background: #1e1e1e; }
+      .clip { position: absolute; inset: 0; overflow: hidden; }
+      #glow { position: absolute; inset: 0; opacity: 0.35; background: radial-gradient(58% 32% at 50% 46%, rgba(207, 251, 80, 0.08), rgba(207, 251, 80, 0) 70%); }
+      #vignette { position: absolute; inset: 0; background: radial-gradient(110% 78% at 50% 44%, rgba(0, 0, 0, 0) 44%, rgba(0, 0, 0, 0.62) 100%); }
+      .cam { position: absolute; left: 540px; top: 880px; width: 1px; height: 1px; }
+      .layer { position: absolute; left: 0; top: 0; width: 1px; height: 1px; }
+      #dots { position: absolute; left: -6000px; top: -6000px; width: 30000px; height: 20000px; background-image: radial-gradient(circle, rgba(255, 255, 255, 0.095) 1.25px, rgba(255, 255, 255, 0) 1.95px); background-size: 24px 24px; }
+      #stage { position: absolute; inset: 0; overflow: hidden; }
+      #safe { position: absolute; inset: 0; -webkit-mask-image: linear-gradient(to bottom, #000 0px, #000 1385px, transparent 1450px); mask-image: linear-gradient(to bottom, #000 0px, #000 1385px, transparent 1450px); }
+      #mbwrap, #shake { position: absolute; inset: 0; }
+      #hud { position: absolute; inset: 0; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="15" data-width="1080" data-height="1920">
+      <div id="bg" class="clip" data-start="0" data-duration="15" data-track-index="0">
+        <div class="cam" id="gcam2" data-layout-allow-overflow><div class="layer" id="gzoom2"><div class="layer" id="gpan2"><div class="layer" id="bokeh"></div></div></div></div>
+        <div class="cam" id="gcam" data-layout-allow-overflow><div class="layer" id="gzoom"><div class="layer" id="gpan"><div id="dots"></div></div></div></div>
+        <div id="glow"></div>
+        <div id="vignette"></div>
+      </div>
+      <div id="stage">
+        <svg width="0" height="0" style="position: absolute" aria-hidden="true">
+          <filter id="mb" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur id="mbn" in="SourceGraphic" stdDeviation="0 0" /></filter>
+        </svg>
+        <div id="safe"><div id="mbwrap"><div id="shake"><div class="cam" id="cam" data-layout-allow-overflow><div class="layer" id="zoom"><div class="layer" id="pan"></div></div></div></div></div></div>
+      </div>
+      <div id="hudclip" class="clip" data-start="0" data-duration="15" data-track-index="2">
+        <div id="hud"></div>
+      </div>
+      <!--SFX
+        0.4 whoosh .1
+        1.5 click2 .2
+        1.75 tick .08 ; 1.95 tick .08 ; 2.15 tick .08 ; 2.35 tick .08 ; 2.55 tick .08 ; 2.75 tick .08
+        3.05 ding .22
+        5.0 click2 .2
+        6.6 ding .22
+        8.6 tick .12
+        9.6 click .25
+        12.2 toggle .2
+      -->
+    </div>
+    <script>
+      (() => {
+        const ICON = __ICONS__;
+        /*__KIT__*/
+        const L = layer(10);
+        const S = svgLayer(L, 6, -60000, -60000, 200000, 200000);
+        const head = (t, lines, out) => { const T = titleW({ lines, size: 80 }); T.inAt(t); if (out) T.outAt(out); return T; };
+        const Y = 900;
+        camInit(540, 900, 1);
+
+        // Demo degli oggetti veri presi da Adobe Stock (licenza gratuita) e scontornati con Photoshop:
+        // cervello (O13), slot machine (O14), fotocamera, faro da studio. Ricette: _tools/oggetti_adobe.py, fonti: kw-kit/assets/obj/FONTI.md
+        // 0 – 4 · cervello + slot (gemello di Kallaway 79: "come i casinò")
+        let X = 540;
+        const br = brain(L, X - 230, Y - 120, 420);
+        const sm = slotMachine(L, X + 210, Y + 120, 760);
+        cutRect(0, [X - 470, Y - 360, X + 500, Y + 520], { top: 360 });
+        float(0, 4, 0, -12, 0.035);
+        head(0.05, [[{ t: "Come " }, { t: "i casinò", box: true }]], 3.7);
+        br.on(0.3);
+        sm.pull(1.35);
+        const stop1 = sm.spin(1.6, "heart");
+        sm.win(stop1 + 0.03);
+
+        // 4 – 8 · slot da vicino: ricompense variabili
+        X = 3000;
+        const sm2 = slotMachine(L, X, Y + 60, 1100, { reels: [["heart", "eye", "user-plus", "message-circle"], ["eye", "heart", "message-circle", "user-plus"], ["user-plus", "message-circle", "heart", "eye"]] });
+        cutRect(4, sm2.rect, { top: 380 });
+        float(4, 4, 0, -10, 0.04);
+        head(4.05, [[{ t: "Ricompensa " }, { t: "variabile", box: true }]], 7.7);
+        sm2.pull(4.85);
+        const stop2 = sm2.spin(5.1, [0, 1, 2], { giri: 4 });
+        sm2.win(stop2 + 0.03);
+
+        // 8 – 11.5 · fotocamera
+        X = 5500;
+        const fc = fotocamera(L, X, Y + 60, 860);
+        cutRect(8, fc.rect, { top: 420 });
+        float(8, 3.5, 0, 0, 0.05);
+        head(8.05, [[{ t: "Davanti alla " }, { t: "telecamera", box: true }]], 11.2);
+        fc.rec(8.6, 2.6);
+        fc.glint(9.0, 0.9);
+        fc.shutter(9.6);
+
+        // 11.5 – 15 · faro + fascio su un reel vero
+        X = 8000;
+        const fr = faro(L, X - 260, Y + 360, 560, { len: 900 });
+        const [tx, ty] = fr.target(0.78);
+        const tile = mediaTile(L, tx - 110, ty - 196, 220, 392, "th-mio_04", 14); // sopra al faro: il fascio finisce sotto al soggetto
+        tile.style.borderRadius = "18px";
+        cutRect(11.5, [X - 560, Y - 460, X + 560, Y + 640], { top: 360 });
+        float(11.5, 3.5, 20, -10, 0.04);
+        head(11.55, [[{ t: "È dove metti " }, { t: "la luce", box: true }]]);
+        fr.on(12.2, tile);
+        fr.live(12.6, 15);
+
+        window.__timelines = window.__timelines || {};
+        window.__timelines["main"] = tl;
+      })();
+    </script>
+  </body>
+</html>
