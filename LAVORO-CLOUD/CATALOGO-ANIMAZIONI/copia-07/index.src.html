@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>Copia · reel 1 di Kallaway (blocco C2b)</title>
+    <script src="assets/vendor/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Advercase"; src: url("assets/fonts/Advercase-Bold.ttf") format("truetype"); font-weight: 700; font-style: normal; font-display: block; }
+      @font-face { font-family: "Advercase"; src: url("assets/fonts/Advercase-Regular.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: block; }
+      @font-face { font-family: "Patrick Hand"; src: url("assets/fonts/PatrickHand-Regular.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: block; }
+      @font-face { font-family: "Zalando Sans"; src: url("assets/fonts/ZalandoSans-Variable.ttf") format("truetype"); font-weight: 100 900; font-style: normal; font-display: block; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: #1e1e1e; }
+      body { font-family: "Zalando Sans", sans-serif; color: #f4f4f2; -webkit-font-smoothing: antialiased; }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; background: #1e1e1e; }
+      .clip { position: absolute; inset: 0; overflow: hidden; }
+      #glow { position: absolute; inset: 0; opacity: 0.35; background: radial-gradient(58% 32% at 50% 46%, rgba(207, 251, 80, 0.08), rgba(207, 251, 80, 0) 70%); }
+      #vignette { position: absolute; inset: 0; background: radial-gradient(110% 78% at 50% 44%, rgba(0, 0, 0, 0) 44%, rgba(0, 0, 0, 0.62) 100%); }
+      .cam { position: absolute; left: 540px; top: 880px; width: 1px; height: 1px; }
+      .layer { position: absolute; left: 0; top: 0; width: 1px; height: 1px; }
+      #dots { position: absolute; left: -12000px; top: -9000px; width: 40000px; height: 24000px; background-image: radial-gradient(circle, rgba(255, 255, 255, 0.095) 1.25px, rgba(255, 255, 255, 0) 1.95px); background-size: 24px 24px; }
+      #stage { position: absolute; inset: 0; overflow: hidden; }
+      /* safe zone dell'utente (SAFEZONE.jpg): da y = 1332 in giù c'è la sua faccia → la grafica sfuma nel fondo prima della linea */
+      #safe { position: absolute; inset: 0; -webkit-mask-image: linear-gradient(to bottom, #000 0px, #000 1288px, transparent 1330px); mask-image: linear-gradient(to bottom, #000 0px, #000 1288px, transparent 1330px); }
+      #mbwrap, #shake { position: absolute; inset: 0; }
+      #hud { position: absolute; inset: 0; -webkit-mask-image: linear-gradient(to bottom, #000 0px, #000 1288px, transparent 1330px); mask-image: linear-gradient(to bottom, #000 0px, #000 1288px, transparent 1330px); }
+    </style>
+  </head>
+  <body>
+    <!-- KW_RITMO: regole del ritmo e template (kw-kit/kit2-ritmo.js); qui la COPIA FEDELE del reel 1 di Kallaway (giro 2, blocco C2b):
+         Kallaway vince sulle regole R1–R8 dove un suo valore misurato è diverso (annotato nelle schede di kw-kit/kit2-copia-*.js). -->
+    <!-- Copia 1:1 sul tempo del suo reel (119,42 s): ogni scena e ogni transizione al suo istante (copia-07/scene.json,
+         copia-07/transizioni.json). Dove lui è a tutto schermo in camera lo spazio resta scuro («facecam piena»). Dopo la fine del
+         reel, con un taglio netto, la voce isolata A01 copiata dal reel 25 (0–3,042 s): durata totale 119,42 + 3,042 = 122,462 s.
+         Niente audio. -->
+    <div id="root" data-composition-id="main" data-start="0" data-duration="122.462" data-width="1080" data-height="1920">
+      <div id="bg" class="clip" data-start="0" data-duration="122.462" data-track-index="0">
+        <div class="cam" id="gcam2" data-layout-allow-overflow><div class="layer" id="gzoom2"><div class="layer" id="gpan2"><div class="layer" id="bokeh"></div></div></div></div>
+        <div class="cam" id="gcam" data-layout-allow-overflow><div class="layer" id="gzoom"><div class="layer" id="gpan"><div id="dots"></div></div></div></div>
+        <div id="glow"></div>
+        <div id="vignette"></div>
+      </div>
+      <div id="stage">
+        <svg width="0" height="0" style="position: absolute" aria-hidden="true">
+          <filter id="mb" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur id="mbn" in="SourceGraphic" stdDeviation="0 0" /></filter>
+        </svg>
+        <div id="c7pool" style="position:absolute;left:0;top:0;width:0;height:0;overflow:hidden">
+          <!-- scena 3: il muro di ~100 reel, 48 fotogrammi DIVERSI dei tuoi reel (36 del muro di C2 + 12 nuovi) -->
+          <img id="c7-wv01" src="assets/img/wv01.jpg" alt="">
+          <img id="c7-wv02" src="assets/img/wv02.jpg" alt="">
+          <img id="c7-wv03" src="assets/img/wv03.jpg" alt="">
+          <img id="c7-wv04" src="assets/img/wv04.jpg" alt="">
+          <img id="c7-wv05" src="assets/img/wv05.jpg" alt="">
+          <img id="c7-wv06" src="assets/img/wv06.jpg" alt="">
+          <img id="c7-wv07" src="assets/img/wv07.jpg" alt="">
+          <img id="c7-wv08" src="assets/img/wv08.jpg" alt="">
+          <img id="c7-wv09" src="assets/img/wv09.jpg" alt="">
+          <img id="c7-wv10" src="assets/img/wv10.jpg" alt="">
+          <img id="c7-wv11" src="assets/img/wv11.jpg" alt="">
+          <img id="c7-wv12" src="assets/img/wv12.jpg" alt="">
+          <img id="c7-wv13" src="assets/img/wv13.jpg" alt="">
+          <img id="c7-wv14" src="assets/img/wv14.jpg" alt="">
+          <img id="c7-wv15" src="assets/img/wv15.jpg" alt="">
+          <img id="c7-wv16" src="assets/img/wv16.jpg" alt="">
+          <img id="c7-wv17" src="assets/img/wv17.jpg" alt="">
+          <img id="c7-wv18" src="assets/img/wv18.jpg" alt="">
+          <img id="c7-wg01" src="assets/img/wg01.jpg" alt="">
+          <img id="c7-wg02" src="assets/img/wg02.jpg" alt="">
+          <img id="c7-wg03" src="assets/img/wg03.jpg" alt="">
+          <img id="c7-wg04" src="assets/img/wg04.jpg" alt="">
+          <img id="c7-wg05" src="assets/img/wg05.jpg" alt="">
+          <img id="c7-wg06" src="assets/img/wg06.jpg" alt="">
+          <img id="c7-wg07" src="assets/img/wg07.jpg" alt="">
+          <img id="c7-wg08" src="assets/img/wg08.jpg" alt="">
+          <img id="c7-wg09" src="assets/img/wg09.jpg" alt="">
+          <img id="c7-wg10" src="assets/img/wg10.jpg" alt="">
+          <img id="c7-wg11" src="assets/img/wg11.jpg" alt="">
+          <img id="c7-wg12" src="assets/img/wg12.jpg" alt="">
+          <img id="c7-wg13" src="assets/img/wg13.jpg" alt="">
+          <img id="c7-wg14" src="assets/img/wg14.jpg" alt="">
+          <img id="c7-wg15" src="assets/img/wg15.jpg" alt="">
+          <img id="c7-wg16" src="assets/img/wg16.jpg" alt="">
+          <img id="c7-wg17" src="assets/img/wg17.jpg" alt="">
+          <img id="c7-wg18" src="assets/img/wg18.jpg" alt="">
+          <img id="c7-wn01" src="assets/img/wn01.jpg" alt="">
+          <img id="c7-wn02" src="assets/img/wn02.jpg" alt="">
+          <img id="c7-wn03" src="assets/img/wn03.jpg" alt="">
+          <img id="c7-wn04" src="assets/img/wn04.jpg" alt="">
+          <img id="c7-wn05" src="assets/img/wn05.jpg" alt="">
+          <img id="c7-wn06" src="assets/img/wn06.jpg" alt="">
+          <img id="c7-wn07" src="assets/img/wn07.jpg" alt="">
+          <img id="c7-wn08" src="assets/img/wn08.jpg" alt="">
+          <img id="c7-wn09" src="assets/img/wn09.jpg" alt="">
+          <img id="c7-wn10" src="assets/img/wn10.jpg" alt="">
+          <img id="c7-wn11" src="assets/img/wn11.jpg" alt="">
+          <img id="c7-wn12" src="assets/img/wn12.jpg" alt="">
+        </div>
+        <div id="safe"><div id="mbwrap"><div id="shake"><div class="cam" id="cam" data-layout-allow-overflow><div class="layer" id="zoom"><div class="layer" id="pan"></div></div></div></div></div></div>
+        <!--VIDEOS
+          # 1 · la griglia di 5 reel (Kallaway: 5 SUOI reel che girano) → 5 tuoi reel diversi
+          g1 assets/clips/g1.mp4 0 2.9
+          g2 assets/clips/g2.mp4 0 2.9
+          g3 assets/clips/g3.mp4 0 2.9
+          g4 assets/clips/g4.mp4 0 2.9
+          g5 assets/clips/g5.mp4 0 2.9
+        -->
+      </div>
+      <div id="hudclip" class="clip" data-start="0" data-duration="122.462" data-track-index="2">
+        <div id="hud"></div>
+      </div>
+    </div>
+    <script>
+      (() => {
+        const ICON = __ICONS__;
+        /*__KIT__*/
+
+        camInit(540, 880, 1);
+
+        // ═══ 1 · 0–4,63 s · r01_apertura (T01 · T02 · D02): il titolo, la griglia dei tuoi reel con le views; 2,753 s r01_imbuto ═══
+        cpCam.taglio(0, { fx: 540, fy: 880, s: 1 });
+        COPIA.r01_apertura({ t0: 0, t1: 2.753, X: 540, Y: 880, parent: layer(10) }, {});
+        cpCam.taglio(2.753, { fx: 6000, fy: 880, s: 1 });
+        COPIA.r01_imbuto({ t0: 2.753, t1: 4.63, X: 6000, Y: 880, parent: layer(11) }, {});
+
+        // ═══ 2 · 4,63–5,589 s · facecam piena ═══
+        cpFacecam(4.63, 5.589);
+
+        //__SCENE__
+
+        cpCam.gira(0, 122.462);
+        window.__timelines = window.__timelines || {};
+        window.__timelines["main"] = tl;
+      })();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,4 @@
+[
+ {"n": 1, "id": "r01_apertura", "t0": 0.0, "t1": 4.63, "cosa": "griglia di 5 tuoi reel già lì al primo fotogramma (i primi due sfocati, a fuoco in 0,17 s); il titolo «Il Modo Più Rapido Per Fare» parola per parola (T01) e il riquadro lime che si allunga sotto «Un Milione Di Views» (T02); le views che arrivano da sotto una dopo l'altra (D02); da 1,85 s la griglia sale sempre più veloce; 2,753 s taglio sull'imbuto di omini che si allarga sopra la tua foto (il titolo resta)", "funzione": "COPIA.r01_apertura (T01 · T02 · D02) + COPIA.r01_imbuto", "voci": {"T01": [0.0, 1.4], "T02": [0.0, 1.4], "D02": [0.75, 2.0], "A01": [0.0, 2.753]}, "kallaway": {"reel": 1, "t0": 0.0, "t1": 4.63}},
+ {"n": 2, "id": "facecam", "t0": 4.63, "t1": 5.589, "cosa": "facecam piena", "funzione": "cpFacecam", "kallaway": {"reel": 1, "t0": 4.63, "t1": 5.589}}
+]
