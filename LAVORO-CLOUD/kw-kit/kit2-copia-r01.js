@@ -955,3 +955,53 @@ COPIA.r01_avatar = (scena, o) => {
   tl.set(L, { opacity: 0 }, t1);
   return { rect: null, pose: null, ancore: {}, elementi: { H, C, P } };
 };
+
+/* @copia r01_termini · «Termini Più Complessi / Meno Persone Guardano»: il riquadro che si riempie di persone, il disco «Termini
+ *   Complessi» che sale; cinque persone escono e gli fanno corona, le altre si spengono; le cinque diventano lime
+ *   (reel 1, 93,385–97,931 s)
+ * kallaway: reel 1, 93,385 s · taglio: il titolo parola per parola («More Complex Terminology» 93,39–93,7 · «Fewer People Watch»
+ *   93,72–94,05 s); un riquadro col bordo bianco sottile (x 138–933, y 397–683) che si riempie di omini bianchi uno dopo l'altro
+ *   (21 in 3 righe da 7, 93,39–93,9 s); da sotto sale il disco rosso «Complex Terminology» (centro y ~1145 → 1000 px, frena fino a
+ *   94,5 s); 95,2–95,6 s cinque omini della riga in basso escono e si mettono ad arco sopra il disco, gli altri diventano rossi;
+ *   97,06 s i cinque diventano verdi
+ * misure: omini ~62 px a passo 108 (righe y 445 · 540 · 631); disco r 160; arco a (324, 855) (410, 800) (540, 780) (648, 800) (747, 855)
+ * scena: t0 (93,385), t1 (97,931), X, Y, parent
+ * colori: il disco rosso → lime con la scritta scura; gli esclusi rossi → grafite spenta (il contrasto rosso/verde: escluso / giusto);
+ *   i cinque verdi → lime
+ */
+COPIA.r01_termini = (scena, o) => {
+  o = o || {};
+  const L = scena.parent || layer(24), X = scena.X, Y = scena.Y, W = (sx, sy) => [X - 540 + sx, Y - 880 + sy];
+  const t0 = scena.t0, t1 = scena.t1, a = (t) => t0 + (t - 93.385);
+  const T = r5Titolo({ righe: [[{ t: "Termini Più ", ruolo: "sans", size: 76 }, { t: "Complessi", ruolo: "serif", size: 94 }], [{ t: "Meno Persone Guardano", ruolo: "sans", size: 64 }]], y: 150, interlinea: [86] });
+  T.inAt([93.35, 93.5, 93.62, 93.72, 93.86, 94.0].map(a));
+  r1Finestra(T.root, t0, t1);
+  const [bx, by] = W(138, 397);
+  const box = layered(el(L, { position: "absolute", left: bx, top: by, width: 795, height: 286, borderRadius: 4, boxShadow: "inset 0 0 0 2.5px rgba(255,255,255,.85), 0 0 18px rgba(255,255,255,.10)", zIndex: 10 }));
+  const omini = [];
+  for (let r = 0; r < 3; r++) for (let c = 0; c < 7; c++) {
+    const [x, y] = W(216 + 108 * c, 445 + 93 * r);
+    const p = r1Omino(L, x, y, { d: 62, col: "#ffffff", z: 12 });
+    gsap.set(p, { opacity: 0, scale: 0.6 });
+    tl.to(p, { opacity: 1, scale: 1, duration: 0.1, ease: "power2.out" }, a(93.39 + 0.025 * (r * 7 + c)));
+    omini.push(p);
+  }
+  // il disco «Termini Complessi» sale da sotto e frena
+  const [dx, dy] = W(540, 1000);
+  const disco = layered(el(L, { position: "absolute", left: dx - 160, top: dy - 160, width: 320, height: 320, borderRadius: "50%", background: "radial-gradient(circle at 50% 40%, #e2ff8a 0%, #d3fc5c 45%, #CFFB50 70%, #b9e33f 100%)", boxShadow: "inset 0 0 0 3px rgba(255,255,255,.75), 0 0 50px rgba(207,251,80,.45)", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", zIndex: 14 }));
+  el(disco, { fontFamily: FS, fontWeight: 800, fontSize: 46, color: K.ink, lineHeight: 1 }, "Termini");
+  el(disco, { fontFamily: FH, fontSize: 54, color: K.ink, lineHeight: 1.05 }, "Complessi");
+  const fd = cpCurva([[93.385, 150], [93.55, 110], [93.72, 70], [93.89, 45], [94.05, 30], [94.22, 18], [94.39, 9], [94.55, 4], [94.8, 0]].map(([t, d]) => [a(t), d])), st = { v: 0 };
+  gsap.set(disco, { y: fd(t0) });
+  tl.fromTo(st, { v: 0 }, { v: 1, duration: 1.42, ease: "none", immediateRender: false, onUpdate: () => gsap.set(disco, { y: fd(t0 + st.v * 1.42) }) }, t0);
+  // cinque omini della riga in basso escono e fanno corona sopra il disco; gli altri si spengono
+  const arco = [[324, 855], [410, 800], [540, 780], [648, 800], [747, 855]], esce = [14, 16, 17, 18, 20];
+  esce.forEach((k, i) => {
+    const p = omini[k], [x0, y0] = W(216 + 108 * (k % 7), 445 + 93 * 2), [x1, y1] = W(arco[i][0], arco[i][1]);
+    tl.to(p, { x: x1 - x0, y: y1 - y0, scale: 0.85, duration: 0.42, ease: "power2.inOut" }, a(95.18 + 0.03 * i));
+    r1ColOmino(p, a(97.06), K.lime, 0.12);
+  });
+  omini.forEach((p, k) => { if (!esce.includes(k)) tl.to(p, { opacity: 0.32, duration: 0.2, ease: "power1.out" }, a(95.3 + 0.008 * k)); });
+  tl.set(L, { opacity: 0 }, t1);
+  return { rect: null, pose: null, ancore: {}, elementi: { T, box, omini, disco } };
+};

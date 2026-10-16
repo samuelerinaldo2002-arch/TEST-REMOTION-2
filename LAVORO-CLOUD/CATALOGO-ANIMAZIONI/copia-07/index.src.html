@@ -220,6 +220,13 @@
         // ═══ 19 · 88,672–93,385 s · facecam piena ═══
         cpFacecam(88.672, 93.385);
 
+        // ═══ 20 · 93,385–97,931 s · r01_termini: «Termini Più Complessi / Meno Persone Guardano», il riquadro di persone, il disco ═══
+        cpCam.taglio(93.385, { fx: 84000, fy: 880, s: 1 });
+        COPIA.r01_termini({ t0: 93.385, t1: 97.931, X: 84000, Y: 880, parent: layer(24) }, {});
+
+        // ═══ 21 · 97,931–99,474 s · facecam piena ═══
+        cpFacecam(97.931, 99.474);
+
         //__SCENE__
 
         cpCam.gira(0, 122.462);
