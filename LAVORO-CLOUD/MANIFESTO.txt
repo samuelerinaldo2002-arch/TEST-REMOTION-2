@@ -29,3 +29,4 @@ CATALOGO-ANIMAZIONI/ritmo-clip/X01_*copia.mp4
 CATALOGO-ANIMAZIONI/_analisi/render/copia-01_bozza_540.mp4
 # blocco C2b (reel 1): solo la trascrizione, pronta per la prossima sessione
 CATALOGO-ANIMAZIONI/copia-07/_lavoro/r01_parole.json
+CATALOGO-ANIMAZIONI/_analisi/ritmo/pop/O28_k5_metodi.*
