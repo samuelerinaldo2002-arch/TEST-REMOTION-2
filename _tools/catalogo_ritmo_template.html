@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Catalogo ritmo</title>
+<style>
+/*__FONTS__*/
+:root {
+  --bg: #161616; --panel: #1e1e1e; --panel2: #262626; --line: rgba(255,255,255,.09);
+  --ink: #f2f2f2; --mute: #a0a0a0; --dim: #6d6d6d; --lime: #cffb50; --lime-ink: #1e1e1e; --warn: #ffd27a;
+  --r: 16px;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; background: var(--bg); color: var(--ink); font-family: "Zalando Sans", system-ui, sans-serif; }
+body { background-image: radial-gradient(rgba(255,255,255,.07) 1px, transparent 1px); background-size: 22px 22px; }
+.wrap { max-width: 1320px; margin: 0 auto; padding: 28px 16px 80px; }
+header h1 { font-family: "Advercase", Georgia, serif; font-weight: 700; font-size: clamp(34px, 6vw, 62px); line-height: .95; margin: 0 0 6px; letter-spacing: -.01em; text-shadow: 0 0 18px rgba(255,255,255,.18); }
+header h1 .box { background: var(--lime); color: var(--lime-ink); padding: 0 .18em; box-shadow: 0 0 26px rgba(207,251,80,.35); text-shadow: none; }
+header p { color: var(--mute); max-width: 900px; line-height: 1.5; margin: 10px 0 0; }
+header .progress { margin-top: 16px; display: flex; align-items: center; gap: 12px; color: var(--mute); font-size: 14px; }
+header .bar { flex: 0 1 360px; height: 10px; border-radius: 99px; background: rgba(255,255,255,.08); overflow: hidden; }
+header .bar i { display: block; height: 100%; background: linear-gradient(90deg, #b9e63b, #e2ff8a); box-shadow: 0 0 14px rgba(207,251,80,.6); }
+.tools { position: sticky; top: 0; z-index: 10; display: flex; gap: 8px; flex-wrap: wrap; align-items: center; padding: 12px 0; margin: 18px 0 10px; background: linear-gradient(180deg, var(--bg) 80%, rgba(22,22,22,0)); }
+.search { flex: 1 1 220px; min-width: 180px; background: var(--panel); border: 1px solid var(--line); color: var(--ink); border-radius: 12px; padding: 10px 14px; font: 15px "Zalando Sans", sans-serif; }
+select, .btn { background: var(--panel); border: 1px solid var(--line); color: var(--ink); border-radius: 12px; padding: 9px 12px; font: 600 14px "Zalando Sans", sans-serif; cursor: pointer; }
+.btn.on { background: var(--lime); color: var(--lime-ink); border-color: var(--lime); }
+.count { color: var(--dim); font-size: 13px; margin-left: auto; }
+.voce { background: linear-gradient(180deg, #232323, #1b1b1b); border: 1px solid var(--line); border-radius: var(--r); padding: 16px; margin-bottom: 16px; box-shadow: 0 18px 40px rgba(0,0,0,.35); }
+.voce.fatta { border-color: rgba(207,251,80,.28); }
+.top { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.id { font: 700 14px "Zalando Sans"; color: var(--lime-ink); background: var(--lime); padding: 2px 8px; border-radius: 6px; }
+.nome { font-family: "Advercase", Georgia, serif; font-weight: 700; font-size: 26px; line-height: 1.05; }
+.tags { display: flex; gap: 6px; flex-wrap: wrap; margin: 8px 0 12px; }
+.tag { font: 600 11px "Zalando Sans"; letter-spacing: .06em; text-transform: uppercase; color: var(--mute); border: 1px solid var(--line); padding: 3px 7px; border-radius: 6px; }
+.tag.lime { color: var(--lime); border-color: rgba(207,251,80,.4); }
+.tag.todo { color: var(--dim); }
+.vids { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 10px; max-width: 1200px; }
+body.noprima .vid.prima { display: none; }
+.vid.copia .lab b { color: #fff; }
+.vid.copia .box:has(video) { border-color: rgba(255,255,255,.55); box-shadow: 0 0 22px rgba(255,255,255,.14); }
+.vid.copia .box:not(:has(video)) { background: repeating-linear-gradient(135deg, #141414 0 12px, #181818 12px 24px); }
+.blk.copia h4 { color: #fff; }
+.voce.copiata { border-color: rgba(255,255,255,.28); }
+.vid { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.vid .lab { font: 700 11px "Zalando Sans"; letter-spacing: .12em; text-transform: uppercase; color: var(--mute); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.vid .lab b { color: var(--ink); }
+.vid.dopo .lab b { color: var(--lime); }
+.box { position: relative; aspect-ratio: 360 / 448; background: #000; border-radius: 10px; overflow: hidden; border: 1px solid var(--line); }
+.vid.dopo .box:has(video) { border-color: rgba(207,251,80,.45); box-shadow: 0 0 22px rgba(207,251,80,.12); }
+.vid.dopo .box:not(:has(video)) { background: repeating-linear-gradient(135deg, #141414 0 12px, #181818 12px 24px); }
+.box video { width: 100%; height: 100%; object-fit: cover; display: block; cursor: pointer; }
+.box .vuoto { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; text-align: center; padding: 14px; color: var(--dim); font-size: 13px; line-height: 1.4; }
+.box .k2 { position: absolute; right: 6px; bottom: 6px; background: rgba(0,0,0,.65); color: #fff; border: 1px solid rgba(255,255,255,.25); border-radius: 8px; padding: 3px 8px; font: 600 11px "Zalando Sans"; cursor: pointer; }
+.warn { color: var(--warn); font-size: 12px; line-height: 1.35; }
+.info { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 16px; margin-top: 14px; }
+.blk h4 { margin: 0 0 6px; font: 700 12px "Zalando Sans"; letter-spacing: .12em; text-transform: uppercase; color: var(--lime); }
+.row { font-size: 14px; line-height: 1.5; color: #d8d8d8; margin: 0 0 6px; }
+.row b { color: var(--ink); }
+.frase { font-family: "Patrick Hand", cursive; color: var(--lime); font-size: 19px; line-height: 1.3; margin: 0 0 8px; }
+.num { display: grid; grid-template-columns: auto 1fr; gap: 3px 12px; font-size: 13.5px; color: #d8d8d8; }
+.num span:nth-child(odd) { color: var(--mute); }
+pre { position: relative; margin: 12px 0 0; background: #121212; border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; overflow-x: auto; font: 12.5px/1.5 ui-monospace, Consolas, monospace; color: #e6e6e6; }
+pre .copia { position: absolute; top: 8px; right: 8px; background: var(--lime); color: var(--lime-ink); border: 0; border-radius: 8px; padding: 4px 10px; font: 700 12px "Zalando Sans"; cursor: pointer; }
+.nota { color: var(--mute); font-size: 13px; }
+@media (max-width: 760px) {
+  .info { grid-template-columns: 1fr; }
+  .vids { gap: 6px; }
+  .nome { font-size: 22px; }
+  .count { margin-left: 0; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Catalogo <span class="box">ritmo</span></h1>
+    <p>Ogni voce del catalogo accanto a Kallaway: <b>KALLAWAY</b> (il suo reel) · <b>PRIMA</b> (la nostra versione di oggi) ·
+      <b>DOPO</b> (rifatta con le regole del ritmo R1–R6, come template <code>TPL.&lt;ID&gt;</code>) · <b>COPIA</b> (giro 2: copia fedele di
+      Kallaway, <code>COPIA.&lt;ID&gt;</code>, tagliata dal render del suo reel copiato intero; la clip KALLAWAY è allineata alla copia). I tre video partono insieme e
+      ripartono insieme; clic su un video per farli ripartire. Le voci rifatte hanno la scheda (quando usarla) e il codice da copiare.</p>
+    <div class="progress"><div class="bar"><i id="pbar"></i></div><span id="ptext"></span></div>
+  </header>
+  <div class="tools">
+    <input class="search" id="q" placeholder="Cerca: nome, «quando usarlo», frase…">
+    <select id="fb"><option value="">Tutti i blocchi</option></select>
+    <select id="fc"><option value="">Tutte le categorie</option></select>
+    <select id="ff"><option value="">Ogni frequenza</option><option>altissima</option><option>alta</option><option>media</option><option>rara</option></select>
+    <select id="fs"><option value="">Rifatte e da fare</option><option value="si">Solo rifatte</option><option value="no">Solo da fare</option></select>
+    <select id="fk"><option value="">Copia: tutte</option><option value="si">Copia fatta</option><option value="no">Copia da fare</option></select>
+    <button class="btn" id="bprima" title="Mostra o nascondi la colonna PRIMA">PRIMA: mostra</button>
+    <button class="btn" id="vel" title="Velocità di tutti i video">1×</button>
+    <span class="count" id="cnt"></span>
+  </div>
+  <div id="lista"></div>
+</div>
+<script>
+const DATA = /*__DATI__*/null;
+const $ = (s, p) => (p || document).querySelector(s);
+const esc = (s) => String(s == null ? "" : s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+let RATE = 1;
+
+$("#pbar").style.width = (100 * DATA.fatte / DATA.totale).toFixed(1) + "%";
+$("#ptext").textContent = `${DATA.fatte} rifatte su ${DATA.totale} · ${DATA.copie || 0} copie fedeli · aggiornata il ${DATA.generato} · si aggiorna da sola`;
+[...new Set(DATA.voci.map((v) => v.blocco))].forEach((b) => $("#fb").insertAdjacentHTML("beforeend", `<option value="${b}">Blocco ${b}</option>`));
+Object.entries(DATA.categorie).forEach(([k, n]) => $("#fc").insertAdjacentHTML("beforeend", `<option value="${k}">${esc(k + " · " + n)}</option>`));
+
+const video = (src, lab, cls, extra) => `<div class="vid ${cls}"><div class="lab">${lab}</div><div class="box">${src ? `<video muted playsinline preload="none" data-src="${esc(src)}"></video>` : `<div class="vuoto">${extra || "—"}</div>`}${cls === "kal" && extra ? extra : ""}</div></div>`;
+const voti = (v) => v ? Object.entries(v).map(([k, x]) => `${k} ${x}`).join(" · ") : "";
+
+function card(v) {
+  const sc = v.scheda, p = v.prima || {}, d = v.dopo || {}, c = v.copia || {}, vt = v.voto, vp = v.voto_prima, vc = v.voto_copia, cs = v.scheda_copia;
+  const k2 = v.kallaway[1] ? `<button class="k2" data-alt="${esc(v.kallaway[1])}" data-uno="${esc(v.kallaway[0])}">rif. 2</button>` : "";
+  let h = `<div class="top"><span class="id">${v.id}</span><span class="nome">${esc(sc ? sc.nome : v.nome)}</span></div>
+  <div class="tags"><span class="tag">${esc(DATA.categorie[v.cat] || v.cat)}</span><span class="tag ${/alt/.test(v.freq) ? "lime" : ""}">${esc(v.freq)}</span>
+  <span class="tag">blocco ${v.blocco}</span>${v.serve ? `<span class="tag">serve a: ${esc(v.serve)}</span>` : ""}
+  <span class="tag ${v.rifatta ? "lime" : "todo"}">${v.rifatta ? "rifatta · TPL." + v.id : "da fare"}</span>
+  ${v.copia ? `<span class="tag" style="color:#fff;border-color:rgba(255,255,255,.4)">copia · COPIA.${esc(v.id)} (${esc(v.copia.comp)})</span>` : ""}
+  ${v.usato.length ? `<span class="tag lime">usato in ${esc(v.usato.join(", "))}</span>` : ""}</div>
+  <div class="vids">
+    ${video(v.kallaway[0], `<b>Kallaway</b> · ${esc(v.rif[0] || "")}`, "kal", k2)}
+    ${video(c.clip, `<b>Copia</b> · ${esc(c.dove || "")}`, "copia", c.manca ? esc(c.manca) : "copia fedele da fare (giro 2)")}
+    ${video(d.clip, `<b>Dopo</b> · ${esc(d.scena || "")}`, "dopo", d.manca ? esc(d.manca) : "da rifare nel blocco " + v.blocco)}
+    ${video(p.clip, `<b>Prima</b> · ${esc(p.dove || "")}`, "prima", esc(p.manca || ""))}
+  </div>`;
+  const avvisi = [p.vecchio && "PRIMA: " + p.vecchio, d.vecchio && "DOPO: " + d.vecchio, c.vecchio && "COPIA: " + c.vecchio].filter(Boolean);
+  if (avvisi.length) h += `<div class="warn" style="margin-top:8px">${avvisi.map(esc).join("<br>")}</div>`;
+  if (cs || vc) {
+    const rc = (k, n) => cs && cs[k] ? `<p class="row"><b>${n}:</b> ${esc(cs[k])}</p>` : "";
+    const mc = (vc && vc.misure) || {};
+    h += `<div class="info"><div class="blk copia"><h4>Copia fedele (giro 2) · ${esc(c.dove || "")}</h4>
+      ${rc("kallaway", "Kallaway")}${rc("misure", "Misure")}${rc("quando", "Quando usarla")}${rc("colori", "Colori")}
+      </div><div class="blk copia"><h4>Copia ↔ Kallaway (misure)</h4><div class="num">${Object.entries(mc).map(([k, x]) => `<span>${esc(k)}</span><span>${esc(Array.isArray(x) ? x.join(" · ") : x)}</span>`).join("")}</div>
+      ${vc ? `<p class="row" style="margin-top:8px"><b>Voto copia</b> ${esc(voti(vc.voti))}</p>` : ""}
+      ${vc && vc.manca ? `<p class="row nota">Cosa non torna: ${esc(vc.manca)}</p>` : ""}
+      </div></div>${cs && cs.chiamata ? `<pre><button class="copia">copia</button><code>${esc(cs.chiamata)}</code></pre>` : ""}`;
+  }
+  if (sc) {
+    const r = (k, n) => sc[k] ? `<p class="row"><b>${n}:</b> ${esc(sc[k])}</p>` : "";
+    const m = (vt && vt.misure) || {};
+    h += `<div class="info"><div class="blk"><h4>Scheda del template</h4>
+      ${d.frase ? `<p class="frase">${esc(d.frase)}${d.script ? ` <span class="nota">(${esc(d.script)})</span>` : ""}</p>` : ""}
+      ${r("quando", "Quando usarlo")}${r("durata", "Durata")}${r("scena", "Scena")}${r("opzioni", "Opzioni")}${r("restituisce", "Restituisce")}${r("suoni", "Suoni")}
+      </div><div class="blk"><h4>Cosa è cambiato</h4>${r("prima", "Prima")}${r("regole", "Dopo (regole)")}
+      <h4 style="margin-top:12px">Numeri misurati</h4><div class="num">${Object.entries(m).map(([k, x]) => `<span>${esc(k)}</span><span>${esc(Array.isArray(x) ? x.join(" · ") : x)}</span>`).join("")}</div>
+      ${vt ? `<p class="row" style="margin-top:8px"><b>Voto</b> ${esc(voti(vt.voti))}${vp ? ` <span class="nota">(prima: ${esc(voti(vp.voti))})</span>` : ""}</p>` : ""}
+      ${vt && vt.manca ? `<p class="row nota">Cosa non torna: ${esc(vt.manca)}</p>` : ""}
+      </div></div>
+      <pre><button class="copia">copia</button><code>${esc(sc.chiamata || "")}</code></pre>`;
+  } else {
+    h += `<div class="info"><div class="blk"><h4>Quando (catalogo)</h4><p class="row">${esc(v.quando)}</p><p class="row nota">${esc(v.cosa)}</p></div>
+      <div class="blk"><h4>Oggi nel kit</h4><p class="row nota">${esc(p.demo || "")}</p>${vp ? `<p class="row"><b>Voto</b> ${esc(voti(vp.voti))}</p>` : ""}</div></div>`;
+  }
+  return h;
+}
+
+const lista = $("#lista");
+DATA.voci.forEach((v) => {
+  const el = document.createElement("section");
+  el.className = "voce" + (v.rifatta ? " fatta" : "") + (v.copia_fatta ? " copiata" : "");
+  el.id = v.id;
+  el.innerHTML = card(v);
+  el._v = v;
+  el._testo = [v.id, v.nome, v.quando, v.cosa, v.scheda && v.scheda.quando, v.scheda && v.scheda.nome, v.dopo && v.dopo.frase, v.serve].join(" ").toLowerCase();
+  lista.appendChild(el);
+});
+
+// ── i tre video di una voce partono insieme e ripartono insieme (quando sono finiti tutti) ──
+const vids = (sec) => [...sec.querySelectorAll("video")];
+const riparti = (sec) => vids(sec).forEach((x) => { x._fine = false; x.currentTime = 0; x.playbackRate = RATE; x.play().catch(() => {}); });
+document.querySelectorAll(".voce").forEach((sec) => vids(sec).forEach((x) => {
+  x.addEventListener("ended", () => { x._fine = true; if (vids(sec).every((y) => y._fine || !y.src)) riparti(sec); });
+  x.addEventListener("click", () => riparti(sec));
+}));
+const io = new IntersectionObserver((es) => es.forEach((e) => {
+  const sec = e.target;
+  if (e.isIntersecting) {
+    vids(sec).forEach((x) => { if (!x.src) x.src = x.dataset.src; });
+    riparti(sec);
+  } else vids(sec).forEach((x) => x.pause());
+}), { rootMargin: "200px 0px" });
+document.querySelectorAll(".voce").forEach((s) => io.observe(s));
+
+// ── velocità, rif. 2, copia ──
+$("#vel").addEventListener("click", (e) => {
+  RATE = RATE === 1 ? 0.5 : 1;
+  e.target.textContent = RATE === 1 ? "1×" : "0,5×";
+  e.target.classList.toggle("on", RATE !== 1);
+  document.querySelectorAll("video").forEach((x) => (x.playbackRate = RATE));
+});
+lista.addEventListener("click", (e) => {
+  const b = e.target.closest("button");
+  if (!b) return;
+  const sec = b.closest(".voce");
+  if (b.classList.contains("k2")) {
+    const x = b.parentNode.querySelector("video"), alt = x.dataset.src === b.dataset.uno;
+    x.dataset.src = alt ? b.dataset.alt : b.dataset.uno;
+    x.src = x.dataset.src;
+    b.textContent = alt ? "rif. 1" : "rif. 2";
+    riparti(sec);
+  } else if (b.classList.contains("copia")) {
+    const t = b.parentNode.querySelector("code").textContent;
+    const ok = () => { b.textContent = "copiato"; setTimeout(() => (b.textContent = "copia"), 1200); };
+    (navigator.clipboard ? navigator.clipboard.writeText(t) : Promise.reject()).then(ok, () => {
+      const ta = document.createElement("textarea"); ta.value = t; document.body.appendChild(ta); ta.select(); document.execCommand("copy"); ta.remove(); ok();
+    });
+  }
+});
+
+// ── filtri ──
+function filtra() {
+  const q = $("#q").value.trim().toLowerCase(), fb = $("#fb").value, fc = $("#fc").value, ff = $("#ff").value, fs = $("#fs").value, fk = $("#fk").value;
+  let n = 0;
+  document.querySelectorAll(".voce").forEach((s) => {
+    const v = s._v;
+    const ok = (!q || q.split(/\s+/).every((w) => s._testo.includes(w))) && (!fb || String(v.blocco) === fb) && (!fc || v.cat === fc) &&
+      (!ff || v.freq === ff) && (!fs || (fs === "si") === v.rifatta) && (!fk || (fk === "si") === !!v.copia_fatta);
+    s.style.display = ok ? "" : "none";
+    n += ok;
+  });
+  $("#cnt").textContent = `${n} voci`;
+}
+["#q", "#fb", "#fc", "#ff", "#fs", "#fk"].forEach((s) => $(s).addEventListener("input", filtra));
+// PRIMA si può nascondere (di base nascosta: il giro 2 confronta KALLAWAY | COPIA, DOPO resta)
+const prima = (on) => { document.body.classList.toggle("noprima", !on); $("#bprima").textContent = on ? "PRIMA: nascondi" : "PRIMA: mostra"; $("#bprima").classList.toggle("on", on); };
+prima(false);
+$("#bprima").addEventListener("click", () => prima(document.body.classList.contains("noprima")));
+// ?q=D13 (oppure ?q=termometro) e ?b=1 aprono la pagina già filtrata: comodo per mandare il link di una voce
+const QS = new URLSearchParams(location.search);
+if (QS.get("q")) $("#q").value = QS.get("q");
+if (QS.get("b")) $("#fb").value = QS.get("b"); // ?b=1 = solo il blocco 1
+// stato salvato prima di un ricaricamento automatico: filtri, velocità, posizione
+let STATO = null;
+try { STATO = JSON.parse(sessionStorage.getItem("ritmo-stato") || "null"); sessionStorage.removeItem("ritmo-stato"); } catch (e) {}
+if (STATO) {
+  ["q", "fb", "fc", "ff", "fs", "fk"].forEach((k) => { if (STATO[k] != null) $("#" + k).value = STATO[k]; });
+  if (STATO.prima) prima(true);
+  if (STATO.rate && STATO.rate !== 1) $("#vel").click();
+}
+filtra();
+if (STATO) requestAnimationFrame(() => scrollTo(0, STATO.y || 0));
+// ── aggiornamento automatico: il generatore riscrive ritmo-clip/_versione.js; se la versione cambia la pagina si ricarica
+// e torna allo stesso punto (così le voci nuove compaiono mentre i blocchi vanno avanti) ──
+setInterval(() => {
+  const s = document.createElement("script");
+  s.src = "ritmo-clip/_versione.js?t=" + Date.now();
+  s.onload = () => {
+    s.remove();
+    if (!window.__RITMO_VER || window.__RITMO_VER === DATA.versione) return;
+    try { sessionStorage.setItem("ritmo-stato", JSON.stringify({ y: scrollY, rate: RATE, q: $("#q").value, fb: $("#fb").value, fc: $("#fc").value, ff: $("#ff").value, fs: $("#fs").value, fk: $("#fk").value, prima: !document.body.classList.contains("noprima") })); } catch (e) {}
+    location.reload();
+  };
+  s.onerror = () => s.remove();
+  document.head.appendChild(s);
+}, 10000);
+if (!STATO && location.hash) { const t = document.getElementById(location.hash.slice(1)); if (t) t.scrollIntoView(); }
+</script>
+</body>
+</html>

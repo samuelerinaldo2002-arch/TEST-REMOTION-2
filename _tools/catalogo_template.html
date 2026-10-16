@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Catalogo animazioni</title>
+<style>
+/*__FONTS__*/
+:root {
+  --bg: #161616; --panel: #1e1e1e; --panel2: #262626; --line: rgba(255,255,255,.09);
+  --ink: #f2f2f2; --mute: #9a9a9a; --dim: #6d6d6d; --lime: #cffb50; --lime-ink: #1e1e1e;
+  --r: 16px;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; background: var(--bg); color: var(--ink); font-family: "Zalando Sans", system-ui, sans-serif; }
+body { background-image: radial-gradient(rgba(255,255,255,.07) 1px, transparent 1px); background-size: 22px 22px; }
+a { color: var(--lime); }
+.wrap { max-width: 1320px; margin: 0 auto; padding: 28px 16px 80px; }
+header h1 { font-family: "Advercase", Georgia, serif; font-weight: 700; font-size: clamp(34px, 6vw, 62px); line-height: .95; margin: 0 0 6px; letter-spacing: -.01em; text-shadow: 0 0 18px rgba(255,255,255,.18); }
+header h1 .box { background: var(--lime); color: var(--lime-ink); padding: 0 .18em; box-shadow: 0 0 26px rgba(207,251,80,.35); text-shadow: none; }
+header h1 .hand { font-family: "Patrick Hand", cursive; color: var(--lime); font-weight: 400; text-shadow: 0 0 20px rgba(207,251,80,.45); }
+header p { color: var(--mute); max-width: 860px; line-height: 1.5; margin: 10px 0 0; }
+.tabs { display: flex; gap: 8px; margin: 26px 0 16px; flex-wrap: wrap; }
+.tab { border: 1px solid var(--line); background: var(--panel); color: var(--ink); padding: 10px 18px; border-radius: 999px; cursor: pointer; font: 600 15px "Zalando Sans", sans-serif; }
+.tab.on { background: var(--lime); color: var(--lime-ink); border-color: var(--lime); }
+.bar { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-bottom: 14px; }
+.chip { border: 1px solid var(--line); background: var(--panel); color: var(--mute); padding: 7px 12px; border-radius: 999px; cursor: pointer; font: 600 13px "Zalando Sans", sans-serif; }
+.chip.on { color: var(--lime-ink); background: var(--lime); border-color: var(--lime); }
+.search { flex: 1 1 240px; min-width: 200px; background: var(--panel); border: 1px solid var(--line); color: var(--ink); border-radius: 12px; padding: 10px 14px; font: 15px "Zalando Sans", sans-serif; }
+.count { color: var(--dim); font-size: 13px; margin-left: auto; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
+.card { background: linear-gradient(180deg, #232323, #1b1b1b); border: 1px solid var(--line); border-radius: var(--r); overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 18px 40px rgba(0,0,0,.35); }
+.card.flash { outline: 2px solid var(--lime); box-shadow: 0 0 40px rgba(207,251,80,.35); }
+.media { position: relative; background: #000; aspect-ratio: 360 / 448; display: flex; }
+.media video { width: 100%; height: 100%; object-fit: cover; display: block; }
+.media .alt { position: absolute; right: 8px; bottom: 8px; display: flex; gap: 6px; }
+.media .alt button { background: rgba(0,0,0,.65); color: #fff; border: 1px solid rgba(255,255,255,.25); border-radius: 8px; padding: 3px 8px; font: 600 12px "Zalando Sans"; cursor: pointer; }
+.media .alt button.on { background: var(--lime); color: var(--lime-ink); }
+.body { padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 8px; }
+.top { display: flex; align-items: baseline; gap: 8px; }
+.id { font: 700 13px "Zalando Sans"; color: var(--lime-ink); background: var(--lime); padding: 2px 7px; border-radius: 6px; }
+.nome { font-family: "Advercase", Georgia, serif; font-weight: 700; font-size: 22px; line-height: 1.05; }
+.meta { display: flex; gap: 6px; flex-wrap: wrap; }
+.tag { font: 600 11px "Zalando Sans"; letter-spacing: .06em; text-transform: uppercase; color: var(--mute); border: 1px solid var(--line); padding: 3px 7px; border-radius: 6px; }
+.tag.f-altissima, .tag.f-alta { color: var(--lime); border-color: rgba(207,251,80,.35); }
+.tag.s-nuovo { color: #ffd27a; border-color: rgba(255,210,122,.3); }
+.tag.s-aggiornare { color: #9ad0ff; border-color: rgba(154,208,255,.3); }
+.tag.s-evitare { color: #ff8a8a; border-color: rgba(255,138,138,.35); }
+.row { font-size: 14px; line-height: 1.45; color: #d8d8d8; }
+.row b { color: var(--ink); font-weight: 700; }
+.row.kit { font-family: ui-monospace, Consolas, monospace; font-size: 12.5px; color: #bdbdbd; background: rgba(255,255,255,.04); border-radius: 8px; padding: 6px 8px; }
+.row.script { color: var(--mute); font-size: 12.5px; }
+.refs { font-size: 12.5px; color: var(--dim); }
+.note { font-family: "Patrick Hand", cursive; color: var(--lime); font-size: 18px; }
+.panel { background: var(--panel); border: 1px solid var(--line); border-radius: var(--r); padding: 18px 18px 8px; margin-bottom: 14px; }
+.panel h3 { font-family: "Advercase", Georgia, serif; font-size: 24px; margin: 0 0 6px; }
+.panel .pat { color: var(--mute); font-size: 13px; margin-bottom: 10px; }
+.beat { display: grid; grid-template-columns: minmax(180px, 1fr) 2fr; gap: 10px; padding: 8px 0; border-top: 1px solid var(--line); font-size: 14px; }
+.beat .q { color: #e6e6e6; }
+.beat .v { display: flex; flex-wrap: wrap; gap: 6px; }
+.vchip { border: 1px solid rgba(207,251,80,.35); color: var(--lime); background: rgba(207,251,80,.06); border-radius: 8px; padding: 3px 8px; font: 600 12.5px "Zalando Sans"; cursor: pointer; }
+.stats { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; }
+.stat { background: var(--panel); border: 1px solid var(--line); border-radius: var(--r); padding: 16px; }
+.stat .n { font-family: "Advercase", Georgia, serif; font-size: 40px; font-weight: 700; color: var(--lime); text-shadow: 0 0 22px rgba(207,251,80,.35); }
+.stat .l { color: var(--mute); font-size: 14px; line-height: 1.4; }
+.hidden { display: none !important; }
+@media (max-width: 640px) { .beat { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Catalogo <span class="box">animazioni</span> <span class="hand">Kallaway</span></h1>
+    <p id="intro"></p>
+  </header>
+  <div class="tabs">
+    <button class="tab on" data-tab="cat">Catalogo</button>
+    <button class="tab" data-tab="scr">I tuoi script</button>
+    <button class="tab" data-tab="num">I numeri dello stile</button>
+  </div>
+  <section id="cat">
+    <div class="bar" id="cats"></div>
+    <div class="bar">
+      <input class="search" id="q" placeholder="Cerca (es. lista, glow, calendario, P07…)">
+      <span class="chip" data-freq="altissima">usate sempre</span>
+      <span class="chip" data-stato="nuovo">da creare</span>
+      <span class="chip" data-stato="aggiornare">da rendere identiche</span>
+      <span class="count" id="count"></span>
+    </div>
+    <div class="grid" id="grid"></div>
+  </section>
+  <section id="scr" class="hidden"></section>
+  <section id="num" class="hidden"></section>
+</div>
+<script>
+const DB = /*__DATI__*/null;
+const $ = (s, r = document) => r.querySelector(s);
+const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const STATO = { kit: "nel kit", aggiornare: "da rendere identica", nuovo: "da creare", post: "in montaggio", evitare: "da evitare" };
+const st = DB.misure.stile_attuale;
+$("#intro").innerHTML = `${DB.voci.length} animazioni e transizioni ricavate da 150 reel di @kallawaymarketing, ognuna con clip di riferimento, tempi misurati fotogramma per fotogramma, quando usarla nei tuoi script e come si realizza nel kit HyperFrames (lime #CFFB50, Advercase, Patrick Hand, Zalando Sans).`;
+
+// ---- tabs
+document.querySelectorAll(".tab").forEach((b) => b.onclick = () => {
+  document.querySelectorAll(".tab").forEach((x) => x.classList.toggle("on", x === b));
+  ["cat", "scr", "num"].forEach((id) => $("#" + id).classList.toggle("hidden", id !== b.dataset.tab));
+});
+
+// ---- catalogue
+const filt = { cat: null, freq: null, stato: null, q: "" };
+$("#cats").innerHTML = `<span class="chip on" data-cat="">Tutte</span>` + Object.entries(DB.categorie).map(([k, v]) => `<span class="chip" data-cat="${k}">${k} · ${esc(v)}</span>`).join("");
+$("#cats").onclick = (e) => { const c = e.target.closest(".chip"); if (!c) return; filt.cat = c.dataset.cat || null; $("#cats").querySelectorAll(".chip").forEach((x) => x.classList.toggle("on", x === c)); render(); };
+document.querySelectorAll("[data-freq],[data-stato]").forEach((c) => c.onclick = () => {
+  const k = c.dataset.freq ? "freq" : "stato", v = c.dataset.freq || c.dataset.stato;
+  filt[k] = filt[k] === v ? null : v;
+  document.querySelectorAll(`[data-${k}]`).forEach((x) => x.classList.toggle("on", filt[k] === x.dataset[k]));
+  render();
+});
+$("#q").oninput = (e) => { filt.q = e.target.value.toLowerCase().trim(); render(); };
+const card = (v) => {
+  const refs = v.rif.map((r) => `<a href="${esc(r.url)}" target="_blank" rel="noopener">reel ${r.n}</a> ${r.t0.toFixed(1)}–${r.t1.toFixed(1)} s`).join(" · ");
+  const alt = v.clip.length > 1 ? `<div class="alt">${v.clip.map((c, i) => `<button class="${i ? "" : "on"}" data-src="${esc(c)}">${i + 1}</button>`).join("")}</div>` : "";
+  return `<article class="card" id="v-${v.id}">
+    <div class="media"><video muted loop playsinline preload="none" data-src="${esc(v.clip[0] || "")}"></video>${alt}</div>
+    <div class="body">
+      <div class="top"><span class="id">${v.id}</span><span class="nome">${esc(v.nome)}</span></div>
+      <div class="meta"><span class="tag">${esc(v.categoria)}</span><span class="tag f-${v.freq}">${v.freq}</span><span class="tag s-${v.stato}">${STATO[v.stato]}</span></div>
+      <div class="row"><b>Com'è.</b> ${esc(v.cosa)}</div>
+      <div class="row"><b>Tempi.</b> ${esc(v.tempi)}</div>
+      <div class="row"><b>Quando.</b> ${esc(v.quando)}</div>
+      <div class="row kit">${esc(v.kit)}${v.demo ? "<br>▶ " + esc(v.demo) : ""}</div>
+      ${v.negli_script.length ? `<div class="row script"><b>Nei tuoi script:</b> ${esc(v.negli_script.join(" · "))}</div>` : ""}
+      <div class="refs">${refs}</div>
+    </div></article>`;
+};
+const ORD = { altissima: 0, alta: 1, media: 2, rara: 3 };
+function render() {
+  const vv = DB.voci.filter((v) => (!filt.cat || v.cat === filt.cat) && (!filt.freq || v.freq === filt.freq || (filt.freq === "altissima" && v.freq === "alta")) && (!filt.stato || v.stato === filt.stato)
+    && (!filt.q || JSON.stringify(v).toLowerCase().includes(filt.q)))
+    .sort((a, b) => a.cat === b.cat ? (ORD[a.freq] - ORD[b.freq]) || a.id.localeCompare(b.id) : Object.keys(DB.categorie).indexOf(a.cat) - Object.keys(DB.categorie).indexOf(b.cat));
+  $("#grid").innerHTML = vv.map(card).join("");
+  $("#count").textContent = `${vv.length} di ${DB.voci.length}`;
+  observe();
+}
+let io;
+function observe() {
+  if (io) io.disconnect();
+  io = new IntersectionObserver((ents) => ents.forEach((e) => {
+    const v = e.target;
+    if (e.isIntersecting) { if (!v.src && v.dataset.src) v.src = v.dataset.src; v.play().catch(() => {}); } else v.pause();
+  }), { rootMargin: "120px" });
+  document.querySelectorAll("video").forEach((v) => io.observe(v));
+  document.querySelectorAll(".alt button").forEach((b) => b.onclick = () => {
+    const vid = b.closest(".media").querySelector("video");
+    vid.src = b.dataset.src; vid.play().catch(() => {});
+    b.parentNode.querySelectorAll("button").forEach((x) => x.classList.toggle("on", x === b));
+  });
+}
+render();
+
+// ---- scripts
+const nome = Object.fromEntries(DB.voci.map((v) => [v.id, v.nome]));
+$("#scr").innerHTML = DB.script.map((s) => `<div class="panel"><h3>${esc(s.data)} · ${esc(s.titolo)}</h3>
+  <div class="pat">${s.pattern.map((p) => esc(p + " " + DB.pattern[p].split(" (")[0])).join(" · ")}${s.gemelli_kallaway.length ? " · reel Kallaway gemelli: " + s.gemelli_kallaway.join(", ") : ""}</div>
+  ${s.battute.map((b) => `<div class="beat"><div class="q">${esc(b.testo)}</div><div class="v">${b.voci.map((i) => `<span class="vchip" data-go="${i}">${i} ${esc(nome[i] || "")}</span>`).join("")}</div></div>`).join("")}
+  ${s.note ? `<p class="note">${esc(s.note)}</p>` : ""}</div>`).join("");
+$("#scr").onclick = (e) => {
+  const c = e.target.closest(".vchip"); if (!c) return;
+  document.querySelector('[data-tab="cat"]').click();
+  filt.cat = null; filt.freq = null; filt.stato = null; filt.q = ""; $("#q").value = "";
+  $("#cats").querySelectorAll(".chip").forEach((x, i) => x.classList.toggle("on", i === 0));
+  render();
+  const el = document.getElementById("v-" + c.dataset.go);
+  if (el) { el.scrollIntoView({ behavior: "smooth", block: "center" }); el.classList.add("flash"); setTimeout(() => el.classList.remove("flash"), 1800); }
+};
+
+// ---- numbers
+const cv = DB.misure.curve_camera;
+const S = [
+  [st.tagli_al_minuto, "tagli al minuto (grafica ↔ faccia)"],
+  [Math.round(st.quota_tempo.grafica * 100) + "%", "del tempo è grafica · faccia " + Math.round(st.quota_tempo.piena * 100) + "% · light mode " + Math.round(st.quota_tempo.light * 100) + "%"],
+  [st.durata_segmenti_grafica_s.mediana + " s", `durata mediana di una scena grafica (p25 ${st.durata_segmenti_grafica_s.p25} – p75 ${st.durata_segmenti_grafica_s.p75})`],
+  [Math.round(st.camera_in_moto_nelle_grafiche.mediana * 100) + "%", "del tempo la camera è in movimento"],
+  [Math.round(st.arrivi_in_moto.n / st.arrivi_in_moto.su_segmenti_grafica * 100) + "%", `delle scene arriva già in movimento (${Math.round(st.arrivi_in_moto.v0_px_s_mediana)} px/s, frena in ${st.arrivi_in_moto.decadimento_90_s_mediana} s)`],
+  [cv.veloci_in_scena.durata_mediana_s + " s", "spostamento di camera tipico · curva " + cv.veloci_in_scena.bezier_curva_mediana.join(", ")],
+  [st.movimenti.veloci_n, "movimenti veloci misurati nello stile attuale (whip e spostamenti)"],
+  ["150", "reel analizzati (105 nello stile attuale, giugno → ottobre)"],
+];
+$("#num").innerHTML = `<div class="stats">${S.map(([n, l]) => `<div class="stat"><div class="n">${esc(n)}</div><div class="l">${esc(l)}</div></div>`).join("")}</div>`;
+</script>
+</body>
+</html>
