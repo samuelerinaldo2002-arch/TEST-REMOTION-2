@@ -49,7 +49,7 @@ for nome, r, ss, nota in [("g1", "m02", 0.0, "tuo reel: il profilo con le etiche
 clip("c3a", mio("v02"), 0.4, 1.4, "scale=440:782:flags=lanczos,crop=440:672:0:40", "tuo reel: tu che parli in camera")
 clip("c3b", mio("v01"), 3.15, 2.85, "scale=440:782:flags=lanczos,crop=440:672:0:40", "tuo reel: il profilo che spieghi")
 # scena 11 · il reel di un piccolo creator (Kallaway: un creator alla scrivania con le scritte, 36 → 206 views)
-clip("cr11", est("devinjatho", 1), 3.0, 2.2, "scale=440:782:flags=lanczos,crop=440:672:0:40", "creator che parla con le scritte")
+clip("cr11", est("dankoe", 4), 3.1, 2.2, "scale=440:782:flags=lanczos,crop=440:672:0:40", "creator che parla con le scritte")
 # scena 18 · «Reel insights»: il SUO reel nella miniatura (lui che parla) → il tuo reel
 clip("ins", mio("v03"), 0.0, 4.2, "scale=270:480:flags=lanczos", "tuo reel nella miniatura delle statistiche")
 # scena 25 · CTA: il SUO video 16:9 (lui allo studio) e poi lo schema «6 Step Blueprint» → tu che parli (16:9 di C2) e una tua grafica

@@ -127,6 +127,8 @@
           # 3 · il SUO reel con le views (lui che parla, poi il tablet) → due tuoi reel
           c3a assets/clips/c3a.mp4 5.55 1.3
           c3b assets/clips/c3b.mp4 6.75 2.75
+          # 11 · il reel di un piccolo creator (Kallaway: un creator alla scrivania con le scritte, 36 → 206 views)
+          cr11 assets/clips/cr11.mp4 44.6 2.1
         -->
       </div>
       <div id="hudclip" class="clip" data-start="0" data-duration="122.462" data-track-index="2">
@@ -178,6 +180,16 @@
 
         // ═══ 10 · 43,168–44,67 s · facecam piena ═══
         cpFacecam(43.168, 44.67);
+
+        // ═══ 11 · 44,67–54,346 s · r01_tremodi (F02): il reel del creator con le views e il disco; 46,63 s «Ecco I 3 Modi», l'imbuto,
+        //     la lista 01 · 02 · 03 che arriva da sotto ═══
+        cpCam.taglio(44.67, { fx: 42000, fy: 880, s: 1 });
+        COPIA.r01_tremodi({ t0: 44.67, t1: 46.63, X: 42000, Y: 880, parent: layer(17) }, {});
+        cpCam.taglio(46.63, { fx: 48000, fy: 880, s: 1 });
+        COPIA.r01_tremodi2({ t0: 46.63, t1: 54.346, X: 48000, Y: 880, parent: layer(18) }, {});
+
+        // ═══ 12 · 54,346–58,851 s · facecam piena ═══
+        cpFacecam(54.346, 58.851);
 
         //__SCENE__
 

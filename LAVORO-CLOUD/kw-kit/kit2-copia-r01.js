@@ -346,7 +346,7 @@ COPIA.r01_tam = (scena, o) => {
   const t0 = scena.t0, t1 = scena.t1, a = (t) => t0 + (t - 12.554);
   // titolo (HUD)
   const T1 = r5Titolo({ righe: [[{ t: "Devi Espandere Il Tuo “TAM”", ruolo: "sans", size: 64 }]], y: 160, interlinea: [70] });
-  T1.inAt([12.84, 12.84, 12.84, 13.01, 13.01].map(a));
+  T1.inAt([12.6, 12.64, 12.72, 12.8, 12.88].map(a));
   const T2 = COPIA.T02({ t0: 0, parent: hud, y: 230, x0: 228 }, { testo: ["Per", "Avere", "Più", "Views"], ruoli: ["sans", "sans", "serif", "serif"], fs: 60, fsSerif: 70, h: 68,
     tempi: [13.18, 13.18, 13.43, 13.47].map(a), bordo: [[12.846, 229], [12.888, 247], [12.93, 277], [12.971, 323], [13.013, 362], [13.055, 414], [13.096, 474], [13.138, 527], [13.18, 590], [13.222, 646], [13.263, 701], [13.305, 746], [13.347, 788], [13.388, 821], [13.43, 845], [13.472, 851]].map(([t, x]) => [a(t), x]) });
   tl.set([T1.root, T2.elementi.root], { opacity: 0 }, t1);
@@ -381,7 +381,10 @@ COPIA.r01_tam = (scena, o) => {
   const av = r1Avatar(L, cx, cy, { r: 48, z: 9 });
   gsap.set(av, { opacity: 0 });
   tl.set(av, { opacity: 1 }, a(15.77));
-  for (let k = 1; k <= 5; k++) an.esce(k, a(15.70 + 0.06 * (k - 1)), 0.3);
+  // gli anelli escono dal centro già prima del taglio (al primo fotogramma dopo il taglio il raggio esterno è già 185 px): partono
+  // a 15,64 s, nascosti fino a 15,77 s
+  for (let k = 1; k <= 5; k++) an.esce(k, a(15.64 + 0.04 * (k - 1)), 0.24);
+  an.persone.forEach((r) => { gsap.set(r.G, { opacity: 0 }); tl.set(r.G, { opacity: 1 }, a(15.77)); });
   an.orbiteIn(a(17.75), 0.5, [1, 2, 3, 4, 5, 6, 7, 8, 9]);
   // tre anelli nuovi che girano dall'alto in senso orario (20,27 · 20,74 · 21,02 s, ~0,5 s l'uno), con le loro orbite
   [[6, 20.27, [10, 11]], [7, 20.74, [12]], [8, 21.02, [13]]].forEach(([k, t, ob]) => { an.giro(k, a(t), 0.5); an.orbiteIn(a(t + 0.2), 0.6, ob); });
@@ -442,9 +445,9 @@ COPIA.r01_specifico = (scena, o) => {
   gsap.set(av, { y: fa(t0) });
   tl.fromTo(st, { v: 0 }, { v: 1, duration: 1.65, ease: "none", immediateRender: false, onUpdate: () => gsap.set(av, { y: fa(t0 + st.v * 1.65) }) }, t0);
   // «Idea» a destra, «Angolo» a sinistra (posizioni nel mondo ricavate dallo schermo con la camera a ×0,85)
-  const idea = r1Etichetta(L, ...W(872, 1038), "Idea", { fs: 34, h: 61, padX: 52 });
+  const idea = r1Etichetta(L, ...W(872, 1038), "Idea", { fs: 50, h: 84, padX: 60 });
   r1Pop(idea, a(31.2));
-  const ang = r1Etichetta(L, ...W(175, 1038), "Angolo", { fs: 34, h: 61, padX: 40 });
+  const ang = r1Etichetta(L, ...W(175, 1038), "Angolo", { fs: 50, h: 84, padX: 44 });
   r1Pop(ang, a(32.4));
   // la camera: indietro ×0,85 attorno a (540, 950) e a sinistra; poi a destra
   cpCam.scala([[31.0, 1], [31.1, 0.975], [31.2, 0.935], [31.3, 0.9], [31.4, 0.87], [31.55, 0.855], [31.8, 0.85]].map(([t, k]) => [a(t), k]), [540, 950]);
@@ -475,7 +478,8 @@ const r1Logo = (parent, cx, cy, r, o) => {
  *   veloce (logo x 530 · 515 · 495 · 434 a 37,0 … 37,75 s) e a 37,875 s taglia sugli anelli attorno al logo piccolo, che continuano
  *   lo stesso movimento e frenano (centro x 682 → 625 → 596 → 578 → 561 → 547 → 541 a 37,9 … 39,65 s); l'anello interno si stringe
  *   (r 190 → 125 px, 38,3–38,9 s), gli altri diventano grigi e si spengono uno alla volta fino a 41,6 s; la camera si avvicina
- *   (×1,32 fino a 41,65 s, poi ×1,83 a 42,65 s) e l'anello che resta diventa rosso (42,7 s)
+ *   (×1,32 fino a 41,65 s, poi ×1,83 a 42,65 s) e l'anello che resta diventa rosso (42,417 s). Il logo nel primo secondo e il
+ *   rosso lampeggiano a fotogrammi alterni (un difetto del suo montaggio): da noi fermi
  * misure: logo r 108 (34,3–37,7 s), r 56 negli anelli; riquadri 580×96 a passo 140 sotto il logo (centri y 775 · 915 · 1056 a
  *   36,5 s); anelli: 12 persone a r 190 → 125, 18 a r 280, 24 a r 375; orbite a r 85 e 170
  * scena: t0 (33,575), t1 (43,168), X, Y, parent · opzioni: argomenti (3 testi)
@@ -547,9 +551,136 @@ COPIA.r01_agenzia2 = (scena, o) => {
   cpCam.percorso([[37.875, 142, 0], [37.9, 142, 0], [38.15, 85, 0], [38.4, 56, 0], [38.65, 38, 0], [38.9, 21, 0], [39.15, 13, 0], [39.4, 7, 0], [39.65, 1, 0], [39.9, 0, 0]].map(([t, dx, dy]) => [a(t), dx - 142, dy]));
   // si avvicina piano, poi deciso
   cpCam.scala([[39.4, 1], [39.9, 1.06], [40.4, 1.14], [40.9, 1.2], [41.4, 1.26], [41.65, 1.32], [41.9, 1.48], [42.15, 1.6], [42.4, 1.66], [42.65, 1.83], [43.168, 1.85]].map(([t, z]) => [a(t), z]), [540, 794]);
-  // l'anello che resta diventa lime (il suo rosso)
-  an.colora(1, a(42.65), 0.12, K.lime);
-  tl.to(an.persone[0], { filter: "drop-shadow(0 0 6px rgba(207,251,80,.8))", duration: 0.15 }, a(42.7));
+  // l'anello che resta diventa lime tutto insieme (il suo rosso: 42,417 s, a fotogrammi alterni fino a 42,67 s)
+  an.colora(1, a(42.41), 0, K.lime);
+  tl.to(an.persone[0], { filter: "drop-shadow(0 0 6px rgba(207,251,80,.8))", duration: 0.15 }, a(42.42));
   tl.set(L, { opacity: 0 }, t1);
   return { rect: null, pose: null, ancore: { centro: [cx, cy] }, elementi: { an, logo } };
+};
+
+// ── la barra della lista del reel 1 («01 Broaden The Outcome Frame»): barra scura con l'accento rosso a sinistra, il numero e la
+// voce in bianco, l'estremità destra più chiara (un riflesso); arriva spenta e sfocata e si accende con la banda di luce quando
+// lui la dice · da noi l'accento lime. w×h (670×87), num ("01"), testo · o: { fs (25), z } → { g, accendi(t), spenta(t) }
+const r1Barra = (parent, cx, top, w, h, num, testo, o) => {
+  o = o || {};
+  const fs = o.fs || Math.round(h * 0.33);
+  const g = layered(el(parent, { position: "absolute", left: cx - w / 2, top, width: w, height: h, borderRadius: 4, overflow: "hidden", background: "linear-gradient(90deg,#1b1b1b 0%,#222 55%,#3a3a3a 82%,#6a6a6a 92%,#2c2c2c 100%)", boxShadow: "inset 0 0 0 1.5px rgba(255,255,255,.10), 0 12px 30px rgba(0,0,0,.5)", zIndex: o.z || 12 }));
+  el(g, { position: "absolute", left: 0, top: 0, width: Math.round(h * 0.31), height: h, background: K.lime, boxShadow: "0 0 18px rgba(207,251,80,.45)" });
+  const txt = el(g, { position: "absolute", left: Math.round(h * 0.58), top: 0, height: h, display: "flex", alignItems: "center", gap: Math.round(h * 0.36), fontFamily: FS, fontWeight: 800, fontSize: fs, color: K.white, whiteSpace: "nowrap", letterSpacing: "-0.01em" }, `<span style="font-size:${Math.round(fs * 1.05)}px">${num}</span><span>${testo}</span>`);
+  const band = el(g, { position: "absolute", left: -140, top: -10, width: 110, height: h + 20, background: "linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.55),rgba(255,255,255,0))", transform: "skewX(-20deg)", opacity: 0 });
+  return {
+    g, txt,
+    // spenta e sfocata (come arriva da lui) e poi accesa con la banda di luce che la passa da sinistra a destra
+    spenta: (t) => { gsap.set(g, { opacity: 0.38, filter: "blur(3px)" }); },
+    accendi: (t, dur) => {
+      tl.to(g, { opacity: 1, filter: "blur(0px)", duration: 0.25, ease: "power1.out" }, t);
+      tl.set(g, { filter: "none" }, t + 0.26);
+      tl.set(band, { opacity: 1 }, t);
+      tl.fromTo(band, { x: 0 }, { x: w + 280, duration: dur || 0.45, ease: "power1.inOut", immediateRender: false }, t);
+      tl.set(band, { opacity: 0 }, t + (dur || 0.45));
+    },
+  };
+};
+const R1_VOCI = ["Amplia La Cornice Del Risultato", "Amplia La Cornice Dell'Avatar", "Semplifica Tutto Il Linguaggio"];
+
+/* @copia r01_tremodi · Il reel di un piccolo creator con le views che contano e il disco (F02); poi «Ecco I 3 Modi Per /
+ *   Espandere Il Tuo TAM», l'imbuto, e la lista 01 · 02 · 03 che arriva da sotto (reel 1, 44,67–54,346 s; dentro c'è F02)
+ * kallaway: reel 1, 44,67 s · taglio dalla faccia: il titolo di prima, più in basso (riga 1 y 160–214), con le righe che arrivano in
+ *   corsa da parti opposte come in scena 9 (−148 / +123 px, ferme a ~46,2 s); il reel di un creator alla scrivania (377×607, centro
+ *   557, 857) sale frenando (centro y 857 → 823 → 797 → 779 → 766 → 757 → 750 px a 44,67 … 45,17 s), il badge rosso sotto conta
+ *   36 → 67 → 97 → 120 → 151 → 181 → 204 → 206 (44,7–45,6 s) e il disco rosso (F02) ci nasce sopra (45,17 s, r 57 → 146 in 0,29 s,
+ *   via a 45,55 s); la camera si avvicina ×1,16 (45,17–46,1 s); da 46,3 s tutto sale sempre più veloce e a 46,63 s taglio: il titolo
+ *   nuovo («Here Are The 3 Ways / To Expand Your TAM Size», la linea rossa sotto che cresce da x 192 a 887 in 0,75 s), l'imbuto che
+ *   si allarga e l'avatar che sale da sotto (1287 → 1180 px, 46,71–47,63 s); da 47,6 s la camera scende (il contenuto sale sempre più
+ *   veloce: l'imbuto esce in alto) e da sotto arriva la barra 01 in corsa (in cima a y 1089 → 1019 → 961 → 920 → 883 → 854 → 828 →
+ *   807 → 789 → 771 → 757 px ogni 0,084 s da 48,13 s, poi 724 · 699 · 683 · 672 · 666 · 660 · 655 fino a 51,25 s), spenta e sfocata,
+ *   si accende; la 02 arriva da sotto a 50,5 s, la 03 a 52,6 s (+166 px, frenando in ~1,5 s); 51,3–53,5 s la camera si avvicina
+ *   ×1,22 (barre alte 87 → 106 px)
+ * misure: barre 670×87 (accento 27 px) a passo 134 px; titolo riga 1 x 131–946 (y 180–239), riga 2 x 171–927 (y 240–299), linea
+ *   y 322; card 377×607, badge 254×60 sotto la card
+ * scena: t0 (44,67), t1 (54,346), X, Y, X2 (il mondo dopo il taglio di 46,63 s), parent · opzioni: clip ("cr11"), voci (3)
+ * colori: badge e disco rossi → lime; linea rossa → lime; accento rosso delle barre → lime
+ */
+COPIA.r01_tremodi = (scena, o) => {
+  o = o || {};
+  const L = scena.parent || layer(17), X = scena.X, Y = scena.Y, W = (sx, sy) => [X - 540 + sx, Y - 880 + sy];
+  const t0 = scena.t0, a = (t) => t0 + (t - 44.67), tc = a(46.63);
+  // il titolo di prima, più in basso, le righe in corsa da parti opposte; a fine tratto sale con la camera
+  const T = r5Titolo({ righe: R1_TIT_SPECIFICO, y: 158, interlinea: [64] });
+  T.unita.forEach((u) => gsap.set(u.w, { opacity: 0, filter: "none", y: 0, color: K.white }));
+  tl.set(T.unita.map((u) => u.w), { opacity: 1 }, t0);
+  const [r1, r2] = [T.root.children[0], T.root.children[1]];
+  const D1 = [-148, -133, -108, -84, -67, -54, -44, -35, -29, -23, -18, -15, -12, -9, -6, -4, -3, -2, -1, 0], D2 = [123, 111, 90, 71, 56, 45, 36, 30, 24, 19, 16, 12, 10, 7, 5, 4, 3, 2, 1, 0];
+  const f1 = cpCurva(D1.map((d, k) => [t0 + 0.0834 * k, d])), f2 = cpCurva(D2.map((d, k) => [t0 + 0.0834 * k, d]));
+  const st = { v: 0 }, dur = 0.0834 * 19;
+  gsap.set(r1, { x: f1(t0) }); gsap.set(r2, { x: f2(t0) });
+  tl.fromTo(st, { v: 0 }, { v: 1, duration: dur, ease: "none", immediateRender: false, onUpdate: () => { const t = t0 + st.v * dur; gsap.set(r1, { x: f1(t) }); gsap.set(r2, { x: f2(t) }); } }, t0);
+  const fu = cpCurva([[46.0, 0], [46.25, -3], [46.3, -6], [46.34, -9], [46.38, -13], [46.42, -18], [46.46, -25], [46.505, -34], [46.55, -47], [46.63, -70]].map(([t, d]) => [a(t), d]));
+  const su = { v: 0 };
+  tl.fromTo(su, { v: 0 }, { v: 1, duration: tc - a(46.0), ease: "none", immediateRender: false, onUpdate: () => gsap.set(T.root, { y: fu(a(46.0) + su.v * (tc - a(46.0))) }) }, a(46.0));
+  tl.set(T.root, { opacity: 0 }, tc);
+  // il reel del creator e il badge che conta
+  const [cx, cy] = W(557, 857);
+  const card = r5Card(L, cx, cy, 377, 607, [[0, o.clip || "cr11"]], { r: 10, bw: 2.5, glow: "0 0 0 2.5px rgba(255,255,255,.8), 0 20px 50px rgba(0,0,0,.6), 0 0 26px rgba(255,255,255,.10)" });
+  const [bx, by] = W(562, 1218);
+  const b = r1Badge(L, bx, by, "36", { w: 254, h: 60, fs: 40, z: 18 });
+  b.conta(a(44.7), a(45.6), 36, 206, (x) => String(Math.round(x)), "power1.out");
+  const disco = COPIA.r01_disco({ t0: a(45.17), X: bx, Y: by, parent: L }, { r: 146, z: 22 });
+  // la camera: sale frenando, si avvicina ×1,16 attorno a (557, 950), poi sale sempre più veloce fino al taglio
+  cpCam.percorso([[44.67, 0, 0], [44.711, 0, -18], [44.753, 0, -34.5], [44.795, 0, -48.5], [44.837, 0, -60], [44.878, 0, -70], [44.92, 0, -78.5], [44.962, 0, -85.5], [45.003, 0, -91.5], [45.045, 0, -96], [45.087, 0, -100], [45.128, 0, -104], [45.17, 0, -107.5]].map(([t, x, y]) => [a(t), x, y]));
+  cpCam.scala([[45.17, 1], [45.21, 1.008], [45.25, 1.021], [45.3, 1.04], [45.34, 1.058], [45.38, 1.074], [45.42, 1.081], [45.46, 1.087], [45.5, 1.095], [45.55, 1.1], [45.59, 1.111], [45.63, 1.113], [45.8, 1.128], [45.9, 1.131], [46.1, 1.144]].map(([t, k]) => [a(t), k]), [557, 950]);
+  cpCam.percorso([[46.0, 0, 0], [46.25, 0, -3], [46.3, 0, -6], [46.34, 0, -9], [46.38, 0, -13], [46.42, 0, -18], [46.46, 0, -25], [46.505, 0, -34], [46.55, 0, -47], [46.63, 0, -70]].map(([t, x, y]) => [a(t), x, y]));
+  tl.set(L, { opacity: 0 }, tc);
+  return { rect: null, pose: null, ancore: {}, elementi: { T, card, b, disco } };
+};
+
+/* @copia r01_tremodi2 · seconda metà della scena 11 (dopo il taglio di 46,63 s): «Ecco I 3 Modi Per / Espandere Il Tuo TAM»,
+ *   l'imbuto che esce in alto e la lista 01 · 02 · 03 (scheda: r01_tremodi) · scena: t0 (46,63), t1 (54,346), X, Y, parent
+ */
+COPIA.r01_tremodi2 = (scena, o) => {
+  o = o || {};
+  const L = scena.parent || layer(18), X = scena.X, Y = scena.Y, W = (sx, sy) => [X - 540 + sx, Y - 880 + sy];
+  const t0 = scena.t0, t1 = scena.t1, a = (t) => t0 + (t - 46.63);
+  // titolo (HUD) con la linea d'accento che cresce da sinistra
+  // («Here Are The 3 Ways / To Expand Your TAM Size» → «Ecco I 3 Modi Per Espandere / La Dimensione Del Tuo TAM»: «To Expand»
+  // sale nella riga 1, così le due righe hanno la sua larghezza, 815 e 756 px, senza un font gigante)
+  const T = r5Titolo({ righe: [[{ t: "Ecco I 3 Modi Per Espandere", ruolo: "sans", size: 69 }], [{ t: "La Dimensione ", ruolo: "sans", size: 64 }, { t: "Del Tuo TAM", ruolo: "serif", size: 78 }]], y: 172, interlinea: [66], sottolinea: { y: 320, w: 695, h: 5, dx: -0.5 } });
+  T.inAt([46.55, 46.56, 46.57, 46.58, 46.6, 46.62, 46.6, 46.62, 46.75, 46.9, 47.05].map(a));
+  tl.set(T.root, { opacity: 0 }, t1);
+  T.sottolinea(a(46.68), 0.78, "power1.inOut");
+  // l'imbuto e la tua foto che sale da sotto
+  const forma = [[46.63, 694, 125], [46.713, 639, 159], [46.797, 605, 170], [46.88, 586, 195], [46.964, 571, 218], [47.047, 561, 227], [47.13, 552, 235], [47.214, 546, 254], [47.297, 540, 260], [47.381, 537, 267], [47.464, 533, 282], [47.547, 531, 288], [47.631, 527, 289]].map(([t, y, w]) => [a(t), y, w * 1.18]);
+  const imb = r1Imbuto(L, X, Y, forma, { yV: 1190, yBasso: 1065, righe: 11, passoY: 54, passoX: 65, d: 40, col: "#c4c4c4", a: 0.85 });
+  const [ax, ay] = W(540, 1180);
+  const av = r1Avatar(L, ax, ay, { r: 83 });
+  const fa = cpCurva([[46.63, 140], [46.713, 107], [46.797, 74], [46.88, 56], [46.964, 44], [47.047, 32], [47.13, 25], [47.214, 18], [47.297, 13], [47.381, 8], [47.464, 6], [47.547, 3], [47.631, 0]].map(([t, d]) => [a(t), d]));
+  const st = { v: 0 };
+  gsap.set(av, { y: fa(t0) });
+  tl.fromTo(st, { v: 0 }, { v: 1, duration: 1.0, ease: "none", immediateRender: false, onUpdate: () => gsap.set(av, { y: fa(t0 + st.v * 1.0) }) }, t0);
+  // la lista sotto l'imbuto (nel mondo: la camera ci scende); la 01 c'è già, la 02 e la 03 arrivano da sotto
+  const voci = o.voci || R1_VOCI, top01 = 1238, passo = 134;
+  const bars = voci.map((s, i) => {
+    const [bx, byt] = W(540, top01 + passo * i);
+    const B = r1Barra(L, bx, byt, 670, 87, String(i + 1).padStart(2, "0"), s);
+    B.spenta();
+    return B;
+  });
+  // (a 48,13 s il taglio: l'imbuto e la foto, già quasi fuori in alto, non ci sono più; da sotto arriva in corsa la barra 01)
+  tl.set([imb.box, av], { opacity: 0 }, a(48.13));
+  gsap.set(bars[0].g, { opacity: 0 });
+  tl.set(bars[0].g, { opacity: 0.38 }, a(48.13));
+  bars[0].accendi(a(48.45), 0.5);
+  const arriva = (B, t) => {
+    const f = cpCurva([[0, 166], [0.25, 68], [0.5, 43], [0.75, 30], [1.0, 20], [1.25, 13], [1.5, 6], [2.0, 0]]), s2 = { v: 0 };
+    gsap.set(B.g, { opacity: 0, y: f(0) });
+    tl.to(B.g, { opacity: 0.38, duration: 0.1, ease: "none" }, t);
+    tl.fromTo(s2, { v: 0 }, { v: 1, duration: 2.0, ease: "none", immediateRender: false, onUpdate: () => gsap.set(B.g, { y: f(s2.v * 2.0) }) }, t);
+  };
+  arriva(bars[1], a(50.45)); bars[1].accendi(a(50.95), 0.5);
+  arriva(bars[2], a(52.55)); bars[2].accendi(a(53.05), 0.5);
+  // la camera: il contenuto sale sempre più veloce (l'imbuto esce in alto), la barra 01 arriva in corsa e frena; poi si avvicina
+  cpCam.percorso([[47.55, 0, 0], [47.631, 0, -2], [47.714, 0, -7], [47.798, 0, -18], [47.881, 0, -35], [47.964, 0, -60], [48.048, 0, -94], [48.131, 0, -149], [48.217, 0, -219], [48.3, 0, -277], [48.384, 0, -318], [48.467, 0, -355], [48.55, 0, -384], [48.634, 0, -410], [48.717, 0, -431], [48.801, 0, -449], [48.884, 0, -467], [48.967, 0, -481], [49.25, 0, -514], [49.5, 0, -539], [49.75, 0, -555], [50.0, 0, -566], [50.25, 0, -572], [50.5, 0, -578], [50.75, 0, -579], [51.0, 0, -581], [51.25, 0, -583]].map(([t, x, y]) => [a(t), x, y]));
+  cpCam.scala([[51.25, 1], [51.5, 1.034], [51.75, 1.046], [52.0, 1.069], [52.25, 1.103], [52.5, 1.138], [52.75, 1.184], [53.0, 1.195], [53.25, 1.218], [53.5, 1.22], [54.0, 1.23], [54.346, 1.232]].map(([t, k]) => [a(t), k]), [529, 894]);
+  tl.set(L, { opacity: 0 }, t1);
+  return { rect: null, pose: null, ancore: {}, elementi: { T, imb, av, bars } };
 };

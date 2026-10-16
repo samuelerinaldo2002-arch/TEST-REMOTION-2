@@ -1,6 +1,6 @@
 # Blocco C2b · copia del REEL 1 intero (copia-07, porta :3047; in cloud niente anteprima)
 
-**Riga di stato (16/10, cloud):** IN CORSO. Fatte le scene 1–10 (build; snapshot guardate contro Kallaway con snap_kd.py; larghezze dei titoli tarate sulle sue con larghezza_titolo.py). Prossima: scena 11 (r01_tremodi, 44,67–54,346 s). Chi riprende: `bash LAVORO-CLOUD/_tools/ripristina.sh`, poi riparte dalla prima riga «da fare» qui sotto (codice in `kw-kit/kit2-copia-r01.js`, `kit2-copia-c2b-*.js`; composizione `copia-07/index.src.html`, segnaposto `//__SCENE__`).
+**Riga di stato (16/10, cloud):** IN CORSO. Fatte le scene 1–12 (build; snapshot guardate contro Kallaway con snap_kd.py; larghezze dei titoli tarate sulle sue con larghezza_titolo.py; un render di prova (5 min 54 s) e i fogli delle scene 1–9 guardati, ritoccate le scene 5, 7, 9). Prossima: scena 13 (r01_copione1, 58,851–62,312 s). Chi riprende: `bash LAVORO-CLOUD/_tools/ripristina.sh`, poi riparte dalla prima riga «da fare» qui sotto (codice in `kw-kit/kit2-copia-r01.js`, `kit2-copia-c2b-*.js`; composizione `copia-07/index.src.html`, segnaposto `//__SCENE__`).
 
 Reel 1 = `TUTTI-I-REEL/2026-10-08_DePIvvKub8b.mp4` (inventario n = 1), 720×1280, 23,976 fps, video 119,33 s (2861 fotogrammi), audio
 119,42 s. Trascrizione `_lavoro/r01_parole.json` (Parakeet tarato). Dopo la fine del reel, la coda A01 dal reel 25 (0–3,042 s):
@@ -19,8 +19,8 @@ composizione 122,462 s. Media: `_lavoro/media.py` → `assets/` (`_sorgenti.json
 | 8 | 33,075–33,575 | facecam piena | cpFacecam | fatto |
 | 9 | 33,575–43,168 | il logo dell'agenzia, i tre argomenti specifici; gli anelli di persone che si stringono e diventano lime | COPIA.r01_agenzia | fatto |
 | 10 | 43,168–44,67 | facecam piena | cpFacecam | fatto |
-| 11 | 44,67–54,346 | il reel di un piccolo creator con le views (36 → 206, F02); «Ecco I 3 Modi / Per Espandere Il Tuo TAM», l'imbuto, la lista 01 · 02 · 03 | COPIA.r01_tremodi | da fare |
-| 12 | 54,346–58,851 | facecam piena | cpFacecam | da fare |
+| 11 | 44,67–54,346 | il reel di un piccolo creator con le views (36 → 206, F02); «Ecco I 3 Modi Per Espandere / La Dimensione Del Tuo TAM», l'imbuto, la lista 01 · 02 · 03 | COPIA.r01_tremodi | fatto |
+| 12 | 54,346–58,851 | facecam piena | cpFacecam | fatto |
 | 13 | 58,851–62,312 | intestazione 01; i due copioni, il primo si scrive | COPIA.r01_copione1 | da fare |
 | 14 | 62,312–63,605 | facecam piena | cpFacecam | da fare |
 | 15 | 63,605–72,322 | il secondo copione si scrive; i due copioni, il secondo si accende; gli anelli di persone che diventano lime | COPIA.r01_copione2 | da fare |
