@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>Reel 15/10 · Il mese in 30 secondi</title>
+    <script src="assets/vendor/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Advercase"; src: url("assets/fonts/Advercase-Bold.ttf") format("truetype"); font-weight: 700; font-style: normal; font-display: block; }
+      @font-face { font-family: "Advercase"; src: url("assets/fonts/Advercase-Regular.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: block; }
+      @font-face { font-family: "Patrick Hand"; src: url("assets/fonts/PatrickHand-Regular.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: block; }
+      @font-face { font-family: "Zalando Sans"; src: url("assets/fonts/ZalandoSans-Variable.ttf") format("truetype"); font-weight: 100 900; font-style: normal; font-display: block; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: #1e1e1e; }
+      body { font-family: "Zalando Sans", sans-serif; color: #f4f4f2; -webkit-font-smoothing: antialiased; }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; background: #1e1e1e; }
+      .clip { position: absolute; inset: 0; overflow: hidden; }
+      #glow { position: absolute; inset: 0; opacity: 0.35; background: radial-gradient(58% 32% at 50% 46%, rgba(207, 251, 80, 0.08), rgba(207, 251, 80, 0) 70%); }
+      #vignette { position: absolute; inset: 0; background: radial-gradient(110% 78% at 50% 44%, rgba(0, 0, 0, 0) 44%, rgba(0, 0, 0, 0.62) 100%); }
+      .cam { position: absolute; left: 540px; top: 880px; width: 1px; height: 1px; }
+      .layer { position: absolute; left: 0; top: 0; width: 1px; height: 1px; }
+      #dots, #dotsFermi { position: absolute; left: -12000px; top: -9000px; width: 40000px; height: 24000px; background-image: radial-gradient(circle, rgba(255, 255, 255, 0.095) 1.25px, rgba(255, 255, 255, 0) 1.95px); background-size: 24px 24px; }
+      #stage { position: absolute; inset: 0; overflow: hidden; }
+      /* safe zone dell'11/10 (SAFEZONE.jpg): da y = 1332 in giù c'è la tua faccia → la grafica sfuma nel fondo prima della linea */
+      #safe { position: absolute; inset: 0; -webkit-mask-image: linear-gradient(to bottom, #000 0px, #000 1288px, transparent 1330px); mask-image: linear-gradient(to bottom, #000 0px, #000 1288px, transparent 1330px); }
+      #mbwrap, #shake { position: absolute; inset: 0; }
+      #hud { position: absolute; inset: 0; }
+    </style>
+  </head>
+  <body>
+    <!-- KW_RITMO: regole del ritmo R1–R8 e template (kw-kit/kit2-ritmo.js, kit2-template.js, kit2-tpl-*.js) -->
+    <!-- Reel 15/10 «30 giorni di contenuti in 30 secondi» · concept «Il mese che si compila in 30 secondi»: il cronometro
+         parte da 30 e ogni scena è un passo del piano (volume → suddivisione → filoni → script → calendario), che la timeline
+         del lettore ripassa alla fine come capitoli. Il mondo è una scala che scende (ogni passo +3000 px in X, +700 px in Y).
+         Piano: reel-15/PIANO.md. Tempi: le parole vere della voce (WORDS, d15.ts), 45,83 s = l'mp3. -->
+    <!--WORDS ../../my-video-ottobre-p1-test/src/words/d15.ts-->
+    <div id="root" data-composition-id="main" data-start="0" data-duration="45.83" data-width="1080" data-height="1920">
+      <div id="bg" class="clip" data-start="0" data-duration="45.83" data-track-index="0">
+        <div class="cam" id="gcam2" data-layout-allow-overflow><div class="layer" id="gzoom2"><div class="layer" id="gpan2"><div class="layer" id="bokeh"></div></div></div></div>
+        <div class="cam" id="gcam" data-layout-allow-overflow><div class="layer" id="gzoom"><div class="layer" id="gpan"><div id="dots"></div></div></div></div>
+        <div id="glow"></div>
+        <div id="vignette"></div>
+      </div>
+      <div id="stage">
+        <svg width="0" height="0" style="position: absolute" aria-hidden="true">
+          <filter id="mb" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur id="mbn" in="SourceGraphic" stdDeviation="0 0" /></filter>
+        </svg>
+        <div id="safe"><div id="mbwrap"><div id="shake"><div class="cam" id="cam" data-layout-allow-overflow><div class="layer" id="zoom"><div class="layer" id="pan"></div></div></div></div></div></div>
+        <!--VIDEOS
+          # 2 O24 · 30 mini-clip dei tuoi reel veri (10 reel di ottobre × 3 punti), un giorno ciascuno
+          g01 assets/clips/cal/o01.mp4 3.27 5.9
+          g02 assets/clips/cal/o02.mp4 3.27 5.9
+          g03 assets/clips/cal/o03.mp4 3.27 5.9
+          g04 assets/clips/cal/o04.mp4 3.27 5.9
+          g05 assets/clips/cal/o05.mp4 3.27 5.9
+          g06 assets/clips/cal/o06.mp4 3.27 5.9
+          g07 assets/clips/cal/o07.mp4 3.27 5.9
+          g08 assets/clips/cal/o08.mp4 3.27 5.9
+          g09 assets/clips/cal/o09.mp4 3.27 5.9
+          g10 assets/clips/cal/o10.mp4 3.27 5.9
+          g11 assets/clips/cal/o11.mp4 3.27 5.9
+          g12 assets/clips/cal/o12.mp4 3.27 5.9
+          g13 assets/clips/cal/o13.mp4 3.27 5.9
+          g14 assets/clips/cal/o14.mp4 3.27 5.9
+          g15 assets/clips/cal/o15.mp4 3.27 5.9
+          g16 assets/clips/cal/o16.mp4 3.27 5.9
+          g17 assets/clips/cal/o17.mp4 3.27 5.9
+          g18 assets/clips/cal/o18.mp4 3.27 5.9
+          g19 assets/clips/cal/o19.mp4 3.27 5.9
+          g20 assets/clips/cal/o20.mp4 3.27 5.9
+          g21 assets/clips/cal/o21.mp4 3.27 5.9
+          g22 assets/clips/cal/o22.mp4 3.27 5.9
+          g23 assets/clips/cal/o23.mp4 3.27 5.9
+          g24 assets/clips/cal/o24.mp4 3.27 5.9
+          g25 assets/clips/cal/o25.mp4 3.27 5.9
+          g26 assets/clips/cal/o26.mp4 3.27 5.9
+          g27 assets/clips/cal/o27.mp4 3.27 5.9
+          g28 assets/clips/cal/o28.mp4 3.27 5.9
+          g29 assets/clips/cal/o29.mp4 3.27 5.9
+          g30 assets/clips/cal/o30.mp4 3.27 5.9
+          # 4 L09 · sotto ogni filone un tuo reel vero (profilo: 04/10 · algoritmo: 03/10 · idee: 02/10 · psicologia: 07/10)
+          r1 assets/clips/cal/o14.mp4 14.97 3.6
+          r2 assets/clips/cal/o13.mp4 14.97 3.6
+          r3 assets/clips/cal/o12.mp4 14.97 3.6
+          r4 assets/clips/cal/o17.mp4 14.97 3.6
+          # 5 D02 · formati che funzionano: reel veri con le loro visualizzazioni vere (assets/clips/alt/_sorgenti.json)
+          f1 assets/clips/alt/f1.mp4 17.57 5.1
+          f2 assets/clips/alt/f2.mp4 17.57 5.1
+          f3 assets/clips/alt/f3.mp4 17.57 5.1
+          f4 assets/clips/alt/f4.mp4 17.57 5.1
+          # 8 D06 · nel lettore un tuo reel vero
+          d1 assets/clips/mio/m03.mp4 34.27 5.06
+        -->
+      </div>
+      <div id="hudclip" class="clip" data-start="0" data-duration="45.83" data-track-index="2">
+        <div id="hud"></div>
+      </div>
+      <!--SFX
+        # 1 U15 (0–4,27): il cronometro parte e l'anello dei 30 giorni si riempie, bagliore su «secondi»
+        0.0 whoosh .1 ; 0.03 rise .06 ; 3.33 ding .1
+        # 2 O24 (4,27–9,17): arrivo sul mese vuoto, su «Uno» i tuoi reel riempiono i giorni, il contatore su «video»
+        4.27 whoosh .14 ; 5.67 rise .06 ; 7.2 ding .1
+        # 3 O23 (9,17–15,97, R8 morbida: zoom-through in un giorno): i gruppi su «valore», «fiducia», «conversione»
+        9.01 whoosh .16 ; 11.8 tick .05 ; 13.27 tick .05 ; 14.63 tick .05
+        # 4 L09 (15,97–18,57): i rami crescono, i tuoi reel sotto i filoni su «filoni», la radice su «nicchia»
+        15.97 whoosh .14 ; 16.07 tick .05 ; 16.53 pop .08 ; 17.87 ding .08
+        # 5 D02 (18,57–22,67): i formati su «formati», i badge su «funzionando», il periodo su «momento»
+        18.57 whoosh .14 ; 19.47 tick .04 ; 20.23 tick .04 ; 20.39 tick .04 ; 21.33 ding .06
+        # 6 L12 (22,67–28,33): le sezioni su hook, spiega, mostra, insegna
+        22.67 whoosh .14 ; 25.7 tick .05 ; 26.3 tick .05 ; 27.17 tick .05 ; 27.9 tick .05
+        # 7 K16 (28,33–35,27): la spinta sulla settimana, i reel su «calendario», i filoni su «alternando», «Profilo» su «stesso»
+        28.33 whoosh .14 ; 28.35 rise .05 ; 30.53 tick .04 ; 31.33 pop .06 ; 34.33 ding .08
+        # 8 D06 (35,27–39,33, R8 morbida: la camera scorre di lato): la testina corre, i capitoli si accendono, il tempo su «secondi»
+        35.22 whoosh .14 ; 35.82 tick .04 ; 36.37 tick .04 ; 36.92 tick .04 ; 37.47 tick .04 ; 38.02 tick .04 ; 38.8 ding .1
+        # 9 X01 (39,33–41,73): le pagine a ondate su «sistema» e «mando», la risorsa su «comando»
+        39.33 whoosh .14 ; 40.37 card .06 ; 41.13 card .06 ; 41.47 tick .06
+        # 10 U01 (41,73–45,83, R8 morbida: zoom-through nella pagina del comando): il comando si scrive, l'invio su «metodo»
+        41.57 whoosh .16 ; 41.83 key1 .03 ; 42.23 key3 .03 ; 42.63 key5 .03 ; 43.03 key2 .03 ; 43.57 click .08 ; 44.04 pop .05
+      -->
+    </div>
+    <script>
+      (() => {
+        const ICON = __ICONS__;
+        /*__KIT__*/
+
+        const wt = (i) => WORDS[i][1]; // istante della parola i (indici: python -X utf8 _tools/parole.py …/d15.ts)
+        camInit(540, 900, 1);
+        const S = {};
+        // i tagli: 0,1 s prima della prima parola della frase (X01 0,5 s prima di «Commenta»: la frase prima è finita)
+        const C = [0, wt(10) - 0.1, wt(24) - 0.1, wt(37) - 0.1, wt(46) - 0.1, wt(58) - 0.1, wt(71) - 0.1, wt(90) - 0.1, wt(102) - 0.5, wt(109) - 0.1, 45.83];
+        // il mondo: una scala che scende, un gradino per passo del piano
+        const P = (i) => [600 + i * 3000, 900 + i * 700];
+
+        // ═══ 1 · U15 · «30 giorni di contenuti pianificati in meno di 30 secondi.» Il cronometro parte da 30 al fotogramma 0,
+        // l'anello dei 30 giorni pianificati si riempie ═══
+        S.U15 = TPL.U15({ t0: C[0], t1: C[1], X: P(0)[0], Y: P(0)[1],
+          parole: { pieno: 1.5, secondi: wt(9), titolo: [wt(0), wt(1), wt(5), wt(8), wt(9)] } }, {
+          titolo: [[{ t: "30 giorni " }, { t: "in 30 secondi", box: true }]] });
+
+        // ═══ 2 · O24 · «Scegli un volume. Uno al giorno vuol dire 30 video al mese. Poi decidi» Il mese vuoto è il volume da
+        // scegliere; su «Uno» un tuo reel vero per giorno, il contatore conta i video ═══
+        S.O24 = TPL.O24({ t0: C[1], t1: C[2], X: P(1)[0], Y: P(1)[1],
+          parole: { riempie: wt(13), conta: wt(19), titolo: [wt(10), wt(11), wt(12), wt(13), wt(14), wt(15), wt(17), wt(18), wt(19)] } }, {
+          titolo: [[{ t: "Scegli un " }, { t: "volume", box: true }], [{ t: "uno al giorno = 30 video", hand: true }]],
+          media: Array.from({ length: 30 }, (_, i) => "g" + String(i + 1).padStart(2, "0")) });
+
+        // ═══ 3 · O23 · «…la suddivisione. Io uso 70% valore, 20% fiducia, 10% conversione.» 100 puntini, ogni gruppo si colora
+        // sulla sua parola. R8 MORBIDA: il passo dopo entra nel mese (la camera entra in un giorno del calendario e dall'altra
+        // parte c'è la griglia della suddivisione) ═══
+        { const t0 = C[2];
+          const r = { t0, t1: C[3], X: P(2)[0], Y: P(2)[1], parole: { gruppi: [wt(30), wt(33), wt(36)], titolo: [wt(24), wt(25)] } };
+          S.O23 = TPL.O23(r, { titolo: [[{ t: "La " }, { t: "suddivisione", box: true }]],
+            gruppi: [{ n: 70, nome: "Valore", stile: "lime" }, { n: 20, nome: "Fiducia", stile: "bianco" }, { n: 10, nome: "Conversione", stile: "anello" }],
+            ingresso: "nessuno", fermoDa: t0 + 0.45 });
+          tplTenuta(tplZoomThrough(t0, S.O24.ancore.giorno(15), S.O23.pose), r.t1);
+        }
+
+        // ═══ 4 · L09 · «Scegli i tuoi filoni tematici dentro la tua nicchia.» La tua nicchia → i filoni dei tuoi script coi tuoi
+        // reel veri sotto ═══
+        S.L09 = TPL.L09({ t0: C[3], t1: C[4], X: P(3)[0], Y: P(3)[1],
+          parole: { esempi: wt(40), radice: wt(45), titolo: [wt(37), wt(38), wt(39), wt(40)] } }, {
+          titolo: [[{ t: "Scegli i tuoi " }, { t: "filoni", box: true }]], radice: "La tua nicchia",
+          rami: [{ t: "Profilo", media: ["r1"] }, { t: "Algoritmo", media: ["r2"] }, { t: "Idee", media: ["r3"] }, { t: "Psicologia", media: ["r4"] }] });
+
+        // ═══ 5 · D02 · «Cerca argomenti e formati che stanno funzionando in questo momento sui social.» Quattro formati veri
+        // (classifica, prima e dopo, economico vs costoso, giornata tipo) con le visualizzazioni vere ═══
+        S.D02 = TPL.D02({ t0: C[4], t1: C[5], X: P(4)[0], Y: P(4)[1] + 60,
+          parole: { formati: wt(49), badge: wt(52), adesso: wt(55), titolo: [wt(46), wt(49), wt(50), wt(51), wt(52)] } }, {
+          titolo: [[{ t: "Cerca " }, { t: "formati", box: true }], [{ t: "che stanno funzionando", hand: true }]],
+          formati: [{ media: "f1", nome: "Classifica", views: "9,1M" }, { media: "f2", nome: "Prima e dopo", views: "2,2M" },
+            { media: "f3", nome: "1 € vs 100K €", views: "23,4M" }, { media: "f4", nome: "Giornata tipo", views: "2,9M" }],
+          periodo: "Questa settimana" });
+
+        // ═══ 6 · L12 · «Scrivi gli script con un metodo fisso. Io uso hook, spiega, mostra, insegna.» Il copione: ogni sezione si
+        // accende quando la nomini ═══
+        S.L12 = TPL.L12({ t0: C[5], t1: C[6], X: P(5)[0], Y: P(5)[1],
+          parole: { sezioni: [wt(67), wt(68), wt(69), wt(70)], titolo: [wt(58), wt(59), wt(60), wt(61), wt(62), wt(63), wt(64)] } }, {
+          titolo: [[{ t: "Scrivi gli " }, { t: "script", box: true }], [{ t: "con un metodo fisso", hand: true }]],
+          sezioni: [{ label: "Hook", rows: 3 }, { label: "Spiega", rows: 5 }, { label: "Mostra", rows: 5 }, { label: "Insegna", rows: 4 }] });
+
+        // ═══ 7 · K16 · «Infine, organizza tutto in un calendario, alternando i filoni durante la settimana per non ripetere sempre
+        // lo stesso tema.» La tua settimana: in ogni giorno la copertina di un tuo reel del filone, i filoni alternati (profilo
+        // il lunedì e il venerdì: mai vicini) ═══
+        S.K16 = TPL.K16({ t0: C[6], t1: C[7], X: P(6)[0], Y: P(6)[1],
+          parole: { riempie: wt(76), filoni: wt(77), tema: wt(88), titolo: [wt(71), wt(73), wt(74), wt(75), wt(76)] } }, {
+          titolo: [[{ t: "Infine, " }], [{ t: "tutto in un " }, { t: "calendario", box: true }]], evidenzia: "Profilo",
+          giorni: [{ g: "LUN", filone: "Profilo", icona: "user-round", media: "th-mio_04" }, { g: "MAR", filone: "Algoritmo", icona: "cpu", media: "th-mio_03" },
+            { g: "MER", filone: "Idee", icona: "lightbulb", media: "th-mio_02" }, { g: "GIO", filone: "Psicologia", icona: "brain", media: "th-mio_07" },
+            { g: "VEN", filone: "Profilo", icona: "user-round", media: "th-mio_05" }, { g: "SAB", filone: "Algoritmo", icona: "cpu", media: "th-mio_10" },
+            { g: "DOM", filone: "Psicologia", icona: "brain", media: "th-mio_09" }] });
+
+        // ═══ 8 · D06 · «Ecco come pianifici 30 giorni di contenuti in meno di 30 secondi.» Il tuo reel nel lettore, la timeline
+        // coi 5 passi di questo reel che si riempie col tempo. R8 MORBIDA: il calendario è l'ultimo passo → il riassunto dei passi:
+        // la camera scorre di lato dalla settimana al lettore, vicino ═══
+        { const t0 = C[7];
+          S.D06 = TPL.D06({ t0, t1: C[8], X: P(6)[0] + 1300, Y: P(6)[1],
+            parole: { fine: wt(98), tempo: wt(101), titolo: [wt(90), wt(91), wt(92), wt(97), wt(98), wt(99), wt(100), wt(101)] } }, {
+            titolo: [[{ t: "Ecco come " }, { t: "pianifici", box: true }], [{ t: "in meno di 30 secondi", hand: true }]], media: "d1",
+            capitoli: [{ t: "Volume", icona: "layers" }, { t: "Suddivisione", icona: "chart-pie" }, { t: "Filoni", icona: "git-branch" },
+              { t: "Script", icona: "file-text" }, { t: "Calendario", icona: "calendar-days" }],
+            ingresso: "nessuno", fermoDa: t0 + 0.7 });
+          tplTenuta(tplPan(t0 - 0.05, S.D06.pose, { dur: 0.75 }), C[8]);
+        }
+
+        // ═══ 9 · X01 · «Commenta sistema e ti mando il comando…» Le pagine della risorsa arrivano a ondate su «sistema» e
+        // «mando»; «Il comando» si accende su «comando» ═══
+        S.X01 = TPL.X01({ t0: C[8], t1: C[9], X: P(7)[0] + 1300, Y: P(7)[1],
+          parole: { ondate: [wt(103), wt(106)], risorsa: wt(108), titolo: [wt(102), wt(103)] } }, {
+          titolo: [[{ t: "Commenta " }, { t: "«sistema»", box: true }]],
+          pagine: ["Il comando", "Hook", "Spiega", "Mostra", "Insegna", "Esempi"] });
+
+        // ═══ 10 · U01 · «…che uso per scrivere i copioni con questo metodo.» La chat vera (tema scuro, la tua foto): il comando si
+        // scrive, su «metodo» parte e la risposta arriva con le quattro sezioni del metodo. R8 MORBIDA: la risorsa → la risorsa
+        // aperta: la camera entra nella pagina «Il comando» ═══
+        { const t0 = C[9];
+          S.U01 = TPL.U01({ t0, t1: C[10], X: P(8)[0] + 1300, Y: P(7)[1],
+            parole: { scrive: t0 + 0.08, invia: wt(117), titolo: [wt(111), wt(112), wt(113), wt(114)] } }, {
+            titolo: [[{ t: "Per scrivere i " }, { t: "copioni", box: true }]], titoloEsce: false, h: 1060, prompt: "/copione metodo: hook, spiega, mostra, insegna",
+            risposta: { intro: "Ecco il copione del tuo reel:", sezioni: ["Hook", "Spiega", "Mostra", "Insegna"] },
+            ingresso: "nessuno", fermoDa: t0 + 0.45 });
+          S.U01.elementi.seconda(tplZoomThrough(t0, S.X01.ancore.risorsa, S.U01.pose));
+        }
+
+        // R7: sfondo fermo nella tenuta di ogni scena
+        tplFermo();
+
+        window.__timelines = window.__timelines || {};
+        window.__timelines["main"] = tl;
+      })();
+    </script>
+  </body>
+</html>

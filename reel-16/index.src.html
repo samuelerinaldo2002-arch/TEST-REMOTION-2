@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>Reel 16/10 · Il bivio</title>
+    <script src="assets/vendor/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Advercase"; src: url("assets/fonts/Advercase-Bold.ttf") format("truetype"); font-weight: 700; font-style: normal; font-display: block; }
+      @font-face { font-family: "Advercase"; src: url("assets/fonts/Advercase-Regular.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: block; }
+      @font-face { font-family: "Patrick Hand"; src: url("assets/fonts/PatrickHand-Regular.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: block; }
+      @font-face { font-family: "Zalando Sans"; src: url("assets/fonts/ZalandoSans-Variable.ttf") format("truetype"); font-weight: 100 900; font-style: normal; font-display: block; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: #1e1e1e; }
+      body { font-family: "Zalando Sans", sans-serif; color: #f4f4f2; -webkit-font-smoothing: antialiased; }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; background: #1e1e1e; }
+      .clip { position: absolute; inset: 0; overflow: hidden; }
+      #glow { position: absolute; inset: 0; opacity: 0.35; background: radial-gradient(58% 32% at 50% 46%, rgba(207, 251, 80, 0.08), rgba(207, 251, 80, 0) 70%); }
+      #vignette { position: absolute; inset: 0; background: radial-gradient(110% 78% at 50% 44%, rgba(0, 0, 0, 0) 44%, rgba(0, 0, 0, 0.62) 100%); }
+      .cam { position: absolute; left: 540px; top: 880px; width: 1px; height: 1px; }
+      .layer { position: absolute; left: 0; top: 0; width: 1px; height: 1px; }
+      #dots, #dotsFermi { position: absolute; left: -12000px; top: -9000px; width: 40000px; height: 24000px; background-image: radial-gradient(circle, rgba(255, 255, 255, 0.095) 1.25px, rgba(255, 255, 255, 0) 1.95px); background-size: 24px 24px; }
+      #stage { position: absolute; inset: 0; overflow: hidden; }
+      /* safe zone dell'11/10 (SAFEZONE.jpg): da y = 1332 in giù c'è la tua faccia → la grafica sfuma nel fondo prima della linea */
+      #safe { position: absolute; inset: 0; -webkit-mask-image: linear-gradient(to bottom, #000 0px, #000 1288px, transparent 1330px); mask-image: linear-gradient(to bottom, #000 0px, #000 1288px, transparent 1330px); }
+      #mbwrap, #shake { position: absolute; inset: 0; }
+      #hud { position: absolute; inset: 0; }
+    </style>
+  </head>
+  <body>
+    <!-- KW_RITMO: regole del ritmo R1–R8 e template (kw-kit/kit2-ritmo.js, kit2-template.js, kit2-tpl-*.js, kit2-reel16.js) -->
+    <!-- Reel 16/10 «Instagram ti ha appena regalato un trucco enorme» · concept «Il bivio»: un solo video, il tuo (copertina vera
+         del 04/10 e lo stesso reel in movimento), si carica, va in bozza, si sdoppia; poi il mondo si biforca: la copia 1 sale
+         (reel di prova → persone nuove), la copia 2 scende (reel normale → i tuoi follower); le due strade si ritrovano nel
+         doppio delle views. Piano: reel-16/PIANO.md. Tempi: le parole vere della voce (WORDS, d16.ts), 33,767 s = l'mp3. -->
+    <!--WORDS ../../my-video-ottobre-p1-test/src/words/d16.ts-->
+    <div id="root" data-composition-id="main" data-start="0" data-duration="33.76" data-width="1080" data-height="1920">
+      <div id="bg" class="clip" data-start="0" data-duration="33.76" data-track-index="0">
+        <div class="cam" id="gcam2" data-layout-allow-overflow><div class="layer" id="gzoom2"><div class="layer" id="gpan2"><div class="layer" id="bokeh"></div></div></div></div>
+        <div class="cam" id="gcam" data-layout-allow-overflow><div class="layer" id="gzoom"><div class="layer" id="gpan"><div id="dots"></div></div></div></div>
+        <div id="glow"></div>
+        <div id="vignette"></div>
+      </div>
+      <div id="stage">
+        <svg width="0" height="0" style="position: absolute" aria-hidden="true">
+          <filter id="mb" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur id="mbn" in="SourceGraphic" stdDeviation="0 0" /></filter>
+        </svg>
+        <div id="safe"><div id="mbwrap"><div id="shake"><div class="cam" id="cam" data-layout-allow-overflow><div class="layer" id="zoom"><div class="layer" id="pan"></div></div></div></div></div></div>
+        <!--VIDEOS
+          # 1 O01 · l'anello dei tuoi reel veri (Instagram = i tuoi contenuti), un reel diverso per card
+          c1 assets/clips/cal/o10.mp4 0 3.65
+          c2 assets/clips/cal/o11.mp4 0 3.65
+          c3 assets/clips/cal/o12.mp4 0 3.65
+          c4 assets/clips/cal/o13.mp4 0 3.65
+          c5 assets/clips/cal/o14.mp4 0 3.65
+          c6 assets/clips/cal/o15.mp4 0 3.65
+          c7 assets/clips/cal/o16.mp4 0 3.65
+          # 7 F08 · la griglia del tuo profilo vero: i tuoi reel in movimento
+          p1 assets/clips/mio/m01.mp4 18.57 4.25
+          p2 assets/clips/mio/m02.mp4 18.57 4.25
+          p3 assets/clips/mio/m03.mp4 18.57 4.25
+          p4 assets/clips/mio/m04.mp4 18.57 4.25
+          p5 assets/clips/mio/m05.mp4 18.57 4.25
+          p6 assets/clips/mio/m06.mp4 18.57 4.25
+          # 8 O21 · il reel di prova al centro degli anelli: lo stesso tuo reel del 04/10 (spezzone r04 di ritmo-01)
+          r04v assets/clips/r04.mp4 21.73 6.3
+          # 10 C01 · ogni volta: i tuoi prossimi video
+          w1 assets/clips/mio/v01.mp4 30.73 3.04
+          w2 assets/clips/mio/v02.mp4 30.73 3.04
+          w3 assets/clips/mio/v03.mp4 30.73 3.04
+        -->
+      </div>
+      <div id="hudclip" class="clip" data-start="0" data-duration="33.76" data-track-index="2">
+        <div id="hud"></div>
+      </div>
+      <!--SFX
+        # 1 O01 (0–3,57): l'anello si apre, il disco su «regalato», la risposta su «trucco»
+        0.0 whoosh .1 ; 1.27 pop .12 ; 2.23 card .1
+        # 2 nascosto (3,57–6,37): arrivo, il resto si spegne su «non», la lente su «nemmeno», NUOVO su «accorto»
+        3.57 whoosh .14 ; 4.67 drop .06 ; 5.23 whoosh .08 ; 5.6 pop .1
+        # 3 L11 (6,37–10,07): il tracciato al taglio, il video arriva su «carichi», corre alla bozza su «pubblicarlo»
+        6.37 whoosh .14 ; 7.77 pop .1 ; 9.2 tick .06
+        # 4 U10 (10,07–13,07, R8 morbida: zoom-through nel video): il dito sui ⋯ su «bozza», la lente su «Poi», Duplica, la copia
+        9.91 whoosh .16 ; 10.95 tap .2 ; 11.05 card .1 ; 12.13 tap .2 ; 12.58 pop .12
+        # 5 U11 (13,07–16,1): arrivo di lato, l'interruttore su «pubblicala», Condividi su «reel», il reel esce con PROVA
+        13.07 whoosh .14 ; 14.57 tap .2 ; 14.59 toggle .14 ; 15.3 tap .2 ; 15.35 whoosh .12 ; 15.75 pop .12
+        # 6 U07 (16,1–19,57): arrivo di lato, il dito sulla seconda bozza, Condividi su «reel», il reel esce con NORMALE
+        16.1 whoosh .14 ; 17.83 tap .2 ; 17.97 card .08 ; 18.43 tap .2 ; 18.48 whoosh .12 ; 18.88 pop .12
+        # 7 F08 (19,57–22,73): arrivo, riquadro sulla griglia su «normale», i follower si accendono su «follower»
+        19.57 whoosh .14 ; 20.37 tick .05 ; 21.63 rise .07
+        # 8 O21 (22,73–26,97): zoom d'arrivo, i follower si spengono su «solo», le persone nuove su «persone»
+        22.73 whoosh .14 ; 24.6 drop .1 ; 25.07 rise .06
+        # 9 D01 (26,97–31,73, R8 morbida: scorre di lato dagli anelli): «=» su «identico», conta su «doppio», ×2 su «Gratis»
+        26.92 whoosh .16 ; 28.17 tick .05 ; 29.3 rise .06 ; 30.45 ding .12 ; 30.87 pop .12
+        # 10 C01 (31,73–33,77, R8 morbida: la linea parte dalla card): i tuoi video si accendono su «ogni volta»
+        31.73 whoosh .16 ; 32.2 land .12 ; 32.38 tick .06 ; 32.72 tick .06
+      -->
+    </div>
+    <script>
+      (() => {
+        const ICON = __ICONS__;
+        /*__KIT__*/
+
+        const wt = (i) => WORDS[i][1]; // istante della parola i (indici: python -X utf8 _tools/parole.py …/d16.ts)
+        camInit(540, 900, 1);
+        const S = {};
+        // i tagli: 0,1 s prima della prima parola della frase
+        const C = [0, wt(8) - 0.1, wt(16) - 0.1, wt(26) - 0.1, wt(31) - 0.1, wt(41) - 0.1, wt(51) - 0.1, wt(60) - 0.1, wt(76) - 0.1, wt(85) - 0.1, 33.76];
+        const VIDEO = "th-mio_04"; // il tuo video (copertina vera del 04/10): lo stesso in tutte le scene
+
+        // ═══ 1 · O01 · «Instagram ti ha appena regalato un trucco enorme.» L'anello dei tuoi reel veri dal fotogramma 0;
+        // il disco su «regalato», al centro «Un trucco enorme» su «trucco» ═══
+        S.O01 = TPL.O01({ t0: C[0], t1: C[1], X: 600, Y: 900,
+          parole: { accento: wt(4), risposta: wt(6), sottolinea: wt(7), titolo: [wt(0), wt(1), wt(2), wt(4), wt(5), wt(6), wt(7)] } }, {
+          titolo: [[{ t: "Instagram ti ha " }, { t: "regalato", box: true }], [{ t: "un trucco enorme", hand: true }]],
+          media: ["c1", "c2", "c3", "c4", "c5", "c6", "c7"], risposta: ["Un trucco", "enorme"] });
+
+        // ═══ 2 · nascosto (kit2-reel16.js) · «E probabilmente non te ne sei nemmeno accorto.» La schermata vera «Nuovo reel»:
+        // la riga «Reel di prova» c'è, spenta; il resto si spegne su «non», la lente la trova su «nemmeno», NUOVO su «accorto» ═══
+        S.N = nascostoR16({ t0: C[1], t1: C[2], X: 4000, Y: 900,
+          parole: { spegni: wt(10), lente: wt(14), nuovo: wt(15), titolo: [wt(10), wt(11), wt(12), wt(13), wt(15)] } }, {
+          titolo: [[{ t: "Non te ne sei " }, { t: "accorto", box: true }]], media: VIDEO });
+
+        // ═══ 3 · L11 · «La prossima volta che carichi un video, prima di pubblicarlo,» Il percorso del trucco: il tuo video arriva
+        // su «carichi» e, prima di pubblicarlo, corre a «Salva in bozza» (le tappe dopo restano sfocate finché non le dici) ═══
+        S.L11 = TPL.L11({ t0: C[2], t1: C[3], X: 7500, Y: 900,
+          parole: { tappe: [wt(20), wt(25)], titolo: [wt(20), wt(21), wt(22), wt(23), wt(24), wt(25)] } }, {
+          titolo: [[{ t: "Carichi un " }, { t: "video", box: true }], [{ t: "prima di pubblicarlo", hand: true }]], media: VIDEO,
+          tappe: [{ t: "Carica il video", icona: "upload" }, { t: "Salva in bozza", icona: "save" }, { t: "Duplica", icona: "copy" }, { t: "Pubblica ×2", icona: "send" }] });
+
+        // ═══ 4 · U10 · «salvalo come bozza. Poi, duplicalo.» Le Bozze vere: il dito sui ⋯ su «bozza», la lente su «Poi», Duplica.
+        // R8 MORBIDA: la camera entra nel tuo video sulla tappa «Salva in bozza», dall'altra parte la stessa bozza ═══
+        { const t0 = C[3];
+          const r = { t0, t1: C[4], X: 11000, Y: 900, parole: { tocca: wt(28) - 0.1, puntini: wt(28) + 0.28, lente: wt(29), duplica: wt(30),
+            titolo: [wt(26), wt(27), wt(28), wt(29), wt(30)] } };
+          S.U10 = TPL.U10(r, { titolo: [[{ t: "Salvalo come " }, { t: "bozza", box: true }], [{ t: "poi duplicalo", hand: true }]],
+            media: VIDEO, altre: ["th-mio_02", "th-mio_07", "th-mio_09"], ingresso: "nessuno", fermoDa: t0 + 0.45 });
+          tplTenuta(tplZoomThrough(t0, S.L11.ancore.videoXY(1), S.U10.pose), r.t1);
+        }
+
+        // ═══ 5 · U11 · «Prendi la prima copia e pubblicala come reel di prova.» Il bivio, ramo alto: la copia 1, l'interruttore
+        // «Reel di prova» (quello della scena 2) su «pubblicala», Condividi su «reel», il reel esce con PROVA ═══
+        S.U11 = TPL.U11({ t0: C[4], t1: C[5], X: 14500, Y: -1800,
+          parole: { interruttore: wt(36), condividi: wt(38), titolo: [wt(32), wt(33), wt(34), wt(37), wt(38), wt(39), wt(40)] } }, {
+          titolo: [[{ t: "La prima " }, { t: "copia", box: true }], [{ t: "come reel di prova", hand: true }]], media: VIDEO, numero: 1 });
+
+        // ═══ 6 · U07 · «Poi torna indietro e pubblica la seconda come reel normale.» Ramo basso: la copia 2, Condividi con
+        // l'interruttore spento, il reel esce con NORMALE ═══
+        S.U07 = TPL.U07({ t0: C[5], t1: C[6], X: 14500, Y: 3600,
+          parole: { bozza: wt(47), condividi: wt(49), titolo: [wt(41), wt(42), wt(43), wt(46), wt(47), wt(49), wt(50)] } }, {
+          titolo: [[{ t: "Poi torna " }, { t: "indietro", box: true }], [{ t: "la seconda: reel normale", hand: true }]],
+          media: VIDEO, altre: ["th-mio_02", "th-mio_07", "th-mio_09"], pubblicata: true });
+
+        // ═══ 7 · F08 · «Il reel normale raggiungerà i tuoi follower come sempre,» Il tuo profilo vero: il reel normale va nella
+        // griglia (riquadro su «normale»), i tuoi follower attorno si accendono a onda su «follower» ═══
+        S.F08 = TPL.F08({ t0: C[6], t1: C[7], X: 18000, Y: 3600,
+          parole: { profilo: wt(53), persone: wt(57), titolo: [wt(51), wt(52), wt(53), wt(55), wt(56), wt(57)] } }, {
+          titolo: [[{ t: "Il reel " }, { t: "normale", box: true }], [{ t: "i tuoi follower", hand: true }]],
+          algoritmo: false, verso: "acceso",
+          profilo: { user: "tu", handle: "samuelerinaldo.media", nome: "Samuele Rinaldo | Content creator", mio: true, ring: "lime",
+            bio: ["Video · Foto · Content Creation", "Meno contenuti casuali. Più risultati."], post: "25", follower: "245", seguiti: "…",
+            grid: ["p1", "p2", "p3", "p4", "p5", "p6"] } });
+
+        // ═══ 8 · O21 · «ma il reel di prova verrà mostrato solo a persone nuove che non ti seguono ancora.» Ramo alto: al centro
+        // lo stesso reel in movimento, i tuoi follower si spengono su «solo», le persone nuove si accendono su «persone» ═══
+        S.O21 = TPL.O21({ t0: C[7], t1: C[8], X: 18000, Y: -1800,
+          parole: { spegni: wt(67), accendi: wt(69), titolo: [wt(61), wt(62), wt(63), wt(64), wt(67), wt(68), wt(69), wt(70)] } }, {
+          titolo: [[{ t: "Il reel " }, { t: "di prova", box: true }], [{ t: "solo a persone nuove", hand: true }]],
+          media: "r04v", tag: true, legenda: [["#ececec", "I tuoi follower"], ["#CFFB50", "Persone nuove"]] });
+
+        // ═══ 9 · D01 · «Stesso identico video, ma il doppio delle visualizzazioni. Gratis.» Le due strade si ritrovano: NORMALE +
+        // PROVA = il totale; «=» su «identico», conta su «doppio», ×2 su «Gratis».
+        // R8 MORBIDA: la camera scorre di lato dagli anelli alla card, vicina (una schermata) ═══
+        { const t0 = C[8];
+          S.D01 = TPL.D01({ t0, t1: C[9], X: 19170, Y: -1800,
+            parole: { uguale: wt(77), conta: wt(81), arriva: 30.45, finale: wt(84), titolo: [wt(76), wt(78), wt(80), wt(81), wt(84)] } }, {
+            titolo: [[{ t: "Stesso video, " }, { t: "il doppio", box: true }], [{ t: "gratis", hand: true }]], da: 1240, a: 2420,
+            fonti: [{ media: VIDEO, badge: "1.240", tag: "NORMALE" }, { media: VIDEO, badge: "1.180", tag: "PROVA" }],
+            ingresso: "nessuno", fermoDa: t0 + 0.7 });
+          tplTenuta(tplPan(t0 - 0.05, S.D01.pose, { dur: 0.75 }), C[9]);
+        }
+
+        // ═══ 10 · C01 · «Fallo ogni volta.» R8 MORBIDA: la linea parte dalla card del risultato e accende i tuoi prossimi video,
+        // ognuno pubblicato due volte (prova + normale) ═══
+        S.C01 = TPL.C01({ t0: C[9], t1: C[10], X: 20500, Y: -1800,
+          parole: { tappe: [wt(85), wt(86) + 0.05, wt(87) + 0.05], titolo: [wt(85), wt(86), wt(87)] } }, {
+          da: [S.D01.rect[2] - 10, S.D01.ancore.card[1]], viaggio: 0.5, titoloEsce: false,
+          titolo: [[{ t: "Fallo " }, { t: "ogni volta", box: true }]],
+          tappe: [{ media: "w1", giorno: "LUN", tema: "Prova + normale", icona: "copy" },
+                  { media: "w2", giorno: "MER", tema: "Prova + normale", icona: "copy" },
+                  { media: "w3", giorno: "VEN", tema: "Prova + normale", icona: "copy" }] });
+
+        // R7: sfondo fermo nella tenuta di ogni scena
+        tplFermo();
+
+        window.__timelines = window.__timelines || {};
+        window.__timelines["main"] = tl;
+      })();
+    </script>
+  </body>
+</html>
