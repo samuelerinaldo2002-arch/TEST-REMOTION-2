@@ -135,6 +135,13 @@
           cta_a assets/clips/cta_a.mp4 110.7 0.9
           cta_b assets/clips/cta_b.mp4 111.5 3.4
           cta_c assets/clips/cta_c.mp4 114.85 0.3
+          # 27 · A01 (reel 25 di Kallaway: 6 reel di creator diversi) → 6 creator diversi di _clip-esterni
+          a1 assets/clips/a1.mp4 119.4 3.06
+          a2 assets/clips/a2.mp4 119.4 3.06
+          a3 assets/clips/a3.mp4 119.4 3.06
+          a4 assets/clips/a4.mp4 119.4 3.06
+          a5 assets/clips/a5.mp4 119.4 3.06
+          a6 assets/clips/a6.mp4 119.4 3.06
         -->
       </div>
       <div id="hudclip" class="clip" data-start="0" data-duration="122.462" data-track-index="2">
@@ -247,6 +254,9 @@
 
         // ═══ 26 · 115,115–119,42 s · facecam piena fino alla fine del reel ═══
         cpFacecam(115.115, 119.42);
+
+        // ═══ 27 · 119,42–122,462 s · A01 isolata (dopo la fine del reel 1, taglio netto): copia del reel 25, 0–3,042 s ═══
+        COPIA.A01({ t0: 119.42, t1: 122.462 }, {});
 
         //__SCENE__
 
