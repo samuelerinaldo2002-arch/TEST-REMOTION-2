@@ -1,7 +1,10 @@
 # Note di rientro · lavoro fatto in cloud (ramo `cloud-catalogo`)
 
 Stato al 16/10, fine della prima sessione cloud: **fatti i due ritocchi a C1 e il blocco C2 (reel 5 intero)**, con il giro di
-correzioni della regia. C2b (reel 1) e i blocchi seguenti sono da fare (`STATO.md`). Tutto quello che è stato creato o modificato
+correzioni della regia. **C2b (reel 1, `copia-07`) in pausa per fine crediti**: tutte le 27 scene scritte e compilate (reel 1 +
+coda A01 dal reel 25, 122,462 s), confrontate con Kallaway sulle snapshot fino alla 26; mancano verifica della 27, render
+completo, fogli 10–27, misure, affiancato, clip, `transizioni.json`, `RAPPORTO.md` e i frammenti del §4 (lista in
+`copia-07/STATO.md`). Per riprendere in una sessione nuova: `LAVORO-CLOUD/RIPRESA.md`. Tutto quello che è stato creato o modificato
 in cloud sta in `LAVORO-CLOUD/` con gli stessi percorsi del progetto; il ramo `main` e i file esistenti nei percorsi normali del
 ramo `cloud-catalogo` non sono toccati.
 
@@ -200,7 +203,6 @@ KIT-V2.md (sezione «Copia fedele»): da aggiungere una riga — blocco C2 = ree
 16/10 (sessione cloud, ramo cloud-catalogo): C1 · due ritocchi FATTI (O30 piena al taglio con l'opzione `pieno`; CTA con
 l'opzione `ritocco`: miniatura visibile dal taglio, «2» grande nello zoom, chip e tuffo ×3,3 della sua misura, titolo al
 taglio). C2 = reel 5 intero FATTO (copia-02, 27 scene, 9 voci, 56 transizioni; correzioni della regia fatte), da rivedere con
-l'utente: affiancato _analisi/confronti-video/r05_copia_affiancato.mp4, rapporto copia-02/RAPPORTO.md. Prossimo: C2b = reel 1
-intero (T02 · D02 · X01 · T01 · F02 · A01) in copia-07 (:3047); trascrizione del reel 1 già pronta
-(Parakeet) in copia-07/_lavoro/r01_parole.json.
+l'utente: affiancato _analisi/confronti-video/r05_copia_affiancato.mp4, rapporto copia-02/RAPPORTO.md. C2b = reel 1 intero in copia-07
+IN PAUSA (27 scene scritte; mancano verifiche, render, fogli, misure, rapporto: copia-07/STATO.md); ripresa: LAVORO-CLOUD/RIPRESA.md.
 ```
