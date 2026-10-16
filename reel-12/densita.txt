@@ -1,0 +1,14 @@
+# Reel 12/10 — densità al 60% di ogni scena (_tools/densita.py nostri; soglia densità ≥ 0,23 e copertura ≥ 0,54)
+# scene: 1 hook e cartelloni 0–6,35 · 2 ogni contenuto un cliente, due cose insieme 6,4–12,6 · 3 il contenuto peggiora 12,7–17,8 · 4 il ritorno non arriva 17,9–21,0 · 5 smetti e crollano 21,0–26,1 · 6 la regola 8 danno 2 chiedono 26,2–33,45 · 7 la persona 33,5–37,35 · 8 i due che chiedono funzionano 37,4–41,03
+# v3 (13/10, dopo le correzioni della regia), misurata sulle snapshot (nessuna bozza nuova, richiesta dell'utente): 8 scene al 60% + 2 punti corretti (hook 1,5 s, la regola su "regola" 27,8 s)
+frame-00-at-3.81s.png            densità 0.345 (K mediana 0.327) · copertura 0.71 (K mediana 0.646) · ok
+frame-01-at-10.12s.png           densità 0.322 (K mediana 0.327) · copertura 0.81 (K mediana 0.646) · ok
+frame-02-at-15.75s.png           densità 0.382 (K mediana 0.327) · copertura 0.73 (K mediana 0.646) · ok
+frame-03-at-19.75s.png           densità 0.259 (K mediana 0.327) · copertura 0.71 (K mediana 0.646) · ok
+frame-04-at-24.09s.png           densità 0.278 (K mediana 0.327) · copertura 0.81 (K mediana 0.646) · ok
+frame-05-at-30.54s.png           densità 0.749 (K mediana 0.327) · copertura 1.00 (K mediana 0.646) · ok
+frame-06-at-35.8s.png            densità 0.264 (K mediana 0.327) · copertura 0.60 (K mediana 0.646) · ok
+frame-07-at-39.57s.png           densità 0.446 (K mediana 0.327) · copertura 0.92 (K mediana 0.646) · ok
+frame-08-at-1.5s.png             densità 0.699 (K mediana 0.327) · copertura 0.98 (K mediana 0.646) · ok
+frame-09-at-27.8s.png            densità 0.230 (K mediana 0.327) · copertura 0.83 (K mediana 0.646) · ok
+# transizione K09 a 26,8 s (camera al massimo della velocità, scia di movimento): densità 0,128 / copertura 0,38 — è il fotogramma a metà della frusta (~0,3 s), come quello di Kallaway nel reel 13; da 27,05 s la bacheca numerata è già in quadro

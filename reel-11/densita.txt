@@ -1,0 +1,14 @@
+# Reel 11/10 — densità al 60% di ogni scena (_tools/densita.py nostri; soglia densità ≥ 0,23 e copertura ≥ 0,54)
+# safe zone dell'11/10: inquadrature dentro y 330–1300, sfumatura 1290–1331 (linea della faccia a 1332)
+# scene: 1 hook 0–2,45 · 2 la luce 2,5–4,1 · 3 la stanza 4,2–6,5 · 4 attrezzatura 6,6–8,2 · 5 mirino 8,2–11 · 6 la scala 11,1–14 · 7 gradino 1 14,1–18,4 · 8 gradino 2 18,4–22,8 · 9 gradino 3 22,9–27 · 10 gradino 4 27,1–32,4 · 11 primo 10% 32,5–35,67
+frame-00-at-1.47s.png            densità 0.416 (K mediana 0.327) · copertura 0.90 (K mediana 0.646) · ok
+frame-01-at-3.46s.png            densità 0.287 (K mediana 0.327) · copertura 0.73 (K mediana 0.646) · ok
+frame-02-at-5.58s.png            densità 0.238 (K mediana 0.327) · copertura 0.77 (K mediana 0.646) · ok
+frame-03-at-7.56s.png            densità 0.426 (K mediana 0.327) · copertura 0.90 (K mediana 0.646) · ok
+frame-04-at-9.88s.png            densità 0.441 (K mediana 0.327) · copertura 0.71 (K mediana 0.646) · ok
+frame-05-at-12.84s.png           densità 0.269 (K mediana 0.327) · copertura 0.58 (K mediana 0.646) · ok
+frame-06-at-16.68s.png           densità 0.373 (K mediana 0.327) · copertura 0.65 (K mediana 0.646) · ok
+frame-07-at-21.04s.png           densità 0.530 (K mediana 0.327) · copertura 0.75 (K mediana 0.646) · ok
+frame-08-at-25.36s.png           densità 0.657 (K mediana 0.327) · copertura 0.94 (K mediana 0.646) · ok
+frame-09-at-30.28s.png           densità 0.462 (K mediana 0.327) · copertura 0.73 (K mediana 0.646) · ok
+frame-10-at-34.4s.png            densità 0.388 (K mediana 0.327) · copertura 0.67 (K mediana 0.646) · ok

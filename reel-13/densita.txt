@@ -1,0 +1,15 @@
+# Reel 13/10 — densità al 60% di ogni scena (_tools/densita.py nostri; soglia densità ≥ 0,23 e copertura ≥ 0,54)
+# scene (ogni scena divisa nelle sue inquadrature: prima l'hub del profilo, poi la stanza dentro l'oblò): 1a feed 0–1,45 · 1b profilo 1,45–5,65 · 2a evidenze 5,65–9 · 2b storie a caso 9–12,45 · 3a primo posto 12,45–14,95 · 3b Chi sono 14,95–20,42 · 4a secondo 20,42–22,65 · 4b Risultati 22,65–26,7 · 5a terzo 26,7–28,6 · 5b Domande 28,6–33,55 · 6 extra 33,55–38,5 · 7a vetrina e ultima cosa 38,5–43,95 · 7b DM 43,95–45,27
+frame-00-at-0.87s.png            densità 0.690 (K mediana 0.327) · copertura 0.98 (K mediana 0.646) · ok
+frame-01-at-3.97s.png            densità 0.495 (K mediana 0.327) · copertura 0.92 (K mediana 0.646) · ok
+frame-02-at-7.66s.png            densità 0.516 (K mediana 0.327) · copertura 1.00 (K mediana 0.646) · ok
+frame-03-at-11.07s.png           densità 0.462 (K mediana 0.327) · copertura 0.90 (K mediana 0.646) · ok
+frame-04-at-13.95s.png           densità 0.434 (K mediana 0.327) · copertura 0.92 (K mediana 0.646) · ok
+frame-05-at-18.23s.png           densità 0.528 (K mediana 0.327) · copertura 0.92 (K mediana 0.646) · ok
+frame-06-at-21.76s.png           densità 0.480 (K mediana 0.327) · copertura 0.92 (K mediana 0.646) · ok
+frame-07-at-25.08s.png           densità 0.348 (K mediana 0.327) · copertura 0.90 (K mediana 0.646) · ok
+frame-08-at-27.84s.png           densità 0.489 (K mediana 0.327) · copertura 0.94 (K mediana 0.646) · ok
+frame-09-at-31.57s.png           densità 0.429 (K mediana 0.327) · copertura 0.90 (K mediana 0.646) · ok
+frame-10-at-36.52s.png           densità 0.464 (K mediana 0.327) · copertura 0.85 (K mediana 0.646) · ok
+frame-11-at-41.77s.png           densità 0.766 (K mediana 0.327) · copertura 0.98 (K mediana 0.646) · ok
+frame-12-at-44.74s.png           densità 0.699 (K mediana 0.327) · copertura 0.96 (K mediana 0.646) · ok

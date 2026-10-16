@@ -1,0 +1,582 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>Reel 13/10 — Le storie in evidenza (stile Kallaway, sotto-agente della regia)</title>
+    <script src="assets/vendor/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Advercase"; src: url("assets/fonts/Advercase-Bold.ttf") format("truetype"); font-weight: 700; font-style: normal; font-display: block; }
+      @font-face { font-family: "Advercase"; src: url("assets/fonts/Advercase-Regular.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: block; }
+      @font-face { font-family: "Patrick Hand"; src: url("assets/fonts/PatrickHand-Regular.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: block; }
+      @font-face { font-family: "Zalando Sans"; src: url("assets/fonts/ZalandoSans-Variable.ttf") format("truetype"); font-weight: 100 900; font-style: normal; font-display: block; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: #1e1e1e; }
+      body { font-family: "Zalando Sans", sans-serif; color: #f4f4f2; -webkit-font-smoothing: antialiased; }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; background: #1e1e1e; }
+      .clip { position: absolute; inset: 0; overflow: hidden; }
+      #glow { position: absolute; inset: 0; opacity: 0.35; background: radial-gradient(58% 32% at 50% 46%, rgba(207, 251, 80, 0.08), rgba(207, 251, 80, 0) 70%); }
+      #vignette { position: absolute; inset: 0; background: radial-gradient(110% 78% at 50% 44%, rgba(0, 0, 0, 0) 44%, rgba(0, 0, 0, 0.62) 100%); }
+      .cam { position: absolute; left: 540px; top: 880px; width: 1px; height: 1px; }
+      .layer { position: absolute; left: 0; top: 0; width: 1px; height: 1px; }
+      #dots { position: absolute; left: -12000px; top: -9000px; width: 40000px; height: 24000px; background-image: radial-gradient(circle, rgba(255, 255, 255, 0.095) 1.25px, rgba(255, 255, 255, 0) 1.95px); background-size: 24px 24px; }
+      #stage { position: absolute; inset: 0; overflow: hidden; }
+      /* safe zone dell'11/10 (SAFEZONE.jpg): da y = 1332 in giù c'è la tua faccia → la grafica sfuma nel fondo prima della linea */
+      #safe { position: absolute; inset: 0; -webkit-mask-image: linear-gradient(to bottom, #000 0px, #000 1288px, transparent 1330px); mask-image: linear-gradient(to bottom, #000 0px, #000 1288px, transparent 1330px); }
+      #mbwrap, #shake { position: absolute; inset: 0; }
+      #hud { position: absolute; inset: 0; }
+    </style>
+  </head>
+  <body>
+    <!--WORDS ../../my-video-ottobre-p1-test/src/words/d13.ts-->
+    <div id="root" data-composition-id="main" data-start="0" data-duration="45.266" data-width="1080" data-height="1920">
+      <div id="bg" class="clip" data-start="0" data-duration="45.266" data-track-index="0">
+        <div class="cam" id="gcam2" data-layout-allow-overflow><div class="layer" id="gzoom2"><div class="layer" id="gpan2"><div class="layer" id="bokeh"></div></div></div></div>
+        <div class="cam" id="gcam" data-layout-allow-overflow><div class="layer" id="gzoom"><div class="layer" id="gpan"><div id="dots"></div></div></div></div>
+        <div id="glow"></div>
+        <div id="vignette"></div>
+      </div>
+      <!-- senza timing di proposito: le clip dentro hanno il loro data-start -->
+      <div id="stage">
+        <!-- foto delle "storie a caso" (Openverse, CC0 / pubblico dominio: assets/img/FONTI.txt) -->
+        <div id="ipool13" style="position:absolute;left:0;top:0;width:0;height:0;overflow:hidden"><img id="th-r13-tramonto" src="assets/img/tramonto.jpg" alt=""><img id="th-r13-pizza" src="assets/img/pizza.jpg" alt=""><img id="th-r13-gatto" src="assets/img/gatto.jpg" alt=""><img id="th-r13-concerto" src="assets/img/concerto.jpg" alt=""><img id="th-r13-auto" src="assets/img/auto.jpg" alt=""><img id="th-r13-lago" src="assets/img/lago.jpg" alt=""><img id="th-r13-torta" src="assets/img/torta.jpg" alt=""><img id="th-r13-sushi" src="assets/img/sushi.jpg" alt=""><img id="th-r13-cane" src="assets/img/cane.jpg" alt=""><img id="th-r13-cappuccino" src="assets/img/cappuccino.jpg" alt=""></div>
+        <svg width="0" height="0" style="position: absolute" aria-hidden="true">
+          <filter id="mb" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur id="mbn" in="SourceGraphic" stdDeviation="0 0" /></filter>
+        </svg>
+        <div id="safe"><div id="mbwrap"><div id="shake"><div class="cam" id="cam" data-layout-allow-overflow><div class="layer" id="zoom"><div class="layer" id="pan"></div></div></div></div></div></div>
+        <!--VIDEOS
+          # 1 · il tuo reel nel feed (07/10 19,4–22,4, faccia)
+          feed assets/clips/feed.mp4 0 1.6
+          # la griglia del tuo profilo: sei celle (nastro dei tuoi reel, ogni cella parte da un punto diverso)
+          g1 assets/clips/g1.mp4 1.3 43.96
+          g2 assets/clips/g2.mp4 1.3 43.96
+          g3 assets/clips/g3.mp4 1.3 43.96
+          g4 assets/clips/g4.mp4 1.3 43.96
+          g5 assets/clips/g5.mp4 1.3 43.96
+          g6 assets/clips/g6.mp4 1.3 43.96
+          # 3 · la storia "Chi sono" (02/10 22,4–26,2 + 04/10 22,3–23,9, faccia)
+          chi assets/clips/chi.mp4 14.85 5.43
+          # 3 · lo stesso reel del feed: "chi arriva da un video"
+          feed2 assets/clips/feed.mp4 17.4 3.0
+        -->
+      </div>
+      <div id="hudclip" class="clip" data-start="0" data-duration="45.266" data-track-index="2">
+        <div id="hud"></div>
+      </div>
+
+      <!--SFX
+        # 1 · il tuo reel nel feed, chi guarda entra nella tua foto, la camera entra nell'oblò e arriva sul profilo, il dito esita su Messaggio, le views
+        0.0 whoosh .1 ; 0.83 pop .07 ; 0.9 card .03 ; 0.98 card .03 ; 1.06 card .03 ; 1.07 whoosh .16 ; 1.45 sub .1 ; 1.47 whoosh .08
+        2.0 whoosh .05 ; 2.23 pop .06 ; 2.53 click .1 ; 2.77 bong .08
+        3.4 whoosh .05 ; 4.23 pop .06 ; 4.31 pop .06 ; 4.39 pop .06 ; 4.63 ding .08 ; 5.1 bong .05
+        # 2 · la camera scende sulle evidenze, il dito apre la prima, gli angoli, si entra: storie a caso, i dubbi senza risposta, si esce
+        5.73 whoosh .07 ; 6.33 rise .05 ; 7.03 tap .14 ; 7.25 tick .03 ; 7.55 tick .03 ; 7.7 click .12 ; 7.85 tick .03 ; 8.15 tick .03 ; 8.58 whoosh .16 ; 9.0 sub .1
+        9.75 pop .06 ; 9.9 pop .05 ; 10.05 pop .05 ; 10.2 pop .05 ; 10.25 tap .08 ; 10.45 tap .07 ; 10.65 tap .07 ; 10.85 tap .07 ; 11.05 tap .07 ; 11.17 bong .07 ; 11.57 glitch .06 ; 12.05 whoosh .12 ; 12.45 whoosh .08
+        # 3 · le evidenze a caso cadono, i posti numerati, la copertina Chi sono atterra nel primo, si entra: gli sticker, il reel, la spunta
+        12.7 drop .06 ; 12.78 drop .05 ; 12.86 drop .05 ; 12.97 pop .04 ; 13.07 ding .07 ; 13.63 whoosh .1 ; 13.97 slam .12 ; 13.98 land2 .07 ; 14.08 key1 .04 ; 14.14 key2 .04 ; 14.2 key3 .04 ; 14.26 key4 .04 ; 14.53 whoosh .16 ; 14.95 sub .1
+        15.02 pop .07 ; 16.07 pop .07 ; 17.73 card .07 ; 18.13 whoosh .05 ; 18.79 ding .08 ; 19.27 click .1 ; 20.02 whoosh .12 ; 20.42 whoosh .08
+        # 4 · il due si accende, la copertina Risultati atterra, si entra: lo screenshot, il contatore, prima e dopo, la spunta
+        20.97 ding .07 ; 21.57 whoosh .1 ; 21.91 slam .12 ; 21.92 land2 .07 ; 22.23 whoosh .16 ; 22.65 sub .1
+        23.77 click2 .12 ; 23.79 card .07 ; 24.67 rise .06 ; 25.32 card .06 ; 25.88 whoosh .07 ; 26.36 ding .07 ; 26.3 whoosh .12 ; 26.7 whoosh .08
+        # 5 · il tre, la copertina Domande atterra, si entra: le domande a raffica, il lucchetto, le risposte, si apre
+        27.07 ding .07 ; 27.67 whoosh .1 ; 28.01 slam .12 ; 28.02 land2 .07 ; 28.18 whoosh .16 ; 28.6 sub .1
+        28.67 pop .05 ; 28.77 pop .05 ; 28.87 pop .05 ; 28.88 tick .04 ; 28.96 tick .04 ; 29.04 tick .04 ; 29.9 whoosh .05 ; 30.3 card .08 ; 31.67 pop .05 ; 31.77 pop .05 ; 31.87 pop .05 ; 32.13 toggle .12 ; 32.18 ding .08 ; 32.63 sub .08 ; 33.15 whoosh .12 ; 33.55 whoosh .08
+        # 6 · la fila scorre, i tre posti col più, dagli oblò escono la fotocamera, il cartellino, la recensione
+        34.1 whoosh .07 ; 34.4 pop .04 ; 34.47 pop .04 ; 34.54 pop .04 ; 35.35 slam .1 ; 35.4 whoosh .08 ; 35.8 click .08 ; 36.48 slam .1 ; 36.53 whoosh .08 ; 37.31 slam .1 ; 37.36 whoosh .08 ; 37.68 pop .04 ; 37.74 pop .04 ; 37.8 pop .04 ; 37.86 pop .04 ; 37.92 pop .04
+        # 7 · la vetrina si riempie di cerchi a caso e si svuota, il passo indietro, la lettura, il dito, il DM
+        38.3 whoosh .06 ; 38.53 card .07 ; 39.25 card .03 ; 39.37 card .03 ; 39.49 card .03 ; 39.61 card .03 ; 39.7 slam .1 ; 39.98 drop .06 ; 40.1 drop .05 ; 40.33 whoosh .1 ; 40.7 rise .05 ; 41.6 pop .07 ; 42.1 whoosh .04 ; 42.45 whoosh .04 ; 42.87 whoosh .04 ; 43.45 tap .14 ; 43.63 whoosh .16 ; 43.95 sub .1 ; 44.0 key1 .03 ; 44.08 key2 .03 ; 44.25 pop .07 ; 44.47 ding .1
+      -->
+    </div>
+
+    <script>
+      (() => {
+        const ICON = __ICONS__;
+        /*__KIT__*/
+
+        // ═══ base ═══════════════════════════════════════════════════════════════════════════════════════════════
+        bokeh($("bokeh"), [
+          [120, 320, 360, 0.06], [620, -60, 260, 0.035, true], [860, 720, 420, 0.05], [180, 1150, 300, 0.04, true],
+          [-900, 450, 380, 0.05], [-600, 1100, 420, 0.05, true], [1650, 450, 380, 0.05], [2300, 1000, 420, 0.05, true],
+          [3000, 600, 400, 0.06], [3600, 1200, 380, 0.045], [4300, 500, 420, 0.05], [5000, 1100, 380, 0.05, true],
+        ]);
+        const L = layer(10);
+        const S = svgLayer(L, 6, -60000, -60000, 200000, 200000);
+        const wt = (i) => WORDS[i][1]; // istante della parola i (indici: python -X utf8 _tools/parole.py …/d13.ts)
+        const head = (lines, times, out, o) => { const T = titleW(Object.assign({ lines, size: 82 }, o || {})); T.inAt(times); if (out) T.outAt(out); return T; };
+        const via = (els, t, dur) => tl.to(els, { opacity: 0, duration: dur || 0.3, ease: "power1.out" }, t);
+        // safe zone dell'11/10: la grafica sta tra il titolo e y ≈ 1290 (sotto sfuma; da 1332 c'è la tua faccia)
+        const fp = (x0, y0, x1, y1, o) => fitPose(x0, y0, x1, y1, Object.assign({ bottom: 1290, fill: 1 }, o || {}));
+        const vai = (t, dur, P, ease) => camK(t, dur, P.fx, P.fy, P.s, ease || KW.move);
+        const stanza = (z) => { const r = el(L, { position: "absolute", left: 0, top: 0, width: 1, height: 1, zIndex: z || 10 }); gsap.set(r, { opacity: 0 }); return r; };
+
+        // ── i luoghi del mondo: al centro il profilo (l'hub), dietro ogni cerchio una "stanza" ──
+        const PX = 260, PY = 250;                       // il tuo profilo (telefono), schermo da (273, 263)
+        const HUB = el(L, { position: "absolute", left: 0, top: 0, width: 1, height: 1, zIndex: 10 });
+        gsap.set(HUB, { opacity: 0 });
+        const PRO = profiloR13(HUB, PX, PY, {
+          user: "tu", handle: "samuelerinaldo.media", nome: "Samuele Rinaldo", bio: ["Ti porto clienti da Instagram", "Strategia · contenuti · DM"],
+          grid: ["g1", "g2", "g3", "g4", "g5", "g6"], z: 12,
+          evidenze: [
+            { cover: { img: "th-r13-tramonto" }, nome: "Estate 23" }, { cover: { img: "th-r13-pizza" }, nome: "Food" },
+            { cover: { img: "th-r13-gatto" }, nome: "Mici" }, { cover: { img: "th-r13-concerto" }, nome: "Amici" }, { cover: { img: "th-r13-auto" }, nome: "Random" },
+          ],
+        });
+        const LY = (y) => PY + 13 + y;                   // y del mondo di una riga dello schermo del profilo
+        // la parte alta dello schermo si spegne quando la camera è più giù (niente interfaccia sotto il titolo, regola 20)
+        const veloA = [...PRO.topEls, ...PRO.bioEls];
+        const velo = (t, els, on) => tl.to(els, { opacity: on ? 0 : 1, duration: 0.35, ease: "power1.out" }, t);
+        // le inquadrature del profilo
+        const pS1 = fp(PX - 10, LY(118), PX + 570, LY(780));      // foto, numeri, bio, tasti, evidenze (testata spenta: sotto il titolo)
+        const pHub = fp(PX - 10, LY(372), PX + 570, LY(952));     // tasti, evidenze, griglia (l'hub delle entrate): i tasti partono sotto il titolo
+        const EV = (i) => PRO.evXY(i);                   // centro dell'evidenza i (mondo)
+
+        // ═══ 1 · HOOK — "Ti sei mai chiesto perché arrivano sul profilo e non ti scrivono? Anche quando i contenuti funzionano?" ═══
+        // (0 – 5,65) A02: il tuo reel vero nel feed è già in scena al fotogramma 0, attorno chi lo guarda (persone qualunque).
+        // "perché": la tua foto nel reel pulsa e chi guarda ci entra · "arrivano": la camera entra nella foto (L'OBLÒ, nuova:
+        // K07 + K13) e dall'altra parte c'è la foto del tuo profilo; si esce all'indietro sul profilo ("profilo", 1,57).
+        // "e non ti scrivono": il dito va su Messaggio, esita e se ne va; i messaggi restano a 0 (H04 + pill) · "anche quando i
+        // contenuti funzionano": la camera scivola sulla griglia, i badge delle views poppano (D02) e diventano lime (F08)
+        const FX0 = -1900, FY0 = 300, FW = 560;
+        const RF = reelFeedR13(L, FX0, FY0, FW, "feed", { z: 20 });
+        const [ra, rb] = RF.avXY();
+        const pFeed = fp(FX0 - 25, FY0 - 8, FX0 + FW + 315, FY0 + 880);
+        camInit(pFeed.fx, pFeed.fy, pFeed.s);
+        rackFocus(0, 0.45);
+        float(0, 1.07, 0, -10, 0.025);
+        const CROWD = [[-1240, 420, 132], [-1100, 580, 118], [-1250, 740, 126], [-1105, 900, 112], [-1245, 1060, 124], [-1095, 1170, 104]].map(([x, y, d], k) => {
+          const h = el(L, { position: "absolute", left: x - d / 2, top: y - d / 2, width: d, height: d, zIndex: 24 });
+          personaK(h, 0, 0, d, { z: 1 });
+          el(h, { position: "absolute", left: -4, top: -4, width: d + 8, height: d + 8, borderRadius: "50%", border: "3px solid rgba(255,255,255,.8)", boxSizing: "border-box" });
+          h.setAttribute("data-layout-allow-overlap", "");
+          const t0 = wt(4) + 0.04 + k * 0.04;
+          tl.to(h, { x: ra - x, y: rb - y, scale: 0.18, duration: 0.42, ease: "power2.in" }, t0);
+          tl.to(h, { opacity: 0, duration: 0.06 }, t0 + 0.38);
+          return h;
+        });
+        pulse(L, ra, rb, wt(4), { r: 90, z: 19 });
+        ripple(L, ra, rb, wt(4) + 0.05, { r: 60, s0: 0.8, s1: 2.2, w: 4, dur: 0.5, z: 26 });
+        const T_IN1 = 1.45;
+        obloInR13(T_IN1, { x: ra, y: rb, d: RF.avD }, { el: HUB, x: PRO.avXY()[0], y: PRO.avXY()[1], pose: pS1 }, { pre: T_IN1 - wt(5), cover: { user: "tu" }, D: 540 });
+        tl.set([RF.g, ...CROWD], { opacity: 0 }, T_IN1);
+        gsap.set(PRO.headEls, { opacity: 0 }); // testata e barra di stato del profilo starebbero sotto il titolo
+        float(T_IN1 + 0.55, 1.4, 0, -6, 0.015);
+        // la pill dei messaggi (a destra della bio, sopra i tasti) e il dito che esita su Messaggio
+        const [mx, my] = PRO.msgXY();
+        const PM = pillMsgR13(L, PX + 13 + 452, LY(372), { fs: 38, z: 40 });
+        PM.show(wt(9));
+        const pmLine = connector(S, [[PX + 13 + 452, LY(372) + 36], [PX + 13 + 452, LY(410)]], { color: "rgba(255,255,255,.6)", w: 3 });
+        pmLine.draw(wt(9) + 0.2, 0.15);
+        const F1 = tapFinger(L, { size: 96, z: 80 });
+        F1.show(wt(8), mx + 70, my + 240);
+        F1.to(wt(8) + 0.1, mx + 8, my + 18, 0.34);
+        F1.to(wt(10) - 0.06, mx + 22, my + 40, 0.22); // esita
+        F1.to(wt(11) - 0.04, mx - 230, my + 320, 0.4); // e se ne va senza premere
+        F1.hide(wt(11) + 0.3);
+        const SCm = selectCorners(L, PRO.msgRect(), { len: 30, w: 6, pad: 8, z: 60 });
+        SCm.show(wt(10));
+        SCm.hide(3.2);
+        PM.nulla(wt(11));
+        // "anche quando i contenuti funzionano": la camera scivola sulla griglia
+        vai(3.45, 1.0, pHub, "sine.inOut");
+        velo(3.45, veloA, true);
+        // la pill dei messaggi scende accanto al tasto (sopra resterebbe sotto il titolo)
+        tl.to(PM.g, { x: 62, y: 72, duration: 0.8, ease: "sine.inOut" }, 3.5);
+        tl.to(pmLine.p, { opacity: 0, duration: 0.2 }, 3.45);
+        const VIEWS = ["48,2K", "103K", "31,5K"];
+        const badges = [0, 1, 2].map((i) => { const [cx, cy] = PRO.cellXY(i); return viewBadge(L, cx, cy - 46, VIEWS[i], { fs: 30, dark: true, z: 30 }); });
+        popSeq(badges, wt(15), 0.08);
+        badges.forEach((b, i) => {
+          const t = wt(16) + i * 0.05;
+          tl.to(b, { backgroundColor: K.lime, color: K.ink, boxShadow: `0 8px 20px rgba(0,0,0,.45), ${GLOW_A(0.8)}`, duration: 0.15 }, t);
+          tl.fromTo(b, { scale: 1 }, { scale: 1.16, duration: 0.1, ease: "power2.out", immediateRender: false }, t);
+          tl.to(b, { scale: 1, duration: 0.3, ease: "back.out(2.5)" }, t + 0.1);
+          tl.to(b.querySelector("svg"), { stroke: K.ink, duration: 0.15 }, t);
+        });
+        PM.nulla(5.1);
+        float(4.45, 1.25, 0, 6, 0.012);
+        head([[{ t: "Perché arrivano" }], [{ t: "e non ti " }, { t: "scrivono", box: true }]], [wt(4), wt(5), wt(8), wt(9), wt(10), wt(11)], 3.0);
+        head([[{ t: "Anche quando" }], [{ t: "i contenuti " }, { t: "funzionano", box: true }]], [wt(12), wt(13), wt(14), wt(15), wt(16)], 5.25);
+
+        // ═══ 2 · "Perché dopo il profilo aprono le storie in evidenza e lì trovano storie a caso senza risposta." (5,65 – 12,45) ═══
+        // K03: la camera scende dal profilo alle evidenze ("dopo il profilo"), una linea di lettura arriva alla prima (C01) ·
+        // "aprono": il dito la tocca e l'anello gira mentre carica (U16) · "storie in evidenza": gli angoli sulla fila (H04) ·
+        // si entra nell'oblò: dentro la storia vera "Estate 23" con 24 segmenti; accanto chi guarda (persona qualunque) e i suoi
+        // tre dubbi grigi; "storie a caso": il dito tocca e passano pizza, gatto, concerto…; "senza risposta": i dubbi tremano
+        // e restano grigi, la storia si spegne. Si esce dall'oblò.
+        via([...badges, pmLine.p], 5.7, 0.3);
+        tl.to(PM.g, { opacity: 0, duration: 0.25 }, 5.7);
+        const [e0x, e0y] = EV(0);
+        const RD = connector(S, [[mx - 80, my + 34], [mx - 80, my + 74], [e0x + 40, e0y - 74], [e0x, e0y - 56]], { color: K.lime, w: 5, glow: true, curve: "v" });
+        RD.draw(wt(18), 0.4);
+        tl.to(RD.p, { opacity: 0, duration: 0.25 }, 8.3);
+        PRO.ev.forEach((e, i) => glowFlash(e.lab, wt(20) + 0.25 + i * 0.05));
+        float(5.75, 2.75, 0, -8, 0.035);
+        const F2 = tapFinger(L, { size: 92, z: 80 });
+        F2.show(6.6, e0x + 70, e0y + 220);
+        F2.to(6.72, e0x, e0y, 0.28);
+        F2.tap(wt(21));
+        F2.hide(wt(21) + 0.3);
+        PRO.ev[0].load(wt(21) + 0.04, 1.5);
+        const SCr = selectCorners(L, [PX + 6, e0y - 60, PX + 554, e0y + 92], { len: 44, w: 6, pad: 8, z: 60 });
+        SCr.show(wt(23));
+        SCr.hide(8.5);
+        // la stanza A: la storia "Estate 23" (storie a caso) e chi guarda con i suoi dubbi
+        const RA = stanza(10);
+        const AX = 3000, AY = 250;
+        const SVA = igStoryView(RA, AX, AY, { user: "tu", nome: "Estate 23", quando: "52 sett.", media: "th-r13-tramonto", segs: 24, seg: 0, z: 12 });
+        const pA = fp(AX - 18, AY - 10, AX + 560 + 372, AY + 13 + 890);
+        const cA = [AX + 13 + PH.sw / 2, AY + 13 + PH.sh / 2];
+        const T_IN2 = 9.0;
+        obloInR13(T_IN2, { x: e0x, y: e0y, d: PRO.HD }, { el: RA, x: cA[0], y: cA[1], pose: pA }, { pre: 0.42, cover: { img: "th-r13-tramonto" } });
+        const RANDOM = ["pizza", "gatto", "concerto", "auto", "torta"];
+        const layers = RANDOM.map((n) => { const ly = el(SVA.content, { position: "absolute", left: 0, top: 0, width: PH.sw, height: PH.sh, zIndex: 1 }); mediaTile(ly, 0, 0, PH.sw, PH.sh, "th-r13-" + n, 1); gsap.set(ly, { opacity: 0 }); return ly; });
+        const DUB = ["Chi è?", "Funziona?", "Quanto costa?"];
+        const DA = dubbiR13(RA, AX + 560 + 186, AY + 770, DUB, { d: 220, fs: 38, pos: [[-20, -255], [-4, -385], [10, -515]], z: 30 });
+        DA.show(wt(27));
+        DA.ask(0, wt(28) - 0.05);
+        DA.ask(1, wt(28) + 0.12);
+        DA.ask(2, wt(28) + 0.29);
+        SVA.play(T_IN2, 1.2, { a: 1 });
+        const FL = tapFinger(RA, { size: 84, z: 80 });
+        const tapX = AX + 13 + PH.sw - 92, tapY = AY + 13 + 560;
+        FL.show(wt(29) - 0.32, tapX + 40, tapY + 160);
+        FL.to(wt(29) - 0.14, tapX, tapY, 0.12);
+        RANDOM.forEach((_, k) => {
+          const t = wt(29) + 0.02 + k * 0.2;
+          FL.tap(t);
+          tl.set(layers[k], { opacity: 1 }, t + 0.03);
+          if (k) tl.set(layers[k - 1], { opacity: 0 }, t + 0.03);
+          SVA.fillTo(2 + k * 3, t + 0.03);
+        });
+        FL.hide(wt(29) + 1.05);
+        DA.trema(wt(32));
+        tl.to(SVA.content, { filter: "grayscale(1) brightness(.5)", duration: 0.35 }, wt(33));
+        float(9.6, 2.4, 0, -8, 0.022);
+        const T_OUT1 = 12.45;
+        obloOutR13(T_OUT1, { el: RA, x: cA[0], y: cA[1] }, { x: e0x, y: e0y, d: PRO.HD }, { pose: pHub, cover: { img: "th-r13-tramonto" }, pre: 0.4, out: 0.6 });
+        head([[{ t: "Dopo il profilo" }], [{ t: "le storie " }, { t: "in evidenza", box: true }]], [wt(18), wt(19), wt(20), wt(22), wt(23), wt(24), wt(25)], 9.25, { size: 78 });
+        head([[{ t: "Storie " }, { t: "a caso" }], [{ t: "senza risposta", box: true }]], [wt(29), wt(30), wt(31), wt(32), wt(33)], 12.2);
+
+        // ═══ 3 · "Al primo posto va la presentazione. Chi sei e di cosa ti occupi? In modo che chi arriva da un video lo capisca senza
+        // cercare." (12,45 – 20,4) — sul profilo le evidenze a caso cadono grigie (F11 + K08) e restano tre posti vuoti numerati
+        // (come le voci sfocate di L01); "primo posto": il numero 1 si accende; "va": la copertina "Chi sono" (la tua foto) vola nel
+        // posto 1; "presentazione": l'etichetta si scrive. Si entra: la storia "Chi sono" con la tua faccia vera, gli sticker sulle
+        // parole; accanto chi guarda: "chi arriva da un video" (il tuo reel con la linea fino a lui), "lo capisca": il dubbio "Chi è?"
+        // diventa lime; "senza cercare": gli angoli sugli sticker, la risposta è lì.
+        const SLOT = [0, 1, 2, 3, 4, 5].map((i) => {
+          const [lx, ly] = PRO.evLocal(i);
+          const s = evidenzaR13(PRO.row, lx, ly, PRO.HD, { vuoto: i < 3 ? i + 1 : "+", nome: "", fs: 19, lw: PRO.HP - 6, z: 3 });
+          gsap.set(s.g, { opacity: 0 });
+          return s;
+        });
+        PRO.ev.forEach((e, i) => {
+          const t = wt(34) + 0.03 + i * 0.05;
+          tl.to(e.g, { filter: "grayscale(1) brightness(.5)", duration: 0.15 }, t);
+          tl.to(e.g, { y: 420 + i * 30, rotation: (i % 2 ? 1 : -1) * (20 + i * 6), opacity: 0, duration: 0.5, ease: "power2.in" }, t + 0.05);
+        });
+        [0, 1, 2].forEach((i) => blurIn(SLOT[i].g, wt(34) + 0.3 + i * 0.07, { y: 16, blur: 10, dur: 0.35 }));
+        // una copertina che vola nel posto i (arco dall'alto a sinistra, atterra con un colpo)
+        const vola = (i, t, cover, nome) => {
+          const [ex, ey] = EV(i);
+          const f = el(L, { position: "absolute", left: -PRO.HD / 2, top: -PRO.HD / 2, width: PRO.HD, height: PRO.HD, zIndex: 45 });
+          f.setAttribute("data-layout-allow-overlap", "");
+          copertinaR13(f, PRO.HD, cover);
+          el(f, { position: "absolute", left: -5, top: -5, width: PRO.HD + 10, height: PRO.HD + 10, borderRadius: "50%", border: `5px solid ${K.lime}`, boxShadow: GLOW_A(0.9), boxSizing: "border-box" });
+          arcFly(f, [ex - 300, ey - 360], [ex, ey], t, 0.34, { lift: 60, s0: 1.6, s1: 1, blur: 6, ease: "power2.in" });
+          SLOT[i].fill(t + 0.34, cover, nome);
+          ripple(L, ex, ey, t + 0.34, { r: 75, s0: 0.8, s1: 1.9, w: 5, dur: 0.5, z: 46 });
+          shake(t + 0.34, 5, 3);
+          return t + 0.34;
+        };
+        SLOT[0].numOn(wt(35));
+        pulse(L, EV(0)[0], EV(0)[1], wt(35) + 0.02, { r: 95, z: 30 });
+        vola(0, wt(37) - 0.04, { user: "tu" }, "Chi sono");
+        float(13.06, 1.4, 0, -6, 0.02);
+        head([[{ t: "Al primo posto" }], [{ t: "la presentazione", box: true }]], [wt(34), wt(35), wt(36), wt(38), wt(39) - 0.1], 14.5); // parola lunga: il box finisce di crescere entro 14,15 s (niente lettera fuori dal box)
+        // la stanza 1: la storia "Chi sono"
+        const R1 = stanza(10);
+        const QX = 5000, QY = 250;
+        const SV1 = igStoryView(R1, QX, QY, { user: "tu", nome: "Chi sono", quando: "3 g", media: "chi", segs: 3, seg: 0, z: 12 });
+        const p1 = fp(QX - 18, QY - 10, QX + 560 + 372, QY + 13 + 890);
+        const c1 = [QX + 13 + PH.sw / 2, QY + 13 + PH.sh / 2];
+        const T_IN3 = 14.95;
+        obloInR13(T_IN3, { x: EV(0)[0], y: EV(0)[1], d: PRO.HD }, { el: R1, x: c1[0], y: c1[1], pose: p1 }, { pre: 0.42, cover: { user: "tu" } });
+        SV1.play(T_IN3, 5.2, { a: 1 });
+        const st1 = stickerR13(SV1.content, PH.sw / 2, 300, "Ciao, sono Samuele", { fs: 34, rot: -3, w: 520 });
+        const st2 = stickerR13(SV1.content, PH.sw / 2, 392, "Ti porto clienti da Instagram", { fs: 30, rot: 2, w: 520, bg: K.lime, col: K.ink, icon: "map-pin" });
+        st1.show(wt(40) + 0.02);
+        st2.show(wt(43));
+        const D1 = dubbiR13(R1, QX + 560 + 186, QY + 770, DUB, { d: 220, fs: 38, pos: [[-20, -255], [-4, -385], [10, -515]], z: 30 });
+        D1.stato(T_IN3, 0, 3);
+        // "chi arriva da un video": il tuo reel (lo stesso del feed) in alto a destra, la linea arriva fino a chi guarda
+        const VR = el(R1, { position: "absolute", left: QX + 560 + 100, top: QY + 6, width: 150, height: 267, borderRadius: 16, overflow: "hidden", border: "2px solid rgba(255,255,255,.5)", boxShadow: "0 20px 40px rgba(0,0,0,.55)", zIndex: 26 });
+        videoTile(VR, 0, 0, 150, 267, "feed2", 1);
+        const vrb = el(VR, { position: "absolute", left: 8, bottom: 10, display: "flex", alignItems: "center", gap: 6, zIndex: 3 });
+        const vra = el(vrb, { width: 30, height: 30, borderRadius: "50%", overflow: "hidden", border: "1.5px solid #fff", position: "relative" });
+        imgIn(vra, "av-tu", { objectFit: "cover" });
+        el(vrb, { fontFamily: FS, fontWeight: 800, fontSize: 15, color: "#fff", textShadow: "0 1px 4px rgba(0,0,0,.8)" }, "Reels");
+        gsap.set(VR, { opacity: 0 });
+        tl.fromTo(VR, { opacity: 0, x: 80, scale: 0.8 }, { opacity: 1, x: 0, scale: 1, duration: 0.4, ease: "power2.out", immediateRender: false }, wt(51) - 0.1);
+        const LV = connector(S, [[QX + 560 + 100, QY + 140], [QX + 560 + 30, QY + 140], [QX + 560 + 30, QY + 600], [QX + 560 + 186 - 110, QY + 770]], { color: K.lime, w: 5, dash: [14, 10], curve: "v" });
+        LV.draw(wt(53), 0.45);
+        D1.answer(0, wt(56) - 0.04);
+        pulse(R1, QX + 560 + 186, QY + 770, wt(56), { r: 150, z: 20 });
+        const SC1 = selectCorners(R1, [QX + 13 + 20, QY + 13 + 250, QX + 13 + PH.sw - 20, QY + 13 + 440], { len: 36, w: 6, pad: 10, z: 60 });
+        SC1.show(wt(57));
+        float(15.55, 4.4, 0, -10, 0.03);
+        head([[{ t: "Chi sei" }], [{ t: "e " }, { t: "di cosa ti occupi", box: true }]], [wt(40), wt(41), wt(42), wt(43), wt(44), wt(45), wt(46)], 17.15);
+        head([[{ t: "Chi arriva da un video" }], [{ t: "lo capisca " }, { t: "senza cercare", box: true }]], [wt(50), wt(51), wt(52), wt(53), wt(54), wt(55), wt(56), wt(57), wt(58)], 20.05, { size: 70 });
+        const T_OUT2 = 20.42;
+        obloOutR13(T_OUT2, { el: R1, x: c1[0], y: c1[1] }, { x: EV(0)[0], y: EV(0)[1], d: PRO.HD }, { pose: pHub, cover: { user: "tu" }, pre: 0.4, out: 0.6 });
+        tl.to(LV.p, { opacity: 0, duration: 0.2 }, T_OUT2 - 0.4);
+
+        // ═══ 4 · "Al secondo i risultati portati ai clienti. Prove concrete, numeri, prima e dopo." (20,4 – 26,7) ═════════════
+        // sul profilo: "secondo" accende il 2, la copertina "Risultati" atterra; "portati ai clienti": si entra nel posto 2. Dentro,
+        // la storia "Risultati" è la prova di un cliente: "prove concrete" lo screenshot arriva (lampo), "numeri" la card degli
+        // account raggiunti conta (D01), "prima e dopo" la griglia del cliente passa dal grigio al lime con la tendina (nuova, F11).
+        // Chi guarda: "Funziona?" diventa lime.
+        const COV2 = { icon: "trending-up", bg: limeFill(1), col: K.ink };
+        SLOT[1].numOn(wt(60));
+        pulse(L, EV(1)[0], EV(1)[1], wt(60) + 0.02, { r: 95, z: 30 });
+        vola(1, wt(62) - 0.1, COV2, "Risultati");
+        float(21.05, 1.15, 0, -6, 0.015);
+        head([[{ t: "Al secondo" }], [{ t: "i risultati", box: true }]], [wt(59), wt(60), wt(61), wt(62)], 22.2);
+        const R2 = stanza(10);
+        const RX2 = 7000, RY2 = 250;
+        const SV2 = igStoryView(R2, RX2, RY2, { user: "tu", nome: "Risultati", quando: "1 sett.", segs: 3, seg: 0, z: 12 });
+        el(SV2.content, { position: "absolute", left: 0, top: 0, width: PH.sw, height: PH.sh, background: "radial-gradient(120% 70% at 50% 30%, #3a3a3c 0%, #1c1c1e 60%, #0d0d0e 100%)", zIndex: 0 });
+        // il cliente (volto vero dell'atlante, esempio una tantum)
+        const cl = el(SV2.content, { position: "absolute", left: 24, top: 160, display: "flex", alignItems: "center", gap: 14, zIndex: 3, whiteSpace: "nowrap" });
+        const clf = el(cl, { position: "relative", width: 64, height: 64 });
+        faceDot(clf, 0, 0, 64, 25, null, { bw: 2 });
+        el(cl, { fontFamily: FS, fontWeight: 800, fontSize: 25, color: "#fff" }, "Il tuo cliente");
+        el(cl, { padding: "4px 12px", borderRadius: 12, background: "rgba(255,255,255,.14)", fontFamily: FS, fontWeight: 700, fontSize: 18, color: "rgba(255,255,255,.85)" }, "dopo 60 giorni");
+        const SCD = statCard(SV2.content, 24, 250, { label: "Account raggiunti", icon: "eye", w: PH.sw - 48, h: 300, fs: 84, start: "2.140", z: 3 });
+        const PD = primaDopoR13(SV2.content, 24, 575, PH.sw - 48, 430, [60, 61, 62, 72, 73, 74], [84, 85, 86, 96, 97, 98], [["212", "98", "341", "176", "87", "233"], ["18,4K", "9.870", "31K", "12,2K", "26K", "7.940"]], { z: 3 });
+        const p2 = fp(RX2 - 18, RY2 - 10, RX2 + 560 + 372, RY2 + 13 + 890);
+        const c2 = [RX2 + 13 + PH.sw / 2, RY2 + 13 + PH.sh / 2];
+        const T_IN4 = 22.65;
+        obloInR13(T_IN4, { x: EV(1)[0], y: EV(1)[1], d: PRO.HD }, { el: R2, x: c2[0], y: c2[1], pose: p2 }, { pre: 0.42, cover: COV2 });
+        SV2.play(T_IN4, 1.1, { a: 1 });
+        // "prove concrete": lo screenshot arriva con un lampo
+        const flash2 = el(SV2.content, { position: "absolute", left: 0, top: 0, width: PH.sw, height: PH.sh, background: "#fff", opacity: 0, zIndex: 20 });
+        tl.set(flash2, { opacity: 0.85 }, wt(66));
+        tl.to(flash2, { opacity: 0, duration: 0.25, ease: "power2.out" }, wt(66) + 0.04);
+        const SCp = selectCorners(SV2.content, [24, 250, PH.sw - 24, 550], { len: 34, w: 6, pad: 8, z: 21 });
+        SCp.show(wt(66) + 0.05);
+        SCp.hide(wt(68) - 0.1);
+        SV2.fillTo(1, wt(66));
+        SCD.count(wt(68), 2140, 18940, 0.95, (v) => itNum(v));
+        // "prima e dopo"
+        tl.fromTo(PD.g, { scale: 1 }, { scale: 1.04, duration: 0.12, ease: "power2.out", immediateRender: false }, wt(69) - 0.02);
+        tl.to(PD.g, { scale: 1, duration: 0.3, ease: "power2.out" }, wt(69) + 0.1);
+        PD.wipe(wt(71) - 0.02, 0.5);
+        SV2.fillTo(2, wt(69));
+        const D2 = dubbiR13(R2, RX2 + 560 + 186, RY2 + 770, DUB, { d: 220, fs: 38, pos: [[-20, -255], [-4, -385], [10, -515]], z: 30 });
+        D2.stato(T_IN4, 1, 3);
+        D2.answer(1, wt(71) + 0.45);
+        float(23.2, 3.0, 0, -8, 0.025);
+        head([[{ t: "Prove concrete" }], [{ t: "numeri, " }, { t: "prima e dopo", box: true }]], [wt(66), wt(67), wt(68), wt(69), wt(70), wt(71)], 26.3);
+        const T_OUT3 = 26.7;
+        obloOutR13(T_OUT3, { el: R2, x: c2[0], y: c2[1] }, { x: EV(1)[0], y: EV(1)[1], d: PRO.HD }, { pose: pHub, cover: COV2, pre: 0.4, out: 0.6 });
+
+        // ═══ 5 · "Al terzo le domande che ti fanno più spesso. Quelle che uno si fa prima di contattarti, così lo rassicuri subito." ═══
+        // (26,7 – 33,5) sul profilo: "terzo" accende il 3, la copertina "Domande" atterra; si entra: lo sticker delle domande di
+        // Instagram e le domande che arrivano a raffica, su "più spesso" col contatore (U13); chi guarda: sono i suoi dubbi;
+        // "prima di contattarti": davanti a lui il tasto Messaggio col lucchetto (L05); "così lo rassicuri": le risposte arrivano
+        // nella storia, l'ultimo dubbio diventa lime e il lucchetto si apre; "subito": chi guarda si accende (F02).
+        const COV3 = { icon: "message-circle-question", bg: limeFill(1), col: K.ink };
+        SLOT[2].numOn(wt(73));
+        pulse(L, EV(2)[0], EV(2)[1], wt(73) + 0.02, { r: 95, z: 30 });
+        vola(2, wt(75) - 0.1, COV3, "Domande");
+        float(27.32, 0.85, 0, -6, 0.012);
+        head([[{ t: "Al terzo" }], [{ t: "le domande", box: true }]], [wt(72), wt(73), wt(74), wt(75)], 29.85);
+        const R3 = stanza(10);
+        const RX3 = 9000, RY3 = 250;
+        const SV3 = igStoryView(R3, RX3, RY3, { user: "tu", nome: "Domande", quando: "2 g", segs: 2, seg: 0, z: 12 });
+        el(SV3.content, { position: "absolute", left: 0, top: 0, width: PH.sw, height: PH.sh, background: "linear-gradient(160deg, #3a3a3e 0%, #232326 45%, #2b3318 100%)", zIndex: 0 });
+        // lo sticker "Fammi una domanda" (con la tua foto)
+        const QS = el(SV3.content, { position: "absolute", left: 47, top: 150, width: 440, height: 170, borderRadius: 26, background: "#ffffff", boxShadow: "0 14px 30px rgba(0,0,0,.4)", zIndex: 3 });
+        const qsa = el(QS, { position: "absolute", left: 190, top: -38, width: 66, height: 66, borderRadius: "50%", overflow: "hidden", border: "4px solid #fff" });
+        imgIn(qsa, "av-tu", { objectFit: "cover" });
+        el(QS, { position: "absolute", left: 0, top: 40, width: 440, textAlign: "center", fontFamily: FS, fontWeight: 800, fontSize: 30, color: "#111" }, "Fammi una domanda");
+        el(QS, { position: "absolute", left: 24, top: 96, width: 392, height: 52, borderRadius: 14, background: "#efefef", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: FS, fontWeight: 600, fontSize: 21, color: "#6b6b6b" }, "Scrivi qualcosa…");
+        // le domande che ricevi (risposte allo sticker), col contatore
+        const DOM = [["Quanto costa?", "×24"], ["Come funziona?", "×17"], ["Quanto tempo serve?", "×12"]];
+        const qCards = DOM.map(([q, n], k) => {
+          const c = el(SV3.content, { position: "absolute", left: 30, top: 372 + k * 150, width: PH.sw - 60, height: 124, borderRadius: 22, background: "linear-gradient(180deg,#ffffff,#f1f1f1)", boxShadow: "0 12px 26px rgba(0,0,0,.4)", zIndex: 4 });
+          const a = el(c, { position: "absolute", left: 18, top: 28, width: 68, height: 68, borderRadius: "50%", overflow: "hidden" });
+          personaK(a, 0, 0, 68, { z: 1 });
+          el(c, { position: "absolute", left: 104, top: 0, height: 124, display: "flex", alignItems: "center", fontFamily: FS, fontWeight: 800, fontSize: 30, color: "#111", whiteSpace: "nowrap" }, q);
+          const cnt = el(c, { position: "absolute", right: 16, top: 34, padding: "6px 14px", borderRadius: 16, background: K.ink, fontFamily: FS, fontWeight: 800, fontSize: 26, color: K.lime, whiteSpace: "nowrap" }, n);
+          const ok = el(c, { position: "absolute", right: 16, top: 30, height: 64, padding: "0 16px", borderRadius: 18, background: limeFill(1), boxShadow: GLOW_A(0.6), display: "flex", alignItems: "center", gap: 8, fontFamily: FS, fontWeight: 800, fontSize: 24, color: K.ink, whiteSpace: "nowrap", opacity: 0 }, svg("check", 26, K.ink, 3) + "Risposta");
+          [c, ...c.querySelectorAll("*")].forEach((e) => e.setAttribute("data-layout-allow-overlap", ""));
+          gsap.set(c, { opacity: 0 });
+          return { c, cnt, ok };
+        });
+        const p3 = fp(RX3 - 18, RY3 - 10, RX3 + 560 + 372, RY3 + 13 + 890);
+        const c3 = [RX3 + 13 + PH.sw / 2, RY3 + 13 + PH.sh / 2];
+        const T_IN5 = 28.6;
+        obloInR13(T_IN5, { x: EV(2)[0], y: EV(2)[1], d: PRO.HD }, { el: R3, x: c3[0], y: c3[1], pose: p3 }, { pre: 0.42, cover: COV3 });
+        SV3.play(T_IN5, 2.4, { a: 1 });
+        qCards.forEach(({ c }, k) => tl.fromTo(c, { opacity: 0, y: 60, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.3, ease: "power2.out", immediateRender: false }, wt(79) + 0.1 + k * 0.1));
+        // "più spesso": i contatori pulsano
+        qCards.forEach(({ cnt }, k) => { tl.fromTo(cnt, { scale: 1 }, { scale: 1.25, duration: 0.1, ease: "power2.out", immediateRender: false }, wt(80) + 0.15 + k * 0.08); tl.to(cnt, { scale: 1, duration: 0.25, ease: "back.out(2.5)" }, wt(80) + 0.25 + k * 0.08); });
+        const D3 = dubbiR13(R3, RX3 + 560 + 186, RY3 + 770, DUB, { d: 220, fs: 38, pos: [[-20, -255], [-4, -385], [10, -515]], z: 30 });
+        D3.stato(T_IN5, 2, 3);
+        // "quelle che uno si fa": la sua domanda è la stessa dello sticker
+        const LQ = connector(S, [[RX3 + 13 + PH.sw - 40, RY3 + 13 + 372 + 62], [RX3 + 560 + 60, RY3 + 13 + 372 + 62], [RX3 + 560 + 186 + 10 - 150, RY3 + 770 - 515]], { color: "rgba(255,255,255,.75)", w: 4, dash: [12, 9], curve: "h" });
+        LQ.draw(wt(83), 0.35);
+        tl.fromTo(D3.bubbles[2].b, { scale: 1 }, { scale: 1.12, duration: 0.12, ease: "power2.out", immediateRender: false }, wt(84));
+        tl.to(D3.bubbles[2].b, { scale: 1, duration: 0.3, ease: "power2.out" }, wt(84) + 0.12);
+        // "prima di contattarti": il tasto Messaggio col lucchetto, in alto a destra
+        const TM = tastoMsgR13(R3, RX3 + 560 + 196, RY3 + 120, { w: 340, h: 92, z: 34 });
+        TM.show(wt(86) - 0.1);
+        // "così lo rassicuri subito"
+        qCards.forEach(({ cnt, ok }, k) => { tl.to(cnt, { opacity: 0, duration: 0.1 }, wt(89) + k * 0.1); tl.fromTo(ok, { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.28, ease: "back.out(2.2)", immediateRender: false }, wt(89) + k * 0.1); });
+        D3.answer(2, wt(91));
+        TM.unlock(wt(91) + 0.05);
+        D3.sereno(wt(92));
+        tl.to(LQ.p, { opacity: 0, duration: 0.2 }, wt(91));
+        float(29.15, 3.9, 0, -8, 0.025);
+        head([[{ t: "Prima di" }], [{ t: "contattarti", box: true }]], [wt(86), wt(87), wt(88)], 31.2);
+        head([[{ t: "Così lo " }, { t: "rassicuri", box: true }], [{ t: "subito" }]], [wt(89), wt(90), wt(91), wt(92)], 33.25);
+        const T_OUT4 = 33.55;
+        obloOutR13(T_OUT4, { el: R3, x: c3[0], y: c3[1] }, { x: EV(2)[0], y: EV(2)[1], d: PRO.HD }, { pose: pHub, cover: COV3, pre: 0.4, out: 0.6 });
+
+        // ═══ 6 · "Poi, come extra, il dietro le quinte, le offerte, le testimonianze." (33,55 – 38,5) ═════════════════════════════
+        // sul profilo la fila scorre come in Instagram e su "extra" compaiono tre posti col "+"; sulle parole dagli oblò degli extra
+        // ESCONO gli oggetti verso la camera (profondità): la fotocamera vera con la spia REC (dietro le quinte), il cartellino
+        // dell'offerta, la recensione a cinque stelle con un volto vero (testimonianze); le copertine si posano nei cerchi.
+        PRO.scrollTo(wt(94) - 0.1, -3 * PRO.HP, 0.6);
+        [3, 4, 5].forEach((i) => blurIn(SLOT[i].g, wt(95) - 0.05 + (i - 3) * 0.07, { y: 16, blur: 10, dur: 0.35 }));
+        tl.to(PRO.cells.map((c) => c.c), { filter: "brightness(.5) saturate(.75)", duration: 0.4 }, wt(95));
+        float(34.2, 4.2, 0, -10, 0.03);
+        const EVX = (i) => PRO.evXY(i, -3 * PRO.HP);       // centro del cerchio i dopo lo scorrimento
+        const COVX = [{ icon: "clapperboard", bg: "#f2f2f2", col: K.ink }, { icon: "tag", bg: "#f2f2f2", col: K.ink }, { icon: "star", bg: "#f2f2f2", col: K.ink }];
+        const NOMIX = ["Dietro le quinte", "Offerte", "Testimonianze"];
+        // un oggetto che esce dall'oblò: parte piccolo dal centro del cerchio e arriva grande sotto la fila (verso la camera)
+        const esce = (nodo, i, t, x, y) => {
+          const [ex, ey] = EVX(i);
+          tl.fromTo(nodo, { opacity: 0, x: ex - x, y: ey - y, scale: 0.18 }, { opacity: 1, x: 0, y: 0, scale: 1, duration: 0.5, ease: "power2.out", immediateRender: false }, t);
+          ripple(L, ex, ey, t, { r: 70, s0: 0.8, s1: 2.0, w: 4, dur: 0.45, z: 46 });
+        };
+        const OX = [329, 540, 733], OY = LY(793); // sulla griglia, sopra la safe zone
+        // dietro le quinte: la fotocamera vera (O, oggetto approvato) con la spia REC
+        const CAMx = fotocamera(L, OX[0], OY, 210, { z: 40 });
+        gsap.set(CAMx.g, { opacity: 0 });
+        // le offerte: il cartellino
+        const TAG = cartellinoR13(L, OX[1], OY, 215, "−20%", { z: 40, sotto: "OFFERTA" });
+        // le testimonianze: la recensione a cinque stelle
+        const REC = recensioneR13(L, OX[2], OY, 220, { volto: 29, z: 40 });
+        const TX = [wt(97), wt(101), wt(103)];
+        [CAMx.g, TAG.g, REC.g].forEach((n, k) => {
+          const t = TX[k] - 0.02;
+          SLOT[3 + k].fill(t, COVX[k], NOMIX[k]);
+          tl.fromTo(SLOT[3 + k].g, { scale: 1 }, { scale: 1.15, duration: 0.12, ease: "power2.out", immediateRender: false }, t);
+          tl.to(SLOT[3 + k].g, { scale: 1, duration: 0.3, ease: "power2.out" }, t + 0.12);
+          esce(n, 3 + k, t + 0.05, OX[k], OY);
+        });
+        CAMx.rec(TX[0] + 0.4, 2.6);
+        tl.fromTo(TAG.g, { rotation: -14 }, { rotation: -6, duration: 0.8, ease: "power2.out", immediateRender: false }, TX[1] + 0.05);
+        REC.stelle(TX[2] + 0.35);
+        head([[{ t: "Poi, come" }], [{ t: "extra", box: true }]], [wt(93), wt(94), wt(95)], 34.85);
+        head([[{ t: "Dietro le quinte" }], [{ t: "offerte, " }, { t: "testimonianze", box: true }]], [wt(97), wt(98), wt(99), wt(101), wt(103)], 38.05);
+
+        // ═══ 7 · "Non è una vetrina da riempire. È l'ultima cosa che qualcuno legge prima di decidere se scriverti o no." (38,5 – 45,27)
+        // la fila torna indietro e diventa una VETRINA di vetro (nuova): "da riempire" ci piovono dentro cerchi a caso e la riempiono,
+        // poi si spengono e scivolano fuori (F11): restano le evidenze giuste. "È l'ultima cosa": la camera fa un passo indietro su
+        // tutto il profilo e la linea di lettura scende dalla bio alle evidenze; "qualcuno legge": chi guarda (persona qualunque) le
+        // legge; "prima di decidere": il dito esita; "scriverti": preme Messaggio e si entra nel DM (l'ultimo oblò): arriva il suo
+        // messaggio, i messaggi passano da 0 a 1.
+        via([CAMx.g, TAG.g, REC.g], 38.3, 0.3);
+        tl.to(PRO.cells.map((c) => c.c), { filter: "brightness(1) saturate(1)", duration: 0.4 }, 38.4);
+        PRO.scrollTo(38.35, 0, 0.55);
+        const VT = vetrinaR13(L, PX + 2, LY(470), 556, 190, { z: 44 });
+        tl.fromTo(VT.g, { opacity: 0, scale: 1.06 }, { opacity: 1, scale: 1, duration: 0.35, ease: "power2.out", immediateRender: false }, wt(104));
+        VT.riflesso(wt(107) - 0.1, 0.8);
+        // i cerchi a caso che la riempiono
+        const RIEMPI = ["pizza", "gatto", "auto", "torta", "sushi", "cane", "lago", "concerto", "cappuccino", "tramonto", "pizza", "gatto"];
+        const extra = RIEMPI.map((n, k) => {
+          const d = 66 + (k % 3) * 10, x = PX + 40 + ((k * 47) % 480), y = LY(500) + (k % 4) * 30 + ((k * 13) % 20);
+          const g = el(L, { position: "absolute", left: x - d / 2, top: y - d / 2, width: d, height: d, zIndex: 43 });
+          g.setAttribute("data-layout-allow-overlap", "");
+          copertinaR13(g, d, { img: "th-r13-" + n });
+          el(g, { position: "absolute", left: -3, top: -3, width: d + 6, height: d + 6, borderRadius: "50%", border: "3px solid #48484b", boxSizing: "border-box" });
+          gsap.set(g, { opacity: 0 });
+          const t = wt(106) + 0.02 + k * 0.06;
+          // entrano di lato all'altezza della vetrina (dall'alto passerebbero sotto il titolo)
+          tl.fromTo(g, { opacity: 1, x: (k % 2 ? 1 : -1) * (620 + k * 12), rotation: hash(k, 3) * 60 }, { x: 0, rotation: hash(k, 5) * 12, duration: 0.34, ease: "power2.in", immediateRender: false }, t);
+          return g;
+        });
+        shake(wt(109), 6, 3);
+        // "non è": si spengono e scivolano fuori dal fondo
+        extra.forEach((g, k) => {
+          tl.to(g, { filter: "grayscale(1) brightness(.45)", duration: 0.15 }, 39.98 + k * 0.012);
+          tl.to(g, { y: 520 + k * 8, opacity: 0, duration: 0.42, ease: "power2.in" }, 40.08 + k * 0.012);
+        });
+        [0, 1, 2].forEach((i) => glowFlash(SLOT[i].lab, 40.4));
+        tl.to(VT.g, { opacity: 0, duration: 0.3 }, 40.5);
+        float(38.45, 1.85, 0, -6, 0.02);
+        head([[{ t: "Non è una" }], [{ t: "vetrina da riempire", box: true }]], [wt(104), wt(105), wt(106), wt(107), wt(108), wt(109)], 40.15);
+        // "È l'ultima cosa": passo indietro su tutto il profilo, con chi guarda a sinistra
+        const pEnd = fp(PX - 330, PY - 10, PX + 570, LY(930));
+        vai(wt(110), 0.95, pEnd, "sine.inOut");
+        // la parte alta del profilo si riaccende quando la camera è arrivata e il titolo è uscito (barra di stato esclusa: starebbe sotto il titolo)
+        velo(40.95, veloA, false);
+        tl.to(PRO.headEls.slice(0, 3), { opacity: 1, duration: 0.35 }, 41.0);
+        // la linea di lettura: dalla bio alle evidenze, l'ultima tappa
+        const [b0x, b0y, b1x, b1y] = PRO.bioRect();
+        const LET = connector(S, [[b0x + 10, b0y + 18], [b0x + 10, EV(0)[1] - 70], [EV(0)[0], EV(0)[1] - 60]], { color: K.lime, w: 6, glow: true, curve: "v" });
+        LET.draw(wt(111) + 0.05, 0.5);
+        const lastDot = el(L, { position: "absolute", left: EV(0)[0] - 13, top: EV(0)[1] - 73, width: 26, height: 26, borderRadius: "50%", background: K.lime, boxShadow: GLOW_A(1), zIndex: 50, opacity: 0 });
+        tl.to(lastDot, { opacity: 1, duration: 0.1 }, wt(111) + 0.55);
+        [0, 1, 2].forEach((i) => { tl.fromTo(SLOT[i].g, { scale: 1 }, { scale: 1.12, duration: 0.12, ease: "power2.out", immediateRender: false }, wt(113) + i * 0.06); tl.to(SLOT[i].g, { scale: 1, duration: 0.3, ease: "power2.out" }, wt(113) + 0.12 + i * 0.06); });
+        // "qualcuno legge": chi guarda, a sinistra, con lo sguardo sulle evidenze
+        const VIS = el(L, { position: "absolute", left: PX - 300, top: LY(470), width: 230, height: 230, zIndex: 40 });
+        personaK(VIS, 0, 0, 230, { z: 1 });
+        el(VIS, { position: "absolute", left: -7, top: -7, width: 244, height: 244, borderRadius: "50%", border: `6px solid ${K.lime}`, boxShadow: GLOW_A(0.8), boxSizing: "border-box" });
+        el(VIS, { position: "absolute", left: 160, top: 150, width: 76, height: 76, borderRadius: "50%", background: limeFill(1), display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "0 8px 18px rgba(0,0,0,.5)" }, svg("eye", 42, K.ink, 2.6));
+        gsap.set(VIS, { opacity: 0 });
+        tl.fromTo(VIS, { opacity: 0, x: -80, scale: 0.85 }, { opacity: 1, x: 0, scale: 1, duration: 0.45, ease: "power2.out", immediateRender: false }, wt(111) + 0.2); // entra con "l'ultima": il frame non resta vuoto a sinistra
+        const look = el(L, { position: "absolute", left: PX - 70, top: LY(470) + 40, width: 150, height: 150, clipPath: "polygon(0% 42%, 100% 0%, 100% 100%, 0% 58%)", background: "linear-gradient(90deg, rgba(255,255,255,.5), rgba(255,255,255,.08))", filter: "blur(3px)", zIndex: 39, opacity: 0 });
+        look.setAttribute("data-layout-allow-overlap", "");
+        tl.to(look, { opacity: 1, duration: 0.25 }, wt(116));
+        // "prima di decidere": il dito esita tra "indietro" e Messaggio; "scriverti": preme Messaggio
+        const F7 = tapFinger(L, { size: 96, z: 80 });
+        const [bkx, bky] = PRO.backXY();
+        float(41.3, 2.3, 0, -8, 0.02);
+        F7.show(wt(117) - 0.05, mx + 40, my + 200);
+        F7.to(wt(117) + 0.1, mx + 30, my + 40, 0.3);
+        F7.to(wt(119) - 0.05, bkx + 120, bky + 160, 0.32); // verso "indietro"…
+        F7.to(wt(120) - 0.32, mx, my, 0.3);                 // …e torna su Messaggio
+        F7.tap(wt(120) + 0.02);
+        tl.to(PRO.msgBtn, { backgroundColor: K.lime, color: K.ink, duration: 0.12 }, wt(120) + 0.02);
+        F7.hide(wt(121));
+        tl.to(look, { opacity: 0, duration: 0.2 }, wt(120));
+        // dentro il DM: l'ultimo oblò
+        const RD7 = stanza(10);
+        const DX = 11000, DY = 250;
+        const DMV = dmR13(RD7, DX, DY, { nome: "Nuovo messaggio", sotto: "Richiesta di messaggio", z: 12 });
+        const pD = fp(DX - 18, DY - 10, DX + 560 + 372, DY + 13 + 890);
+        const cD = [DX + 13 + PH.sw / 2, DY + 13 + 520];
+        const T_IN6 = wt(121) + 0.32;
+        obloInR13(T_IN6, { x: mx, y: my, d: 56 }, { el: RD7, x: cD[0], y: cD[1], pose: pD }, { pre: 0.32, D: 420, settle: 0.5 });
+        DMV.msg(T_IN6 + 0.05, "Ciao! Ho visto le tue storie in evidenza: possiamo sentirci?", { fs: 27, typing: 0.3 });
+        const DE = dubbiR13(RD7, DX + 560 + 186, DY + 770, DUB, { d: 220, fs: 38, pos: [[-20, -255], [-4, -385], [10, -515]], z: 30 });
+        DE.stato(T_IN6, 3, 3);
+        tl.set(DE.ringL, { opacity: 1 }, T_IN6);
+        tl.set(DE.ring, { opacity: 0 }, T_IN6);
+        const PM2 = pillMsgR13(RD7, DX + 560 + 196, DY + 110, { fs: 46, z: 40 });
+        tl.set(PM2.g, { opacity: 1 }, T_IN6);
+        PM2.accendi(wt(123));
+        pulse(RD7, DX + 560 + 196, DY + 110, wt(123), { r: 130, z: 39 });
+        float(T_IN6 + 0.5, 45.266 - T_IN6 - 0.5, 0, -6, 0.02);
+        head([[{ t: "L'ultima cosa" }], [{ t: "prima di " }, { t: "scriverti", box: true }]], [wt(111), wt(113), wt(117), wt(118), wt(121)]);
+
+        window.__timelines = window.__timelines || {};
+        window.__timelines["main"] = tl;
+      })();
+    </script>
+  </body>
+</html>

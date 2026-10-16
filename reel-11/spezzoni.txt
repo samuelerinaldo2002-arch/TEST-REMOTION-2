@@ -1,0 +1,9 @@
+# Spezzoni dei tuoi reel finiti (DA PUBBLICARE) per il reel 11/10: blocchi di facecam puliti trovati con
+# _tools/finestre_pulite.py 5 6 e controllati a 6 fps (08 14,4–22,2 ha una schermata di Instagram a ~18,9 s e 06 parte a 28,1 perché a 28,0 c’è ancora un fotogramma di grafica).
+# I tagli tra un blocco e l'altro cadono dove la luce cambia o la camera passa (4,2 · 8,2 · 18,9 · 28,5 s).
+# a · il tuo reel nella stanza: hook (0,4 s), lampadina (4,2 s), mirino (8,2 s), vista dall'alto (fino a 14,2 s)
+a    01 19.1 3.8 1080 + 02 44.2 4.0 + 06 28.1 4.9 + 08 14.4 1.1
+# p · il tuo reel nello schermo del telefono: gradino 1 (13,6 s) e gradino 2 (18,9 s), fino al cambio in fotocamera
+p    03 14.0 5.3 720 + 04 42.7 4.9
+# c · il tuo reel nel mirino della fotocamera vera: gradino 3 (23,5 s), controluce (28,5 s), finale (33,5 s)
+c    07 37.7 5.0 720 + 08 36.7 5.0 + 02 44.2 2.3

@@ -1,0 +1,542 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>Reel 12/10 — I contenuti non sono pubblicità (stile Kallaway, sessione 5)</title>
+    <script src="assets/vendor/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Advercase"; src: url("assets/fonts/Advercase-Bold.ttf") format("truetype"); font-weight: 700; font-style: normal; font-display: block; }
+      @font-face { font-family: "Advercase"; src: url("assets/fonts/Advercase-Regular.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: block; }
+      @font-face { font-family: "Patrick Hand"; src: url("assets/fonts/PatrickHand-Regular.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: block; }
+      @font-face { font-family: "Zalando Sans"; src: url("assets/fonts/ZalandoSans-Variable.ttf") format("truetype"); font-weight: 100 900; font-style: normal; font-display: block; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: #1e1e1e; }
+      body { font-family: "Zalando Sans", sans-serif; color: #f4f4f2; -webkit-font-smoothing: antialiased; }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; background: #1e1e1e; }
+      .clip { position: absolute; inset: 0; overflow: hidden; }
+      #glow { position: absolute; inset: 0; opacity: 0.35; background: radial-gradient(58% 32% at 50% 46%, rgba(207, 251, 80, 0.08), rgba(207, 251, 80, 0) 70%); }
+      #vignette { position: absolute; inset: 0; background: radial-gradient(110% 78% at 50% 44%, rgba(0, 0, 0, 0) 44%, rgba(0, 0, 0, 0.62) 100%); }
+      .cam { position: absolute; left: 540px; top: 880px; width: 1px; height: 1px; }
+      .layer { position: absolute; left: 0; top: 0; width: 1px; height: 1px; }
+      #dots { position: absolute; left: -9000px; top: -9000px; width: 40000px; height: 24000px; background-image: radial-gradient(circle, rgba(255, 255, 255, 0.095) 1.25px, rgba(255, 255, 255, 0) 1.95px); background-size: 24px 24px; }
+      #stage { position: absolute; inset: 0; overflow: hidden; }
+      /* sotto y≈1332 c'è la faccia dell'utente (SAFEZONE.jpg): la grafica sta sopra 1300; qui la sfumatura che finisce prima della linea */
+      #safe { position: absolute; inset: 0; -webkit-mask-image: linear-gradient(to bottom, #000 0px, #000 1290px, transparent 1331px); mask-image: linear-gradient(to bottom, #000 0px, #000 1290px, transparent 1331px); }
+      /* anche i puntini e il bokeh dello sfondo si spengono prima della linea (con lo zoom della camera i puntini diventano grafica) */
+      #bgsafe { position: absolute; inset: 0; -webkit-mask-image: linear-gradient(to bottom, #000 0px, #000 1290px, transparent 1331px); mask-image: linear-gradient(to bottom, #000 0px, #000 1290px, transparent 1331px); }
+      #mbwrap, #shake { position: absolute; inset: 0; }
+      #hud { position: absolute; inset: 0; }
+    </style>
+  </head>
+  <body>
+    <!--WORDS ../../my-video-ottobre-p1-test/src/words/d12.ts-->
+    <div id="root" data-composition-id="main" data-start="0" data-duration="41.033" data-width="1080" data-height="1920">
+      <div id="bg" class="clip" data-start="0" data-duration="41.033" data-track-index="0">
+        <div id="bgsafe">
+          <div class="cam" id="gcam2" data-layout-allow-overflow><div class="layer" id="gzoom2"><div class="layer" id="gpan2"><div class="layer" id="bokeh"></div></div></div></div>
+          <div class="cam" id="gcam" data-layout-allow-overflow><div class="layer" id="gzoom"><div class="layer" id="gpan"><div id="dots"></div></div></div></div>
+        </div>
+        <div id="glow"></div>
+        <div id="vignette"></div>
+      </div>
+      <!-- senza timing di proposito: le clip dentro hanno il loro data-start -->
+      <div id="stage">
+        <svg width="0" height="0" style="position: absolute" aria-hidden="true">
+          <filter id="mb" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur id="mbn" in="SourceGraphic" stdDeviation="0 0" /></filter>
+        </svg>
+        <div id="safe"><div id="mbwrap"><div id="shake"><div class="cam" id="cam" data-layout-allow-overflow><div class="layer" id="zoom"><div class="layer" id="pan"></div></div></div></div></div></div>
+        <!--VIDEOS
+          # 1–5 · i tuoi reel nei cartelloni (B0 è il hook, B2 il primo piano della scena 3)
+          b0 assets/clips/b0.mp4 0 7.2
+          # hook · "Molte attività": altri reel attorno al tuo, fuori fuoco (stesse clip della bacheca, altri momenti, sfocati)
+          h1 assets/clips/t4.mp4 0 2.6 3.0
+          h2 assets/clips/t5.mp4 0 2.6 5.0
+          h3 assets/clips/t6.mp4 0 2.6 2.0
+          h4 assets/clips/t7.mp4 0 2.6 4.5
+          r1 assets/clips/r1.mp4 3.0 9.8
+          r2 assets/clips/r2.mp4 3.0 15.0
+          b3 assets/clips/b3.mp4 17.8 7.8
+          # 6–8 · i 10 contenuti della regola (t9 e t10 sono i due che chiedono)
+          t1 assets/clips/t1.mp4 28.9 8.4
+          t2 assets/clips/t2.mp4 28.9 8.4
+          t3 assets/clips/t3.mp4 28.9 8.4
+          t4 assets/clips/t4.mp4 28.9 8.4
+          t5 assets/clips/t5.mp4 28.9 8.4
+          t6 assets/clips/t6.mp4 28.9 8.4
+          t7 assets/clips/t7.mp4 28.9 8.4
+          t8 assets/clips/t8.mp4 28.9 12.13
+          t9 assets/clips/t9.mp4 28.9 12.13
+          t10 assets/clips/t10.mp4 28.9 12.13
+        -->
+      </div>
+      <div id="hudclip" class="clip" data-start="0" data-duration="41.033" data-track-index="2">
+        <div id="hud"></div>
+      </div>
+
+      <!--SFX
+        # 1 · il tuo reel, la pubblicità di Instagram, i cartelloni, la curva delle visualizzazioni crolla
+        0.0 whoosh .1 ; 1.7 pop .05 ; 3.13 pop .06 ; 3.15 whoosh .14 ; 3.3 card .07 ; 3.45 card .06 ; 3.55 land .06
+        3.85 click .07 ; 3.92 tick .05 ; 3.99 tick .05 ; 4.06 tick .05 ; 4.93 rise .05 ; 5.0 pop .05
+        5.6 bong .1 ; 5.62 glitch .08 ; 5.95 drop .07 ; 6.0 sub .06
+        # 2 · ogni contenuto deve portare un cliente, due cose insieme
+        6.4 whoosh .1 ; 7.37 tap .07 ; 7.45 tap .06 ; 8.13 tick .05 ; 8.21 tick .05 ; 8.29 tick .05 ; 8.37 tick .05
+        8.9 whoosh .06 ; 9.4 pop .05 ; 9.46 pop .05 ; 9.52 pop .05 ; 10.8 pop .08 ; 11.13 pop .08 ; 11.53 whoosh .14 ; 11.53 rise .06
+        # 3 · il contenuto peggiora con gli adesivi, il cartellino del prezzo, la nuvoletta si spegne
+        12.67 whoosh .12 ; 12.95 pop .06 ; 13.03 ding .05 ; 14.23 slam .12 ; 14.44 slam .1 ; 14.65 slam .1 ; 14.86 slam .1
+        15.83 whoosh .06 ; 15.9 tick .06 ; 16.0 click .08 ; 16.83 bong .08 ; 17.2 drop .07
+        # 4 · il ritorno non arriva, il posto resta vuoto e il contatore a zero
+        17.87 whoosh .12 ; 18.13 ding .05 ; 19.1 whoosh .05 ; 19.25 tick .05 ; 19.87 error .06 ; 20.2 tap .07 ; 20.3 bong .06
+        # 5 · ti convinci e smetti, i cartelloni crollano
+        21.03 whoosh .08 ; 21.3 pop .05 ; 22.0 slam .08 ; 22.83 toggle .14 ; 22.95 click .06 ; 23.05 click .05 ; 23.15 click .05
+        23.6 whoosh .08 ; 23.95 slam .08 ; 24.2 slam .09 ; 24.45 slam .1 ; 24.5 sub .12 ; 24.7 land .08 ; 25.0 glitch .05
+        # 6 · la regola con il righello, gli 8 che danno e i 2 che chiedono
+        26.17 whoosh .14 ; 27.27 tick .04 ; 27.33 tick .04 ; 27.39 tick .04 ; 27.45 tick .04 ; 27.51 tick .04 ; 28.03 whoosh .05
+        29.03 card .05 ; 29.1 card .05 ; 29.2 card .05 ; 30.17 pop .05 ; 30.29 pop .05 ; 30.41 pop .05 ; 30.53 pop .05 ; 30.65 pop .05
+        30.77 pop .05 ; 30.89 pop .05 ; 31.01 pop .05 ; 31.5 ding .08 ; 31.58 ding .06 ; 31.8 tap .06
+        # 7 · l'anello attorno a te, le persone ti scrivono
+        33.47 whoosh .12 ; 33.9 tick .04 ; 34.0 tick .04 ; 34.1 tick .04 ; 34.2 tick .04 ; 34.5 ding .08 ; 35.23 pop .08 ; 35.6 rise .05
+        36.1 key1 .04 ; 36.2 key2 .04 ; 36.4 pop .06 ; 36.7 pop .06 ; 37.0 pop .06
+        # 8 · i due che chiedono funzionano
+        37.37 whoosh .1 ; 38.73 pop .06 ; 39.0 whoosh .06 ; 39.43 ding .12 ; 39.5 tap .08 ; 39.55 ding .08 ; 39.9 tick .04 ; 40.1 tick .04
+      -->
+    </div>
+
+    <script>
+      (() => {
+        const ICON = __ICONS__;
+        /*__KIT__*/
+
+        // ═══ base ═══════════════════════════════════════════════════════════════════════════════════════════════
+        // sotto y = 1320 c'è la faccia dell'utente (SAFEZONE.jpg): tutte le inquadrature finiscono a 1300
+        BAND.y1 = 1300;
+        bokeh($("bokeh"), [
+          [120, 320, 360, 0.06], [620, -60, 260, 0.035, true], [860, 720, 420, 0.05], [180, 1150, 300, 0.04, true],
+          [1650, 450, 380, 0.05], [2300, 1000, 420, 0.05, true], [3000, 600, 400, 0.06], [3700, 1250, 380, 0.045],
+          [4400, 500, 420, 0.05], [5200, 1100, 380, 0.045, true], [6000, 400, 420, 0.05], [6900, 1000, 380, 0.05, true],
+        ]);
+        const L = layer(10);
+        const S = svgLayer(L, 6, -60000, -60000, 200000, 200000);
+        const wt = (i) => WORDS[i][1]; // istante della parola i (indici: python -X utf8 _tools/parole.py …/d12.ts)
+        const head = (lines, times, out, o) => { const T = titleW(Object.assign({ lines, size: 82 }, o || {})); T.inAt(times); if (out) T.outAt(out); return T; };
+        const fr = (r, o) => fitPose(r[0], r[1], r[2], r[3], o || {});
+        const go = (t, dur, r, o, ease) => { const p = fr(r, o); camK(t, dur, p.fx, p.fy, p.s, ease || KW.move); return p; };
+        const pallino = (x, y, n, d) => {
+          d = d || 150;
+          const b = el(L, { position: "absolute", left: x - d / 2, top: y - d / 2, width: d, height: d, borderRadius: "50%", background: "radial-gradient(circle at 38% 30%, #5a5a5a, #232323 72%)", backgroundColor: "#2a2a2a", border: "5px solid #ffffff", boxShadow: "0 18px 40px rgba(0,0,0,.6), 0 0 26px rgba(255,255,255,.35)", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: FD, fontWeight: 700, fontSize: Math.round(d * 0.6), color: "#ffffff", zIndex: 40 }, n);
+          const on = el(b, { position: "absolute", inset: -5, borderRadius: "50%", background: limeFill(1), backgroundColor: K.lime, border: `5px solid ${K.lime}`, boxShadow: GLOW_A(1), display: "flex", alignItems: "center", justifyContent: "center", fontFamily: FD, fontWeight: 700, fontSize: Math.round(d * 0.6), color: K.ink, opacity: 0 }, n);
+          b.setAttribute("data-layout-allow-overlap", "");
+          gsap.set(b, { opacity: 0, scale: 0.4 });
+          // acceso: il disco lime copre il numero bianco → anche il numero sotto diventa scuro (contrasto)
+          const lit = (t) => { tl.to(on, { opacity: 1, duration: 0.15 }, t); tl.set(b, { color: K.ink }, t); };
+          return { b, on, x, y, lit };
+        };
+        // volti veri dell'atlante per la gente che passa (folla): scelti sul foglio numerato, occhi aperti, niente scritte
+        const S2_ = 6.4; // inizio della scena 2 (serve già alla deriva della camera del hook)
+        const VOLTI = [3, 2, 8, 5, 13, 17, 22, 29, 25, 10, 33, 27, 38, 44, 40, 9, 53, 55, 70, 1, 12, 18, 32, 35, 41, 49, 52, 67, 80, 82]; // atlas-muro
+
+        // ── il mondo: una strada orizzontale (sinistra → destra); sopra i contenuti, sotto la gente che passa ──
+        const GY = 1100, LY = 1218, BX = [540, 1420, 2300, 3180];
+        const AD = [["−30%", "OFFERTA LIMITATA", "COMPRA ORA"], ["PROMO", "SOLO PER OGGI", "PRENOTA ORA"], ["−50%", "ULTIMI POSTI", "ACQUISTA ORA"], ["SALDI", "SOLO QUESTA SETTIMANA", "COMPRA ORA"]];
+        const VID = ["b0", "r1", "r2", "b3"];
+        const BB = BX.map((x, i) => cartelloneR12(L, x, GY, { vid: VID[i], ad: AD[i], fsBig: AD[i][0].length > 4 ? 124 : 148, views: ["12,4K", "9,8K", "15,1K", "8,7K"][i], z: 12 }));
+        gsap.set(BB[3].reel, { opacity: 0 });
+        tl.set(BB[3].reel, { opacity: 1 }, 17.75);
+        const road = pathEl(S, `M -700 ${GY} L 4560 ${GY}`, { fill: "none", stroke: "rgba(255,255,255,.8)", "stroke-width": 5, "stroke-linecap": "round" });
+        road.style.filter = "drop-shadow(0 0 8px rgba(255,255,255,.55))";
+        drawable(road);
+        const LANE = corsiaR12(L, -500, 4700, LY, { volti: VOLTI, gap: 170, d: 126, z: 18 });
+        gsap.set(LANE.faces.map((f) => f.h), { opacity: 0 });
+
+        // ═══ 1 · HOOK — "Molte attività trattano i propri contenuti come se fossero pubblicità diretta, e questo li rovina." ═══
+        // (0 – 6,35) A02: il tuo reel vero già in scena al fotogramma 0 (rack focus) e la camera che spinge piano. "Molte attività":
+        // attorno al tuo, altri reel fuori fuoco (più vicini alla camera) che si allargano e si spengono quando arrivano "i propri
+        // contenuti": le visualizzazioni del tuo salgono. "come se fossero": il reel prende l'interfaccia della pubblicità di
+        // Instagram (Sponsorizzato, Acquista ora). "pubblicità": il reel DIVENTA il cartellone (A05): il pannello cresce dai suoi
+        // bordi, le gambe scendono, le lampade; la camera si allarga sul cartellone intero; "diretta": le lampade si accendono (F05).
+        // "e questo": la camera scorre sulla strada degli altri cartelloni; "rovina": la curva crolla (D04), i reel grigi a onda (F11)
+        const p0 = fr([BB[0].X0 + 4, 168, BB[0].X0 + 265, 616], { fill: 1.0 });
+        camInit(p0.fx, p0.fy + 4, p0.s * 0.93);
+        rackFocus(0, 0.45);
+        camK(0, 3.0, p0.fx, p0.fy - 6, p0.s * 1.03, "sine.inOut");
+        // gli altri reel attorno al tuo (2 colonne ai lati, tagliate dal bordo): fuori fuoco, si allargano piano, poi si spengono
+        const HK = [["h1", 3, 138, -1], ["h2", 3, 350, -1], ["h3", 451, 128, 1], ["h4", 451, 340, 1]].map(([id, x, y, dir], k) => {
+          const f = el(L, { position: "absolute", left: x, top: y, width: 106, height: 189, borderRadius: 6, overflow: "hidden", background: "#111", border: "1px solid rgba(255,255,255,.25)", boxShadow: "0 16px 30px rgba(0,0,0,.5)", zIndex: 8 });
+          videoTile(f, 0, 0, 106, 189, id, 1);
+          [f, ...f.querySelectorAll("*")].forEach((e) => e.setAttribute("data-layout-allow-overlap", ""));
+          gsap.set(f, { filter: "blur(3px) brightness(.7)", opacity: 0.85 });
+          tl.to(f, { x: dir * 22, y: (k % 2 ? 8 : -8), duration: 2.4, ease: "sine.out" }, 0);
+          tl.to(f, { opacity: 0, x: dir * 60, duration: 0.55, ease: "power2.in" }, wt(5) + k * 0.05);
+          return f;
+        });
+        // "contenuti": le visualizzazioni del tuo reel salgono
+        BB[0].viewsIn(wt(5));
+        { const V = { v: 0 }; tl.fromTo(V, { v: 0 }, { v: 12400, duration: 0.7, ease: "power2.out", immediateRender: false, onUpdate: () => (BB[0].vwN.textContent = V.v >= 1000 ? (V.v / 1000).toFixed(1).replace(".", ",") + "K" : String(Math.round(V.v))) }, wt(5)); }
+        const PUB = wt(9), DIR = wt(10);
+        BB[0].adIG(wt(6));
+        BB.forEach((b, i) => { if (i) b.adIG(PUB + i * 0.06); });
+        BB.forEach((b, i) => b.build(PUB + 0.02 + i * 0.12, { dur: 0.6 }));
+        BB.forEach((b, i) => b.lampsOn(DIR + 0.02 + i * 0.07));
+        go(PUB, 1.0, [BB[0].X0 - 50, BB[0].Y0 - 120, BB[0].X0 + CART_R12.W + 50, GY + 40], { fill: 0.98 });
+        drawOn(road, PUB + 0.2, 0.9, "power2.out");
+        // la gente che passa entra quando la camera scorre sulla strada (nel quadro del solo cartellone sarebbe tagliata dalla linea)
+        tl.to(LANE.faces.map((f) => f.h), { opacity: 1, duration: 0.4 }, wt(11) + 0.2);
+        LANE.flow(PUB, 26.2, 80);
+        float(PUB + 1.0, wt(11) - PUB - 1.0, 12, 0, 0.01);
+        const pStreet = go(wt(11), 1.05, [90, -190, 1900, 1290], { fill: 0.98 });
+        [1, 2].forEach((i) => BB[i].viewsIn(wt(12) + i * 0.07));
+        // la curva delle visualizzazioni (D04): sale su "questo", crolla su "rovina"
+        const VC = el(L, { position: "absolute", left: 90, top: -250, display: "flex", alignItems: "center", gap: 12, padding: "10px 22px", borderRadius: 30, background: "linear-gradient(180deg,#3a3a3a,#232323)", backgroundColor: "#2c2c2c", border: "2px solid rgba(255,255,255,.3)", fontFamily: FS, fontWeight: 800, fontSize: 44, color: "#ffffff", whiteSpace: "nowrap", boxShadow: "0 14px 30px rgba(0,0,0,.5)", zIndex: 30 }, svg("eye", 46, "#ffffff", 2.4) + "visualizzazioni");
+        gsap.set(VC, { opacity: 0 });
+        tl.fromTo(VC, { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.3, ease: "power2.out", immediateRender: false }, wt(12));
+        const up = pathEl(S, "M 140 -40 C 380 -60, 640 -110, 860 -150", { fill: "none", stroke: "#ffffff", "stroke-width": 9, "stroke-linecap": "round" });
+        const crash = pathEl(S, "M 860 -150 C 930 -150, 960 20, 980 150", { fill: "none", stroke: "#ffffff", "stroke-width": 9, "stroke-linecap": "round" });
+        [up, crash].forEach((p) => { p.style.filter = "drop-shadow(0 0 10px rgba(255,255,255,.75))"; drawable(p); });
+        drawOn(up, wt(12) + 0.05, 0.6, "power1.out");
+        drawOn(crash, wt(14), 0.3, "power2.in");
+        const CRD = el(L, { position: "absolute", left: 980 - 44, top: 150 - 44, width: 88, height: 88, borderRadius: "50%", background: "radial-gradient(circle at 40% 35%, #555, #1c1c1c 72%)", backgroundColor: "#2a2a2a", border: "5px solid #ffffff", boxShadow: "0 0 24px rgba(255,255,255,.6)", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 31 }, svg("trending-down", 50, "#ffffff", 3));
+        CRD.setAttribute("data-layout-allow-overlap", "");
+        gsap.set(CRD, { opacity: 0 });
+        tl.fromTo(CRD, { opacity: 0, scale: 1.7 }, { opacity: 1, scale: 1, duration: 0.3, ease: "power2.out", immediateRender: false }, wt(14) + 0.3);
+        pulse(L, 980, 150, wt(14) + 0.3, { r: 120, z: 29 });
+        BB.forEach((b, i) => b.views(wt(14) + i * 0.08, [12400, 9800, 15100, 8700][i], [318, 241, 402, 196][i], 0.45));
+        BB.forEach((b, i) => b.grey(wt(14) + 0.1 + i * 0.08, 0.55));
+        shake(wt(14) + 0.3, 5, 4);
+        float(wt(11) + 1.05, S2_ - wt(11) - 1.05, 50, 0, 0.012);
+        head([[{ t: "Molte attività trattano" }], [{ t: "i contenuti" }]], [wt(0), wt(1), wt(2), wt(3), wt(5)], 2.65);
+        head([[{ t: "Pubblicità", box: true }], [{ t: "diretta" }]], [wt(9), wt(10)], 4.45);
+        head([[{ t: "Questo li " }, { t: "rovina", box: true }]], [wt(12), wt(13), wt(14)], 6.9);
+
+        // ═══ 2 · "Nel momento in cui pretendi che ogni contenuto porti un cliente, succedono due cose insieme." (6,4 – 12,6) ═══
+        // un movimento: la camera scorre a destra lungo la strada, poi scivola piano. "pretendi": i COMPRA ORA pulsano; "ogni
+        // contenuto": i cartelloni si accendono a cascata (L03); "porti un cliente": linee tratteggiate (C01) fino al posto del
+        // cliente. "due cose": i numeri 1 (i contenuti, sopra) e 2 (la gente, il ritorno, sotto); "insieme": due linee lime corrono
+        // INSIEME lungo le due corsie
+        const S2 = S2_, TOPY = -70, BOTY = 1352;
+        go(S2, 1.3, [980, -190, 2740, 1430], { fill: 0.97 });
+        float(S2 + 1.3, 4.9, 70, 0, 0.015);
+        [0, 1, 2, 3].forEach((i) => BB[i].cta(wt(19) + i * 0.08));
+        BB.forEach((b, i) => {
+          const t = wt(21) + i * 0.08;
+          tl.to(b.frame, { boxShadow: "0 44px 100px rgba(0,0,0,.62), 0 0 0 4px #ffffff, 0 0 40px rgba(255,255,255,.55)", duration: 0.1 }, t);
+          tl.to(b.frame, { boxShadow: "0 44px 100px rgba(0,0,0,.62), inset 0 2px 0 rgba(255,255,255,.16)", duration: 0.4 }, t + 0.12);
+        });
+        const SLOT = BB.map((b, i) => {
+          const cn = connector(S, [[BX[i], b.Y0 + CART_R12.H + 8], [BX[i], LY - 66]], { color: "rgba(255,255,255,.7)", w: 4, dash: [12, 10] });
+          cn.draw(wt(23) + i * 0.06, 0.4);
+          const ps = postoR12(L, BX[i], LY, 128, { z: 14 });
+          ps.show(wt(25) + i * 0.06);
+          return { cn, ps };
+        });
+        tl.to([VC, up, crash, CRD], { opacity: 0, duration: 0.3 }, wt(26));
+        const N1 = pallino(1080, TOPY, "1"), N2 = pallino(1080, BOTY, "2");
+        tl.to(N1.b, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(2)" }, wt(27));
+        tl.to(N2.b, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(2)" }, wt(28));
+        const R1 = connector(S, [[1170, TOPY], [3000, TOPY]], { color: K.lime, w: 9, glow: true });
+        const R2 = connector(S, [[1170, BOTY], [3000, BOTY]], { color: K.lime, w: 9, glow: true });
+        R1.draw(wt(29), 0.95, "power2.out");
+        R2.draw(wt(29), 0.95, "power2.out");
+        const NB = [N1.b, N2.b, R1.p, R2.p];
+        head([[{ t: "Ogni contenuto porti" }], [{ t: "un " }, { t: "cliente", box: true }]], [wt(21), wt(22), wt(23), wt(24), wt(25)], 10.3);
+        head([[{ t: "Due cose" }], [{ t: "insieme", box: true }]], [wt(27), wt(28), wt(29)], 12.4);
+
+        // ═══ 3 · "La prima, il contenuto peggiora perché inizi a vendere invece che a dire qualcosa." (12,7 – 17,8) ═══════
+        // un movimento: primo piano del cartellone B2, poi la camera scivola piano. Il numero 1 si accende sull'angolo. Il tuo reel
+        // parla (nuvoletta con la lampadina = dire qualcosa). "peggiora": gli adesivi delle offerte calano sulla tua faccia (F12) e
+        // il reel diventa grigio. "vendere": il cartellino del prezzo oscilla, COMPRA ORA si gonfia. "dire qualcosa": la nuvoletta
+        // si spegne, viene barrata e cade
+        const S3 = wt(30), B2 = BB[2];
+        tl.to(NB, { opacity: 0, duration: 0.25 }, S3 - 0.1);
+        { const p = fr([B2.X0 - 30, 40, B2.X0 + CART_R12.W + 30, 650], { fill: 1.0 }); camK(S3, 0.95, p.fx, 40 + (ANCHOR.y - 352) / p.s, p.s, KW.move); }
+        float(S3 + 0.95, 4.2, 0, -6, 0.025);
+        const T1 = pallino(B2.X0 + 30, B2.Y0 + 30, "1", 96);
+        tl.to(T1.b, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(2)" }, S3 + 0.25);
+        T1.lit(wt(31));
+        tl.to(B2.reel, { filter: "none", duration: 0.3 }, S3); // il tuo primo piano torna a colori, prima di peggiorare
+        const RR = B2.reelRect();
+        const bub = el(L, { position: "absolute", left: RR[2] - 60, top: RR[1] + 26, width: 150, height: 112, zIndex: 20 });
+        const bubIn = el(bub, { position: "absolute", left: 0, top: 0, width: 150, height: 96, borderRadius: 48, background: "linear-gradient(180deg,#ffffff,#e9e9e4)", backgroundColor: "#f4f4f0", border: "3px solid #1e1e1e", display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "0 14px 28px rgba(0,0,0,.45)" }, svg("lightbulb", 54, "#1e1e1e", 2.4));
+        el(bub, { position: "absolute", left: 16, top: 84, width: 24, height: 24, background: "#ffffff", borderLeft: "3px solid #1e1e1e", borderBottom: "3px solid #1e1e1e", transform: "rotate(-20deg) skewX(20deg)" });
+        const bubStrike = el(bub, { position: "absolute", left: -6, top: 44, width: 162, height: 10, borderRadius: 5, background: "#1e1e1e", transformOrigin: "0 50%", boxShadow: "0 0 0 2px #ffffff" });
+        gsap.set(bubStrike, { scaleX: 0, rotation: -14 });
+        [bub, ...bub.querySelectorAll("*")].forEach((e) => e.setAttribute("data-layout-allow-overlap", ""));
+        gsap.set(bub, { opacity: 0 });
+        tl.fromTo(bub, { opacity: 0, scale: 0.4, transformOrigin: "10% 100%" }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(2)", immediateRender: false }, 12.95);
+        tl.fromTo(bubIn, { y: 0 }, { y: -6, duration: 0.5, yoyo: true, repeat: 2, ease: "sine.inOut", immediateRender: false }, 13.3);
+        const ST = [["−50%", 98, 132, -12, { round: true, w: 150, fs: 50, dark: true }], ["SOLO OGGI", 150, 268, 8, { w: 236, h: 76, fs: 40 }], ["PROMO", 104, 362, -6, { w: 196, h: 76, fs: 44, dark: true }], ["ULTIMI POSTI", 156, 210, 4, { w: 268, h: 70, fs: 34, font: FS }]];
+        ST.forEach(([tx, x, y, r, oo], k) => B2.sticker(wt(34) + k * 0.21, tx, CART_R12.B + x, CART_R12.B + y, r, oo));
+        B2.grey(wt(34) + 0.05, 0.62);
+        shake(wt(34), 4, 3);
+        B2.tag(wt(38), "€ 97", { x: CART_R12.W - 92 });
+        B2.cta(wt(38) + 0.12, 1.16);
+        B2.cta(wt(40), 1.1);
+        tl.to(bubIn, { background: "linear-gradient(180deg,#8d8d89,#6f6f6b)", backgroundColor: "#7e7e7a", duration: 0.2 }, wt(42));
+        tl.to(bubStrike, { scaleX: 1, duration: 0.18, ease: "power2.out" }, wt(42) + 0.05);
+        tl.to(bub, { y: 120, rotation: 18, opacity: 0, duration: 0.5, ease: "power2.in" }, 17.2);
+        head([[{ t: "Il contenuto" }], [{ t: "peggiora", box: true }]], [wt(32), wt(33), wt(34)], 15.3);
+        head([[{ t: "Vendere invece che" }], [{ t: "dire qualcosa", box: true }]], [wt(38), wt(39), wt(40), wt(42), wt(43)], 17.45);
+
+        // ═══ 4 · "La seconda, il ritorno non arriva comunque," (17,9 – 21,0) ═══════════════════════════════════════
+        // un movimento: al cartellone B3, al suo posto del cliente e al contatore dei clienti; in fondo alla strada, ancora fuori
+        // fuoco, ci sei tu con l'interruttore "Pubblica". Il numero 2 sul posto; "il ritorno": la freccia tratteggiata del ritorno sale
+        // verso il COMPRA ORA e la card dei clienti (D01) disegna la sua linea piatta a 0; "non arriva": una persona rallenta
+        // davanti al posto vuoto e tira dritto; "comunque": COMPRA ORA lampeggia, sempre 0
+        const S4 = wt(44), B3 = BB[3], P3 = SLOT[3].ps;
+        tl.to(T1.b, { opacity: 0, duration: 0.2 }, S4);
+        go(S4, 1.1, [2990, 40, 4440, 1290], { fill: 0.97 });
+        float(S4 + 1.1, 2.05, 40, 0, 0.015);
+        const T2 = pallino(BX[3] - 96, LY - 72, "2", 84);
+        tl.to(T2.b, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(2)" }, S4 + 0.3);
+        T2.lit(wt(45));
+        const CL = statCard(L, 3640, 140, { label: "Clienti dai contenuti", icon: "users", w: 740, h: 390, fs: 150, points: [[0, 0], [0.25, 0], [0.5, 0], [0.75, 0], [1, 0]], hidden: true, z: 20 });
+        CL.slideIn(S4 + 0.35, { from: 1, dist: 360 });
+        CL.count(wt(47), 0, 0, 0.9, () => "0");
+        // in fondo alla strada: tu e l'interruttore, ancora fuori fuoco (non detti)
+        const ME = avatar(L, 3830, 800, 250, "tu", { bw: 5, ring: "#ffffff", z: 22 });
+        const LV = levaR12(L, 4190, 835, { z: 22 });
+        gsap.set([ME, LV.g], { opacity: 0 });
+        tl.fromTo([ME, LV.g], { opacity: 0, filter: "blur(12px)" }, { opacity: 0.45, filter: "blur(9px)", duration: 0.5, ease: "power2.out", immediateRender: false }, S4 + 0.5);
+        const [cx3, cy3] = B3.ctaXY();
+        const RET = connector(S, [[BX[3] + 40, LY - 70], [BX[3] + 150, 880], [cx3, cy3 + 52]], { color: "rgba(255,255,255,.85)", w: 6, dash: [14, 10], curve: "v" });
+        RET.draw(wt(47), 0.55);
+        const arrowH = el(L, { position: "absolute", left: cx3 - 24, top: cy3 + 38, width: 48, height: 40, zIndex: 30 }, `<svg width="48" height="40" viewBox="0 0 48 40"><path d="M4 36 L24 6 L44 36" fill="none" stroke="#ffffff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/></svg>`);
+        gsap.set(arrowH, { opacity: 0 });
+        tl.to(arrowH, { opacity: 1, duration: 0.15 }, wt(47) + 0.5);
+        // la persona che rallenta davanti al posto vuoto e tira dritto
+        const passer = el(L, { position: "absolute", left: BX[3] + 560 - 64, top: LY - 64, width: 128, height: 128, zIndex: 19 });
+        faceDot(passer, 0, 0, 128, 44, null, { bw: 3 });
+        passer.setAttribute("data-layout-allow-overlap", "");
+        gsap.set(passer, { opacity: 0 });
+        tl.to(passer, { opacity: 1, duration: 0.3 }, 18.3);
+        tl.to(passer, { x: -420, duration: 1.25, ease: "power2.out" }, 18.3);
+        tl.to(passer, { x: -560, duration: 0.6, ease: "sine.inOut" }, 19.55);
+        tl.to(passer, { x: -1100, duration: 1.3, ease: "power1.in" }, 20.15);
+        P3.empty(wt(49));
+        // "non arriva": dal posto vuoto parte il ritorno ("−", C03) e si spegne a metà strada, prima del cartellone
+        const RET2 = connector(S, [[BX[3] + 40, LY - 70], [BX[3] + 120, 940]], { color: "rgba(255,255,255,0)", w: 2, curve: "v" });
+        const dieT = signal(L, RET2, wt(48), 0.5, { sign: "-", d: 64, z: 40, ring: false });
+        ripple(L, BX[3] + 120, 940, dieT, { r: 56, s0: 0.6, s1: 1.7, w: 3, dur: 0.45, color: "#ffffff", glow: false, z: 39 });
+        sparks(L, BX[3] + 120, 940, dieT, { n: 8, r0: 24, r1: 90, len: 22, z: 39, color: "#bdbdbd" });
+        tl.fromTo(CL.num, { x: 0 }, { x: 10, duration: 0.05, yoyo: true, repeat: 5, ease: "none", immediateRender: false }, wt(49));
+        B3.cta(wt(50), 1.2);
+        glowFlash(CL.num, wt(50) + 0.1);
+        head([[{ t: "Il ritorno" }], [{ t: "non arriva", box: true }]], [wt(46), wt(47), wt(48), wt(49)], 20.8);
+
+        // ═══ 5 · "quindi ti convinci che non funzioni e smetti, buttando via anche tutto quello che avevi già costruito." ═══
+        // (21,0 – 26,1) un movimento: la camera scivola su di te: la tua foto vera e l'interruttore "Pubblica" vanno a fuoco; "non
+        // funzioni": una ✗ cala sul contatore; "smetti": l'interruttore si spegne (U04, reel 136) e le lampade dei cartelloni si
+        // spengono a catena; "buttando via": i cartelloni crollano uno dopo l'altro e si sbriciolano (F10); la camera si allarga
+        // piano e resta la linea della strada
+        const S5 = wt(51);
+        go(S5, 1.0, [2960, 120, 4420, 1290], { fill: 0.97 });
+        tl.to([T2.b, RET.p, arrowH], { opacity: 0, duration: 0.25 }, S5);
+        tl.to([ME, LV.g], { opacity: 1, filter: "blur(0px)", duration: 0.3, ease: "power2.out" }, wt(52));
+        tl.set([ME, LV.g], { filter: "none" }, wt(52) + 0.31);
+        tl.fromTo(ME, { scale: 1 }, { scale: 1.08, duration: 0.14, ease: "power2.out", immediateRender: false }, wt(53));
+        tl.to(ME, { scale: 1, duration: 0.3, ease: "power2.out" }, wt(53) + 0.14);
+        const X = el(L, { position: "absolute", left: 3640 + 740 - 168, top: 140 + 86, width: 130, height: 130, borderRadius: "50%", background: "linear-gradient(180deg,#4a4a4a,#262626)", backgroundColor: "#333333", border: "5px solid #ffffff", display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "0 14px 28px rgba(0,0,0,.55)", zIndex: 30 }, svg("x", 80, "#ffffff", 3.4));
+        X.setAttribute("data-layout-allow-overlap", "");
+        gsap.set(X, { opacity: 0 });
+        tl.fromTo(X, { opacity: 0, scale: 1.8, rotation: -14 }, { opacity: 1, scale: 1, rotation: -8, duration: 0.16, ease: "power2.in", immediateRender: false }, wt(56));
+        tl.to(ME, { filter: "grayscale(1) brightness(.75)", duration: 0.4 }, wt(56) + 0.1);
+        LV.off(wt(58));
+        [3, 2, 1, 0].forEach((i, k) => BB[i].lampsOff(wt(58) + 0.12 + k * 0.1));
+        // "buttando via": crollano uno dopo l'altro (B0 e B1 fuori campo), polvere sui reel
+        const CR = [0, 1, 2, 3].map((i) => BB[i].crollo(wt(59) + i * 0.24, { rot: [-14, 12, -16, 13][i] }));
+        // la polvere chiara (come nel reel 40): il canvas non si scurisce con le macerie
+        [2, 3].forEach((i) => { const D = disintegrate(BB[i].g, BB[i].reel, CART_R12.B, CART_R12.B, CART_R12.RW, CART_R12.RH, ["th-mio_03", "th-mio_05"][i - 2], CR[i] + 0.06, { cols: 40, spread: 640, up: 140, dur: 1.3, sparks: 60 }); D.cv.style.filter = "grayscale(.5) brightness(1.9)"; });
+        [2, 3].forEach((i) => { shake(CR[i], 9, 4); sparks(L, BX[i], GY - 20, CR[i], { n: 14, r0: 60, r1: 320, len: 40, z: 40, color: "#d8d8d8" }); });
+        BB.forEach((b, i) => tl.to([...b.g.children].filter((e) => e.tagName !== "CANVAS"), { filter: "brightness(.42) grayscale(.6)", duration: 0.45 }, CR[i] + 0.35));
+        SLOT.forEach((s) => { s.ps.hide(wt(62)); tl.to(s.cn.p, { opacity: 0, duration: 0.3 }, wt(62)); });
+        LANE.hide(wt(61), 0.6);
+        tl.to(CL.c, { opacity: 0.35, duration: 0.4 }, wt(63));
+        float(S5 + 1.0, 1.7, 30, 0, 0.012);
+        go(wt(59) + 0.2, 2.3, [2460, 80, 4420, 1290], { fill: 0.97 }, "sine.inOut");
+        // le macerie, tu, l'interruttore e la card restano: escono dal quadro a sinistra mentre la camera segue la linea (K09)
+        head([[{ t: "Ti convinci" }], [{ t: "e " }, { t: "smetti", box: true }]], [wt(52), wt(53), wt(57), wt(58)], 23.8);
+        head([[{ t: "Tutto quello avevi" }], [{ t: "costruito", box: true }]], [wt(62), wt(63), wt(65), wt(67)], 26.3);
+
+        // ═══ 6 · "La regola pratica è semplice. 8 contenuti su 10 danno qualcosa, 2 chiedono qualcosa." (26,2 – 33,45) ═════
+        // un movimento: la linea della strada corre a destra e la camera la segue (K09) fino alla regola: una bacheca con 10
+        // cornici (i tuoi contenuti, 2 file da 5) sopra il righello d'acciaio a 10 segmenti; poi la camera scivola piano. "regola":
+        // i numeri si accendono; "semplice": il riflesso (F03). "8 contenuti": entrano 10 tuoi reel veri; "danno": gli 8 si
+        // accendono di bianco col regalo, i segmenti 1–8 si riempiono e da ognuno parte un "+" (C03) verso la persona sotto, che si
+        // accende. "2 chiedono": gli ultimi 2 diventano lime (F08) con la barra "Scrivimi" / "Prenota una call", segmenti lime e
+        // sotto di loro i posti dei clienti (ancora vuoti)
+        const GX = 5300, PIT = 262, TW = 240, TH = 427, RY = 1100, LY2 = 1252, SEG = 131;
+        const TXY = (i) => [GX + 11 + (i % 5) * PIT, i < 5 ? 186 : 653];
+        const sx = (k) => GX + SEG / 2 + k * SEG;
+        const RUL = righelloR12(L, GX, RY, 10, SEG, { h: 84, z: 16 });
+        RUL.nums.forEach((n) => (n.style.fontSize = "42px"));
+        gsap.set(RUL.bar, { opacity: 0 });
+        const TL = [];
+        for (let i = 0; i < 10; i++) {
+          const [x, y] = TXY(i);
+          // il posto vuoto del contenuto: pannello in grafite tratteggiato col suo numero (si accende con il righello su "regola")
+          const ghost = el(L, { position: "absolute", left: x, top: y, width: TW, height: TH, borderRadius: 18, background: "linear-gradient(180deg,#2e2e2e,#1f1f1f)", backgroundColor: "#262626", border: "4px dashed rgba(255,255,255,.55)", boxShadow: "0 24px 50px rgba(0,0,0,.45)", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: FD, fontWeight: 700, fontSize: 150, color: "#7a7a7a", zIndex: 12 }, String(i + 1));
+          const f = el(L, { position: "absolute", left: x, top: y, width: TW, height: TH, borderRadius: 18, overflow: "hidden", background: "#111", border: "2.5px solid rgba(255,255,255,.35)", boxShadow: "0 30px 60px rgba(0,0,0,.55)", zIndex: 14 });
+          videoTile(f, 0, 0, TW, TH, "t" + (i + 1), 1);
+          el(f, { position: "absolute", left: 0, bottom: 0, width: TW, height: 110, background: "linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,.6))", zIndex: 2 });
+          const hd = el(f, { position: "absolute", left: 10, bottom: 14, display: "flex", alignItems: "center", gap: 7, zIndex: 3 });
+          const ab = el(hd, { position: "relative", width: 30, height: 30, borderRadius: "50%", overflow: "hidden", border: "1.5px solid #fff", flex: "none" });
+          imgIn(ab, "av-tu", { objectFit: "cover" });
+          el(hd, { fontFamily: FS, fontWeight: 700, fontSize: 15, color: "#fff", whiteSpace: "nowrap", textShadow: "0 1px 4px rgba(0,0,0,.8)" }, "samuelerinaldo.media");
+          // gli 8 che danno: il regalo bianco nell'angolo
+          const gift = i < 8 ? el(L, { position: "absolute", left: x + TW - 40, top: y - 22, width: 64, height: 64, borderRadius: "50%", background: "linear-gradient(180deg,#ffffff,#e6e6e1)", backgroundColor: "#f2f2ee", border: "3px solid #1e1e1e", display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "0 10px 20px rgba(0,0,0,.5), 0 0 18px rgba(255,255,255,.5)", zIndex: 20 }, svg("gift", 34, "#1e1e1e", 2.4)) : null;
+          [ghost, f, ...f.querySelectorAll("*")].concat(gift ? [gift] : []).forEach((e) => e.setAttribute("data-layout-allow-overlap", ""));
+          gsap.set([ghost, f], { opacity: 0 });
+          if (gift) gsap.set(gift, { opacity: 0, scale: 0.4 });
+          TL.push({ ghost, f, hd, gift, x, y });
+        }
+        // le due che chiedono: barra lime dentro il reel (la richiesta, tua e gentile)
+        const ASK = [["message-circle", "Scrivimi", "Inviato"], ["calendar-check", "Prenota una call", "Prenotata"]].map(([ic, a, b], k) => {
+          const f = TL[8 + k].f;
+          const bar = el(f, { position: "absolute", left: 0, bottom: 0, width: TW, height: 70, background: limeFill(1), backgroundColor: K.lime, display: "flex", alignItems: "center", justifyContent: "center", gap: 8, fontFamily: FS, fontWeight: 800, fontSize: 23, color: K.ink, whiteSpace: "nowrap", zIndex: 5 }, svg(ic, 26, K.ink, 2.6) + a);
+          const done = el(f, { position: "absolute", left: 0, bottom: 0, width: TW, height: 70, background: "linear-gradient(180deg,#ffffff,#eef7d6)", backgroundColor: "#f4fbe4", display: "flex", alignItems: "center", justifyContent: "center", gap: 8, fontFamily: FS, fontWeight: 800, fontSize: 25, color: K.ink, whiteSpace: "nowrap", zIndex: 6, opacity: 0 }, svg("check", 28, K.ink, 3.2) + b);
+          [bar, done, ...bar.querySelectorAll("*"), ...done.querySelectorAll("*")].forEach((e) => { e.setAttribute("data-layout-allow-overlap", ""); e.setAttribute("data-layout-allow-occlusion", ""); });
+          gsap.set(bar, { y: 72, opacity: 0 });
+          return { bar, done };
+        });
+        // la gente sotto il righello (folla, volti veri): uno per ognuno degli 8 segmenti che danno, spenti finché non ricevono
+        const AUD = [0, 1, 2, 3, 4, 5, 6, 7].map((k) => {
+          const h = el(L, { position: "absolute", left: sx(k) - 56, top: LY2 - 56, width: 112, height: 112, zIndex: 18 });
+          const f = faceDot(h, 0, 0, 112, [17, 52, 29, 12, 55, 38, 9, 67][k], null, { bw: 4 });
+          h.setAttribute("data-layout-allow-overlap", "");
+          gsap.set(h, { opacity: 0, filter: "grayscale(1) brightness(.5)" });
+          return { h, f };
+        });
+        // i posti dei clienti sotto i due segmenti che chiedono (vuoti fino al finale)
+        const PS = [8, 9].map((k) => postoR12(L, sx(k), LY2, 112, { z: 16 }));
+        const S6 = wt(68);
+        const pR0 = fr([GX - 20, 150, GX + 1330, 1310], { fill: 0.97 });
+        const LX6 = lineExit(L, S, [4560, GY], [GX - 8, RY + 42], S6, pR0, { dur: 1.15 });
+        tl.to(LX6.cn.p, { opacity: 0, duration: 0.3 }, S6 + 1.3);
+        // la bacheca vuota c'è già mentre la camera arriva: entra da destra, niente quadro vuoto a metà strada
+        tl.fromTo(RUL.bar, { opacity: 0, scaleX: 0.3, transformOrigin: "0% 50%" }, { opacity: 1, scaleX: 1, duration: 0.55, ease: "power2.out", immediateRender: false }, S6 + 0.4);
+        TL.forEach(({ ghost }, i) => tl.to(ghost, { opacity: 1, duration: 0.25 }, S6 + 0.2 + i * 0.04));
+        RUL.nums.forEach((_, i) => RUL.light(i, wt(69) + i * 0.06));
+        TL.forEach(({ ghost }, i) => {
+          tl.to(ghost, { color: "#ffffff", textShadow: GLOW_T, borderColor: "rgba(255,255,255,.9)", duration: 0.15 }, wt(69) + i * 0.06);
+          tl.to(ghost, { color: "#bdbdbd", textShadow: "none", borderColor: "rgba(255,255,255,.6)", duration: 0.5 }, wt(69) + i * 0.06 + 0.3);
+        });
+        RUL.sheen(wt(72), 0.8);
+        TL.forEach(({ f, ghost }, i) => {
+          const t = wt(73) + i * 0.05;
+          tl.fromTo(f, { opacity: 0, scale: 0.86 }, { opacity: 1, scale: 1, duration: 0.3, ease: "power2.out", immediateRender: false }, t);
+          tl.to(ghost, { opacity: 0, duration: 0.2 }, t + 0.1);
+        });
+        tl.to(AUD.map((a) => a.h), { opacity: 1, duration: 0.4 }, wt(73) + 0.2);
+        float(S6 + 1.18, 4.0, 20, -10, 0.03);
+        float(31.4, 2.0, 30, -4, 0.015);
+        // "danno": gli 8 si accendono uno dopo l'altro, il regalo, il segmento, il "+" verso la persona sotto
+        for (let i = 0; i < 8; i++) {
+          const t = wt(77) + i * 0.12;
+          tl.to(TL[i].f, { borderColor: "#ffffff", boxShadow: "0 30px 60px rgba(0,0,0,.55), 0 0 0 3px #ffffff, 0 0 40px rgba(255,255,255,.55)", duration: 0.15 }, t);
+          tl.to(TL[i].gift, { opacity: 1, scale: 1, duration: 0.28, ease: "back.out(2)" }, t);
+          RUL.fill(i, t, "dai");
+          const cn = connector(S, [[sx(i), RY + 86], [sx(i), LY2 - 58]], { color: "rgba(255,255,255,0)", w: 2 });
+          signal(L, cn, t + 0.06, 0.26, { sign: "+", d: 44, z: 30 });
+          const a = AUD[i];
+          tl.to(a.h, { filter: "grayscale(0) brightness(1)", duration: 0.2 }, t + 0.3);
+          tl.set(a.h, { filter: "none" }, t + 0.51);
+          tl.to(a.f, { borderColor: K.lime, boxShadow: GLOW_A(0.85), duration: 0.15 }, t + 0.3);
+          tl.fromTo(a.h, { scale: 1 }, { scale: 1.14, duration: 0.1, ease: "power2.out", immediateRender: false }, t + 0.3);
+          tl.to(a.h, { scale: 1, duration: 0.3, ease: "power2.out" }, t + 0.4);
+        }
+        // "2 chiedono": gli ultimi due diventano lime con la barra della richiesta
+        [8, 9].forEach((i, k) => {
+          const t = wt(79) + k * 0.08;
+          tl.to(TL[i].f, { borderColor: K.lime, boxShadow: `0 30px 60px rgba(0,0,0,.55), 0 0 0 3px ${K.lime}, ${GLOW_A(0.9)}`, duration: 0.18 }, t);
+          RUL.fill(i, t, "chiedi");
+          tl.to(ASK[k].bar, { opacity: 1, y: 0, duration: 0.3, ease: "power2.out" }, t + 0.05);
+          tl.to(TL[i].hd, { opacity: 0, duration: 0.15 }, t); // la barra prende il posto del nome
+          PS[k].show(wt(80) + k * 0.08);
+        });
+        ASK.forEach((a, k) => { tl.fromTo(a.bar, { scale: 1 }, { scale: 1.06, duration: 0.12, yoyo: true, repeat: 1, ease: "power2.out", immediateRender: false }, wt(80) + k * 0.08); });
+        head([[{ t: "Regola pratica" }], [{ t: "semplice", box: true }]], [wt(69), wt(70), wt(72)], 28.55);
+        head([[{ t: "8 contenuti su 10" }], [{ t: "danno", box: true }, { t: " qualcosa" }]], [wt(73), wt(74), wt(75), wt(76), wt(77), wt(78)], 31.05);
+        head([[{ t: "2 " }, { t: "chiedono", box: true }]], [wt(79), wt(80)], 33.3);
+
+        // ═══ 7 · "Se rispetti quella proporzione, diventi una persona con cui viene voglia di parlare" (33,5 – 37,35) ════════
+        // un movimento: la camera va oltre la bacheca: ci sei tu. "rispetti quella proporzione": il righello si chiude in un anello
+        // attorno alla tua foto vera, 8 segmenti bianchi e 2 lime (D10). "una persona": la foto pulsa (F02), il tuo nome. "con cui
+        // viene voglia di parlare": le persone qualunque arrivano e spuntano le bolle dei messaggi (U01/U09, reel 103)
+        const AX = GX + 1310 + 420, AY = 640, AD2 = 440;
+        const YOU = avatar(L, AX, AY, AD2, "tu", { bw: 0, ring: "none", z: 24 });
+        gsap.set(YOU, { opacity: 0, scale: 0.7 });
+        const RING = anelloR12(L, AX, AY, AD2 / 2 + 32, { n: 10, w: 28, gap: 5, z: 23 });
+        const NAME = el(L, { position: "absolute", left: AX - 300, top: AY + AD2 / 2 + 76, width: 600, textAlign: "center", fontFamily: FS, fontWeight: 800, fontSize: 44, color: "#ffffff", whiteSpace: "nowrap", textShadow: GLOW_T, zIndex: 24 }, "samuelerinaldo.media");
+        gsap.set(NAME, { opacity: 0 });
+        const S7 = wt(82);
+        go(S7, 1.0, [AX - 380, 250, AX + 860, 1160], { fill: 0.97 });
+        float(S7 + 1.0, 2.85, 20, -6, 0.03);
+        const LINK = connector(S, [[GX + 1310 - 4, RY + 42], [AX - 60, RY + 42], [AX, AY + AD2 / 2 + 62]], { color: "rgba(255,255,255,.75)", w: 5, curve: "h" });
+        LINK.draw(S7 + 0.2, 0.4);
+        tl.to(YOU, { opacity: 1, scale: 1, duration: 0.45, ease: "power2.out" }, S7 + 0.3);
+        RING.show(S7 + 0.4);
+        for (let i = 0; i < 8; i++) RING.seg(i, wt(83) + i * 0.065, "dai");
+        [8, 9].forEach((i, k) => RING.seg(i, wt(85) + k * 0.1, "chiedi"));
+        RING.pulse(wt(85) + 0.3);
+        pulse(L, AX, AY, wt(86), { r: 300, z: 21 });
+        tl.fromTo(NAME, { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.3, ease: "power2.out", immediateRender: false }, wt(88));
+        // le persone qualunque che ti scrivono (chi ti guarda: personaK, mai un volto vero che torna)
+        const CHAT = [["Ciao Samuele!", AX + 400, 400], ["Mi è servito tanto", AX + 400, 580], ["Come lavori?", AX + 400, 760]].map(([t2, x, y]) => {
+          const p = el(L, { position: "absolute", left: x - 50, top: y - 50, width: 100, height: 100, borderRadius: "50%", overflow: "hidden", border: "3px solid #ffffff", zIndex: 30 });
+          personaK(p, 0, 0, 94, { z: 1 });
+          p.setAttribute("data-layout-allow-overlap", "");
+          gsap.set(p, { opacity: 0 });
+          const b = bollaR12(L, x + 66, y + 38, t2, { side: "in", fs: 36, z: 32 });
+          return { p, b, x, y };
+        });
+        // la gente che ha ricevuto (folla, volti veri) si avvicina a te su "una persona"
+        [3, 4, 5, 6, 7].forEach((k, j) => {
+          const tx2 = AX - 300 + j * 150, ty2 = 1236 + (j % 2) * 40;
+          tl.to(AUD[k].h, { x: tx2 - sx(k), y: ty2 - LY2, duration: 0.8, ease: "power2.out" }, wt(86) - 0.1 + j * 0.05);
+        });
+        CHAT.forEach((c, k) => {
+          const t = wt(89) + k * 0.3;
+          tl.fromTo(c.p, { opacity: 0, x: 160, y: 120 }, { opacity: 0.55, x: 40, y: 30, duration: 0.5, ease: "power2.out", immediateRender: false }, wt(87) - 0.1 + k * 0.08);
+          tl.to(c.p, { opacity: 1, x: 0, y: 0, duration: 0.3, ease: "power2.out" }, t - 0.2);
+          if (k === 0) c.b.typing(t, 0.3);
+          c.b.show(t + (k === 0 ? 0.32 : 0.05));
+        });
+        head([[{ t: "Rispetti quella" }], [{ t: "proporzione", box: true }]], [wt(83), wt(84), wt(85)], 35.1);
+        head([[{ t: "Una persona con cui" }], [{ t: "parlare", box: true }]], [wt(87), wt(88), wt(89), wt(90), wt(94)], 37.75);
+
+        // ═══ 8 · "e a quel punto i due che chiedono funzionano." (37,4 – 41,03) ═════════════════════════════════════
+        // un movimento: la camera torna un passo indietro sui due che chiedono, sui posti dei clienti e su di te; sopra di loro la
+        // card dei clienti. "i due che chiedono": pulsano (F04); due delle persone che ti hanno scritto scendono ai posti;
+        // "funzionano": le barre diventano ✓, i posti si riempiono (al contrario della prima strada) e la card sale da 0 a 2 (D01)
+        const S8 = wt(95);
+        go(S8, 1.0, [TXY(8)[0] - 40, 150, AX + AD2 / 2 + 70, 1310], { fill: 0.97 });
+        float(S8 + 1.0, 2.66, 0, -6, 0.03);
+        tl.to(LINK.p, { opacity: 0, duration: 0.3 }, S8);
+        CHAT.forEach((c) => tl.to(c.b.b, { opacity: 0, duration: 0.25 }, S8 + 0.1));
+        tl.to(CHAT[1].p, { opacity: 0, duration: 0.25 }, S8 + 0.1);
+        const CL2 = statCard(L, TXY(8)[0] - 10, 210, { label: "Clienti dai contenuti", icon: "users", w: 2 * PIT + 2, h: 330, fs: 130, hidden: true, z: 26 });
+        CL2.slideIn(S8 + 0.4, { from: -1, dist: 300 });
+        tl.to(TL.slice(0, 8).map((t2) => t2.f), { opacity: 0.4, duration: 0.4 }, S8 + 0.3);
+        tl.to(TL.slice(0, 8).map((t2) => t2.gift), { opacity: 0, duration: 0.3 }, S8 + 0.3); // sotto la card: niente regali che spuntano
+        [8, 9].forEach((i, k) => {
+          tl.fromTo(TL[i].f, { scale: 1 }, { scale: 1.06, duration: 0.18, ease: "power2.out", immediateRender: false }, wt(100) + k * 0.08);
+          tl.to(TL[i].f, { scale: 1, duration: 0.4, ease: "power2.out" }, wt(100) + 0.18 + k * 0.08);
+        });
+        // le due persone scendono ai posti dei clienti
+        [[CHAT[0], 8], [CHAT[2], 9]].forEach(([c, k2], k) => {
+          const dx = sx(k2) - c.x, dy = LY2 - c.y;
+          tl.to(c.p, { x: dx, y: dy, duration: 0.42, ease: "power2.inOut" }, wt(102) + k * 0.08);
+          tl.to(c.p, { opacity: 0, duration: 0.12 }, wt(103) - 0.02);
+        });
+        PS.forEach((p, k) => p.fill(wt(103) + k * 0.08));
+        ASK.forEach((a, k) => { tl.to(a.done, { opacity: 1, duration: 0.18 }, wt(103) + k * 0.08); tl.to(a.bar, { opacity: 0, duration: 0.12 }, wt(103) + k * 0.08 + 0.1); });
+        CL2.count(wt(103), 0, 2, 0.7, (v) => String(Math.round(v)));
+        PS.forEach((p, k) => pulse(L, sx(8 + k), LY2, wt(103) + 0.05, { r: 130, z: 15 }));
+        ripple(L, TXY(8)[0] + PIT, 653 + TH / 2, wt(103) + 0.1, { wd: 2 * PIT + 60, ht: TH + 60, radius: "28px", s0: 0.9, s1: 1.15, w: 5, dur: 0.6, z: 20 });
+        head([[{ t: "I due che chiedono" }], [{ t: "funzionano", box: true }]], [wt(99), wt(100), wt(101), wt(102), wt(103)]);
+
+        window.__timelines = window.__timelines || {};
+        window.__timelines["main"] = tl;
+      })();
+    </script>
+  </body>
+</html>

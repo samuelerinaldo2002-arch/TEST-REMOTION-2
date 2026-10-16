@@ -1,0 +1,488 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>Reel 11/10 — Non è la fotocamera, è la luce (stile Kallaway, sessione 5)</title>
+    <script src="assets/vendor/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Advercase"; src: url("assets/fonts/Advercase-Bold.ttf") format("truetype"); font-weight: 700; font-style: normal; font-display: block; }
+      @font-face { font-family: "Advercase"; src: url("assets/fonts/Advercase-Regular.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: block; }
+      @font-face { font-family: "Patrick Hand"; src: url("assets/fonts/PatrickHand-Regular.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: block; }
+      @font-face { font-family: "Zalando Sans"; src: url("assets/fonts/ZalandoSans-Variable.ttf") format("truetype"); font-weight: 100 900; font-style: normal; font-display: block; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: #1e1e1e; }
+      body { font-family: "Zalando Sans", sans-serif; color: #f4f4f2; -webkit-font-smoothing: antialiased; }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; background: #1e1e1e; }
+      .clip { position: absolute; inset: 0; overflow: hidden; }
+      #glow { position: absolute; inset: 0; opacity: 0.35; background: radial-gradient(58% 32% at 50% 46%, rgba(207, 251, 80, 0.08), rgba(207, 251, 80, 0) 70%); }
+      #luce { position: absolute; inset: 0; opacity: 0; background: radial-gradient(70% 40% at 62% 18%, rgba(255, 250, 232, 0.16), rgba(255, 250, 232, 0) 70%); }
+      #vignette { position: absolute; inset: 0; background: radial-gradient(110% 78% at 50% 44%, rgba(0, 0, 0, 0) 44%, rgba(0, 0, 0, 0.62) 100%); }
+      .cam { position: absolute; left: 540px; top: 880px; width: 1px; height: 1px; }
+      .layer { position: absolute; left: 0; top: 0; width: 1px; height: 1px; }
+      #dots { position: absolute; left: -9000px; top: -9000px; width: 30000px; height: 24000px; background-image: radial-gradient(circle, rgba(255, 255, 255, 0.095) 1.25px, rgba(255, 255, 255, 0) 1.95px); background-size: 24px 24px; }
+      #stage { position: absolute; inset: 0; overflow: hidden; }
+      /* safe zone dell'11/10 (SAFEZONE.jpg): dalla linea y = 1332 in giù c'è la faccia dell'utente. Niente grafica sotto la linea,
+         solo la sfumatura verso il fondo che finisce prima della linea */
+      #safe { position: absolute; inset: 0; -webkit-mask-image: linear-gradient(to bottom, #000 0px, #000 1290px, transparent 1331px); mask-image: linear-gradient(to bottom, #000 0px, #000 1290px, transparent 1331px); }
+      #mbwrap, #shake { position: absolute; inset: 0; }
+      #hud { position: absolute; inset: 0; }
+    </style>
+  </head>
+  <body>
+    <!--WORDS ../../my-video-ottobre-p1-test/src/words/d11.ts-->
+    <div id="root" data-composition-id="main" data-start="0" data-duration="35.666" data-width="1080" data-height="1920">
+      <div id="bg" class="clip" data-start="0" data-duration="35.666" data-track-index="0">
+        <div class="cam" id="gcam2" data-layout-allow-overflow><div class="layer" id="gzoom2"><div class="layer" id="gpan2"><div class="layer" id="bokeh"></div></div></div></div>
+        <div class="cam" id="gcam" data-layout-allow-overflow><div class="layer" id="gzoom"><div class="layer" id="gpan"><div id="dots"></div></div></div></div>
+        <div id="glow"></div>
+        <div id="luce"></div>
+        <div id="vignette"></div>
+      </div>
+      <!-- senza timing di proposito: le clip dentro hanno il loro data-start -->
+      <div id="stage">
+        <svg width="0" height="0" style="position: absolute" aria-hidden="true">
+          <filter id="mb" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur id="mbn" in="SourceGraphic" stdDeviation="0 0" /></filter>
+        </svg>
+        <div id="safe"><div id="mbwrap"><div id="shake"><div class="cam" id="cam" data-layout-allow-overflow><div class="layer" id="zoom"><div class="layer" id="pan"></div></div></div></div></div></div>
+        <!--VIDEOS
+          # 1–6 · il tuo reel nella stanza: hook, faro, lampadina, mirino (01/10 + 02/10 + 06/10 + 08/10, tagli a 4,2 · 8,2 · 13,1 s)
+          a assets/clips/a.mp4 0.4 13.8
+          # 7–9 · il tuo reel nello schermo del telefono, gradini 1 e 2 (03/10 + 04/10, taglio a 18,9 s)
+          p assets/clips/p.mp4 13.6 10.2
+          # 9–11 · il tuo reel nel mirino della fotocamera vera, gradini 3 e 4 e finale (07/10 + 08/10 + 02/10)
+          c assets/clips/c.mp4 23.4 12.26
+        -->
+      </div>
+      <div id="hudclip" class="clip" data-start="0" data-duration="35.666" data-track-index="2">
+        <div id="hud"></div>
+      </div>
+
+      <!--SFX
+        # 1 · la fotocamera, lo scatto col lampo, la camera si allarga sul tuo reel buio
+        0.0 whoosh .1 ; 0.42 click .14 ; 0.46 pop .06 ; 0.93 whoosh .08 ; 1.02 card .06 ; 1.12 tick .04 ; 1.22 tick .04
+        # 2 · non è la fotocamera (grigio), il faro messo giù, la luce si accende sul reel
+        2.5 bong .08 ; 2.56 whoosh .07 ; 2.87 whoosh .1 ; 3.09 land .12 ; 3.53 glitch .08 ; 3.6 glitch .06 ; 3.7 ding .1 ; 3.72 rise .05
+        # 3 · il faro si spegne, la stanza si disegna, la lampadina sfarfalla
+        4.2 bong .06 ; 4.28 whoosh .06 ; 4.5 whoosh .12 ; 4.62 tick .04 ; 4.7 tick .04 ; 4.78 tick .04 ; 4.86 tick .04
+        5.63 glitch .1 ; 5.74 glitch .07 ; 5.87 tick .05 ; 6.07 glitch .08 ; 6.19 glitch .05
+        # 4 · torna la fotocamera da 5.000 euro col cartellino
+        6.6 whoosh .12 ; 6.86 land .1 ; 6.92 tick .05 ; 7.5 tick .04 ; 7.6 tick .04 ; 7.7 tick .04 ; 7.8 tick .04 ; 7.9 tick .04 ; 7.97 ding .08
+        # 5 · dentro l'obiettivo: il mirino, l'ISO che sale, l'autofocus che non aggancia
+        8.02 whoosh .1 ; 8.25 whoosh .14 ; 8.32 click2 .06 ; 8.55 tick .04 ; 8.68 tick .04 ; 8.81 tick .04 ; 8.94 tick .04
+        9.06 tick .05 ; 9.21 tick .05 ; 9.36 tick .05 ; 9.53 error .07 ; 9.7 tick .04 ; 9.86 tick .04 ; 10.3 tick .03 ; 10.6 tick .03
+        # 6 · fuori dall'obiettivo: la scala si alza, i numeri, gli spigoli, i raggi in cima
+        11.1 whoosh .16 ; 11.15 sub .08 ; 11.8 land2 .08 ; 11.9 land2 .08 ; 12.0 land2 .08 ; 12.1 land2 .08 ; 12.15 rise .05
+        12.82 pop .06 ; 12.91 pop .06 ; 13.0 pop .06 ; 13.09 pop .06 ; 13.28 tick .05 ; 13.36 tick .05 ; 13.44 tick .05 ; 13.52 tick .05
+        # 7 · gradino 1: il telefono che registra, e basta · la folla del 99% con te dentro
+        14.05 whoosh .12 ; 14.32 card .06 ; 14.63 click2 .1 ; 15.17 tick .05 ; 15.52 whoosh .05 ; 16.09 whoosh .08
+        16.45 pop .03 ; 16.49 pop .03 ; 16.53 pop .03 ; 16.57 pop .03 ; 16.61 pop .03 ; 16.65 pop .03 ; 16.69 pop .03 ; 16.73 pop .03 ; 16.77 pop .03
+        16.62 pop .1 ; 17.03 ding .08 ; 17.67 rise .05 ; 17.7 bong .05
+        # 8 · gradino 2: il telefono salta, la finestra, il sole, la folla del primo 50
+        18.38 whoosh .14 ; 19.2 land .12 ; 19.62 card .08 ; 19.72 whoosh .05 ; 20.4 rise .06 ; 20.5 ding .06
+        21.19 whoosh .08 ; 21.71 pop .03 ; 21.75 pop .03 ; 21.79 pop .03 ; 21.83 pop .03 ; 21.87 pop .03 ; 21.83 pop .1 ; 21.97 ding .08
+        # 9 · gradino 3: il telefono diventa la fotocamera vera, il reel esce, l'autofocus aggancia, il faro si accende
+        22.82 whoosh .14 ; 23.54 whoosh .06 ; 23.7 pop .1 ; 23.74 card .08 ; 24.2 click2 .1 ; 24.36 tick .05 ; 24.5 ding .05
+        24.42 whoosh .06 ; 24.8 glitch .08 ; 24.87 glitch .06 ; 25.0 ding .1 ; 25.02 rise .05
+        25.79 whoosh .08 ; 26.06 pop .03 ; 26.11 pop .03 ; 26.16 pop .03 ; 26.2 pop .1 ; 26.33 ding .08
+        # 10 · in cima: il controluce dietro di te, nessuno lo fa, i cartellini (costa meno di tutte)
+        27.02 whoosh .14 ; 27.65 card .06 ; 28.05 glitch .08 ; 28.11 glitch .06 ; 28.2 ding .1 ; 28.22 rise .06 ; 28.5 whoosh .05 ; 28.93 pop .08
+        29.22 whoosh .1 ; 29.93 bong .08 ; 30.0 tick .03 ; 30.08 tick .03 ; 30.16 tick .03 ; 30.37 pop .08 ; 30.39 sub .06
+        30.55 whoosh .08 ; 30.95 card .06 ; 31.12 card .06 ; 31.32 card .06 ; 31.6 ding .1 ; 31.62 pop .08
+        # 11 · nel primo 10%: la folla in cima con te, poi tutta la scala
+        32.39 whoosh .08 ; 32.71 pop .04 ; 32.81 pop .1 ; 33.0 ding .12 ; 33.02 sub .1 ; 33.35 whoosh .16 ; 33.6 rise .08
+      -->
+    </div>
+
+    <script>
+      (() => {
+        const ICON = __ICONS__;
+        /*__KIT__*/
+        // safe zone dell'11/10: le inquadrature finiscono a y 1300 (la linea della faccia è a 1332), il titolo resta sopra 330
+        BAND.y1 = 1300;
+
+        // ═══ base ═══════════════════════════════════════════════════════════════════════════════════════════════
+        bokeh($("bokeh"), [
+          [120, 1200, 380, 0.05, true], [700, 980, 300, 0.035], [-300, 1500, 420, 0.04, true], [900, 1500, 360, 0.04],
+          [1400, 600, 420, 0.05], [2000, 200, 420, 0.06, true], [2500, -400, 460, 0.07, true], [2900, -900, 420, 0.06],
+          [1700, 1300, 380, 0.04, true], [3300, 300, 400, 0.05], [600, 300, 360, 0.04, true], [2300, 900, 380, 0.04],
+        ]);
+        const L = layer(10);
+        const S = svgLayer(L, 6, -60000, -60000, 200000, 200000);
+        const wt = (i) => WORDS[i][1]; // istante della parola i (indici: python -X utf8 _tools/parole.py …/d11.ts)
+        const head = (lines, times, out, o) => { const T = titleW(Object.assign({ lines, size: 82 }, o || {})); T.inAt(times); if (out) T.outAt(out); return T; };
+        const via = (els, t, dur) => tl.to(els, { opacity: 0, duration: dur || 0.3, ease: "power1.out" }, t);
+        const grp = (z) => el(L, { position: "absolute", left: 0, top: 0, width: 1, height: 1, zIndex: z });
+
+        // ── luoghi del mondo: in basso a sinistra la stanza, poi la scala che sale in diagonale verso la luce ──
+        const ST = [180, 1560, 1240, 1240];     // stanza (rettangolo davanti)
+        const TILE = [770, 1895, 420, 747];     // il tuo reel nella stanza (in piedi sul pavimento, davanti al fondo)
+        const FACE = [980, 2119];               // il tuo viso nel reel (dove cade la luce)
+        const GROUND = 2800, X0 = 1500;         // pavimento e bordo sinistro del gradino 1
+
+        // ═══ 1 · HOOK — "Non è la fotocamera a farti sembrare professionale," (0 – 2,45) ═══════════════════════════
+        // A02 la fotocamera vera è già in scena al fotogramma 0 (spia REC), rack focus; "fotocamera" lo scatto col lampo;
+        // "a farti sembrare professionale" la camera si allarga: accanto c'è il tuo reel vero che lei riprende, buio e piatto
+        const ROOM = stanzaR11(L, ST[0], ST[1], ST[2], ST[3], { ix: 170, iy: 150, z: 8 });
+        const ME = reelLuceR11(L, TILE[0], TILE[1], TILE[2], TILE[3], "a", { stato: "buio", z: 24, play: [0.4, 13.8] });
+        gsap.set(ME.f, { opacity: 0 });
+        const CAMG = grp(26);
+        const FC = fotocamera(CAMG, 470, 2000, 560, { z: 3 });
+        const TRP = treppiedeR11(CAMG, 470, 2190, 2745, { spread: 210, col: 20, z: 1 });
+        const LENS = FC.lens();
+        const pH0 = fitPose(190, 1770, 750, 2230);
+        camInit(pH0.fx, pH0.fy, pH0.s);
+        rackFocus(0, 0.45);
+        float(0, 0.93, 0, -6, 0.035);
+        FC.rec(0.1, 2.4);
+        FC.shutter(wt(3) + 0.02);
+        FC.glint(0.2, 0.8);
+        // "a farti sembrare professionale": la camera si allarga e scopre il tuo reel, buio
+        frameRect(wt(4), 0.85, [170, 1770, 1215, 2745]);
+        tl.fromTo(ME.f, { opacity: 0, x: 140, filter: "blur(10px)" }, { opacity: 1, x: 0, filter: "blur(0px)", duration: 0.5, ease: KW.arrive, immediateRender: false }, wt(4) + 0.06);
+        tl.set(ME.f, { filter: "none" }, wt(4) + 0.58);
+        ME.grana(0.4, 11.2, 0.08);
+        // l'obiettivo guarda te: linea tratteggiata che si allunga (C01) e scorre
+        const SEE = connector(S, [[LENS.x + LENS.r + 12, LENS.y], [600, LENS.y - 24], [TILE[0] - 16, FACE[1]]], { color: "rgba(255,255,255,.62)", w: 5, dash: [14, 11], curve: "h" });
+        SEE.draw(wt(5), 0.3);
+        SEE.march(wt(5), 1.4, 120);
+        float(1.78, 0.7, 0, -6, 0.02);
+        head([[{ t: "Non è la " }, { t: "fotocamera", box: true }]], [wt(0), wt(1), wt(2), wt(3)], 2.05);
+
+        // ═══ 2 · "è dove metti la luce." (2,5 – 4,1) ════════════════════════════════════════════════════════════
+        // F11 la fotocamera si spegne in grigio ed esce; "dove" arriva il faro vero, "metti" viene messo giù al suo posto,
+        // "luce" sfarfalla e si accende: il fascio cade sul tuo reel, che si illumina (colori veri, bordo lime, alone)
+        // la fotocamera resta, ma spenta e in disparte: non è lei che conta
+        tl.to(CAMG, { filter: "grayscale(1) brightness(.42)", duration: 0.25, ease: "power2.out" }, wt(8));
+        tl.to(CAMG, { x: -70, y: -150, scale: 0.8, transformOrigin: "470px 2000px", duration: 0.45, ease: "power3.inOut" }, wt(8) + 0.06);
+        tl.to(TRP, { opacity: 0, duration: 0.25 }, wt(8) + 0.06);
+        SEE.hide(wt(8), 0.2);
+        const FAROG = grp(22);
+        const FR = faro(FAROG, 420, 2470, 380, { len: 900, z: 2 });
+        gsap.set(FAROG, { opacity: 0 });
+        tl.fromTo(FAROG, { opacity: 0, x: -180, y: 280 }, { opacity: 1, x: 0, y: -46, duration: 0.24, ease: "power3.out", immediateRender: false }, wt(9));
+        tl.to(FAROG, { y: 0, duration: 0.14, ease: "power2.in" }, wt(10) - 0.02);
+        tl.fromTo(FAROG, { scaleY: 0.9 }, { scaleY: 1, duration: 0.3, ease: "back.out(3)", transformOrigin: "420px 2650px", immediateRender: false }, wt(10) + 0.12);
+        ripple(L, 420, 2648, wt(10) + 0.12, { wd: 380, ht: 60, radius: "50%", s0: 0.6, s1: 1.4, w: 3, dur: 0.45, color: "#ffffff", glow: false, z: 21 });
+        FR.on(wt(11) + 0.02);
+        ME.stato(wt(12) + 0.14, "faro", 0.3);
+        ME.rim(wt(12) + 0.16);
+        pulse(L, FACE[0], FACE[1], wt(12) + 0.16, { r: 300, z: 23 });
+        FR.live(3.9, 4.2);
+        frameRect(wt(8), 0.9, [200, 1880, 1215, 2700], { fill: 0.96 });
+        head([[{ t: "È dove metti" }], [{ t: "la luce", box: true }]], [wt(8), wt(9), wt(10), wt(11), wt(12)], 3.98);
+
+        // ═══ 3 · "E finché giri in una stanza illuminata male," (4,2 – 6,5) ════════════════════════════════════════
+        // il faro si spegne ed esce; la camera si allarga e attorno al tuo reel si disegna la stanza; "illuminata" una
+        // lampadina nuda sfarfalla (F05) e si accende: luce gialla dall'alto, ombre dure, grana; "male" sfarfalla ancora
+        FR.off(wt(13));
+        tl.to(FAROG, { y: 320, opacity: 0, duration: 0.35, ease: "power2.in" }, wt(13) + 0.08);
+        tl.to(CAMG, { x: -560, opacity: 0, duration: 0.35, ease: "power2.in" }, wt(13) + 0.04);
+        ME.stato(wt(13), "buio", 0.3);
+        ME.rimOff(wt(13));
+        frameRect(4.42, 0.95, [ST[0], ST[1], ST[0] + ST[2], ST[1] + ST[3]], { fill: 1.0 });
+        ROOM.show(4.55, 0.5);
+        const BULB = lampadinaR11(L, FACE[0], 1640, 110, { w: 64, cono: [760, 860], pozza: [FACE[0], 2705, 860, 150], z: 30 });
+        gsap.set(BULB.g, { opacity: 0 });
+        tl.fromTo(BULB.g, { opacity: 0, y: -120 }, { opacity: 1, y: 0, duration: 0.35, ease: "power2.out", immediateRender: false }, wt(17));
+        BULB.on(wt(19));
+        ME.stato(wt(19) + 0.24, "lampadina", 0.25);
+        ME.sfarfalla(wt(19), [[0, 0.7], [0.05, 0.15], [0.11, 0.6], [0.17, 0.3], [0.24, 0]]);
+        BULB.sfarfalla(wt(20));
+        ME.sfarfalla(wt(20));
+        BULB.dondola(5.0, 6.2);
+        float(5.4, 1.15, 0, -8, 0.02);
+        head([[{ t: "Una stanza" }], [{ t: "illuminata male", box: true }]], [wt(17), wt(18), wt(19), wt(20)], 6.3);
+
+        // ═══ 4 · "anche l'attrezzatura da 5.000 euro" (6,6 – 8,2) ════════════════════════════════════════════════
+        // la fotocamera torna nella stanza sul treppiede (K02) col cartellino del prezzo che oscilla; "5.000 euro" il prezzo
+        // conta da 0 a 5.000 € (D01)
+        tl.set(CAMG, { filter: "none", x: -560, y: 0, scale: 1 }, wt(21) - 0.01);
+        tl.set(TRP, { opacity: 1 }, wt(21) - 0.01);
+        tl.to(CAMG, { x: 0, opacity: 1, duration: 0.4, ease: KW.arrive }, wt(21));
+        const TAG = cartellinoR11(L, 158, 1984, "0 €", { w: 236, h: 118, fs: 50, filo: 100, z: 40 }); // appeso alla cinghia, a sinistra del corpo
+        TAG.show(wt(23) - 0.02);
+        TAG.count(wt(25), 0, 5000, 0.5);
+        tl.fromTo(TAG.g, { scale: 1 }, { scale: 1.1, duration: 0.1, ease: "power2.out", immediateRender: false }, wt(27));
+        tl.to(TAG.g, { scale: 1, duration: 0.3, ease: "back.out(3)" }, wt(27) + 0.1);
+        glowFlash(TAG.num, wt(27), { base: "none", peak: "0 0 14px rgba(255,255,255,.9)" });
+        frameRect(6.55, 0.8, [90, 1760, 1215, 2760], { fill: 0.97 });
+        head([[{ t: "L'attrezzatura" }], [{ t: "da " }, { t: "5.000 euro", box: true }]], [wt(22), wt(24), wt(25), wt(27)], 8.5);
+
+        // ═══ 5 · "ti fa sembrare uno che improvvisa." (8,2 – 11,0) ═════════════════════════════════════════════════
+        // K07 si entra nell'obiettivo e si è nel mirino (U14) della fotocamera da 5.000 €: il tuo reel è quello che vede,
+        // buio e con la grana; l'ISO sale a 12.800 (rosso), l'autofocus cerca e non aggancia
+        move(7.98, 0.3, LENS.x, LENS.y, 2.4);
+        const pV = fitPose(TILE[0], TILE[1], TILE[0] + TILE[2], TILE[1] + TILE[3], { fill: 1 });
+        zoomThrough(wt(28) + 0.05, pV.fx, pV.fy, pV.s, { pre: 0.12, blur: 14, settle: 0.45 });
+        const VF = mirinoR11(L, [TILE[0], TILE[1], TILE[0] + TILE[2], TILE[1] + TILE[3]], { nero: true, z: 62 });
+        VF.show(wt(28) + 0.06);
+        ME.maniglia(wt(28) - 0.1, 0);
+        via(TAG.g, wt(28) - 0.1, 0.2); // dentro il mirino il cartellino resterebbe sotto il nero
+        VF.rec(wt(28) + 0.1, 2.8);
+        VF.iso(wt(30) + 0.05, 400, 12800, 0.5);
+        VF.cerca(wt(31), 1.9);
+        ME.sfarfalla(wt(33), [[0, 0.5], [0.06, 0.1], [0.12, 0.42], [0.19, 0]]);
+        BULB.sfarfalla(wt(33));
+        shake(wt(33), 5, 4);
+        float(8.75, 2.3, 0, -10, 0.04);
+        head([[{ t: "Uno che" }], [{ t: "improvvisa", box: true }]], [wt(31), wt(32), wt(33)], 10.75);
+
+        // ═══ 6 · LA SCALA — "C'è una scala e ha 4 gradini." (11,1 – 14,0) ═════════════════════════════════════════
+        // dal mirino la camera esce all'indietro (zoom out lungo): la stanza buia è ai piedi di una scala di 4 gradini che sale
+        // in diagonale verso la luce. "scala" i gradini si alzano uno dopo l'altro (in piedi in mezzo secondo, reel 90);
+        // "4" i numeri sulle alzate; "gradini" gli spigoli si accendono; sulle alzate le folle di 100 persone, spente (O23)
+        const SCALA = scalaR11(L, X0, GROUND, { w: 800, r: 800, dx: 84, dy: 54, z: 10 });
+        const TR = [0, 1, 2, 3].map((i) => SCALA.tread(i));
+        // la luce in cima (F07): raggi e alone caldo sopra l'ultimo gradino
+        const TOPX = TR[3].x0 + 400, TOPY = TR[3].y - 620;
+        const ALONE = el(L, { position: "absolute", left: TOPX - 1300, top: TOPY - 1000, width: 2600, height: 2000, borderRadius: "50%", background: "radial-gradient(closest-side, rgba(255,252,236,.2), rgba(255,252,236,.07) 55%, rgba(255,252,236,0) 100%)", opacity: 0, zIndex: 4, pointerEvents: "none" });
+        const RAGGI = rays(L, TOPX, TOPY, 1250, { n: 18, a: 0.16, color: "255,252,236", z: 5 });
+        // il fascio della luce in cima che scende lungo la scala (bianco caldo, mai lime trasparente)
+        const SHAFT = el(L, { position: "absolute", left: TOPX, top: TOPY - 700, width: 3900, height: 1400, transformOrigin: "0px 700px", transform: "rotate(141deg)", opacity: 0, zIndex: 3, pointerEvents: "none", mixBlendMode: "screen", filter: "blur(30px)" });
+        el(SHAFT, { position: "absolute", left: 0, top: 0, width: 3900, height: 1400, clipPath: "polygon(0px 610px, 3900px 0px, 3900px 1400px, 0px 790px)", background: "linear-gradient(90deg, rgba(255,250,232,.16) 0%, rgba(255,250,232,.07) 45%, rgba(255,250,232,0) 100%)" });
+        // l'attrezzatura di ogni gradino, spenta: la scala si legge già (come i livelli del reel 4) e si accende quando ci arrivi
+        const DX2 = TR[1].x0 + 560 - 1900, DY2 = TR[1].y - TR[0].y;
+        const GH = [[], [], [], []];
+        const fantasma = (e, k) => { GH[k].push(e); gsap.set(e, { opacity: 0, filter: "grayscale(1) brightness(.5)" }); return e; };
+        fantasma(fantasmaTelR11(L, 1900, TR[0].y, { z: 25 }).g, 0);
+        fantasma(fantasmaTelR11(L, 1900 + DX2, TR[1].y, { z: 25 }).g, 1);
+        const WIN = finestraR11(L, TR[1].x0 + 14, TR[1].y - 930, 300, 480, { verso: [1900 + DX2 - 50, TR[1].y - 600], z: 20 });
+        [[0, 0], [800, -800]].forEach(([ox, oy], q) => {
+          const k = 2 + q;
+          const gf = grp(29); faro(gf, 3215 + ox, 125 + oy, 260, { len: 10, z: 2 }); treppiedeR11(gf, 3215 + ox, 236 + oy, TR[2].y + oy, { spread: 80, col: 12, z: 1 });
+          const gc = grp(29); fotocamera(gc, 3330 + ox, 252 + oy, 280, { z: 2 }); treppiedeR11(gc, 3330 + ox, 340 + oy, TR[2].y + oy, { spread: 46, col: 10, z: 1 });
+          const gt = el(L, { position: "absolute", left: 3480 + ox, top: -280 + oy, width: 360, height: 640, borderRadius: 25, background: "linear-gradient(160deg,#202020,#0b0b0b)", border: "2px solid rgba(255,255,255,.22)", zIndex: 28 });
+          [gf, gc, gt].forEach((e) => fantasma(e, k));
+          if (q) fantasma(ledR11(L, 4655, -1170, 640, { stand: 130, z: 27 }).g, k);
+        });
+        GH.forEach((els, k) => tl.to(els, { opacity: 0.9, duration: 0.35 }, wt(37) + 0.3 + k * 0.1));
+        WIN.show(wt(37) + 0.42);
+        // prima fuori dall'obiettivo fino alla stanza intera, poi la camera viaggia verso la scala mentre si alza
+        const pRoom = fitPose(ST[0], ST[1], ST[0] + ST[2], ST[1] + ST[3], { fill: 0.97 });
+        const pAll = fitPose(X0 - 60, TR[3].y - 820, X0 + 4 * 800 + 120, GROUND + 10, { fill: 0.98 });
+        VF.hide(wt(34));
+        ME.maniglia(wt(34), 1);
+        camK(wt(34), 0.5, pRoom.fx, pRoom.fy, pRoom.s, "power2.out");
+        camK(11.6, 0.95, pAll.fx, pAll.fy, pAll.s, KW.move);
+        SCALA.rise(wt(37), 0.1);
+        tl.to(ALONE, { opacity: 1, duration: 0.8 }, 12.0);
+        tl.to(SHAFT, { opacity: 1, duration: 0.9 }, 12.1);
+        RAGGI.show(12.1);
+        RAGGI.live(12.1, 23.0);
+        [0, 1, 2, 3].forEach((i) => SCALA.num(i, wt(40) + i * 0.09));
+        [0, 1, 2, 3].forEach((i) => SCALA.edge(i, wt(41) + i * 0.08));
+        BULB.sfarfalla(12.45);
+        BULB.sfarfalla(13.55);
+        float(12.55, 1.5, 6, -10, 0.025);
+        head([[{ t: "Una scala," }], [{ t: "4 gradini", box: true }]], [wt(36), wt(37), wt(40), wt(41)], 14.0);
+
+        // ═══ 7 · GRADINO 1 — "Se registri col telefono e basta, sei dentro il 99% di tutti." (14,1 – 18,4) ═════════════
+        // la camera sale sul gradino 1 (K03): il telefono sul cavalletto registra il tuo reel (luce piatta, grana); "e basta"
+        // la camera si stringe sul telefono da solo; "sei dentro il 99%" scende sull'alzata: la folla si accende a onda, 99 su
+        // 100 in bianco, la tua foto vera è una di loro (O23 + D09); pill "99%"; "di tutti" lampeggia tutta
+        const TEL = telefonoR11(L, 1900, TR[0].y, "p", { k: 0.72, stand: 150, z: 26, stato: "telefono" });
+        gsap.set(TEL.g, { opacity: 0 });
+        const p1 = fitPose(TR[0].x0 - 10, TR[0].y - 1020, TR[0].x1 + 10, TR[0].y + 20, { fill: 0.96 });
+        move(wt(42) - 0.05, 0.85, p1.fx, p1.fy, p1.s);
+        tl.fromTo(TEL.g, { opacity: 0, y: 90 }, { opacity: 1, y: 0, duration: 0.38, ease: "power3.out", immediateRender: false }, 14.3);
+        tl.to(GH[0], { opacity: 0, duration: 0.2 }, 14.25);
+        TEL.rec(wt(43), 3.6);
+        TEL.R.grana(14.3, 23.8, 0.08);
+        SCALA.edge(0, 14.55, true);
+        tl.to($("luce"), { opacity: 0.3, duration: 0.8 }, 14.1);
+        // "e basta": il telefono da solo, la camera si stringe
+        frameRect(wt(47) - 0.05, 0.55, [TR[0].x0 + 150, TR[0].y - 1000, TR[0].x1 - 150, TR[0].y - 30], { fill: 0.96 });
+        ripple(L, 1900, TR[0].y - 610, wt(45), { wd: 470, ht: 900, radius: "60px", s0: 0.92, s1: 1.12, w: 4, dur: 0.5, color: "#ffffff", glow: false, z: 27 });
+        // "sei dentro il 99% di tutti": giù sull'alzata 1
+        const pf1 = fitPose(...SCALA.faceRect(0), { fill: 0.96 });
+        move(wt(48) - 0.08, 0.55, pf1.fx, pf1.fy, pf1.s);
+        tl.to(TEL.g, { opacity: 0, duration: 0.14 }, wt(48) - 0.16); // sotto il titolo non resta niente del telefono
+        const F1 = SCALA.B[0].folla;
+        F1.accendi(wt(51) - 0.06, 99, "bianco", { riga: 0.035, col: 0.01 });
+        F1.te(wt(51) + 0.05);
+        SCALA.pill(0, wt(52));
+        F1.lampo(wt(54), 99);
+        ripple(L, TR[0].x0 + 400, TR[0].y + 480, wt(54), { wd: 640, ht: 640, radius: "40px", s0: 0.85, s1: 1.15, w: 4, dur: 0.5, color: "#ffffff", glow: false, z: 15 });
+        float(17.0, 1.4, 0, -8, 0.02);
+        head([[{ t: "Col telefono" }], [{ t: "e basta", box: true }]], [wt(44), wt(45), wt(46), wt(47)], 15.98);
+        head([[{ t: "Il " }, { t: "99%", box: true }], [{ t: "di tutti" }]], [wt(50), wt(51), wt(53), wt(54)], 18.65);
+
+        // ═══ 8 · GRADINO 2 — "Se usi il telefono ma cerchi una buona luce naturale, sei già nel primo 50." (18,4 – 22,8) ═══
+        // il telefono salta sul gradino 2 e la camera lo segue (K08); "cerchi" una finestra vera si accende e il telefono le si
+        // avvicina; "luce naturale" i fasci di sole cadono sul telefono e il tuo reel si schiarisce; "primo 50" alzata 2: 50 su
+        // 100 in lime (F08), la tua foto con loro; pill "primo 50%"
+        const p2 = fitPose(TR[1].x0 - 10, TR[1].y - 1020, TR[1].x1 + 10, TR[1].y + 20, { fill: 0.96 });
+        move(wt(55) - 0.05, 0.85, p2.fx, p2.fy, p2.s);
+        tl.to(TEL.g, { opacity: 1, duration: 0.15 }, wt(55) - 0.05);
+        tl.to(GH[0], { opacity: 0.9, duration: 0.3 }, wt(55) + 0.1);
+        tl.to(GH[1], { opacity: 0, duration: 0.2 }, wt(55) + 0.45);
+        // il telefono salta insieme alla camera e atterra con lei su "telefono" (non passa sotto il titolo)
+        const JMP = wt(55) + 0.2, JD = 0.58;
+        tl.to(TEL.g, { x: DX2, duration: JD, ease: "power2.inOut" }, JMP);
+        tl.to(TEL.g, { y: DY2 - 40, duration: JD * 0.62, ease: "power2.out" }, JMP);
+        tl.to(TEL.g, { y: DY2, duration: JD * 0.38, ease: "power2.in" }, JMP + JD * 0.62);
+        tl.fromTo(TEL.g, { rotation: 0 }, { rotation: 5, duration: JD / 2, ease: "sine.inOut", immediateRender: false }, JMP);
+        tl.to(TEL.g, { rotation: 0, duration: JD / 2, ease: "sine.inOut" }, JMP + JD / 2);
+        tl.fromTo(TEL.g, { scaleY: 0.93 }, { scaleY: 1, duration: 0.3, ease: "back.out(3)", transformOrigin: "50% 100%", immediateRender: false }, JMP + JD);
+        ripple(L, 1900 + DX2, TR[1].y - 4, JMP + JD, { wd: 360, ht: 54, radius: "50%", s0: 0.6, s1: 1.4, w: 3, dur: 0.45, color: "#ffffff", glow: false, z: 25 });
+        mblurV(wt(55), 0.78, "power2.inOut", 8, "xy");
+        // la finestra: "cerchi" si accende e il telefono le va incontro
+        WIN.giorno(wt(60) - 0.05);
+        tl.to(TEL.g, { x: DX2 - 40, duration: 0.45, ease: "power2.inOut" }, wt(60) + 0.05);
+        WIN.sole(wt(63) - 0.05);
+        WIN.live(wt(63), 22.9);
+        TEL.R.stato(wt(63), "finestra", 0.45);
+        SCALA.edge(1, wt(64), true);
+        tl.to($("luce"), { opacity: 0.5, duration: 0.6 }, wt(63));
+        float(19.25, 1.9, -10, -6, 0.03);
+        // "sei già nel primo 50": giù sull'alzata 2
+        const pf2 = fitPose(...SCALA.faceRect(1), { fill: 0.96 });
+        move(wt(65) - 0.08, 0.55, pf2.fx, pf2.fy, pf2.s);
+        tl.to([TEL.g, WIN.g, WIN.fascio], { opacity: 0, duration: 0.14 }, wt(65) - 0.16);
+        const F2 = SCALA.B[1].folla;
+        F2.accendi(wt(68) - 0.02, 50, "lime", { riga: 0.04, col: 0.01 });
+        F2.te(wt(68) + 0.08);
+        SCALA.pill(1, wt(69));
+        ripple(L, TR[1].x0 + 400, TR[1].y + 345, wt(69) + 0.05, { wd: 640, ht: 360, radius: "40px", s0: 0.85, s1: 1.12, w: 4, dur: 0.5, z: 15 });
+        float(22.1, 0.75, 0, -6, 0.02);
+        head([[{ t: "Telefono, ma" }], [{ t: "luce naturale", box: true }]], [wt(58), wt(59), wt(63), wt(64)], 21.1);
+        head([[{ t: "Nel primo " }, { t: "50", box: true }]], [wt(67), wt(68), wt(69)], 22.55);
+
+        // ═══ 9 · GRADINO 3 — "Se usi una fotocamera vera con una luce principale, sei nel primo 30." (22,9 – 27,0) ═══════
+        // si sale al gradino 3: il telefono vola, ruota su se stesso e diventa la fotocamera vera (match cut); dal suo schermo esce
+        // il tuo reel, grande, nel mirino (U14): l'autofocus aggancia subito. "luce principale" il faro vero si accende di lato e il
+        // fascio cade sul tuo viso: nitido. "primo 30" alzata 3: 30 su 100 in lime; pill "primo 30%"
+        tl.to([F1.tu], { opacity: 0, duration: 0.25 }, wt(55)); // sali: la tua foto lascia la folla di sotto
+        const SET3 = grp(30);
+        const FAROG3 = el(SET3, { position: "absolute", left: 0, top: 0, width: 1, height: 1, zIndex: 2 });
+        const FR3 = faro(FAROG3, 3215, 125, 260, { len: 720, z: 2 });
+        treppiedeR11(FAROG3, 3215, 236, TR[2].y, { spread: 80, col: 12, z: 1 });
+        const CAMG3 = el(SET3, { position: "absolute", left: 0, top: 0, width: 1, height: 1, zIndex: 6 });
+        const FC3 = fotocamera(CAMG3, 3330, 252, 280, { z: 2 });
+        treppiedeR11(CAMG3, 3330, 340, TR[2].y, { spread: 46, col: 10, z: 1 });
+        const ME2 = reelLuceR11(SET3, 3480, -280, 360, 640, "c", { stato: "telefono", z: 24 });
+        const VF2 = mirinoR11(SET3, [3480, -280, 3840, 360], { z: 32 });
+        const FACE2 = [3660, -88];
+        gsap.set([FAROG3, ME2.f], { opacity: 0 });
+        gsap.set(CAMG3, { opacity: 0, rotationY: -90, transformPerspective: 2600, transformOrigin: "3330px 252px" });
+        const p3 = fitPose(TR[2].x0 - 10, TR[2].y - 1020, TR[2].x1 + 10, TR[2].y + 20, { fill: 0.96 });
+        move(wt(70) - 0.05, 0.85, p3.fx, p3.fy, p3.s);
+        // il telefono ti ha seguito: arriva sul gradino 3 dove sarà la fotocamera, poi ruota su se stesso e diventa lei (match cut)
+        tl.set(TEL.g, { x: 3330 - 1900, y: TR[2].y - 291 - 1514.6 + 140, scale: 0.6, rotation: 0 }, 23.0);
+        tl.to(TEL.g, { opacity: 1, y: TR[2].y - 291 - 1514.6, duration: 0.32, ease: "power3.out" }, 23.08);
+        tl.to(GH[1], { opacity: 0.9, duration: 0.3 }, 22.9);
+        tl.to([WIN.g], { opacity: 1, duration: 0.3 }, 22.9);
+        tl.to(GH[2], { opacity: 0, duration: 0.2 }, 22.95);
+        tl.to(TEL.g, { rotationY: 90, transformPerspective: 2600, duration: 0.16, ease: "power2.in" }, wt(73) - 0.16);
+        tl.set(TEL.g, { opacity: 0 }, wt(73));
+        tl.set(CAMG3, { opacity: 1 }, wt(73));
+        tl.to(CAMG3, { rotationY: 0, duration: 0.2, ease: "power2.out" }, wt(73));
+        mblurV(wt(70), 0.7, "power2.inOut", 8, "xy");
+        // dal telefono esce il tuo reel, grande
+        tl.fromTo(ME2.f, { opacity: 0, scale: 0.3, x: 3330 - 3660, y: 252 - 40 }, { opacity: 1, scale: 1, x: 0, y: 0, duration: 0.42, ease: "power3.out", immediateRender: false }, wt(73) + 0.02);
+        // "vera": REC, l'autofocus aggancia subito il viso (in buona luce)
+        VF2.show(wt(74));
+        ME2.maniglia(wt(74), 0); // nel mirino la maniglia si sovrapporrebbe ai dati di scatto
+        VF2.rec(wt(74), 2.7);
+        VF2.aggancia(wt(74) + 0.12, 0.5, 0.3);
+        FC3.rec(wt(74), 2.5);
+        // "con una luce principale": il faro vero di lato si accende, il fascio sul viso
+        tl.fromTo(FAROG3, { opacity: 0, x: -120 }, { opacity: 1, x: 0, duration: 0.3, ease: "power3.out", immediateRender: false }, wt(76) - 0.05);
+        FR3.on(wt(77) - 0.03);
+        ME2.stato(wt(77) + 0.12, "faro", 0.3);
+        pulse(SET3, FACE2[0], FACE2[1], wt(78), { r: 210, z: 23 });
+        FR3.live(25.3, 26.0);
+        SCALA.edge(2, wt(78), true);
+        tl.to($("luce"), { opacity: 0.75, duration: 0.6 }, wt(77));
+        float(23.7, 2.1, -6, -8, 0.03);
+        // "sei nel primo 30": giù sull'alzata 3
+        const pf3 = fitPose(...SCALA.faceRect(2), { fill: 0.96 });
+        move(wt(79) - 0.08, 0.55, pf3.fx, pf3.fy, pf3.s);
+        tl.to(SET3, { opacity: 0, duration: 0.14 }, wt(79) - 0.16);
+        const F3 = SCALA.B[2].folla;
+        F3.accendi(wt(81) - 0.04, 30, "lime", { riga: 0.05, col: 0.012 });
+        F3.te(wt(81) + 0.05);
+        SCALA.pill(2, wt(82));
+        ripple(L, TR[2].x0 + 400, TR[2].y + 290, wt(82) + 0.05, { wd: 640, ht: 240, radius: "40px", s0: 0.85, s1: 1.12, w: 4, dur: 0.5, z: 15 });
+        float(26.5, 0.5, 0, -5, 0.015);
+        head([[{ t: "Fotocamera vera," }], [{ t: "luce principale", box: true }]], [wt(73), wt(74), wt(77), wt(78)], 25.3);
+        head([[{ t: "Nel primo " }, { t: "30", box: true }]], [wt(80), wt(81), wt(82)], 27.1);
+
+        // ═══ 10 · GRADINO 4 — "E se aggiungi un controluce dietro di te, che è la cosa che nessuno fa e che costa meno di tutte," ═══
+        // (27,1 – 32,4) si sale in cima con fotocamera, faro e reel; dietro di te sale un tubo LED lime (come nel tuo studio): si accende
+        // e il bordo del reel ti stacca dallo sfondo. "nessuno fa" la camera si allarga: le persone accese sui gradini sotto diventano
+        // grigie a onda (F11), resta acceso solo il controluce (F04). "costa meno di tutte" i cartellini: 5.000 € · 50 € · 20 € (lime)
+        tl.to([F2.tu, F3.tu], { opacity: 0, duration: 0.25 }, wt(83));
+        tl.to(SET3, { opacity: 1, duration: 0.2 }, wt(83) - 0.05);
+        tl.to(SET3, { x: 800, y: -800, duration: 0.85, ease: KW.move }, wt(83) - 0.05);
+        tl.to(GH[2], { opacity: 0.9, duration: 0.3 }, wt(83) + 0.1);
+        tl.to(GH[3], { opacity: 0, duration: 0.25 }, wt(83) + 0.3);
+        const p4 = fitPose(TR[3].x0 - 10, TR[3].y - 1020, TR[3].x1 + 10, TR[3].y + 20, { fill: 0.96 });
+        move(wt(83) - 0.05, 0.85, p4.fx, p4.fy, p4.s);
+        const LED = ledR11(L, 4655, -1170, 640, { stand: 130, z: 28 });
+        gsap.set(LED.g, { opacity: 0 });
+        tl.fromTo(LED.g, { opacity: 0, y: 260 }, { opacity: 1, y: 0, duration: 0.36, ease: "power3.out", immediateRender: false }, wt(85));
+        LED.on(wt(87) - 0.02);
+        ME2.rim(wt(87) + 0.08);
+        ME2.stato(wt(87) + 0.08, "controluce", 0.3);
+        SCALA.edge(3, wt(87) + 0.1, true);
+        tl.to($("luce"), { opacity: 1, duration: 0.6 }, wt(87));
+        tl.to($("glow"), { opacity: 0.7, duration: 0.8 }, wt(87));
+        // "dietro di te": la camera si stringe sul reel e sulla luce dietro; "te": la tua maniglia si accende
+        frameRect(wt(88) - 0.05, 0.6, [4170, -1240, 4790, -380], { fill: 0.96 });
+        tl.fromTo(ME2.hd, { scale: 1 }, { scale: 1.16, duration: 0.12, ease: "power2.out", transformOrigin: "0% 50%", immediateRender: false }, wt(90));
+        tl.to(ME2.hd, { scale: 1, duration: 0.3, ease: "back.out(3)" }, wt(90) + 0.12);
+        // "che è la cosa che nessuno fa": la camera si allarga sui gradini, le folle sotto diventano grigie
+        frameRect(wt(91) + 0.02, 0.7, [2290, -1480, 4800, 1700], { fill: 0.97 });
+        const F4 = SCALA.B[3].folla;
+        F1.tinta(wt(96), 0, 99, "grigio", 0.002);
+        SCALA.B[1].folla.tinta(wt(96), 0, 50, "grigio", 0.005);
+        F3.tinta(wt(96) + 0.04, 0, 30, "grigio", 0.006);
+        tl.to([SCALA.B[0].pill, SCALA.B[1].pill, SCALA.B[2].pill], { opacity: 0.35, duration: 0.3 }, wt(96));
+        pulse(L, 4655, -850, wt(97), { r: 240, z: 27 });
+        ripple(L, 4655, -850, wt(97) + 0.04, { r: 300, s0: 0.4, s1: 1.3, w: 6, dur: 0.6, z: 29 });
+        // "e che costa meno di tutte": i cartellini dei tre oggetti, il controluce costa meno di tutti
+        frameRect(wt(98) - 0.02, 0.6, [3420, -1430, 4800, -360], { fill: 0.96 });
+        const TAGC = cartellinoR11(L, 3600, -610, "5.000 €", { filo: 0, w: 236, h: 118, fs: 46, z: 40 });
+        const TAGF = cartellinoR11(L, 3600, -930, "50 €", { filo: 0, w: 236, h: 118, fs: 46, z: 40 });
+        const TAGL = cartellinoR11(L, 4470, -1360, "20 €", { filo: 0, w: 236, h: 118, fs: 46, z: 40 });
+        const SF = [[TAGC, [3600, -593], [4004, -558]], [TAGF, [3600, -913], [3895, -700]], [TAGL, [4470, -1343], [4655, -1170]]].map(([tg, a, b], k) => {
+          const cn = connector(S, [a, [(a[0] + b[0]) / 2, Math.max(a[1], b[1]) + 40], b], { color: "rgba(226,226,218,.85)", w: 3 });
+          const t = [wt(100), wt(100) + 0.17, wt(101)][k];
+          cn.draw(t, 0.25);
+          tg.show(t + 0.05);
+          return cn;
+        });
+        TAGL.lime(wt(103));
+        pulse(L, 4470, -1290, wt(103), { r: 170, z: 39 });
+        float(31.2, 1.2, 0, -6, 0.02);
+        head([[{ t: "Un " }, { t: "controluce", box: true }], [{ t: "dietro di te" }]], [wt(86), wt(87), wt(88), wt(89), wt(90)], 29.3);
+        head([[{ t: "Che " }, { t: "nessuno fa", box: true }]], [wt(95), wt(96), wt(97)], 30.62);
+        head([[{ t: "Costa meno" }], [{ t: "di tutte", box: true }]], [31.07, wt(101), wt(102), wt(103)], 32.02);
+
+        // ═══ 11 · "sei nel primo 10%." (32,5 – 35,67) ════════════════════════════════════════════════════════════
+        // alzata 4: si accendono 10 persone su 100 in lime con la tua foto; poi la camera si allarga su tutta la scala: le folle
+        // grigie sui gradini bassi, in cima tu nella luce, con i raggi (F07)
+        const pf4 = fitPose(...SCALA.faceRect(3), { fill: 0.96 });
+        move(wt(104) - 0.08, 0.55, pf4.fx, pf4.fy, pf4.s);
+        tl.to([SET3, LED.g, TAGC.g, TAGF.g, TAGL.g, ...SF.map((c) => c.p)], { opacity: 0, duration: 0.14 }, wt(104) - 0.16);
+        F4.accendi(wt(106) - 0.02, 10, "lime", { riga: 0.05, col: 0.02 });
+        F4.te(wt(106) + 0.1);
+        SCALA.pill(3, wt(107));
+        glowFlash(SCALA.B[3].num, wt(107));
+        ripple(L, TR[3].x1 - 180, TR[3].y + 166, wt(107) + 0.06, { wd: 420, ht: 160, radius: "80px", s0: 0.8, s1: 1.25, w: 5, dur: 0.5, z: 16 });
+        // la scala intera: tu in cima, nella luce
+        const pFin = fitPose(X0 - 80, TR[3].y - 1100, X0 + 4 * 800 + 120, GROUND + 10, { fill: 0.98 });
+        camK(33.35, 1.1, pFin.fx, pFin.fy, pFin.s, KW.move);
+        tl.to([SET3, LED.g], { opacity: 1, duration: 0.35 }, 33.4);
+        tl.to(ALONE, { opacity: 1.0, scale: 1.15, duration: 1.2 }, 33.4);
+        float(34.45, 1.2, 0, -10, 0.02);
+        head([[{ t: "Nel primo" }], [{ t: "10%", box: true }]], [wt(105), wt(106), wt(107)]);
+
+        window.__timelines = window.__timelines || {};
+        window.__timelines["main"] = tl;
+      })();
+    </script>
+  </body>
+</html>

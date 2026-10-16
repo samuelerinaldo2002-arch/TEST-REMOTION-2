@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>Reel 14/10 · La soglia</title>
+    <script src="assets/vendor/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Advercase"; src: url("assets/fonts/Advercase-Bold.ttf") format("truetype"); font-weight: 700; font-style: normal; font-display: block; }
+      @font-face { font-family: "Advercase"; src: url("assets/fonts/Advercase-Regular.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: block; }
+      @font-face { font-family: "Patrick Hand"; src: url("assets/fonts/PatrickHand-Regular.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: block; }
+      @font-face { font-family: "Zalando Sans"; src: url("assets/fonts/ZalandoSans-Variable.ttf") format("truetype"); font-weight: 100 900; font-style: normal; font-display: block; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: #1e1e1e; }
+      body { font-family: "Zalando Sans", sans-serif; color: #f4f4f2; -webkit-font-smoothing: antialiased; }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; background: #1e1e1e; }
+      .clip { position: absolute; inset: 0; overflow: hidden; }
+      #glow { position: absolute; inset: 0; opacity: 0.35; background: radial-gradient(58% 32% at 50% 46%, rgba(207, 251, 80, 0.08), rgba(207, 251, 80, 0) 70%); }
+      #vignette { position: absolute; inset: 0; background: radial-gradient(110% 78% at 50% 44%, rgba(0, 0, 0, 0) 44%, rgba(0, 0, 0, 0.62) 100%); }
+      .cam { position: absolute; left: 540px; top: 880px; width: 1px; height: 1px; }
+      .layer { position: absolute; left: 0; top: 0; width: 1px; height: 1px; }
+      #dots, #dotsFermi { position: absolute; left: -12000px; top: -9000px; width: 40000px; height: 24000px; background-image: radial-gradient(circle, rgba(255, 255, 255, 0.095) 1.25px, rgba(255, 255, 255, 0) 1.95px); background-size: 24px 24px; }
+      #stage { position: absolute; inset: 0; overflow: hidden; }
+      /* safe zone dell'11/10 (SAFEZONE.jpg): da y = 1332 in giù c'è la tua faccia → la grafica sfuma nel fondo prima della linea */
+      #safe { position: absolute; inset: 0; -webkit-mask-image: linear-gradient(to bottom, #000 0px, #000 1288px, transparent 1330px); mask-image: linear-gradient(to bottom, #000 0px, #000 1288px, transparent 1330px); }
+      #mbwrap, #shake { position: absolute; inset: 0; }
+      #hud { position: absolute; inset: 0; }
+    </style>
+  </head>
+  <body>
+    <!-- KW_RITMO: regole del ritmo R1–R8 e template (kw-kit/kit2-ritmo.js, kit2-template.js, kit2-tpl-*.js, kit2-reel14.js) -->
+    <!-- Reel 14/10 «Se non diventi virale…» · concept «Il numero sbagliato»: un solo numero, «1M views», passa per ogni scena
+         (l'etichetta che nasce su «virale», il badge dei contenuti virali, l'eccezione nel muro, la soglia, la cima della scala
+         della pressione) finché su «Cambia il numero» diventa «100 persone giuste» e il bersaglio lo lascia fuori.
+         Piano: reel-14/PIANO.md. Tempi: le parole vere della voce (WORDS, d14.ts), 42,7 s = l'mp3. -->
+    <!--WORDS ../../my-video-ottobre-p1-test/src/words/d14.ts-->
+    <div id="root" data-composition-id="main" data-start="0" data-duration="42.7" data-width="1080" data-height="1920">
+      <div id="bg" class="clip" data-start="0" data-duration="42.7" data-track-index="0">
+        <div class="cam" id="gcam2" data-layout-allow-overflow><div class="layer" id="gzoom2"><div class="layer" id="gpan2"><div class="layer" id="bokeh"></div></div></div></div>
+        <div class="cam" id="gcam" data-layout-allow-overflow><div class="layer" id="gzoom"><div class="layer" id="gpan"><div id="dots"></div></div></div></div>
+        <div id="glow"></div>
+        <div id="vignette"></div>
+      </div>
+      <div id="stage">
+        <svg width="0" height="0" style="position: absolute" aria-hidden="true">
+          <filter id="mb" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur id="mbn" in="SourceGraphic" stdDeviation="0 0" /></filter>
+        </svg>
+        <div id="safe"><div id="mbwrap"><div id="shake"><div class="cam" id="cam" data-layout-allow-overflow><div class="layer" id="zoom"><div class="layer" id="pan"></div></div></div></div></div></div>
+        <!--VIDEOS
+          # 1 F02 · la griglia dei tuoi reel veri (il nastro dei tuoi reel del reel 13, 45 s: ogni cella da un punto diverso)
+          g1 assets/clips/nastro/g1.mp4 0 6.75 2
+          g2 assets/clips/nastro/g2.mp4 0 6.75 2
+          g3 assets/clips/nastro/g3.mp4 0 6.75 2
+          g4 assets/clips/nastro/g4.mp4 0 6.75 2
+          g5 assets/clips/nastro/g5.mp4 0 6.75 2
+          g6 assets/clips/nastro/g6.mp4 0 6.75 2
+          # 2 T05 · i contenuti con tantissima interazione: reel veri di Hormozi (virali)
+          e1 assets/clips/est/h01.mp4 5.63 5.35
+          e2 assets/clips/est/h03.mp4 5.63 5.35
+          e3 assets/clips/est/h05.mp4 5.63 5.35
+          # 3 O13 · «quello» = gli stessi contenuti, col badge 1M
+          h1 assets/clips/est/h01.mp4 9.9 4.6
+          h2 assets/clips/est/h03.mp4 9.9 4.6
+          h3 assets/clips/est/h05.mp4 9.9 4.6
+          # 5 F04 · i tuoi reel sotto la soglia, il reel virale (Hormozi) sopra
+          m7 assets/clips/mio/m07.mp4 17.33 4.5
+          m8 assets/clips/mio/m08.mp4 17.33 4.5
+          h4 assets/clips/est/h03.mp4 17.33 4.5
+          m9 assets/clips/mio/m09.mp4 17.33 4.5
+          m10 assets/clips/mio/v01.mp4 17.33 4.5
+          # 6 vergogna · il tuo ultimo reel e il prossimo (dal nastro, altri punti)
+          ul assets/clips/nastro/g4.mp4 20.77 8.05 20
+          pr assets/clips/nastro/g5.mp4 20.77 8.05 31
+          # 7 A01 · i contenuti degli altri: reel veri (Steven Bartlett, Dan Koe, Tony Robbins, Hormozi, GaryVee), views vere
+          a1 assets/clips/alt/a1.mp4 27.73 4.1
+          a2 assets/clips/alt/a2.mp4 27.73 4.1
+          a3 assets/clips/alt/a3.mp4 27.73 4.1
+          a4 assets/clips/alt/a4.mp4 27.73 4.1
+          a5 assets/clips/alt/a5.mp4 27.73 4.1
+          a6 assets/clips/alt/a6.mp4 27.73 4.1
+        -->
+      </div>
+      <div id="hudclip" class="clip" data-start="0" data-duration="42.7" data-track-index="2">
+        <div id="hud"></div>
+      </div>
+      <!--SFX
+        # 1 F02 (0–6,63): il disco e «1M views» su «virale», il dubbio su «sbagliassero?»
+        0.0 whoosh .1 ; 2.23 pop .12 ; 5.5 glitch .08
+        # 2 T05 (6,63–10,9): arrivo, <Algoritmo/> si decodifica, le linee su «mostra», i numeri su «tantissima»
+        6.63 whoosh .14 ; 6.68 glitch .1 ; 7.97 tick .05 ; 9.63 rise .06
+        # 3 O13 (10,9–14,43): zoom d'arrivo, il cervello si accende su «convince», la conclusione su «livello»
+        10.9 whoosh .14 ; 11.83 sub .1 ; 11.83 glitch .06 ; 13.23 key1 .05
+        # 4 K11 (14,43–18,33): il muro si apre, l'eccezione si accende, scorre su «mostrata» e si ferma su altre eccezioni
+        14.43 whoosh .14 ; 15.83 tick .06 ; 16.43 whoosh .12 ; 17.08 land .1
+        # 5 F04 (18,33–21,77, R8 morbida: zoom-through nell'eccezione): la soglia su «soia», il riflettore su «fallimento»
+        18.17 whoosh .16 ; 20.4 tick .06 ; 21.07 drop .1
+        # 6 vergogna (21,77–28,73): il lucchetto su «blocca», la linea su «vergogna», ✗ su «funzionato»
+        21.77 whoosh .14 ; 22.97 land .1 ; 25.37 tick .05 ; 27.57 drop .08
+        # 7 A01 (28,73–31,73): zoom d'arrivo, i badge su «passano», il tuo posto vuoto su «senza»
+        28.73 whoosh .14 ; 29.97 tick .04 ; 30.05 tick .04 ; 30.13 tick .04 ; 30.21 tick .04 ; 30.29 tick .04 ; 30.37 tick .04 ; 30.67 pop .1
+        # 8 D13 (31,73–37,1, R8 morbida: zoom-through nel tuo posto): la pressione sale, barra su «realtà», «1M» cambia su «numero»
+        31.57 whoosh .16 ; 31.83 rise .06 ; 33.53 tick .05 ; 34.08 ding .1 ; 36.03 glitch .08 ; 36.67 pop .08
+        # 9 O10 (37,1–42,7): il bersaglio dal centro, «1M di views» barrato, il centro, la freccetta
+        37.1 whoosh .14 ; 37.12 rise .05 ; 38.17 tick .05 ; 38.6 drop .08 ; 40.17 pop .1 ; 41.17 slam .12
+      -->
+    </div>
+    <script>
+      (() => {
+        const ICON = __ICONS__;
+        /*__KIT__*/
+
+        const wt = (i) => WORDS[i][1]; // istante della parola i (indici: python -X utf8 _tools/parole.py …/d14.ts)
+        camInit(540, 900, 1);
+        const S = {};
+        // i tagli: 0,1 s prima della prima parola della frase
+        const C = [0, wt(18) - 0.1, wt(28) - 0.1, wt(39) - 0.1, wt(48) - 0.1, wt(60) - 0.1, wt(80) - 0.1, wt(90) - 0.1, wt(105) - 0.1, 42.7];
+
+        // ═══ 1 · F02 · «Ormai lo pensano tutti. Se non diventi virale, non stai andando da nessuna parte. E se si sbagliassero?»
+        // La griglia dei tuoi reel veri dal fotogramma 0; su «virale» il disco e il numero: «1M views» ═══
+        S.F02 = TPL.F02({ t0: C[0], t1: C[1], X: 600, Y: 900,
+          parole: { parola: wt(7), dubbio: wt(17), titolo: [wt(4), wt(5), wt(6), wt(7), wt(14), wt(15), wt(16), wt(17)] } }, {
+          titolo: [[{ t: "Se non diventi " }, { t: "virale", box: true }], [{ t: "e se si sbagliassero?", hand: true }]],
+          media: ["g1", "g2", "g3", "g4", "g5", "g6"], etichetta: { testo: "1M views", icona: "eye" }, dubbio: true });
+
+        // ═══ 2 · T05 · «L'algoritmo ci mostra soprattutto i contenuti con tantissima interazione.» Reel veri di Hormozi ═══
+        S.T05 = TPL.T05({ t0: C[1], t1: C[2], X: 4000, Y: 900,
+          parole: { mostra: wt(21), interazione: wt(26), titolo: [wt(18), wt(20), wt(21), wt(26), wt(27)] } }, {
+          titolo: [[{ t: "L'algoritmo " }, { t: "ci mostra", box: true }], [{ t: "tantissima interazione", hand: true }]],
+          media: ["e1", "e2", "e3"], numeri: [{ da: 120, a: 1200 }, { da: 86, a: 860 }, { da: 240, a: 2400 }] });
+
+        // ═══ 3 · O13 · «E il cervello si convince che quello sia il livello normale.» Gli stessi contenuti, col badge «1M views» ═══
+        S.O13 = TPL.O13({ t0: C[2], t1: C[3], X: 7500, Y: 900,
+          parole: { accende: wt(32), etichetta: wt(37), titolo: [wt(29), wt(30), wt(31), wt(32)] } }, {
+          titolo: [[{ t: "Il cervello " }, { t: "si convince", box: true }]],
+          media: ["h1", "h2", "h3"], ratio: 4 / 3, badge: "1M views", etichetta: "= il livello normale" });
+
+        // ═══ 4 · K11 · «Non lo è. È l'eccezione mostrata in continuazione.» Il feed: l'eccezione «1M» accesa, poi altre ═══
+        S.K11 = TPL.K11({ t0: C[3], t1: C[4], X: 11000, Y: 900,
+          parole: { eccezione: wt(44), scorre: wt(45), titolo: [wt(42), wt(43), wt(46), wt(47)] } }, {
+          titolo: [[{ t: "È " }, { t: "l'eccezione", box: true }], [{ t: "in continuazione", hand: true }]], badge: "1M" });
+
+        // ═══ 5 · F04 · «Ma da quel momento ogni video sotto quella soglia sembra un fallimento.» I tuoi reel sotto «1M views».
+        // R8 MORBIDA: la camera entra nell'eccezione accesa del muro e dall'altra parte c'è la soglia ═══
+        { const t0 = C[4];
+          const r = { t0, t1: C[5], X: 14500, Y: 900, parole: { soglia: wt(56), riflettore: wt(59),
+            titolo: [wt(54), wt(55), wt(56), wt(57), wt(58), wt(59)] } };
+          S.F04 = TPL.F04(r, { titolo: [[{ t: "Sotto la " }, { t: "soglia", box: true }], [{ t: "sembra un fallimento", hand: true }]],
+            colonne: [{ media: "m7", v: 0.3 }, { media: "m8", v: 0.44 }, { media: "h4", v: 1, scelto: true }, { media: "m9", v: 0.22 }, { media: "m10", v: 0.36 }],
+            soglia: { v: 0.8, testo: "1M views" }, ingresso: "nessuno", fermoDa: t0 + 0.45 });
+          tplTenuta(tplZoomThrough(t0, S.K11.ancore.eccezione(2), S.F04.pose), r.t1);
+        }
+
+        // ═══ 6 · vergogna (kit2-reel14.js) · «E nasce quella cosa che blocca davvero le persone. Cioè la vergogna di aver
+        // pubblicato qualcosa che non ha funzionato.» Il lucchetto sul Condividi del prossimo reel; la linea all'ultimo, 312 views ═══
+        S.V = vergognaR14({ t0: C[5], t1: C[6], X: 18000, Y: 900,
+          parole: { blocca: wt(65), vergogna: wt(71), fallito: wt(79), titolo: [wt(64), wt(65), wt(70), wt(71)] } }, {
+          titolo: [[{ t: "Che " }, { t: "blocca", box: true }], [{ t: "la vergogna", hand: true }]],
+          ultimo: "ul", prossimo: "pr", views: "312" });
+
+        // ═══ 7 · A01 · «Ed è così che si passano mesi senza farsi vedere.» Gli altri si fanno vedere (views vere), il tuo posto vuoto ═══
+        S.A01 = TPL.A01({ t0: C[6], t1: C[7], X: 21500, Y: 900,
+          parole: { badge: wt(85), tuoi: wt(87), titolo: [wt(84), wt(85), wt(86)] } }, {
+          titolo: [[{ t: "Si passano " }, { t: "mesi", box: true }]],
+          media: ["a1", "a2", "a3", "a4", "a5", "a6"], views: ["2,2M", "114K", "136K", "675K", "75K", "19K"], tu: "tu" });
+
+        // ═══ 8 · D13 + numeroR14 · «Convinti di essere pigri quando in realtà è pressione. Cambia il numero e cambia tutto.»
+        // Il termometro è la pressione (in basso «Pigrizia?», barrata su «realtà»), la scala le views fino a «1M»; la tua foto
+        // sale con la barra. Su «numero» la cima diventa «100 persone giuste» e la pressione scende.
+        // R8 MORBIDA: la camera entra nel tuo posto vuoto e dall'altra parte c'è la tua foto sul termometro ═══
+        { const t0 = C[7];
+          const r = { t0, t1: C[8], X: 25000, Y: 900, parole: { sale: wt(90), titolo: [wt(97), wt(98), wt(99), wt(100), wt(101)] } };
+          S.D13 = TPL.D13(r, { titolo: [[{ t: "È " }, { t: "pressione", box: true }], [{ t: "cambia il numero", hand: true }]], titoloEsce: false,
+            gradini: ["100 views", "1K", "10K", "100K", "1M views"], etichette: ["Pigrizia?", "Pressione"], tu: true, ingresso: "nessuno" });
+          // le etichette del tubo più grandi (26 px nel mondo si leggevano appena alla scala della scena)
+          S.D13.elementi.termo.lab.forEach((l) => { l.style.fontSize = "42px"; l.style.width = "360px"; l.style.left = (parseFloat(l.style.left) - 40) + "px"; });
+          S.D13.elementi.titolo.outAt(r.t1 - 0.47 - 5 * 0.012);
+          const fine = tplZoomThrough(t0, S.A01.ancore.tu, S.D13.pose);
+          tplTenuta(fine, r.t1);
+          TPL_FERMO.push([fine, r.t1]);
+          S.N = numeroR14(S.D13, { numero: wt(101), testo: "100 PERSONE GIUSTE", tutto: wt(104), barra: wt(96) });
+        }
+
+        // ═══ 9 · O10 · «L'obiettivo non è un milione di visualizzazioni. È arrivare alle persone giuste col messaggio giusto.»
+        // «1M di views» fuori e barrato, al centro le persone giuste (silhouette), la freccetta = il messaggio giusto ═══
+        S.O10 = TPL.O10({ t0: C[8], t1: C[9], X: 28500, Y: 900,
+          parole: { fuori: wt(110), spegni: wt(112), centro: wt(116), freccia: wt(119),
+            titolo: [wt(107), wt(109), wt(110), wt(115), wt(116), wt(117)] } }, {
+          titolo: [[{ t: "Non " }, { t: "un milione", box: true }], [{ t: "le persone giuste", hand: true }]], titoloEsce: false,
+          etichette: { fuori: "1M di views", centro: "Le persone giuste" } });
+
+        // R7: sfondo fermo nella tenuta di ogni scena
+        tplFermo();
+
+        window.__timelines = window.__timelines || {};
+        window.__timelines["main"] = tl;
+      })();
+    </script>
+  </body>
+</html>
