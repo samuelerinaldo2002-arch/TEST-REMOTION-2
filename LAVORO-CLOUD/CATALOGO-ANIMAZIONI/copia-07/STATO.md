@@ -1,6 +1,6 @@
 # Blocco C2b · copia del REEL 1 intero (copia-07, porta :3047; in cloud niente anteprima)
 
-**Riga di stato (16/10, cloud):** IN CORSO. Fatte le scene 1–23 (build; check: 0 errori di runtime, restano ~29 sovrapposizioni di testo segnalate a 64–66 s: il copione 2 che viene avanti copre il testo del copione 1, voluto come il suo). Snapshot guardate contro Kallaway per tutte le scene 1–22; un render di prova (5 min 54 s) e i fogli delle scene 1–9 guardati. Prossima: scena 24 (r01_riepilogo, 108,567–110,777 s: «I 3 Modi Migliori Per / Accelerare Le Tue Views» col riquadro, la lista intera che si monta). Poi 25 CTA su fondo chiaro (X01: r01_cta), 26 facecam, 27 coda A01 (reel 25, 0–3,042 s); poi render, fogli 10–27, misure, affiancato, clip della pagina, RAPPORTO. Chi riprende: `bash LAVORO-CLOUD/_tools/ripristina.sh`, poi riparte dalla prima riga «da fare» qui sotto (codice in `kw-kit/kit2-copia-r01.js`, `kit2-copia-c2b-*.js`; composizione `copia-07/index.src.html`, segnaposto `//__SCENE__`).
+**Riga di stato (16/10, cloud):** IN CORSO. Fatte le scene 1–24 (build; check: 0 errori di runtime, restano ~29 sovrapposizioni di testo segnalate a 64–66 s: il copione 2 che viene avanti copre il testo del copione 1, voluto come il suo). Snapshot guardate contro Kallaway per tutte le scene 1–24; un render di prova (5 min 54 s) e i fogli delle scene 1–9 guardati. Prossima: scena 25 (r01_cta = X01 del reel 1, 110,777–115,115 s: fondo chiaro a griglia, «Commenta “Strategia” / Per Avere Il Video», la card 16:9 del tuo video che cambia; U09 nel reel 1 non c'è). Poi 26 facecam (115,115–119,42), 27 coda A01 (reel 25, 0–3,042 s, 119,42–122,462); poi render, fogli 10–27, misure, affiancato, clip della pagina, RAPPORTO. Chi riprende: `bash LAVORO-CLOUD/_tools/ripristina.sh`, poi riparte dalla prima riga «da fare» qui sotto (codice in `kw-kit/kit2-copia-r01.js`, `kit2-copia-c2b-*.js`; composizione `copia-07/index.src.html`, segnaposto `//__SCENE__`).
 
 Reel 1 = `TUTTI-I-REEL/2026-10-08_DePIvvKub8b.mp4` (inventario n = 1), 720×1280, 23,976 fps, video 119,33 s (2861 fotogrammi), audio
 119,42 s. Trascrizione `_lavoro/r01_parole.json` (Parakeet tarato). Dopo la fine del reel, la coda A01 dal reel 25 (0–3,042 s):
@@ -32,7 +32,7 @@ composizione 122,462 s. Media: `_lavoro/media.py` → `assets/` (`_sorgenti.json
 | 21 | 97,931–99,474 | facecam piena | cpFacecam | fatto |
 | 22 | 99,474–102,144 | «Più Views Non Vuol Dire / Più Conversioni»: gli anelli pieni | COPIA.r01_conversioni | fatto |
 | 23 | 102,144–108,567 | facecam piena (stacco sulla faccia a 106,57 s) | cpFacecam | fatto |
-| 24 | 108,567–110,777 | «I 3 Modi Migliori Per / Accelerare Le Tue Views»: la lista intera | COPIA.r01_riepilogo | da fare |
+| 24 | 108,567–110,777 | «I 3 Modi Migliori Per / Accelerare Le Tue Views»: la lista intera | COPIA.r01_riepilogo | fatto |
 | 25 | 110,777–115,115 | CTA su fondo chiaro: «Commenta “Strategia” / Per Avere Il Video», la card del tuo video | COPIA.r01_cta (X01) | da fare |
 | 26 | 115,115–119,42 | facecam piena fino alla fine del reel | cpFacecam | da fare |
 | 27 | 119,42–122,462 | A01 isolata (reel 25, 0–3,042 s): griglia di 6 reel di creator su fondo chiaro, views che arrivano, titolo | COPIA.A01 | da fare |

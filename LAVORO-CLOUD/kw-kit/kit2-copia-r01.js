@@ -1035,3 +1035,34 @@ COPIA.r01_conversioni = (scena, o) => {
   tl.set(L, { opacity: 0 }, t1);
   return { rect: null, pose: null, ancore: {}, elementi: { T, an } };
 };
+
+/* @copia r01_riepilogo · «I 3 Modi Migliori Per / Accelerare Le Tue Views» col riquadro; la lista intera che si monta salendo
+ *   (reel 1, 108,567–110,777 s)
+ * kallaway: reel 1, 108,567 s · taglio: il titolo «The 3 Best Ways To» e il riquadro rosso della riga 2 («Speedrun» corsivo + «Your
+ *   Views») che si allunga da x 117 a 960 in ~0,37 s con le parole; la barra 01 c'è già (centro y 820) e la lista sale frenando (01 a
+ *   786 · 717 · 696 · 683 · 670 · 661 · 657 … 635 px fino a 110,7 s); la 02 compare a 108,8 s sotto (passo ~200), la 03 a 109,15 s
+ * misure: barre 864×104 (x 108–972); titolo riga 1 y ~225–270, riquadro y 294–363
+ * scena: t0 (108,567), t1 (110,777), X, Y, parent
+ * colori: riquadro rosso → lime con la scritta scura; accenti rossi delle barre → lime
+ */
+COPIA.r01_riepilogo = (scena, o) => {
+  o = o || {};
+  const L = scena.parent || layer(26), X = scena.X, Y = scena.Y, W = (sx, sy) => [X - 540 + sx, Y - 880 + sy];
+  const t0 = scena.t0, t1 = scena.t1, a = (t) => t0 + (t - 108.567);
+  const T1 = r5Titolo({ righe: [[{ t: "I 3 Modi Migliori Per", ruolo: "sans", size: 74 }]], y: 214, interlinea: [70] });
+  T1.inAt([108.5, 108.52, 108.54, 108.56, 108.58].map(a));
+  const T2 = COPIA.T02({ t0: 0, parent: hud, y: 294, x0: 117 }, { testo: ["Accelerare", "Le", "Tue", "Views"], ruoli: ["serif", "sans", "sans", "sans"], fs: 64, fsSerif: 76, h: 69,
+    tempi: [108.6, 108.75, 108.8, 108.9].map(a), bordo: [[108.567, 140], [108.61, 410], [108.69, 475], [108.82, 657], [108.94, 960]].map(([t, x]) => [a(t), x]) });
+  r1Finestra(T1.root, t0, t1); r1Finestra(T2.elementi.root, t0, t1);
+  const box = layered(el(L, { position: "absolute", left: 0, top: 0, width: 1, height: 1, zIndex: 12 }));
+  const bars = R1_VOCI.map((s, i) => {
+    const [bx, by] = W(540, 820 - 52 + 200 * i);
+    const B = r1Barra(box, bx, by, 864, 104, String(i + 1).padStart(2, "0"), s, { fs: 34 });
+    return B;
+  });
+  [[1, 108.8], [2, 109.15]].forEach(([i, t]) => { gsap.set(bars[i].g, { opacity: 0, y: 30 }); tl.to(bars[i].g, { opacity: 1, y: 0, duration: 0.18, ease: "power2.out" }, a(t)); });
+  const fy = cpCurva([[108.567, 0], [108.61, 0], [108.69, -34], [108.94, -103], [109.07, -124], [109.19, -137], [109.32, -150], [109.44, -159], [109.57, -163], [110.0, -175], [110.777, -185]].map(([t, d]) => [a(t), d])), st = { v: 0 };
+  tl.fromTo(st, { v: 0 }, { v: 1, duration: t1 - t0, ease: "none", immediateRender: false, onUpdate: () => gsap.set(box, { y: fy(t0 + st.v * (t1 - t0)) }) }, t0);
+  tl.set(L, { opacity: 0 }, t1);
+  return { rect: null, pose: null, ancore: {}, elementi: { T1, T2, bars } };
+};
