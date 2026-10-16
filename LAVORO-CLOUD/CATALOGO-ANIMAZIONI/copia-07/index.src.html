@@ -227,6 +227,13 @@
         // ═══ 21 · 97,931–99,474 s · facecam piena ═══
         cpFacecam(97.931, 99.474);
 
+        // ═══ 22 · 99,474–102,144 s · r01_conversioni: «Più Views Non Vuol Dire / Più Conversioni», gli anelli pieni della scena 5 ═══
+        cpCam.taglio(99.474, { fx: 90000, fy: 880 + 80 / 0.71 - 80, s: 0.71 });   // gli anelli a ×0,71, centro sullo schermo a (540, 800)
+        COPIA.r01_conversioni({ t0: 99.474, t1: 102.144, X: 90000, Y: 880, parent: layer(25) }, {});
+
+        // ═══ 23 · 102,144–108,567 s · facecam piena (da lui uno stacco sulla faccia a 106,57 s) ═══
+        cpFacecam(102.144, 108.567);
+
         //__SCENE__
 
         cpCam.gira(0, 122.462);

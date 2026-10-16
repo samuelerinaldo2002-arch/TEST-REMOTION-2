@@ -394,7 +394,7 @@ COPIA.r01_tam = (scena, o) => {
   [[6, 20.27, [10, 11]], [7, 20.74, [12]], [8, 21.02, [13]]].forEach(([k, t, ob]) => { an.giro(k, a(t), 0.5); an.orbiteIn(a(t + 0.2), 0.6, ob); });
   an.tinta(a(22.45), 0.09);
   // l'alone largo attorno agli anelli che si accende con la tinta (il suo rosso scuro fino a ~r 520 → lime tenue)
-  const alone = layered(el(L, { position: "absolute", left: cx - 560, top: cy - 560, width: 1120, height: 1120, borderRadius: "50%", background: "radial-gradient(circle, rgba(207,251,80,0) 35%, rgba(207,251,80,.07) 62%, rgba(207,251,80,.05) 80%, rgba(207,251,80,0) 100%)", opacity: 0, zIndex: 2 }));
+  const alone = layered(el(L, { position: "absolute", left: cx - 560, top: cy - 560, width: 1120, height: 1120, borderRadius: "50%", background: "radial-gradient(circle, rgba(207,251,80,0) 35%, rgba(207,251,80,.035) 62%, rgba(207,251,80,.02) 82%, rgba(207,251,80,0) 100%)", opacity: 0, zIndex: 2 }));
   tl.to(alone, { opacity: 1, duration: 1.0, ease: "power1.out" }, a(22.6));
   // la camera: sale con l'avatar, si avvicina (×1,29), si allontana mentre si riempiono gli anelli, si riavvicina piano
   const ya = [[15.77, 907], [16.02, 862], [16.27, 837], [16.52, 820], [16.77, 807], [17.02, 798], [17.27, 791], [17.52, 786], [17.77, 784], [19.0, 780], [20.0, 778], [20.77, 768], [21.5, 765], [22.5, 762], [23.73, 762]];
@@ -1004,4 +1004,34 @@ COPIA.r01_termini = (scena, o) => {
   omini.forEach((p, k) => { if (!esce.includes(k)) tl.to(p, { opacity: 0.32, duration: 0.2, ease: "power1.out" }, a(95.3 + 0.008 * k)); });
   tl.set(L, { opacity: 0 }, t1);
   return { rect: null, pose: null, ancore: {}, elementi: { T, box, omini, disco } };
+};
+
+/* @copia r01_conversioni · «Più Views Non Vuol Dire / Più Conversioni»: gli anelli pieni e tinti della scena 5 attorno alla tua
+ *   foto, la camera che si avvicina piano (reel 1, 99,474–102,144 s)
+ * kallaway: reel 1, 99,474 s · taglio: gli anelli della scena 5 come li aveva lasciati (10 anelli, orbite rosse, alone), raggio
+ *   esterno 294 → 354 px fino a 102,1 s (la camera si avvicina ×1,2); il titolo parola per parola («More Views Doesn't Mean» 99,47–99,7 ·
+ *   «More Conversions» 99,72–100,0 s) che intanto sale di ~57 px, la linea rossa sotto la riga 2 che cresce (99,6–99,85 s)
+ * misure: centro degli anelli (540, 800); titolo riga 1 y ~180–222, riga 2 ~230–290 a 100,1 s
+ * scena: t0 (99,474), t1 (102,144), X, Y, parent · posa del taglio della camera: s 0,71 (gli anelli della scena 5 a ×0,71)
+ * colori: orbite e alone lime come la fine della scena 5; la linea rossa → lime
+ */
+COPIA.r01_conversioni = (scena, o) => {
+  o = o || {};
+  const L = scena.parent || layer(25), X = scena.X, Y = scena.Y;
+  const t0 = scena.t0, t1 = scena.t1, a = (t) => t0 + (t - 99.474);
+  const T = r5Titolo({ righe: [[{ t: "Più Views ", ruolo: "sans", size: 60 }, { t: "Non Vuol Dire", ruolo: "serif", size: 72 }], [{ t: "Più Conversioni", ruolo: "sans", size: 92 }]], y: 160, interlinea: [70], sottolinea: { y: 318, w: 640, h: 5 } });
+  T.inAt([99.4, 99.47, 99.55, 99.62, 99.7, 99.72, 99.85].map(a));
+  T.sottolinea(a(99.6), 0.3, "power1.out");
+  gsap.set(T.root, { y: 57 });
+  tl.to(T.root, { y: 0, duration: 0.65, ease: "power2.out" }, t0);
+  r1Finestra(T.root, t0, t1);
+  const cx = X, cy = Y - 80;
+  const orb = Array.from({ length: 13 }, (_, m) => 70 + 28 * m);
+  const an = r1Anelli(L, cx, cy, { raggi: [70, 125, 180, 235, 290, 330, 368, 405], conte: [6, 12, 18, 24, 31, 35, 39, 43], orbite: orb });
+  an.pieni(); an.orbiteIn(t0 - 0.01, 0.01); an.tinta(t0 - 0.02, 0);
+  r1Avatar(L, cx, cy, { r: 48, z: 9 });
+  layered(el(L, { position: "absolute", left: cx - 560, top: cy - 560, width: 1120, height: 1120, borderRadius: "50%", background: "radial-gradient(circle, rgba(207,251,80,0) 35%, rgba(207,251,80,.035) 62%, rgba(207,251,80,.02) 82%, rgba(207,251,80,0) 100%)", zIndex: 2 }));
+  cpCam.scala([[99.474, 1], [100.0, 1.05], [100.6, 1.1], [101.2, 1.15], [102.144, 1.21]].map(([t, k]) => [a(t), k]), [540, 800]);
+  tl.set(L, { opacity: 0 }, t1);
+  return { rect: null, pose: null, ancore: {}, elementi: { T, an } };
 };
