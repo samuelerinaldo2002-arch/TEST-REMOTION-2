@@ -1,10 +1,17 @@
 # Note di rientro · lavoro fatto in cloud (ramo `cloud-catalogo`)
 
-Bozza che si completa a fine lavoro. Tutto quello che è stato creato o modificato in cloud sta in `LAVORO-CLOUD/` con gli
-stessi percorsi del progetto; il ramo `main` e i file esistenti nei percorsi normali del ramo non sono toccati.
+Stato al 16/10, fine della prima sessione cloud: **fatti i due ritocchi a C1 e il blocco C2 (reel 5 intero)**, con il giro di
+correzioni della regia. C2b (reel 1) e i blocchi seguenti sono da fare (`STATO.md`). Tutto quello che è stato creato o modificato
+in cloud sta in `LAVORO-CLOUD/` con gli stessi percorsi del progetto; il ramo `main` e i file esistenti nei percorsi normali del
+ramo `cloud-catalogo` non sono toccati.
+
+**Da guardare per primi:** `CATALOGO-ANIMAZIONI/_analisi/confronti-video/r05_copia_affiancato.mp4` (KALLAWAY | COPIA, tutto il
+reel 5, senza audio), i fogli `CATALOGO-ANIMAZIONI/_analisi/ritmo/fogli_regia/copia-02_NN_<id>.jpg` (uno per scena) e
+`copia-01_16_O30.jpg` / `copia-01_25_r79_cta.jpg` (i ritocchi a C1), i render ridotti `CATALOGO-ANIMAZIONI/_analisi/render/
+copia-02_bozza_540.mp4` e `copia-01_bozza_540.mp4`, il rapporto `CATALOGO-ANIMAZIONI/copia-02/RAPPORTO.md`.
 
 ## 1. File nuovi e file esistenti modificati
-(si completa a fine lavoro; l'elenco vivo è `LAVORO-CLOUD/MANIFESTO.txt`)
+(l'elenco completo, file per file, è `LAVORO-CLOUD/MANIFESTO.txt`)
 
 **Nuovi, solo per il cloud (Linux):**
 - `_tools/render_ritmo.sh` — render di prova sotto il lucchetto `CATALOGO-ANIMAZIONI/_analisi/render/.lock-render`
@@ -70,8 +77,16 @@ cambiate sono i rami `if (o.pieno)` / `if (RT)` e i loro `else` con il codice di
    file di servizio della radice: `STATO.md`, `NOTE-DI-RIENTRO.md`, `MANIFESTO.txt`). I file nuovi si aggiungono; i file
    esistenti modificati sono elencati al §1 con il perché.
 3. Aggiungere a mano i frammenti del §4 (voti_kit.json, tabelle) invece di sovrascrivere quei file.
-4. Rilanciare (da completare a fine lavoro): `node kw-kit/build.cjs CATALOGO-ANIMAZIONI/copia-NN` per ogni blocco, il render
-   di prova, `_tools/genera_catalogo_ritmo.py --solo <ID>` per le voci nuove, le clip della pagina.
+4. Rilanciare, dalla cartella del progetto (PowerShell):
+   - `node kw-kit/build.cjs CATALOGO-ANIMAZIONI/copia-01` e `node kw-kit/build.cjs CATALOGO-ANIMAZIONI/copia-02` (le cartelle
+     `composition/` non sono in `LAVORO-CLOUD`: le rifà il build); poi `npx --yes hyperframes@0.8.138 check` in ognuna;
+   - i render di prova `_analisi/render/copia-01_bozza.mp4` e `copia-02_bozza.mp4` (lo script di prima,
+     `_script_blocco03/render_ritmo.ps1 -comp copia-02`, o `npx hyperframes@0.8.138 render --quality draft`): in
+     `LAVORO-CLOUD` ci sono solo le versioni ridotte `_540`;
+   - la pagina: `_tools/venv/Scripts/python.exe -I _tools/genera_catalogo_ritmo.py --solo L01,L02,K14,O21,F03,T08,K01,O28,X01,O30,K06`
+     (le clip `ritmo-clip/<ID>_copia.mp4` e `_kcopia.mp4` sono già fatte; lo script le rifà solo se cambia il render);
+   - anteprime, se le vuoi: :3041 (copia-01) e :3042 (copia-02).
+   I file `_tools/*.sh`, `_tools/trascrivi.py` e `_tools/venv` di Linux su Windows non servono (sono solo per il cloud).
 
 ## 3. Sostituzioni, differenze Linux / Windows, cose che non tornano
 **Ambiente cloud (16/10):** Linux x64, 4 core, 16 GB, senza GPU (Chrome in software: render più lenti che su Windows).
@@ -100,9 +115,12 @@ cambiate sono i rami `if (o.pieno)` / `if (RT)` e i loro `else` con il codice di
     list colorata a sinistra); la folla nel locale → `_clip-esterni/viaggi` (ufpZ, una folla in sala, con la sua scritta);
   - scene 7, 11, 13, 17, 23, i suoi reel (lui sotto, la grafica sopra) → i tuoi reel già tagliati per C1
     (`copia-01/assets/clips/mio/v01`, `v03`, `m05`, `m01`, `tel_c`), perché i tuoi reel veri (D:\CONTENUTI) non ci sono in cloud;
-  - scena 7, il muro coi suoi 30 reel → le 10 miniature dei tuoi reel (`kw-kit/assets/thumbs/mio_01…10`) ripetute;
-  - scena 19 e 21, la copertina del creator «This Is How You Go Viral» clonata → una copertina vera di
-    `_clip-esterni/stevenbartlett` (7Dtk, «I've been to hell»);
+  - scena 7, il muro coi suoi 30 reel → 36 fotogrammi diversi dei tuoi reel già tagliati (`copia-02/assets/img/wv01–18` col
+    tuo viso, `wg01–18` di grafica; prima della correzione della regia erano le 10 miniature `mio_*` ripetute);
+  - scena 11, il suo profilo col titolo cerchiato «How To Grow A [Niche] Social Media From 0 To 100K» → il tuo reel `v01` (il
+    profilo che spieghi) con sopra il titolo italiano messo da noi (prima era `v03`, la tazza);
+  - scena 19 e 21, i 9 creator diversi con la stessa scritta «This Is How You Go Viral» → 9 creator diversi di `_clip-esterni`
+    (`copia-02/assets/img/cl1–cl9`) con «“Ecco Come Diventare Virale”» sopra;
   - scena 27, il suo video 16:9 nello studio → un ritaglio 16:9 del tuo reel `mio/v02` (640×360, bassa definizione: da rifare
     in locale da un tuo video orizzontale);
   - scena 15, la sua pagina («7 Steps to a Short Form Growth System…») e scena 23 il suo documento «New … story template» →
@@ -131,7 +149,8 @@ cambiate sono i rami `if (o.pieno)` / `if (RT)` e i loro `else` con il codice di
   (`o.clip` di `COPIA.r05_prove`, e `o.titoloReel` per il testo).
 
 ## 4. Frammenti da aggiungere (voti_kit.json, tabelle)
-(si completa a fine lavoro)
+Non si sovrascrivono `voti_kit.json`, `RIFACIMENTO-RITMO.md`, `PROSSIMA-SESSIONE.md`, `PASSAGGIO-CLOUD.md` e la pagina: si
+aggiungono a mano questi pezzi (in fondo al paragrafo anche le righe di stato per PROSSIMA-SESSIONE.md e PASSAGGIO-CLOUD.md).
 
 ### C1 ritocchi
 Da aggiungere a mano in `_analisi/voti_kit.json` (voci del giro «copia 15/10 (blocco C1)», solo i campi che cambiano):
@@ -175,3 +194,13 @@ Pagina `catalogo-ritmo.html`: da rigenerare in locale (`_tools/genera_catalogo_r
 sono già in `ritmo-clip/` (`clip_pagina.py`, stessi parametri: la pagina le rifà solo se cambia la chiave in `_clip.json`).
 KIT-V2.md (sezione «Copia fedele»): da aggiungere una riga — blocco C2 = reel 5 intero in `copia-02`, file `kit2-copia-r05.js`
 (aiuti `r5*` del reel 5) e `kit2-copia-c2-*.js`; `r5Strato(t)` per montare la scena dopo nello stesso mondo senza taglio.
+
+### Stato da riportare in `PROSSIMA-SESSIONE.md` (in testa) e in `PASSAGGIO-CLOUD.md` (tabella «Stato al passaggio»)
+```
+16/10 (sessione cloud, ramo cloud-catalogo): C1 · due ritocchi FATTI (O30 piena al taglio con l'opzione `pieno`; CTA con
+l'opzione `ritocco`: miniatura visibile dal taglio, «2» grande nello zoom, chip e tuffo ×3,3 della sua misura, titolo al
+taglio). C2 = reel 5 intero FATTO (copia-02, 27 scene, 9 voci, 56 transizioni; correzioni della regia fatte), da rivedere con
+l'utente: affiancato _analisi/confronti-video/r05_copia_affiancato.mp4, rapporto copia-02/RAPPORTO.md. Prossimo: C2b = reel 1
+intero (T02 · D02 · X01 · T01 · F02 · A01) in copia-07 (:3047); trascrizione del reel 1 già pronta
+(Parakeet) in copia-07/_lavoro/r01_parole.json.
+```
