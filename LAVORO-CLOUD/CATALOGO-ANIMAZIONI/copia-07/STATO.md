@@ -36,3 +36,15 @@ composizione 122,462 s. Media: `_lavoro/media.py` → `assets/` (`_sorgenti.json
 | 25 | 110,777–115,115 | CTA su fondo chiaro: «Commenta “Strategia” / Per Avere Il Video», la card del tuo video (U09: nel reel 1 non c'è) | COPIA.r01_cta (X01) | fatto |
 | 26 | 115,115–119,42 | facecam piena fino alla fine del reel | cpFacecam | fatto |
 | 27 | 119,42–122,462 | A01 isolata (reel 25, 0–3,042 s): griglia di 6 reel di creator su fondo chiaro, views che arrivano, titolo | COPIA.A01 | scritta e compilata, da guardare contro il reel 25 |
+
+## Revisione della regia (16/10, fine sessione, dopo il render completo)
+- Render completo `_analisi/render/copia-07_bozza.mp4` (6 min 35 s; ridotto `copia-07_bozza_540.mp4`), fogli KALLAWAY | COPIA di
+  tutte le 27 scene (`fogli_regia/copia-07_NN_*.jpg`), affiancato `_analisi/confronti-video/r01_copia_affiancato.mp4` (0–119,42 s),
+  safe zone: 0 campioni su 735 sotto la linea (`--soglia 75`).
+- Scena 27 (A01, coda dal reel 25): guardata, impaginazione, media e tempi come i suoi. A posto.
+- Scena 15 (r01_copione2, 63,605 s): **da correggere** — al fotogramma del taglio (+0 s) la copia è tutta nera; da lui ci sono
+  già l'intestazione «01» e i due copioni. Scena piena al taglio (stato del taglio con `tl.set` poco prima, sotto la facecam).
+- Le ~29 sovrapposizioni di testo del check a 64–66 s: sul foglio sono il copione 2 che passa davanti al copione 1, come da
+  lui. Non sono un errore.
+- Fogli 10–26 non ancora guardati dalla regia: da guardare una volta nella prossima sessione, insieme a misure,
+  `transizioni.json`, clip della pagina, `RAPPORTO.md` e frammenti del §4 di NOTE-DI-RIENTRO.
