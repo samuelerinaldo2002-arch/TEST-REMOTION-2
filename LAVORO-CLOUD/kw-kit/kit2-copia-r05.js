@@ -512,3 +512,412 @@ COPIA.r05_fiducia = (scena, o) => {
   cpCam.zoom(t0 + 0.85, 0.5, 0.93, [540, 760], "power2.out");
   return { rect: null, pose: null, ancore: {}, elementi: { chip, borsa: b } };
 };
+
+// pillola scura col bordo chiaro (Kallaway: «Proof Of Results», «Live Demonstration Of Ability») — larghezza fissa
+const r5Pillola = (parent, cx, cy, w, h, testo, o) => {
+  o = o || {};
+  return layered(el(parent, { position: "absolute", left: cx - w / 2, top: cy - h / 2, width: w, height: h, borderRadius: o.r || 12, background: R5.vetro, boxShadow: `inset 0 0 0 2.5px ${o.bordo || "rgba(255,255,255,.62)"}, 0 0 18px rgba(255,255,255,.12), 0 12px 30px rgba(0,0,0,.5)`, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: FS, fontWeight: 700, fontSize: o.fs || 40, color: K.white, whiteSpace: "nowrap", letterSpacing: "-0.01em", zIndex: o.z || 14 }, testo));
+};
+
+/* @copia r05_prove · «La Fiducia Nasce Da Due Cose»: due pillole, la prima diventa intestazione; il tuo reel col profilo; «Il
+ *   Posto Giusto Per Metterle»; il copione con la zona d'aggancio (reel 5, 44,125–54,292 s)
+ * kallaway: reel 5, 44,125 s · titolo neretto («Trust Comes From», «Two Things» nel riquadro); la pillola «Proof Of Results»
+ *   sale e si accende (44,2–44,35 s), la seconda «Live Demonstration Of Ability» a 45,5 s; a 46,3 s tutto sale, il titolo e la
+ *   seconda pillola si spengono e la prima sale a fare da intestazione (y 315 a 47,2 s); sotto il suo reel con la banda verde
+ *   (47,0–47,7 s); a 48,3 s la camera si tuffa nel reel (×1,94 in 1,1 s verso la scritta in alto); a 50,1 s il reel sparisce e
+ *   al centro si scrive «The Best Place / To Put Them»; a 51,29 s arriva il copione «Script» (righe grigie, «Hook» con la linea
+ *   rossa), cresce piano; da 52,3 s «The Lock In Zone» e le righe che si evidenziano di giallo una dopo l'altra
+ * misure: pillola 692×112 a (540, 733) → 694 → 672; seconda a 836; intestazione 734×116 a y 315; reel 367×655 a (540, 900) →
+ *   sale di 120 px; tuffo ×1,94 attorno a (540, 448); copione 666×711 a (540, 816) → 734×785 a 54,2 s
+ * scena: t0 (44,125), t1 (54,292), X, Y, parent · opzioni: titolo, pillole, clip ("tuo2"), frase, copione
+ * colori: rosso (riquadro, linea dell'hook) e giallo (zona d'aggancio) → lime; il suo verde (banda) → lime
+ */
+COPIA.r05_prove = (scena, o) => {
+  o = o || {};
+  const L = scena.parent || layer(10), X = scena.X, Y = scena.Y, W = (sx, sy) => [X - 540 + sx, Y - 880 + sy];
+  const t0 = scena.t0;
+  const T = r5Titolo({ righe: o.titolo || [[{ t: "La Fiducia Nasce Da", ruolo: "sans", size: 58 }], [{ t: "Due Cose", ruolo: "sans", size: 58, box: true, h: 68 }]], tops: [209, 285], y: 209 });
+  T.inAt([t0 + 0.0, t0 + 0.08, t0 + 0.2, t0 + 0.45, t0 + 0.63, t0 + 0.76]);
+  tl.to(T.root, { opacity: 0.35, duration: 0.25 }, t0 + 2.6);
+  tl.to(T.root, { opacity: 0, duration: 0.15 }, t0 + 2.85);
+  const pil = o.pillole || ["Prove Dei Risultati", "Capacità Dimostrate Dal Vivo"];
+  // le due pillole (mondo): la prima sale e si accende, la seconda arriva a 45,5 s
+  const [p1x, p1y] = W(540, 694), [p2x, p2y] = W(540, 836);
+  const P1 = r5Pillola(L, p1x, p1y, 692, 112, pil[0]);
+  const P2 = r5Pillola(L, p2x, p2y, 700, 104, pil[1], { fs: 38 });
+  gsap.set(P1, { opacity: 0, y: 39 });
+  tl.to(P1, { opacity: 0.55, duration: 0.08 }, t0 + 0.04);
+  tl.to(P1, { opacity: 1, y: -9, duration: 0.25, ease: "power2.out" }, t0 + 0.12);
+  tl.to(P1, { y: 0, duration: 1.0, ease: "sine.inOut" }, t0 + 0.4);
+  gsap.set(P2, { opacity: 0, filter: "blur(8px)", y: 20 });
+  tl.to(P2, { opacity: 1, filter: "blur(0px)", y: 0, duration: 0.25, ease: "power2.out" }, t0 + 1.3);
+  tl.set(P2, { filter: "none" }, t0 + 1.56);
+  // tutto sale (46,3 → 46,83 s, ~170 px), la seconda si spegne, la prima va a fare da intestazione (nell'HUD)
+  cpCam.trasla(t0 + 2.2, 0.5, 0, -170, "power2.in");
+  tl.to(P2, { opacity: 0, duration: 0.18 }, t0 + 2.62);
+  const H1 = r5Pillola(hud, 540, 0, 734, 116, pil[0], { fs: 42, z: 48 });
+  gsap.set(H1, { opacity: 0 });
+  const fH = cpCurva([[t0 + 2.7, 504], [t0 + 2.875, 392], [t0 + 3.085, 315], [t0 + 3.3, 314]]), stH = { v: 0 };
+  tl.set(H1, { opacity: 1 }, t0 + 2.7);
+  tl.set(P1, { opacity: 0 }, t0 + 2.7);
+  tl.fromTo(stH, { v: 0 }, { v: 1, duration: 0.6, ease: "none", immediateRender: false, onUpdate: () => gsap.set(H1, { y: fH(t0 + 2.7 + st2(stH.v)) }) }, t0 + 2.7);
+  const st2 = (v) => v * 0.6;
+  gsap.set(H1, { y: 504 });
+  tl.set(H1, { opacity: 0 }, scena.t1);
+  // il tuo reel sotto (dopo la salita della camera le coordinate sono quelle dello schermo + 170)
+  const [rx, ry] = W(540, 900 + 170);
+  const tel = r5Card(L, rx, ry, 367, 655, [[0, o.clip || "tuo2"]], { r: 10, z: 13 });
+  gsap.set(tel.g, { opacity: 0, y: 70 });
+  tl.to(tel.g, { opacity: 1, duration: 0.15 }, t0 + 2.85);
+  tl.to(tel.g, { y: -50, duration: 0.75, ease: "power2.out" }, t0 + 2.85);
+  r5Scan(tel.g, t0 + 2.85, 0.75, { h: 0.1, tinta: 0.3, spegni: 0.3 });
+  // il tuffo nel reel (48,3 → 49,4 s): ×1,94 attorno all'alto del reel; via a 50,1 s
+  cpCam.zoom(t0 + 4.2, 1.1, 1.94, [540, 448], "power2.inOut");
+  tl.to(tel.g, { opacity: 0, duration: 0.15 }, t0 + 5.95);
+  cpCam.zoom(t0 + 6.0, 0.001, 1 / 1.94, [540, 448]);
+  // «Il Posto Giusto / Per Metterle» al centro, parola per parola (50,17 · 50,33 · 50,5 · 50,83)
+  const F = r5Titolo({ righe: [[{ t: o.frase ? o.frase[0] : "Il Posto Giusto", ruolo: "sans", size: 62 }], [{ t: o.frase ? o.frase[1] : "Per Metterle", ruolo: "sans", size: 62 }]], y: 748, interlinea: [70], z: 30 });
+  F.inAt([t0 + 6.04, t0 + 6.2, t0 + 6.3, t0 + 6.38, t0 + 6.7]);
+  tl.to(F.root, { opacity: 0, duration: 0.2 }, t0 + 7.15);
+  // il copione (51,29 s): vetro chiaro col bordo, «Copione», «Hook» con la linea, le righe grigie; cresce piano
+  const [dx, dy] = W(540, 816 + 170);
+  const doc = layered(el(L, { position: "absolute", left: dx - 333, top: dy - 355, width: 666, height: 711, borderRadius: 16, background: "linear-gradient(180deg,#3a3a3a 0%,#2c2c2c 100%)", boxShadow: "inset 0 0 0 3px rgba(255,255,255,.7), 0 0 30px rgba(255,255,255,.18), 0 24px 60px rgba(0,0,0,.6)", overflow: "hidden", zIndex: 14 }));
+  el(doc, { position: "absolute", left: 0, top: 26, width: 666, textAlign: "center", fontFamily: FD, fontWeight: 700, fontSize: 64, color: K.white, textShadow: CP_GLOW_T }, o.copione || "Copione");
+  el(doc, { position: "absolute", left: 40, top: 112, display: "flex", alignItems: "center", gap: 8, fontFamily: FS, fontWeight: 700, fontSize: 24, color: K.white }, svg("triangle", 20, K.lime, 2.4, K.lime) + "Hook");
+  el(doc, { position: "absolute", left: 150, top: 124, width: 476, height: 5, borderRadius: 3, background: K.lime, boxShadow: R5.glowL(0.4) });
+  const zona = el(doc, { position: "absolute", left: 40, top: 146, display: "flex", alignItems: "center", gap: 8, fontFamily: FS, fontWeight: 700, fontSize: 24, color: K.white, opacity: 0 }, svg("star", 20, K.lime, 2.4, K.lime) + "Zona Di Aggancio");
+  const righe = [];
+  for (let k = 0; k < 22; k++) {
+    const y = 184 + k * 22.5;
+    el(doc, { position: "absolute", left: 40, top: y, width: 586, height: 9, borderRadius: 2, background: "rgba(255,255,255,.42)" });
+    if (k < 6) { const hl = el(doc, { position: "absolute", left: 40, top: y - 3, width: 586, height: 15, borderRadius: 2, background: K.lime, boxShadow: R5.glowL(0.35), transformOrigin: "0 50%", opacity: 0.92 }); gsap.set(hl, { scaleX: 0 }); righe.push(hl); }
+  }
+  gsap.set(doc, { opacity: 0, scale: 0.94 });
+  tl.to(doc, { opacity: 1, scale: 1, duration: 0.25, ease: "power2.out" }, t0 + 7.165);
+  tl.to(doc, { scale: 1.1, duration: scena.t1 - t0 - 7.4, ease: "none" }, t0 + 7.4);
+  tl.to(zona, { opacity: 1, duration: 0.15 }, t0 + 8.15);
+  righe.forEach((hl, k) => tl.to(hl, { scaleX: k === 5 ? 0.55 : 1, duration: 0.28, ease: "power1.inOut" }, t0 + 8.25 + k * 0.27));
+  return { rect: null, pose: null, ancore: {}, elementi: { T, P1, P2, H1, tel, doc } };
+};
+
+/* @copia r05_azione · «Informazioni Nuove / Azione Chiara»: il tuo reel, il cerchio, le due pillole coi lampi (reel 5,
+ *   59,458–63,333 s)
+ * kallaway: reel 5, 59,458 s · titolo neretto su due righe, la linea d'accento rossa sotto «Clear Action» (60,4–60,9 s); al
+ *   centro il suo reel col bordo rosso sottile; la camera si allontana (×1 → ×0,69 in ~2 s attorno a 535, 685); dentro il reel
+ *   si disegna un cerchio (60,3 s); da sinistra una linea rossa a puntini porta alla pillola «Nonobvious» (60,6 s) che ha un
+ *   lampo rosso (60,95 s); a destra la stessa cosa con «Tactically Implementable» (61,7 / 61,95 s)
+ * misure: reel 419×750 a (537, 836) → 289 px a 61,7 s; pillole 242×78 sullo schermo a (216, 832) e (864, 892); linee
+ *   dall'altezza 685 dello schermo; lampo r ~216 px sullo schermo, 0,6 s
+ * scena: t0 (59,458), t1 (63,333), X, Y, parent · opzioni: titolo, clip ("tuo3"), pillole
+ * colori: rosso (bordo, linee, lampi, linea d'accento) → lime
+ */
+COPIA.r05_azione = (scena, o) => {
+  o = o || {};
+  const L = scena.parent || layer(10), X = scena.X, Y = scena.Y, W = (sx, sy) => [X - 540 + sx, Y - 880 + sy];
+  const t0 = scena.t0;
+  const T = r5Titolo({ righe: o.titolo || [[{ t: "Informazioni Nuove", ruolo: "sans", size: 56 }], [{ t: "Azione Chiara", ruolo: "sans", size: 56 }]], tops: [212, 285], y: 212, sottolinea: { y: 358, w: 400, h: 4 } });
+  T.inAt([t0, t0 + 0.17, t0 + 0.54, t0 + 0.74]);
+  T.sottolinea(t0 + 0.95, 0.45);
+  tl.set(T.root, { opacity: 0 }, scena.t1);
+  const [px, py] = W(537, 836);
+  const tel = r5Card(L, px, py, 419, 750, [[0, o.clip || "tuo3"]], { r: 10, z: 14, bordo: "rgba(207,251,80,.85)", bw: 3 });
+  // il cerchio dentro il reel (60,3 s): sottile, bianco, con le personcine lime attorno
+  const S = svgLayer(L, 15, X - 700, Y - 900, 1400, 1800);
+  const cc = document.createElementNS(NS, "circle");
+  const [ccx, ccy] = W(537, 760);
+  cc.setAttribute("cx", ccx); cc.setAttribute("cy", ccy); cc.setAttribute("r", 160); cc.setAttribute("fill", "rgba(0,0,0,.35)"); cc.setAttribute("stroke", "rgba(255,255,255,.85)"); cc.setAttribute("stroke-width", 3);
+  cc.setAttribute("transform", `rotate(-90 ${ccx} ${ccy})`); S.appendChild(cc);
+  drawable(cc); gsap.set(cc, { attr: { "fill-opacity": 0 } });
+  tl.to(cc, { attr: { "stroke-dashoffset": 0 }, duration: 0.4, ease: "power1.inOut" }, t0 + 0.85);
+  tl.to(cc, { attr: { "fill-opacity": 1 }, duration: 0.3 }, t0 + 0.9);
+  for (let k = 0; k < 8; k++) {
+    const a = (k / 8) * Math.PI * 2 - Math.PI / 2, x = ccx + 160 * Math.cos(a), y = ccy + 160 * Math.sin(a);
+    const p = layered(el(L, { position: "absolute", left: x - 14, top: y - 14, width: 28, height: 28, borderRadius: "50%", background: K.lime, display: "flex", alignItems: "flex-end", justifyContent: "center", overflow: "hidden", zIndex: 16 }, svg("user-round", 22, K.ink, 2.4, K.ink)));
+    gsap.set(p, { opacity: 0, scale: 0.4 }); tl.to(p, { opacity: 1, scale: 1, duration: 0.15 }, t0 + 1.25 + k * 0.03);
+  }
+  // le due pillole tratteggiate con le linee a puntini e i lampi (coordinate del mondo a ×1: schermo/0,69)
+  const pil = o.pillole || ["Non Ovvie", "Subito Applicabili"];
+  const mk = (sx, sy, testo, tL, pts) => {
+    const [x, y] = W(sx, sy);
+    const p = layered(el(L, { position: "absolute", left: x - 176, top: y - 57, width: 352, height: 114, borderRadius: 16, background: "rgba(30,30,30,.92)", border: "3px dashed rgba(255,255,255,.75)", display: "flex", alignItems: "center", justifyContent: "center", textAlign: "center", fontFamily: FS, fontWeight: 700, fontSize: 38, lineHeight: 1.05, color: K.white, zIndex: 15 }, testo));
+    gsap.set(p, { opacity: 0, x: -30 * Math.sign(540 - sx) });
+    tl.to(p, { opacity: 1, x: 0, duration: 0.25, ease: "power2.out" }, tL + 0.12);
+    r5Tratteggio(S, pts.map(([a, b]) => W(a, b)), tL, 0.3, { w: 4.5, dash: [6, 7] });
+    r5Pulse(L, x, y, tL + 0.35, { r0: 60, r1: 310, dur: 0.45, a: 0.55, tiene: 0.25, via: 0.4, z: 14 });
+    return p;
+  };
+  const pL = mk(73, 898, pil[0], t0 + 1.14, [[327, 685], [10, 685], [10, 842]]);
+  const pR = mk(1012, 985, pil[1], t0 + 2.2, [[747, 685], [1031, 685], [1031, 929]]);
+  // la camera si allontana (59,6 → 61,5 s) attorno a (535, 685)
+  cpCam.scala([[t0 + 0.1, 1], [t0 + 0.54, 0.9], [t0 + 0.92, 0.85], [t0 + 1.16, 0.82], [t0 + 1.46, 0.76], [t0 + 1.66, 0.74], [t0 + 1.96, 0.71], [t0 + 2.25, 0.69], [scena.t1, 0.688]], [535, 685]);
+  return { rect: null, pose: null, ancore: {}, elementi: { T, tel, pL, pR } };
+};
+
+/* @copia r05_prova · «Fallo Provare / A Chi Ti Guarda»: la persona, la pagina, la linea fino al ROI che cresce (reel 5,
+ *   66,875–72,0 s)
+ * kallaway: reel 5, 66,875 s · titolo «Let» + «Viewers» nel riquadro rosso in corsivo / «Experience It»; al centro la persona
+ *   (cerchio bianco con la sagoma) con l'anello rosso e il disco rosso che pulsa (67,0–67,5 s); sale e da lei scende una linea
+ *   rossa a puntini fino alla pagina (la sua risorsa gratuita, 67,85 s); dalla pagina parte verso destra un'altra linea a puntini
+ *   (68,9 s) e la camera la segue (69,0–70,5 s) fino alla card «ROI» col grafico verde che sale a $118,000 (71,08 s)
+ * misure: persona Ø 150 a (536, 789) → (536, 573); pagina 484×302 a (536, 905); ROI 734×491 al centro (540, 815) a 71,5 s;
+ *   pan di ~1210 px (picco ~820 px/s a 69,8 s); valore da 66.700 a 118.000 fra 69,6 e 71,08 s
+ * scena: t0 (66,875), t1 (72,0), X, Y, parent · opzioni: titolo, pagina ({ titolo, testo })
+ * colori: rosso (riquadro, anello, linee, disco) → lime; il suo verde (grafico) → lime
+ */
+COPIA.r05_prova = (scena, o) => {
+  o = o || {};
+  const L = scena.parent || layer(10), X = scena.X, Y = scena.Y, W = (sx, sy) => [X - 540 + sx, Y - 880 + sy];
+  const t0 = scena.t0;
+  const T = r5Titolo({ righe: o.titolo || [[{ t: "Fallo", ruolo: "sans", size: 58 }, { t: "Provare", ruolo: "serif", size: 70, box: true, h: 80 }], [{ t: "A Chi Ti Guarda", ruolo: "sans", size: 58 }]], tops: [200, 285], y: 200 });
+  T.inAt([t0 + 0.03, t0 + 0.25, t0 + 0.46, t0 + 0.6, t0 + 0.7, t0 + 0.8]);
+  tl.set(T.root, { opacity: 0 }, scena.t1);
+  // la persona con l'anello e il disco
+  const [qx, qy] = W(536, 789);
+  const pers = r5Persona(L, qx, qy, { d: 150, z: 16 });
+  const anello = layered(el(L, { position: "absolute", left: qx - 88, top: qy - 88, width: 176, height: 176, borderRadius: "50%", boxShadow: `inset 0 0 0 5px ${K.lime}, ${R5.glowL(0.6)}`, zIndex: 15 }));
+  r5Pulse(L, qx, qy, t0 + 0.05, { r0: 90, r1: 260, dur: 0.45, a: 0.45, tiene: 0.3, via: 0.35, z: 14 });
+  tl.to(anello, { opacity: 0, duration: 0.2 }, t0 + 0.55);
+  tl.to([pers, anello], { y: -99, duration: 0.25, ease: "power2.inOut" }, t0 + 0.55);
+  tl.to(pers, { y: -216, scale: 0.85, duration: 0.3, ease: "power2.inOut" }, t0 + 0.85);
+  // la linea giù fino alla pagina e la pagina (la tua risorsa gratuita)
+  const S = svgLayer(L, 13, X - 700, Y - 700, 3400, 1400);
+  r5Tratteggio(S, [W(536, 640), W(536, 752)], t0 + 0.83, 0.2, { w: 4, dash: [5, 6] });
+  const [gx, gy] = W(536, 905);
+  const pag = layered(el(L, { position: "absolute", left: gx - 242, top: gy - 151, width: 484, height: 302, borderRadius: 14, background: "linear-gradient(170deg,#333 0%,#262626 100%)", boxShadow: "inset 0 0 0 2px rgba(255,255,255,.3), 0 18px 50px rgba(0,0,0,.6)", overflow: "hidden", zIndex: 14 }));
+  const pg = o.pagina || { titolo: "7 Passi Per Un Sistema Di Crescita Che Porta Clienti Mentre Dormi", testo: "La guida gratuita, passo per passo" };
+  el(pag, { position: "absolute", left: 26, top: 30, width: 270, fontFamily: FS, fontWeight: 700, fontSize: 21, lineHeight: 1.12, color: K.white }, pg.titolo);
+  el(pag, { position: "absolute", left: 26, top: 150, width: 260, fontFamily: FS, fontWeight: 500, fontSize: 14, lineHeight: 1.3, color: "rgba(255,255,255,.6)" }, pg.testo);
+  el(pag, { position: "absolute", left: 26, top: 206, width: 150, height: 30, borderRadius: 6, background: K.lime, fontFamily: FS, fontWeight: 800, fontSize: 14, color: K.ink, display: "flex", alignItems: "center", justifyContent: "center" }, "Scaricala");
+  const foglio = el(pag, { position: "absolute", right: 30, top: 28, width: 140, height: 200, borderRadius: 4, background: "#f4f4f2", boxShadow: "0 8px 24px rgba(0,0,0,.5)" });
+  el(foglio, { position: "absolute", left: 14, top: 16, width: 112, fontFamily: FS, fontWeight: 800, fontSize: 13, lineHeight: 1.1, color: K.ink }, "Il Sistema Di Crescita");
+  for (let k = 0; k < 8; k++) el(foglio, { position: "absolute", left: 14, top: 64 + k * 15, width: k % 3 === 2 ? 70 : 108, height: 5, borderRadius: 2, background: "rgba(30,30,30,.35)" });
+  gsap.set(pag, { opacity: 0, y: 30 });
+  tl.to(pag, { opacity: 1, y: 0, duration: 0.25, ease: "power2.out" }, t0 + 0.98);
+  // la linea a destra e il ROI (la card al mondo x 536 + 1210)
+  const D = 1210;
+  r5Tratteggio(S, [W(778, 905), W(536 + D - 367, 905)], t0 + 2.05, 1.0, { w: 4, dash: [5, 6], ease: "none" });
+  const [rx, ry] = W(536 + D, 815);
+  const roi = r5Borsa(L, rx, ry, 734, 491, { etichetta: "ROI", dec: 0, fs: 70, punti: [[0, 0], [0.16, 0.06], [0.3, 0.26], [0.44, 0.42], [0.62, 0.43], [0.78, 0.45], [0.86, 0.85], [1, 0.84]] });
+  roi.conta(t0 + 2.7, t0 + 4.2, 66700, 118000, 1);
+  // il pan della camera verso il ROI (69,0 → 70,5 s, poi un filo di spinta)
+  cpCam.percorso([[t0 + 2.1, 0, 0], [t0 + 2.25, -60, 0], [t0 + 2.46, -205, 0], [t0 + 2.63, -360, 0], [t0 + 2.84, -560, 0], [t0 + 3.05, -760, 0], [t0 + 3.25, -905, 0], [t0 + 3.55, -1060, 0], [t0 + 3.9, -1150, 0], [t0 + 4.4, -1198, 0], [scena.t1, -1210, 0]]);
+  return { rect: null, pose: null, ancore: {}, elementi: { T, pers, pag, roi } };
+};
+
+/* @copia r05_compra · «Compra»: la voce 03 risolta sale a intestazione, la chip «Compra», il tuo reel nel cerchio, il ROI che
+ *   sale (reel 5, 81,2–85,125 s; prima c'è la lista: L01 · L02 · K14)
+ * kallaway: reel 5, 81,21 s · mentre la voce 03 sale a fare da intestazione, da sotto sale la chip «Buy» (1224 → 711 px in
+ *   0,8 s) con un lampo verde (81,67 s); a 82,33 s due archi la abbracciano e sotto compare il suo reel nel cerchio, la chip si
+ *   stringe sopra di lui; a 83,42 s il reel diventa la card «ROI» col disco verde che pulsa e il valore che sale a $110,936
+ * misure: chip 208×112 → 121 px sopra il reel; reel 332×560 a (538, 901) → 285 px (83,33 s); ROI 700×483 a (536, 832);
+ *   valore +42,4K al secondo (40.298 → 110.936)
+ * scena: t0 (81,2), t1 (85,125), X, Y, parent · opzioni: parola ("Compra"), clip ("tuo4")
+ * colori: il suo verde (lampo, disco, grafico) → lime
+ */
+COPIA.r05_compra = (scena, o) => {
+  o = o || {};
+  const L = scena.parent || layer(10), X = scena.X, Y = scena.Y, W = (sx, sy) => [X - 540 + sx, Y - 880 + sy];
+  const t0 = scena.t0;
+  const [cx, cy] = W(538, 711);
+  const chip = r5Chip(L, cx, cy, o.parola || "Compra", { fs: 62, h: 108, padX: 34, r: 12, z: 17 });
+  const fc = cpCurva([[t0, 1224], [t0 + 0.17, 1051], [t0 + 0.29, 918], [t0 + 0.46, 810], [t0 + 0.62, 750], [t0 + 0.79, 711], [t0 + 1.12, 646], [t0 + 1.29, 590], [t0 + 1.46, 547], [t0 + 1.62, 526], [t0 + 1.79, 517], [t0 + 2.1, 524]]), st = { v: 0 };
+  gsap.set(chip, { opacity: 0, y: 1224 - 711 });
+  tl.to(chip, { opacity: 1, duration: 0.12 }, t0);
+  tl.fromTo(st, { v: 0 }, { v: 1, duration: 2.1, ease: "none", immediateRender: false, onUpdate: () => gsap.set(chip, { y: fc(t0 + st.v * 2.1) - 711 }) }, t0);
+  const lampo = el(chip, { position: "absolute", inset: 0, borderRadius: 12, background: `linear-gradient(90deg, rgba(207,251,80,0) 0%, rgba(207,251,80,.9) 50%, rgba(207,251,80,0) 100%)`, opacity: 0 });
+  tl.to(lampo, { opacity: 1, duration: 0.08 }, t0 + 0.44); tl.to(lampo, { opacity: 0, duration: 0.3 }, t0 + 0.6);
+  tl.to(chip, { scale: 0.58, duration: 0.3, ease: "power2.inOut" }, t0 + 1.2);
+  // gli archi e il tuo reel nel cerchio (82,33 s)
+  const [px, py] = W(538, 901);
+  const S = svgLayer(L, 14, X - 600, Y - 600, 1200, 1300);
+  [-1, 1].forEach((s) => {
+    const r = 210, a0 = s < 0 ? 215 : -35, a1 = s < 0 ? 145 : 35;
+    const pt = (a) => [px + r * Math.cos((a * Math.PI) / 180), py - 120 + r * 1.35 * Math.sin((a * Math.PI) / 180)];
+    const [p0, p1] = [pt(a0), pt(a1)];
+    const p = pathEl(S, `M${p0[0]} ${p0[1]} A${r} ${r * 1.35} 0 0 ${s < 0 ? 0 : 1} ${p1[0]} ${p1[1]}`, { fill: "none", stroke: "#ffffff", "stroke-width": 3, "stroke-linecap": "round", opacity: 0.85 });
+    p.style.filter = "drop-shadow(0 0 5px rgba(255,255,255,.8))";
+    drawable(p);
+    tl.to(p, { attr: { "stroke-dashoffset": 0 }, duration: 0.3, ease: "power1.out" }, t0 + 1.12);
+    tl.to(p, { opacity: 0, duration: 0.2 }, t0 + 1.95);
+  });
+  const tel = r5Card(L, px, py, 332, 560, [[0, o.clip || "tuo4"]], { r: 10, z: 15 });
+  gsap.set(tel.g, { opacity: 0, scale: 0.9 });
+  tl.to(tel.g, { opacity: 1, scale: 1, duration: 0.25, ease: "power2.out" }, t0 + 1.3);
+  tl.to(tel.g, { scale: 0.86, duration: 0.66, ease: "sine.inOut" }, t0 + 1.55);
+  tl.set([tel.g, chip], { opacity: 0 }, t0 + 2.22);
+  // il ROI col disco che pulsa
+  const [rx, ry] = W(536, 832);
+  const roi = r5Borsa(L, rx, ry, 700, 483, { etichetta: "ROI", dec: 0, fs: 66 });
+  gsap.set(roi.g, { opacity: 0 });
+  tl.set(roi.g, { opacity: 1 }, t0 + 2.22);
+  roi.conta(t0 + 2.22, scena.t1 - 0.05, 40298, 110936, 1);
+  r5Pulse(L, rx, ry + 10, t0 + 2.26, { r0: 70, r1: 390, dur: 0.6, a: 0.5, tiene: 0.3, via: 0.45, z: 16 });
+  return { rect: null, pose: null, ancore: {}, elementi: { chip, tel, roi } };
+};
+
+// il tablet coi 9 cloni della stessa copertina (scene 19 e 21): cornice scura col bordo, griglia 3×3; tinta (lime) facoltativa
+const r5Tablet = (parent, cx, cy, o) => {
+  o = o || {};
+  const cw = o.cw || 359, ch = o.ch || 522, gx = o.gx || 420, gy = o.gy || 590, pad = o.pad || 70;
+  const W2 = 2 * gx + cw + 2 * pad, H2 = 2 * gy + ch + 2 * pad;
+  const tab = layered(el(parent, { position: "absolute", left: cx - W2 / 2, top: cy - H2 / 2, width: W2, height: H2, borderRadius: o.r || 60, background: "rgba(24,24,24,.92)", boxShadow: `inset 0 0 0 ${o.bw || 7}px rgba(255,255,255,.55), 0 0 60px rgba(255,255,255,.12), 0 40px 100px rgba(0,0,0,.6)`, zIndex: o.z || 10 }));
+  const celle = [];
+  for (let r = -1; r <= 1; r++) for (let c = -1; c <= 1; c++) {
+    if (o.senzaCentro && r === 0 && c === 0) { celle.push(null); continue; }
+    const cel = el(tab, { position: "absolute", left: W2 / 2 + c * gx - cw / 2, top: H2 / 2 + r * gy - ch / 2, width: cw, height: ch, borderRadius: 18, overflow: "hidden", background: "#222" });
+    imgIn(cel, o.img || "c2-clone", { objectFit: "cover" });
+    if (o.tinta) el(cel, { position: "absolute", inset: 0, background: K.lime, mixBlendMode: "multiply", opacity: o.tinta });
+    if (o.scuro) el(cel, { position: "absolute", inset: 0, background: `rgba(20,20,20,${o.scuro})` });
+    celle.push(cel);
+  }
+  return { tab, celle, W: W2, H: H2 };
+};
+
+/* @copia r05_cloni · «Smetti Di Essere Uguale A Tutti»: la copertina di un creator, i suoi cloni nel tablet, la persona, «Sono
+ *   Tutti Uguali» (reel 5, 88,708–93,417 s)
+ * kallaway: reel 5, 88,708 s · titolo su una riga, «More Of The Same» nel riquadro rosso che cresce con le parole; la copertina
+ *   di un creator («This Is How You Go Viral») arriva in corsa da destra (centro x 641 → 534 in 0,9 s) e la camera si allontana
+ *   (×1 → ×0,43 fino a 90,9 s): attorno compaiono i suoi cloni (89,8 s) in un tablet 3×3; a 91,05 s al loro posto la persona
+ *   rossa con la stellina, che lampeggia (91,2 s); a 92,08 s sale e sotto arriva il pannello «They're all the same» (parola per
+ *   parola) col tablet dei cloni spenti; una banda rossa lo scorre (92,85–93,15 s)
+ * misure: copertina 359×522 a (534, 765); camera ×0,9 (89,62) · 0,76 (89,83) · 0,64 (89,96) · 0,56 (90,12) · 0,47 (90,33) ·
+ *   0,43 (90,92) attorno a (534, 765); persona a (540, 816) → (540, 444); pannello 389×60 a (531, 543); tablet 397×578 a (535, 879)
+ * scena: t0 (88,708), t1 (93,417), X, Y, parent · opzioni: titolo, etichetta («Sono Tutti Uguali»)
+ * colori: il suo rosso (riquadro, persona, banda) → lime
+ */
+COPIA.r05_cloni = (scena, o) => {
+  o = o || {};
+  const L = scena.parent || layer(10), X = scena.X, Y = scena.Y, W = (sx, sy) => [X - 540 + sx, Y - 880 + sy];
+  const t0 = scena.t0;
+  const T = r5Titolo({ righe: o.titolo || [[{ t: "Smetti Di Essere ", ruolo: "sans", size: 62 }, { t: "Uguale A Tutti", ruolo: "sans", size: 62, box: true, h: 70 }]], y: 234 });
+  T.inAt([t0 + 0.04, t0 + 0.1, t0 + 0.14, t0 + 0.29, t0 + 0.45, t0 + 0.62]);
+  tl.set(T.root, { opacity: 0 }, scena.t1);
+  // la copertina e il tablet dei cloni (centro vuoto: c'è lei)
+  const [cx, cy] = W(534, 765);
+  const tb = r5Tablet(L, cx, cy, { senzaCentro: true, z: 10 });
+  gsap.set(tb.tab, { boxShadow: "none", background: "rgba(24,24,24,0)" });
+  tb.celle.forEach((c, k) => { if (c) { gsap.set(c, { opacity: 0 }); tl.to(c, { opacity: 0.85, duration: 0.2 }, t0 + 1.08 + 0.02 * k); } });
+  tl.to(tb.tab, { boxShadow: "inset 0 0 0 7px rgba(255,255,255,.55), 0 0 60px rgba(255,255,255,.12), 0 40px 100px rgba(0,0,0,.6)", background: "rgba(24,24,24,.92)", duration: 0.15 }, t0 + 1.22);
+  const cop = layered(el(L, { position: "absolute", left: cx - 180, top: cy - 261, width: 359, height: 522, borderRadius: 18, overflow: "hidden", boxShadow: "0 0 0 3px rgba(255,255,255,.35), 0 20px 50px rgba(0,0,0,.6)", zIndex: 12 }));
+  imgIn(cop, "c2-clone", { objectFit: "cover" });
+  tl.set([tb.tab, cop], { opacity: 0 }, 91.04);
+  // la camera: arriva da destra (al taglio il contenuto è 107 px più a destra: lo mette la posa del taglio) e si allontana
+  cpCam.percorso([[t0, 0, 0], [t0 + 0.15, -45, 0], [t0 + 0.3, -79, 0], [t0 + 0.6, -103, 0], [t0 + 0.9, -107, 0]]);
+  cpCam.scala([[t0 + 0.3, 1], [t0 + 0.91, 0.9], [t0 + 1.12, 0.76], [t0 + 1.25, 0.64], [t0 + 1.41, 0.56], [t0 + 1.62, 0.47], [t0 + 2.21, 0.43], [91.04, 0.425]], [534, 765]);
+  // seconda parte (dalle 91,04 s, un'altra posa: nell'HUD della scena) — la persona e il pannello
+  const H = layered(el(hud, { position: "absolute", left: 0, top: 0, width: 1080, height: 1332, opacity: 0, zIndex: 40 }));
+  tl.set(H, { opacity: 1 }, 91.04);
+  tl.set(H, { opacity: 0 }, scena.t1);
+  const pers = layered(el(H, { position: "absolute", left: 540 - 55, top: 816 - 55, width: 110, height: 110, zIndex: 5 }));
+  el(pers, { position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center" }, svg("user-round", 104, K.lime, 2.2, K.lime));
+  el(pers, { position: "absolute", right: -8, bottom: 2, display: "flex" }, svg("star", 42, K.lime, 2, K.lime));
+  pers.style.filter = `drop-shadow(0 0 14px ${K.lime})`;
+  tl.to(pers, { filter: "drop-shadow(0 0 22px #ffffff) brightness(2.2) saturate(.2)", duration: 0.06 }, 91.17);
+  tl.to(pers, { filter: `drop-shadow(0 0 14px ${K.lime}) brightness(1) saturate(1)`, duration: 0.15 }, 91.3);
+  tl.to(pers, { y: 444 - 816, scale: 0.72, duration: 0.3, ease: "power2.inOut" }, 91.86);
+  const et = layered(el(H, { position: "absolute", left: 531 - 195, top: 543 - 30, width: 389, height: 60, borderRadius: 8, background: R5.vetro, boxShadow: "inset 0 0 0 2px rgba(255,255,255,.55)", display: "flex", alignItems: "center", justifyContent: "center", gap: 10, fontFamily: FS, fontWeight: 700, fontSize: 34, color: K.white, zIndex: 6 }));
+  const pe = (o.etichetta || "Sono Tutti Uguali").split(" ").map((w) => el(et, { opacity: 0 }, w));
+  [92.08, 92.25, 92.45].forEach((t, k) => { if (pe[k]) tl.to(pe[k], { opacity: 1, duration: 0.08 }, t); });
+  gsap.set(et, { opacity: 0 }); tl.to(et, { opacity: 1, duration: 0.1 }, 92.06);
+  const tb2 = r5Tablet(H, 535, 879, { cw: 103, ch: 150, gx: 118, gy: 168, pad: 22, r: 18, bw: 3, scuro: 0.45, z: 4 });
+  gsap.set(tb2.tab, { opacity: 0, y: 40 }); tl.to(tb2.tab, { opacity: 1, y: 0, duration: 0.25, ease: "power2.out" }, 92.08);
+  r5Scan(tb2.tab, 92.82, 0.36, { h: 0.08, tinta: 0.3, spegni: 0.2, ease: "none" });
+  return { rect: null, pose: null, ancore: {}, elementi: { T, cop, tb, pers, et, tb2 } };
+};
+
+/* @copia r05_pezzi · Le pillole Idee · Metodi · Framework (O28) e i cloni a sinistra (reel 5, 94,375–98,333 s)
+ * kallaway: reel 5, 94,375 s · titolo fisso; la torre di pillole rosse (O28); da 97,0 s la camera si allontana (×0,55) e scorre:
+ *   le pillole vanno a destra, a sinistra entra il tablet coi cloni tinti di rosso
+ * misure: tablet 575×815 a (360, 803) e pillole larghe 224 a (825, 806) a 98,21 s; zoom ×0,55 attorno a (1157, 840)
+ * scena: t0 (94,375), t1 (98,333), X, Y, parent · opzioni: voci (O28)
+ * colori: rosso → lime
+ */
+COPIA.r05_pezzi = (scena, o) => {
+  o = o || {};
+  const L = scena.parent || layer(10), X = scena.X, Y = scena.Y, W = (sx, sy) => [X - 540 + sx, Y - 880 + sy];
+  const t0 = scena.t0;
+  const T = r5Titolo({ righe: o.titolo || [[{ t: "Smetti Di Essere ", ruolo: "sans", size: 62 }, { t: "Uguale A Tutti", ruolo: "sans", size: 62, box: true, h: 70 }]], y: 234 });
+  T.inAt(T.unita.map(() => t0 - 0.3));
+  tl.set(T.root, { opacity: 0 }, scena.t1);
+  const o28 = COPIA.O28({ t0, X, Y, parent: L }, { voci: o.voci });
+  const [tx, ty] = W(-292, 829);
+  const tb = r5Tablet(L, tx, ty, { cw: 280, ch: 410, gx: 330, gy: 460, pad: 45, r: 46, bw: 6, tinta: 0.55, z: 10 });
+  gsap.set(tb.tab, { opacity: 0 }); tl.to(tb.tab, { opacity: 1, duration: 0.35 }, t0 + 2.8);
+  cpCam.zoom(t0 + 2.6, 1.3, 0.55, [1157, 840], "power2.inOut");
+  return { rect: null, pose: null, ancore: {}, elementi: { T, o28, tb } };
+};
+
+/* @copia r05_nuovo · «Distinguiti Con / Qualcosa Di Nuovo»: il tuo reel col bollino, la banda, il documento nuovo, gli anelli di
+ *   persone (reel 5, 105,833–110,042 s; dentro c'è O21)
+ * kallaway: reel 5, 105,833 s · titolo neretto «Stand out with», la seconda riga «Something New» in corsivo nel riquadro rosso;
+ *   il suo reel (lui in primo piano) col bollino rosso «New» sale da sotto e si accende (105,85–106,1 s), cresce (302 → 380 px fra
+ *   106,6 e 107,2 s); una banda verde forte lo scorre (107,0–107,62 s); a 107,75 s diventa un documento bianco (il template «New»
+ *   con le righe rosse); a 108,71 s attorno compaiono le persone verdi in due anelli (O21 senza cerchio)
+ * misure: reel 302×474 a (540, 819) → 380 px; documento 362×565 a (540, 770); anelli r ~400 attorno a (529, 783)
+ * scena: t0 (105,833), t1 (110,042), X, Y, parent · opzioni: titolo, clip ("tuo5"), bollino ("Nuovo")
+ * colori: rosso (riquadro, bollino) e verde (banda, persone) → lime; righe rosse del documento → grafite con un tratto lime
+ */
+COPIA.r05_nuovo = (scena, o) => {
+  o = o || {};
+  const L = scena.parent || layer(10), X = scena.X, Y = scena.Y, W = (sx, sy) => [X - 540 + sx, Y - 880 + sy];
+  const t0 = scena.t0;
+  const T = r5Titolo({ righe: o.titolo || [[{ t: "Distinguiti Con", ruolo: "sans", size: 56 }], [{ t: "Qualcosa Di Nuovo", ruolo: "serif", size: 70, box: true, h: 86 }]], tops: [204, 283], y: 204 });
+  T.inAt([t0 + 0.02, t0 + 0.17, t0 + 0.38, t0 + 0.5, t0 + 0.77]);
+  tl.set(T.root, { opacity: 0 }, scena.t1);
+  const [px, py] = W(540, 770);
+  const tel = r5Card(L, px, py + 49, 302, 474, [[0, o.clip || "tuo5"]], { r: 12, z: 14 });
+  const boll = el(tel.g, { position: "absolute", left: 14, top: 14, padding: "4px 14px", borderRadius: 20, background: K.lime, fontFamily: FS, fontWeight: 800, fontSize: 24, color: K.ink, zIndex: 40 }, o.bollino || "Nuovo");
+  gsap.set(tel.g, { opacity: 0, y: 100, filter: "brightness(.4)" });
+  tl.to(tel.g, { opacity: 1, y: 0, duration: 0.3, ease: "power2.out" }, t0 + 0.02);
+  tl.to(tel.g, { filter: "brightness(1)", duration: 0.25 }, t0 + 0.1);
+  tl.set(tel.g, { filter: "none" }, t0 + 0.36);
+  tl.to(tel.g, { scale: 380 / 302, y: -49, duration: 0.6, ease: "power2.inOut" }, t0 + 0.8);
+  r5Scan(tel.g, t0 + 1.17, 0.62, { h: 0.14, tinta: 0.4, spegni: 0.2 });
+  // il documento bianco (107,75 s)
+  const doc = layered(el(L, { position: "absolute", left: px - 181, top: py - 282, width: 362, height: 565, borderRadius: 8, background: "#f4f4f2", boxShadow: "0 0 30px rgba(255,255,255,.35), 0 24px 60px rgba(0,0,0,.6)", overflow: "hidden", zIndex: 15 }));
+  el(doc, { position: "absolute", left: 18, top: 18, padding: "3px 12px", borderRadius: 16, background: K.lime, fontFamily: FS, fontWeight: 800, fontSize: 20, color: K.ink }, o.bollino || "Nuovo");
+  el(doc, { position: "absolute", left: 112, top: 22, fontFamily: FH, fontSize: 24, color: K.ink }, "template di storia");
+  el(doc, { position: "absolute", left: 60, top: 66, width: 242, height: 22, borderRadius: 3, background: "#cfcfca", fontFamily: FS, fontWeight: 700, fontSize: 14, color: K.ink, display: "flex", alignItems: "center", justifyContent: "center" }, "1. Il Viaggio dell'Eroe");
+  for (let k = 0; k < 18; k++) el(doc, { position: "absolute", left: 28, top: 104 + k * 20, width: [306, 290, 300, 220, 306, 280, 260, 306, 300, 150, 306, 296, 284, 306, 240, 300, 270, 200][k], height: 7, borderRadius: 2, background: k % 4 === 1 ? K.lime : "rgba(30,30,30,.55)" });
+  el(doc, { position: "absolute", left: 0, bottom: 26, width: 362, textAlign: "center", fontFamily: FS, fontWeight: 700, fontSize: 16, color: "rgba(30,30,30,.7)" }, "provato");
+  const verde = el(doc, { position: "absolute", left: 0, bottom: 0, width: 362, height: 160, background: "linear-gradient(180deg, rgba(207,251,80,0), rgba(207,251,80,.85))", zIndex: 2 });
+  gsap.set(doc, { opacity: 0 });
+  tl.set(doc, { opacity: 1 }, t0 + 1.92);
+  tl.set(tel.g, { opacity: 0 }, t0 + 1.92);
+  tl.to(verde, { opacity: 0, duration: 0.5 }, t0 + 2.1);
+  // le persone lime attorno (108,71 s), senza il cerchio tratteggiato; la camera si allontana piano
+  const [rx, ry] = W(529, 783);
+  const o21 = COPIA.O21({ X: rx, Y: ry, parent: L }, { r: 420, n: 40, cerchio: false, alone: null, disegno: null, colIniziale: K.lime, compare: [t0 + 2.86, 0.25] });
+  cpCam.zoom(t0 + 3.0, scena.t1 - t0 - 3.0, 0.95, [529, 783], "sine.out");
+  return { rect: null, pose: null, ancore: {}, elementi: { T, tel, doc, o21 } };
+};
+
+/* @copia r05_riepilogo · La lista intera di nuovo, tutta risolta (reel 5, 112,708–115,958 s; L01)
+ * kallaway: reel 5, 112,708 s · il titolo si riscrive parola per parola dal taglio (riquadro da 112,79 s); le tre voci, già tutte
+ *   chiare e attive, entrano da sinistra una dopo l'altra (0,083 s) e frenano; poi la camera si allontana piano fino al taglio
+ * misure: barre attive 936×137 sullo schermo (×1,156) con l'accento a x 72 (113,8 s), passo 167; poi accento 72 → 102 px e
+ *   altezza 137 → 125 (×0,936 attorno a 540, 685) fino a 115,96 s
+ * scena: t0 (112,708), t1 (115,958), X, Y, parent · opzioni: voci, titolo
+ * colori: come la lista
+ */
+COPIA.r05_riepilogo = (scena, o) => {
+  o = o || {};
+  const L = scena.parent || layer(10), X = scena.X, Y = scena.Y, W = (sx, sy) => [X - 540 + sx, Y - 880 + sy];
+  const t0 = scena.t0;
+  const T = r5Titolo({ righe: o.titolo || R5_TITOLO, interlinea: [92] });
+  T.inAt([t0 + 0.08, t0 + 0.29, t0 + 0.41, t0 + 0.47, t0 + 0.53, t0 + 0.6, t0 + 0.83, t0 + 0.96, t0 + 1.08]);
+  tl.set(T.root, { opacity: 0 }, scena.t1);
+  // la lista (mondo; la camera parte da ×1,073): barre attive, passo 156 (167 sullo schermo)
+  const [lx, lt] = W(540, 568.7);
+  const lista = r5Lista(L, lx, lt, o.voci || R5_VOCI, { passo: 156 });
+  lista.piene(3, [0, 1, 2]);
+  const f = cpCurva([[0, -100], [0.083, -78], [0.167, -56], [0.25, -39], [0.333, -28], [0.417, -17], [0.5, -11], [0.583, -6], [0.667, -3], [0.75, -1], [0.833, 0]]);
+  lista.rows.forEach((rw, i) => {
+    const ti = t0 + 0.09 + i * 0.083, st = { v: 0 };
+    gsap.set(rw.r, { scale: 1.077, x: -100, opacity: 0 });
+    tl.to(rw.r, { opacity: 1, duration: 0.06 }, ti);
+    tl.fromTo(st, { v: 0 }, { v: 1, duration: 0.833, ease: "none", immediateRender: false, onUpdate: () => gsap.set(rw.r, { x: f(st.v * 0.833) }) }, ti);
+  });
+  cpCam.zoom(t0 + 1.1, scena.t1 - t0 - 1.1, 0.936, [540, 685], "none");
+  return { rect: null, pose: null, ancore: {}, elementi: { T, lista } };
+};

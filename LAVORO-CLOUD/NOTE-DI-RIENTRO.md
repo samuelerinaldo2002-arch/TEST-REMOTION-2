@@ -32,9 +32,26 @@ cambiate sono i rami `if (o.pieno)` / `if (RT)` e i loro `else` con il codice di
   dava il fotogramma precedente: a 30 fps un taglio fra due fotogrammi mostrava a «+0 s» ancora la scena di prima, e la copia
   sembrava vuota al taglio anche quando non lo era). Senza `--copia` non cambia niente.
 
-**Nuovi (blocco C2):** `CATALOGO-ANIMAZIONI/_analisi/ritmo/_script_copia02/` — `tagli.py` (tagli fotogramma per fotogramma),
-`striscia_k.py` (strisce di fotogrammi della zona grafica), `clip_pagina.py` (clip `ritmo-clip/<ID>_copia.mp4` e
-`<ID>_kcopia.mp4` con gli stessi parametri di `genera_catalogo_ritmo.py`, senza toccare la pagina né `_clip.json`).
+**Nuovi (blocco C2, reel 5 intero):**
+- `kw-kit/kit2-copia-r05.js` — aiuti del reel 5 (`R5`, `r5Titolo` col riquadro che cresce e la linea d'accento, `r5Card`,
+  `r5Scan` (banda di luce che scorre una card), `r5Pulse` (disco che pulsa), `r5Chip`, `r5Pillola`, `r5Borsa` (card di borsa /
+  ROI che conta), `r5Persona`, `r5Tratteggio`, `r5Tablet`, `r5Strato` (strato del mondo con le coordinate dello schermo a un
+  istante: la scena dopo senza taglio di camera), `r5TitoloPieno`) e le scene che non sono voci: `COPIA.r05_apertura`,
+  `r05_argomenti`, `r05_problema`, `r05_target`, `r05_fiducia`, `r05_prove`, `r05_azione`, `r05_prova`, `r05_compra`,
+  `r05_cloni`, `r05_pezzi`, `r05_nuovo`, `r05_riepilogo`.
+- `kw-kit/kit2-copia-c2-liste.js` (`r5Lista`, `R5_VOCI`, **COPIA.L01**, **COPIA.L02**), `kit2-copia-c2-luce.js` (**COPIA.F03**),
+  `kit2-copia-c2-camera.js` (**COPIA.K14**, **COPIA.K01**), `kit2-copia-c2-testo.js` (**COPIA.T08**), `kit2-copia-c2-oggetti.js`
+  (**COPIA.O21**, **COPIA.O28**), `kit2-copia-c2-chiusura.js` (**COPIA.X01**). Nessuna TRANS nuova: le transizioni del reel 5
+  sono tagli, arrivi in corsa, zoom indietro con l'oggetto che resta, linee che continuano e un pan (dentro le scene, annotate
+  in `copia-02/transizioni.json`); `TRANS.panVerticale` di C1 qui non serve.
+- `CATALOGO-ANIMAZIONI/copia-02/` — `index.src.html` (KW_RITMO, 122,09 s), `scene.json` (27), `transizioni.json` (56),
+  `STATO.md`, `RAPPORTO.md`, `assets/` (clip e immagine, `_sorgenti.json`), `_lavoro/` (`media.py`, `r05_parole.json`, strisce
+  dei suoi fotogrammi `k/`, misure).
+- `CATALOGO-ANIMAZIONI/_analisi/ritmo/_script_copia02/` — `tagli.py` (tagli fotogramma per fotogramma), `striscia_k.py`
+  (strisce di fotogrammi della zona grafica, il fotogramma dopo il taglio), `barre.py` (le barre della lista fotogramma per
+  fotogramma: accento rosso di Kallaway o lime della copia), `snap_kd.py` (KALLAWAY | COPIA dalle snapshot di HyperFrames, senza
+  render), `clip_pagina.py` (clip `ritmo-clip/<ID>_copia.mp4` e `<ID>_kcopia.mp4` con gli stessi parametri di
+  `genera_catalogo_ritmo.py`, senza toccare la pagina né `_clip.json`), `affiancato.py` (copia di quello di C1 senza `cwd`).
 
 ## 2. Come rimettere tutto nel progetto principale
 1. Scaricare il ramo `cloud-catalogo` (o il solo `LAVORO-CLOUD/`).
@@ -63,6 +80,32 @@ cambiate sono i rami `if (o.pieno)` / `if (RT)` e i loro `else` con il codice di
   se ne fa una copia nuova senza `cwd` (annotata qui sotto).
 - **Asset dell'utente:** i reel veri di `D:\CONTENUTI\...` non ci sono; si usano gli asset già nel repository (annotati per
   blocco qui sotto).
+
+**Blocco C2 (reel 5) · sostituzioni di media e cose che non tornano:**
+- I suoi media → media veri dello stesso tipo, già nel repository (`copia-02/assets/_sorgenti.json`, `copia-02/_lavoro/media.py`):
+  - scena 1, i due reel di creator (uno in studio, uno col cappellino e il microfono) → `_clip-esterni/dankoe` (2yJU) e
+    `garyvee` (vNeW);
+  - scena 3, il reel «DOG BREED TRAINABILITY» con la barra-classifica rosso → verde → `_clip-esterni/fitness` (W9-m, la tier
+    list colorata a sinistra); la folla nel locale → `_clip-esterni/viaggi` (ufpZ, una folla in sala, con la sua scritta);
+  - scene 7, 11, 13, 17, 23, i suoi reel (lui sotto, la grafica sopra) → i tuoi reel già tagliati per C1
+    (`copia-01/assets/clips/mio/v01`, `v03`, `m05`, `m01`, `tel_c`), perché i tuoi reel veri (D:\CONTENUTI) non ci sono in cloud;
+  - scena 7, il muro coi suoi 30 reel → le 10 miniature dei tuoi reel (`kw-kit/assets/thumbs/mio_01…10`) ripetute;
+  - scena 19 e 21, la copertina del creator «This Is How You Go Viral» clonata → una copertina vera di
+    `_clip-esterni/stevenbartlett` (7Dtk, «I've been to hell»);
+  - scena 27, il suo video 16:9 nello studio → un ritaglio 16:9 del tuo reel `mio/v02` (640×360, bassa definizione: da rifare
+    in locale da un tuo video orizzontale);
+  - scena 15, la sua pagina («7 Steps to a Short Form Growth System…») e scena 23 il suo documento «New … story template» →
+    disegnati (pagina della risorsa gratuita, template), testo italiano della stessa lunghezza.
+- Colori: il suo rosso (accento: riquadri, accenti delle barre, pillole, persone «sbagliate», bande, dischi) e il suo verde
+  (positivo: soldi, bande sui suoi reel, persone «giuste») → tutti e due lime; il giallo della «zona d'aggancio» → lime; le righe
+  rosse del documento → grafite con una riga lime ogni quattro. Il contrasto rosso/verde di alcune scene (scena 3: le persone
+  bianche che diventano rosse = sbagliate; scena 23: verdi = giuste) da noi è bianco → lime e lime da subito.
+- Il catalogo segna X01 a 118–125 s, ma il file finisce a 122,09 s (video 122,0 s, 2928 fotogrammi; audio 122,09): la CTA è la
+  scena 27, 117,708–122,09 s, fino all'ultimo fotogramma.
+- K01 (7,1–7,9 s nel catalogo) è dentro la facecam piena 3,417–8,917 s: nessun movimento di camera, è lo stacco sulla faccia;
+  da noi lo spazio resta scuro (`COPIA.K01` = `cpFacecam`).
+- La trascrizione del reel 5 (`copia-02/_lavoro/r05_parole.json`) è Parakeet tarato (vedi sopra); i titoli seguono comunque i
+  tempi delle SUE scritte (misurati sui fotogrammi), che spesso anticipano le parole.
 
 ## 4. Frammenti da aggiungere (voti_kit.json, tabelle)
 (si completa a fine lavoro)

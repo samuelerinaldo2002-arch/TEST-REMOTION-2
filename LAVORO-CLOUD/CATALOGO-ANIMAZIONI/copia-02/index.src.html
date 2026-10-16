@@ -129,22 +129,78 @@
 
         // ═══ 10 · 38,833–44,125 s · facecam piena ═══
         cpFacecam(38.833, 44.125);
+        // ═══ 11 · 44,125–54,292 s · r05_prove: «La Fiducia Nasce Da Due Cose», le pillole, il tuo reel, il copione ═══
+        cpCam.taglio(44.125, { fx: 42000, fy: 880, s: 1 });
+        COPIA.r05_prove({ t0: 44.125, t1: 54.292, X: 42000, Y: 880, parent: layer(16) }, {});
+
         // ═══ 12 · 54,292–59,458 s · facecam piena ═══
         cpFacecam(54.292, 59.458);
+        // ═══ 13 · 59,458–63,333 s · r05_azione: «Informazioni Nuove / Azione Chiara», il tuo reel, le due pillole coi lampi ═══
+        cpCam.taglio(59.458, { fx: 48000, fy: 880, s: 1 });
+        COPIA.r05_azione({ t0: 59.458, t1: 63.333, X: 48000, Y: 880, parent: layer(17) }, {});
+
         // ═══ 14 · 63,333–66,875 s · facecam piena ═══
         cpFacecam(63.333, 66.875);
+
+        // ═══ 15 · 66,875–72,0 s · r05_prova: «Fallo Provare», la persona, la pagina, la linea fino al ROI ═══
+        cpCam.taglio(66.875, { fx: 54000, fy: 880, s: 1 });
+        COPIA.r05_prova({ t0: 66.875, t1: 72.0, X: 54000, Y: 880, parent: layer(18) }, {});
+
         // ═══ 16 · 72,0–76,792 s · facecam piena ═══
         cpFacecam(72.0, 76.792);
+
+        // ═══ 17 · 76,792–85,125 s · L01 · L02 · K14 · r05_compra: la lista (01 e 02 risolte), la 03 si risolve e sale; «Compra», il
+        //     tuo reel, il ROI ═══
+        cpCam.taglio(76.792, { fx: 60000, fy: 880, s: 0.93 });
+        const T17 = r5TitoloPieno(76.792, null, { y: 186 });
+        COPIA.T08(T17, 81.0);
+        const l17 = COPIA.L01({ t0: 76.792, X: 60000, Y: 853.8, parent: layer(19) }, {
+          piene: 3, nitide: [0, 1], arrivi: [], deriva: null,
+          // la prima barra arriva in corsa: 673 → 597 → 570 → 559 → 558 px sullo schermo in 1 s (barre.py), riportata a ×0,93
+          salita: [[0, 683.7], [0.25, 601.9], [0.5, 572.9], [0.75, 561.1], [1.0, 560]],
+        });
+        gsap.set([l17.elementi.lista.rows[0].r, l17.elementi.lista.rows[1].r], { scale: 1.077 });
+        COPIA.L02({ lista: l17.elementi.lista, i: 2, t: 77.95 }, { ritardo: 0.1, durAttiva: 1.25 });
+        COPIA.K14({ lista: l17.elementi.lista, i: 2, t0: 80.54, t1: 85.125 }, {
+          percorso: [[0, 864], [0.25, 843], [0.5, 778], [0.75, 612], [1.0, 386], [1.25, 282], [1.46, 262], [1.76, 256]],
+          via: 0.62, su: 95,
+        });
+        COPIA.r05_compra({ t0: 81.2, t1: 85.125, X: 540, Y: 880, parent: r5Strato(81.2, 20) }, {});
         // ═══ 18 · 85,125–88,708 s · facecam piena ═══
         cpFacecam(85.125, 88.708);
+
+        // ═══ 19 · 88,708–93,417 s · r05_cloni: «Smetti Di Essere Uguale A Tutti», la copertina e i cloni, la persona, «Sono Tutti
+        //     Uguali» ═══
+        cpCam.taglio(88.708, { fx: 66000 - 107, fy: 880, s: 1 });   // arriva in corsa da destra: al taglio il contenuto è 107 px più a destra
+        COPIA.r05_cloni({ t0: 88.708, t1: 93.417, X: 66000, Y: 880, parent: layer(21) }, {});
+
         // ═══ 20 · 93,417–94,375 s · facecam piena ═══
         cpFacecam(93.417, 94.375);
+
+        // ═══ 21 · 94,375–98,333 s · O28 · r05_pezzi: Idee · Metodi · Framework che si impilano, i cloni a sinistra ═══
+        cpCam.taglio(94.375, { fx: 72000, fy: 880, s: 1 });
+        COPIA.r05_pezzi({ t0: 94.375, t1: 98.333, X: 72000, Y: 880, parent: layer(22) }, {});
+
         // ═══ 22 · 98,333–105,833 s · facecam piena ═══
         cpFacecam(98.333, 105.833);
+
+        // ═══ 23 · 105,833–110,042 s · r05_nuovo (O21): «Distinguiti Con / Qualcosa Di Nuovo», il tuo reel, il documento, le persone ═══
+        cpCam.taglio(105.833, { fx: 78000, fy: 880, s: 1 });
+        COPIA.r05_nuovo({ t0: 105.833, t1: 110.042, X: 78000, Y: 880, parent: layer(23) }, {});
+
         // ═══ 24 · 110,042–112,708 s · facecam piena ═══
         cpFacecam(110.042, 112.708);
+
+        // ═══ 25 · 112,708–115,958 s · r05_riepilogo (L01): la lista intera di nuovo, tutta risolta ═══
+        cpCam.taglio(112.708, { fx: 84000, fy: 880, s: 1.073 });
+        COPIA.r05_riepilogo({ t0: 112.708, t1: 115.958, X: 84000, Y: 880, parent: layer(24) }, {});
+
         // ═══ 26 · 115,958–117,708 s · facecam piena ═══
         cpFacecam(115.958, 117.708);
+
+        // ═══ 27 · 117,708–122,09 s · X01: «Commenta “clienti”…» e la card del tuo video, fino all'ultimo fotogramma ═══
+        cpCam.taglio(117.708, { fx: 90000, fy: 880, s: 1 });
+        COPIA.X01({ t0: 117.708, t1: 122.09, X: 90000, Y: 880, parent: layer(25) }, {});
 
         cpCam.gira(0, 122.09);
         window.__timelines = window.__timelines || {};
