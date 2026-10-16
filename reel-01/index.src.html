@@ -1,0 +1,569 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>Reel 01/10 — Pubblicare di tutto (stile Kallaway, v4)</title>
+    <script src="assets/vendor/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Advercase"; src: url("assets/fonts/Advercase-Bold.ttf") format("truetype"); font-weight: 700; font-style: normal; font-display: block; }
+      @font-face { font-family: "Advercase"; src: url("assets/fonts/Advercase-Regular.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: block; }
+      @font-face { font-family: "Patrick Hand"; src: url("assets/fonts/PatrickHand-Regular.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: block; }
+      @font-face { font-family: "Zalando Sans"; src: url("assets/fonts/ZalandoSans-Variable.ttf") format("truetype"); font-weight: 100 900; font-style: normal; font-display: block; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: #1e1e1e; }
+      body { font-family: "Zalando Sans", sans-serif; color: #f4f4f2; -webkit-font-smoothing: antialiased; }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; background: #1e1e1e; }
+      .clip { position: absolute; inset: 0; overflow: hidden; }
+      #glow { position: absolute; inset: 0; opacity: 0.35; background: radial-gradient(58% 32% at 50% 46%, rgba(207, 251, 80, 0.08), rgba(207, 251, 80, 0) 70%); }
+      #vignette { position: absolute; inset: 0; background: radial-gradient(110% 78% at 50% 44%, rgba(0, 0, 0, 0) 44%, rgba(0, 0, 0, 0.62) 100%); }
+      .cam { position: absolute; left: 540px; top: 880px; width: 1px; height: 1px; }
+      .layer { position: absolute; left: 0; top: 0; width: 1px; height: 1px; }
+      #dots { position: absolute; left: -2600px; top: -2600px; width: 12000px; height: 12000px; background-image: radial-gradient(circle, rgba(255, 255, 255, 0.095) 1.25px, rgba(255, 255, 255, 0) 1.95px); background-size: 24px 24px; }
+      #stage { position: absolute; inset: 0; overflow: hidden; }
+      /* facecam + post captions live below y≈1400: nothing of the infographic below it */
+      #safe { position: absolute; inset: 0; -webkit-mask-image: linear-gradient(to bottom, #000 0px, #000 1385px, transparent 1450px); mask-image: linear-gradient(to bottom, #000 0px, #000 1385px, transparent 1450px); }
+      #mbwrap, #shake { position: absolute; inset: 0; }
+      #hud { position: absolute; inset: 0; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="25.833" data-width="1080" data-height="1920">
+      <div id="bg" class="clip" data-start="0" data-duration="25.833" data-track-index="0">
+        <div class="cam" id="gcam2" data-layout-allow-overflow><div class="layer" id="gzoom2"><div class="layer" id="gpan2"><div class="layer" id="bokeh"></div></div></div></div>
+        <div class="cam" id="gcam" data-layout-allow-overflow><div class="layer" id="gzoom"><div class="layer" id="gpan"><div id="dots"></div></div></div></div>
+        <div id="glow"></div>
+        <div id="vignette"></div>
+      </div>
+      <!-- untimed on purpose: the clips inside carry their own data-start (no timed ancestor) -->
+      <div id="stage">
+        <svg width="0" height="0" style="position: absolute" aria-hidden="true">
+          <filter id="mb" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur id="mbn" in="SourceGraphic" stdDeviation="0 0" /></filter>
+          <filter id="mb2" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur id="mbn2" in="SourceGraphic" stdDeviation="0 0" /></filter>
+          <filter id="mb3" x="-20%" y="-60%" width="140%" height="220%"><feGaussianBlur id="mbn3" in="SourceGraphic" stdDeviation="0 0" /></filter>
+        </svg>
+        <div id="safe"><div id="mbwrap"><div id="shake"><div class="cam" id="cam" data-layout-allow-overflow><div class="layer" id="zoom"><div class="layer" id="pan"></div></div></div></div></div></div>
+        <!--VIDEOS
+          # hook: a cloud of posts about everything
+          c1 assets/clips/t_fit1.mp4 0 4.4
+          c2 assets/clips/t_via1.mp4 0 4.4
+          c3 assets/clips/t_cuc1.mp4 0 4.4
+          c4 assets/clips/t_ani1.mp4 0 4.4
+          c5 assets/clips/t_mot1.mp4 0 4.4
+          c6 assets/clips/t_via2.mp4 0 4.4
+          c7 assets/clips/t_cuc2.mp4 0 4.4
+          # the week on the timeline (they keep playing into the algorithm hub)
+          l1 assets/clips/t_fit1.mp4 5.3 6.1 1.0
+          l2 assets/clips/t_via1.mp4 6.05 5.35
+          l3 assets/clips/t_cuc1.mp4 6.95 4.45
+          l4 assets/clips/t_ani1.mp4 6.95 4.45
+          l5 assets/clips/t_mot1.mp4 6.85 4.55
+          # a profile that is clear in 3 seconds
+          hz1 assets/clips/hz_01.mp4 19.3 3.9
+          hz2 assets/clips/hz_02.mp4 19.3 3.9
+          hz3 assets/clips/hz_03.mp4 19.3 3.9
+          hz4 assets/clips/hz_04.mp4 19.3 3.9
+          hz5 assets/clips/hz_05.mp4 19.3 3.9
+          hz6 assets/clips/hz_06.mp4 19.3 3.9
+          hz7 assets/clips/hz_07.mp4 19.3 3.9
+          hz8 assets/clips/hz_08.mp4 19.3 3.9
+          hz9 assets/clips/hz_09.mp4 19.3 3.9
+          # your profile, about everything
+          g1 assets/clips/g_fit1.mp4 23.0 2.833
+          g2 assets/clips/g_via1.mp4 23.0 2.833
+          g3 assets/clips/g_cuc1.mp4 23.0 2.833
+          g4 assets/clips/g_ani1.mp4 23.0 2.833
+          g5 assets/clips/g_mot1.mp4 23.0 2.833
+          g6 assets/clips/g_via2.mp4 23.0 2.833
+          g7 assets/clips/g_cuc2.mp4 23.0 2.833
+          g8 assets/clips/g_ani2.mp4 23.0 2.833
+          g9 assets/clips/g_mot2.mp4 23.0 2.833
+        -->
+      </div>
+      <div id="hudclip" class="clip" data-start="0" data-duration="25.833" data-track-index="2">
+        <div id="hud"></div>
+      </div>
+
+      <!--SFX
+        # 1 · hook — the cloud of posts, the blurred answer
+        0.0 whoosh .12 ; 0.12 tick .05 ; 0.3 tick .05 ; 0.45 card .12 ; 1.5 tap .12 ; 1.82 pop .14
+        # 2 · the answer, the posts scatter, list → header
+        3.0 toggle .1 ; 3.5 pop .1 ; 3.77 whoosh .16 ; 3.8 tap .12 ; 4.05 whoosh .1
+        # 3 · the week (timeline)
+        4.5 whoosh .22 ; 4.73 click .18 ; 5.4 pop .15
+        5.8 whoosh .14 ; 5.86 click .18 ; 6.17 pop .15
+        6.48 whoosh .2 ; 6.55 click .18 ; 6.97 pop .15 ; 7.0 whoosh .1 ; 7.05 tick .06 ; 7.12 tick .06
+        # 4 · the algorithm can't read you
+        7.6 whoosh .16 ; 8.25 card .12 ; 8.67 rise .1 ; 8.9 card .1
+        9.23 tick .07 ; 9.45 tick .07 ; 9.67 tick .07 ; 9.9 tick .07 ; 10.12 tick .07 ; 10.28 tick .07 ; 10.42 bong .16
+        # 4b · …nor do the people watching
+        10.75 whoosh .14 ; 10.9 pop .08 ; 11.5 whoosh .1 ; 11.7 tick .05 ; 11.9 tick .05 ; 12.1 tick .05
+        # 5 · the triad — "Punto."
+        12.78 whoosh .24 ; 13.15 card .14 ; 13.93 drop .16 ; 14.43 drop .16 ; 15.5 drop .18 ; 16.67 ding .14
+        17.44 whoosh .2 ; 17.67 slam .32 ; 17.67 sub .3
+        # 6 · the hourglass: 3 seconds
+        18.35 rise .1 ; 18.75 whoosh .14 ; 19.4 card .12 ; 19.82 tap .2
+        21.17 tick .2 ; 21.6 tick .2 ; 22.03 tick .2 ; 22.15 tap .1 ; 22.5 ding .2
+        # 7 · swipe away
+        22.98 whoosh .22 ; 23.2 card .12 ; 23.45 tap .08 ; 23.95 pop .1 ; 24.45 whoosh .28 ; 24.72 bong .16
+      -->
+    </div>
+
+    <script>
+      (() => {
+        const ICON = __ICONS__;
+        /*__KIT__*/
+
+        // far bokeh (parallax space, PF of camera speed)
+        bokeh($("bokeh"), [
+          [120, 320, 360, 0.06], [620, -60, 260, 0.035, true], [860, 720, 420, 0.05], [180, 1150, 300, 0.04, true],
+          [1250, 250, 380, 0.05], [1500, 900, 340, 0.045, true], [1150, 1550, 420, 0.06], [1900, 600, 380, 0.05],
+          [2200, 1100, 360, 0.045, true], [2600, 700, 420, 0.06], [2050, 1700, 380, 0.05], [2900, 1450, 360, 0.04, true],
+          [3200, 1000, 400, 0.05], [2500, 2100, 380, 0.045],
+        ]);
+
+        // ═══ 1 · HOOK — "L'errore numero uno che fanno i principianti?" (0 – 2.95s) ═══
+        // Kallaway's ring of reels (reels 06 / 11 / 12): posts open from a pile into a slowly turning circle,
+        // a dot at the centre blooms into a disc and becomes the label — here the answer, numbered and blurred
+        camInit(540, 900, 1);
+        drift(0, 2.9, 0, 0, 0.05);
+        const T1 = title({ lines: [[{ t: "L'errore " }, { t: "n°1", box: true }], [{ t: "dei principianti", hand: true }]], size: 86 });
+        T1.inAt(0.02);
+        const L1 = layer(10);
+        const RC = [540, 905], RN = 7, RCW = 172, RCH = 306;
+        const S1r = svgLayer(L1, 2, 0, 300, 1080, 1250, "white");
+        const ringLine = document.createElementNS(NS, "ellipse"); // slightly wider than tall: clears the bar and the title
+        ringLine.setAttribute("cx", RC[0]); ringLine.setAttribute("cy", RC[1]); ringLine.setAttribute("rx", 40); ringLine.setAttribute("ry", 36);
+        ringLine.setAttribute("fill", "none"); ringLine.setAttribute("stroke", "rgba(255,255,255,.38)"); ringLine.setAttribute("stroke-width", 2); ringLine.setAttribute("stroke-dasharray", "5 9");
+        S1r.appendChild(ringLine);
+        const ring = ["c1", "c2", "c3", "c4", "c5", "c6", "c7"].map((id, i) => {
+          const c = videoCard(L1, RC[0], RC[1], RCW, RCH, id, { z: 6, rot: hash(i, 41) * 6 });
+          gsap.set(c.body, { opacity: 1, filter: "blur(5px)" }); // frame 0 already shows the pile
+          return c;
+        });
+        // one proxy drives the whole ring: radius (opens from the pile) and angle (slow clockwise turn); cards stay upright
+        const RP = { a: -48, r: 30 };
+        const putRing = () => {
+          ring.forEach((c, i) => {
+            const a = ((RP.a + (i * 360) / RN - 90) * Math.PI) / 180;
+            gsap.set(c.wrap, { x: RC[0] + Math.cos(a) * RP.r * 1.076, y: RC[1] + Math.sin(a) * RP.r * 0.95 });
+          });
+          ringLine.setAttribute("rx", Math.max(1, RP.r * 1.076).toFixed(1)); ringLine.setAttribute("ry", Math.max(1, RP.r * 0.95).toFixed(1));
+        };
+        putRing();
+        tl.to(ring.map((c) => c.body), { filter: "blur(0px)", duration: 0.35, ease: "power2.out", stagger: 0.02 }, 0.0);
+        tl.to(RP, { r: 395, duration: 0.85, ease: "expo.out", onUpdate: putRing }, 0.02);
+        tl.to(RP, { a: 52, duration: 3.75, ease: "none", onUpdate: putRing }, 0.02);
+        tl.fromTo(ringLine, { attr: { "stroke-dashoffset": 0 } }, { attr: { "stroke-dashoffset": -140 }, duration: 3.75, ease: "none", immediateRender: false }, 0.02);
+        // the centre: a lime dot on "numero uno" blooms into a disc, then becomes the answer (blurred)
+        const dot = el(L1, { position: "absolute", left: RC[0] - 14, top: RC[1] - 14, width: 28, height: 28, borderRadius: "50%", background: K.lime, boxShadow: GLOW_L(0.9), zIndex: 15 });
+        gsap.set(dot, { scale: 0 });
+        tl.to(dot, { scale: 1, duration: 0.25, ease: "back.out(3)" }, 0.5);
+        tl.to(dot, { scale: 9.5, opacity: 0.85, duration: 0.35, ease: "expo.out" }, 0.74);
+        tl.to(dot, { scale: 0.3, opacity: 0, duration: 0.25, ease: "power3.in" }, 1.08);
+        const BW = 600, BH = 112;
+        const BAR = sectionBar(L1, RC[0] - BW / 2, RC[1] - BH / 2, BW, BH, "01", "<span>Pubblicare&nbsp;</span><span style=\"position:relative;display:inline-block\">di tutto</span>", null, { z: 20, fs: 49 });
+        const [w1, w2] = BAR.tx.children;
+        gsap.set([w1, w2], { filter: "blur(14px)", opacity: 0.5 });
+        blurIn(BAR.r, 1.08, { scale: 0.5, blur: 20, y: 0, dur: 0.5, ease: "back.out(1.6)" });
+        sheen(BAR.r, 1.45, 0.8);
+        const q = handNote(L1, RC[0] + BW / 2 - 6, RC[1] - 140, "?", { size: 130, rot: 10 });
+        q.write(1.82, 0.1);
+        // "principianti?": the reels go out of focus, the blurred answer is what matters
+        tl.to(ring.map((c) => c.body), { filter: "blur(7px)", opacity: 0.38, duration: 0.5, ease: "power2.out", stagger: 0.012 }, 1.5);
+        tl.to(BAR.r, { boxShadow: `${GLOW_L(0.35)}, 0 18px 44px rgba(0,0,0,.5)`, duration: 0.4 }, 1.5);
+
+        // ═══ 2 · "Pubblicare di tutto." (2.95 – 4.5s) ═══
+        T1.outAt(2.8);
+        q.hide(2.85);
+        tl.to(w1, { filter: "blur(0px)", opacity: 1, duration: 0.35, ease: "power2.out" }, 3.0);
+        tl.to(w2, { filter: "blur(0px)", opacity: 1, duration: 0.3, ease: "power2.out" }, 3.5);
+        tl.set([w1, w2], { filter: "none" }, 3.85);
+        // hand underline living inside the word, so it follows its real width
+        const underline = (span) => {
+          const s = document.createElementNS(NS, "svg");
+          s.setAttribute("viewBox", "0 0 100 12");
+          s.setAttribute("preserveAspectRatio", "none");
+          Object.assign(s.style, { position: "absolute", left: "-4%", bottom: "-16px", width: "108%", height: "18px", overflow: "visible", filter: "drop-shadow(0 0 6px rgba(207,251,80,.6))" });
+          span.appendChild(s);
+          const p = document.createElementNS(NS, "path");
+          p.setAttribute("d", "M1 7 Q 25 3 50 7 T 99 5");
+          p.setAttribute("fill", "none"); p.setAttribute("stroke", K.lime); p.setAttribute("stroke-width", "4"); p.setAttribute("stroke-linecap", "round");
+          s.appendChild(p);
+          const Ln = p.getTotalLength();
+          p.setAttribute("stroke-dasharray", `${Ln} ${Ln}`); p.setAttribute("stroke-dashoffset", Ln);
+          return p;
+        };
+        const u1 = underline(w2);
+        tl.to(u1, { attr: { "stroke-dashoffset": 0 }, duration: 0.35, ease: "power2.inOut" }, 3.8);
+        // "di tutto": the ring spins up and flings the reels out in every direction
+        tl.to(ring.map((c) => c.body), { filter: "blur(0px)", opacity: 1, duration: 0.2 }, 3.5);
+        tl.to(RP, { a: 150, duration: 0.6, ease: "power2.in", onUpdate: putRing }, 3.77);
+        tl.to(RP, { r: 1350, duration: 0.6, ease: "power3.in", onUpdate: putRing }, 3.77);
+        tl.to(ring.map((c) => c.body), { opacity: 0, duration: 0.3, stagger: 0.015 }, 4.05);
+        tl.to(ringLine, { attr: { opacity: 0 }, duration: 0.3 }, 3.8);
+        // the list item becomes the section header (shared element), then hands over to a HUD copy
+        const HY = 236, HS = 0.8, CS = CAM.s;
+        tl.to(BAR.r, { y: (HY - 880) / CS - (RC[1] - 900), scale: HS / CS, duration: 0.45, ease: "power3.inOut" }, 4.05);
+        const HB = sectionBar(hud, 540 - BW / 2, HY - BH / 2, BW, BH, "01", "<span>Pubblicare&nbsp;</span><span style=\"position:relative;display:inline-block\">di tutto</span>", null, { z: 55, fs: 49 });
+        underline(HB.tx.children[1]).setAttribute("stroke-dashoffset", 0);
+        gsap.set(HB.r, { scale: HS, opacity: 0 });
+        tl.set(HB.r, { opacity: 1 }, 4.5);
+        tl.set(BAR.r, { opacity: 0 }, 4.5);
+
+        // ═══ 3 · THE WEEK — "Lunedì fitness, martedì viaggi, venerdì motivazione" (4.5 – 7.6s) ═══
+        // Kallaway's horizontal timeline: the camera travels along it, each day drops a real post
+        const L2 = layer(12);
+        const TLY = 1150, CW = 340, CH = 604, CY = 741, DX = [1700, 2260, 2820, 3380, 3940], DAYS = ["LUN", "MAR", "MER", "GIO", "VEN"];
+        const S2 = svgLayer(L2, 2, 1300, 300, 3200, 1100, "white");
+        const tline = connector(S2, [[1380, TLY], [4300, TLY]], { color: "rgba(255,255,255,.8)", w: 3 });
+        tline.draw(4.45, 0.6, "power2.out");
+        const ticks = [];
+        for (let x = 1450; x < 4280; x += 112) if (!DX.some((d) => Math.abs(d - x) < 40)) ticks.push(el(L2, { position: "absolute", left: x - 1, top: TLY - 12, width: 2, height: 24, background: "rgba(255,255,255,.28)" }));
+        gsap.set(ticks, { opacity: 0 });
+        tl.to(ticks, { opacity: 1, duration: 0.3, stagger: 0.008 }, 4.5);
+        // every day is already on the line, dim; it lights up when he names it
+        const nodes = DX.map((x, k) => {
+          const n = el(L2, { position: "absolute", left: x - 18, top: TLY - 18, width: 36, height: 36, borderRadius: "50%", background: "#3a3a3a", border: "4px solid rgba(255,255,255,.55)", zIndex: 5 });
+          const lb = el(L2, { position: "absolute", left: x + 22, top: TLY - 92, fontFamily: FD, fontWeight: 700, fontSize: 56, color: K.white, textShadow: GLOW_W, zIndex: 5, lineHeight: 1 }, DAYS[k]);
+          gsap.set([n, lb], { opacity: 0 });
+          tl.to([n, lb], { opacity: 0.35, duration: 0.3 }, 4.55 + k * 0.03);
+          return { n, lb };
+        });
+        const dayIn = (k, t) => {
+          tl.to(nodes[k].n, { opacity: 1, backgroundColor: K.lime, borderColor: "#ffffff", boxShadow: GLOW_L(0.8), duration: 0.2 }, t);
+          tl.fromTo(nodes[k].n, { scale: 1.6 }, { scale: 1, duration: 0.4, ease: "back.out(3)", immediateRender: false }, t);
+          tl.to(nodes[k].lb, { opacity: 1, duration: 0.25 }, t + 0.04);
+        };
+        const CARDS = [["l1", "Fitness", "dumbbell"], ["l2", "Viaggi", "plane"], ["l3", "Cucina", "pizza"], ["l4", "Animali", "paw-print"], ["l5", "Motivazione", "flame"]];
+        const cards = CARDS.map(([id, lab, ic], k) => {
+          const c = videoCard(L2, DX[k], CY, CW, CH, id, { label: lab, icon: ic, z: 8 });
+          gsap.set(c.body, { opacity: 0 });
+          const st = connector(S2, [[DX[k], CY + CH / 2 + 2], [DX[k], TLY - 20]], { dash: [8, 8], color: "rgba(255,255,255,.55)", w: 3 });
+          return Object.assign(c, { st });
+        });
+        const cardIn = (k, t) => { blurIn(cards[k].body, t, { y: 50, blur: 22, scale: 0.9, dur: 0.55 }); cards[k].st.draw(t + 0.1, 0.3); };
+        // tight on the day, camera travelling along the line (Kallaway timeline)
+        whip(4.5, 0.5, 1817, 808, 1.2, null, 18);
+        dayIn(0, 4.73);
+        cardIn(0, 5.4);
+        whip(5.8, 0.38, 2377, 808, 1.2, null, 12);
+        dayIn(1, 5.86);
+        cardIn(1, 6.17);
+        whip(6.48, 0.42, 3820, 808, 1.2, null, 20);
+        dayIn(2, 6.58);
+        dayIn(3, 6.64);
+        dayIn(4, 6.7);
+        cardIn(4, 6.97);
+        // pull back: the whole week, all over the place
+        cam(7.0, 0.55, 2820, 800, 0.39, "power3.inOut");
+        cardIn(2, 7.03);
+        cardIn(3, 7.09);
+
+        // ═══ 4 · THE ALGORITHM — "…l'algoritmo non capisce di cosa parla il tuo profilo" (7.6 – 10.75s) ═══
+        // Kallaway hub: every post converges into the platform logo, which outputs a gauge that can't settle
+        blurOut(HB.r, 7.55, { y: -20, dur: 0.3 });
+        const T4 = title({ icon: "cpu", lines: [[{ t: "L'algoritmo " }, { t: "non capisce", box: true }]], size: 84 });
+        T4.inAt(7.74);
+        cam(7.6, 0.85, 2820, 900, 1, "power3.inOut");
+        tline.hide(7.6, 0.3);
+        tl.to([...nodes.map((n) => n.n), ...nodes.map((n) => n.lb), ...ticks], { opacity: 0, duration: 0.3 }, 7.6);
+        cards.forEach((c) => c.st.hide(7.6, 0.2));
+        const HX = 2820, OFFY = 20; // world = screen + (2280, 20) at this pose
+        const ROWX = [150, 345, 540, 735, 930].map((x) => x + 2280), ROWY = 525 + OFFY, RS = 0.44;
+        cards.forEach((c, k) => tl.to(c.wrap, { x: ROWX[k], y: ROWY, scale: RS, rotation: 0, duration: 0.85, ease: "power3.inOut" }, 7.6 + k * 0.03));
+        const L3 = layer(14);
+        const IGY = 800 + OFFY;
+        const IG = appIcon(L3, HX, IGY, 130, "instagram", 22);
+        blurIn(IG, 8.25, { y: -20, blur: 16, scale: 0.7, dur: 0.5, ease: "back.out(2)" });
+        const NODE = nodePill(L3, HX, IGY + 112, '<span style="opacity:.55">&lt;</span>algoritmo<span style="opacity:.55">/&gt;</span>', { w: 300, h: 70, fs: 30 });
+        blurIn(NODE, 8.35, { y: 16, blur: 14, dur: 0.45 });
+        ripple(L3, HX, IGY, 8.67, { wd: 130, ht: 130, radius: "34px", s0: 1, s1: 1.9, dur: 0.6, w: 3 });
+        ripple(L3, HX, IGY, 8.92, { wd: 130, ht: 130, radius: "34px", s0: 1, s1: 1.9, dur: 0.6, w: 3, a: 0.6 });
+        const S3 = svgLayer(L3, 6, 2300, 400, 1100, 1100, true);
+        ROWX.forEach((x, k) => {
+          const cn = connector(S3, [[x, ROWY + (CH * RS) / 2 + 4], [HX, IGY - 72]], { curve: "v", dash: [12, 10], color: K.lime, w: 3.5 });
+          cn.draw(8.45 + k * 0.04, 0.45);
+          traveller(S3, cn, 8.72 + k * 0.08, 0.45, K.lime, 8);
+          cn.hide(10.6, 0.3);
+        });
+        // the algorithm's read of your profile: three rows it cannot fill.
+        // (the same three come back as the triad's choices: nicchia / pubblico / problema)
+        const GW = 760, GH = 380, GX = HX - GW / 2, GY = 975 + OFFY;
+        const GC = card(L3, GX, GY, GW, GH, { zIndex: 12 });
+        el(GC, { position: "absolute", left: 32, top: 28, fontFamily: FS, fontWeight: 600, fontSize: 22, letterSpacing: "0.14em", color: K.mute }, "ANALISI DEL PROFILO");
+        const rd1 = layered(el(GC, { position: "absolute", right: 32, top: 16, fontFamily: FD, fontWeight: 700, fontSize: 44, color: K.white, textShadow: GLOW_W }, "…"));
+        const rd2 = layered(el(GC, { position: "absolute", right: 32, top: 16, fontFamily: FD, fontWeight: 700, fontSize: 44, color: K.white, textShadow: GLOW_W, opacity: 0 }, "Non chiaro"));
+        const RY = [84, 180, 276], SX = 236, SW = GW - SX - 30, SH = 72;
+        ["Argomento", "Pubblico", "Problema"].forEach((lb, r) => {
+          el(GC, { position: "absolute", left: 32, top: RY[r], height: SH, display: "flex", alignItems: "center", fontFamily: FD, fontWeight: 700, fontSize: 40, color: K.white, textShadow: GLOW_W }, lb);
+          el(GC, { position: "absolute", left: SX, top: RY[r], width: SW, height: SH, borderRadius: 14, border: "2px dashed rgba(255,255,255,.18)", background: "rgba(0,0,0,.18)" });
+        });
+        // Pubblico / Problema: Kallaway's blurred placeholders that never resolve
+        const ph = [1, 2].map((r) => {
+          const p = el(GC, { position: "absolute", left: SX + 18, top: RY[r] + 22, width: SW * (r === 1 ? 0.62 : 0.74), height: 30, borderRadius: 15, background: "linear-gradient(90deg, rgba(255,255,255,.34), rgba(255,255,255,.14))", filter: "blur(6px)", opacity: 0 });
+          return p;
+        });
+        // Argomento: every post claims the slot — the topics pile up on top of each other
+        const CH5 = [["Fitness", "dumbbell"], ["Viaggi", "plane"], ["Cucina", "pizza"], ["Animali", "paw-print"], ["Motivazione", "flame"]];
+        const chips = CH5.map(([lb, ic], k) => {
+          const c = layered(el(GC, { position: "absolute", left: SX + 14 + k * 62, top: RY[0] + 9, height: 54, display: "flex", alignItems: "center", gap: 10, padding: "0 18px 0 14px", borderRadius: 27, background: "linear-gradient(180deg,#3d3d3d,#2a2a2a)", border: "1.5px solid rgba(255,255,255,.22)", boxShadow: "0 8px 20px rgba(0,0,0,.5)", fontFamily: FS, fontWeight: 700, fontSize: 24, color: K.white, whiteSpace: "nowrap", zIndex: 2 + k }, svg(ic, 26, K.white, 2.2) + lb));
+          c.setAttribute("data-layout-allow-occlusion", "");
+          gsap.set(c, { opacity: 0, rotation: (k % 2 ? -1 : 1) * (2 + k) });
+          return c;
+        });
+        const CSH = `0 ${Math.round(CW * 0.12)}px ${Math.round(CW * 0.3)}px rgba(0,0,0,.6), 0 0 ${Math.round(CW * 0.12)}px rgba(255,255,255,.08)`;
+        blurIn(GC, 8.9, { y: 30, blur: 18, dur: 0.55 });
+        tl.to(ph, { opacity: 0.55, duration: 0.4, stagger: 0.08 }, 9.05);
+        [9.23, 9.45, 9.67, 9.9, 10.12].forEach((t, k) => {
+          blurIn(chips[k], t, { x: 120, y: 0, blur: 12, scale: 0.9, dur: 0.28, ease: "power3.out" });
+          // the post that claims it lights up above
+          tl.to(cards[k].body, { borderColor: rgba(K.lime, 0.95), boxShadow: GLOW_L(0.7), duration: 0.08 }, t);
+          tl.to(cards[k].body, { borderColor: "rgba(255,255,255,.24)", boxShadow: CSH, duration: 0.25 }, t + 0.18);
+        });
+        // on "profilo": nothing can be read — everything goes out of focus
+        tl.fromTo(chips, { filter: "blur(0px)" }, { filter: "blur(5px)", opacity: 0.35, duration: 0.35, ease: "power2.out", stagger: 0.02, immediateRender: false }, 10.42);
+        tl.set(rd1, { opacity: 0 }, 10.45);
+        tl.set(rd2, { opacity: 1 }, 10.45);
+        tl.fromTo(rd2, { x: 10 }, { x: 0, duration: 0.25, ease: "back.out(3)", immediateRender: false }, 10.45);
+        // a big hand "?" over the blurred pile
+        const qa = handNote(GC, SX + 190, RY[0] - 22, "?", { size: 118, rot: 8, z: 20 });
+        qa.write(10.5, 0.1);
+        shake(10.45, 6, 4);
+
+        // ═══ 4b · "…e nemmeno chi ti guarda" (10.75 – 12.75s) — the audience orbit empties ═══
+        cam(10.75, 0.6, 2820, 2250, 1, "power3.inOut");
+        tl.to([IG, NODE, GC, ...cards.map((c) => c.wrap)], { opacity: 0.4, duration: 0.4 }, 10.6);
+        const L35 = layer(14);
+        const OX0 = 2820, OY0 = 2250;
+        const RINGS = [[180, 10], [290, 16], [400, 24]];
+        const rings = RINGS.map(([r, n], k) => {
+          const ring = el(L35, { position: "absolute", left: OX0 - r, top: OY0 - r, width: r * 2, height: r * 2, borderRadius: "50%", border: "1.5px solid rgba(255,255,255,.16)", zIndex: 2 });
+          const dots = [];
+          for (let i = 0; i < n; i++) {
+            const a = (i / n) * Math.PI * 2 + k * 0.4, stays = (i * 7 + k * 3) % 13 === 0;
+            const d = el(ring, { position: "absolute", left: r + Math.cos(a) * r - 7, top: r + Math.sin(a) * r - 7, width: 14, height: 14, borderRadius: "50%", background: stays ? K.lime : "#e8e8e8", boxShadow: stays ? GLOW_L(0.6) : "0 0 8px rgba(255,255,255,.35)" });
+            dots.push({ d, a, stays });
+          }
+          return { ring, dots, r };
+        });
+        const av = el(L35, { position: "absolute", left: OX0 - 78, top: OY0 - 78, width: 156, height: 156, borderRadius: "50%", background: "linear-gradient(160deg,#3a3a3a,#1f1f1f)", border: `5px solid ${K.lime}`, boxShadow: GLOW_L(0.6), display: "flex", alignItems: "center", justifyContent: "center", zIndex: 5 }, svg("user-round", 78, "#fff", 1.8));
+        const avLb = el(L35, { position: "absolute", left: OX0 - 120, top: OY0 + 92, width: 240, textAlign: "center", fontFamily: FS, fontWeight: 700, fontSize: 22, letterSpacing: "0.12em", color: K.mute, zIndex: 5 }, "IL TUO PROFILO");
+        const cntL = el(L35, { position: "absolute", left: OX0 + 250, top: OY0 - 470, fontFamily: FS, fontWeight: 600, fontSize: 20, letterSpacing: "0.14em", color: K.mute }, "CHI TI GUARDA");
+        const cnt = el(L35, { position: "absolute", left: OX0 + 248, top: OY0 - 418, fontFamily: FD, fontWeight: 700, fontSize: 84, color: K.white, textShadow: GLOW_W, lineHeight: 1 }, "50");
+        blurIn(av, 10.9, { scale: 0.6, blur: 14, y: 0, dur: 0.45, ease: "back.out(2)" });
+        blurIn(avLb, 11.0, { y: 10, blur: 8, dur: 0.35 });
+        rings.forEach((R, k) => {
+          blurIn(R.ring, 10.92 + k * 0.06, { scale: 0.6, blur: 12, y: 0, dur: 0.5 });
+          tl.to(R.ring, { rotation: (k % 2 ? -1 : 1) * 24, duration: 2.0, ease: "none" }, 10.9);
+        });
+        blurIn([cntL, cnt], 11.0, { y: 10, blur: 10, dur: 0.35, stagger: 0.05 });
+        // nobody gets it: they drift away
+        rings.forEach((R, k) => R.dots.forEach(({ d, a, stays }, i) => {
+          if (stays) return;
+          const dist = 160 + Math.abs(hash(i + k * 31, 9)) * 180;
+          tl.to(d, { x: Math.cos(a) * dist, y: Math.sin(a) * dist, opacity: 0, duration: 0.65, ease: "power2.in" }, 11.45 + Math.abs(hash(i + k * 17, 4)) * 0.7);
+        }));
+        tl.to(rings.map((R) => R.ring), { borderColor: "rgba(255,255,255,.06)", duration: 0.6 }, 11.9);
+        counter(cnt, 50, 4, 11.5, 0.95, "power1.in");
+
+        // ═══ 5 · THE TRIAD — "nicchia, pubblico target, problema specifico che risolvi. Punto." (12.75 – 18.5s) ═══
+        T4.outAt(12.72);
+        const T5 = title({ icon: "triangle", lines: [[{ t: "Devi " }, { t: "scegliere", box: true }]], size: 86 });
+        T5.inAt(12.98);
+        whip(12.78, 0.55, 4300, 2250, 1, null, 20);
+        drift(13.4, 4.15, 0, 0, 0.03);
+        tl.to($("glow"), { opacity: 1, duration: 0.8 }, 13.0);
+        const C0 = [4300, 2240], TLv = [4000, 2067], TRv = [4600, 2067], Bv = [4300, 2587];
+        const HG = layer(18);
+        gsap.set(HG, { transformOrigin: `${Bv[0]}px ${Bv[1]}px` });
+        const SF = svgLayer(HG, 3, 3860, 1940, 880, 1320);
+        const SL = svgLayer(HG, 5, 3860, 1940, 880, 1320, true);
+        SF._defs.innerHTML = `<linearGradient id="gFrame" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3c3c3c"/><stop offset="1" stop-color="#141414"/></linearGradient><linearGradient id="gCap" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5a5a5a"/><stop offset="1" stop-color="#262626"/></linearGradient>`;
+        SL._defs.innerHTML = `<linearGradient id="gLime" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ecffa6"/><stop offset=".5" stop-color="${K.lime}"/><stop offset="1" stop-color="#9cc82c"/></linearGradient>`;
+        const poly = (S, pts, fill, stroke, sw) => {
+          const p = document.createElementNS(NS, "polygon");
+          p.setAttribute("points", pts.map((q) => q.join(",")).join(" "));
+          p.setAttribute("fill", fill);
+          if (stroke) { p.setAttribute("stroke", stroke); p.setAttribute("stroke-width", sw); p.setAttribute("stroke-linejoin", "round"); }
+          S.appendChild(p);
+          return p;
+        };
+        const off = (p, k) => [C0[0] + (p[0] - C0[0]) * k, C0[1] + (p[1] - C0[1]) * k];
+        poly(SF, [off(TLv, 1.13), off(TRv, 1.13), off(Bv, 1.13)], "url(#gFrame)", "rgba(255,255,255,.24)", 3);
+        poly(SF, [TLv, TRv, Bv], "#191919", "rgba(255,255,255,.12)", 2);
+        const SEC = [[TLv, TRv], [TRv, Bv], [Bv, TLv]];
+        const sectors = SEC.map(([a, b]) => { const p = poly(SL, [a, b, C0], "url(#gLime)"); p.setAttribute("opacity", "0"); return p; });
+        SEC.forEach(([a]) => { const ln = document.createElementNS(NS, "line"); ln.setAttribute("x1", C0[0]); ln.setAttribute("y1", C0[1]); ln.setAttribute("x2", a[0]); ln.setAttribute("y2", a[1]); ln.setAttribute("stroke", "#1E1E1E"); ln.setAttribute("stroke-width", "5"); SL.appendChild(ln); });
+        const edges = SEC.map(([a, b]) => connector(SL, [a, b], { color: K.lime, w: 7 }));
+        // the triad drops in, in 3D
+        gsap.set([SF, SL], { transformPerspective: 1800, rotationX: 65, opacity: 0, y: -90, transformOrigin: "50% 40%" });
+        tl.to([SF, SL], { rotationX: 0, opacity: 1, y: 0, duration: 0.8, ease: "expo.out" }, 13.12);
+        // the three choices, Kallaway section bars already there, blurred
+        const L5 = layer(19);
+        const S5 = svgLayer(L5, 3, 3700, 1850, 1200, 700, "white");
+        const M = SEC.map(([a, b]) => [(a[0] + b[0]) / 2, (a[1] + b[1]) / 2]);
+        const BARS = [["1", "Nicchia", "un solo tema", 4135, 1928, 330, [[M[0][0], M[0][1]], [M[0][0], 2012]]], ["2", "Pubblico", "target preciso", 4500, 2340, 330, [[M[1][0], M[1][1]], [4500, 2382]]], ["3", "Problema", "specifico, che risolvi", 3765, 2340, 345, [[M[2][0], M[2][1]], [4110, 2382]]]];
+        const bars = [], leads = [];
+        BARS.forEach(([n, a, b, x, y, w, pts], k) => {
+          const sb = sectionBar(L5, x, y, w, 84, n, a, b, { z: 14 });
+          gsap.set(sb.r, { opacity: 0 });
+          tl.fromTo(sb.r, { opacity: 0, filter: "blur(18px)" }, { opacity: 0.38, filter: "blur(9px)", duration: 0.4, ease: "power3.out", immediateRender: false }, 13.55 + k * 0.06);
+          const ld = connector(S5, pts, { color: "rgba(255,255,255,.85)", w: 3 });
+          bars.push(sb.r);
+          leads.push(ld);
+        });
+        [[13.93, 0], [14.43, 1], [15.5, 2]].forEach(([t, k]) => {
+          edges[k].draw(t, 0.3);
+          tl.to(sectors[k], { attr: { opacity: 1 }, duration: 0.35 }, t + 0.1);
+          leads[k].draw(t + 0.05, 0.25);
+          tl.to(bars[k], { opacity: 1, filter: "blur(0px)", duration: 0.35, ease: "power2.out" }, t + 0.12);
+          tl.set(bars[k], { filter: "none" }, t + 0.5);
+          sheen(bars[k], t + 0.4, 0.7);
+        });
+        const tick5 = el(L5, { position: "absolute", left: C0[0] - 34, top: C0[1] - 40, width: 68, height: 68, display: "flex", alignItems: "center", justifyContent: "center", zIndex: 8 }, svg("check", 60, K.ink, 3.4));
+        gsap.set(tick5, { scale: 0, opacity: 0 });
+        tl.to(tick5, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(3)" }, 16.67);
+        tl.fromTo(HG, { scale: 1.05 }, { scale: 1, duration: 0.3, ease: "power2.out", immediateRender: false }, 16.67);
+        // "Punto." — a dart nails the centre of the triad
+        tl.to(tick5, { opacity: 0, scale: 0.5, duration: 0.15 }, 17.4);
+        const dartW = el(L5, { position: "absolute", left: C0[0], top: C0[1], width: 1, height: 1, transform: "rotate(40deg)", zIndex: 40 });
+        const dart = el(dartW, { position: "absolute", left: -340, top: -28, width: 340, height: 56, filter: "url(#mb2)", transformOrigin: "100% 50%" });
+        el(dart, { position: "absolute", left: 0, top: 4, width: 86, height: 20, background: "linear-gradient(90deg,#a6d136,#CFFB50)", transform: "skewX(-35deg)", borderRadius: 3, boxShadow: GLOW_L(0.5) });
+        el(dart, { position: "absolute", left: 0, top: 32, width: 86, height: 20, background: "linear-gradient(90deg,#a6d136,#CFFB50)", transform: "skewX(35deg)", borderRadius: 3, boxShadow: GLOW_L(0.5) });
+        el(dart, { position: "absolute", left: 40, top: 23, width: 250, height: 10, borderRadius: 5, background: "linear-gradient(180deg,#ffffff,#bdbdbd)", boxShadow: "0 0 14px rgba(255,255,255,.5)" });
+        el(dart, { position: "absolute", left: 196, top: 17, width: 84, height: 22, borderRadius: 8, background: "linear-gradient(180deg,#5c5c5c,#262626)", border: "1.5px solid rgba(255,255,255,.28)" });
+        el(dart, { position: "absolute", left: 286, top: 20, width: 0, height: 0, borderTop: "8px solid transparent", borderBottom: "8px solid transparent", borderLeft: "54px solid #ededed" });
+        gsap.set(dart, { x: -720, opacity: 0 });
+        tl.set(dart, { opacity: 1 }, 17.44);
+        tl.to(dart, { x: 0, duration: 0.23, ease: "power2.in" }, 17.44);
+        const MB2 = { v: 0 }, mbn2 = $("mbn2");
+        const w2b = () => mbn2.setAttribute("stdDeviation", `${MB2.v} 0`);
+        w2b();
+        tl.to(MB2, { v: 16, duration: 0.23, ease: "power2.in", onUpdate: w2b }, 17.44);
+        tl.to(MB2, { v: 0, duration: 0.04, ease: "none", onUpdate: w2b }, 17.67);
+        [8, -6, 4, -2, 0].forEach((r, k) => tl.to(dart, { rotation: r, duration: 0.06, ease: "sine.inOut" }, 17.67 + k * 0.06));
+        cam(17.62, 0.4, C0[0], C0[1], 1.12, "power4.out");
+        shake(17.68, 12, 7);
+        ripple(L5, C0[0], C0[1], 17.67, { r: 300, s0: 0.25, dur: 0.7, w: 5 });
+        ripple(L5, C0[0], C0[1], 17.76, { r: 420, s0: 0.2, dur: 0.8, w: 3, a: 0.6 });
+        sparks(L5, C0[0], C0[1], 17.67, { n: 10, r0: 50, r1: 170, len: 40 });
+        const pnt = handNote(L5, C0[0] + 215, C0[1] - 345, "Punto.", { size: 96, rot: -6 });
+        pnt.write(17.76, 0.3);
+
+        // ═══ 6 · THREE SECONDS — "…deve capire in tre secondi di cosa parli" (18.5 – 22.95s) ═══
+        // match cut: the triad is the top of an hourglass; the lime is the sand
+        T5.outAt(18.48);
+        const T6 = title({ icon: "hourglass", lines: [[{ t: "Capirti in " }, { t: "3 secondi", box: true }]], size: 86 });
+        T6.inAt(18.72);
+        tl.to($("glow"), { opacity: 0.45, duration: 0.8 }, 18.6);
+        blurOut(bars, 18.2, { dur: 0.25 });
+        leads.forEach((l) => l.hide(18.2, 0.2));
+        tl.to(dart, { opacity: 0, duration: 0.2 }, 18.15);
+        pnt.hide(18.25);
+        cam(18.4, 0.6, 4300, 2250, 1, "power3.inOut");
+        const BOT = [[4000, 3107], [4600, 3107], Bv];
+        const bulb = poly(SF, BOT, "rgba(255,255,255,.035)", "rgba(255,255,255,.26)", 3);
+        gsap.set(bulb, { scaleY: 0, svgOrigin: `${Bv[0]} ${Bv[1]}` });
+        tl.to(bulb, { scaleY: 1, duration: 0.45, ease: "power3.out" }, 18.35);
+        const capR = (y) => { const r = document.createElementNS(NS, "rect"); r.setAttribute("x", 3930); r.setAttribute("y", y); r.setAttribute("width", 740); r.setAttribute("height", 26); r.setAttribute("rx", 13); r.setAttribute("fill", "url(#gCap)"); r.setAttribute("stroke", "rgba(255,255,255,.25)"); r.setAttribute("stroke-width", 2); SF.appendChild(r); gsap.set(r, { scaleX: 0, svgOrigin: `4300 ${y + 13}` }); return r; };
+        const caps = [capR(1990), capR(3112)];
+        tl.to(caps, { scaleX: 1, duration: 0.4, ease: "power3.out", stagger: 0.06 }, 18.4);
+        // swap the 3 sectors for one sand body (same look), and prepare the pile
+        const sand = poly(SL, [TLv, TRv, Bv], "url(#gLime)");
+        sand.setAttribute("opacity", "0");
+        gsap.set(sand, { svgOrigin: `${Bv[0]} ${Bv[1]}` });
+        tl.set(sand, { attr: { opacity: 1 } }, 18.7);
+        tl.set(sectors, { attr: { opacity: 0 } }, 18.7);
+        const pile = poly(SL, [[4040, 3107], [4560, 3107], [4300, 2655]], "url(#gLime)");
+        gsap.set(pile, { scale: 0, svgOrigin: "4300 3107" });
+        const stream = document.createElementNS(NS, "line");
+        stream.setAttribute("x1", 4300); stream.setAttribute("y1", 2590); stream.setAttribute("x2", 4300); stream.setAttribute("y2", 3100);
+        stream.setAttribute("stroke", K.lime); stream.setAttribute("stroke-width", 7); stream.setAttribute("opacity", "0");
+        SL.appendChild(stream);
+        // the hourglass shrinks to the right, a profile slides in on the left
+        tl.to(HG, { x: 290, y: -337, scale: 0.52, duration: 0.75, ease: "power3.inOut" }, 18.75);
+        const L6 = layer(20);
+        const P2 = igPhone(L6, 3800, 1750, {
+          ring: `linear-gradient(135deg, #ecffa8, ${K.lime} 50%, #a6d136)`, avatar: "assets/clips/hz_avatar.jpg",
+          user: "hormozi", name: "Alex Hormozi", bio: "Business · vendite · acquisizioni", posts: "1.234", fol: "4.000.000", seg: "12", statBlur: true,
+          grid: [1, 2, 3, 4, 5, 6, 7, 8, 9].map((i) => ({ video: "hz" + i })),
+        });
+        gsap.set(P2.frame, { opacity: 0 });
+        blurIn(P2.frame, 19.4, { x: -140, y: 0, blur: 22, dur: 0.6 });
+        tl.to(P2.frame, { boxShadow: `0 50px 110px rgba(0,0,0,.65), inset 0 0 0 2px rgba(255,255,255,.12), 0 0 80px ${rgba(K.lime, 0.18)}`, duration: 0.6 }, 19.6);
+        // someone lands on it
+        const F1 = finger(L6);
+        const tapX = P2.X + 330, tapY = P2.Y + 760;
+        gsap.set(F1, { x: tapX + 160, y: tapY + 220 });
+        tl.set(F1, { opacity: 0.95 }, 19.55);
+        tl.to(F1, { x: tapX, y: tapY, duration: 0.25, ease: "power2.out" }, 19.55);
+        tl.to(F1, { scale: 0.82, duration: 0.08 }, 19.8);
+        tl.to(F1, { scale: 1, opacity: 0, duration: 0.25 }, 19.9);
+        ripple(L6, tapX, tapY, 19.82, { r: 70, s0: 0.6, s1: 1.8, color: "#ffffff", glow: false, w: 3, dur: 0.5 });
+        // the sand runs while the eye reads the profile — one beat per second
+        tl.to(sand, { scale: 0, duration: 1.3, ease: "none" }, 21.17);
+        tl.to(pile, { scale: 1, duration: 1.3, ease: "none" }, 21.17);
+        tl.set(stream, { attr: { opacity: 1 } }, 21.17);
+        tl.set(stream, { attr: { opacity: 0 } }, 22.47);
+        const hb1 = highlight(P2.screen, 10, 116, 512, 190, 21.17);
+        const hb2 = highlight(P2.screen, 14, 298, 500, 42, 21.6, { r: 8 });
+        const hb3 = highlight(P2.screen, 3, 471, PH.sw - 6, 640, 22.03, { r: 6 });
+        tl.to(hb1, { opacity: 0.35, duration: 0.2 }, 21.6);
+        tl.to(hb3, { opacity: 0.35, duration: 0.25 }, 22.35);
+        tl.to(hb2, { boxShadow: `${GLOW_L(1)}, inset 0 0 24px ${rgba(K.lime, 0.3)}`, duration: 0.2 }, 22.15);
+        // "di cosa parli": the hand points at the bio
+        const S6 = svgLayer(L6, 45, 3700, 1700, 1100, 900, true);
+        const arr = handArrow(S6, 4440, 1900, 4140, 2075, 0.35, 12, { w: 6, head: 26 });
+        arr.draw(22.15, 0.4);
+        const nt = handNote(L6, 4330, 1790, "business!", { size: 66, rot: -6 });
+        nt.write(22.3, 0.35);
+        const ok = el(L6, { position: "absolute", left: 4590 - 38, top: 1872, width: 76, height: 76, borderRadius: "50%", background: K.lime, boxShadow: GLOW_L(0.9), display: "flex", alignItems: "center", justifyContent: "center", zIndex: 30 }, svg("check", 46, K.ink, 3.4));
+        pop(ok, 22.5, 0, "back.out(3)", 0.45);
+
+        // ═══ 7 · "Se non lo capisce, non ti segue." (22.95 – 25.83s) — the thumb hesitates, then swipes ═══
+        T6.outAt(22.9);
+        const T7 = title({ lines: [[{ t: "Se non ti capisce," }], [{ t: "non ti segue", box: true }]], size: 78 });
+        T7.inAt(23.1);
+        whip(22.98, 0.55, 4300, 3700, 1, "y", 20);
+        tl.to([HG, P2.frame, ok, S6, nt.n], { opacity: 0, duration: 0.12 }, 23.12);
+        tl.to($("glow"), { opacity: 0.2, duration: 0.6 }, 23.0);
+        drift(23.55, 0.85, 0, 0, 0.015);
+        const L7 = layer(22);
+        const P3 = igPhone(L7, 4020, 3150, {
+          user: "il_tuo_profilo", name: "Il tuo profilo", bio: "Fitness · viaggi · cucina · animali · motivazione", posts: "47", fol: "312", seg: "520",
+          grid: [1, 2, 3, 4, 5, 6, 7, 8, 9].map((i) => ({ video: "g" + i })),
+        });
+        gsap.set(P3.frame, { opacity: 0 });
+        blurIn(P3.frame, 23.2, { y: 60, blur: 20, dur: 0.55 });
+        const F2 = finger(L7, 70);
+        const btnX = P3.X + PH.bz + 148, btnY = P3.Y + PH.bz + 399;
+        gsap.set(F2, { x: btnX + 380, y: btnY + 420 });
+        tl.set(F2, { opacity: 0.95 }, 23.45);
+        tl.to(F2, { x: btnX + 24, y: btnY + 36, duration: 0.45, ease: "power2.out" }, 23.45);
+        [[-16, -8], [12, 6], [-8, -3], [0, 0]].forEach(([dx, dy], k) => tl.to(F2, { x: btnX + 24 + dx, y: btnY + 36 + dy, duration: 0.11, ease: "sine.inOut" }, 23.95 + k * 0.11));
+        const q7 = handNote(L7, P3.X + 470, P3.Y + 230, "?", { size: 120, rot: 8 });
+        q7.write(23.95, 0.1);
+        // "non ti segue": swipe up — the profile is gone
+        tl.to(F2, { x: btnX + 120, y: btnY + 520, duration: 0.14, ease: "power2.inOut" }, 24.3);
+        tl.to(F2, { y: btnY - 260, duration: 0.22, ease: "power3.in" }, 24.45);
+        tl.to(F2, { opacity: 0, duration: 0.1 }, 24.62);
+        q7.hide(24.45);
+        const MB3 = { v: 0 }, mbn3 = $("mbn3");
+        const w3 = () => mbn3.setAttribute("stdDeviation", `0 ${MB3.v}`);
+        w3();
+        tl.set(P3.frame, { filter: "url(#mb3)" }, 24.45);
+        tl.to(MB3, { v: 30, duration: 0.36, ease: "power2.in", onUpdate: w3 }, 24.45);
+        tl.to(P3.frame, { y: -1750, duration: 0.36, ease: "power2.in" }, 24.45);
+        tl.set(P3.frame, { filter: "none", opacity: 0 }, 24.82);
+        const ZERO = el(L7, { position: "absolute", left: 4300 - 420, top: 3700 - 210, width: 840, textAlign: "center", fontFamily: FD, fontWeight: 700, fontSize: 300, color: K.white, textShadow: GLOW_W, lineHeight: 1, zIndex: 10 }, "+0");
+        const zlb = el(L7, { position: "absolute", left: 4300 - 300, top: 3700 + 160, width: 600, textAlign: "center", fontFamily: FS, fontWeight: 700, fontSize: 32, letterSpacing: "0.18em", color: K.mute, zIndex: 10 }, "NUOVI FOLLOWER");
+        blurIn([ZERO, zlb], 24.72, { scale: 0.85, blur: 24, y: 0, dur: 0.55, stagger: 0.08 });
+        drift(24.95, 0.88, 0, 0, 0.03);
+
+        window.__timelines = window.__timelines || {};
+        window.__timelines["main"] = tl;
+      })();
+    </script>
+  </body>
+</html>

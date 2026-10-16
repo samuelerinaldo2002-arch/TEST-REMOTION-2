@@ -1,0 +1,509 @@
+<!doctype html>
+<html lang="it">
+  <!-- KW_FISSO: reel approvato dall'utente — tiene il comportamento del kit approvato; le correzioni del Blocco 3 si applicano solo dopo che le ha viste -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>Reel 01/10 — Pubblicare di tutto (stile Kallaway, v5 · kit v2)</title>
+    <script src="assets/vendor/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Advercase"; src: url("assets/fonts/Advercase-Bold.ttf") format("truetype"); font-weight: 700; font-style: normal; font-display: block; }
+      @font-face { font-family: "Advercase"; src: url("assets/fonts/Advercase-Regular.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: block; }
+      @font-face { font-family: "Patrick Hand"; src: url("assets/fonts/PatrickHand-Regular.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: block; }
+      @font-face { font-family: "Zalando Sans"; src: url("assets/fonts/ZalandoSans-Variable.ttf") format("truetype"); font-weight: 100 900; font-style: normal; font-display: block; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: #1e1e1e; }
+      body { font-family: "Zalando Sans", sans-serif; color: #f4f4f2; -webkit-font-smoothing: antialiased; }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; background: #1e1e1e; }
+      .clip { position: absolute; inset: 0; overflow: hidden; }
+      #glow { position: absolute; inset: 0; opacity: 0.35; background: radial-gradient(58% 32% at 50% 46%, rgba(207, 251, 80, 0.08), rgba(207, 251, 80, 0) 70%); }
+      #vignette { position: absolute; inset: 0; background: radial-gradient(110% 78% at 50% 44%, rgba(0, 0, 0, 0) 44%, rgba(0, 0, 0, 0.62) 100%); }
+      .cam { position: absolute; left: 540px; top: 880px; width: 1px; height: 1px; }
+      .layer { position: absolute; left: 0; top: 0; width: 1px; height: 1px; }
+      #dots { position: absolute; left: -2600px; top: -2600px; width: 12000px; height: 12000px; background-image: radial-gradient(circle, rgba(255, 255, 255, 0.095) 1.25px, rgba(255, 255, 255, 0) 1.95px); background-size: 24px 24px; }
+      #stage { position: absolute; inset: 0; overflow: hidden; }
+      /* facecam + sottotitoli in post sotto y≈1400: niente infografica lì sotto */
+      #safe { position: absolute; inset: 0; -webkit-mask-image: linear-gradient(to bottom, #000 0px, #000 1385px, transparent 1450px); mask-image: linear-gradient(to bottom, #000 0px, #000 1385px, transparent 1450px); }
+      #mbwrap, #shake { position: absolute; inset: 0; }
+      #hud { position: absolute; inset: 0; }
+    </style>
+  </head>
+  <body>
+    <!--WORDS ../../my-video-ottobre-p1-test/src/words/d01.ts-->
+    <div id="root" data-composition-id="main" data-start="0" data-duration="25.833" data-width="1080" data-height="1920">
+      <div id="bg" class="clip" data-start="0" data-duration="25.833" data-track-index="0">
+        <div class="cam" id="gcam2" data-layout-allow-overflow><div class="layer" id="gzoom2"><div class="layer" id="gpan2"><div class="layer" id="bokeh"></div></div></div></div>
+        <div class="cam" id="gcam" data-layout-allow-overflow><div class="layer" id="gzoom"><div class="layer" id="gpan"><div id="dots"></div></div></div></div>
+        <div id="glow"></div>
+        <div id="vignette"></div>
+      </div>
+      <!-- senza timing di proposito: le clip dentro hanno il loro data-start -->
+      <div id="stage">
+        <svg width="0" height="0" style="position: absolute" aria-hidden="true">
+          <filter id="mb" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur id="mbn" in="SourceGraphic" stdDeviation="0 0" /></filter>
+          <filter id="mb3" x="-20%" y="-60%" width="140%" height="220%"><feGaussianBlur id="mbn3" in="SourceGraphic" stdDeviation="0 0" /></filter>
+        </svg>
+        <div id="safe"><div id="mbwrap"><div id="shake"><div class="cam" id="cam" data-layout-allow-overflow><div class="layer" id="zoom"><div class="layer" id="pan"></div></div></div></div></div></div>
+        <!--VIDEOS
+          # 1 · l'anello di reel "di tutto"
+          c1 assets/clips/t_fit1.mp4 0 4.5
+          c2 assets/clips/t_via1.mp4 0 4.5
+          c3 assets/clips/t_cuc1.mp4 0 4.5
+          c4 assets/clips/t_ani1.mp4 0 4.5
+          c5 assets/clips/t_mot1.mp4 0 4.5
+          c6 assets/clips/t_via2.mp4 0 4.5
+          c7 assets/clips/t_cuc2.mp4 0 4.5
+          # 3 · la settimana: un tema diverso ogni giorno (restano nella riga dell'algoritmo)
+          l1 assets/clips/t_fit1.mp4 4.5 6.4 0.4
+          l2 assets/clips/t_via1.mp4 4.5 6.4 0.6
+          l3 assets/clips/t_cuc2.mp4 4.5 6.4 0.8
+          l4 assets/clips/t_ani2.mp4 4.5 6.4
+          l5 assets/clips/t_mot2.mp4 4.5 6.4
+          # 6 · un profilo chiaro in 3 secondi
+          hz1 assets/clips/hz_01.mp4 19.3 3.9
+          hz2 assets/clips/hz_02.mp4 19.3 3.9
+          hz3 assets/clips/hz_03.mp4 19.3 3.9
+          hz4 assets/clips/hz_04.mp4 19.3 3.9
+          hz5 assets/clips/hz_05.mp4 19.3 3.9
+          hz6 assets/clips/hz_06.mp4 19.3 3.9
+          hz7 assets/clips/hz_07.mp4 19.3 3.9
+          hz8 assets/clips/hz_08.mp4 19.3 3.9
+          hz9 assets/clips/hz_09.mp4 19.3 3.9
+          # 7 · il tuo profilo "di tutto"
+          g1 assets/clips/g_fit1.mp4 23.0 2.833
+          g2 assets/clips/g_via1.mp4 23.0 2.833
+          g3 assets/clips/g_cuc1.mp4 23.0 2.833
+          g4 assets/clips/g_ani1.mp4 23.0 2.833
+          g5 assets/clips/g_mot1.mp4 23.0 2.833
+          g6 assets/clips/g_via2.mp4 23.0 2.833
+          g7 assets/clips/g_cuc2.mp4 23.0 2.833
+          g8 assets/clips/g_ani2.mp4 23.0 2.833
+          g9 assets/clips/g_mot2.mp4 23.0 2.833
+        -->
+      </div>
+      <div id="hudclip" class="clip" data-start="0" data-duration="25.833" data-track-index="2">
+        <div id="hud"></div>
+      </div>
+
+      <!--SFX
+        # 1 · hook — l'anello di reel, la risposta sfocata
+        0.0 whoosh .12 ; 0.3 card .1 ; 0.53 tap .1 ; 0.74 pop .14 ; 1.08 card .12 ; 1.82 pop .12
+        # 2 · la risposta, i reel scagliati via, la voce diventa intestazione
+        3.0 toggle .1 ; 3.5 pop .1 ; 3.77 whoosh .16 ; 3.8 tap .12 ; 4.05 whoosh .1
+        # 3 · la settimana
+        4.5 whoosh .2 ; 4.73 click .16 ; 5.4 drop .15 ; 5.83 click .16 ; 6.17 drop .15 ; 6.4 tick .06 ; 6.5 tick .06
+        6.53 whoosh .14 ; 6.6 drop .1 ; 6.97 drop .15 ; 7.05 whoosh .12
+        # 4 · l'algoritmo non ti legge
+        7.6 whoosh .16 ; 8.25 card .12 ; 8.67 rise .1 ; 8.9 card .1
+        9.23 tick .07 ; 9.45 tick .07 ; 9.67 tick .07 ; 9.9 tick .07 ; 10.12 tick .07 ; 10.42 bong .16
+        # 4b · …e nemmeno chi ti guarda
+        10.75 whoosh .14 ; 10.95 pop .08 ; 11.5 whoosh .1 ; 11.7 tick .05 ; 11.9 tick .05 ; 12.1 tick .05
+        # 5 · la triade — "Punto."
+        12.78 whoosh .24 ; 13.15 card .14 ; 13.93 drop .16 ; 14.57 drop .16 ; 15.63 drop .18 ; 16.67 ding .14
+        17.44 whoosh .2 ; 17.67 slam .32 ; 17.67 sub .3
+        # 6 · la clessidra: 3 secondi
+        18.35 rise .1 ; 18.75 whoosh .14 ; 19.4 card .12 ; 19.82 tap .2
+        21.17 tick .2 ; 21.6 tick .2 ; 22.03 tick .2 ; 22.15 tap .1 ; 22.5 ding .2
+        # 7 · via con uno swipe
+        22.98 whoosh .22 ; 23.2 card .12 ; 23.45 tap .08 ; 23.95 pop .1 ; 24.45 whoosh .28 ; 24.8 card .1 ; 25.25 bong .14
+      -->
+    </div>
+
+    <script>
+      (() => {
+        const ICON = __ICONS__;
+        /*__KIT__*/
+
+        // bokeh lontano (parallasse a PF della camera)
+        bokeh($("bokeh"), [
+          [120, 320, 360, 0.06], [620, -60, 260, 0.035, true], [860, 720, 420, 0.05], [180, 1150, 300, 0.04, true],
+          [1250, 250, 380, 0.05], [1500, 900, 340, 0.045, true], [1150, 1550, 420, 0.06], [1900, 600, 380, 0.05],
+          [2200, 1100, 360, 0.045, true], [2600, 700, 420, 0.06], [2050, 1700, 380, 0.05], [2900, 1450, 360, 0.04, true],
+          [3200, 1000, 400, 0.05], [2500, 2100, 380, 0.045],
+        ]);
+        // titoli parola per parola sui tempi del voice-over (d01.ts)
+        const W = (txt, from) => at(txt, from == null ? 0 : findWord(from));
+
+        // ═══ 1 · HOOK — "L'errore numero uno che fanno i principianti?" (0 – 2.95) ═══
+        // O01 anello di reel veri che si apre e gira (reel 13–14 di Kallaway) · al centro un punto diventa la risposta, sfocata
+        const L1 = layer(10);
+        const RC = [540, 905];
+        { const p0 = fitPose(RC[0] - 470, RC[1] - 500, RC[0] + 470, RC[1] + 500, { top: 330, fill: 0.98 }); camInit(p0.fx, p0.fy, p0.s * 0.97); }
+        rackFocus(0, 0.45);
+        float(0, 2.9, 0, 0, 0.05);
+        const T1 = titleW({ lines: [[{ t: "L'errore " }, { t: "numero uno", box: true }], [{ t: "dei principianti", hand: true }]], size: 86 });
+        T1.inAt([W("'errore"), W("numero"), W("uno"), W("i"), W("principianti?")]);
+        const ring = reelRing(L1, RC[0], RC[1], ["c1", "c2", "c3", "c4", "c5", "c6", "c7"], { r: 380, w: 170, r0: 40, a0: -2.2 });
+        gsap.set(ring.cards.map((c) => c.wrap), { opacity: 1 }); // il fotogramma 0 mostra già la pila di reel (sfocata dal rack focus)
+        ring.open(0.02, 0.42);
+        ring.spin(0.02, 3.75, 26);
+        // il punto lime su "numero uno" che sboccia in un disco e poi diventa la risposta (K13)
+        const dot = el(L1, { position: "absolute", left: RC[0] - 14, top: RC[1] - 14, width: 28, height: 28, borderRadius: "50%", background: K.lime, boxShadow: GLOW_L(0.9), zIndex: 15 });
+        gsap.set(dot, { scale: 0 });
+        tl.to(dot, { scale: 1, duration: 0.25, ease: "back.out(3)" }, W("numero"));
+        tl.to(dot, { scale: 9.5, opacity: 0.85, duration: 0.35, ease: "expo.out" }, W("uno"));
+        tl.to(dot, { scale: 0.3, opacity: 0, duration: 0.25, ease: "power3.in" }, 1.08);
+        const BW = 600, BH = 112;
+        const BAR = sectionBar(L1, RC[0] - BW / 2, RC[1] - BH / 2, BW, BH, "01", "<span>Pubblicare&nbsp;</span><span style=\"position:relative;display:inline-block\">di tutto</span>", null, { z: 20, fs: 49 });
+        const [w1, w2] = BAR.tx.children;
+        gsap.set([w1, w2], { filter: "blur(14px)", opacity: 0.5 });
+        blurIn(BAR.r, 1.08, { scale: 0.5, blur: 20, y: 0, dur: 0.5, ease: "back.out(1.6)" });
+        sheen(BAR.r, 1.45, 0.8);
+        const q = handNote(L1, RC[0] + BW / 2 - 6, RC[1] - 140, "?", { size: 130, rot: 10 });
+        q.write(1.82, 0.1);
+        // "principianti?": i reel vanno fuori fuoco, conta la risposta sfocata
+        ring.defocus(W("principianti?"), 0.38);
+        tl.to(BAR.r, { boxShadow: `${GLOW_L(0.35)}, 0 18px 44px rgba(0,0,0,.5)`, duration: 0.4 }, 1.5);
+
+        // ═══ 2 · "Pubblicare di tutto." (2.95 – 4.5) — la risposta va a fuoco, l'anello scaglia via i reel ═══
+        T1.outAt(2.55);
+        q.hide(2.85);
+        tl.to(w1, { filter: "blur(0px)", opacity: 1, duration: 0.35, ease: "power2.out" }, W("Pubblicare"));
+        tl.to(w2, { filter: "blur(0px)", opacity: 1, duration: 0.3, ease: "power2.out" }, W("di", "Pubblicare"));
+        tl.set([w1, w2], { filter: "none" }, 3.85);
+        // sottolineatura a mano dentro la parola, così segue la sua larghezza vera
+        const underline = (span) => {
+          const s = document.createElementNS(NS, "svg");
+          s.setAttribute("viewBox", "0 0 100 12");
+          s.setAttribute("preserveAspectRatio", "none");
+          Object.assign(s.style, { position: "absolute", left: "-4%", bottom: "-16px", width: "108%", height: "18px", overflow: "visible", filter: "drop-shadow(0 0 6px rgba(207,251,80,.6))" });
+          span.appendChild(s);
+          const p = document.createElementNS(NS, "path");
+          p.setAttribute("d", "M1 7 Q 25 3 50 7 T 99 5");
+          p.setAttribute("fill", "none"); p.setAttribute("stroke", K.lime); p.setAttribute("stroke-width", "4"); p.setAttribute("stroke-linecap", "round");
+          s.appendChild(p);
+          const Ln = p.getTotalLength();
+          p.setAttribute("stroke-dasharray", `${Ln} ${Ln}`); p.setAttribute("stroke-dashoffset", Ln);
+          return p;
+        };
+        const u1 = underline(w2);
+        tl.to(u1, { attr: { "stroke-dashoffset": 0 }, duration: 0.35, ease: "power2.inOut" }, W("tutto.") + 0.03);
+        ring.refocus(W("di", "Pubblicare"));
+        ring.fling(W("tutto."), 0.6);
+        // la voce diventa l'intestazione della sezione (K14), poi passa a una copia nell'HUD
+        const HY = 236, HS = 0.8;
+        tl.to(BAR.r, { y: (HY - ANCHOR.y) / CAM.s - (RC[1] - CAM.fy) + 0, scale: HS / CAM.s, duration: 0.45, ease: "power3.inOut" }, 4.05);
+        const HB = sectionBar(hud, 540 - BW / 2, HY - BH / 2, BW, BH, "01", "<span>Pubblicare&nbsp;</span><span style=\"position:relative;display:inline-block\">di tutto</span>", null, { z: 55, fs: 49 });
+        underline(HB.tx.children[1]).setAttribute("stroke-dashoffset", 0);
+        gsap.set(HB.r, { scale: HS, opacity: 0 });
+        tl.set(HB.r, { opacity: 1 }, 4.5);
+        tl.set(BAR.r, { opacity: 0 }, 4.5);
+
+        // ═══ 3 · LA SETTIMANA — "Lunedì fitness, martedì viaggi, venerdì motivazione" (4.5 – 7.6) ═══
+        // O24 in riga: il planner della settimana, un reel vero di un tema diverso cade in ogni giorno detto
+        const L2 = layer(12);
+        const PX = 2800, PY = 900;
+        const plan = weekPlan(L2, PX, PY, ["LUN", "MAR", "MER", "GIO", "VEN"], { cw: 172, gap: 18 });
+        gsap.set(plan.box, { opacity: 0 });
+        tl.set(plan.box, { opacity: 1 }, 4.5);
+        plan.ghost(4.5, ["l1", "l2", "l3", "l4", "l5"]); // i giorni non ancora detti sono già pieni, sfocati
+        const x0p = plan.rect[0], y0p = plan.rect[1], y1p = plan.rect[3], cwp = 172 + 18;
+        // stretto su LUN–MAR (la camera corre lungo la settimana come la timeline di Kallaway), poi GIO–VEN, poi tutta
+        const r01 = [x0p + 6, y0p, x0p + 30 + 2 * cwp + 24, y1p];
+        { const p = fitPose(r01[0], r01[1], r01[2], r01[3], { top: 330, fill: 0.96 }); whip2(4.5, 0.5, p.fx, p.fy, p.s, { peak: 18 }); }
+        float(5.0, 1.5, 12, 0, 0.02);
+        plan.dayOn(0, W("Lunedì"));
+        plan.resolve(0, W("fitness,"), "Fitness", "dumbbell", "#ff8a5c");
+        plan.dayOn(1, W("martedì"));
+        plan.resolve(1, W("viaggi,"), "Viaggi", "plane", "#5cc8ff");
+        plan.dayOn(2, 6.38); plan.resolve(2, 6.38, "Cucina", "pizza", "#ffd25c");
+        plan.dayOn(3, 6.48); plan.resolve(3, 6.48, "Animali", "paw-print", "#c79bff");
+        const r34 = [plan.rect[2] - 30 - 2 * cwp - 24, y0p, plan.rect[2] - 6, y1p];
+        { const p = fitPose(r34[0], r34[1], r34[2], r34[3], { top: 330, fill: 0.96 }); move(W("venerdì"), 0.5, p.fx, p.fy, p.s); }
+        plan.dayOn(4, W("venerdì"));
+        plan.resolve(4, W("motivazione."), "Motivazione", "flame", "#ff5c9d");
+        // "motivazione": pull-back su tutta la settimana — cinque temi, nessun filo
+        frameRect(7.03, 0.55, plan.rect, { top: 330 });
+
+        // ═══ 4 · L'ALGORITMO — "…l'algoritmo non capisce di cosa parla il tuo profilo" (7.6 – 10.75) ═══
+        // hub di Kallaway: la settimana sale e diventa la riga di ingresso, tutto converge nell'icona della piattaforma
+        blurOut(HB.r, 7.55, { y: -20, dur: 0.3 });
+        const T4 = titleW({ lines: [[{ t: "L'algoritmo " }, { t: "non capisce", box: true }]], size: 84 });
+        T4.inAt([W("'algoritmo"), W("non", "'algoritmo"), W("capisce")]);
+        const PS = 0.9, PDY = -380;
+        tl.to(plan.box, { y: PDY, scale: PS, duration: 0.8, ease: "power3.inOut" }, 7.6);
+        const after = (x, y) => [PX + (x - PX) * PS, PY + PDY + (y - PY) * PS];
+        const HX = PX, IGY = 880;
+        frameRect(7.6, 0.85, [PX - 480, PY + PDY - plan.H * PS / 2 - 24, PX + 480, 1490], { top: 330 });
+        const L3 = layer(14);
+        const IG = appIcon(L3, HX, IGY, 136, "instagram", 22);
+        blurIn(IG, 8.25, { y: -20, blur: 16, scale: 0.7, dur: 0.5, ease: "back.out(2)" });
+        const NODE = nodePill(L3, HX, IGY + 116, '<span style="opacity:.55">&lt;</span>algoritmo<span style="opacity:.55">/&gt;</span>', { w: 310, h: 72, fs: 31 });
+        blurIn(NODE, 8.35, { y: 16, blur: 14, dur: 0.45 });
+        ripple(L3, HX, IGY, W("'algoritmo"), { wd: 136, ht: 136, radius: "36px", s0: 1, s1: 1.9, dur: 0.6, w: 3 });
+        ripple(L3, HX, IGY, W("'algoritmo") + 0.25, { wd: 136, ht: 136, radius: "36px", s0: 1, s1: 1.9, dur: 0.6, w: 3, a: 0.6 });
+        const S3 = svgLayer(L3, 6, 2200, 300, 1300, 1500, true);
+        const chipBottom = PY - plan.H / 2 + 30 + 92 + 306 + 18 + 64;
+        [0, 1, 2, 3, 4].forEach((k) => {
+          const [cx0] = plan.cellXY(k);
+          const [ax, ay] = after(cx0, chipBottom);
+          const cn = connector(S3, [[ax, ay + 8], [HX, IGY - 76]], { curve: "v", dash: [12, 10], color: K.lime, w: 3.5 });
+          cn.draw(8.45 + k * 0.04, 0.45);
+          traveller(S3, cn, 8.72 + k * 0.08, 0.45, K.lime, 8);
+          cn.hide(10.6, 0.3);
+        });
+        // la lettura del profilo da parte dell'algoritmo: tre righe che non riesce a riempire
+        // (tornano come le tre scelte della triade: nicchia / pubblico / problema)
+        const GW = 840, GH = 390, GX = HX - GW / 2, GY = 1085;
+        const GC = card(L3, GX, GY, GW, GH, { zIndex: 12 });
+        el(GC, { position: "absolute", left: 32, top: 28, fontFamily: FS, fontWeight: 600, fontSize: 22, letterSpacing: "0.14em", color: K.mute }, "ANALISI DEL PROFILO");
+        const rd1 = layered(el(GC, { position: "absolute", right: 32, top: 16, fontFamily: FD, fontWeight: 700, fontSize: 44, color: K.white, textShadow: GLOW_W }, "…"));
+        const rd2 = layered(el(GC, { position: "absolute", right: 32, top: 16, fontFamily: FD, fontWeight: 700, fontSize: 44, color: K.lime, textShadow: GLOW_LT, opacity: 0 }, "Non chiaro"));
+        const RY = [86, 184, 282], SX = 246, SW = GW - SX - 30, SH = 74;
+        ["Argomento", "Pubblico", "Problema"].forEach((lb, r) => {
+          el(GC, { position: "absolute", left: 32, top: RY[r], height: SH, display: "flex", alignItems: "center", fontFamily: FD, fontWeight: 700, fontSize: 42, color: K.white, textShadow: GLOW_W }, lb);
+          el(GC, { position: "absolute", left: SX, top: RY[r], width: SW, height: SH, borderRadius: 14, border: "2px dashed rgba(255,255,255,.18)", background: "rgba(0,0,0,.18)" });
+        });
+        const ph = [1, 2].map((r) => el(GC, { position: "absolute", left: SX + 18, top: RY[r] + 22, width: SW * (r === 1 ? 0.62 : 0.74), height: 30, borderRadius: 15, background: "linear-gradient(90deg, rgba(255,255,255,.34), rgba(255,255,255,.14))", filter: "blur(6px)", opacity: 0 }));
+        // Argomento: ogni post reclama la casella — i temi si accatastano uno sull'altro
+        const CH5 = [["Fitness", "dumbbell"], ["Viaggi", "plane"], ["Cucina", "pizza"], ["Animali", "paw-print"], ["Motivazione", "flame"]];
+        const chips = CH5.map(([lb, ic], k) => {
+          const c = layered(el(GC, { position: "absolute", left: SX + 14 + k * 64, top: RY[0] + 10, height: 54, display: "flex", alignItems: "center", gap: 10, padding: "0 18px 0 14px", borderRadius: 27, background: "linear-gradient(180deg,#3d3d3d,#2a2a2a)", border: "1.5px solid rgba(255,255,255,.22)", boxShadow: "0 8px 20px rgba(0,0,0,.5)", fontFamily: FS, fontWeight: 700, fontSize: 24, color: K.white, whiteSpace: "nowrap", zIndex: 2 + k }, svg(ic, 26, K.white, 2.2) + lb));
+          c.setAttribute("data-layout-allow-occlusion", "");
+          gsap.set(c, { opacity: 0, rotation: (k % 2 ? -1 : 1) * (2 + k) });
+          return c;
+        });
+        blurIn(GC, 8.9, { y: 30, blur: 18, dur: 0.55 });
+        tl.to(ph, { opacity: 0.55, duration: 0.4, stagger: 0.08 }, 9.05);
+        [9.23, 9.45, 9.67, 9.9, 10.12].forEach((t, k) => {
+          blurIn(chips[k], t, { x: 120, y: 0, blur: 12, scale: 0.9, dur: 0.28, ease: "power3.out" });
+          // il reel che la reclama si accende nella riga
+          tl.to(plan.cells[k].tile, { borderColor: rgba(K.lime, 0.95), boxShadow: GLOW_L(0.7), duration: 0.08 }, t);
+          tl.to(plan.cells[k].tile, { borderColor: "rgba(255,255,255,.28)", boxShadow: "0 18px 40px rgba(0,0,0,.55)", duration: 0.25 }, t + 0.18);
+        });
+        // su "profilo": non si legge niente — tutto va fuori fuoco
+        tl.fromTo(chips, { filter: "blur(0px)" }, { filter: "blur(5px)", opacity: 0.35, duration: 0.35, ease: "power2.out", stagger: 0.02, immediateRender: false }, W("profilo"));
+        tl.set(rd1, { opacity: 0 }, W("profilo") + 0.03);
+        tl.set(rd2, { opacity: 1 }, W("profilo") + 0.03);
+        tl.fromTo(rd2, { x: 10 }, { x: 0, duration: 0.25, ease: "back.out(3)", immediateRender: false }, W("profilo") + 0.03);
+        const qa = handNote(GC, SX + 200, RY[0] - 22, "?", { size: 118, rot: 8, z: 20 });
+        qa.write(W("profilo") + 0.08, 0.1);
+        shake(W("profilo") + 0.03, 6, 4);
+        T4.outAt(10.75);
+
+        // ═══ 4b · "…e nemmeno chi ti guarda" (10.75 – 12.75) — gli anelli di pubblico si svuotano ═══
+        // O21 anelli orbitali di persone (reel 44 di Kallaway) con la tua foto profilo vera al centro
+        const OX0 = 2800, OY0 = 2300;
+        const prs = peopleRings(layer(14), OX0, OY0, [[150, 12], [240, 20], [330, 28]], { user: "tu", d: 168, dot: 24 });
+        // sotto gli anelli: chi ti guarda crolla da 50 a 4 (D04, la curva che precipita)
+        const wc = statCard(layer(15), OX0 - 450, OY0 + 385, { label: "Chi ti guarda", icon: "eye", w: 900, h: 300, fs: 110, points: [[0, 1], [0.15, 0.96], [0.3, 0.86], [0.45, 0.6], [0.6, 0.32], [0.8, 0.13], [1, 0.08]] });
+        gsap.set(wc.c, { opacity: 0 });
+        blurIn(wc.c, 11.05, { y: 30, blur: 14, dur: 0.45 });
+        wc.count(W("nemmeno") + 0.18, 50, 4, 0.95);
+        frameRect(10.75, 0.6, [OX0 - 460, OY0 - 372, OX0 + 460, OY0 + 695], { top: 360 });
+        float(11.35, 1.4, 0, -10, 0.02);
+        tl.to([IG, NODE, GC, plan.box], { opacity: 0, duration: 0.4 }, 10.6);
+        const T4b = titleW({ lines: [[{ t: "E nemmeno " }, { t: "chi ti guarda", box: true }]], size: 82 });
+        T4b.inAt([W("nemmeno") - 0.06, W("nemmeno"), W("chi"), W("ti", "chi"), W("guarda.")]); // il titolo prima esce (≥ 0,45 s)
+        prs.show(10.92);
+        prs.spin(10.92, 1.9, 22);
+        const gone = prs.leave(W("nemmeno"), 0.86, 0.7);
+        // chi resta si accende di lime: sono i 4 che ti guardano ancora
+        const stay = prs.dots.filter((x) => !gone.includes(x)).map((x) => x.d);
+        tl.to(stay, { background: K.lime, boxShadow: GLOW_A(0.85), scale: 1.25, duration: 0.25, stagger: 0.04 }, W("chi"));
+        tl.to(prs.holders.map((h) => h.ring), { borderColor: "rgba(255,255,255,.06)", duration: 0.6 }, 11.95);
+        T4b.outAt(12.55);
+
+        // ═══ 5 · LA TRIADE — "nicchia, pubblico target, problema specifico che risolvi. Punto." (12.75 – 18.5) ═══
+        const T5 = titleW({ lines: [[{ t: "Devi " }, { t: "scegliere", box: true }]], size: 86 });
+        T5.inAt([W("Devi"), W("scegliere")]);
+        whip2(12.78, 0.55, 4300, 2250, 1, { peak: 20 });
+        float(13.33, 4.25, 0, 0, 0.03);
+        tl.to($("glow"), { opacity: 1, duration: 0.8 }, 13.0);
+        const C0 = [4300, 2240], TLv = [4000, 2067], TRv = [4600, 2067], Bv = [4300, 2587];
+        const HG = layer(18);
+        gsap.set(HG, { transformOrigin: `${Bv[0]}px ${Bv[1]}px` });
+        const SF = svgLayer(HG, 3, 3860, 1940, 880, 1320);
+        const SL = svgLayer(HG, 5, 3860, 1940, 880, 1320, true);
+        SF._defs.innerHTML = `<linearGradient id="gFrame" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3c3c3c"/><stop offset="1" stop-color="#141414"/></linearGradient><linearGradient id="gCap" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5a5a5a"/><stop offset="1" stop-color="#262626"/></linearGradient>`;
+        SL._defs.innerHTML = `<linearGradient id="gLime" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ecffa6"/><stop offset=".5" stop-color="${K.lime}"/><stop offset="1" stop-color="#9cc82c"/></linearGradient>`;
+        const poly = (S, pts, fill, stroke, sw) => {
+          const p = document.createElementNS(NS, "polygon");
+          p.setAttribute("points", pts.map((qq) => qq.join(",")).join(" "));
+          p.setAttribute("fill", fill);
+          if (stroke) { p.setAttribute("stroke", stroke); p.setAttribute("stroke-width", sw); p.setAttribute("stroke-linejoin", "round"); }
+          S.appendChild(p);
+          return p;
+        };
+        const off = (p, k) => [C0[0] + (p[0] - C0[0]) * k, C0[1] + (p[1] - C0[1]) * k];
+        poly(SF, [off(TLv, 1.13), off(TRv, 1.13), off(Bv, 1.13)], "url(#gFrame)", "rgba(255,255,255,.24)", 3);
+        poly(SF, [TLv, TRv, Bv], "#191919", "rgba(255,255,255,.12)", 2);
+        const SEC = [[TLv, TRv], [TRv, Bv], [Bv, TLv]];
+        const sectors = SEC.map(([a, b]) => { const p = poly(SL, [a, b, C0], "url(#gLime)"); p.setAttribute("opacity", "0"); return p; });
+        SEC.forEach(([a]) => { const ln = document.createElementNS(NS, "line"); ln.setAttribute("x1", C0[0]); ln.setAttribute("y1", C0[1]); ln.setAttribute("x2", a[0]); ln.setAttribute("y2", a[1]); ln.setAttribute("stroke", "#1E1E1E"); ln.setAttribute("stroke-width", "5"); SL.appendChild(ln); });
+        const edges = SEC.map(([a, b]) => connector(SL, [a, b], { color: K.lime, w: 7 }));
+        // le tre caselle vuote della triade, tratteggiate (aspettano la parola)
+        const slots = SEC.map(([a, b]) => { const p = poly(SF, [a, b, C0], "none", "rgba(207,251,80,.38)", 3); p.setAttribute("stroke-dasharray", "12 10"); p.setAttribute("opacity", "0"); return p; });
+        tl.to(slots, { attr: { opacity: 1 }, duration: 0.4, stagger: 0.08 }, 13.25);
+        tl.to(slots, { attr: { opacity: 0 }, duration: 0.3 }, 16.0);
+        gsap.set([SF, SL], { transformPerspective: 1800, rotationX: 65, opacity: 0, y: -90, transformOrigin: "50% 40%" });
+        tl.to([SF, SL], { rotationX: 0, opacity: 1, y: 0, duration: 0.8, ease: "expo.out" }, 13.12);
+        // le tre scelte: barre di Kallaway già lì, sfocate
+        const L5 = layer(19);
+        const S5 = svgLayer(L5, 3, 3700, 1850, 1200, 700, "white");
+        const M = SEC.map(([a, b]) => [(a[0] + b[0]) / 2, (a[1] + b[1]) / 2]);
+        const BARS = [["1", "Nicchia", "un solo tema", 4135, 1928, 330, [[M[0][0], M[0][1]], [M[0][0], 2012]]], ["2", "Pubblico", "target preciso", 4500, 2340, 330, [[M[1][0], M[1][1]], [4500, 2382]]], ["3", "Problema", "specifico, che risolvi", 3765, 2340, 345, [[M[2][0], M[2][1]], [4110, 2382]]]];
+        const bars = [], leads = [];
+        BARS.forEach(([n, a, b, x, y, w, pts], k) => {
+          const sb = sectionBar(L5, x, y, w, 84, n, a, b, { z: 14 });
+          gsap.set(sb.r, { opacity: 0 });
+          tl.fromTo(sb.r, { opacity: 0, filter: "blur(18px)" }, { opacity: 0.55, filter: "blur(6px)", duration: 0.4, ease: "power3.out", immediateRender: false }, 13.2 + k * 0.06);
+          const ld = connector(S5, pts, { color: "rgba(255,255,255,.85)", w: 3 });
+          bars.push(sb.r);
+          leads.push(ld);
+        });
+        [[W("nicchia,"), 0], [W("pubblico"), 1], [W("problema"), 2]].forEach(([t, k]) => {
+          edges[k].draw(t, 0.3);
+          tl.to(sectors[k], { attr: { opacity: 1 }, duration: 0.35 }, t + 0.1);
+          leads[k].draw(t + 0.05, 0.25);
+          tl.to(bars[k], { opacity: 1, filter: "blur(0px)", duration: 0.35, ease: "power2.out" }, t + 0.12);
+          tl.set(bars[k], { filter: "none" }, t + 0.5);
+          sheen(bars[k], t + 0.4, 0.7);
+        });
+        const tick5 = el(L5, { position: "absolute", left: C0[0] - 34, top: C0[1] - 40, width: 68, height: 68, display: "flex", alignItems: "center", justifyContent: "center", zIndex: 8 }, svg("check", 60, K.ink, 3.4));
+        gsap.set(tick5, { scale: 0, opacity: 0 });
+        tl.to(tick5, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(3)" }, W("risolvi."));
+        tl.fromTo(HG, { scale: 1.05 }, { scale: 1, duration: 0.3, ease: "power2.out", immediateRender: false }, W("risolvi."));
+        // "Punto." — la freccetta (O10) si pianta al centro della triade
+        tl.to(tick5, { opacity: 0, scale: 0.5, duration: 0.15 }, 17.4);
+        const target = bullseye(L5, C0[0], C0[1], [2], { ticks: false, z: 30 });
+        gsap.set(target.rings[0], { opacity: 0 });
+        target.hit(W("Punto."), { dx: -0.64, dy: -0.77, amp: 12, r: 330 });
+        camK(17.62, 0.4, C0[0], C0[1], 1.12, "power4.out"); // K06 punch-in sul colpo
+        const pnt = handNote(L5, C0[0] + 215, C0[1] - 345, "Punto.", { size: 96, rot: -6 });
+        pnt.write(W("Punto.") + 0.09, 0.3);
+
+        // ═══ 6 · TRE SECONDI — "…deve capire in tre secondi di cosa parli" (18.5 – 22.95) ═══
+        // match cut: la triade è la metà alta di una clessidra, il lime è la sabbia
+        T5.outAt(18.3);
+        tl.to($("glow"), { opacity: 0.45, duration: 0.8 }, 18.6);
+        blurOut(bars, 18.2, { dur: 0.25 });
+        leads.forEach((l) => l.hide(18.2, 0.2));
+        tl.to(target.dart(), { opacity: 0, duration: 0.2 }, 18.15);
+        pnt.hide(18.25);
+        move(18.4, 0.6, 4300, 2250, 1);
+        const BOT = [[4000, 3107], [4600, 3107], Bv];
+        const bulb = poly(SF, BOT, "rgba(255,255,255,.035)", "rgba(255,255,255,.26)", 3);
+        gsap.set(bulb, { scaleY: 0, svgOrigin: `${Bv[0]} ${Bv[1]}` });
+        tl.to(bulb, { scaleY: 1, duration: 0.45, ease: "power3.out" }, 18.35);
+        const capR = (y) => { const r = document.createElementNS(NS, "rect"); r.setAttribute("x", 3930); r.setAttribute("y", y); r.setAttribute("width", 740); r.setAttribute("height", 26); r.setAttribute("rx", 13); r.setAttribute("fill", "url(#gCap)"); r.setAttribute("stroke", "rgba(255,255,255,.25)"); r.setAttribute("stroke-width", 2); SF.appendChild(r); gsap.set(r, { scaleX: 0, svgOrigin: `4300 ${y + 13}` }); return r; };
+        const caps = [capR(1990), capR(3112)];
+        tl.to(caps, { scaleX: 1, duration: 0.4, ease: "power3.out", stagger: 0.06 }, 18.4);
+        const sand = poly(SL, [TLv, TRv, Bv], "url(#gLime)");
+        sand.setAttribute("opacity", "0");
+        gsap.set(sand, { svgOrigin: `${Bv[0]} ${Bv[1]}` });
+        tl.set(sand, { attr: { opacity: 1 } }, 18.7);
+        tl.set(sectors, { attr: { opacity: 0 } }, 18.7);
+        const pile = poly(SL, [[4040, 3107], [4560, 3107], [4300, 2655]], "url(#gLime)");
+        gsap.set(pile, { scale: 0, svgOrigin: "4300 3107" });
+        const stream = document.createElementNS(NS, "line");
+        stream.setAttribute("x1", 4300); stream.setAttribute("y1", 2590); stream.setAttribute("x2", 4300); stream.setAttribute("y2", 3100);
+        stream.setAttribute("stroke", K.lime); stream.setAttribute("stroke-width", 7); stream.setAttribute("opacity", "0");
+        SL.appendChild(stream);
+        // la clessidra si rimpicciolisce a destra, a sinistra entra un profilo chiaro (U02 v2 con la foto vera di Hormozi)
+        tl.to(HG, { x: 290, y: -337, scale: 0.52, duration: 0.75, ease: "power3.inOut" }, 18.75);
+        float(19.0, 3.9, -6, 0, 0.02);
+        const L6 = layer(20);
+        const P2 = igProfile(L6, 3800, 1750, {
+          user: "hormozi", handle: "hormozi", verificato: true, nome: "Alex Hormozi", bio: ["Business · vendite · acquisizioni"],
+          post: "1.234", follower: "4 Mln", seguiti: "12", blurStats: true, ring: "lime",
+          grid: [1, 2, 3, 4, 5, 6, 7, 8, 9].map((i) => "hz" + i),
+        });
+        gsap.set(P2.frame, { opacity: 0 });
+        blurIn(P2.frame, 19.4, { x: -140, y: 0, blur: 22, dur: 0.6 });
+        tl.to(P2.frame, { boxShadow: `0 50px 110px rgba(0,0,0,.65), inset 0 0 0 2px rgba(255,255,255,.12), 0 0 80px ${rgba(K.lime, 0.18)}`, duration: 0.6 }, 19.6);
+        const T6a = titleW({ lines: [[{ t: "Chi arriva " }, { t: "sul tuo profilo", box: true }]], size: 78 });
+        T6a.inAt([W("qualcuno"), W("arriva"), W("sul"), W("tuo", "sul"), W("profilo", "sul")]);
+        T6a.outAt(20.08);
+        const T6 = titleW({ lines: [[{ t: "Capirti in " }, { t: "3 secondi", box: true }]], size: 86 });
+        T6.inAt([W("capire"), W("in", "capire"), W("tre"), W("secondi")]);
+        // qualcuno ci arriva (il dito del visitatore)
+        const F1 = tapFinger(L6, { size: 86 });
+        const tapX = P2.X + 330, tapY = P2.Y + 760;
+        F1.show(19.55, tapX + 40, tapY + 120); F1.to(19.62, tapX, tapY, 0.2); F1.tap(19.82); F1.hide(20.05);
+        // la sabbia scorre mentre l'occhio legge il profilo — un colpo al secondo
+        tl.to(sand, { scale: 0, duration: 1.3, ease: "none" }, W("tre"));
+        tl.to(pile, { scale: 1, duration: 1.3, ease: "none" }, W("tre"));
+        tl.set(stream, { attr: { opacity: 1 } }, W("tre"));
+        tl.set(stream, { attr: { opacity: 0 } }, W("tre") + 1.3);
+        const hb1 = P2.hl(W("tre"), "header");
+        const hb2 = P2.hl(W("secondi") + 0.07, "bio", { r: 8 });
+        const hb3 = P2.hl(W("di", "secondi") - 0.1, "griglia", { r: 6 });
+        tl.to(hb1, { opacity: 0.35, duration: 0.2 }, W("secondi") + 0.07);
+        tl.to(hb3, { opacity: 0.35, duration: 0.25 }, 22.35);
+        tl.to(hb2, { boxShadow: `${GLOW_L(1)}, inset 0 0 24px ${rgba(K.lime, 0.3)}`, duration: 0.2 }, W("cosa", "secondi"));
+        // "di cosa parli": la mano indica la bio
+        const bio = P2.partRect("bio");
+        const S6 = svgLayer(L6, 45, 3700, 1700, 1100, 900, true);
+        const arr = handArrow(S6, 4440, 1900, bio[0] + 340, (bio[1] + bio[3]) / 2 - 4, 0.35, 12, { w: 6, head: 26 });
+        arr.draw(W("cosa", "secondi"), 0.4);
+        const nt = handNote(L6, 4268, 1786, "business!", { size: 66, rot: -6 });
+        nt.write(W("parli."), 0.35);
+        const ok = el(L6, { position: "absolute", left: 4590 - 38, top: 1872, width: 76, height: 76, borderRadius: "50%", background: K.lime, boxShadow: GLOW_L(0.9), display: "flex", alignItems: "center", justifyContent: "center", zIndex: 30 }, svg("check", 46, K.ink, 3.4));
+        pop(ok, 22.5, 0, "back.out(3)", 0.45);
+        T6.outAt(22.6);
+
+        // ═══ 7 · "Se non lo capisce, non ti segue." (22.95 – 25.83) — il pollice esita, poi swipe ═══
+        const T7 = titleW({ lines: [[{ t: "Se non ti capisce," }], [{ t: "non ti segue", box: true }]], size: 78 });
+        T7.inAt([W("Se"), W("non", "Se"), W("lo"), W("capisce,", "lo"), W("non", "lo"), W("ti", "lo"), W("segue.")]);
+        const L7 = layer(22);
+        const P3 = igProfile(L7, 4020, 3150, {
+          user: "tu", handle: "il_tuo_profilo", nome: "Il tuo profilo", bio: ["Fitness · viaggi · cucina · animali · motivazione"],
+          post: "47", follower: "312", seguiti: "520",
+          grid: [1, 2, 3, 4, 5, 6, 7, 8, 9].map((i) => "g" + i),
+        });
+        // il telefono parte sotto il titolo (due righe): niente UI dietro al titolo
+        { const p = fitPose(P3.X - 20, P3.Y - 10, P3.X + PH.w + 20, P3.Y + 980, { top: 400 }); whip2(22.98, 0.55, p.fx, p.fy, p.s, { peak: 20 }); }
+        float(23.55, 0.85, 0, 0, 0.015);
+        tl.to([HG, P2.frame, ok, S6, nt.n], { opacity: 0, duration: 0.12 }, 23.12);
+        tl.to($("glow"), { opacity: 0.2, duration: 0.6 }, 23.0);
+        gsap.set(P3.frame, { opacity: 0 });
+        blurIn(P3.frame, 23.2, { y: 60, blur: 20, dur: 0.55 });
+        const F2 = tapFinger(L7, { size: 86 });
+        const [btnX, btnY] = P3.followXY();
+        F2.show(23.45, btnX + 60, btnY + 300);
+        F2.to(23.55, btnX + 24, btnY + 30, 0.38);
+        [[-16, -8], [12, 6], [-8, -3], [0, 0]].forEach(([dx, dy], k) => F2.to(23.95 + k * 0.11, btnX + 24 + dx, btnY + 30 + dy, 0.1));
+        const q7 = handNote(L7, P3.X + 470, P3.Y + 230, "?", { size: 120, rot: 8 });
+        q7.write(23.95, 0.1);
+        // "non ti segue": swipe verso l'alto — il profilo vola via
+        F2.to(24.3, btnX + 120, btnY + 520, 0.14);
+        F2.to(24.45, btnX + 120, btnY - 260, 0.22);
+        F2.hide(24.62);
+        q7.hide(24.45);
+        const MB3 = { v: 0 }, mbn3 = $("mbn3");
+        const w3 = () => mbn3.setAttribute("stdDeviation", `0 ${MB3.v}`);
+        w3();
+        tl.set(P3.frame, { filter: "url(#mb3)" }, 24.45);
+        tl.to(MB3, { v: 30, duration: 0.36, ease: "power2.in", onUpdate: w3 }, 24.45);
+        tl.to(P3.frame, { y: -1750, duration: 0.36, ease: "power2.in" }, 24.45);
+        tl.set(P3.frame, { filter: "none", opacity: 0 }, 24.82);
+        // resta il conto dei nuovi follower: fermo a zero (D01, la linea piatta) — un'infografica, non un numero da solo
+        const SCX = P3.X + PH.w / 2;
+        const stc = statCard(L7, SCX - 450, P3.Y + 110, { label: "Nuovi follower oggi", icon: "user-plus", w: 900, h: 580, fs: 200, points: [[0, 0.04], [0.2, 0.03], [0.4, 0.05], [0.6, 0.03], [0.8, 0.04], [1, 0.03]] });
+        // chi è passato dal profilo e se ne è andato (sagome, ognuna con la sua x)
+        const vis = [0, 1, 2, 3, 4].map((k) => {
+          const vx = SCX - 344 + k * 172, vy = P3.Y + 812 - 20;
+          const a = avatar(L7, vx, vy, 132, "anon", { ring: "rgba(255,255,255,.35)", bw: 3, z: 15 });
+          const xb = el(L7, { position: "absolute", left: vx + 30, top: vy + 26, width: 46, height: 46, borderRadius: "50%", background: "#2a2a2a", border: "2px solid rgba(255,255,255,.6)", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 16 }, svg("x", 24, "#fff", 3));
+          gsap.set([a, xb], { opacity: 0, scale: 0.5 });
+          return [a, xb];
+        });
+        const visLab = el(L7, { position: "absolute", left: SCX - 300, top: P3.Y + 880, width: 600, textAlign: "center", fontFamily: FS, fontWeight: 800, fontSize: 38, color: "rgba(255,255,255,.7)", whiteSpace: "nowrap", zIndex: 15 }, "5 visite · 0 follower");
+        gsap.set(visLab, { opacity: 0 });
+        vis.forEach(([a, xb], k) => { tl.to(a, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(2.2)" }, 24.95 + k * 0.06); tl.to(xb, { opacity: 1, scale: 1, duration: 0.25, ease: "back.out(3)" }, 25.15 + k * 0.06); tl.to(a, { opacity: 0.45, duration: 0.3 }, 25.25 + k * 0.06); });
+        blurIn(visLab, 25.3, { y: 10, blur: 8, dur: 0.3 });
+        gsap.set(stc.c, { opacity: 0 });
+        blurIn(stc.c, 24.72, { y: 40, blur: 22, scale: 0.9, dur: 0.5 });
+        stc.count(24.8, 0, 0, 0.55, () => "0");
+        const zeroTag = el(L7, { position: "absolute", left: SCX + 150, top: P3.Y + 150, padding: "10px 22px", borderRadius: 14, background: "linear-gradient(180deg,#3d3d3d,#272727)", border: "1.5px solid rgba(255,255,255,.25)", fontFamily: FS, fontWeight: 800, fontSize: 30, color: "rgba(255,255,255,.85)", whiteSpace: "nowrap", zIndex: 16, transform: "rotate(4deg)" }, svg("user-x", 28, "rgba(255,255,255,.85)", 2.4).replace("display:block", "display:inline-block;vertical-align:-5px;margin-right:10px") + "nessuno ti segue");
+        gsap.set(zeroTag, { opacity: 0, scale: 0.7 });
+        tl.to(zeroTag, { opacity: 1, scale: 1, duration: 0.32, ease: "back.out(2.4)" }, 25.2);
+        float(24.95, 0.88, 0, -8, 0.03);
+
+        window.__timelines = window.__timelines || {};
+        window.__timelines["main"] = tl;
+      })();
+    </script>
+  </body>
+</html>

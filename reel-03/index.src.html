@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="it">
+  <!-- KW_FISSO: reel approvato dall'utente — tiene il comportamento del kit approvato; le correzioni del Blocco 3 si applicano solo dopo che le ha viste -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>Reel 03/10 — Il trucco dei reel di prova (stile Kallaway · kit v2)</title>
+    <script src="assets/vendor/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Advercase"; src: url("assets/fonts/Advercase-Bold.ttf") format("truetype"); font-weight: 700; font-style: normal; font-display: block; }
+      @font-face { font-family: "Advercase"; src: url("assets/fonts/Advercase-Regular.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: block; }
+      @font-face { font-family: "Patrick Hand"; src: url("assets/fonts/PatrickHand-Regular.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: block; }
+      @font-face { font-family: "Zalando Sans"; src: url("assets/fonts/ZalandoSans-Variable.ttf") format("truetype"); font-weight: 100 900; font-style: normal; font-display: block; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: #1e1e1e; }
+      body { font-family: "Zalando Sans", sans-serif; color: #f4f4f2; -webkit-font-smoothing: antialiased; }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; background: #1e1e1e; }
+      .clip { position: absolute; inset: 0; overflow: hidden; }
+      #glow { position: absolute; inset: 0; opacity: 0.35; background: radial-gradient(58% 32% at 50% 46%, rgba(207, 251, 80, 0.08), rgba(207, 251, 80, 0) 70%); }
+      #vignette { position: absolute; inset: 0; background: radial-gradient(110% 78% at 50% 44%, rgba(0, 0, 0, 0) 44%, rgba(0, 0, 0, 0.62) 100%); }
+      .cam { position: absolute; left: 540px; top: 880px; width: 1px; height: 1px; }
+      .layer { position: absolute; left: 0; top: 0; width: 1px; height: 1px; }
+      #dots { position: absolute; left: -3000px; top: -3000px; width: 14000px; height: 12000px; background-image: radial-gradient(circle, rgba(255, 255, 255, 0.095) 1.25px, rgba(255, 255, 255, 0) 1.95px); background-size: 24px 24px; }
+      #stage { position: absolute; inset: 0; overflow: hidden; }
+      /* facecam + sottotitoli in post sotto y≈1400: niente infografica lì sotto */
+      #safe { position: absolute; inset: 0; -webkit-mask-image: linear-gradient(to bottom, #000 0px, #000 1385px, transparent 1450px); mask-image: linear-gradient(to bottom, #000 0px, #000 1385px, transparent 1450px); }
+      #mbwrap, #shake { position: absolute; inset: 0; }
+      #hud { position: absolute; inset: 0; }
+    </style>
+  </head>
+  <body>
+    <!--WORDS ../../my-video-ottobre-p1-test/src/words/d03.ts-->
+    <div id="root" data-composition-id="main" data-start="0" data-duration="38.767" data-width="1080" data-height="1920">
+      <div id="bg" class="clip" data-start="0" data-duration="38.767" data-track-index="0">
+        <div class="cam" id="gcam2" data-layout-allow-overflow><div class="layer" id="gzoom2"><div class="layer" id="gpan2"><div class="layer" id="bokeh"></div></div></div></div>
+        <div class="cam" id="gcam" data-layout-allow-overflow><div class="layer" id="gzoom"><div class="layer" id="gpan"><div id="dots"></div></div></div></div>
+        <div id="glow"></div>
+        <div id="vignette"></div>
+      </div>
+      <div id="stage">
+        <svg width="0" height="0" style="position: absolute" aria-hidden="true">
+          <filter id="mb" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur id="mbn" in="SourceGraphic" stdDeviation="0 0" /></filter>
+        </svg>
+        <div id="safe"><div id="mbwrap"><div id="shake"><div class="cam" id="cam" data-layout-allow-overflow><div class="layer" id="zoom"><div class="layer" id="pan"></div></div></div></div></div></div>
+        <!--VIDEOS
+          # 9 · il calendario: un reel vero per ogni giorno (ognuno pubblicato due volte)
+          k01 assets/clips/cal/c01.mp4 35.6 3.167
+          k02 assets/clips/cal/c02.mp4 35.6 3.167
+          k03 assets/clips/cal/c03.mp4 35.6 3.167
+          k04 assets/clips/cal/c04.mp4 35.6 3.167
+          k05 assets/clips/cal/c05.mp4 35.6 3.167
+          k06 assets/clips/cal/c06.mp4 35.6 3.167
+          k07 assets/clips/cal/c07.mp4 35.6 3.167
+          k08 assets/clips/cal/c08.mp4 35.6 3.167
+          k09 assets/clips/cal/c09.mp4 35.6 3.167
+          k10 assets/clips/cal/c10.mp4 35.6 3.167
+          k11 assets/clips/cal/c11.mp4 35.6 3.167
+          k12 assets/clips/cal/c12.mp4 35.6 3.167
+          k13 assets/clips/cal/c13.mp4 35.6 3.167
+          k14 assets/clips/cal/c14.mp4 35.6 3.167
+          k15 assets/clips/cal/c15.mp4 35.6 3.167
+          k16 assets/clips/cal/c16.mp4 35.6 3.167
+          k17 assets/clips/cal/c17.mp4 35.6 3.167
+          k18 assets/clips/cal/c18.mp4 35.6 3.167
+          k19 assets/clips/cal/c19.mp4 35.6 3.167
+          k20 assets/clips/cal/c20.mp4 35.6 3.167
+          k21 assets/clips/cal/c21.mp4 35.6 3.167
+          k22 assets/clips/cal/c22.mp4 35.6 3.167
+          k23 assets/clips/cal/c23.mp4 35.6 3.167
+          k24 assets/clips/cal/c24.mp4 35.6 3.167
+          k25 assets/clips/cal/c25.mp4 35.6 3.167
+          k26 assets/clips/cal/c26.mp4 35.6 3.167
+          k27 assets/clips/cal/c27.mp4 35.6 3.167
+          k28 assets/clips/cal/c28.mp4 35.6 3.167
+          k29 assets/clips/cal/c29.mp4 35.6 3.167
+          k30 assets/clips/cal/c30.mp4 35.6 3.167
+        -->
+      </div>
+      <div id="hudclip" class="clip" data-start="0" data-duration="38.767" data-track-index="2">
+        <div id="hud"></div>
+      </div>
+
+      <!--SFX
+        # 1 · hook — il logo con i raggi, il reel che esce e si sdoppia
+        0.0 rise .08 ; 0.05 pop .14 ; 2.37 whoosh .12 ; 2.45 card .12 ; 3.07 whoosh .1 ; 3.1 toggle .1 ; 3.2 slam .2 ; 3.2 sub .18
+        # 2 · "non te ne sei nemmeno accorto": la lente trova Duplica
+        3.7 whoosh .2 ; 3.8 card .1 ; 4.5 whoosh .08 ; 4.9 pop .1
+        # 3 · salva in bozza
+        5.62 whoosh .14 ; 7.6 whoosh .1 ; 9.33 tap .22 ; 9.5 ding .14
+        # 4 · bozze → ⋯ → Duplica → la copia
+        10.55 whoosh .12 ; 12.13 tap .22 ; 12.25 card .1 ; 12.6 whoosh .08 ; 13.6 tap .22 ; 13.95 pop .14 ; 14.25 pop .1
+        # 5 · la prima come reel di prova
+        15.87 tap .2 ; 16.0 whoosh .1 ; 17.6 tap .22 ; 17.62 toggle .14 ; 18.15 tap .22 ; 18.2 whoosh .14 ; 18.55 pop .12
+        # 6 · la seconda come reel normale
+        19.03 tap .2 ; 19.15 whoosh .1 ; 20.77 tap .2 ; 20.9 whoosh .1 ; 21.83 tap .22 ; 21.9 whoosh .14 ; 22.25 pop .12
+        # 7 · due pubblici
+        22.6 whoosh .2 ; 22.9 card .12 ; 26.37 whoosh .16 ; 28.97 rise .1 ; 30.5 whoosh .12
+        # 8 · ×2 gratis
+        31.0 whoosh .18 ; 31.4 card .12 ; 32.87 tick .06 ; 33.5 ding .16 ; 33.6 pop .12 ; 34.57 pop .1
+        # 9 · ogni volta
+        35.5 whoosh .2 ; 35.9 card .1 ; 36.2 tick .05 ; 36.4 tick .05 ; 36.6 tick .05 ; 36.8 tick .05 ; 37.4 ding .12
+      -->
+    </div>
+
+    <script>
+      (() => {
+        const ICON = __ICONS__;
+        /*__KIT__*/
+
+        bokeh($("bokeh"), [
+          [120, 320, 360, 0.06], [620, -60, 260, 0.035, true], [860, 720, 420, 0.05], [1250, 250, 380, 0.05], [1500, 900, 340, 0.045, true],
+          [2200, 1100, 360, 0.045, true], [2600, 700, 420, 0.06], [3200, 1000, 400, 0.05], [2700, 1800, 380, 0.045],
+          [3600, 600, 380, 0.05], [4200, 900, 420, 0.05, true], [4600, 1700, 360, 0.045], [3900, 2400, 400, 0.05],
+        ]);
+        const W = (txt, from) => at(txt, from == null ? 0 : findWord(from));
+        const Wi = (i) => WORDS[i][1]; // per le parole che tornano più volte nella voce (indice in d03.ts)
+        const L = layer(10);
+        const S = svgLayer(L, 6, -60000, -60000, 200000, 200000);
+        const COVER = "th-mio_04"; // la tua copertina vera: il reel che salvi, duplichi e pubblichi due volte
+        // card di un reel con la copertina vera (centrata su cx, cy: si può muovere col transform)
+        const coverCard = (cx, cy, w, h, z) => {
+          const wrap = layered(el(L, { position: "absolute", left: -w / 2, top: -h / 2, width: w, height: h, zIndex: z || 12 }));
+          gsap.set(wrap, { x: cx, y: cy });
+          const body = el(wrap, { position: "absolute", left: 0, top: 0, width: w, height: h, borderRadius: Math.round(w * 0.08), border: "2.5px solid rgba(255,255,255,.3)", boxShadow: `0 ${Math.round(w * 0.12)}px ${Math.round(w * 0.3)}px rgba(0,0,0,.6)`, overflow: "hidden", background: "#111" });
+          mediaTile(body, 0, 0, w, h, COVER, 1);
+          return { wrap, body };
+        };
+
+        // ═══ 1 · HOOK — "Instagram ti ha appena dato il più grande trucco di sempre." (0 – 3.6) ═══
+        // A02 il logo è già in scena con i raggi vivi (F07); su "trucco" ne esce il tuo reel, su "sempre" si sdoppia (×2)
+        const HX = 540, HY = 905;
+        { const p0 = fitPose(HX - 470, HY - 470, HX + 470, HY + 470, { top: 380, fill: 0.98 }); camInit(p0.fx, p0.fy, p0.s); }
+        float(0, 2.3, 0, -8, 0.05);
+        const ry = rays(L, HX, HY, 520, { n: 16, z: 4 });
+        gsap.set(ry.g, { opacity: 0.55, scale: 0.8 }); // A02: al fotogramma 0 il logo e i raggi sono già in scena
+        ry.show(0); ry.live(0, 3.6);
+        const IGb = appIcon(L, HX, HY, 230, "instagram", 14);
+        gsap.set(IGb, { scale: 0.86 });
+        tl.to(IGb, { scale: 1, duration: 0.5, ease: "back.out(2.4)" }, 0.02);
+        pulse(L, HX, HY, 0.05, { r: 260, z: 3 });
+        const T1 = titleW({ lines: [[{ t: "Il più grande " }, { t: "trucco", box: true }], [{ t: "di sempre", hand: true }]], size: 88 });
+        T1.inAt([W("il"), W("più"), W("grande"), W("trucco"), W("di", "trucco"), W("sempre.")]);
+        // su "trucco": il logo si fa piccolo e il tuo reel sale fuori da lui
+        const RA = coverCard(HX, HY, 330, 587, 16);
+        gsap.set(RA.wrap, { opacity: 0, scale: 0.3, y: HY + 60 });
+        tl.to(IGb, { scale: 0.42, y: -300, duration: 0.45, ease: "power3.inOut" }, W("trucco"));
+        tl.set(RA.wrap, { opacity: 1 }, W("trucco") + 0.04);
+        tl.to(RA.wrap, { scale: 1, y: HY, duration: 0.55, ease: "back.out(1.5)" }, W("trucco") + 0.04);
+        camK(W("trucco"), 0.5, CAM.fx, CAM.fy, CAM.s * 0.98, "power2.out");
+        // su "sempre": si sdoppia — due reel identici, lampo sulla cucitura, il badge ×2
+        const RB = coverCard(HX, HY, 330, 587, 15);
+        gsap.set(RB.wrap, { opacity: 0 });
+        tl.set(RB.wrap, { opacity: 1 }, W("sempre."));
+        tl.to(RA.wrap, { x: HX - 200, rotation: -4, duration: 0.45, ease: "power3.out" }, W("sempre."));
+        tl.to(RB.wrap, { x: HX + 200, rotation: 4, duration: 0.45, ease: "power3.out" }, W("sempre."));
+        const seam = el(L, { position: "absolute", left: HX - 40, top: HY - 300, width: 80, height: 600, borderRadius: 40, background: "radial-gradient(closest-side, rgba(255,255,255,.95), rgba(255,255,255,0))", opacity: 0, zIndex: 17 });
+        tl.set(seam, { opacity: 1, scaleX: 0.6 }, W("sempre.") + 0.02);
+        tl.to(seam, { opacity: 0, scaleX: 3, duration: 0.4, ease: "power2.out" }, W("sempre.") + 0.02);
+        const X2 = el(L, { position: "absolute", left: HX - 100, top: HY - 100, width: 200, height: 200, borderRadius: "50%", background: "radial-gradient(circle at 36% 30%, #ffffff 0%, #f0ffc2 10%, #d8fd66 36%, #b4de3a 70%, #86ad26 100%)", boxShadow: `${GLOW_A(1)}, 0 20px 50px rgba(0,0,0,.5)`, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: FD, fontWeight: 700, fontSize: 96, color: K.ink, zIndex: 18 }, "×2");
+        gsap.set(X2, { scale: 2.3, opacity: 0, rotation: -14 });
+        tl.to(X2, { opacity: 1, duration: 0.06 }, 3.14);
+        tl.to(X2, { scale: 0.94, rotation: -6, duration: 0.15, ease: "power3.in" }, 3.14);
+        tl.to(X2, { scale: 1, duration: 0.35, ease: "back.out(3)" }, 3.29);
+        shake(3.29, 12, 6);
+        float(2.9, 0.8, 0, 0, 0.02);
+        T1.outAt(3.2);
+
+        // ═══ 2 · "E non te ne sei nemmeno accorto." (3.7 – 5.6) — il trucco è lì, in bella vista: la lente trova "Duplica" ═══
+        const PX = 2720, PY = 340; // i due telefoni (Bozze e Nuovo reel) stanno nello stesso punto: si scambiano lo schermo
+        const DR = igDrafts(L, PX, PY, [COVER]);
+        const SH = igShare(L, PX, PY, COVER);
+        gsap.set(SH.frame, { opacity: 0 });
+        // cambio di schermata: si vede un solo telefono alla volta
+        const screenTo = (t, which) => { tl.set(SH.frame, { opacity: which === "share" ? 1 : 0 }, t); tl.set(DR.frame, { opacity: which === "share" ? 0 : 1 }, t); };
+        // inquadratura bassa (foglio, riga di prova, bottoni): la parte alta dello schermo si spegne, così sotto al titolo
+        // non resta interfaccia (regola 17); torna accesa quando si inquadra di nuovo il telefono intero
+        const topOf = (scr, ymax) => [...scr.children].filter((c) => (parseFloat(c.style.top) || 0) + (parseFloat(c.style.height) || 40) <= ymax && c.style.zIndex !== "60" && c.style.zIndex !== "59");
+        const SH_UP = topOf(SH.screen, 600), DR_UP = DR.tiles.map((x) => x.t0).concat(topOf(DR.screen, 130));
+        const dimTop = (t, els, on) => tl.to(els, { opacity: on ? 0 : 1, duration: 0.3, ease: "power2.out" }, t);
+        const sAt = (x, y) => [PX + PH.bz + x, PY + PH.bz + y];
+        const RECT_LOW = [PX - 10, sAt(0, 600)[1], PX + PH.w + 10, PY + PH.h + 10];   // metà bassa: foglio, riga di prova, bottoni
+        const RECT_TOP = [PX - 10, PY - 10, PX + PH.w + 10, sAt(0, 660)[1]];           // metà alta: bozze e ⋯
+        { const p = fitPose(...RECT_LOW, { top: 400 }); whip2(3.7, 0.45, p.fx, p.fy, p.s, { peak: 22 }); }
+        dimTop(3.6, DR_UP, true);
+        float(4.15, 1.4, 0, -10, 0.025);
+        tl.to([RA.wrap, RB.wrap, X2, IGb], { opacity: 0, duration: 0.2 }, 3.72);
+        ry.hide(3.7);
+        const T2 = titleW({ lines: [[{ t: "E non te ne sei" }], [{ t: "nemmeno accorto", box: true }]], size: 80 });
+        T2.inAt([W("E"), W("non"), W("te"), W("ne"), W("sei"), W("nemmeno"), W("accorto.")]);
+        DR.menu(3.72);
+        const rl = DR.rowLabel(1);
+        const LZ = lens(L, rl.x, rl.y, DR.rowEl(1), { fx: rl.fx, fy: rl.fy, r: 140, k: 1.5 });
+        LZ.show(W("nemmeno") - 0.1);
+        tl.to(DR.rows[1].r, { borderColor: "rgba(207,251,80,.9)", boxShadow: GLOW_A(0.4), duration: 0.2 }, W("accorto."));
+        tl.to(LZ.copy, { borderColor: "rgba(207,251,80,.9)", duration: 0.2 }, W("accorto."));
+        LZ.hide(5.3);
+        tl.to(DR.rows[1].r, { borderColor: "rgba(207,251,80,0)", boxShadow: "0 0 0px rgba(207,251,80,0)", duration: 0.2 }, 5.3);
+        DR.closeMenu(5.35);
+        T2.outAt(5.4);
+        dimTop(5.5, DR_UP, false);
+
+        // ═══ 3 · "Quando carichi il tuo prossimo video, prima di pubblicarlo, salvalo come bozza." (5.7 – 10.3) ═══
+        screenTo(5.62, "share");
+        frameRect(5.62, 0.6, [PX - 10, PY - 10, PX + PH.w + 10, sAt(0, 640)[1]], { top: 380 });
+        float(6.25, 1.3, 0, -10, 0.02);
+        // il video si carica (barra sotto la copertina)
+        const upT = el(SH.screen, { position: "absolute", left: 24, top: 470, width: 184, height: 9, borderRadius: 5, background: "rgba(255,255,255,.14)", zIndex: 5 });
+        const upF = el(upT, { position: "absolute", left: 0, top: 0, width: 184, height: 9, borderRadius: 5, background: limeFill(1), boxShadow: GLOW_A(0.6), transformOrigin: "0 50%" });
+        gsap.set(upF, { scaleX: 0 });
+        SH_UP.push(upT);
+        tl.to(upF, { scaleX: 1, duration: 1.3, ease: "power1.inOut" }, W("carichi"));
+        const T3a = titleW({ lines: [[{ t: "Il tuo " }, { t: "prossimo video", box: true }]], size: 82 });
+        T3a.inAt([W("il", "carichi"), W("tuo"), W("prossimo"), W("video,")]);
+        T3a.outAt(8.3);
+        // "prima di pubblicarlo": il dito va verso Condividi… e si ferma
+        { const p = fitPose(...RECT_LOW, { top: 380 }); move(7.55, 0.8, p.fx, p.fy, p.s); }
+        dimTop(7.55, SH_UP, true);
+        const F = tapFinger(L, { size: 92 });
+        const [shx, shy] = SH.share(), [svx, svy] = SH.save();
+        F.show(W("prima"), shx + 60, shy + 240);
+        F.to(W("prima") + 0.08, shx + 10, shy + 20, 0.32);
+        [[-14, -6], [10, 4], [-6, -2], [0, 0]].forEach(([dx, dy], k) => F.to(W("pubblicarlo,") + 0.1 + k * 0.1, shx + 10 + dx, shy + 20 + dy, 0.09));
+        const noTag = handNote(L, shx - 40, shy - 150, "aspetta!", { size: 66, rot: -5, z: 90 });
+        noTag.write(W("pubblicarlo,") + 0.15, 0.3);
+        noTag.hide(8.75);
+        float(8.35, 1.0, 0, -8, 0.02);
+        // "salvalo come bozza": tocca Salva bozza → "Bozza salvata"
+        F.to(W("salvalo"), svx, svy, 0.38);
+        F.tap(W("bozza."));
+        SH.press("save", W("bozza."));
+        const T3b = titleW({ lines: [[{ t: "Salvalo " }, { t: "come bozza", box: true }]], size: 86 });
+        T3b.inAt([W("salvalo"), W("come", "salvalo"), W("bozza.")]);
+        T3b.outAt(10.05);
+        igToast(SH.screen, PH.sw / 2, 690, "Bozza salvata", { w: 360 }).show(W("bozza.") + 0.15, 0.95);
+        F.hide(9.8);
+        float(9.35, 1.1, 0, -6, 0.015);
+        tl.to(SH.screen.querySelectorAll("div"), { borderColor: "rgba(255,255,255,0)", boxShadow: "0 0 0px rgba(207,251,80,0)", duration: 0.01 }, 10.52);
+
+        // ═══ 4 · "Apri le bozze, tocca i tre puntini accanto al video e duplicalo." (10.6 – 14.6) ═══
+        screenTo(10.55, "drafts");
+        dimTop(10.5, SH_UP, false);
+        { const p = fitPose(...RECT_TOP, { top: 400 }); whip2(10.5, 0.42, p.fx, p.fy, p.s, { peak: 16 }); }
+        float(10.95, 1.2, 0, -8, 0.02);
+        const T4 = titleW({ lines: [[{ t: "Apri le bozze," }], [{ t: "tocca " }, { t: "i 3 puntini", box: true }]], size: 80 });
+        T4.inAt([W("Apri"), W("le"), W("bozze,"), W("tocca"), W("i", "tocca"), W("tre"), W("puntini")]);
+        const [ddx, ddy] = DR.dots(0);
+        F.show(11.45, ddx + 70, ddy + 260);
+        F.to(11.55, ddx, ddy, 0.34);
+        F.tap(W("puntini"));
+        tl.to(DR.tiles[0].dt, { scale: 1.2, duration: 0.1, yoyo: true, repeat: 1 }, W("puntini") - 0.02);
+        DR.menu(W("puntini") + 0.12);
+        { const p = fitPose(...RECT_LOW, { top: 400 }); move(W("puntini") + 0.12, 0.6, p.fx, p.fy, p.s); }
+        dimTop(W("puntini") + 0.12, DR_UP, true);
+        const rl2 = DR.rowLabel(1);
+        const LZ2 = lens(L, rl2.x, rl2.y, DR.rowEl(1), { fx: rl2.fx, fy: rl2.fy, r: 140, k: 1.5 });
+        LZ2.show(12.55); LZ2.hide(13.25);
+        const [dpx, dpy] = DR.row(1);
+        F.to(13.05, dpx - 120, dpy, 0.35);
+        F.tap(W("duplicalo."));
+        DR.pick(1, W("duplicalo."));
+        DR.closeMenu(13.82);
+        F.hide(13.85);
+        { const p = fitPose(...RECT_TOP, { top: 400 }); move(13.82, 0.55, p.fx, p.fy, p.s); }
+        dimTop(13.8, DR_UP, false);
+        DR.duplicate(13.95, COVER);
+        float(14.4, 0.5, 0, -6, 0.015);
+        T4.outAt(14.45);
+
+        // ═══ 5 · "Ora prendi la prima bozza e pubblicala come reel di prova." (14.9 – 18.6) ═══
+        const T5 = titleW({ lines: [[{ t: "La prima: " }, { t: "reel di prova", box: true }]], size: 84 });
+        T5.inAt([W("la", "prendi"), W("prima", "prendi"), W("reel", "come"), W("di", "reel"), W("prova.")]);
+        const [t0x, t0y] = DR.tileXY(0);
+        F.show(15.35, t0x + 60, t0y + 260);
+        F.to(15.45, t0x, t0y, 0.36);
+        F.tap(W("bozza", "prendi"));
+        tl.to(DR.tiles[0].t0, { scale: 0.95, duration: 0.08, yoyo: true, repeat: 1 }, W("bozza", "prendi"));
+        screenTo(16.0, "share");
+        F.hide(16.0);
+        { const p = fitPose(...RECT_LOW, { top: 380 }); whip2(15.98, 0.45, p.fx, p.fy, p.s, { peak: 14 }); }
+        dimTop(15.98, SH_UP, true);
+        float(16.45, 1.1, 0, -8, 0.02);
+        const [swx, swy] = SH.swXY();
+        F.show(17.05, swx + 50, swy + 230);
+        F.to(17.15, swx, swy, 0.32);
+        F.tap(17.6);
+        SH.trial(17.62);
+        F.to(17.78, shx, shy, 0.3);
+        F.tap(18.15);
+        SH.press("share", 18.15);
+        F.hide(18.35);
+        // il reel di prova esce dal telefono verso destra con la sua etichetta
+        const thXY = SH.share();
+        const PUBP = coverCard(thXY[0], thXY[1], 184, 327, 40);
+        gsap.set(PUBP.wrap, { opacity: 0, scale: 0.4 });
+        tl.set(PUBP.wrap, { opacity: 1 }, 18.2);
+        tl.to(PUBP.wrap, { x: PX + PH.w + 170, y: PY + 700, rotation: 7, scale: 1.25, duration: 0.6, ease: "power3.inOut" }, 18.2);
+        { const p = fitPose(PX - 40, sAt(0, 560)[1], PX + PH.w + 330, PY + PH.h + 10, { top: 380 }); move(18.2, 0.6, p.fx, p.fy, p.s); }
+        const tagP = el(L, { position: "absolute", left: PX + PH.w + 170 - 110, top: PY + 700 + 230, width: 220, height: 62, borderRadius: 31, background: limeFill(1), boxShadow: GLOW_A(0.8), display: "flex", alignItems: "center", justifyContent: "center", gap: 10, fontFamily: FS, fontWeight: 800, fontSize: 28, color: K.ink, zIndex: 41, whiteSpace: "nowrap" }, svg("flask-conical", 28, K.ink, 2.4) + "PROVA");
+        pop(tagP, 18.55, 0.4);
+        T5.outAt(18.75);
+
+        // ═══ 6 · "Poi torna indietro e pubblica la seconda bozza come reel normale." (18.6 – 22.5) ═══
+        const [bkx, bky] = SH.backXY();
+        { const p = fitPose(...RECT_TOP, { top: 400 }); move(18.82, 0.32, p.fx, p.fy, p.s); }
+        F.show(18.7, bkx + 80, bky + 220);
+        F.to(18.78, bkx, bky, 0.25);
+        F.tap(W("torna"));
+        screenTo(19.15, "drafts");
+        dimTop(18.82, SH_UP, false);
+        tl.to([PUBP.wrap, tagP], { opacity: 0, duration: 0.25 }, 19.1);
+        float(19.55, 1.3, 0, -8, 0.02);
+        // la prima bozza è già pubblicata: si spegne e riceve la spunta
+        tl.to(DR.tiles[0].t0, { opacity: 0.35, duration: 0.3 }, 19.3);
+        const okT = el(DR.screen, { position: "absolute", left: DR.tiles[0].x + 92, top: DR.tiles[0].y + 170, width: 64, height: 64, borderRadius: "50%", background: limeFill(1), boxShadow: GLOW_A(0.8), display: "flex", alignItems: "center", justifyContent: "center", zIndex: 8 }, svg("check", 38, K.ink, 3.2));
+        pop(okT, 19.4, 0.4);
+        const T6 = titleW({ lines: [[{ t: "La seconda: " }, { t: "reel normale", box: true }]], size: 84 });
+        T6.inAt([W("la", "pubblica"), W("seconda"), W("reel", "seconda"), W("normale.")]);
+        const [t1x, t1y] = DR.tileXY(1);
+        F.to(20.2, t1x, t1y, 0.4);
+        F.tap(W("bozza", "seconda"));
+        screenTo(20.9, "share");
+        SH.reset(20.9);
+        { const p = fitPose(...RECT_LOW, { top: 380 }); whip2(20.88, 0.42, p.fx, p.fy, p.s, { peak: 14 }); }
+        dimTop(20.88, SH_UP, true);
+        F.hide(20.92);
+        F.show(21.35, shx + 60, shy + 230);
+        F.to(21.45, shx, shy, 0.3);
+        F.tap(W("normale."));
+        SH.press("share", W("normale."));
+        F.hide(22.05);
+        // il reel normale esce verso sinistra
+        const PUBN = coverCard(thXY[0], thXY[1], 184, 327, 40);
+        gsap.set(PUBN.wrap, { opacity: 0, scale: 0.4 });
+        tl.set(PUBN.wrap, { opacity: 1 }, 21.9);
+        tl.to(PUBN.wrap, { x: PX - 170, y: PY + 700, rotation: -7, scale: 1.25, duration: 0.6, ease: "power3.inOut" }, 21.9);
+        { const p = fitPose(PX - 330, sAt(0, 560)[1], PX + PH.w + 40, PY + PH.h + 10, { top: 380 }); move(21.9, 0.6, p.fx, p.fy, p.s); }
+        const tagN = el(L, { position: "absolute", left: PX - 170 - 125, top: PY + 700 + 230, width: 250, height: 62, borderRadius: 31, background: "linear-gradient(180deg,#f4f4f2,#d9d9d4)", boxShadow: "0 10px 26px rgba(0,0,0,.5)", display: "flex", alignItems: "center", justifyContent: "center", gap: 10, fontFamily: FS, fontWeight: 800, fontSize: 28, color: K.ink, zIndex: 41, whiteSpace: "nowrap" }, svg("send", 26, K.ink, 2.4) + "NORMALE");
+        pop(tagN, 22.25, 0.4);
+
+        T6.outAt(22.3);
+
+        // ═══ 7 · due pubblici — "il normale ai tuoi follower… il reel di prova a persone nuove" (22.8 – 30.9) ═══
+        // O21 anelli orbitali (reel 44 di Kallaway): al centro lo stesso reel, intorno chi lo vede
+        const NX = 5600, PXr = 6400, RY = 980, RR = [[150, 12], [232, 18], [314, 24]];
+        const RN = peopleRings(L, NX, RY, RR, { media: COVER, d: 190, dot: 22, ring: "#ffffff" });
+        const RP = peopleRings(L, PXr, RY, RR, { media: COVER, d: 190, dot: 22 });
+        const chipN = el(L, { position: "absolute", left: NX - 190, top: RY - 400, width: 380, height: 76, borderRadius: 38, background: "linear-gradient(180deg,#f4f4f2,#d9d9d4)", display: "flex", alignItems: "center", justifyContent: "center", gap: 12, fontFamily: FS, fontWeight: 800, fontSize: 32, color: K.ink, boxShadow: "0 12px 28px rgba(0,0,0,.5)", whiteSpace: "nowrap", zIndex: 30 }, svg("users", 32, K.ink, 2.4) + "I tuoi follower");
+        const chipP = el(L, { position: "absolute", left: PXr - 190, top: RY - 400, width: 380, height: 76, borderRadius: 38, background: limeFill(1), display: "flex", alignItems: "center", justifyContent: "center", gap: 12, fontFamily: FS, fontWeight: 800, fontSize: 32, color: K.ink, boxShadow: `0 12px 28px rgba(0,0,0,.5), ${GLOW_A(0.6)}`, whiteSpace: "nowrap", zIndex: 30 }, svg("user-plus", 32, K.ink, 2.4) + "Persone nuove");
+        gsap.set([chipN, chipP], { opacity: 0 });
+        const rN = [NX - 360, RY - 420, NX + 360, RY + 350], rP = [PXr - 360, RY - 420, PXr + 360, RY + 350];
+        { const p = fitPose(...rN, { top: 380 }); whip2(22.6, 0.5, p.fx, p.fy, p.s, { peak: 22 }); }
+        float(23.1, 3.2, 0, -10, 0.025);
+        tl.to([PUBN.wrap, tagN], { opacity: 0, duration: 0.2 }, 22.62);
+        RN.show(22.85, { colore: "#ececec" });
+        RN.spin(22.85, 8.0, 40);
+        blurIn(chipN, 23.2, { y: 14, blur: 10, dur: 0.35 });
+        const T7a = titleW({ lines: [[{ t: "Il normale: " }, { t: "i tuoi follower", box: true }]], size: 80 });
+        T7a.inAt([Wi(64), Wi(66), W("dai"), W("tuoi"), W("follower")]);
+        T7a.outAt(26.15);
+        // "ma il reel di prova": la camera passa al secondo anello, le persone nuove arrivano da fuori
+        { const p = fitPose(...rP, { top: 380 }); move(W("ma"), 1.0, p.fx, p.fy, p.s); }
+        RP.show(W("prova", "ma") - 0.2, { colore: K.lime, daLontano: true, dur: 1.2 });
+        RP.spin(W("prova", "ma"), 3.6, -40);
+        blurIn(chipP, W("prova", "ma") + 0.2, { y: 14, blur: 10, dur: 0.35 });
+        const T7b = titleW({ lines: [[{ t: "La prova: " }, { t: "persone nuove", box: true }]], size: 80 });
+        T7b.inAt([W("il", "ma"), W("prova", "ma"), W("persone"), W("nuove")]);
+        float(27.4, 2.6, 0, -10, 0.025);
+        // "che non ti seguono ancora": i due anelli affiancati — stesso video, due pubblici diversi
+        frameRect(30.05, 0.7, [NX - 360, RY - 420, PXr + 360, RY + 350], { top: 380 });
+        T7b.outAt(30.6);
+
+        // ═══ 8 · "Stesso identico video ma raddoppi le visualizzazioni, gratis." (31.2 – 35.4) ═══
+        const VX = 6000, VY = 2300;
+        const vA = coverCard(VX - 205, VY - 330, 250, 444, 12), vB = coverCard(VX + 205, VY - 330, 250, 444, 12);
+        gsap.set([vA.wrap, vB.wrap], { opacity: 0 });
+        const bA = viewBadge(L, VX - 205, VY - 70, "1.240", { fs: 30, dark: true, z: 20 }), bB = viewBadge(L, VX + 205, VY - 70, "1.180", { fs: 30, z: 20 });
+        const plus = el(L, { position: "absolute", left: VX - 40, top: VY - 370, width: 80, height: 80, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: FS, fontWeight: 300, fontSize: 80, color: "rgba(255,255,255,.8)", zIndex: 13 }, "+");
+        gsap.set(plus, { opacity: 0 });
+        const stV = statCard(L, VX - 430, VY - 10, { label: "Visualizzazioni totali", icon: "eye", w: 860, h: 330, fs: 120, points: [[0, 0], [0.2, 0.1], [0.4, 0.22], [0.55, 0.3], [0.7, 0.6], [0.85, 0.82], [1, 1]] });
+        gsap.set(stV.c, { opacity: 0 });
+        const x2b = el(L, { position: "absolute", left: VX + 210, top: VY + 60, width: 190, height: 96, borderRadius: 22, background: limeFill(1), boxShadow: GLOW_A(0.9), display: "flex", alignItems: "center", justifyContent: "center", fontFamily: FD, fontWeight: 700, fontSize: 66, color: K.ink, zIndex: 20 }, "×2");
+        gsap.set(x2b, { opacity: 0, scale: 0.4, rotation: -10 });
+        { const p = fitPose(VX - 450, VY - 570, VX + 450, VY + 340, { top: 400 }); whip2(31.0, 0.5, p.fx, p.fy, p.s, { peak: 20 }); }
+        float(31.5, 3.9, 0, -12, 0.03);
+        tl.to([RN.av, RP.av, chipN, chipP, ...RN.dots.map((x) => x.d), ...RP.dots.map((x) => x.d), ...RN.holders.map((h) => h.ring), ...RP.holders.map((h) => h.ring)], { opacity: 0, duration: 0.3 }, 31.0);
+        const T8 = titleW({ lines: [[{ t: "Stesso video, " }, { t: "×2 views", box: true }], [{ t: "gratis", hand: true }]], size: 82 });
+        T8.inAt([W("Stesso"), W("video", "identico"), W("raddoppi"), W("visualizzazioni,", "raddoppi"), W("gratis.")]);
+        blurIn(vA.body, 31.35, { y: 40, blur: 16, dur: 0.45 }); tl.set(vA.wrap, { opacity: 1 }, 31.35);
+        blurIn(vB.body, 31.45, { y: 40, blur: 16, dur: 0.45 }); tl.set(vB.wrap, { opacity: 1 }, 31.45);
+        popSeq([bA, bB], 31.8, 0.1);
+        tl.to(plus, { opacity: 1, duration: 0.2 }, 31.9);
+        blurIn(stV.c, 32.3, { y: 30, blur: 14, dur: 0.45 });
+        stV.count(W("raddoppi"), 1240, 2420, W("visualizzazioni,", "raddoppi") - W("raddoppi") + 0.1);
+        tl.to(x2b, { opacity: 1, scale: 1, rotation: -6, duration: 0.4, ease: "back.out(3)" }, W("visualizzazioni,", "raddoppi") + 0.1);
+        T8.outAt(35.05);
+
+        // ═══ 9 · "Fallo ogni volta che pubblichi per la tua attività." (35.8 – 38.77) ═══
+        // O24 il mese si riempie di reel veri (reel 68 di Kallaway): ogni giorno un reel, pubblicato due volte
+        const CX = 6000, CY = 3700;
+        const cal = calendar(L, CX, CY, { mese: "Novembre", start: 2, giorni: 30, cell: 112, cellH: 136, gap: 9 });
+        gsap.set(cal.c, { opacity: 0 });
+        { const p = fitPose(CX - cal.W / 2 - 10, CY - cal.H / 2 - 10, CX + cal.W / 2 + 10, CY + cal.H / 2 + 10, { top: 400 }); whip2(35.5, 0.5, p.fx, p.fy, p.s, { peak: 20 }); }
+        float(36.0, 2.7, 0, -10, 0.03);
+        blurIn(cal.c, 35.6, { y: 40, blur: 14, dur: 0.45 });
+        const T9 = titleW({ lines: [[{ t: "Fallo " }, { t: "ogni volta", box: true }], [{ t: "che pubblichi", hand: true }]], size: 84 });
+        T9.inAt([W("Fallo"), W("ogni"), W("volta"), W("che", "volta"), W("pubblichi")]);
+        cal.fillVideos(35.95, Array.from({ length: 30 }, (_, i) => "k" + String(i + 1).padStart(2, "0")), { step: 0.05, label: (v) => `${Math.round(v)} reel × 2` });
+        // su ogni giorno la provetta lime: la copia "di prova"
+        cal.cells.forEach((cl, i) => {
+          const fb = el(cl.b, { position: "absolute", right: 6, bottom: 6, width: 34, height: 34, borderRadius: "50%", background: limeFill(1), boxShadow: GLOW_A(0.6), display: "flex", alignItems: "center", justifyContent: "center", zIndex: 8 }, svg("flask-conical", 20, K.ink, 2.4));
+          gsap.set(fb, { opacity: 0, scale: 0.4 });
+          tl.to(fb, { opacity: 1, scale: 1, duration: 0.25, ease: "back.out(3)" }, 36.9 + i * 0.03);
+        });
+
+        window.__timelines = window.__timelines || {};
+        window.__timelines["main"] = tl;
+      })();
+    </script>
+  </body>
+</html>

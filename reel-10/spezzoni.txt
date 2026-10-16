@@ -1,0 +1,13 @@
+# la tua storia: due blocchi di facecam senza flash né grafiche (trovati con _tools/finestre_pulite.py), 10 s
+# editor, centro degli anelli, la storia vista dai primi follower
+st   01 19.1 4.8 720 + 06 28.0 5.0
+# il tuo post nel feed della home (03/10, facecam)
+feed 03 14.0 4.6 540
+# le tue tante storie del giorno ("non conta quante storie pubblichi")
+f1   02 44.5 3.4 360
+f2   08 37.2 3.4 360
+f3   04 43.0 3.4 360
+f4   07 38.2 3.4 360
+f5   08 14.5 3.4 360
+# il tuo post nel feed del primo follower (05/10, due blocchi di facecam puliti)
+feedc 05 9.4 4.8 540 + 05 20.4 3.9

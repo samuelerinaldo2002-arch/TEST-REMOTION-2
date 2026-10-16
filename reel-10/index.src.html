@@ -1,0 +1,594 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>Reel 10/10 — Come funziona l'algoritmo delle storie (stile Kallaway, sessione 5)</title>
+    <script src="assets/vendor/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Advercase"; src: url("assets/fonts/Advercase-Bold.ttf") format("truetype"); font-weight: 700; font-style: normal; font-display: block; }
+      @font-face { font-family: "Advercase"; src: url("assets/fonts/Advercase-Regular.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: block; }
+      @font-face { font-family: "Patrick Hand"; src: url("assets/fonts/PatrickHand-Regular.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: block; }
+      @font-face { font-family: "Zalando Sans"; src: url("assets/fonts/ZalandoSans-Variable.ttf") format("truetype"); font-weight: 100 900; font-style: normal; font-display: block; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: #1e1e1e; }
+      body { font-family: "Zalando Sans", sans-serif; color: #f4f4f2; -webkit-font-smoothing: antialiased; }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; background: #1e1e1e; }
+      .clip { position: absolute; inset: 0; overflow: hidden; }
+      #glow { position: absolute; inset: 0; opacity: 0.35; background: radial-gradient(58% 32% at 50% 46%, rgba(207, 251, 80, 0.08), rgba(207, 251, 80, 0) 70%); }
+      #vignette { position: absolute; inset: 0; background: radial-gradient(110% 78% at 50% 44%, rgba(0, 0, 0, 0) 44%, rgba(0, 0, 0, 0.62) 100%); }
+      .cam { position: absolute; left: 540px; top: 880px; width: 1px; height: 1px; }
+      .layer { position: absolute; left: 0; top: 0; width: 1px; height: 1px; }
+      #dots { position: absolute; left: -9000px; top: -9000px; width: 30000px; height: 24000px; background-image: radial-gradient(circle, rgba(255, 255, 255, 0.095) 1.25px, rgba(255, 255, 255, 0) 1.95px); background-size: 24px 24px; }
+      #stage { position: absolute; inset: 0; overflow: hidden; }
+      /* voce, facecam e sottotitoli in post sotto y≈1385: niente infografica lì sotto */
+      #safe { position: absolute; inset: 0; -webkit-mask-image: linear-gradient(to bottom, #000 0px, #000 1385px, transparent 1450px); mask-image: linear-gradient(to bottom, #000 0px, #000 1385px, transparent 1450px); }
+      #mbwrap, #shake { position: absolute; inset: 0; }
+      #hud { position: absolute; inset: 0; }
+    </style>
+  </head>
+  <body>
+    <!--WORDS ../../my-video-ottobre-p1-test/src/words/d10.ts-->
+    <div id="root" data-composition-id="main" data-start="0" data-duration="34.066" data-width="1080" data-height="1920">
+      <div id="bg" class="clip" data-start="0" data-duration="34.066" data-track-index="0">
+        <div class="cam" id="gcam2" data-layout-allow-overflow><div class="layer" id="gzoom2"><div class="layer" id="gpan2"><div class="layer" id="bokeh"></div></div></div></div>
+        <div class="cam" id="gcam" data-layout-allow-overflow><div class="layer" id="gzoom"><div class="layer" id="gpan"><div id="dots"></div></div></div></div>
+        <div id="glow"></div>
+        <div id="vignette"></div>
+      </div>
+      <!-- senza timing di proposito: le clip dentro hanno il loro data-start -->
+      <div id="stage">
+        <svg width="0" height="0" style="position: absolute" aria-hidden="true">
+          <filter id="mb" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur id="mbn" in="SourceGraphic" stdDeviation="0 0" /></filter>
+        </svg>
+        <div id="safe"><div id="mbwrap"><div id="shake"><div class="cam" id="cam" data-layout-allow-overflow><div class="layer" id="zoom"><div class="layer" id="pan"></div></div></div></div></div></div>
+        <!--VIDEOS
+          # 1 · il tuo post nel feed della home (03/10)
+          feedA assets/clips/feed.mp4 0 4.4
+          # 2 · la tua storia nell'editor (01/10 + 06/10, due blocchi di facecam puliti)
+          st1 assets/clips/st.mp4 4.1 1.6
+          # 2–3 · la storia al centro degli anelli (stesso file, continua)
+          stc assets/clips/st.mp4 5.4 5.9 1.3
+          # 5–6 · la storia aperta da uno dei primi follower (riparte da capo)
+          stv assets/clips/st.mp4 12.5 5.0
+          # 4–6 · il tuo post nella home del primo follower (05/10)
+          feedC assets/clips/feedc.mp4 10.0 7.4
+          # 7 · la storia riguardata fino in fondo (riparte da capo)
+          stv2 assets/clips/st.mp4 19.4 6.3
+          # 9 · le tue storie del giorno
+          f1 assets/clips/f1.mp4 27.25 3.1
+          f2 assets/clips/f2.mp4 27.25 3.1
+          f3 assets/clips/f3.mp4 27.25 3.1
+          f4 assets/clips/f4.mp4 27.25 3.1
+          f5 assets/clips/f5.mp4 27.25 3.1
+          # 10 · di nuovo la storia al centro degli anelli
+          stc2 assets/clips/st.mp4 31.0 3.07 2.0
+        -->
+      </div>
+      <div id="hudclip" class="clip" data-start="0" data-duration="34.066" data-track-index="2">
+        <div id="hud"></div>
+      </div>
+
+      <!--SFX
+        # 1 · la home con la fila delle storie, "davvero", l'algoritmo si decodifica e scende sui cerchi
+        0.0 whoosh .1 ; 1.03 pop .1 ; 1.05 tick .06 ; 1.93 glitch .1 ; 2.05 tick .05 ; 2.13 tick .05 ; 2.21 tick .05 ; 2.29 tick .05
+        2.83 pop .05 ; 2.91 pop .05 ; 2.99 pop .05 ; 3.07 pop .05 ; 3.62 whoosh .08
+        # 2 · dentro il cerchio, l'editor, il dito pubblica, il telefono diventa il cerchio al centro degli anelli
+        4.11 whoosh .14 ; 4.73 tap .14 ; 4.78 ding .08 ; 5.2 whoosh .12 ; 5.5 pop .04 ; 5.58 pop .04 ; 5.66 pop .04 ; 5.74 pop .04 ; 5.82 pop .04 ; 6.93 bong .08
+        # 3 · prima ai follower che interagiscono di più
+        7.97 rise .07 ; 8.05 tick .05 ; 8.12 tick .05 ; 8.19 tick .05 ; 8.26 tick .05 ; 8.33 tick .05 ; 8.4 tick .05 ; 8.47 tick .05 ; 8.54 tick .05
+        9.03 pop .05 ; 9.09 pop .05 ; 9.15 pop .05 ; 9.21 pop .05 ; 9.27 pop .05 ; 9.33 pop .05 ; 9.39 pop .05 ; 9.45 pop .05 ; 10.2 pop .08
+        # 4 · la linea porta nel telefono del primo follower, l'algoritmo misura una cosa sola
+        10.3 whoosh .14 ; 10.63 glitch .1 ; 11.0 tick .05 ; 11.17 click .12
+        # 5 · la apre, quanto ci resta: la barra e il cronometro
+        12.53 tap .14 ; 12.6 whoosh .08 ; 13.2 card .08 ; 13.37 tick .05 ; 13.54 tick .05 ; 13.71 tick .05 ; 13.88 tick .05 ; 14.05 tick .05 ; 14.22 tick .05 ; 14.39 tick .05 ; 14.56 tick .05 ; 14.73 tick .05
+        # 6 · non la apre, poi entra e scorre via: due "meno" alla pill, poi la storia cade nel pozzo e viene sepolta
+        15.1 whoosh .08 ; 15.87 whoosh .05 ; 16.27 bong .07 ; 16.4 tap .12 ; 16.46 whoosh .05 ; 16.89 whoosh .1 ; 17.5 bong .07
+        17.7 pop .06 ; 17.75 whoosh .16 ; 18.3 slam .16 ; 18.3 sub .14 ; 18.4 land2 .07 ; 18.48 land2 .07 ; 18.56 land2 .07 ; 18.64 land2 .07 ; 18.72 land2 .07
+        # 7 · si risale, la barra arriva in fondo, like, risposta, condividi: tre "più" alla pill
+        19.57 whoosh .14 ; 19.85 glitch .08 ; 21.1 ding .1 ; 21.45 tick .05 ; 22.5 tap .12 ; 22.55 pop .08 ; 22.97 ding .06
+        23.2 tap .1 ; 23.25 key1 .04 ; 23.31 key2 .04 ; 23.37 key3 .04 ; 23.43 key4 .04 ; 23.49 key5 .04 ; 23.62 whoosh .06 ; 24.07 ding .06
+        24.17 tap .12 ; 24.22 whoosh .07 ; 24.64 ding .07
+        # 8 · la storia si richiude nel cerchio e sale in cima al muro delle file, poi prima in ogni fila
+        25.07 whoosh .1 ; 25.49 rise .1 ; 25.49 whoosh .16 ; 25.99 slam .12 ; 25.99 pop .08 ; 26.38 whoosh .06 ; 26.68 pop .05 ; 26.77 pop .05 ; 26.86 pop .05 ; 26.95 pop .05
+        # 9 · non conta quante storie (ventaglio, barra del giorno) e non conta l'ora (orologio)
+        27.42 whoosh .12 ; 27.6 card .05 ; 27.65 card .05 ; 27.7 card .05 ; 28.67 whoosh .07 ; 29.0 tick .04 ; 29.14 tick .04 ; 29.28 tick .04 ; 29.42 tick .04 ; 29.72 bong .08
+        29.92 whoosh .08 ; 30.0 card .07 ; 30.13 tick .05 ; 30.25 tick .05 ; 30.37 tick .05 ; 30.49 tick .05 ; 30.61 tick .05 ; 30.85 bong .08
+        # 10 · ritorno sugli anelli: contano solo i primi
+        31.12 whoosh .14 ; 31.37 tick .05 ; 31.7 pop .05 ; 31.75 pop .05 ; 31.8 pop .05 ; 32.43 click .12 ; 33.03 ding .1 ; 33.05 sub .08
+      -->
+    </div>
+
+    <script>
+      (() => {
+        const ICON = __ICONS__;
+        /*__KIT__*/
+
+        // ═══ base ═══════════════════════════════════════════════════════════════════════════════════════════════
+        bokeh($("bokeh"), [
+          [120, 320, 360, 0.06], [620, -60, 260, 0.035, true], [860, 720, 420, 0.05], [180, 1150, 300, 0.04, true],
+          [1650, 450, 380, 0.05], [2300, 1000, 420, 0.05, true], [3000, 600, 400, 0.06], [2600, -1400, 380, 0.045],
+          [-400, 1900, 420, 0.05], [2200, 2600, 380, 0.045, true], [3300, -2000, 420, 0.05], [4200, -900, 380, 0.05, true],
+        ]);
+        const L = layer(10);
+        const S = svgLayer(L, 6, -60000, -60000, 200000, 200000);
+        const wt = (i) => WORDS[i][1]; // istante della parola i (indici: python -X utf8 _tools/parole.py …/d10.ts)
+        const head = (lines, times, out, o) => { const T = titleW(Object.assign({ lines, size: 82 }, o || {})); T.inAt(times); if (out) T.outAt(out); return T; };
+        const via = (els, t, dur) => tl.to(els, { opacity: 0, duration: dur || 0.3, ease: "power1.out" }, t);
+
+        // ── luoghi del mondo (colonna verticale: in basso il pozzo, in alto la cima) ──
+        const PA = [260, 250];          // il tuo telefono (home → editor), centro (540, 820)
+        const RC = [540, 820];          // gli anelli dei follower, attorno alla tua storia
+        const PC = [2120, 250];         // il telefono del primo follower (home → storia aperta), centro (2400, 820)
+
+        // ═══ 1 · HOOK — "Ecco come funziona davvero l'algoritmo delle storie su Instagram." (0 – 4,1) ════════════════
+        // A02 la home di Instagram (vecchio stile) già in scena al fotogramma 0, la fila delle storie con le foto vere e la tua
+        // per prima; "davvero" il tuo cerchio pulsa; "l'algoritmo" (T05) la pill di Kallaway 40 si decodifica e scende sui cerchi
+        // (O03 + C01); "storie" i cerchi si accendono a cascata
+        // si parte stretti sulla fila delle storie (cerchi grandi, foto vere): la camera si allarga su "l'algoritmo"
+        const pH0 = fitPose(PA[0] - 4, 330, PA[0] + PH.w + 4, 790, { fill: 0.99 });
+        camInit(pH0.fx, pH0.fy, pH0.s);
+        rackFocus(0, 0.45);
+        const HOME = igHome(L, PA[0], PA[1], {
+          storie: [{ src: "tu", nome: "La tua storia", ring: "none", plus: true }, { src: "hormozi", nome: "hormozi" }, { src: "garyvee", nome: "garyvee" }, { src: "leilahormozi", nome: "leilahormozi" }],
+          post: { user: "tu", nome: "samuelerinaldo.media", media: "feedA" }, user: "tu", z: 12,
+        });
+        float(0, 1.4, 0, -6, 0.03);
+        const [c0x, c0y] = HOME.circleXY(0);
+        // "davvero": il tuo cerchio pulsa (F02 dentro lo schermo, dietro al cerchio)
+        pulse(HOME.screen, 24 + 59, 140 + 59, wt(3), { r: 118, z: 3 });
+        ripple(L, c0x, c0y, wt(3) + 0.05, { r: 80, s0: 0.8, s1: 1.9, w: 5, dur: 0.5, color: "#ffffff", glow: false, z: 40 });
+        tl.fromTo(HOME.tray[0].g, { scale: 1 }, { scale: 1.14, duration: 0.12, ease: "power2.out", immediateRender: false }, wt(3));
+        tl.to(HOME.tray[0].g, { scale: 1, duration: 0.35, ease: "back.out(3)" }, wt(3) + 0.12);
+        // la camera si allarga prima di "l'algoritmo": quando la pill compare è già ferma sotto il titolo
+        frameRect(1.4, 0.55, [PA[0] - 10, 96, PA[0] + PH.w + 10, 800], { fill: 0.99 });
+        const AP1 = algoPill(L, 540, 186, { fs: 40, z: 30 });
+        AP1.show(wt(4), { pr: 46 });
+        const LINES1 = HOME.tray.map((_, i) => {
+          const [x, y] = HOME.circleXY(i);
+          const cn = connector(S, [[540, 230], [540 + (x - 540) * 0.25, 318], [x, y - 66]], { color: "rgba(255,255,255,.7)", w: 3, curve: "v" });
+          cn.draw(wt(5) - 0.1 + i * 0.08, 0.35);
+          return cn;
+        });
+        HOME.tray.forEach((c, i) => {
+          const t = wt(7) + i * 0.08;
+          tl.to(LINES1[i].p, { attr: { stroke: K.lime }, duration: 0.1 }, t);
+          tl.fromTo(c.g, { scale: 1 }, { scale: 1.1, duration: 0.1, ease: "power2.out", immediateRender: false }, t);
+          tl.to(c.g, { scale: 1, duration: 0.3, ease: "back.out(3)" }, t + 0.1);
+          if (i) glowFlash(c.lab, t);
+        });
+        glowFlash(HOME.header[0], wt(9));
+        via([AP1.g, ...LINES1.map((c) => c.p)], 3.5, 0.2); // prima del punch-in: la pill finirebbe sotto il titolo
+        float(1.95, 1.65, 0, -8, 0.025);
+        head([[{ t: "Come funziona" }], [{ t: "l'algoritmo delle " }, { t: "storie", box: true }]], [wt(1), wt(2), wt(4), wt(6), wt(7)], 3.4);
+
+        // ═══ 2 · "Quando pubblici una storia, Instagram non la mostra a tutti," (4,2 – 7,3) ═══════════════════════════
+        // K13 / K07: la camera entra nel tuo cerchio ed è l'editor della storia con il tuo video vero; il dito preme "La tua
+        // storia"; poi il telefono si rimpicciolisce e diventa il cerchio al centro di tre anelli di follower (volti veri, O21):
+        // "non la mostra a tutti" → gli anelli si spengono
+        move(3.62, 0.5, c0x, c0y, 2.4);
+        const ED = igStoryEdit(L, PA[0], PA[1], { media: "st1", user: "tu", z: 13 });
+        gsap.set(ED.frame, { opacity: 0 });
+        // l'editor grande: il telefono parte subito sotto il titolo, i bottoni in basso restano sopra la zona dei sottotitoli
+        const pEd = fitPose(PA[0] - 10, PA[1] - 10, PA[0] + PH.w + 10, PA[1] + 1100, { top: 340, fill: 1.0 });
+        zoomThrough(wt(10), pEd.fx, pEd.fy, pEd.s, { pre: 0.12, blur: 12, settle: 0.45 });
+        tl.set(ED.frame, { opacity: 1 }, wt(10));
+        tl.set(HOME.frame, { opacity: 0 }, wt(10));
+        const F = tapFinger(L, { size: 92, z: 80 });
+        const [yx, yy] = ED.yourXY();
+        F.show(4.32, yx + 60, yy + 200);
+        F.to(4.42, yx, yy, 0.28);
+        F.tap(wt(11));
+        ED.press(wt(11));
+        F.hide(wt(11) + 0.3);
+        // il telefono si rimpicciolisce nel cerchio della storia, al centro degli anelli
+        const SC0 = storyCircle(L, RC[0], RC[1], 300, { media: "stc" }, { ring: "ig", z: 20 });
+        gsap.set(SC0.g, { opacity: 0 });
+        tl.to(ED.frame, { scale: 0.27, borderRadius: 300, duration: 0.42, ease: "power3.in" }, wt(13));
+        tl.to(ED.frame, { opacity: 0, duration: 0.12 }, wt(13) + 0.34);
+        tl.fromTo(SC0.g, { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(2.2)", immediateRender: false }, wt(13) + 0.32);
+        // tre anelli di volti veri (scelti sul foglio numerato: occhi aperti, niente scritte, il primo anello tutti diversi)
+        const RINGS = [[248, 124, [2, 8, 10, 25, 17, 33, 29, 38], 0], [408, 102, [5, 12, 9, 18, 27, 13, 41, 1, 44, 26, 55, 47, 6, 59], 0.2], [568, 88, [43, 15, 3, 20, 49, 57, 50, 40, 30, 48, 52, 35, 23, 46, 42, 24, 53, 32, 45, 56, 19, 37], 0.1]];
+        const ringLines = [], ring = RINGS.map(([r, d, ids, a0], k) => {
+          const ol = el(L, { position: "absolute", left: RC[0] - r, top: RC[1] - r, width: 2 * r, height: 2 * r, borderRadius: "50%", border: "2.5px solid rgba(255,255,255,.3)", zIndex: 14 });
+          ringLines.push(ol);
+          gsap.set(ol, { opacity: 0 });
+          return ids.map((fi, i) => {
+            const a = a0 + (i / ids.length) * Math.PI * 2, x = RC[0] + Math.cos(a) * r, y = RC[1] + Math.sin(a) * r;
+            const h = el(L, { position: "absolute", left: x - d / 2, top: y - d / 2, width: d, height: d, zIndex: 16 });
+            const f = faceDot(h, 0, 0, d, fi, null, { bw: 4 });
+            gsap.set(h, { opacity: 0 });
+            return { h, f, x, y, a, d };
+          });
+        });
+        const ALLF = ring.flat();
+        // stretti come Kallaway: l'anello esterno arriva ai bordi
+        frameRect(wt(13) + 0.05, 0.85, [RC[0] - 615, RC[1] - 615, RC[0] + 615, RC[1] + 615], { top: 362, fill: 1.1 });
+        ringLines.forEach((ol, k) => tl.fromTo(ol, { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.5, ease: "expo.out", immediateRender: false }, 5.45 + k * 0.07));
+        ALLF.forEach((p, i) => {
+          const dist = 220 + Math.abs(hash(i, 3)) * 220, tt = 5.5 + ((hash(i, 7) + 1) / 2) * 0.4;
+          tl.fromTo(p.h, { x: Math.cos(p.a) * dist, y: Math.sin(p.a) * dist, opacity: 0, scale: 0.6 }, { x: 0, y: 0, opacity: 1, scale: 1, duration: 0.55, ease: "power3.out", immediateRender: false }, tt);
+        });
+        // "non la mostra a tutti": tutti gli anelli si spengono
+        tl.to(ALLF.map((p) => p.h), { filter: "grayscale(1) brightness(.42)", duration: 0.3 }, wt(15));
+        tl.to(ring[1].concat(ring[2]).map((p) => p.h), { opacity: 0.7, duration: 0.3 }, wt(19));
+        ripple(L, RC[0], RC[1], wt(19), { r: 600, s0: 0.3, s1: 1.0, w: 4, dur: 0.55, color: "#ffffff", glow: false, z: 15 });
+        float(6.1, 1.35, 0, -8, 0.02);
+        head([[{ t: "Quando pubblici" }], [{ t: "una " }, { t: "storia", box: true }]], [wt(10), wt(11), wt(12), wt(13)], 5.62);
+        head([[{ t: "Non la mostra" }], [{ t: "a " }, { t: "tutti", box: true }]], [wt(15), wt(16), wt(17), wt(18), wt(19)], 7.45);
+
+        // ═══ 3 · "la fa vedere prima ai follower che interagiscono di più con te" (7,3 – 10,3) ═══════════════════════
+        // O21 + F08: la storia parte verso il primo anello (raggi + la tua storia in piccolo che viaggia), quei volti si
+        // riaccendono col bordo lime; su "interagiscono" accanto a loro spuntano ♥ 💬 ➤; "con te" la tua foto sul cerchio
+        ring[0].forEach((p, i) => {
+          const a = p.a, x0 = RC[0] + Math.cos(a) * 160, y0 = RC[1] + Math.sin(a) * 160, x1 = p.x - Math.cos(a) * (p.d / 2 + 6), y1 = p.y - Math.sin(a) * (p.d / 2 + 6);
+          const cn = connector(S, [[x0, y0], [x1, y1]], { color: K.lime, w: 5, glow: true });
+          cn.draw(wt(22) + i * 0.035, 0.3);
+          p.ray = cn.p;
+          const mini = storyCircle(L, x0, y0, 44, "tu", { ring: "ig", z: 19 });
+          gsap.set(mini.g, { opacity: 0 });
+          tl.set(mini.g, { opacity: 1 }, wt(23) + i * 0.035);
+          tl.fromTo(mini.g, { x: 0, y: 0 }, { x: x1 - x0, y: y1 - y0, duration: 0.4, ease: "power2.in", immediateRender: false }, wt(23) + i * 0.035);
+          tl.to(mini.g, { opacity: 0, scale: 0.4, duration: 0.1 }, wt(23) + i * 0.035 + 0.4);
+          const t1 = wt(23) + i * 0.035 + 0.4;
+          tl.to(p.h, { filter: "grayscale(0) brightness(1)", opacity: 1, duration: 0.2 }, t1);
+          tl.to(p.f, { borderColor: K.lime, borderWidth: 5, boxShadow: GLOW_A(0.85), duration: 0.15 }, t1);
+          tl.fromTo(p.h, { scale: 1 }, { scale: 1.18, duration: 0.1, ease: "power2.out", immediateRender: false }, t1);
+          tl.to(p.h, { scale: 1, duration: 0.3, ease: "back.out(3)" }, t1 + 0.1);
+          tl.set(p.h, { filter: "none" }, t1 + 0.21);
+        });
+        // ♥ 💬 ➤ accanto ai primi
+        const REAZ = ["heart", "message-circle", "send"];
+        const badges = ring[0].map((p, i) => {
+          const a = p.a - 0.3, bx = RC[0] + Math.cos(a) * (248 + 66), by = RC[1] + Math.sin(a) * (248 + 66);
+          const b = el(L, { position: "absolute", left: bx - 31, top: by - 31, width: 62, height: 62, borderRadius: "50%", background: limeFill(1), display: "flex", alignItems: "center", justifyContent: "center", boxShadow: `${GLOW_A(0.7)}, 0 6px 14px rgba(0,0,0,.5)`, zIndex: 18 }, svg(REAZ[i % 3], 34, K.ink, 2.6, i % 3 === 0 ? K.ink : "none"));
+          gsap.set(b, { opacity: 0, scale: 0.3 });
+          tl.to(b, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(3)" }, wt(27) + i * 0.06);
+          return b;
+        });
+        // "con te": la tua foto vera sul cerchio della storia
+        const meB = avatar(L, RC[0] + 112, RC[1] + 112, 104, "tu", { bw: 4, z: 22 });
+        gsap.set(meB, { opacity: 0, scale: 0.4 });
+        tl.to(meB, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(2.6)" }, wt(31) - 0.05);
+        float(7.45, 2.85, 0, -6, 0.035);
+        head([[{ t: "Prima ai follower" }], [{ t: "che " }, { t: "interagiscono", box: true }]], [wt(23), wt(24), wt(25), wt(26), wt(27)], 10.15);
+
+        // ═══ 4 · "e misura una cosa sola," (10,3 – 12,0) ════════════════════════════════════════════════════════════
+        // K09: dal volto più a destra del primo anello una linea porta la camera dentro il telefono di quel follower: la sua
+        // home, il tuo cerchio ancora da aprire; la pill <Algoritmo/> sopra lo guarda; su "una cosa sola" gli angoli (H04)
+        const HC = igHome(L, PC[0], PC[1], {
+          storie: [{ src: { anon: true }, nome: "La tua storia", ring: "none", plus: true }, { src: "tu", nome: "samuelerinal…" }, { src: "codiesanchez", nome: "codiesanchez" }, { src: "thedankoe", nome: "thedankoe" }],
+          post: { user: "tu", nome: "samuelerinaldo.media", media: "feedC" }, user: null, z: 12,
+        });
+        const pHC = fitPose(PC[0] - 30, 90, PC[0] + PH.w + 30, 960, { fill: 0.96 });
+        const p0 = ring[0][0];
+        const LX4 = lineExit(L, S, [p0.x + p0.d / 2 + 8, p0.y], [PC[0] - 10, 470], wt(32), pHC, { dur: 1.15 });
+        tl.to([...ALLF.map((p) => p.h), ...ringLines, SC0.g, meB, ...badges, ...ring[0].map((p) => p.ray)], { opacity: 0, duration: 0.3 }, 11.1);
+        LX4.cn.hide && LX4.cn.hide(11.3, 0.25);
+        const AP2 = algoPill(L, PC[0] + PH.w / 2, 150, { fs: 40, z: 30 });
+        AP2.show(wt(33));
+        const [m1x, m1y] = HC.circleXY(1);
+        const AL2 = connector(S, [[PC[0] + PH.w / 2, 196], [m1x, m1y - 70]], { color: "rgba(207,251,80,.95)", w: 4, dash: [12, 9] });
+        AL2.draw(11.0, 0.3);
+        const SC = selectCorners(L, HC.circleRect(1), { len: 40, w: 6, pad: 14, z: 60 });
+        SC.show(wt(35));
+        tl.fromTo(HC.tray[1].g, { scale: 1 }, { scale: 1.12, duration: 0.12, ease: "power2.out", immediateRender: false }, wt(35));
+        tl.to(HC.tray[1].g, { scale: 1, duration: 0.3, ease: "back.out(3)" }, wt(35) + 0.12);
+        float(11.45, 0.65, 0, -4, 0.012);
+        head([[{ t: "Misura" }], [{ t: "una cosa sola", box: true }]], [wt(33), wt(34), wt(35), wt(36)], 11.65);
+
+        // ═══ 5 · "se la aprono e quanto ci restano sopra." (12,1 – 15,0) ════════════════════════════════════════════
+        // il dito tocca il tuo cerchio e la storia si apre (dal cerchio, come in Instagram); la camera scopre il cronometro
+        // (U15) accanto al telefono: la barra in alto si riempie mentre il cronometro conta i secondi; gli angoli sulla barra
+        const SV = igStoryView(L, PC[0], PC[1], { user: "tu", nome: "samuelerinaldo.media", quando: "2 h", media: "stv", z: 13 });
+        gsap.set(SV.frame, { opacity: 0 });
+        const F2 = tapFinger(L, { size: 92, z: 80 });
+        F2.show(11.95, m1x + 70, m1y + 220);
+        F2.to(12.08, m1x, m1y, 0.3);
+        F2.tap(wt(39));
+        F2.hide(wt(39) + 0.08);
+        const OPEN = wt(39) + 0.07;
+        tl.set(SV.frame, { opacity: 1 }, OPEN);
+        tl.set(HC.frame, { opacity: 0 }, OPEN);
+        tl.fromTo(SV.content, { scale: 0.2, opacity: 0.5, transformOrigin: "223px 199px" }, { scale: 1, opacity: 1, duration: 0.3, ease: "power3.out", immediateRender: false }, OPEN);
+        SC.to(OPEN + 0.15, SV.barRect(), 0.4);
+        tl.to(AL2.p, { opacity: 0, duration: 0.2 }, OPEN);
+        const AL3 = connector(S, [[PC[0] + PH.w / 2, 196], [PC[0] + PH.w / 2, SV.barRect()[1] - 6]], { color: "rgba(207,251,80,.95)", w: 4, dash: [12, 9] });
+        AL3.draw(OPEN + 0.3, 0.2);
+        SV.play(OPEN + 0.05, 2.3, { a: 0.62 });
+        const SW = stopwatch(L, PC[0] + PH.w + 110, 700, 290, { start: "00", unita: "SECONDI", z: 40 });
+        SW.show(13.15);
+        SW.run(wt(41), 1.55, 0, 9, 15);
+        frameRect(OPEN, 0.75, [PC[0] - 30, 90, PC[0] + PH.w + 270, 1110], { fill: 0.97 });
+        float(13.4, 1.6, 0, -8, 0.02);
+        head([[{ t: "Se la aprono" }], [{ t: "e " }, { t: "quanto ci restano", box: true }]], [wt(37), wt(38), wt(39), wt(40), wt(41), wt(42), wt(43)], 14.65);
+
+        // ═══ 6 · "Se non la aprono o entrano e scorrono subito, la storia viene sepolta." (15,1 – 19,5) ════════════
+        // di nuovo la home del follower: il dito passa oltre e il cerchio resta da aprire → "−" (C03) alla pill; poi entra e
+        // scorre via subito (la barra si ferma presto, la storia gira come un cubo) → "−". "sepolta": il tuo cerchio esce dal
+        // telefono e cade (K08, la camera lo segue) nel pozzo delle storie spente; altre storie gli cadono sopra
+        via([SW.g, AL3.p], 15.0, 0.25);
+        tl.set(SV.frame, { opacity: 0 }, wt(45));
+        tl.set(HC.frame, { opacity: 1 }, wt(45));
+        tl.to(AL2.p, { opacity: 1, duration: 0.2 }, wt(45));
+        SC.to(wt(45), HC.circleRect(1), 0.35);
+        frameRect(wt(45), 0.6, [PC[0] - 30, 90, PC[0] + PH.w + 30, 960], { fill: 0.96 });
+        const F3 = tapFinger(L, { size: 92, z: 80 });
+        F3.show(15.32, m1x + 120, m1y + 250);
+        F3.to(15.45, m1x + 20, m1y + 30, 0.3);
+        F3.to(wt(48), m1x + 330, m1y + 420, 0.32); // non tocca: passa oltre
+        signal(L, AL2, wt(49) - 0.05, 0.42, { sign: "-", back: true, d: 58, z: 70 });
+        AP2.flash(wt(49) + 0.37, "-");
+        // "entrano e scorrono subito"
+        F3.to(16.2, m1x, m1y, 0.18);
+        F3.tap(wt(50));
+        const OPEN2 = wt(50) + 0.06;
+        tl.set(SV.frame, { opacity: 1 }, OPEN2);
+        tl.set(HC.frame, { opacity: 0 }, OPEN2);
+        tl.fromTo(SV.content, { scale: 0.2, opacity: 0.5, transformOrigin: "223px 199px" }, { scale: 1, opacity: 1, duration: 0.26, ease: "power3.out", immediateRender: false }, OPEN2);
+        SV.play(OPEN2, 0.45, { da: 0, a: 0.13 });
+        SC.to(OPEN2 + 0.1, SV.barRect(), 0.3);
+        F3.to(wt(52) - 0.12, PC[0] + 420, 820, 0.12);
+        F3.to(wt(52), PC[0] + 90, 830, 0.3);
+        SV.swipe(wt(52) + 0.02, { atlas: 6 });
+        F3.hide(wt(53));
+        signal(L, AL3, wt(53) - 0.02, 0.38, { sign: "-", back: true, d: 58, z: 70 });
+        AP2.flash(wt(53) + 0.34, "-");
+        SC.hide(17.55);
+        // contatore delle visualizzazioni della storia (il "200 → 2.000 people" del reel 40): occhio + numero
+        const viewsPill = (cx, cy, n0, o) => {
+          o = o || {};
+          const pl = el(L, { position: "absolute", left: cx - 150, top: cy - 42, width: 300, height: 84, borderRadius: 42, background: "linear-gradient(180deg, rgba(58,58,58,.97), rgba(28,28,28,.98))", border: `3px solid ${o.lime ? K.lime : "rgba(255,255,255,.35)"}`, boxShadow: o.lime ? `${GLOW_A(0.7)}, 0 16px 34px rgba(0,0,0,.55)` : "0 16px 34px rgba(0,0,0,.55)", display: "flex", alignItems: "center", justifyContent: "center", gap: 14, fontFamily: FS, fontWeight: 800, fontSize: 46, color: K.white, whiteSpace: "nowrap", zIndex: o.z || 60 }, svg("eye", 46, o.lime ? K.lime : "rgba(255,255,255,.8)", 2.4));
+          const num = el(pl, {}, itNum(n0), "span");
+          gsap.set(pl, { opacity: 0 });
+          return {
+            pl, num,
+            show: (t) => tl.fromTo(pl, { opacity: 0, scale: 0.6, y: 20 }, { opacity: 1, scale: 1, y: 0, duration: 0.35, ease: "back.out(2.4)", immediateRender: false }, t),
+            count: (t, a, b, dur) => { const V = { v: a }; tl.to(V, { v: b, duration: dur, ease: "power2.in", onUpdate: () => (num.textContent = itNum(V.v)) }, t); },
+          };
+        };
+        // il pozzo, subito sotto il telefono (come il sasso del reel 65 la caduta è corta e parte subito):
+        // un mucchio di storie spente (volti veri in grigio, anello "vista")
+        const PIT = [2400, 2140], TOPY = PIT[1] - 5 * 74 - 40;
+        const HEAP = [];
+        for (let k = -2; k < 6; k++) {
+          const n = 9 - k; // k < 0: le file più in basso, che proseguono sotto il bordo (il pozzo è profondo)
+          for (let i = 0; i < n; i++) {
+            const x = PIT[0] + (i - (n - 1) / 2) * 106 + hash(k * 13 + i, 3) * 16, y = PIT[1] - k * 74 + hash(k * 7 + i, 5) * 8;
+            const c = storyCircle(L, x, y, 118, { face: [1, 5, 6, 9, 12, 13, 18, 22, 26, 27, 36, 41, 43, 44, 47, 49, 51, 55, 57, 59][(((k * 9 + i) % 20) + 20) % 20] }, { ring: "visto", z: 20 - k });
+            gsap.set(c.g, { filter: "grayscale(1) brightness(.42)", opacity: 0 });
+            HEAP.push(c);
+          }
+        }
+        tl.set(HEAP.map((c) => c.g), { opacity: 1 }, 17.6);
+        const pPit = fitPose(PIT[0] - 470, PIT[1] - 520, PIT[0] + 470, PIT[1] + 60, { fill: 1.0 });
+        float(15.75, 1.9, 0, -6, 0.02);
+        const DROP = storyCircle(L, PC[0] + 40, 700, 150, "tu", { ring: "ig", z: 40 });
+        gsap.set(DROP.g, { opacity: 0 });
+        tl.fromTo(DROP.g, { opacity: 0, scale: 0.5 }, { opacity: 1, scale: 1, duration: 0.14, ease: "power2.out", immediateRender: false }, wt(54) - 0.04);
+        tl.to(SV.frame, { opacity: 0.35, filter: "grayscale(1)", duration: 0.25 }, wt(54));
+        tl.to([AP2.g, AL2.p], { opacity: 0, duration: 0.2 }, wt(54));
+        const LAND = fallFollow(DROP.g, wt(54) + 0.04, PC[0] + 40, 700, PIT[0], TOPY, pPit, { dur: 0.46, rot: 25, brake: 0.28 });
+        tl.to(SV.frame, { opacity: 0, duration: 0.2 }, LAND - 0.2); // il telefono sparisce prima che il pozzo arrivi in posa (niente UI sotto il titolo)
+        tl.to(DROP.g, { rotation: 0, duration: 0.2 }, LAND);
+        shake(LAND, 10, 4);
+        ripple(L, PIT[0], TOPY, LAND, { r: 120, s0: 0.6, s1: 1.8, w: 4, dur: 0.45, color: "#ffffff", glow: false, z: 45 });
+        sparks(L, PIT[0], TOPY + 50, LAND, { n: 16, r0: 60, r1: 230, len: 30, z: 46, color: "#d6d6d6" });
+        // le altre storie le cadono sopra: sepolta
+        const COVER = [[-70, -455, 22], [62, -470, 29], [-8, -500, 10], [-120, -430, 41], [110, -440, 3]].map(([dx, dy, fi], k) => {
+          const c = storyCircle(L, PIT[0] + dx, PIT[1] + dy, 118, { face: fi }, { ring: "visto", z: 45 + k });
+          gsap.set(c.g, { opacity: 0, filter: "grayscale(1) brightness(.5)" });
+          tl.fromTo(c.g, { opacity: 1, y: -620 }, { y: 0, duration: 0.3, ease: "power2.in", immediateRender: false }, LAND + 0.1 + k * 0.08);
+          return c;
+        });
+        DROP.seen(LAND + 0.2, 0.2);
+        tl.to(DROP.g, { y: TOPY - 700 + 40, filter: "grayscale(1) brightness(.5)", duration: 0.45, ease: "power2.out" }, LAND + 0.25);
+        // le sue visualizzazioni restano poche
+        const VW1 = viewsPill(PIT[0], PIT[1] - 660, 38);
+        VW1.show(LAND + 0.3);
+        float(LAND + 0.3, 1.0, 0, 6, 0.02);
+        head([[{ t: "Se non la aprono" }], [{ t: "o " }, { t: "scorrono subito", box: true }]], [wt(45), wt(46), wt(47), wt(48), wt(49), wt(52), wt(53)], 17.55);
+        head([[{ t: "Viene " }, { t: "sepolta", box: true }]], [wt(56), wt(57)], 19.1);
+
+        // ═══ 7 · "Se invece la guardano fino in fondo e reagiscono con un like, una risposta o una condivisione," (19,6 – 25,0)
+        // la camera risale (arrivo in corsa dall'alto, K02) sulla storia aperta: la barra arriva in fondo e si accende; il dito
+        // mette il like, scrive la risposta, tocca condividi: ogni gesto manda un "+" (C03) alla pill <Algoritmo/>
+        const SV2 = igStoryView(L, PC[0], PC[1], { user: "tu", nome: "samuelerinaldo.media", quando: "2 h", media: "stv2", z: 14 });
+        gsap.set(SV2.frame, { opacity: 0 });
+        tl.set(SV2.frame, { opacity: 1 }, 19.45);
+        tl.set([SV.frame, HC.frame], { opacity: 0 }, 19.45);
+        tl.set([...HEAP.map((c) => c.g), ...COVER.map((c) => c.g), DROP.g], { opacity: 0 }, 19.6);
+        const AP3 = algoPill(L, PC[0] + PH.w + 20, 760, { fs: 32, z: 45 });
+        const r7 = [PC[0] - 20, PC[1] - 10, PC[0] + PH.w + 200, PC[1] + 1100];
+        arriveRect(wt(58), r7, { top: 340, fill: 1.0, dx: -460, dy: 0, dur: 1.0 }); // "invece": la scena arriva di lato
+        AP3.show(19.85, { dur: 0.35 });
+        SV2.play(19.78, wt(64) - 19.78, { a: 1 });
+        SC.show(20.55);
+        tl.to(SV2.fills[0], { backgroundColor: K.lime, boxShadow: GLOW_A(1), duration: 0.12 }, wt(64));
+        ripple(L, PC[0] + PH.w / 2, SV2.barRect()[1] + 16, wt(64), { wd: 600, ht: 46, radius: "23px", s0: 0.9, s1: 1.25, w: 4, dur: 0.45, z: 70 });
+        SC.hide(21.6);
+        // la linea dai bottoni in basso alla pill (come la linea del telefono nel reel 40)
+        const [hrx, hry] = SV2.heartXY(), [ix, iy] = SV2.inputXY(), [sx2, sy2] = SV2.sendXY();
+        const LR = connector(S, [[sx2 - 30, sy2 - 46], [sx2 + 30, 1000], [PC[0] + PH.w + 20, 760 + 36]], { color: "rgba(255,255,255,.92)", w: 6, curve: "v" });
+        LR.p.style.filter = "drop-shadow(0 0 8px rgba(255,255,255,.6))";
+        LR.draw(21.45, 0.35);
+        const F4 = tapFinger(L, { size: 88, z: 80 });
+        F4.show(21.75, hrx - 40, hry + 160);
+        F4.to(21.9, hrx, hry, 0.3);
+        F4.tap(wt(69));
+        SV2.like(wt(69));
+        signal(L, LR, wt(69) + 0.08, 0.4, { sign: "+", d: 58, z: 70 });
+        AP3.flash(wt(69) + 0.47, "+");
+        F4.to(wt(70) - 0.1, ix, iy, 0.28);
+        F4.tap(wt(71));
+        SV2.reply(wt(71), "Verissimo!", 34);
+        SV2.sent(wt(71) + 0.42);
+        signal(L, LR, wt(71) + 0.48, 0.4, { sign: "+", d: 58, z: 70 });
+        AP3.flash(wt(71) + 0.87, "+");
+        F4.to(wt(73) - 0.05, sx2, sy2, 0.22);
+        F4.tap(wt(74));
+        SV2.share(wt(74));
+        signal(L, LR, wt(74) + 0.08, 0.4, { sign: "+", d: 58, z: 70 });
+        AP3.flash(wt(74) + 0.47, "+");
+        F4.hide(wt(74) + 0.3);
+        float(20.6, 4.4, 0, -10, 0.03);
+        head([[{ t: "Se la guardano" }], [{ t: "fino in fondo", box: true }]], [wt(58), wt(60), wt(61), wt(62), wt(63), wt(64)], 21.85);
+        head([[{ t: "Like, risposta" }], [{ t: "o " }, { t: "condivisione", box: true }]], [wt(69), wt(71), wt(72), wt(74)], 24.95);
+
+        // ═══ 8 · "viene spinta in cima alle storie di tutti gli altri." (25,0 – 27,4) ══════════════════════════════
+        // la storia si richiude nel tuo cerchio (anello lime) che sale (la camera lo insegue, O31 ride / K08) fino al muro delle
+        // file di storie: prende il primo posto della fila più alta (le altre scivolano, L16); poi la camera si allarga e il tuo
+        // cerchio è primo in ogni fila (le storie di tutti gli altri)
+        const W0 = [1919, -1300], WD = 130, WROWS = 5; // la fila più bassa finisce a y −134: la salita passa subito accanto alle file
+        const WSRC = [["hormozi", { face: 8 }, "garyvee", { face: 10 }, { face: 33 }, "codiesanchez"], [{ face: 2 }, "thedankoe", { face: 25 }, "leilahormozi", { face: 17 }, { face: 38 }],
+          ["tonyrobbins", { face: 29 }, { face: 5 }, "steven", { face: 12 }, { face: 41 }], [{ face: 44 }, "devinjatho", { face: 9 }, { face: 18 }, "hormozi", { face: 27 }], [{ face: 47 }, { face: 13 }, "garyvee", { face: 55 }, { face: 1 }, "thedankoe"]];
+        const WALL = WSRC.map((srcs, k) => storyRow(L, W0[0], W0[1] + k * 240, srcs.map((src, i) => ({ src, ring: (i + k) % 4 === 3 ? "visto" : "ig" })), { d: WD, gap: 26, pad: 26, panel: true, z: 22 }));
+        WALL.forEach((R) => gsap.set([R.panel, ...R.items.map((c) => c.g)], { opacity: 0 }));
+        WALL.forEach((R, k) => tl.to([R.panel, ...R.items.map((c) => c.g)], { opacity: 1, duration: 0.2 }, 25.3 + (4 - k) * 0.04));
+        // la storia si richiude nel cerchio
+        const UPx = PC[0] + PH.w / 2, UPy = PC[1] + 470;
+        const UP = storyCircle(L, UPx, UPy, 230, "tu", { ring: "lime", z: 60 });
+        gsap.set(UP.g, { opacity: 0 });
+        via([AP3.g, LR.p], wt(75), 0.25);
+        // il contenuto della storia si richiude nel cerchio; il telefono resta lì finché la camera non parte
+        tl.to(SV2.content, { scale: 0.42, opacity: 0, transformOrigin: "267px 457px", duration: 0.32, ease: "power3.in" }, wt(75));
+        tl.fromTo(UP.g, { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.24, ease: "back.out(2.2)", immediateRender: false }, wt(75) + 0.05);
+        const pTop = fitPose(W0[0] - 20, W0[1] - 40, W0[0] + 982, W0[1] + 3 * 240 + 210, { fill: 0.98 });
+        const [t0x, t0y] = WALL[0].xy(0);
+        const FLY = 25.38, FLYD = 0.6; // sale con la camera che lo insegue (O31, reel 59), arriva su "cima"
+        tl.to(UP.g, { x: t0x - UPx, y: t0y - UPy, scale: WD / 230, duration: FLYD, ease: "power1.in" }, FLY);
+        // la camera lo insegue e arriva un filo più su della posa (la fila più alta non finisce sotto il titolo), poi si assesta
+        camK(FLY, FLYD, pTop.fx, pTop.fy - 40, pTop.s, "power1.in");
+        camK(FLY + FLYD, 0.36, pTop.fx, pTop.fy, pTop.s, "power2.out");
+        mblurV(FLY, FLYD, "power1.in", 16, "y");
+        tl.to(SV2.frame, { opacity: 0, duration: 0.25 }, FLY + 0.25);
+        // linee di velocità lungo la salita (O31, reel 59): restano nel mondo e la camera ci passa accanto
+        for (let q = 0; q < 14; q++) {
+          const lx = 1760 + ((hash(q, 4) + 1) / 2) * 1300, ly = -900 + ((hash(q, 8) + 1) / 2) * 1500, lh = 260 + ((hash(q, 6) + 1) / 2) * 340;
+          const ln = el(L, { position: "absolute", left: lx, top: ly, width: 5, height: lh, borderRadius: 3, background: "linear-gradient(180deg, rgba(255,255,255,0), rgba(255,255,255,.7), rgba(255,255,255,0))", opacity: 0, zIndex: 18 });
+          tl.to(ln, { opacity: 1, duration: 0.08 }, FLY + 0.05);
+          tl.to(ln, { opacity: 0, duration: 0.15 }, FLY + FLYD - 0.05);
+        }
+        // le storie della fila più alta scivolano di un posto: la tua è in cima
+        WALL[0].items.forEach((c, i) => tl.to(c.g, { x: WALL[0].pitch, opacity: i === 5 ? 0 : 1, duration: 0.32, ease: "power3.out" }, FLY + FLYD - 0.12));
+        shake(FLY + FLYD, 7, 3);
+        pulse(L, t0x, t0y, FLY + FLYD, { r: 130, z: 21 });
+        ripple(L, t0x, t0y, FLY + FLYD + 0.03, { r: 90, s0: 0.7, s1: 1.9, w: 5, dur: 0.5, z: 70 });
+        // "di tutti gli altri": prima in ogni fila
+        frameRect(wt(80) + 0.05, 0.7, [W0[0] - 30, W0[1] - 40, W0[0] + 992, W0[1] + 4 * 240 + 320], { fill: 0.99 });
+        // e le visualizzazioni salgono (il pubblico di prova del reel 40 che passa da 200 a 2.000)
+        const VW2 = viewsPill(W0[0] + 491, W0[1] + 4 * 240 + 262, 38, { lime: true });
+        VW2.show(wt(81) - 0.1);
+        VW2.count(wt(81), 38, 2417, 0.7);
+        for (let k = 1; k < WROWS; k++) {
+          const t = wt(81) + (k - 1) * 0.09, [x, y] = WALL[k].xy(0);
+          WALL[k].items.forEach((c, i) => tl.to(c.g, { x: WALL[k].pitch, opacity: i === 5 ? 0 : 1, duration: 0.3, ease: "power3.out" }, t));
+          const me = storyCircle(L, x, y, WD, "tu", { ring: "lime", z: 30 });
+          gsap.set(me.g, { opacity: 0 });
+          tl.fromTo(me.g, { opacity: 0, scale: 0.3 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(2.6)", immediateRender: false }, t + 0.05);
+        }
+        float(27.08, 0.32, 0, -4, 0.01);
+        head([[{ t: "Spinta " }, { t: "in cima", box: true }]], [wt(76), wt(77), wt(78)], 27.0);
+
+        // ═══ 9 · "Non conta quante storie pubblichi, non conta l'ora," (27,5 – 31,1) ═════════════════════════════
+        // L15 + F11: le tue storie del giorno a ventaglio (video veri, la barra con tanti segmenti che si riempie) → si spengono;
+        // poi l'orologio (nuovo, nello stile del cronometro U15): le lancette corrono → spento anche lui
+        const FX = 3600, FY = -740, CWd = 300, CHt = 533;
+        const FAN = ["f1", "f2", "f3", "f4", "f5"].map((id, k) => {
+          const c = el(L, { position: "absolute", left: FX - CWd / 2, top: FY - CHt / 2, width: CWd, height: CHt, borderRadius: 22, overflow: "hidden", background: "#111", border: "2px solid rgba(255,255,255,.3)", boxShadow: "0 30px 70px rgba(0,0,0,.6)", zIndex: 30 + (k === 2 ? 5 : 2 - Math.abs(k - 2)), transformOrigin: "50% 120%" });
+          videoTile(c, 0, 0, CWd, CHt, id, 1);
+          el(c, { position: "absolute", left: 0, top: 0, width: CWd, height: 90, background: "linear-gradient(180deg, rgba(0,0,0,.55), rgba(0,0,0,0))", zIndex: 2 });
+          const segs = el(c, { position: "absolute", left: 10, top: 12, width: CWd - 20, height: 4, display: "flex", gap: 3, zIndex: 3 });
+          for (let q = 0; q < 12; q++) el(segs, { flex: 1, height: 5, borderRadius: 3, background: q <= k * 2 + 1 ? "#fff" : "rgba(255,255,255,.38)" });
+          const hd = el(c, { position: "absolute", left: 10, top: 24, display: "flex", alignItems: "center", gap: 8, zIndex: 3, whiteSpace: "nowrap" });
+          const av = el(hd, { width: 36, height: 36, borderRadius: "50%", overflow: "hidden", border: "1.5px solid #fff", position: "relative", flex: "none" });
+          imgIn(av, "av-tu", { objectFit: "cover" });
+          el(hd, { fontFamily: FS, fontWeight: 700, fontSize: 18, color: "#fff" }, ["9:12", "11:40", "14:05", "18:30", "22:47"][k], "span");
+          [c, ...c.querySelectorAll("*")].forEach((e) => e.setAttribute("data-layout-allow-overlap", "")); // impilate prima di aprirsi a ventaglio
+          gsap.set(c, { opacity: 0 });
+          return c;
+        });
+        // la barra del giorno, grande, sopra il ventaglio: tante storie = tanti segmenti
+        const DAYB = el(L, { position: "absolute", left: FX - 360, top: FY - 470, width: 720, height: 16, display: "flex", gap: 7, zIndex: 40 });
+        const DAYS = Array.from({ length: 12 }, () => { const s = el(DAYB, { flex: 1, height: 16, borderRadius: 8, background: "rgba(255,255,255,.3)", position: "relative", overflow: "hidden" }); const f = el(s, { position: "absolute", left: 0, top: 0, width: "100%", height: 16, background: "#fff", transformOrigin: "0 50%" }); gsap.set(f, { scaleX: 0 }); return f; });
+        gsap.set(DAYB, { opacity: 0 });
+        const pFan = fitPose(FX - 540, FY - 490, FX + 540, FY + CHt / 2 + 70, { fill: 0.98 });
+        // le card sono già lì quando arriva la camera (si impilano mentre il muro esce a sinistra)
+        // la pila arriva grande (le storie del giorno una sopra l'altra) e su "quante" si apre a ventaglio
+        FAN.forEach((c, k) => tl.fromTo(c, { opacity: 0, x: 300 + k * 16, y: -k * 14, rotation: 8, scale: 1.32 }, { opacity: 1, x: k * 16, y: -k * 14, rotation: (k - 2) * 2.5, scale: 1.32, duration: 0.4, ease: "power3.out", immediateRender: false }, 27.3 + k * 0.04));
+        move(27.4, 0.6, pFan.fx, pFan.fy, pFan.s);
+        mblurV(27.4, 0.6, KW.move, 10, "x");
+        FAN.forEach((c, k) => tl.to(c, { rotation: (k - 2) * 12, x: (k - 2) * 178, y: Math.abs(k - 2) * 30, scale: 1, duration: 0.5, ease: "back.out(1.6)" }, wt(87) + k * 0.03));
+        float(28.0, 1.88, 0, -8, 0.025);
+        tl.to(DAYB, { opacity: 1, duration: 0.25 }, 27.55);
+        DAYS.forEach((f, q) => tl.to(f, { scaleX: 1, duration: 0.05, ease: "none" }, wt(89) + q * 0.045));
+        // "non conta": tutto si spegne in grigio, una riga lo barra
+        const STR = el(L, { position: "absolute", left: FX - 500, top: FY - 40, width: 1000, height: 14, borderRadius: 7, background: "#ffffff", boxShadow: "0 0 18px rgba(255,255,255,.7)", transformOrigin: "0 50%", zIndex: 60 });
+        gsap.set(STR, { scaleX: 0, rotation: -12 });
+        tl.to([...FAN, DAYB], { filter: "grayscale(1) brightness(.45)", duration: 0.3 }, 29.72);
+        tl.to(STR, { scaleX: 1, duration: 0.2, ease: "power2.out" }, 29.72);
+        // l'orologio
+        const CLY = FY + 820;
+        const CLK = orologio(L, FX, CLY, 420, { ora: 9, min: 10, z: 40 });
+        // attorno: gli orari veri delle tue storie (gli stessi delle card), le lancette ci passano sopra
+        const ORE = [["9:12", -330, 0], ["14:05", 250, -235], ["18:30", 335, 40], ["22:47", -240, 250]].map(([tx, dx, dy], k) => {
+          const pl = el(L, { position: "absolute", left: FX + dx - 95, top: CLY + dy - 33, width: 190, height: 66, borderRadius: 33, background: "linear-gradient(180deg, rgba(58,58,58,.97), rgba(28,28,28,.98))", border: "2px solid rgba(255,255,255,.3)", boxShadow: "0 14px 30px rgba(0,0,0,.55)", display: "flex", alignItems: "center", gap: 12, paddingLeft: 10, fontFamily: FS, fontWeight: 800, fontSize: 30, color: K.white, whiteSpace: "nowrap", zIndex: 45 });
+          const a = el(pl, { width: 46, height: 46, borderRadius: "50%", overflow: "hidden", border: "2px solid #fff", position: "relative", flex: "none" });
+          imgIn(a, "av-tu", { objectFit: "cover" });
+          el(pl, {}, tx, "span");
+          gsap.set(pl, { opacity: 0, scale: 0.6 });
+          return pl;
+        });
+        const pClk = fitPose(FX - 440, CLY - 300, FX + 440, CLY + 300, { fill: 0.96 });
+        move(wt(90) - 0.05, 0.5, pClk.fx, pClk.fy, pClk.s);
+        tl.to([...FAN, DAYB, STR], { opacity: 0, duration: 0.25 }, wt(90) + 0.1);
+        CLK.show(wt(90) - 0.02);
+        ORE.forEach((pl, k) => tl.to(pl, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(2.4)" }, wt(90) + 0.05 + k * 0.05));
+        CLK.spin(wt(91), 0.75, 7, "power2.inOut");
+        ORE.forEach((pl, k) => {
+          const t = wt(91) + 0.12 + k * 0.15;
+          tl.to(pl, { borderColor: K.lime, boxShadow: `${GLOW_A(0.8)}, 0 14px 30px rgba(0,0,0,.55)`, duration: 0.08 }, t);
+          tl.to(pl, { borderColor: "rgba(255,255,255,.3)", boxShadow: "0 14px 30px rgba(0,0,0,.55)", duration: 0.25 }, t + 0.12);
+        });
+        tl.to(ORE, { filter: "grayscale(1) brightness(.5)", duration: 0.3 }, 30.85);
+        const STR2 = el(L, { position: "absolute", left: FX - 420, top: CLY - 6, width: 840, height: 14, borderRadius: 7, background: "#ffffff", boxShadow: "0 0 18px rgba(255,255,255,.7)", transformOrigin: "0 50%", zIndex: 60 });
+        gsap.set(STR2, { scaleX: 0, rotation: -12 });
+        CLK.off(30.85);
+        tl.to(STR2, { scaleX: 1, duration: 0.18, ease: "power2.out" }, 30.85);
+        head([[{ t: "Non conta" }], [{ t: "quante storie", box: true }]], [wt(85), wt(86), wt(87), wt(88)], 29.5);
+        head([[{ t: "Non conta" }], [{ t: "l'ora", box: true }]], [wt(90), wt(91), wt(92)], 30.9);
+
+        // ═══ 10 · "conta solo cosa fanno i primi che le vedono." (31,2 – 34,1) ══════════════════════════════════
+        // ritorno sugli anelli (K02): resta acceso solo il primo anello con ♥ 💬 ➤ (F04); su "i primi" gli angoli (H04) si chiudono
+        // attorno ai primi; "che le vedono" l'impulso dal centro
+        const BACK = 31.12;
+        const SCb = storyCircle(L, RC[0], RC[1], 300, { media: "stc2" }, { ring: "ig", z: 20 });
+        gsap.set(SCb.g, { opacity: 0 });
+        tl.set([SCb.g, meB, ...badges, ...ringLines, ...ring[0].map((p) => p.h), ...ring[0].map((p) => p.ray)], { opacity: 1 }, BACK);
+        tl.set(ring[1].concat(ring[2]).map((p) => p.h), { opacity: 0.55 }, BACK);
+        arriveRect(BACK, [RC[0] - 615, RC[1] - 615, RC[0] + 615, RC[1] + 615], { top: 362, fill: 1.1, dx: 0, dy: 340, dur: 0.9 });
+        tl.to(ring[1].concat(ring[2]).map((p) => p.h), { opacity: 0.22, duration: 0.35 }, wt(95));
+        tl.to(ringLines.slice(1), { opacity: 0.35, duration: 0.35 }, wt(95));
+        badges.forEach((b, i) => {
+          const t = wt(96) + i * 0.05;
+          tl.fromTo(b, { scale: 1 }, { scale: 1.3, duration: 0.1, ease: "power2.out", immediateRender: false }, t);
+          tl.to(b, { scale: 1, duration: 0.3, ease: "back.out(3)" }, t + 0.1);
+        });
+        const SCR = selectCorners(L, [RC[0] - 322, RC[1] - 322, RC[0] + 322, RC[1] + 322], { len: 64, w: 8, pad: 10, z: 60 });
+        SCR.show(wt(99));
+        ring[0].forEach((p, i) => {
+          const t = wt(99) + 0.1 + i * 0.03;
+          tl.to(p.f, { boxShadow: "0 0 26px rgba(207,251,80,1), 0 0 80px rgba(207,251,80,.6)", duration: 0.08 }, t);
+          tl.to(p.f, { boxShadow: GLOW_A(0.85), duration: 0.4 }, t + 0.1);
+        });
+        pulse(L, RC[0], RC[1], wt(102), { r: 200, z: 19 });
+        ripple(L, RC[0], RC[1], wt(102) + 0.04, { r: 330, s0: 0.5, s1: 1.15, w: 5, dur: 0.6, z: 21 });
+        float(32.05, 2.0, 0, -8, 0.035);
+        head([[{ t: "Conta solo" }], [{ t: "cosa fanno " }, { t: "i primi", box: true }]], [31.37, 31.45, wt(96), wt(97), wt(98), wt(99)]);
+
+        window.__timelines = window.__timelines || {};
+        window.__timelines["main"] = tl;
+      })();
+    </script>
+  </body>
+</html>

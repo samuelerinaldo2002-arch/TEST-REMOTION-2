@@ -1,0 +1,2484 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>Reel 01/10 — Pubblicare di tutto (stile Kallaway, v4)</title>
+    <script src="assets/vendor/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Advercase"; src: url("assets/fonts/Advercase-Bold.ttf") format("truetype"); font-weight: 700; font-style: normal; font-display: block; }
+      @font-face { font-family: "Advercase"; src: url("assets/fonts/Advercase-Regular.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: block; }
+      @font-face { font-family: "Patrick Hand"; src: url("assets/fonts/PatrickHand-Regular.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: block; }
+      @font-face { font-family: "Zalando Sans"; src: url("assets/fonts/ZalandoSans-Variable.ttf") format("truetype"); font-weight: 100 900; font-style: normal; font-display: block; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: #1e1e1e; }
+      body { font-family: "Zalando Sans", sans-serif; color: #f4f4f2; -webkit-font-smoothing: antialiased; }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; background: #1e1e1e; }
+      .clip { position: absolute; inset: 0; overflow: hidden; }
+      #glow { position: absolute; inset: 0; opacity: 0.35; background: radial-gradient(58% 32% at 50% 46%, rgba(207, 251, 80, 0.08), rgba(207, 251, 80, 0) 70%); }
+      #vignette { position: absolute; inset: 0; background: radial-gradient(110% 78% at 50% 44%, rgba(0, 0, 0, 0) 44%, rgba(0, 0, 0, 0.62) 100%); }
+      .cam { position: absolute; left: 540px; top: 880px; width: 1px; height: 1px; }
+      .layer { position: absolute; left: 0; top: 0; width: 1px; height: 1px; }
+      #dots { position: absolute; left: -2600px; top: -2600px; width: 12000px; height: 12000px; background-image: radial-gradient(circle, rgba(255, 255, 255, 0.095) 1.25px, rgba(255, 255, 255, 0) 1.95px); background-size: 24px 24px; }
+      #stage { position: absolute; inset: 0; overflow: hidden; }
+      /* facecam + post captions live below y≈1400: nothing of the infographic below it */
+      #safe { position: absolute; inset: 0; -webkit-mask-image: linear-gradient(to bottom, #000 0px, #000 1385px, transparent 1450px); mask-image: linear-gradient(to bottom, #000 0px, #000 1385px, transparent 1450px); }
+      #mbwrap, #shake { position: absolute; inset: 0; }
+      #hud { position: absolute; inset: 0; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="25.833" data-width="1080" data-height="1920">
+      <div id="bg" class="clip" data-start="0" data-duration="25.833" data-track-index="0">
+        <div class="cam" id="gcam2" data-layout-allow-overflow><div class="layer" id="gzoom2"><div class="layer" id="gpan2"><div class="layer" id="bokeh"></div></div></div></div>
+        <div class="cam" id="gcam" data-layout-allow-overflow><div class="layer" id="gzoom"><div class="layer" id="gpan"><div id="dots"></div></div></div></div>
+        <div id="glow"></div>
+        <div id="vignette"></div>
+      </div>
+      <!-- untimed on purpose: the clips inside carry their own data-start (no timed ancestor) -->
+      <div id="stage">
+        <svg width="0" height="0" style="position: absolute" aria-hidden="true">
+          <filter id="mb" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur id="mbn" in="SourceGraphic" stdDeviation="0 0" /></filter>
+          <filter id="mb2" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur id="mbn2" in="SourceGraphic" stdDeviation="0 0" /></filter>
+          <filter id="mb3" x="-20%" y="-60%" width="140%" height="220%"><feGaussianBlur id="mbn3" in="SourceGraphic" stdDeviation="0 0" /></filter>
+        </svg>
+        <div id="safe"><div id="mbwrap"><div id="shake"><div class="cam" id="cam" data-layout-allow-overflow><div class="layer" id="zoom"><div class="layer" id="pan"></div></div></div></div></div></div>
+        <div id="vpool" style="position:absolute;left:0;top:0;width:0;height:0;overflow:hidden">
+        <video id="c1" src="assets/clips/t_fit1.mp4" muted playsinline data-start="0" data-duration="4.4" data-track-index="20"></video>
+        <video id="c2" src="assets/clips/t_via1.mp4" muted playsinline data-start="0" data-duration="4.4" data-track-index="21"></video>
+        <video id="c3" src="assets/clips/t_cuc1.mp4" muted playsinline data-start="0" data-duration="4.4" data-track-index="22"></video>
+        <video id="c4" src="assets/clips/t_ani1.mp4" muted playsinline data-start="0" data-duration="4.4" data-track-index="23"></video>
+        <video id="c5" src="assets/clips/t_mot1.mp4" muted playsinline data-start="0" data-duration="4.4" data-track-index="24"></video>
+        <video id="c6" src="assets/clips/t_via2.mp4" muted playsinline data-start="0" data-duration="4.4" data-track-index="25"></video>
+        <video id="c7" src="assets/clips/t_cuc2.mp4" muted playsinline data-start="0" data-duration="4.4" data-track-index="26"></video>
+        <video id="l1" src="assets/clips/t_fit1.mp4" muted playsinline data-start="5.3" data-duration="6.1" data-media-start="1.0" data-track-index="27"></video>
+        <video id="l2" src="assets/clips/t_via1.mp4" muted playsinline data-start="6.05" data-duration="5.35" data-track-index="28"></video>
+        <video id="l3" src="assets/clips/t_cuc1.mp4" muted playsinline data-start="6.95" data-duration="4.45" data-track-index="20"></video>
+        <video id="l4" src="assets/clips/t_ani1.mp4" muted playsinline data-start="6.95" data-duration="4.45" data-track-index="21"></video>
+        <video id="l5" src="assets/clips/t_mot1.mp4" muted playsinline data-start="6.85" data-duration="4.55" data-track-index="22"></video>
+        <video id="hz1" src="assets/clips/hz_01.mp4" muted playsinline data-start="19.3" data-duration="3.9" data-track-index="23"></video>
+        <video id="hz2" src="assets/clips/hz_02.mp4" muted playsinline data-start="19.3" data-duration="3.9" data-track-index="24"></video>
+        <video id="hz3" src="assets/clips/hz_03.mp4" muted playsinline data-start="19.3" data-duration="3.9" data-track-index="25"></video>
+        <video id="hz4" src="assets/clips/hz_04.mp4" muted playsinline data-start="19.3" data-duration="3.9" data-track-index="26"></video>
+        <video id="hz5" src="assets/clips/hz_05.mp4" muted playsinline data-start="19.3" data-duration="3.9" data-track-index="27"></video>
+        <video id="hz6" src="assets/clips/hz_06.mp4" muted playsinline data-start="19.3" data-duration="3.9" data-track-index="28"></video>
+        <video id="hz7" src="assets/clips/hz_07.mp4" muted playsinline data-start="19.3" data-duration="3.9" data-track-index="20"></video>
+        <video id="hz8" src="assets/clips/hz_08.mp4" muted playsinline data-start="19.3" data-duration="3.9" data-track-index="21"></video>
+        <video id="hz9" src="assets/clips/hz_09.mp4" muted playsinline data-start="19.3" data-duration="3.9" data-track-index="22"></video>
+        <video id="g1" src="assets/clips/g_fit1.mp4" muted playsinline data-start="23.0" data-duration="2.833" data-track-index="23"></video>
+        <video id="g2" src="assets/clips/g_via1.mp4" muted playsinline data-start="23.0" data-duration="2.833" data-track-index="24"></video>
+        <video id="g3" src="assets/clips/g_cuc1.mp4" muted playsinline data-start="23.0" data-duration="2.833" data-track-index="25"></video>
+        <video id="g4" src="assets/clips/g_ani1.mp4" muted playsinline data-start="23.0" data-duration="2.833" data-track-index="26"></video>
+        <video id="g5" src="assets/clips/g_mot1.mp4" muted playsinline data-start="23.0" data-duration="2.833" data-track-index="27"></video>
+        <video id="g6" src="assets/clips/g_via2.mp4" muted playsinline data-start="23.0" data-duration="2.833" data-track-index="28"></video>
+        <video id="g7" src="assets/clips/g_cuc2.mp4" muted playsinline data-start="23.0" data-duration="2.833" data-track-index="20"></video>
+        <video id="g8" src="assets/clips/g_ani2.mp4" muted playsinline data-start="23.0" data-duration="2.833" data-track-index="21"></video>
+        <video id="g9" src="assets/clips/g_mot2.mp4" muted playsinline data-start="23.0" data-duration="2.833" data-track-index="22"></video>
+      </div>
+      </div>
+      <div id="hudclip" class="clip" data-start="0" data-duration="25.833" data-track-index="2">
+        <div id="hud"></div>
+      </div>
+
+      <audio id="s001-whoosh" src="assets/sfx/whoosh.wav" data-start="0" data-duration="0.57" data-track-index="3" data-volume="0.12"></audio>
+      <audio id="s002-tick" src="assets/sfx/tick.wav" data-start="0.12" data-duration="0.08" data-track-index="4" data-volume="0.05"></audio>
+      <audio id="s003-tick" src="assets/sfx/tick.wav" data-start="0.3" data-duration="0.08" data-track-index="4" data-volume="0.05"></audio>
+      <audio id="s004-card" src="assets/sfx/card.ogg" data-start="0.45" data-duration="0.62" data-track-index="4" data-volume="0.12"></audio>
+      <audio id="s005-tap" src="assets/sfx/tap.ogg" data-start="1.5" data-duration="0.08" data-track-index="3" data-volume="0.12"></audio>
+      <audio id="s006-pop" src="assets/sfx/pop.wav" data-start="1.82" data-duration="0.24" data-track-index="3" data-volume="0.14"></audio>
+      <audio id="s007-toggle" src="assets/sfx/toggle.ogg" data-start="3" data-duration="0.63" data-track-index="3" data-volume="0.1"></audio>
+      <audio id="s008-pop" src="assets/sfx/pop.wav" data-start="3.5" data-duration="0.24" data-track-index="4" data-volume="0.1"></audio>
+      <audio id="s009-whoosh" src="assets/sfx/whoosh.wav" data-start="3.77" data-duration="0.57" data-track-index="3" data-volume="0.16"></audio>
+      <audio id="s010-tap" src="assets/sfx/tap.ogg" data-start="3.8" data-duration="0.08" data-track-index="4" data-volume="0.12"></audio>
+      <audio id="s011-whoosh" src="assets/sfx/whoosh.wav" data-start="4.05" data-duration="0.57" data-track-index="4" data-volume="0.1"></audio>
+      <audio id="s012-whoosh" src="assets/sfx/whoosh.wav" data-start="4.5" data-duration="0.57" data-track-index="3" data-volume="0.22"></audio>
+      <audio id="s013-click" src="assets/sfx/click.ogg" data-start="4.73" data-duration="0.05" data-track-index="4" data-volume="0.18"></audio>
+      <audio id="s014-pop" src="assets/sfx/pop.wav" data-start="5.4" data-duration="0.24" data-track-index="3" data-volume="0.15"></audio>
+      <audio id="s015-whoosh" src="assets/sfx/whoosh.wav" data-start="5.8" data-duration="0.57" data-track-index="3" data-volume="0.14"></audio>
+      <audio id="s016-click" src="assets/sfx/click.ogg" data-start="5.86" data-duration="0.05" data-track-index="4" data-volume="0.18"></audio>
+      <audio id="s017-pop" src="assets/sfx/pop.wav" data-start="6.17" data-duration="0.24" data-track-index="4" data-volume="0.15"></audio>
+      <audio id="s018-whoosh" src="assets/sfx/whoosh.wav" data-start="6.48" data-duration="0.57" data-track-index="3" data-volume="0.2"></audio>
+      <audio id="s019-click" src="assets/sfx/click.ogg" data-start="6.55" data-duration="0.05" data-track-index="4" data-volume="0.18"></audio>
+      <audio id="s020-pop" src="assets/sfx/pop.wav" data-start="6.97" data-duration="0.24" data-track-index="4" data-volume="0.15"></audio>
+      <audio id="s021-whoosh" src="assets/sfx/whoosh.wav" data-start="7" data-duration="0.57" data-track-index="5" data-volume="0.1"></audio>
+      <audio id="s022-tick" src="assets/sfx/tick.wav" data-start="7.05" data-duration="0.08" data-track-index="6" data-volume="0.06"></audio>
+      <audio id="s023-tick" src="assets/sfx/tick.wav" data-start="7.12" data-duration="0.08" data-track-index="3" data-volume="0.06"></audio>
+      <audio id="s024-whoosh" src="assets/sfx/whoosh.wav" data-start="7.6" data-duration="0.57" data-track-index="3" data-volume="0.16"></audio>
+      <audio id="s025-card" src="assets/sfx/card.ogg" data-start="8.25" data-duration="0.62" data-track-index="3" data-volume="0.12"></audio>
+      <audio id="s026-rise" src="assets/sfx/rise.wav" data-start="8.67" data-duration="1.22" data-track-index="4" data-volume="0.1"></audio>
+      <audio id="s027-card" src="assets/sfx/card.ogg" data-start="8.9" data-duration="0.62" data-track-index="3" data-volume="0.1"></audio>
+      <audio id="s028-tick" src="assets/sfx/tick.wav" data-start="9.23" data-duration="0.08" data-track-index="5" data-volume="0.07"></audio>
+      <audio id="s029-tick" src="assets/sfx/tick.wav" data-start="9.45" data-duration="0.08" data-track-index="5" data-volume="0.07"></audio>
+      <audio id="s030-tick" src="assets/sfx/tick.wav" data-start="9.67" data-duration="0.08" data-track-index="3" data-volume="0.07"></audio>
+      <audio id="s031-tick" src="assets/sfx/tick.wav" data-start="9.9" data-duration="0.08" data-track-index="3" data-volume="0.07"></audio>
+      <audio id="s032-tick" src="assets/sfx/tick.wav" data-start="10.12" data-duration="0.08" data-track-index="3" data-volume="0.07"></audio>
+      <audio id="s033-tick" src="assets/sfx/tick.wav" data-start="10.28" data-duration="0.08" data-track-index="3" data-volume="0.07"></audio>
+      <audio id="s034-bong" src="assets/sfx/bong.ogg" data-start="10.42" data-duration="0.15" data-track-index="3" data-volume="0.16"></audio>
+      <audio id="s035-whoosh" src="assets/sfx/whoosh.wav" data-start="10.75" data-duration="0.57" data-track-index="3" data-volume="0.14"></audio>
+      <audio id="s036-pop" src="assets/sfx/pop.wav" data-start="10.9" data-duration="0.24" data-track-index="4" data-volume="0.08"></audio>
+      <audio id="s037-whoosh" src="assets/sfx/whoosh.wav" data-start="11.5" data-duration="0.57" data-track-index="3" data-volume="0.1"></audio>
+      <audio id="s038-tick" src="assets/sfx/tick.wav" data-start="11.7" data-duration="0.08" data-track-index="4" data-volume="0.05"></audio>
+      <audio id="s039-tick" src="assets/sfx/tick.wav" data-start="11.9" data-duration="0.08" data-track-index="4" data-volume="0.05"></audio>
+      <audio id="s040-tick" src="assets/sfx/tick.wav" data-start="12.1" data-duration="0.08" data-track-index="3" data-volume="0.05"></audio>
+      <audio id="s041-whoosh" src="assets/sfx/whoosh.wav" data-start="12.78" data-duration="0.57" data-track-index="3" data-volume="0.24"></audio>
+      <audio id="s042-card" src="assets/sfx/card.ogg" data-start="13.15" data-duration="0.62" data-track-index="4" data-volume="0.14"></audio>
+      <audio id="s043-drop" src="assets/sfx/drop.ogg" data-start="13.93" data-duration="0.22" data-track-index="3" data-volume="0.16"></audio>
+      <audio id="s044-drop" src="assets/sfx/drop.ogg" data-start="14.43" data-duration="0.22" data-track-index="3" data-volume="0.16"></audio>
+      <audio id="s045-drop" src="assets/sfx/drop.ogg" data-start="15.5" data-duration="0.22" data-track-index="3" data-volume="0.18"></audio>
+      <audio id="s046-ding" src="assets/sfx/ding.wav" data-start="16.67" data-duration="0.72" data-track-index="3" data-volume="0.14"></audio>
+      <audio id="s047-whoosh" src="assets/sfx/whoosh.wav" data-start="17.44" data-duration="0.57" data-track-index="3" data-volume="0.2"></audio>
+      <audio id="s048-slam" src="assets/sfx/slam.ogg" data-start="17.67" data-duration="0.56" data-track-index="4" data-volume="0.32"></audio>
+      <audio id="s049-sub" src="assets/sfx/sub.wav" data-start="17.67" data-duration="1.12" data-track-index="5" data-volume="0.3"></audio>
+      <audio id="s050-rise" src="assets/sfx/rise.wav" data-start="18.35" data-duration="1.22" data-track-index="3" data-volume="0.1"></audio>
+      <audio id="s051-whoosh" src="assets/sfx/whoosh.wav" data-start="18.75" data-duration="0.57" data-track-index="4" data-volume="0.14"></audio>
+      <audio id="s052-card" src="assets/sfx/card.ogg" data-start="19.4" data-duration="0.62" data-track-index="4" data-volume="0.12"></audio>
+      <audio id="s053-tap" src="assets/sfx/tap.ogg" data-start="19.82" data-duration="0.08" data-track-index="3" data-volume="0.2"></audio>
+      <audio id="s054-tick" src="assets/sfx/tick.wav" data-start="21.17" data-duration="0.08" data-track-index="3" data-volume="0.2"></audio>
+      <audio id="s055-tick" src="assets/sfx/tick.wav" data-start="21.6" data-duration="0.08" data-track-index="3" data-volume="0.2"></audio>
+      <audio id="s056-tick" src="assets/sfx/tick.wav" data-start="22.03" data-duration="0.08" data-track-index="3" data-volume="0.2"></audio>
+      <audio id="s057-tap" src="assets/sfx/tap.ogg" data-start="22.15" data-duration="0.08" data-track-index="3" data-volume="0.1"></audio>
+      <audio id="s058-ding" src="assets/sfx/ding.wav" data-start="22.5" data-duration="0.72" data-track-index="3" data-volume="0.2"></audio>
+      <audio id="s059-whoosh" src="assets/sfx/whoosh.wav" data-start="22.98" data-duration="0.57" data-track-index="4" data-volume="0.22"></audio>
+      <audio id="s060-card" src="assets/sfx/card.ogg" data-start="23.2" data-duration="0.62" data-track-index="5" data-volume="0.12"></audio>
+      <audio id="s061-tap" src="assets/sfx/tap.ogg" data-start="23.45" data-duration="0.08" data-track-index="3" data-volume="0.08"></audio>
+      <audio id="s062-pop" src="assets/sfx/pop.wav" data-start="23.95" data-duration="0.24" data-track-index="3" data-volume="0.1"></audio>
+      <audio id="s063-whoosh" src="assets/sfx/whoosh.wav" data-start="24.45" data-duration="0.57" data-track-index="3" data-volume="0.28"></audio>
+      <audio id="s064-bong" src="assets/sfx/bong.ogg" data-start="24.72" data-duration="0.15" data-track-index="4" data-volume="0.16"></audio>
+    </div>
+
+    <script>
+      (() => {
+        const ICON = {"baseline":"<path d=\"M4 20h16\"/><path d=\"m6 16 6-12 6 12\"/><path d=\"M8 12h8\"/>","instagram":"<rect width=\"20\" height=\"20\" x=\"2\" y=\"2\" rx=\"5\" ry=\"5\"/><path d=\"M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z\"/><line x1=\"17.5\" x2=\"17.51\" y1=\"6.5\" y2=\"6.5\"/>","youtube":"<path d=\"M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17\"/><path d=\"m10 15 5-3-5-3z\"/>","x":"<path d=\"M18 6 6 18\"/><path d=\"m6 6 12 12\"/>","circle":"<circle cx=\"12\" cy=\"12\" r=\"10\"/>","dumbbell":"<path d=\"M14.4 14.4 9.6 9.6\"/><path d=\"M18.657 21.485a2 2 0 1 1-2.829-2.828l-1.767 1.768a2 2 0 1 1-2.829-2.829l6.364-6.364a2 2 0 1 1 2.829 2.829l-1.768 1.767a2 2 0 1 1 2.828 2.829z\"/><path d=\"m21.5 21.5-1.4-1.4\"/><path d=\"M3.9 3.9 2.5 2.5\"/><path d=\"M6.404 12.768a2 2 0 1 1-2.829-2.829l1.768-1.767a2 2 0 1 1-2.828-2.829l2.828-2.828a2 2 0 1 1 2.829 2.828l1.767-1.768a2 2 0 1 1 2.829 2.829z\"/>","plane":"<path d=\"M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z\"/>","flame":"<path d=\"M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z\"/>","pizza":"<path d=\"m12 14-1 1\"/><path d=\"m13.75 18.25-1.25 1.42\"/><path d=\"M17.775 5.654a15.68 15.68 0 0 0-12.121 12.12\"/><path d=\"M18.8 9.3a1 1 0 0 0 2.1 7.7\"/><path d=\"M21.964 20.732a1 1 0 0 1-1.232 1.232l-18-5a1 1 0 0 1-.695-1.232A19.68 19.68 0 0 1 15.732 2.037a1 1 0 0 1 1.232.695z\"/>","cat":"<path d=\"M12 5c.67 0 1.35.09 2 .26 1.78-2 5.03-2.84 6.42-2.26 1.4.58-.42 7-.42 7 .57 1.07 1 2.24 1 3.44C21 17.9 16.97 21 12 21s-9-3-9-7.56c0-1.25.5-2.4 1-3.44 0 0-1.89-6.42-.5-7 1.39-.58 4.72.23 6.5 2.23A9.04 9.04 0 0 1 12 5Z\"/><path d=\"M8 14v.5\"/><path d=\"M16 14v.5\"/><path d=\"M11.25 16.25h1.5L12 17l-.75-.75Z\"/>","car":"<path d=\"M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2\"/><circle cx=\"7\" cy=\"17\" r=\"2\"/><path d=\"M9 17h6\"/><circle cx=\"17\" cy=\"17\" r=\"2\"/>","music":"<path d=\"M9 18V5l12-2v13\"/><circle cx=\"6\" cy=\"18\" r=\"3\"/><circle cx=\"18\" cy=\"16\" r=\"3\"/>","shirt":"<path d=\"M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z\"/>","gamepad-2":"<line x1=\"6\" x2=\"10\" y1=\"11\" y2=\"11\"/><line x1=\"8\" x2=\"8\" y1=\"9\" y2=\"13\"/><line x1=\"15\" x2=\"15.01\" y1=\"12\" y2=\"12\"/><line x1=\"18\" x2=\"18.01\" y1=\"10\" y2=\"10\"/><path d=\"M17.32 5H6.68a4 4 0 0 0-3.978 3.59c-.006.052-.01.101-.017.152C2.604 9.416 2 14.456 2 16a3 3 0 0 0 3 3c1 0 1.5-.5 2-1l1.414-1.414A2 2 0 0 1 9.828 16h4.344a2 2 0 0 1 1.414.586L17 18c.5.5 1 1 2 1a3 3 0 0 0 3-3c0-1.545-.604-6.584-.685-7.258-.007-.05-.011-.1-.017-.151A4 4 0 0 0 17.32 5z\"/>","coffee":"<path d=\"M10 2v2\"/><path d=\"M14 2v2\"/><path d=\"M16 8a1 1 0 0 1 1 1v8a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1h14a4 4 0 1 1 0 8h-1\"/><path d=\"M6 2v2\"/>","camera":"<path d=\"M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z\"/><circle cx=\"12\" cy=\"13\" r=\"3\"/>","bike":"<circle cx=\"18.5\" cy=\"17.5\" r=\"3.5\"/><circle cx=\"5.5\" cy=\"17.5\" r=\"3.5\"/><circle cx=\"15\" cy=\"5\" r=\"1\"/><path d=\"M12 17.5V14l-3-3 4-3 2 3h2\"/>","chevron-down":"<path d=\"m6 9 6 6 6-6\"/>","square-plus":"<rect width=\"18\" height=\"18\" x=\"3\" y=\"3\" rx=\"2\"/><path d=\"M8 12h8\"/><path d=\"M12 8v8\"/>","menu":"<line x1=\"4\" x2=\"20\" y1=\"12\" y2=\"12\"/><line x1=\"4\" x2=\"20\" y1=\"6\" y2=\"6\"/><line x1=\"4\" x2=\"20\" y1=\"18\" y2=\"18\"/>","user":"<path d=\"M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2\"/><circle cx=\"12\" cy=\"7\" r=\"4\"/>","check":"<path d=\"M20 6 9 17l-5-5\"/>","grid-3x3":"<rect width=\"18\" height=\"18\" x=\"3\" y=\"3\" rx=\"2\"/><path d=\"M3 9h18\"/><path d=\"M3 15h18\"/><path d=\"M9 3v18\"/><path d=\"M15 3v18\"/>","clapperboard":"<path d=\"M20.2 6 3 11l-.9-2.4c-.3-1.1.3-2.2 1.3-2.5l13.5-4c1.1-.3 2.2.3 2.5 1.3Z\"/><path d=\"m6.2 5.3 3.1 3.9\"/><path d=\"m12.4 3.4 3.1 4\"/><path d=\"M3 11h18v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z\"/>","square-user":"<rect width=\"18\" height=\"18\" x=\"3\" y=\"3\" rx=\"2\"/><circle cx=\"12\" cy=\"10\" r=\"3\"/><path d=\"M7 21v-2a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v2\"/>","eye":"<path d=\"M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0\"/><circle cx=\"12\" cy=\"12\" r=\"3\"/>","brain":"<path d=\"M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z\"/><path d=\"M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z\"/><path d=\"M15 13a4.5 4.5 0 0 1-3-4 4.5 4.5 0 0 1-3 4\"/><path d=\"M17.599 6.5a3 3 0 0 0 .399-1.375\"/><path d=\"M6.003 5.125A3 3 0 0 0 6.401 6.5\"/><path d=\"M3.477 10.896a4 4 0 0 1 .585-.396\"/><path d=\"M19.938 10.5a4 4 0 0 1 .585.396\"/><path d=\"M6 18a4 4 0 0 1-1.967-.516\"/><path d=\"M19.967 17.484A4 4 0 0 1 18 18\"/>","sparkles":"<path d=\"M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z\"/><path d=\"M20 3v4\"/><path d=\"M22 5h-4\"/><path d=\"M4 17v2\"/><path d=\"M5 18H3\"/>","arrow-up":"<path d=\"m5 12 7-7 7 7\"/><path d=\"M12 19V5\"/>","paw-print":"<circle cx=\"11\" cy=\"4\" r=\"2\"/><circle cx=\"18\" cy=\"8\" r=\"2\"/><circle cx=\"20\" cy=\"16\" r=\"2\"/><path d=\"M9 10a5 5 0 0 1 5 5v3.5a3.5 3.5 0 0 1-6.84 1.045Q6.52 17.48 4.46 16.84A3.5 3.5 0 0 1 5.5 10Z\"/>","cpu":"<rect width=\"16\" height=\"16\" x=\"4\" y=\"4\" rx=\"2\"/><rect width=\"6\" height=\"6\" x=\"9\" y=\"9\" rx=\"1\"/><path d=\"M15 2v2\"/><path d=\"M15 20v2\"/><path d=\"M2 15h2\"/><path d=\"M2 9h2\"/><path d=\"M20 15h2\"/><path d=\"M20 9h2\"/><path d=\"M9 2v2\"/><path d=\"M9 20v2\"/>","user-round":"<circle cx=\"12\" cy=\"8\" r=\"5\"/><path d=\"M20 21a8 8 0 0 0-16 0\"/>","triangle":"<path d=\"M13.73 4a2 2 0 0 0-3.46 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z\"/>","hourglass":"<path d=\"M5 22h14\"/><path d=\"M5 2h14\"/><path d=\"M17 22v-4.172a2 2 0 0 0-.586-1.414L12 12l-4.414 4.414A2 2 0 0 0 7 17.828V22\"/><path d=\"M7 2v4.172a2 2 0 0 0 .586 1.414L12 12l4.414-4.414A2 2 0 0 0 17 6.172V2\"/>"};
+        const WORDS = [];
+// ──── kit.js ────
+// ── KW kit · "stile Kallaway" nel brand di Samuele ─────────────────────────────
+// Inlined into every reel's <script> by kw-kit/build.cjs. Expects the shell in
+// kw-kit/shell.html: #pan/#zoom (world camera), #gpan/#gzoom (dots camera),
+// #shake, #mbwrap + <feGaussianBlur id="mbn"> (whip blur), #hud (screen-space
+// titles, never moved by the camera).
+//
+// Grammar extracted from 40 kallawaymarketing reels (see STILE-KALLAWAY/GUIDA-STILE.md):
+//  · persistent title at the top, swapped per section, revealed char-by-char from blur,
+//    a highlight box wiping in behind the key words, a second "voice" for accents
+//  · dark glossy cards on a near-black dotted field, ONE accent colour (here lime)
+//  · everything arrives blur→sharp; things not yet spoken sit there blurred
+//  · camera never stops: slow push between beats, whip pans with directional blur
+//  · thin connectors (solid / dashed) drawn on, nodes, lists, rings, crowds, counters
+
+const pan = document.getElementById("pan");
+const zoom = document.getElementById("zoom");
+const gpan = document.getElementById("gpan");
+const gzoom = document.getElementById("gzoom");
+// optional far layer (bokeh) moving at PF of the camera speed → parallax depth
+const gpan2 = document.getElementById("gpan2");
+const gzoom2 = document.getElementById("gzoom2");
+const PF = 0.45;
+const shakeEl = document.getElementById("shake");
+const mbwrap = document.getElementById("mbwrap");
+const mbn = document.getElementById("mbn");
+const hud = document.getElementById("hud");
+const $ = (id) => document.getElementById(id);
+
+// ── brand tokens ──
+const K = {
+  bg: "#1E1E1E", ink: "#1E1E1E", lime: "#CFFB50", white: "#FFFFFF",
+  text: "#F4F4F2", mute: "rgba(255,255,255,.55)", faint: "rgba(255,255,255,.28)",
+  line: "rgba(255,255,255,.16)", card: "#272727", card2: "#1f1f1f", ig: "#4a5df9",
+};
+// AE-style glow presets (Kallaway's look is glow everywhere: titles, accents, lines)
+const GLOW_W = "0 0 18px rgba(255,255,255,.26), 0 0 46px rgba(255,255,255,.10)";
+const GLOW_L = (a) => `0 0 22px rgba(207,251,80,${(0.55 * (a == null ? 1 : a)).toFixed(3)}), 0 0 70px rgba(207,251,80,${(0.22 * (a == null ? 1 : a)).toFixed(3)})`;
+const GLOW_LT = "0 0 20px rgba(207,251,80,.45), 0 0 48px rgba(207,251,80,.18)"; // lime text
+const FD = '"Advercase", serif';        // display: titles, numbers, captions
+const FH = '"Patrick Hand", cursive';   // the "second voice": accents, handwritten notes
+const FS = '"Zalando Sans", sans-serif'; // UI: labels inside cards
+const ANCHOR = { x: 540, y: 880 };       // screen point the camera centres on
+
+const UNITLESS = new Set(["opacity", "zIndex", "fontWeight", "lineHeight", "flex"]);
+const css = (o) => {
+  const r = {};
+  for (const k in o) r[k] = typeof o[k] === "number" && !UNITLESS.has(k) ? o[k] + "px" : o[k];
+  return r;
+};
+const el = (parent, style, html, tag) => {
+  const d = document.createElement(tag || "div");
+  Object.assign(d.style, css(style || {}));
+  if (html != null) d.innerHTML = html;
+  parent.appendChild(d);
+  return d;
+};
+const layered = (d) => (d.setAttribute("data-layout-allow-overlap", ""), d);
+const layer = (z, parent) => el(parent || pan, { position: "absolute", left: 0, top: 0, width: 1, height: 1, zIndex: z || 1 });
+const hx = (h) => [0, 2, 4].map((i) => parseInt(h.replace("#", "").slice(i, i + 2), 16));
+const rgba = (a, al) => { const A = hx(a); return `rgba(${A[0]},${A[1]},${A[2]},${al})`; };
+const svg = (name, size, color, sw, fill) =>
+  `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="${fill || "none"}" stroke="${color}" stroke-width="${sw || 2}" stroke-linecap="round" stroke-linejoin="round" style="display:block;flex:none">${ICON[name]}</svg>`;
+// deterministic noise (no Math.random in a seekable render)
+const hash = (n, seed) => { const x = Math.sin(n * 127.1 + (seed || 1) * 311.7) * 43758.5453; return (x - Math.floor(x)) * 2 - 1; };
+const NS = "http://www.w3.org/2000/svg";
+
+const tl = gsap.timeline({ paused: true });
+
+// ═══ camera ═══════════════════════════════════════════════════════════════════
+const CAM = { fx: ANCHOR.x, fy: ANCHOR.y, s: 1 };
+const camInit = (fx, fy, s) => {
+  Object.assign(CAM, { fx, fy, s });
+  gsap.set([zoom, gzoom], { transformOrigin: "0 0", scale: s });
+  gsap.set([pan, gpan], { x: -fx, y: -fy });
+  if (gpan2) {
+    gsap.set(gzoom2, { transformOrigin: "0 0", scale: 1 + (s - 1) * PF });
+    gsap.set(gpan2, { x: -fx * PF, y: -fy * PF });
+  }
+};
+const cam = (t, dur, fx, fy, s, ease) => {
+  tl.to([pan, gpan], { x: -fx, y: -fy, duration: dur, ease: ease || "power3.inOut" }, t);
+  tl.to([zoom, gzoom], { scale: s, duration: dur, ease: ease || "power3.inOut" }, t);
+  if (gpan2) {
+    tl.to(gpan2, { x: -fx * PF, y: -fy * PF, duration: dur, ease: ease || "power3.inOut" }, t);
+    tl.to(gzoom2, { scale: 1 + (s - 1) * PF, duration: dur, ease: ease || "power3.inOut" }, t);
+  }
+  Object.assign(CAM, { fx, fy, s });
+};
+// far bokeh: big soft lime/white glows in the half-speed space of the parallax layer
+const bokeh = (parent, spots) =>
+  spots.map(([x, y, r, a, white]) =>
+    el(parent, { position: "absolute", left: x - r, top: y - r, width: r * 2, height: r * 2, borderRadius: "50%", background: `radial-gradient(circle, ${white ? `rgba(255,255,255,${a})` : rgba(K.lime, a)} 0%, rgba(0,0,0,0) 70%)` }));
+// Kallaway's camera never rests: a slow push (or drift) across a hold
+const drift = (t, dur, dx, dy, ds) => {
+  const fx = CAM.fx + (dx || 0), fy = CAM.fy + (dy || 0), s = CAM.s * (1 + (ds == null ? 0.03 : ds));
+  cam(t, dur, fx, fy, s, "sine.inOut");
+};
+// whip pan: position on power3.inOut, directional blur peaking mid-leg (motion-blur-streak rule)
+const whip = (t, dur, fx, fy, s, axis, peak) => {
+  peak = peak || 22;
+  const P = { v: 0 };
+  const write = () => mbn.setAttribute("stdDeviation", axis === "y" ? `0 ${P.v}` : `${P.v} 0`);
+  write();
+  tl.set(mbwrap, { filter: "url(#mb)" }, t);
+  tl.to(P, { v: peak, duration: dur / 2, ease: "power3.in", onUpdate: write }, t);
+  tl.to(P, { v: 0, duration: dur / 2, ease: "power3.out", onUpdate: write }, t + dur / 2);
+  tl.set(mbwrap, { filter: "none" }, t + dur);
+  cam(t, dur, fx, fy, s, "power3.inOut");
+};
+// world point → screen point under the current CAM (layout helper only)
+const toScreen = (wx, wy, c) => { c = c || CAM; return [ANCHOR.x + (wx - c.fx) * c.s, ANCHOR.y + (wy - c.fy) * c.s]; };
+// screen point → world point for a camera pose {fx, fy, s} (place things where they will be seen)
+const toWorld = (sx, sy, c) => { c = c || CAM; return [c.fx + (sx - ANCHOR.x) / c.s, c.fy + (sy - ANCHOR.y) / c.s]; };
+
+const shake = (t, amp, n) => {
+  for (let k = 0; k < n; k++) {
+    const f = 1 - k / n;
+    tl.to(shakeEl, { x: (k % 2 ? -1 : 1) * amp * f, y: (((k * 5) % 3) - 1) * amp * 0.6 * f, duration: 0.04, ease: "none" }, t + k * 0.04);
+  }
+  tl.to(shakeEl, { x: 0, y: 0, duration: 0.06, ease: "power1.out" }, t + n * 0.04);
+};
+
+// ═══ reveals ══════════════════════════════════════════════════════════════════
+// the signature arrival: blur → sharp, a small lift and scale settle
+const blurIn = (target, t, o) => {
+  o = o || {};
+  const b = o.blur == null ? 18 : o.blur;
+  gsap.set(target, { opacity: 0, filter: `blur(${b}px)`, y: o.y == null ? 28 : o.y, x: o.x || 0, scale: o.scale == null ? 0.96 : o.scale });
+  const d = o.dur || 0.6;
+  tl.to(target, { opacity: 1, filter: "blur(0px)", y: 0, x: 0, scale: 1, duration: d, ease: o.ease || "power3.out", stagger: o.stagger || 0 }, t);
+  const n = Array.isArray(target) ? target.length : 1;
+  tl.set(target, { filter: "none" }, t + d + (o.stagger || 0) * (n - 1) + 0.01);
+};
+const blurOut = (target, t, o) => {
+  o = o || {};
+  tl.to(target, { opacity: 0, filter: `blur(${o.blur || 14}px)`, y: o.y || 0, x: o.x || 0, scale: o.scale == null ? 0.97 : o.scale, duration: o.dur || 0.35, ease: "power2.in", stagger: o.stagger || 0 }, t);
+};
+// "not spoken yet": sharp-but-blurred placeholder that resolves on its cue
+const unblur = (target, t, from, dur) => {
+  gsap.set(target, { filter: `blur(${from || 9}px)`, opacity: 0.45 });
+  tl.to(target, { filter: "blur(0px)", opacity: 1, duration: dur || 0.4, ease: "power2.out" }, t);
+  tl.set(target, { filter: "none" }, t + (dur || 0.4) + 0.01);
+};
+const pop = (target, t, from, ease, dur) => {
+  gsap.set(target, { scale: from == null ? 0 : from, opacity: 0 });
+  tl.to(target, { opacity: 1, duration: 0.1 }, t);
+  tl.to(target, { scale: 1, duration: dur || 0.45, ease: ease || "back.out(2.2)" }, t);
+};
+const fadeOut = (target, t, dur) => tl.to(target, { opacity: 0, duration: dur || 0.3 }, t);
+const counter = (node, from, to, t, dur, ease, fmt) => {
+  const o = { v: from };
+  tl.to(o, { v: to, duration: dur, ease: ease || "power2.out", onUpdate: () => (node.textContent = fmt ? fmt(o.v) : String(Math.round(o.v))) }, t);
+};
+const itNum = (v) => Math.round(v).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+const typeText = (node, text, t, dur) => {
+  const o = { n: 0 };
+  tl.to(o, { n: text.length, duration: dur, ease: "none", onUpdate: () => (node.textContent = text.slice(0, Math.round(o.n))) }, t);
+};
+// a glossy light sweep across a card (Kallaway's "sheen")
+const sheen = (card, t, dur) => {
+  const s = el(card, { position: "absolute", left: 0, top: 0, width: "100%", height: "100%", pointerEvents: "none", overflow: "hidden", borderRadius: "inherit", zIndex: 30 });
+  const band = el(s, { position: "absolute", left: "-60%", top: "-20%", width: "45%", height: "140%", background: "linear-gradient(100deg, rgba(255,255,255,0) 0%, rgba(255,255,255,.16) 50%, rgba(255,255,255,0) 100%)", transform: "skewX(-14deg)" });
+  gsap.set(band, { x: 0, opacity: 0 });
+  tl.set(band, { opacity: 1 }, t);
+  tl.to(band, { x: (parseFloat(card.style.width) || 560) * 2.2, duration: dur || 0.9, ease: "power2.inOut" }, t);
+  tl.set(band, { opacity: 0 }, t + (dur || 0.9));
+};
+const glowOn = (target, t, color, r, dur) =>
+  tl.to(target, { boxShadow: `0 0 ${r || 60}px ${rgba(color || K.lime, 0.45)}, 0 30px 80px rgba(0,0,0,.55)`, duration: dur || 0.4 }, t);
+// a physical flight on a quadratic arc: node is centred on its (x,y) transform (left/top = -w/2,-h/2).
+// blur peaks mid-flight (speed), scale/rotation settle on landing. o: {lift, bend, s0, s1, rot0, rotMid, blur, ease, hold}
+const arcFly = (node, from, to, t, dur, o) => {
+  o = o || {};
+  const [x0, y0] = from, [x1, y1] = to;
+  const mx = (x0 + x1) / 2 + (o.bend || 0), my = o.straight ? (y0 + y1) / 2 : Math.min(y0, y1) - (o.lift == null ? 160 : o.lift);
+  const s0 = o.s0 == null ? 1 : o.s0, s1 = o.s1 == null ? 1 : o.s1, r0 = o.rot0 || 0, bl = o.blur == null ? 7 : o.blur;
+  const P = { u: 0 };
+  const put = () => {
+    const u = P.u, a = (1 - u) * (1 - u), b = 2 * (1 - u) * u, c = u * u, sp = Math.sin(Math.PI * u);
+    gsap.set(node, { x: a * x0 + b * mx + c * x1, y: a * y0 + b * my + c * y1, rotation: r0 * (1 - u) + (o.rotMid || 0) * sp, scale: s0 + (s1 - s0) * u, filter: `blur(${(bl * sp).toFixed(2)}px)` });
+  };
+  put();
+  gsap.set(node, { opacity: 0 });
+  tl.set(node, { opacity: 1 }, t);
+  tl.to(P, { u: 1, duration: dur, ease: o.ease || "power2.inOut", onUpdate: put }, t);
+  tl.set(node, { opacity: 0 }, t + dur + (o.hold || 0));
+  return { mx, my, d: `M${x0} ${y0} Q${mx} ${my} ${x1} ${y1}` };
+};
+// expanding ring (impact / pulse)
+const ripple = (parent, x, y, t, o) => {
+  o = o || {};
+  const r = o.r || 200, W = o.wd || r * 2, H = o.ht || r * 2;
+  const g = el(parent, { position: "absolute", left: x - W / 2, top: y - H / 2, width: W, height: H, borderRadius: o.radius || "50%", border: `${o.w || 4}px solid ${o.color || K.lime}`, boxShadow: o.glow === false ? "none" : GLOW_L(0.6), opacity: 0, zIndex: o.z || 30, pointerEvents: "none" });
+  gsap.set(g, { scale: o.s0 == null ? 0.3 : o.s0 });
+  tl.set(g, { opacity: o.a == null ? 0.95 : o.a }, t);
+  tl.to(g, { scale: o.s1 || 1, opacity: 0, duration: o.dur || 0.65, ease: "power2.out" }, t);
+  return g;
+};
+// impact sparks: short bars shooting out radially
+const sparks = (parent, x, y, t, o) => {
+  o = o || {};
+  const n = o.n || 10, r0 = o.r0 || 40, r1 = o.r1 || 150, L = o.len || 44;
+  for (let i = 0; i < n; i++) {
+    const a = (i / n) * 360 + hash(i, o.seed || 2) * 14;
+    const w = el(parent, { position: "absolute", left: x, top: y, width: 1, height: 1, transform: `rotate(${a}deg)`, zIndex: o.z || 31, pointerEvents: "none" });
+    const b = el(w, { position: "absolute", left: 0, top: -3, width: L, height: 6, borderRadius: 3, background: o.color || K.lime, boxShadow: GLOW_L(0.7), transformOrigin: "0 50%" });
+    gsap.set(b, { x: r0, scaleX: 0, opacity: 0 });
+    tl.set(b, { opacity: 1 }, t);
+    tl.to(b, { x: r1 * (0.8 + 0.4 * Math.abs(hash(i, 7))), scaleX: 1, duration: 0.22, ease: "power3.out" }, t);
+    tl.to(b, { x: r1 * 1.25, scaleX: 0, opacity: 0, duration: 0.25, ease: "power2.in" }, t + 0.22);
+  }
+};
+// Kallaway section bar: glossy dark bar, solid accent block holding the number, label (+ optional sub)
+const sectionBar = (parent, x, y, w, h, num, text, sub, o) => {
+  o = o || {};
+  const r = el(parent, { position: "absolute", left: x, top: y, width: w, height: h, borderRadius: 10, background: "linear-gradient(90deg,#2f2f2f 0%,#262626 60%,#3a3a3a 100%)", border: "1.5px solid rgba(255,255,255,.16)", boxShadow: "inset 0 1.5px 0 rgba(255,255,255,.1), 0 18px 44px rgba(0,0,0,.5)", overflow: "hidden", zIndex: o.z || 14 });
+  const blk = el(r, { position: "absolute", left: 0, top: 0, width: Math.round(h * 0.78), height: h, background: "linear-gradient(180deg,#dcff74,#CFFB50 55%,#b6e23a)", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: FD, fontWeight: 700, fontSize: Math.round(h * 0.46), color: K.ink }, num);
+  const lx = Math.round(h * 0.78) + 22;
+  const tx = el(r, { position: "absolute", left: lx, top: sub ? Math.round(h * 0.12) : 0, height: sub ? "auto" : h, display: "flex", alignItems: "center", fontFamily: FD, fontWeight: 700, fontSize: o.fs || Math.round(h * 0.44), color: K.white, lineHeight: 1, whiteSpace: "nowrap", textShadow: GLOW_W }, text);
+  if (sub) el(r, { position: "absolute", left: lx + 2, top: Math.round(h * 0.62), fontFamily: FS, fontWeight: 600, fontSize: Math.round(h * 0.2), color: K.mute, whiteSpace: "nowrap" }, sub);
+  return { r, blk, tx };
+};
+// Kallaway video card: real footage in a rounded frame with a thin light border, a category chip at the bottom.
+// Centred on (cx, cy) through its x/y transform (so it can fly); the inner body takes the entrance animation.
+const videoCard = (parent, cx, cy, w, h, vid, o) => {
+  o = o || {};
+  const wrap = layered(el(parent, { position: "absolute", left: -w / 2, top: -h / 2, width: w, height: h, zIndex: o.z || 10 }));
+  gsap.set(wrap, { x: cx, y: cy, scale: o.scale || 1, rotation: o.rot || 0 });
+  const body = el(wrap, { position: "absolute", left: 0, top: 0, width: w, height: h, borderRadius: Math.round(w * 0.07), border: "2px solid rgba(255,255,255,.24)", boxShadow: `0 ${Math.round(w * 0.12)}px ${Math.round(w * 0.3)}px rgba(0,0,0,.6), 0 0 ${Math.round(w * 0.12)}px rgba(255,255,255,.08)`, overflow: "hidden", background: "#111" });
+  videoTile(body, 0, 0, w, h, vid, 1);
+  if (o.label) {
+    const fs = Math.max(14, Math.round(w * 0.085));
+    el(body, { position: "absolute", left: 0, bottom: 0, width: w, height: Math.round(h * 0.34), background: "linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,.75))", zIndex: 2 });
+    el(body, { position: "absolute", left: Math.round(w * 0.07), bottom: Math.round(w * 0.07), display: "flex", alignItems: "center", gap: Math.round(fs * 0.4), padding: `${Math.round(fs * 0.3)}px ${Math.round(fs * 0.6)}px`, borderRadius: Math.round(fs * 0.5), background: "rgba(20,20,20,.72)", border: "1.5px solid rgba(255,255,255,.22)", fontFamily: FS, fontWeight: 700, fontSize: fs, color: K.white, zIndex: 3, whiteSpace: "nowrap" }, (o.icon ? svg(o.icon, Math.round(fs * 1.15), K.white, 2.2) : "") + o.label);
+  }
+  return { wrap, body };
+};
+// Kallaway UI highlight: an accent rectangle that snaps onto a region of a screenshot / phone
+const highlight = (parent, x, y, w, h, t, o) => {
+  o = o || {};
+  const b = el(parent, { position: "absolute", left: x, top: y, width: w, height: h, borderRadius: o.r == null ? 10 : o.r, border: `${o.bw || 4}px solid ${o.color || K.lime}`, boxShadow: `${GLOW_L(0.7)}, inset 0 0 24px ${rgba(o.color || K.lime, 0.22)}`, background: rgba(o.color || K.lime, 0.06), opacity: 0, zIndex: o.z || 40, pointerEvents: "none" });
+  gsap.set(b, { scale: 1.1 });
+  tl.to(b, { opacity: 1, scale: 1, duration: 0.28, ease: "back.out(2)" }, t);
+  return b;
+};
+// touch indicator (the viewer's thumb on the screen)
+const finger = (parent, z) => {
+  const f = el(parent, { position: "absolute", left: -45, top: -45, width: 90, height: 90, borderRadius: "50%", background: "radial-gradient(circle, rgba(255,255,255,.55) 0%, rgba(255,255,255,.25) 60%, rgba(255,255,255,.1) 100%)", border: "3px solid rgba(255,255,255,.9)", boxShadow: "0 10px 30px rgba(0,0,0,.45), 0 0 30px rgba(255,255,255,.25)", opacity: 0, zIndex: z || 60 });
+  return f;
+};
+
+// ═══ title system (screen-space, top of frame) ════════════════════════════════
+// spec = { lines: [[{t:"L'errore "},{t:"n°1",box:true}], [{t:"dei principianti",hand:true}]], size, top }
+// returns { root, inAt(t), outAt(t) } — chars arrive left→right from blur, the lime box wipes in
+const TITLE_TOP = 168;
+// small glossy section badge above a title (Kallaway's icon square)
+const iconBadge = (parent, icon, size) => {
+  size = size || 66;
+  return el(parent, { width: size, height: size, borderRadius: size * 0.24, background: "linear-gradient(160deg,#3c3c3c 0%,#262626 55%,#1d1d1d 100%)", border: "1.5px solid rgba(255,255,255,.2)", boxShadow: "inset 0 1.5px 0 rgba(255,255,255,.14), 0 12px 30px rgba(0,0,0,.5), 0 0 30px rgba(255,255,255,.06)", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: Math.round(size * 0.22) }, svg(icon, Math.round(size * 0.52), "#fff", 2));
+};
+const title = (spec) => {
+  const size = spec.size || 82;
+  const root = el(hud, { position: "absolute", left: 40, top: spec.top || TITLE_TOP, width: 1000, display: "flex", flexDirection: "column", alignItems: "center", gap: Math.round(size * 0.08), zIndex: 50 });
+  const badge = spec.icon ? iconBadge(root, spec.icon) : null;
+  if (badge) gsap.set(badge, { opacity: 0, scale: 0.6, filter: "blur(8px)" });
+  const chars = [], boxes = [];
+  spec.lines.forEach((line) => {
+    const row = el(root, { display: "flex", alignItems: "baseline", justifyContent: "center", flexWrap: "nowrap", whiteSpace: "nowrap" });
+    line.forEach((seg) => {
+      const hand = !!seg.hand, box = !!seg.box;
+      const fs = Math.round(size * (hand ? 1.08 : 1) * (seg.scale || 1));
+      const wrap = el(row, { position: "relative", display: "inline-flex", alignItems: "baseline", padding: box ? `0 ${Math.round(size * 0.14)}px` : 0, margin: box ? `0 ${Math.round(size * 0.06)}px` : 0 }, null, "span");
+      if (box) {
+        const b = el(wrap, { position: "absolute", left: 0, top: Math.round(size * 0.04), width: "100%", height: Math.round(size * 1.0), background: "linear-gradient(180deg,#dcff74 0%,#CFFB50 55%,#bde83f 100%)", borderRadius: 6, transformOrigin: "0 50%", zIndex: 0, boxShadow: GLOW_L(0.8) });
+        gsap.set(b, { scaleX: 0 });
+        boxes.push([b, chars.length]);
+      }
+      [...seg.t].forEach((ch) => {
+        const c = el(wrap, {
+          position: "relative", zIndex: 1, display: "inline-block", whiteSpace: "pre",
+          fontFamily: hand ? FH : FD, fontWeight: hand ? 400 : 700, fontSize: fs, lineHeight: 1.04,
+          letterSpacing: hand ? "0" : "-0.01em", color: box ? K.ink : hand ? K.lime : K.white,
+          textShadow: box ? "none" : hand ? GLOW_LT : GLOW_W,
+        }, ch === " " ? "&nbsp;" : ch, "span");
+        chars.push(c);
+      });
+    });
+  });
+  gsap.set(chars, { opacity: 0, filter: "blur(10px)", x: -8 });
+  const STEP = spec.step || 0.022;
+  const inAt = (t) => {
+    if (badge) {
+      tl.to(badge, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.45, ease: "back.out(2)" }, t - 0.06);
+      tl.set(badge, { filter: "none" }, t + 0.4);
+    }
+    tl.to(chars, { opacity: 1, filter: "blur(0px)", x: 0, duration: 0.3, ease: "power2.out", stagger: STEP }, t);
+    tl.set(chars, { filter: "none" }, t + 0.32 + STEP * chars.length);
+    boxes.forEach(([b, i0]) => tl.to(b, { scaleX: 1, duration: 0.42, ease: "expo.out" }, t + i0 * STEP - 0.04));
+    return t + 0.3 + STEP * chars.length;
+  };
+  // exit: chars leave left→right upward into blur, the box wipes away to the right
+  const outAt = (t) => {
+    if (badge) tl.to(badge, { opacity: 0, scale: 0.7, filter: "blur(8px)", duration: 0.2, ease: "power2.in" }, t);
+    tl.to(chars, { opacity: 0, filter: "blur(9px)", y: -16, duration: 0.2, ease: "power2.in", stagger: 0.007 }, t);
+    boxes.forEach(([b]) => {
+      tl.set(b, { transformOrigin: "100% 50%" }, t);
+      tl.to(b, { scaleX: 0, duration: 0.26, ease: "power3.in" }, t + 0.02);
+    });
+    tl.set(root, { opacity: 0 }, t + 0.22 + chars.length * 0.007);
+  };
+  return { root, chars, inAt, outAt };
+};
+
+// ═══ building blocks ══════════════════════════════════════════════════════════
+const CARD_SH = "0 34px 90px rgba(0,0,0,.6), 0 2px 0 rgba(0,0,0,.4), inset 0 1.5px 0 rgba(255,255,255,.09)";
+const card = (parent, x, y, w, h, extra) =>
+  el(parent, Object.assign({ position: "absolute", left: x, top: y, width: w, height: h, borderRadius: 22, background: "linear-gradient(180deg,#323232 0%,#262626 40%,#1b1b1b 100%)", border: "1.5px solid rgba(255,255,255,.17)", boxShadow: CARD_SH, overflow: "hidden" }, extra || {}));
+// small caps label inside cards (Zalando Sans)
+const label = (parent, x, y, text, o) =>
+  el(parent, Object.assign({ position: "absolute", left: x, top: y, fontFamily: FS, fontWeight: 600, fontSize: 24, letterSpacing: "0.12em", textTransform: "uppercase", color: K.mute, whiteSpace: "nowrap" }, o || {}), text);
+// Kallaway list row: dark bar, accent stripe on the left, number + label
+const row = (parent, x, y, w, num, text, o) => {
+  o = o || {};
+  const h = o.h || 92;
+  const r = el(parent, { position: "absolute", left: x, top: y, width: w, height: h, borderRadius: 14, background: "linear-gradient(90deg,#2d2d2d,#242424)", border: "1.5px solid rgba(255,255,255,.1)", boxShadow: "0 18px 40px rgba(0,0,0,.4)", overflow: "hidden", zIndex: o.z || 10 });
+  const bar = el(r, { position: "absolute", left: 0, top: 0, width: 9, height: h, background: K.lime });
+  const n = el(r, { position: "absolute", left: 30, top: 0, height: h, display: "flex", alignItems: "center", fontFamily: FD, fontWeight: 700, fontSize: Math.round(h * 0.48), color: K.white }, num);
+  const tx = el(r, { position: "absolute", left: 30 + Math.round(h * 0.95), top: 0, height: h, display: "flex", alignItems: "center", fontFamily: FS, fontWeight: 700, fontSize: o.fs || Math.round(h * 0.37), color: K.white, whiteSpace: "nowrap" }, text);
+  return { r, bar, n, tx };
+};
+// glowing node pill, e.g. ‹algoritmo›
+const nodePill = (parent, cx, cy, html, o) => {
+  o = o || {};
+  const w = o.w || 380, h = o.h || 86;
+  const p = el(parent, { position: "absolute", left: cx - w / 2, top: cy - h / 2, width: w, height: h, borderRadius: h / 2, background: "linear-gradient(180deg,#2a3313,#1d230c)", border: `2px solid ${K.lime}`, boxShadow: `0 0 50px ${rgba(K.lime, 0.32)}, inset 0 0 22px ${rgba(K.lime, 0.12)}`, display: "flex", alignItems: "center", justifyContent: "center", gap: 14, fontFamily: FS, fontWeight: 700, fontSize: o.fs || 34, color: K.lime, letterSpacing: "0.02em", zIndex: o.z || 20 }, html);
+  return p;
+};
+// glossy brand app icon (Kallaway drops real platform logos into his diagrams)
+const APP = {
+  instagram: { bg: "radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%)", icon: "instagram" },
+  youtube: { bg: "linear-gradient(160deg,#ff3b3b,#e00000)", icon: "youtube" },
+};
+const appIcon = (parent, cx, cy, size, kind, z) => {
+  const a = APP[kind];
+  const t = el(parent, { position: "absolute", left: cx - size / 2, top: cy - size / 2, width: size, height: size, borderRadius: size * 0.26, background: a.bg, boxShadow: `inset 0 ${size * 0.03}px 0 rgba(255,255,255,.35), inset 0 -${size * 0.06}px ${size * 0.14}px rgba(0,0,0,.18), 0 ${size * 0.12}px ${size * 0.3}px rgba(0,0,0,.55)`, display: "flex", alignItems: "center", justifyContent: "center", zIndex: z || 20, overflow: "hidden" }, svg(a.icon, Math.round(size * 0.62), "#fff", 2));
+  // top gloss
+  el(t, { position: "absolute", left: 0, top: 0, width: "100%", height: "48%", background: "linear-gradient(180deg, rgba(255,255,255,.22), rgba(255,255,255,0))", pointerEvents: "none" });
+  return t;
+};
+// person glyph (Kallaway's crowds): head + shoulders, filled
+const person = (parent, cx, cy, size, color, z) => {
+  const g = el(parent, { position: "absolute", left: cx - size / 2, top: cy - size / 2, width: size, height: size, zIndex: z || 5 });
+  el(g, { position: "absolute", left: size * 0.3, top: 0, width: size * 0.4, height: size * 0.4, borderRadius: "50%", background: color });
+  el(g, { position: "absolute", left: size * 0.1, top: size * 0.48, width: size * 0.8, height: size * 0.5, borderRadius: `${size * 0.4}px ${size * 0.4}px ${size * 0.08}px ${size * 0.08}px`, background: color });
+  return g;
+};
+
+// ═══ connectors (SVG, world space) ═══════════════════════════════════════════
+// one big overlay svg per layer; path draws on; dashed lines draw on through a mask
+let SVGN = 0;
+// an svg overlay covering the world rect (x0,y0,w,h); paths use world coordinates
+const svgLayer = (parent, z, x0, y0, w, h, glow) => {
+  x0 = x0 == null ? -200 : x0; y0 = y0 == null ? -200 : y0; w = w || 1500; h = h || 2300;
+  const s = document.createElementNS(NS, "svg");
+  s.setAttribute("width", w); s.setAttribute("height", h);
+  Object.assign(s.style, { position: "absolute", left: x0 + "px", top: y0 + "px", overflow: "visible", zIndex: z || 4, pointerEvents: "none" });
+  // one bloom for every stroke on this layer (AE "Glow" on the line pass)
+  if (glow) s.style.filter = glow === "white" ? "drop-shadow(0 0 6px rgba(255,255,255,.55))" : `drop-shadow(0 0 ${glow === true ? 7 : glow}px rgba(207,251,80,.55))`;
+  s.setAttribute("viewBox", `${x0} ${y0} ${w} ${h}`);
+  const defs = document.createElementNS(NS, "defs");
+  s.appendChild(defs);
+  parent.appendChild(s);
+  s._defs = defs;
+  return s;
+};
+const pathD = (pts, curve) => {
+  if (!curve) return "M" + pts.map((p) => p.join(" ")).join(" L");
+  // smooth cubic through the points (horizontal tangents — Kallaway's "S" connectors)
+  let d = `M${pts[0][0]} ${pts[0][1]}`;
+  for (let i = 1; i < pts.length; i++) {
+    const [x0, y0] = pts[i - 1], [x1, y1] = pts[i];
+    const k = curve === "v" ? [x0, (y0 + y1) / 2, x1, (y0 + y1) / 2] : [(x0 + x1) / 2, y0, (x0 + x1) / 2, y1];
+    d += ` C${k[0]} ${k[1]} ${k[2]} ${k[3]} ${x1} ${y1}`;
+  }
+  return d;
+};
+// o: { color, w, dash:[a,b], curve:'h'|'v'|null, glow }
+const connector = (S, pts, o) => {
+  o = o || {};
+  const id = "cn" + ++SVGN;
+  const d = o.d || pathD(pts, o.curve);
+  const p = document.createElementNS(NS, "path");
+  p.setAttribute("d", d);
+  p.setAttribute("fill", "none");
+  p.setAttribute("stroke", o.color || "rgba(255,255,255,.75)");
+  p.setAttribute("stroke-width", o.w || 3);
+  p.setAttribute("stroke-linecap", "round");
+  if (o.glow) p.style.filter = `drop-shadow(0 0 8px ${rgba(K.lime, 0.7)})`;
+  S.appendChild(p);
+  const L = p.getTotalLength();
+  if (o.dash) {
+    // dashed: real dash pattern on the path, draw-on through a mask path
+    p.setAttribute("stroke-dasharray", o.dash.join(" "));
+    const m = document.createElementNS(NS, "mask");
+    m.setAttribute("id", id); m.setAttribute("maskUnits", "userSpaceOnUse");
+    m.setAttribute("x", "-60000"); m.setAttribute("y", "-60000"); m.setAttribute("width", "200000"); m.setAttribute("height", "200000");
+    const mp = document.createElementNS(NS, "path");
+    mp.setAttribute("d", d); mp.setAttribute("fill", "none"); mp.setAttribute("stroke", "#fff");
+    mp.setAttribute("stroke-width", (o.w || 3) + 8); mp.setAttribute("stroke-linecap", "round");
+    mp.setAttribute("stroke-dasharray", `${L} ${L}`); mp.setAttribute("stroke-dashoffset", L);
+    m.appendChild(mp); S._defs.appendChild(m);
+    p.setAttribute("mask", `url(#${id})`);
+    return { p, L, draw: (t, dur, ease) => tl.to(mp, { attr: { "stroke-dashoffset": 0 }, duration: dur || 0.5, ease: ease || "power2.inOut" }, t),
+      march: (t, dur, px) => tl.fromTo(p, { attr: { "stroke-dashoffset": 0 } }, { attr: { "stroke-dashoffset": -(px || 120) }, duration: dur, ease: "none", immediateRender: false }, t),
+      hide: (t, dur) => tl.to(p, { opacity: 0, duration: dur || 0.25 }, t) };
+  }
+  p.setAttribute("stroke-dasharray", `${L} ${L}`);
+  p.setAttribute("stroke-dashoffset", L);
+  return { p, L, draw: (t, dur, ease) => tl.to(p, { attr: { "stroke-dashoffset": 0 }, duration: dur || 0.5, ease: ease || "power2.inOut" }, t),
+    hide: (t, dur) => tl.to(p, { opacity: 0, duration: dur || 0.25 }, t) };
+};
+// a dot that travels along a connector (data flowing)
+const traveller = (S, conn, t, dur, color, r) => {
+  const c = document.createElementNS(NS, "circle");
+  c.setAttribute("r", r || 9); c.setAttribute("fill", color || K.lime);
+  c.style.filter = `drop-shadow(0 0 10px ${rgba(color || K.lime, 0.9)})`;
+  c.setAttribute("opacity", "0");
+  S.appendChild(c);
+  // sample the path once at build time; the tween only interpolates baked points
+  const N = 48, PTS = [];
+  for (let i = 0; i <= N; i++) { const pt = conn.p.getPointAtLength((i / N) * conn.L); PTS.push([pt.x, pt.y]); }
+  const o = { u: 0 };
+  const put = () => {
+    const f = o.u * N, i = Math.min(N - 1, Math.floor(f)), r = f - i;
+    c.setAttribute("cx", PTS[i][0] + (PTS[i + 1][0] - PTS[i][0]) * r);
+    c.setAttribute("cy", PTS[i][1] + (PTS[i + 1][1] - PTS[i][1]) * r);
+  };
+  put();
+  tl.set(c, { attr: { opacity: 1 } }, t);
+  tl.to(o, { u: 1, duration: dur, ease: "power1.inOut", onUpdate: put }, t);
+  tl.set(c, { attr: { opacity: 0 } }, t + dur);
+  return c;
+};
+
+// ═══ handwritten annotations (Patrick Hand voice, lime marker) ═══════════════
+// wobbly hand-drawn strokes, deterministic per seed, drawn on
+const handPath = (pts, seed, amp) => {
+  amp = amp == null ? 3 : amp;
+  const q = pts.map(([x, y], i) => [x + hash(i * 2, seed) * amp, y + hash(i * 2 + 1, seed) * amp]);
+  let d = `M${q[0][0].toFixed(1)} ${q[0][1].toFixed(1)}`;
+  for (let i = 1; i < q.length - 1; i++) {
+    const mx = (q[i][0] + q[i + 1][0]) / 2, my = (q[i][1] + q[i + 1][1]) / 2;
+    d += ` Q${q[i][0].toFixed(1)} ${q[i][1].toFixed(1)} ${mx.toFixed(1)} ${my.toFixed(1)}`;
+  }
+  const l = q[q.length - 1];
+  return d + ` L${l[0].toFixed(1)} ${l[1].toFixed(1)}`;
+};
+const handStroke = (S, d, o) => {
+  o = o || {};
+  const p = document.createElementNS(NS, "path");
+  p.setAttribute("d", d); p.setAttribute("fill", "none");
+  p.setAttribute("stroke", o.color || K.lime); p.setAttribute("stroke-width", o.w || 7);
+  p.setAttribute("stroke-linecap", "round"); p.setAttribute("stroke-linejoin", "round");
+  S.appendChild(p);
+  const L = p.getTotalLength();
+  p.setAttribute("stroke-dasharray", `${L} ${L}`); p.setAttribute("stroke-dashoffset", L);
+  return { p, L, draw: (t, dur) => tl.to(p, { attr: { "stroke-dashoffset": 0 }, duration: dur || 0.5, ease: "power1.inOut" }, t), hide: (t, dur) => tl.to(p, { opacity: 0, duration: dur || 0.25 }, t) };
+};
+// loose ellipse that overshoots its start (a marker circle around something)
+const handCircle = (S, cx, cy, rx, ry, seed, o) => {
+  const pts = [];
+  const a0 = -2.2, sweep = Math.PI * 2 + 0.55;
+  for (let i = 0; i <= 26; i++) {
+    const a = a0 + (sweep * i) / 26, k = 1 + hash(i, seed) * 0.035 + (i / 26) * 0.06;
+    pts.push([cx + Math.cos(a) * rx * k, cy + Math.sin(a) * ry * k]);
+  }
+  return handStroke(S, handPath(pts, seed, 2), o);
+};
+const handArrow = (S, x0, y0, x1, y1, bend, seed, o) => {
+  const mx = (x0 + x1) / 2 + (y1 - y0) * (bend || 0.25), my = (y0 + y1) / 2 - (x1 - x0) * (bend || 0.25);
+  const pts = [];
+  for (let i = 0; i <= 12; i++) { const u = i / 12; pts.push([(1 - u) * (1 - u) * x0 + 2 * (1 - u) * u * mx + u * u * x1, (1 - u) * (1 - u) * y0 + 2 * (1 - u) * u * my + u * u * y1]); }
+  const shaft = handStroke(S, handPath(pts, seed, 1.6), o);
+  const ang = Math.atan2(y1 - pts[10][1], x1 - pts[10][0]), hl = (o && o.head) || 30;
+  const hd = `M${(x1 - Math.cos(ang - 0.5) * hl).toFixed(1)} ${(y1 - Math.sin(ang - 0.5) * hl).toFixed(1)} L${x1} ${y1} L${(x1 - Math.cos(ang + 0.5) * hl).toFixed(1)} ${(y1 - Math.sin(ang + 0.5) * hl).toFixed(1)}`;
+  const head = handStroke(S, hd, o);
+  return { shaft, head, draw: (t, dur) => { shaft.draw(t, (dur || 0.45) * 0.75); head.draw(t + (dur || 0.45) * 0.72, (dur || 0.45) * 0.3); }, hide: (t) => { shaft.hide(t); head.hide(t); } };
+};
+// handwritten note: letters appear left→right like a marker writing
+const handNote = (parent, x, y, text, o) => {
+  o = o || {};
+  const n = el(parent, { position: "absolute", left: x, top: y, fontFamily: FH, fontSize: o.size || 54, color: o.color || K.lime, whiteSpace: "nowrap", transform: `rotate(${o.rot == null ? -4 : o.rot}deg)`, transformOrigin: "0 50%", zIndex: o.z || 40, textShadow: o.color && o.color !== K.lime ? GLOW_W : GLOW_LT, lineHeight: 1 });
+  // a marker note is drawn ON things on purpose; handwritten glyphs also overlap their neighbours
+  layered(n).setAttribute("data-layout-allow-occlusion", "");
+  const cs = [...text].map((ch) => layered(el(n, { display: "inline-block", whiteSpace: "pre" }, ch === " " ? "&nbsp;" : ch, "span")));
+  gsap.set(cs, { opacity: 0, y: 6, scale: 0.8 });
+  return { n, write: (t, dur) => tl.to(cs, { opacity: 1, y: 0, scale: 1, duration: 0.16, ease: "power2.out", stagger: (dur || 0.5) / cs.length }, t), hide: (t) => tl.to(n, { opacity: 0, duration: 0.25 }, t) };
+};
+
+// ═══ Instagram profile phone (dark UI, brand fonts) ══════════════════════════
+// o: { user, name, bio, bio2, posts, fol, seg, avatar (img src) | avIcon, grid: [{img}|{icon,label}], ring }
+const PH = { w: 560, h: 1140, bz: 13, r: 74, sr: 62 };
+PH.sw = PH.w - PH.bz * 2; PH.sh = PH.h - PH.bz * 2;
+const PL = { avX: 92, avY: 196, avD: 140, gridTop: 470, cw: 177, ch: 236, gap: 2.5 };
+const cellXY = (i) => [(i % 3) * (PL.cw + PL.gap), PL.gridTop + Math.floor(i / 3) * (PL.ch + PL.gap)];
+const TOPIC = {
+  fitness: ["dumbbell", "Fitness"], viaggi: ["plane", "Viaggi"], motivazione: ["flame", "Motivazione"], cucina: ["pizza", "Cucina"],
+  gatti: ["cat", "Gatti"], auto: ["car", "Auto"], musica: ["music", "Musica"], moda: ["shirt", "Moda"], gaming: ["gamepad-2", "Gaming"], caffe: ["coffee", "Caffè"], foto: ["camera", "Foto"], bici: ["bike", "Bici"],
+};
+// a topic post tile: monochrome photo-ish card, white icon + small label
+const topicTile = (parent, x, y, w, h, key, z) => {
+  const [ic, lb] = TOPIC[key];
+  const k = Object.keys(TOPIC).indexOf(key);
+  const tone = 34 + (k % 4) * 7;
+  const t = el(parent, { position: "absolute", left: x, top: y, width: w, height: h, borderRadius: 3, background: `radial-gradient(120% 90% at 30% 20%, rgb(${tone + 26},${tone + 26},${tone + 24}) 0%, rgb(${tone},${tone},${tone}) 55%, rgb(${tone - 14},${tone - 14},${tone - 14}) 100%)`, overflow: "hidden", zIndex: z || 3 });
+  el(t, { position: "absolute", left: w / 2 - w * 0.2, top: h * 0.3 - w * 0.2, width: w * 0.4, height: w * 0.4, display: "flex", alignItems: "center", justifyContent: "center" }, svg(ic, Math.round(w * 0.4), "rgba(255,255,255,.92)", 1.8));
+  el(t, { position: "absolute", left: 0, bottom: h * 0.12, width: w, textAlign: "center", fontFamily: FS, fontWeight: 700, fontSize: Math.max(12, Math.round(w * 0.13)), color: "rgba(255,255,255,.85)" }, lb);
+  return t;
+};
+const thumbTile = (parent, x, y, w, h, src, z) => {
+  const t = el(parent, { position: "absolute", left: x, top: y, width: w, height: h, borderRadius: 3, overflow: "hidden", background: "#222", zIndex: z || 3 });
+  el(t, { width: "100%", height: "100%", objectFit: "cover", display: "block" }, null, "img").setAttribute("src", src);
+  return t;
+};
+// a live clip inside a tile (Kallaway shows real footage, not stills). The <video> must exist in the
+// static HTML (the render compiler finds media before any script runs), so build.cjs writes them from the
+// <!--VIDEOS--> block into a hidden pool and we only MOVE the element here. The wrapper stays untimed;
+// the <video> carries the timing (HyperFrames owns playback — never play/seek it here).
+const videoTile = (parent, x, y, w, h, id, z) => {
+  const t = el(parent, { position: "absolute", left: x, top: y, width: w, height: h, borderRadius: 3, overflow: "hidden", background: "#222", zIndex: z || 3 });
+  const vd = document.getElementById(id);
+  Object.assign(vd.style, { position: "absolute", left: "0px", top: "0px", width: "100%", height: "100%", objectFit: "cover", display: "block" });
+  t.appendChild(vd);
+  return t;
+};
+const igPhone = (parent, X, Y, o) => {
+  const frame = el(parent, { position: "absolute", left: X, top: Y, width: PH.w, height: PH.h, borderRadius: PH.r, background: "linear-gradient(150deg,#3a3a3a 0%,#161616 36%,#0d0d0d 70%,#2a2a2a 100%)", boxShadow: "0 50px 110px rgba(0,0,0,.65), inset 0 0 0 2px rgba(255,255,255,.10)", zIndex: o.z || 8 });
+  const screen = el(frame, { position: "absolute", left: PH.bz, top: PH.bz, width: PH.sw, height: PH.sh, borderRadius: PH.sr, background: "#000", overflow: "hidden" });
+  el(screen, { position: "absolute", left: (PH.sw - 122) / 2, top: 12, width: 122, height: 35, borderRadius: 18, background: "#000", zIndex: 60, boxShadow: "0 0 0 1.5px #121212" });
+  const head = [];
+  head.push(el(screen, { position: "absolute", left: 42, top: 17, fontFamily: FS, fontSize: 22, fontWeight: 700, color: "#fff", zIndex: 59 }, "9:41"));
+  head.push(el(screen, { position: "absolute", left: 24, top: 64, display: "flex", alignItems: "center", gap: 6, fontFamily: FS, fontSize: 29, fontWeight: 800, color: "#fff" }, (o.user || "il_tuo_profilo") + svg("chevron-down", 24, "#fff", 2.6)));
+  head.push(el(screen, { position: "absolute", right: 22, top: 66, display: "flex", gap: 22 }, svg("square-plus", 31, "#fff", 2) + svg("menu", 31, "#fff", 2)));
+  const av = el(screen, { position: "absolute", left: PL.avX - PL.avD / 2, top: PL.avY - PL.avD / 2, width: PL.avD, height: PL.avD, borderRadius: "50%", background: o.ring || "linear-gradient(45deg,#feda75,#fa7e1e,#d62976,#962fbf,#4f5bd5)", padding: 5 });
+  const avIn = el(av, { width: "100%", height: "100%", borderRadius: "50%", background: "#000", padding: 4 });
+  const avFace = el(avIn, { width: "100%", height: "100%", borderRadius: "50%", background: "#3a3a3a", overflow: "hidden", display: "flex", alignItems: "center", justifyContent: "center" }, o.avatar ? null : svg(o.avIcon || "user", 56, "#fff", 2.1));
+  if (o.avatar) el(avFace, { width: "100%", height: "100%", objectFit: "cover", display: "block" }, null, "img").setAttribute("src", o.avatar);
+  const nums = [[o.posts || "12", "post"], [o.fol || "214", "follower"], [o.seg || "380", "seguiti"]].map(([n, l], k) => {
+    const s = el(screen, { position: "absolute", left: 178 + k * 122, top: 150, width: 122, textAlign: "center", fontFamily: FS, color: "#fff" });
+    // statBlur: Kallaway blurs numbers that are not the point (and we never invent a real person's stats)
+    const v = el(s, { fontSize: 31, fontWeight: 800, filter: o.statBlur ? "blur(7px)" : "none" }, n);
+    el(s, { fontSize: 20, color: "rgba(255,255,255,.7)", marginTop: 2 }, l);
+    return v;
+  });
+  const name = el(screen, { position: "absolute", left: 24, top: 272, fontFamily: FS, fontSize: 23, fontWeight: 700, color: "#fff" }, o.name || "Il tuo profilo");
+  const bio = el(screen, { position: "absolute", left: 24, top: 304, width: 500, fontFamily: FS, fontSize: 21, lineHeight: 1.32, color: "rgba(255,255,255,.86)", whiteSpace: "nowrap" }, o.bio || "");
+  const follow = el(screen, { position: "absolute", left: 24, top: 372, width: 248, height: 54, borderRadius: 14, background: K.ig, overflow: "hidden", fontFamily: FS });
+  const followTxt = layered(el(follow, { position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 22, fontWeight: 700, color: "#fff" }, "Segui"));
+  const followed = layered(el(follow, { position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", gap: 8, fontSize: 22, fontWeight: 700, color: K.ink, background: K.lime, opacity: 0 }, "Segui già" + svg("check", 22, K.ink, 3.2)));
+  const msg = el(screen, { position: "absolute", left: 280, top: 372, width: 248, height: 54, borderRadius: 14, background: "#2c2c2e", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: FS, fontSize: 22, fontWeight: 700, color: "#fff" }, "Messaggio");
+  const tabs = el(screen, { position: "absolute", left: 0, top: 436, width: PH.sw, height: 34, display: "flex" });
+  ["grid-3x3", "clapperboard", "square-user"].forEach((n, k) => el(tabs, { flex: 1, display: "flex", alignItems: "center", justifyContent: "center", borderBottom: k === 0 ? "2.5px solid #fff" : "1px solid rgba(255,255,255,.14)" }, svg(n, 25, k === 0 ? "#fff" : "rgba(255,255,255,.45)", 2)));
+  const cells = (o.grid || []).map((g, i) => {
+    const [x, y] = cellXY(i);
+    return g.video ? videoTile(screen, x, y, PL.cw, PL.ch, g.video) : g.img ? thumbTile(screen, x, y, PL.cw, PL.ch, g.img) : topicTile(screen, x, y, PL.cw, PL.ch, g.topic);
+  });
+  // header pieces in reading order (a profile can "build itself" with a cascade)
+  head.push(av, ...nums.map((v) => v.parentNode), name, bio, follow, msg, tabs);
+  return { frame, screen, X, Y, av, avFace, nums, name, bio, follow, followTxt, followed, msg, cells, tabs, head };
+};
+// world centre of a phone's avatar / grid cell
+const phAvatar = (P) => [P.X + PH.bz + PL.avX, P.Y + PH.bz + PL.avY];
+const phCell = (P, i) => { const [x, y] = cellXY(i); return [P.X + PH.bz + x + PL.cw / 2, P.Y + PH.bz + y + PL.ch / 2]; };
+// ─────────────────────────────────────────────────────────────────────────────
+
+// ──── kit2-core.js ────
+// ═══ KW kit v2 · CORE — valori misurati sui 150 reel di Kallaway ═════════════════════════════
+// Fonte: CATALOGO-ANIMAZIONI (catalogo.json, _analisi/statistiche.json, curve.json, note-effetti.md).
+// Tutto è additivo: kit.js resta com'era (reel-01 v4 invariato), le funzioni nuove hanno nomi nuovi.
+// Ogni funzione riporta l'ID della voce di catalogo che realizza.
+
+// ── easing: cubic-bezier misurate → funzioni per GSAP (risolutore deterministico, come i browser) ──
+const bez = (p1x, p1y, p2x, p2y) => {
+  const cx = 3 * p1x, bx = 3 * (p2x - p1x) - cx, ax = 1 - cx - bx;
+  const cy = 3 * p1y, by = 3 * (p2y - p1y) - cy, ay = 1 - cy - by;
+  const sx = (u) => ((ax * u + bx) * u + cx) * u;
+  const sy = (u) => ((ay * u + by) * u + cy) * u;
+  const dx = (u) => (3 * ax * u + 2 * bx) * u + cx;
+  const solve = (x) => {
+    let u = x;
+    for (let i = 0; i < 8; i++) {
+      const e = sx(u) - x;
+      if (Math.abs(e) < 1e-6) return u;
+      const d = dx(u);
+      if (Math.abs(d) < 1e-6) break;
+      u -= e / d;
+    }
+    let lo = 0, hi = 1;
+    u = x;
+    for (let i = 0; i < 32; i++) {
+      const v = sx(u);
+      if (Math.abs(v - x) < 1e-6) break;
+      if (x > v) lo = u; else hi = u;
+      u = (lo + hi) / 2;
+    }
+    return u;
+  };
+  return (x) => (x <= 0 ? 0 : x >= 1 ? 1 : sy(solve(x)));
+};
+const KW = {
+  move: bez(0.3, 0.2, 0.35, 0.9),     // K03 · spostamento tra due oggetti (206 misure, mediana 1,31 s)
+  arrive: bez(0.2, 0.8, 0.7, 0.95),   // K02 · scena che entra già in corsa dopo un taglio (243 misure)
+  drift: bez(0.3, 0.35, 0.55, 0.8),   // K04 · drift lento (1.565 misure)
+};
+// F01 · glow misurato: testo bianco = alone medio (σ≈7 px) + largo (σ≈45 px); oggetti d'accento molto più forti
+const GLOW_T = "0 0 14px rgba(255,255,255,.34), 0 0 90px rgba(255,255,255,.17)";
+const GLOW_A = (a) => { a = a == null ? 1 : a; return `0 0 18px rgba(207,251,80,${(0.62 * a).toFixed(3)}), 0 0 110px rgba(207,251,80,${(0.3 * a).toFixed(3)})`; };
+const GREY = "rgba(255,255,255,.52)";           // T01 · parola non ancora "accesa"
+
+// ═══ camera ════════════════════════════════════════════════════════════════════════════════
+// Gestore di camera: ogni movimento kit2 passa da camK(). Due tween sulla stessa proprietà che si sovrappongono
+// "litigano" quando il renderer salta tra i fotogrammi (vince quello renderizzato per ultimo): camK tronca il
+// segmento precedente nell'istante in cui parte il nuovo, conservandone esattamente la traiettoria fino al taglio.
+// Nei reel nuovi usare SOLO move / float / arrive / cutTo / whip2 / zoomThrough (non cam/drift/whip di kit.js).
+const CAMQ = { seg: null };
+const easeFn = (e) => (typeof e === "function" ? e : gsap.parseEase(e || "power3.inOut"));
+const camTw = (targets, from, to, t, dur, ease) => {
+  const tw = gsap.fromTo(targets, from, Object.assign({ duration: dur, ease, immediateRender: false }, to));
+  tl.add(tw, t);
+  return tw;
+};
+const camTweens = (t, dur, a, b, ease) => {
+  const tw = [
+    camTw([pan, gpan], { x: -a.fx, y: -a.fy }, { x: -b.fx, y: -b.fy }, t, dur, ease),
+    camTw([zoom, gzoom], { scale: a.s }, { scale: b.s }, t, dur, ease),
+  ];
+  if (gpan2) {
+    tw.push(camTw(gpan2, { x: -a.fx * PF, y: -a.fy * PF }, { x: -b.fx * PF, y: -b.fy * PF }, t, dur, ease));
+    tw.push(camTw(gzoom2, { scale: 1 + (a.s - 1) * PF }, { scale: 1 + (b.s - 1) * PF }, t, dur, ease));
+  }
+  return tw;
+};
+// tronca il segmento attivo all'istante t; restituisce la posa della camera in quell'istante
+const camCut = (t) => {
+  const g = CAMQ.seg;
+  if (!g) return { fx: CAM.fx, fy: CAM.fy, s: CAM.s };
+  if (t >= g.t0 + g.dur - 1e-4) { CAMQ.seg = null; return { fx: g.to.fx, fy: g.to.fy, s: g.to.s }; }
+  if (t < g.t0 - 1e-4) throw new Error(`camera: movimento a ${t}s prima del precedente (${g.t0}s) — scrivere le mosse in ordine`);
+  const p = Math.max(0, (t - g.t0) / g.dur), ep = g.e(p);
+  const mid = { fx: g.from.fx + (g.to.fx - g.from.fx) * ep, fy: g.from.fy + (g.to.fy - g.from.fy) * ep, s: g.from.s + (g.to.s - g.from.s) * ep };
+  g.tw.forEach((x) => tl.remove(x));
+  if (p > 1e-4 && ep > 1e-6) camTweens(g.t0, t - g.t0, g.from, mid, (x) => g.e(x * p) / ep);
+  CAMQ.seg = null;
+  return mid;
+};
+const camK = (t, dur, fx, fy, s, ease) => {
+  const from = camCut(t);
+  const to = { fx, fy, s: s == null ? from.s : s };
+  const e = easeFn(ease);
+  CAMQ.seg = { t0: t, dur, from, to, e, tw: camTweens(t, dur, from, to, e) };
+  Object.assign(CAM, to);
+};
+// K03 · spostamento con la curva misurata (parte deciso, frena a lungo)
+const move = (t, dur, fx, fy, s) => camK(t, dur == null ? 1.3 : dur, fx, fy, s == null ? CAM.s : s, KW.move);
+// K04 · drift con la curva misurata (la camera non è mai ferma)
+const float = (t, dur, dx, dy, ds) => camK(t, dur, CAM.fx + (dx || 0), CAM.fy + (dy || 0), CAM.s * (1 + (ds == null ? 0.025 : ds)), KW.drift);
+// taglio netto: la camera salta a una posa (un taglio di montaggio dentro la grafica)
+const cutTo = (t, fx, fy, s) => {
+  camCut(t);
+  tl.set([pan, gpan], { x: -fx, y: -fy }, t);
+  tl.set([zoom, gzoom], { scale: s }, t);
+  if (gpan2) {
+    tl.set(gpan2, { x: -fx * PF, y: -fy * PF }, t);
+    tl.set(gzoom2, { scale: 1 + (s - 1) * PF }, t);
+  }
+  Object.assign(CAM, { fx, fy, s });
+};
+// motion blur direzionale sul mondo (#mbwrap + #mbn): sale e scende attorno al picco
+const mblur = (t, dur, peak, axis, shape) => {
+  const P = { v: 0 };
+  const write = () => mbn.setAttribute("stdDeviation", axis === "y" ? `0 ${P.v.toFixed(2)}` : `${P.v.toFixed(2)} 0`);
+  tl.set(mbwrap, { filter: "url(#mb)" }, t);
+  if (shape === "decay") tl.fromTo(P, { v: peak }, { v: 0, duration: dur, ease: "power2.out", onUpdate: write, immediateRender: false }, t);
+  else {
+    tl.fromTo(P, { v: 0 }, { v: peak, duration: dur / 2, ease: "power3.in", onUpdate: write, immediateRender: false }, t);
+    tl.to(P, { v: 0, duration: dur / 2, ease: "power3.out", onUpdate: write }, t + dur / 2);
+  }
+  tl.set(mbwrap, { filter: "none" }, t + dur + 0.01);
+};
+// K05 · whip pan (spostamento velocissimo con scia), versione con gestore di camera
+const whip2 = (t, dur, fx, fy, s, o) => {
+  o = o || {};
+  const dx = Math.abs(fx - CAM.fx), dy = Math.abs(fy - CAM.fy);
+  mblur(t, dur, o.peak || 20, dy > dx ? "y" : "x");
+  camK(t, dur, fx, fy, s == null ? CAM.s : s, o.ease || "power3.inOut");
+};
+// K02 · la scena entra già in movimento e frena sulla sua posa (+ un filo di motion blur nei primi fotogrammi)
+// o: { dx, dy (px schermo da cui arriva il contenuto), ds, dur, blur }
+const arrive = (t, fx, fy, s, o) => {
+  o = o || {};
+  const dx = o.dx || 0, dy = o.dy == null ? 360 : o.dy, ds = o.ds == null ? 0.05 : o.ds, dur = o.dur || 1.1;
+  cutTo(t, fx - dx / s, fy - dy / s, s * (1 + ds));
+  camK(t, dur, fx, fy, s, KW.arrive);
+  const pk = o.blur == null ? 9 : o.blur;
+  if (pk > 0) mblur(t, 0.3, pk, Math.abs(dx) > Math.abs(dy) ? "x" : "y", "decay");
+};
+// K10 · la scena nasce fuori fuoco e va a fuoco
+const rackFocus = (t, dur, from) => {
+  dur = dur || 0.45;
+  tl.fromTo(mbwrap, { filter: `blur(${from || 10}px)` }, { filter: "blur(0px)", duration: dur, ease: "power2.out", immediateRender: t <= 0.001 }, t);
+  tl.set(mbwrap, { filter: "none" }, t + dur + 0.01);
+};
+// K07 · zoom-through: corsa in avanti sfocata, dall'altra parte c'è la scena nuova che si assesta
+const zoomThrough = (t, fx, fy, s, o) => {
+  o = o || {};
+  const pre = o.pre || 0.12;
+  camK(t - pre, pre, CAM.fx, CAM.fy, CAM.s * 1.3, "power2.in");
+  tl.fromTo(mbwrap, { filter: "blur(0px)" }, { filter: `blur(${o.blur || 12}px)`, duration: pre, ease: "power2.in", immediateRender: false }, t - pre);
+  cutTo(t, fx, fy, s * 0.86);
+  camK(t, o.settle || 0.45, fx, fy, s, "power3.out");
+  tl.to(mbwrap, { filter: "blur(0px)", duration: 0.2, ease: "power2.out" }, t);
+  tl.set(mbwrap, { filter: "none" }, t + 0.21);
+};
+// livello di effetti a schermo intero (sopra a tutto): light leak, flash
+let FXL = null;
+const fxLayer = () => FXL || (FXL = el(document.getElementById("root") || document.body, { position: "absolute", left: 0, top: 0, width: 1080, height: 1920, zIndex: 95, pointerEvents: "none", overflow: "hidden" }));
+// K15 · light leak (era podcast): lama di luce calda diagonale + un fotogramma quasi bianco
+const lightLeak = (t, o) => {
+  o = o || {};
+  const L = fxLayer();
+  const blade = el(L, { position: "absolute", left: -900, top: -400, width: 900, height: 2800, background: "linear-gradient(90deg, rgba(255,120,40,0) 0%, rgba(255,150,60,.85) 45%, rgba(255,220,150,.95) 55%, rgba(255,120,40,0) 100%)", transform: "rotate(18deg)", opacity: 0, mixBlendMode: "screen" });
+  const white = el(L, { position: "absolute", inset: 0, background: o.color || "#fff8ec", opacity: 0 });
+  tl.set(blade, { opacity: 1 }, t);
+  tl.fromTo(blade, { x: 0 }, { x: 2600, duration: 0.2, ease: "power1.in", immediateRender: false }, t);
+  tl.set(blade, { opacity: 0 }, t + 0.2);
+  tl.set(white, { opacity: 0.95 }, t + 0.167);
+  tl.to(white, { opacity: 0, duration: 0.1, ease: "power2.out" }, t + 0.2);
+};
+
+// ═══ testo ═════════════════════════════════════════════════════════════════════════════════
+// T01 · T02 · T07 · T08 — titolo parola per parola: ogni parola compare quando viene detta (grigia e sfocata →
+// bianca e nitida in 0,2 s); il box d'accento nasce come cursore sottile e cresce insieme alle parole.
+// spec: { lines: [[{t:"L'errore "},{t:"numero uno", box:true}], [{t:"dei principianti", hand:true, ul:true}]],
+//         size, top, parent (default hud), x, y (centro/alto in coordinate del parent), align }
+// inAt(tempi) — tempi: un numero (inizio, ~0,12 s per parola) oppure un array con l'istante di ogni parola.
+const titleW = (spec) => {
+  const size = spec.size || 84;
+  const parent = spec.parent || hud;
+  const root = el(parent, { position: "absolute", left: spec.x == null ? 40 : spec.x - 500, top: spec.y == null ? spec.top || TITLE_TOP : spec.y, width: 1000, display: "flex", flexDirection: "column", alignItems: spec.align || "center", gap: Math.round(size * 0.05), zIndex: spec.z || 50 });
+  const W = [];
+  const halos = [];
+  spec.lines.forEach((line) => {
+    const rowEl = el(root, { display: "flex", alignItems: "baseline", justifyContent: "center", whiteSpace: "nowrap" });
+    line.forEach((seg) => {
+      const hand = !!seg.hand, box = !!seg.box, ul = !!seg.ul;
+      const fs = Math.round(size * (hand ? 1.1 : 1) * (seg.scale || 1));
+      const toks = [];
+      seg.t.split(/(\s+)/).filter(Boolean).forEach((p) => (/^\s+$/.test(p) && toks.length ? (toks[toks.length - 1] += p) : toks.push(p)));
+      const grp = el(rowEl, { position: "relative", display: "inline-flex", alignItems: "baseline", margin: box ? `0 ${Math.round(size * 0.05)}px` : 0 }, null, "span");
+      const halo = box ? el(grp, { position: "absolute", left: 0, right: 0, top: Math.round(size * 0.02), height: Math.round(size * 1.04), borderRadius: 8, boxShadow: GLOW_A(0.75), opacity: 0, zIndex: 0 }) : null;
+      if (halo) halos.push(halo);
+      toks.forEach((tk, i) => {
+        const first = i === 0, last = i === toks.length - 1;
+        const tkTrim = box && last ? tk.replace(/\s+$/, "") : tk;
+        const w = el(grp, { position: "relative", display: "inline-block", whiteSpace: "pre", paddingLeft: box && first ? Math.round(size * 0.17) : 0, paddingRight: box && last ? Math.round(size * 0.17) : 0, zIndex: 1 }, null, "span");
+        let bg = null, und = null;
+        if (box) {
+          const rr = Math.round(size * 0.08);
+          bg = el(w, { position: "absolute", left: 0, top: Math.round(size * 0.02), width: "100%", height: Math.round(size * 1.04), background: "linear-gradient(180deg,#dcff74 0%,#CFFB50 55%,#bde83f 100%)", borderRadius: `${first ? rr : 0}px ${last ? rr : 0}px ${last ? rr : 0}px ${first ? rr : 0}px`, transformOrigin: "0 50%", zIndex: 0 });
+          gsap.set(bg, { scaleX: 0 });
+        }
+        if (ul) {
+          und = el(w, { position: "absolute", left: 0, bottom: -Math.round(size * 0.06), width: "100%", height: Math.max(3, Math.round(size * 0.045)), borderRadius: 3, background: K.lime, boxShadow: GLOW_A(0.6), transformOrigin: "0 50%", zIndex: 0 });
+          gsap.set(und, { scaleX: 0 });
+        }
+        const c1 = box ? K.ink : hand ? K.lime : K.white;
+        const c0 = hand ? "rgba(207,251,80,.42)" : GREY;
+        const tx = el(w, { position: "relative", zIndex: 1, fontFamily: hand ? FH : FD, fontWeight: hand ? 400 : 700, fontSize: fs, lineHeight: 1.04, letterSpacing: hand ? "0" : "-0.01em", color: c0, textShadow: box ? "none" : hand ? GLOW_LT : GLOW_T }, tkTrim.replace(/ /g, "&nbsp;"), "span");
+        gsap.set(tx, { opacity: 0, filter: `blur(${hand || fs > size ? 11 : 9}px)`, y: Math.round(size * 0.06) });
+        W.push({ w, tx, bg, und, c1, box, first, last });
+      });
+    });
+  });
+  const auto = (t0) => W.map((_, i) => t0 + i * 0.12);
+  let tEnd = 0;
+  const inAt = (times) => {
+    const T = Array.isArray(times) ? times : auto(times);
+    W.forEach((wd, i) => {
+      const t = T[Math.min(i, T.length - 1)];
+      tl.to(wd.tx, { opacity: 1, duration: 0.07, ease: "none" }, t);
+      tl.to(wd.tx, { filter: "blur(0px)", y: 0, duration: 0.2, ease: "power2.out" }, t);
+      tl.to(wd.tx, { color: wd.c1, duration: wd.box ? 0.18 : 0.2, ease: "power2.out" }, t + (wd.box ? 0.05 : 0));
+      tl.set(wd.tx, { filter: "none" }, t + 0.21);
+      if (wd.bg) {
+        if (wd.first) {
+          tl.set(wd.bg, { scaleX: 0.035 }, t - 0.07); // il cursore sottile che anticipa il box
+        }
+        tl.to(wd.bg, { scaleX: 1, duration: 0.22, ease: "power2.out" }, t);
+        if (wd.last) halos.forEach((h) => tl.to(h, { opacity: 1, duration: 0.35, ease: "power1.out" }, t + 0.12));
+      }
+      if (wd.und) tl.to(wd.und, { scaleX: 1, duration: 0.24, ease: "power2.out" }, t);
+      tEnd = Math.max(tEnd, t + 0.21);
+    });
+    return tEnd;
+  };
+  // T08 · uscita: il titolo si spegne (grigio) e poi se ne va
+  const outAt = (t) => {
+    W.forEach((wd) => tl.to(wd.tx, { color: wd.box ? "rgba(30,30,30,.55)" : GREY, duration: 0.15, ease: "power1.out" }, t));
+    W.forEach((wd) => wd.bg && tl.to(wd.bg, { opacity: 0.45, duration: 0.15 }, t));
+    halos.forEach((h) => tl.to(h, { opacity: 0, duration: 0.15 }, t));
+    tl.to(W.map((wd) => wd.w), { opacity: 0, filter: "blur(8px)", y: -10, duration: 0.24, ease: "power2.in", stagger: 0.012 }, t + 0.15);
+    tl.set(root, { opacity: 0 }, t + 0.42 + W.length * 0.012);
+  };
+  return { root, words: W, inAt, outAt, n: W.length };
+};
+// tempi delle parole dal voice-over (WORDS = [[parola, inizio, fine], …] iniettato da build.cjs)
+// wordsFrom(i0, n): gli inizi delle n parole a partire dall'indice i0 · findWord("tutto.", dopo) → indice
+const wordsFrom = (i0, n) => WORDS.slice(i0, i0 + n).map((w) => w[1]);
+const findWord = (txt, after) => {
+  const k = WORDS.findIndex((w, i) => i >= (after || 0) && w[0].toLowerCase().replace(/[^\p{L}\p{N}']/gu, "") === txt.toLowerCase().replace(/[^\p{L}\p{N}']/gu, ""));
+  if (k < 0) throw new Error("parola non trovata nel voice-over: " + txt);
+  return k;
+};
+const at = (txt, after) => WORDS[findWord(txt, after)][1];
+
+// T03 · T06 — testo a macchina da scrivere (lettere che compaiono in ordine, con cursore opzionale)
+const typeIn = (node, text, t, cps, o) => {
+  o = o || {};
+  node.innerHTML = "";
+  const box = el(node, { display: "inline-block", whiteSpace: "pre" }, null, "span");
+  const step = 1 / (cps || 30);
+  const cw = Math.max(3, Math.round((o.size || 40) * 0.07));
+  const chars = [...text];
+  // each glyph carries its own caret (absolute, right after it): no layout measuring, seek-safe
+  const cs = chars.map((ch) => {
+    const c = el(box, { position: "relative", display: "inline-block", whiteSpace: "pre" }, ch === " " ? "&nbsp;" : ch, "span");
+    let k = null;
+    if (o.caret) k = el(c, { position: "absolute", right: -cw - 3, top: "0.08em", width: cw, height: "0.92em", background: o.caretColor || K.lime }, null, "span");
+    return { c, k };
+  });
+  gsap.set(cs.map((x) => x.c), { opacity: 0 });
+  if (o.caret) gsap.set(cs.map((x) => x.k), { opacity: 0 });
+  cs.forEach((x, i) => {
+    tl.set(x.c, { opacity: 1 }, t + i * step);
+    if (x.k) { tl.set(x.k, { opacity: 1 }, t + i * step); if (i < cs.length - 1) tl.set(x.k, { opacity: 0 }, t + (i + 1) * step); }
+  });
+  const end = t + cs.length * step;
+  if (o.caret && cs.length) {
+    const k = cs[cs.length - 1].k;
+    for (let i = 0; i < (o.blinks || 3); i++) { tl.set(k, { opacity: 0 }, end + i * 0.5 + 0.25); tl.set(k, { opacity: 1 }, end + i * 0.5 + 0.5); }
+    tl.set(k, { opacity: 0 }, end + (o.blinks || 3) * 0.5 + 0.25);
+  }
+  return end;
+};
+// T04 — lettere che compaiono in ordine casuale (etichette, corsivi)
+const scrambleIn = (node, text, t, dur, seed) => {
+  node.innerHTML = "";
+  const wrapS = el(node, { display: "inline-block", whiteSpace: "pre" }, null, "span");
+  const cs = [...text].map((ch) => el(wrapS, { display: "inline-block", whiteSpace: "pre" }, ch === " " ? "&nbsp;" : ch, "span"));
+  gsap.set(cs, { opacity: 0 });
+  dur = dur || 0.28;
+  cs.forEach((c, i) => {
+    const u = (hash(i + 1, seed || 5) + 1) / 2;
+    tl.to(c, { opacity: 1, duration: 0.05, ease: "none" }, t + u * dur);
+  });
+  return t + dur + 0.05;
+};
+// T05 — testo che si decodifica (glitch): glifi a caso che si fermano sulla parola giusta
+const decode = (node, text, t, dur, o) => {
+  o = o || {};
+  const GL = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789<>/#%&";
+  dur = dur || 0.3;
+  node.innerHTML = "";
+  const STEP = 1 / 30;
+  const wrapD = el(node, { display: "inline-block", whiteSpace: "pre" }, null, "span");
+  [...text].forEach((ch, i) => {
+    const slot = el(wrapD, { position: "relative", display: "inline-block", whiteSpace: "pre" }, null, "span");
+    const fin = el(slot, { display: "inline-block", whiteSpace: "pre" }, ch === " " ? "&nbsp;" : ch, "span");
+    gsap.set(fin, { opacity: 0 });
+    if (ch === " ") { tl.set(fin, { opacity: 1 }, t); return; }
+    const tr = t + (0.35 + 0.65 * (hash(i + 2, o.seed || 9) + 1) / 2) * dur; // quando si ferma
+    const n = Math.max(1, Math.round((tr - t) / STEP));
+    for (let k = 0; k < n; k++) {
+      const g = el(slot, { position: "absolute", left: 0, top: 0, whiteSpace: "pre", color: o.glitchColor || "inherit" }, GL[Math.floor(((hash(i * 31 + k, o.seed || 9) + 1) / 2) * GL.length) % GL.length], "span");
+      gsap.set(g, { opacity: 0 });
+      tl.set(g, { opacity: 1 }, t + k * STEP);
+      tl.set(g, { opacity: 0 }, t + (k + 1) * STEP);
+    }
+    tl.set(fin, { opacity: 1 }, tr);
+  });
+  return t + dur;
+};
+// T11 — parola/numero gigante sullo sfondo (grigio, trasparente), opzionale conteggio
+const bigBack = (parent, cx, cy, text, o) => {
+  o = o || {};
+  const b = el(parent, { position: "absolute", left: cx - 1200, top: cy - (o.size || 520) * 0.62, width: 2400, textAlign: "center", fontFamily: FD, fontWeight: 700, fontSize: o.size || 520, lineHeight: 1, letterSpacing: "-0.03em", color: "rgba(255,255,255,.075)", zIndex: o.z || 1, whiteSpace: "nowrap" }, text);
+  gsap.set(b, { opacity: 0, scale: 0.92 });
+  return { b, inAt: (t) => tl.to(b, { opacity: 1, scale: 1, duration: 0.6, ease: "power3.out" }, t), outAt: (t) => tl.to(b, { opacity: 0, duration: 0.3 }, t) };
+};
+
+// ═══ liste ═════════════════════════════════════════════════════════════════════════════════
+// L01 · L02 · L03 · K14 — la lista di Kallaway: barre scure, accento a sinistra, numero, testo sfocato finché
+// non viene detto; la pila si ri-centra quando arriva una voce; la voce si "risolve" con uno sheen da destra.
+// items: ["Testo 1", …] · o: { h, gap, fs, z, numbers:true }
+const listK = (parent, cx, cy, w, items, o) => {
+  o = o || {};
+  const h = o.h || 96, gap = o.gap || 20, fs = o.fs || 36;
+  const box = el(parent, { position: "absolute", left: cx - w / 2, top: cy, width: w, height: 1, zIndex: o.z || 12 });
+  const rows = items.map((txt, i) => {
+    const y = i * (h + gap);
+    const r = el(box, { position: "absolute", left: 0, top: y, width: w, height: h, borderRadius: 16, background: "linear-gradient(90deg,#272727 0%,#1f1f1f 100%)", border: "1.5px solid rgba(255,255,255,.09)", boxShadow: "0 16px 40px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.06)", overflow: "hidden" });
+    const lit = el(r, { position: "absolute", inset: 0, background: "linear-gradient(90deg,rgba(255,255,255,.075),rgba(255,255,255,.03))", opacity: 0 });
+    const acc = el(r, { position: "absolute", left: 0, top: 0, width: 7, height: h, background: K.lime, boxShadow: GLOW_A(0.5) });
+    const nx = 34;
+    const num = el(r, { position: "absolute", left: nx, top: 0, height: h, display: "flex", alignItems: "center", fontFamily: FS, fontWeight: 800, fontSize: Math.round(fs * 0.95), color: K.white, letterSpacing: "0.02em" }, o.numbers === false ? "" : String(i + 1).padStart(2, "0"));
+    const lx = o.numbers === false ? nx : nx + Math.round(fs * 2.1);
+    const mk = (extra) => el(r, Object.assign({ position: "absolute", left: lx, top: 0, right: 24, height: h, display: "flex", alignItems: "center", fontFamily: FS, fontWeight: 700, fontSize: fs, color: K.white, whiteSpace: "nowrap", overflow: "hidden" }, extra), txt);
+    const soft = mk({ filter: "blur(7px)", opacity: 0.6 });
+    const sharp = mk({ clipPath: "inset(0% 0% 0% 100%)", textShadow: GLOW_T });
+    const band = el(r, { position: "absolute", top: -h * 0.4, left: 0, width: 46, height: h * 1.8, background: "linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,.55) 45%, rgba(255,255,255,.85) 50%, rgba(255,255,255,.55) 55%, rgba(255,255,255,0) 100%)", transform: "rotate(20deg)", filter: "blur(1.5px)", opacity: 0, zIndex: 5 });
+    return { r, lit, acc, num, soft, sharp, band, y };
+  });
+  gsap.set(rows.map((x) => x.r), { opacity: 0 });
+  const H = (k) => k * h + (k - 1) * gap;
+  let shown = 0, curY = -H(1) / 2;
+  gsap.set(box, { y: curY });
+  // fa comparire le voci fino alla k-esima (1-based); la pila si ri-centra su cy
+  const show = (k, t, o2) => {
+    for (let i = shown; i < k; i++) blurIn(rows[i].r, t + (i - shown) * 0.06, { y: 26, blur: 12, dur: 0.45 });
+    if (!(o2 && o2.noRecentre)) { curY = -H(k) / 2; tl.to(box, { y: curY, duration: 0.4, ease: "power3.out" }, t); }
+    shown = Math.max(shown, k);
+  };
+  // L02 · sheen da destra a sinistra, il testo va a fuoco dietro la banda, poi la barra diventa "attiva"
+  const resolve = (i, t, dur) => {
+    dur = dur || 0.78;
+    const rw = rows[i];
+    tl.set(rw.band, { opacity: 1 }, t);
+    tl.fromTo(rw.band, { x: w + 40 }, { x: -80, duration: dur, ease: "power1.inOut", immediateRender: false }, t);
+    tl.set(rw.band, { opacity: 0 }, t + dur);
+    tl.to(rw.sharp, { clipPath: "inset(0% 0% 0% 0%)", duration: dur, ease: "power1.inOut" }, t);
+    tl.to(rw.soft, { opacity: 0, duration: dur * 0.9, ease: "power1.in" }, t);
+    activate(i, t + 0.08);
+  };
+  const activate = (i, t) => {
+    const rw = rows[i];
+    tl.to(rw.lit, { opacity: 1, duration: 0.3 }, t);
+    tl.to(rw.r, { borderColor: "rgba(255,255,255,.55)", scale: 1.03, boxShadow: "0 18px 46px rgba(0,0,0,.55), 0 0 26px rgba(255,255,255,.10)", duration: 0.3, ease: "power2.out" }, t);
+  };
+  const deactivate = (i, t) => {
+    const rw = rows[i];
+    tl.to(rw.lit, { opacity: 0, duration: 0.25 }, t);
+    tl.to(rw.r, { borderColor: "rgba(255,255,255,.09)", scale: 1, boxShadow: "0 16px 40px rgba(0,0,0,.45)", duration: 0.25 }, t);
+  };
+  // L03 · accensione a cascata (bordo bianco che scende di barra in barra)
+  const cascade = (t, stepT) => rows.forEach((rw, i) => {
+    tl.to(rw.r, { borderColor: "rgba(255,255,255,.7)", duration: 0.08 }, t + i * (stepT || 0.08));
+    tl.to(rw.r, { borderColor: "rgba(255,255,255,.09)", duration: 0.25 }, t + i * (stepT || 0.08) + 0.1);
+  });
+  // le altre voci si attenuano (focus) / tornano
+  const dimOthers = (i, t, a) => rows.forEach((rw, j) => j !== i && tl.to(rw.r, { opacity: a == null ? 0.35 : a, duration: 0.3 }, t));
+  // K14 · la voce i sale e diventa l'intestazione (coordinate nel parent), il resto se ne va
+  const promote = (i, t, x, y, s) => {
+    const rw = rows[i];
+    rows.forEach((o3, j) => j !== i && blurOut(o3.r, t, { dur: 0.3 }));
+    const bx = cx - w / 2, by = cy + curY;
+    tl.to(rw.r, { x: x - (bx + w / 2), y: y - (by + rw.y + h / 2), scale: s || 0.8, duration: 0.45, ease: "power3.inOut" }, t);
+  };
+  return { box, rows, show, resolve, activate, deactivate, cascade, dimOthers, promote, h, gap };
+};
+
+// ═══ luce ed enfasi ════════════════════════════════════════════════════════════════════════
+// F02 · pulse: disco pieno dell'accento (versione profonda) con contorno chiaro: nasce da un punto, si espande
+// in 0,22 s e svanisce allargandosi. o: { r, a, z, front }
+const pulse = (parent, x, y, t, o) => {
+  o = o || {};
+  const R = o.r || 230;
+  // lime pieno (non scurito: il lime scuro diventa verde oliva), contorno chiaro e bagliore
+  const d = el(parent, { position: "absolute", left: x - R, top: y - R, width: R * 2, height: R * 2, borderRadius: "50%", background: "radial-gradient(circle at 50% 42%, #eaffa6 0%, #d6fd62 38%, #CFFB50 62%, #bce63f 100%)", border: "3px solid rgba(255,255,255,.92)", boxShadow: "0 0 60px rgba(207,251,80,.55), inset 0 0 50px rgba(255,255,255,.22)", opacity: 0, zIndex: o.z || 2, pointerEvents: "none" });
+  gsap.set(d, { scale: 0.035 });
+  tl.set(d, { opacity: o.a == null ? (o.front ? 0.5 : 0.9) : o.a }, t);
+  tl.to(d, { scale: 1, duration: 0.22, ease: "expo.out" }, t);
+  tl.to(d, { scale: 1.13, opacity: 0, duration: 0.5, ease: "power1.in" }, t + 0.22);
+  return d;
+};
+// F09/D01 · flash di glow su un numero/testo appena arrivato al valore finale
+const glowFlash = (node, t, o) => {
+  o = o || {};
+  const base = o.base || GLOW_T;
+  tl.to(node, { textShadow: o.peak || "0 0 18px rgba(255,255,255,.95), 0 0 60px rgba(255,255,255,.6), 0 0 120px rgba(207,251,80,.35)", duration: 0.07, ease: "power2.out" }, t);
+  tl.to(node, { textShadow: base, duration: 0.35, ease: "power2.out" }, t + 0.08);
+};
+// F04 · riflettore: gli scelti si accendono, il resto si scurisce
+const spotlight = (keep, dim, t, o) => {
+  o = o || {};
+  if (dim && dim.length) tl.to(dim, { opacity: o.a == null ? 0.32 : o.a, duration: 0.4, ease: "power2.out" }, t);
+  if (keep && keep.length) tl.to(keep, { scale: o.s || 1.05, boxShadow: `${GLOW_A(0.9)}, 0 0 0 3px ${K.lime}`, duration: 0.4, ease: "power2.out" }, t);
+};
+// F11 · tinta: "si" = verde-lime (giusto), "no" = spento e desaturato (sbagliato)
+const tint = (target, t, kind, o) => {
+  o = o || {};
+  const ts = Array.isArray(target) ? target : [target];
+  ts.forEach((tg, i) => {
+    const tt = t + i * (o.stagger || 0);
+    if (kind === "si") {
+      const ov = el(tg, { position: "absolute", inset: 0, background: "linear-gradient(180deg, rgba(207,251,80,.34), rgba(207,251,80,.16))", mixBlendMode: "screen", opacity: 0, zIndex: 20, pointerEvents: "none", borderRadius: "inherit" });
+      tl.to(ov, { opacity: 1, duration: 0.25 }, tt);
+      tl.to(tg, { boxShadow: `${GLOW_A(0.8)}, 0 0 0 3px ${K.lime}`, duration: 0.25 }, tt);
+    } else {
+      tl.to(tg, { filter: "grayscale(1) brightness(.42)", duration: 0.3, ease: "power2.out" }, tt);
+    }
+  });
+};
+// F05 · lampeggio di attivazione: alterna due stati ogni 2 fotogrammi e si ferma sul nuovo
+const flicker = (node, t, a, b, dur) => {
+  dur = dur || 0.3;
+  const n = Math.round(dur / (2 / 30));
+  for (let k = 0; k <= n; k++) tl.set(node, k % 2 ? a : b, t + k * (2 / 30));
+  tl.set(node, b, t + (n + 1) * (2 / 30));
+};
+
+// ═══ dati ══════════════════════════════════════════════════════════════════════════════════
+// D02 · badge views (pill con occhio) — poppano in sequenza
+const viewBadge = (parent, cx, cy, text, o) => {
+  o = o || {};
+  const fs = o.fs || 26;
+  const b = el(parent, { position: "absolute", left: cx, top: cy, transform: "translate(-50%,-50%)", display: "flex", alignItems: "center", gap: Math.round(fs * 0.35), padding: `${Math.round(fs * 0.22)}px ${Math.round(fs * 0.55)}px`, borderRadius: Math.round(fs * 0.5), background: o.dark ? "rgba(20,20,20,.85)" : K.lime, color: o.dark ? K.white : K.ink, fontFamily: FS, fontWeight: 800, fontSize: fs, whiteSpace: "nowrap", boxShadow: o.dark ? "0 8px 20px rgba(0,0,0,.5)" : `0 8px 20px rgba(0,0,0,.45), ${GLOW_A(0.45)}`, zIndex: o.z || 30 }, svg("eye", Math.round(fs * 1.05), o.dark ? K.lime : K.ink, 2.4) + text);
+  b.setAttribute("data-layout-allow-overlap", "");
+  gsap.set(b, { opacity: 0, scale: 0.8 });
+  return b;
+};
+const popSeq = (els, t, gap) => els.forEach((e, i) => {
+  tl.to(e, { opacity: 1, duration: 0.08 }, t + i * (gap || 0.08));
+  tl.to(e, { scale: 1, duration: 0.32, ease: "back.out(2.4)" }, t + i * (gap || 0.08));
+});
+// D01 · U05 — card dati in vetro: etichetta, numero che conta (lineare, si ferma sulla parola), grafico che sale,
+// punto finale con anello, flash di glow sul numero. o: { label, icon, fmt, chart:true, w, h }
+const statCard = (parent, x, y, o) => {
+  o = o || {};
+  const w = o.w || 560, h = o.h || 330;
+  const c = el(parent, { position: "absolute", left: x, top: y, width: w, height: h, borderRadius: 26, background: "linear-gradient(180deg, rgba(58,58,58,.92) 0%, rgba(34,34,34,.95) 45%, rgba(24,24,24,.97) 100%)", border: "1.5px solid rgba(255,255,255,.16)", boxShadow: "0 34px 90px rgba(0,0,0,.6), inset 0 1.5px 0 rgba(255,255,255,.12)", overflow: "hidden", zIndex: o.z || 14 });
+  el(c, { position: "absolute", left: 30, top: 26, display: "flex", alignItems: "center", gap: 10, fontFamily: FS, fontWeight: 700, fontSize: 24, color: "rgba(255,255,255,.85)" }, (o.icon ? svg(o.icon, 26, "rgba(255,255,255,.85)", 2.2) : "") + (o.label || ""));
+  const num = el(c, { position: "absolute", left: 28, top: 62, fontFamily: FD, fontWeight: 700, fontSize: o.fs || 92, lineHeight: 1, color: K.white, textShadow: GLOW_T, whiteSpace: "nowrap" }, o.start || "0");
+  let line = null, area = null, dot = null, ring = null;
+  if (o.chart !== false) {
+    const S = document.createElementNS(NS, "svg");
+    S.setAttribute("width", w); S.setAttribute("height", h); S.setAttribute("viewBox", `0 0 ${w} ${h}`);
+    Object.assign(S.style, { position: "absolute", left: 0, top: 0, overflow: "visible" });
+    c.appendChild(S);
+    const x0 = 40, x1 = w - 46, y0 = h - 34, y1 = h * 0.5;
+    const P = o.points || [[0, 0], [0.18, 0.12], [0.34, 0.3], [0.48, 0.34], [0.62, 0.62], [0.78, 0.72], [1, 1]];
+    const pts = P.map(([u, v]) => [x0 + (x1 - x0) * u, y0 - (y0 - y1) * v]);
+    const d = "M" + pts.map((p) => p.map((n) => n.toFixed(1)).join(" ")).join(" L");
+    // area under the line (revealed with a clip rect that grows with the line)
+    const gid = "sg" + ++SVGN, cid = "sc" + SVGN;
+    S.innerHTML = `<defs><linearGradient id="${gid}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#CFFB50" stop-opacity=".38"/><stop offset="1" stop-color="#CFFB50" stop-opacity="0"/></linearGradient><clipPath id="${cid}"><rect x="0" y="0" width="0" height="${h}"/></clipPath></defs>`;
+    area = document.createElementNS(NS, "path");
+    area.setAttribute("d", d + ` L${x1} ${y0} L${x0} ${y0} Z`); area.setAttribute("fill", `url(#${gid})`); area.setAttribute("clip-path", `url(#${cid})`);
+    S.appendChild(area);
+    el(c, { position: "absolute", left: x0, top: y0, width: x1 - x0, height: 1.5, background: "rgba(255,255,255,.22)" });
+    line = document.createElementNS(NS, "path");
+    line.setAttribute("d", d); line.setAttribute("fill", "none"); line.setAttribute("stroke", K.lime); line.setAttribute("stroke-width", 5);
+    line.setAttribute("stroke-linecap", "round"); line.setAttribute("stroke-linejoin", "round");
+    line.style.filter = "drop-shadow(0 0 8px rgba(207,251,80,.75))";
+    S.appendChild(line);
+    const L = line.getTotalLength();
+    line.setAttribute("stroke-dasharray", `${L} ${L}`); line.setAttribute("stroke-dashoffset", L);
+    const end = pts[pts.length - 1];
+    ring = el(c, { position: "absolute", left: end[0] - 16, top: end[1] - 16, width: 32, height: 32, borderRadius: "50%", border: "3px solid rgba(255,255,255,.9)", boxShadow: GLOW_A(0.7), opacity: 0 });
+    dot = el(c, { position: "absolute", left: end[0] - 7, top: end[1] - 7, width: 14, height: 14, borderRadius: "50%", background: K.white, boxShadow: "0 0 12px #fff", opacity: 0 });
+    c._clip = S.getElementsByTagName("rect")[0];
+    c._L = L; c._x1 = x1;
+  }
+  const count = (t, from, to, dur, fmt) => {
+    const P = { v: from };
+    const f = fmt || ((v) => itNum(v));
+    num.textContent = f(from);
+    tl.to(P, { v: to, duration: dur, ease: "none", onUpdate: () => (num.textContent = f(P.v)) }, t);
+    if (line) {
+      tl.to(line, { attr: { "stroke-dashoffset": 0 }, duration: dur, ease: "none" }, t);
+      tl.to(c._clip, { attr: { width: c._x1 + 10 }, duration: dur, ease: "none" }, t);
+      tl.to([dot, ring], { opacity: 1, duration: 0.15 }, t + dur - 0.05);
+      tl.fromTo(ring, { scale: 0.4 }, { scale: 1, duration: 0.35, ease: "back.out(2.5)", immediateRender: false }, t + dur - 0.05);
+    }
+    glowFlash(num, t + dur);
+  };
+  return { c, num, count };
+};
+
+// ═══ connettori ════════════════════════════════════════════════════════════════════════════
+// C04 · linea guida + etichetta che si scrive parola per parola sopra la linea
+// (x0,y0) punto d'attacco → (x1,y1) fine linea; l'etichetta si appoggia sulla linea (sopra), allineata al lato giusto
+const leader = (parent, S, x0, y0, x1, y1, text, o) => {
+  o = o || {};
+  const cn = connector(S, [[x0, y0], [x1, y1]], { color: o.color || "rgba(255,255,255,.85)", w: o.w || 2.5 });
+  const right = x1 >= x0;
+  const lab = el(parent, { position: "absolute", left: right ? Math.min(x0, x1) + 12 : Math.min(x0, x1), top: y1 - (o.fs || 30) * 1.25, width: Math.abs(x1 - x0) - 12, textAlign: right ? "right" : "left", fontFamily: FS, fontWeight: 700, fontSize: o.fs || 30, color: K.white, whiteSpace: "nowrap", textShadow: GLOW_T, zIndex: o.z || 20 });
+  const words = text.split(" ").map((wd, i, a) => el(lab, { display: "inline-block", whiteSpace: "pre" }, wd + (i < a.length - 1 ? " " : ""), "span"));
+  gsap.set(words, { opacity: 0, filter: "blur(6px)", color: GREY });
+  return {
+    cn, lab, words,
+    draw: (t, dur) => cn.draw(t, dur || 0.4, "power2.out"),
+    write: (times) => {
+      const T = Array.isArray(times) ? times : words.map((_, i) => times + i * 0.12);
+      words.forEach((wd, i) => {
+        tl.to(wd, { opacity: 1, duration: 0.06 }, T[i]);
+        tl.to(wd, { filter: "blur(0px)", color: K.white, duration: 0.2, ease: "power2.out" }, T[i]);
+        tl.set(wd, { filter: "none" }, T[i] + 0.21);
+      });
+    },
+  };
+};
+// C02 · linea che diventa un flusso di puntini luminosi che scorre (traffico)
+const flowLine = (S, d, t, o) => {
+  o = o || {};
+  const p = document.createElementNS(NS, "path");
+  p.setAttribute("d", d); p.setAttribute("fill", "none");
+  p.setAttribute("stroke", o.color || "#fff"); p.setAttribute("stroke-width", o.r || 8);
+  p.setAttribute("stroke-linecap", "round");
+  const gapPx = o.gap || 16;
+  p.setAttribute("stroke-dasharray", `0 ${gapPx}`);
+  p.style.filter = `drop-shadow(0 0 6px ${o.glow || "rgba(255,255,255,.8)"})`;
+  S.appendChild(p);
+  const L = p.getTotalLength();
+  // propagation from the start (mask), then a continuous flow
+  const id = "fm" + ++SVGN;
+  const m = document.createElementNS(NS, "mask");
+  m.setAttribute("id", id); m.setAttribute("maskUnits", "userSpaceOnUse");
+  m.setAttribute("x", "-60000"); m.setAttribute("y", "-60000"); m.setAttribute("width", "200000"); m.setAttribute("height", "200000");
+  const mp = document.createElementNS(NS, "path");
+  mp.setAttribute("d", d); mp.setAttribute("fill", "none"); mp.setAttribute("stroke", "#fff"); mp.setAttribute("stroke-width", (o.r || 8) + 16);
+  mp.setAttribute("stroke-dasharray", `${L} ${L}`); mp.setAttribute("stroke-dashoffset", L);
+  m.appendChild(mp); S._defs.appendChild(m);
+  p.setAttribute("mask", `url(#${id})`);
+  tl.to(mp, { attr: { "stroke-dashoffset": 0 }, duration: o.grow || 0.18, ease: "power1.out" }, t);
+  const flowDur = o.dur || 3;
+  tl.fromTo(p, { attr: { "stroke-dashoffset": 0 } }, { attr: { "stroke-dashoffset": -(o.speed || 90) * flowDur }, duration: flowDur, ease: "none", immediateRender: false }, t);
+  return p;
+};
+
+// ──── kit2-oggetti.js ────
+// ═══ KW kit v2 · OGGETTI — i dispositivi del catalogo che servono ai tuoi script ═══════════════
+// Ogni funzione riporta l'ID della voce di catalogo. Coordinate nel parent (di solito un layer del mondo).
+// Regola di colore del brand: lime = ciò che conta / giusto; bianco = neutro; grigio scuro + sfocato = sbagliato/confuso.
+
+const GLASS = { background: "linear-gradient(180deg, rgba(56,56,56,.9) 0%, rgba(33,33,33,.94) 45%, rgba(23,23,23,.97) 100%)", border: "1.5px solid rgba(255,255,255,.15)", boxShadow: "0 34px 90px rgba(0,0,0,.6), inset 0 1.5px 0 rgba(255,255,255,.11)" };
+const glass = (parent, x, y, w, h, extra) => el(parent, Object.assign({ position: "absolute", left: x, top: y, width: w, height: h, borderRadius: 28, overflow: "hidden" }, GLASS, extra || {}));
+const svgIn = (parent, w, h, extra) => {
+  const S = document.createElementNS(NS, "svg");
+  S.setAttribute("width", w); S.setAttribute("height", h); S.setAttribute("viewBox", `0 0 ${w} ${h}`);
+  Object.assign(S.style, Object.assign({ position: "absolute", left: "0px", top: "0px", overflow: "visible", pointerEvents: "none" }, extra || {}));
+  const defs = document.createElementNS(NS, "defs");
+  S.appendChild(defs); S._defs = defs;
+  parent.appendChild(S);
+  return S;
+};
+const pathEl = (S, d, attrs) => {
+  const p = document.createElementNS(NS, "path");
+  p.setAttribute("d", d);
+  for (const k in attrs) p.setAttribute(k, attrs[k]);
+  S.appendChild(p);
+  return p;
+};
+const shade = (k) => { const c = [207, 251, 80].map((v) => Math.round(Math.min(255, v * k))); return `rgb(${c[0]},${c[1]},${c[2]})`; };
+const limeFill = (k) => `linear-gradient(180deg, ${shade(1.12 * k)} 0%, ${shade(1 * k)} 45%, ${shade(0.8 * k)} 100%)`;
+// alone che resta fuori da una forma ritagliata (clip-path taglia box-shadow e filtri dell'elemento stesso)
+const clipGlow = (parent, x, y, w, h, poly, z, a) => {
+  const g = el(parent, { position: "absolute", left: x, top: y, width: w, height: h, filter: "blur(18px)", opacity: a == null ? 0.55 : a, zIndex: z, pointerEvents: "none" });
+  el(g, { position: "absolute", inset: 0, clipPath: poly, background: "#CFFB50" });
+  return g;
+};
+const drawable = (p) => { const L = p.getTotalLength(); p.setAttribute("stroke-dasharray", `${L} ${L}`); p.setAttribute("stroke-dashoffset", L); return L; };
+const drawOn = (p, t, dur, ease) => tl.to(p, { attr: { "stroke-dashoffset": 0 }, duration: dur || 0.5, ease: ease || "power2.inOut" }, t);
+
+// ═══ O24 · calendario che si riempie ═══════════════════════════════════════════════════════
+// o: { mese:"Novembre", start (0=lun), giorni:30, cell, gap, z }
+const calendar = (parent, cx, cy, o) => {
+  o = o || {};
+  const cell = o.cell || 108, gap = o.gap || 10, cols = 7;
+  const start = o.start == null ? 2 : o.start, days = o.giorni || 30;
+  const rows = Math.ceil((start + days) / 7);
+  const gw = cols * cell + (cols - 1) * gap, gh = rows * cell + (rows - 1) * gap;
+  const pad = 34, head = 150;
+  const W = gw + pad * 2, H = gh + head + pad;
+  const c = glass(parent, cx - W / 2, cy - H / 2, W, H, { zIndex: o.z || 12 });
+  el(c, { position: "absolute", left: pad, top: 26, fontFamily: FD, fontWeight: 700, fontSize: 58, color: K.white, textShadow: GLOW_T }, o.mese || "Novembre");
+  const counter = el(c, { position: "absolute", right: pad, top: 34, fontFamily: FS, fontWeight: 800, fontSize: 30, color: K.lime, textShadow: GLOW_LT, opacity: 0 }, "");
+  "LMMGVSD".split("").forEach((d, i) => el(c, { position: "absolute", left: pad + i * (cell + gap), top: 104, width: cell, textAlign: "center", fontFamily: FS, fontWeight: 700, fontSize: 22, color: "rgba(255,255,255,.4)", letterSpacing: "0.1em" }, d));
+  const cells = [];
+  for (let d = 1; d <= days; d++) {
+    const i = start + d - 1, x = pad + (i % 7) * (cell + gap), y = head + Math.floor(i / 7) * (cell + gap);
+    const b = el(c, { position: "absolute", left: x, top: y, width: cell, height: cell, borderRadius: 18, background: "rgba(255,255,255,.045)", border: "1.5px solid rgba(255,255,255,.07)", overflow: "hidden" });
+    const fillE = el(b, { position: "absolute", inset: 0, background: "linear-gradient(180deg,#dcff74,#c4f03e)", opacity: 0 });
+    const n = el(b, { position: "absolute", left: 12, top: 8, fontFamily: FS, fontWeight: 700, fontSize: 24, color: "rgba(255,255,255,.55)", zIndex: 2 }, String(d));
+    cells.push({ b, fillE, n });
+  }
+  // riempie i giorni (array di numeri 1..giorni) a onda; o2: { step, conta:true, label }
+  const fill = (t, list, o2) => {
+    o2 = o2 || {};
+    const step = o2.step == null ? 0.035 : o2.step;
+    (list || cells.map((_, i) => i + 1)).forEach((d, k) => {
+      const cl = cells[d - 1];
+      const tt = t + k * step;
+      tl.to(cl.fillE, { opacity: 1, duration: 0.12 }, tt);
+      tl.to(cl.n, { color: K.ink, duration: 0.12 }, tt);
+      tl.fromTo(cl.b, { scale: 0.86 }, { scale: 1, duration: 0.3, ease: "back.out(2.5)", immediateRender: false }, tt);
+    });
+    if (o2.conta) {
+      const n = (list || cells).length, f = o2.label || ((v) => `${Math.round(v)} contenuti`);
+      tl.set(counter, { opacity: 1 }, t);
+      const P = { v: 0 };
+      tl.to(P, { v: n, duration: n * step + 0.1, ease: "none", onUpdate: () => (counter.textContent = f(P.v)) }, t);
+    }
+  };
+  // mette un contenuto (icona/emoji/html) dentro un giorno
+  const put = (t, d, html, o2) => {
+    const cl = cells[d - 1];
+    const m = el(cl.b, { position: "absolute", left: 0, top: 22, width: cell, height: cell - 22, display: "flex", alignItems: "center", justifyContent: "center", zIndex: 3 }, html);
+    gsap.set(m, { opacity: 0, scale: 0.6 });
+    tl.to(m, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(2.2)" }, t);
+    return m;
+  };
+  return { c, cells, fill, put, W, H };
+};
+
+// ═══ O23 · griglia di 100 puntini ══════════════════════════════════════════════════════════
+// o: { cols, rows, gap, r, z } · light(t, n, dur): n puntini a caso diventano bianchi luminosi
+// split(t, gruppi): colora i puntini a blocchi, es. [[70, K.lime], [20, "#fff"], [10, "rgba(255,255,255,.18)"]]
+const dotGrid = (parent, cx, cy, o) => {
+  o = o || {};
+  const cols = o.cols || 10, rows = o.rows || 10, gap = o.gap || 52, r = o.r || 13;
+  const W = (cols - 1) * gap + 2 * r + 80, H = (rows - 1) * gap + 2 * r + 80;
+  const c = glass(parent, cx - W / 2, cy - H / 2, W, H, { zIndex: o.z || 12, borderRadius: 30 });
+  const dots = [];
+  for (let j = 0; j < rows; j++) for (let i = 0; i < cols; i++) {
+    const d = el(c, { position: "absolute", left: 40 + i * gap, top: 40 + j * gap, width: r * 2, height: r * 2, borderRadius: "50%", background: "rgba(255,255,255,.22)" });
+    dots.push(d);
+  }
+  gsap.set(dots, { opacity: 0 });
+  const order = dots.map((_, i) => i).sort((a, b) => hash(a + 3, 17) - hash(b + 3, 17));
+  const waveIn = (t, dur) => { for (let j = 0; j < rows; j++) tl.to(dots.slice(j * cols, j * cols + cols), { opacity: 1, duration: 0.12 }, t + j * ((dur || 0.5) / rows)); };
+  const light = (t, n, dur, color) => {
+    const pick = order.slice(0, n);
+    pick.forEach((i, k) => {
+      const tt = t + ((hash(k + 11, 4) + 1) / 2) * (dur || 1.6);
+      tl.to(dots[i], { background: color || "#ffffff", boxShadow: color ? GLOW_A(0.8) : "0 0 14px rgba(255,255,255,.9)", duration: 0.08 }, tt);
+    });
+    return pick;
+  };
+  const recolor = (t, idx, color) => tl.to(idx.map((i) => dots[i]), { background: color, boxShadow: color === K.lime ? GLOW_A(0.8) : "none", duration: 0.05 }, t);
+  const split = (t, gruppi, step) => {
+    let k = 0;
+    gruppi.forEach(([n, color]) => {
+      for (let q = 0; q < n && k < dots.length; q++, k++) tl.to(dots[k], { background: color, boxShadow: color === K.lime ? GLOW_A(0.7) : "none", duration: 0.08 }, t + k * (step == null ? 0.012 : step));
+    });
+  };
+  return { c, dots, waveIn, light, recolor, split, W, H };
+};
+
+// ═══ D07 · formula che si compone ══════════════════════════════════════════════════════════
+// terms: [{v:"5", l:"sotto-nicchie"}, {op:"×"}, {v:"10", l:"formati"}, {op:"×"}, {v:"7", l:"angoli"}, {op:"="}, {v:"350", res:true, l:"contenuti"}]
+const equation = (parent, cx, cy, terms, o) => {
+  o = o || {};
+  const fs = o.fs || 150;
+  const row = el(parent, { position: "absolute", left: cx - 1000, top: cy - fs * 0.6, width: 2000, display: "flex", justifyContent: "center", alignItems: "flex-start", gap: Math.round(fs * 0.16), zIndex: o.z || 14 });
+  const items = terms.map((tm) => {
+    const col = el(row, { display: "flex", flexDirection: "column", alignItems: "center" });
+    const big = el(col, { fontFamily: tm.op ? FS : FD, fontWeight: tm.op ? 300 : 700, fontSize: tm.op ? fs * 0.62 : fs * (tm.res ? 1.12 : 1), lineHeight: 1, color: tm.res ? K.lime : tm.op ? "rgba(255,255,255,.6)" : K.white, textShadow: tm.res ? GLOW_LT : GLOW_T, marginTop: tm.op ? fs * 0.22 : 0, whiteSpace: "nowrap" }, tm.res ? "0" : tm.v || tm.op);
+    let lab = null;
+    if (tm.l) lab = el(col, { marginTop: 10, fontFamily: FH, fontSize: Math.round(fs * 0.26), color: tm.res ? K.lime : "rgba(255,255,255,.75)", whiteSpace: "nowrap" }, tm.l);
+    gsap.set(col, { opacity: 0, filter: "blur(10px)", y: 24, scale: 0.9 });
+    return { col, big, lab, tm };
+  });
+  // show(i, t): fa entrare il termine i (il risultato conta e brilla)
+  const show = (i, t, dur) => {
+    const it = items[i];
+    tl.to(it.col, { opacity: 1, filter: "blur(0px)", y: 0, scale: 1, duration: 0.32, ease: "back.out(1.8)" }, t);
+    tl.set(it.col, { filter: "none" }, t + 0.33);
+    if (it.tm.res) {
+      const to = Number(String(it.tm.v).replace(/\D/g, "")) || 0;
+      const P = { v: 0 };
+      tl.to(P, { v: to, duration: dur || 0.7, ease: "power1.out", onUpdate: () => (it.big.textContent = itNum(P.v) + (it.tm.suffix || "")) }, t);
+      glowFlash(it.big, t + (dur || 0.7), { base: GLOW_LT, peak: "0 0 18px rgba(207,251,80,1), 0 0 70px rgba(207,251,80,.8), 0 0 140px rgba(207,251,80,.45)" });
+    }
+  };
+  return { row, items, show };
+};
+
+// ═══ U03 · cursore che si muove e clicca ══════════════════════════════════════════════════
+const cursor = (parent, x, y, o) => {
+  o = o || {};
+  const s = o.size || 64;
+  const c = el(parent, { position: "absolute", left: 0, top: 0, width: s, height: s, zIndex: o.z || 70, pointerEvents: "none" },
+    `<svg width="${s}" height="${s}" viewBox="0 0 24 24"><path d="M4 2.5 L4 19.5 L8.6 15.4 L11.6 22 L14.6 20.7 L11.7 14.2 L18 14.2 Z" fill="#fff" stroke="#111" stroke-width="1.3" stroke-linejoin="round"/></svg>`);
+  c.style.filter = "drop-shadow(0 6px 10px rgba(0,0,0,.55))";
+  gsap.set(c, { x: x - s * 0.17, y: y - s * 0.1, opacity: 0 });
+  let cx0 = x, cy0 = y;
+  return {
+    c,
+    show: (t) => tl.to(c, { opacity: 1, duration: 0.15 }, t),
+    hide: (t) => tl.to(c, { opacity: 0, duration: 0.2 }, t),
+    moveTo: (t, x2, y2, dur) => { tl.to(c, { x: x2 - s * 0.17, y: y2 - s * 0.1, duration: dur || 0.45, ease: "power3.inOut" }, t); cx0 = x2; cy0 = y2; },
+    click: (t) => {
+      tl.to(c, { scale: 0.82, duration: 0.07, ease: "power2.out", transformOrigin: "17% 10%" }, t);
+      tl.to(c, { scale: 1, duration: 0.18, ease: "back.out(3)" }, t + 0.08);
+      ripple(parent, cx0, cy0, t + 0.04, { r: 46, s0: 0.3, s1: 1.3, w: 3, dur: 0.4, color: "#ffffff", glow: false, z: (o.z || 70) - 1 });
+    },
+  };
+};
+
+// ═══ O13 · cervello luminoso ══════════════════════════════════════════════════════════════
+const brain = (parent, cx, cy, size, o) => {
+  o = o || {};
+  const g = el(parent, { position: "absolute", left: cx - size / 2, top: cy - size / 2, width: size, height: size, zIndex: o.z || 12 });
+  const halo = el(g, { position: "absolute", left: -size * 0.25, top: -size * 0.25, width: size * 1.5, height: size * 1.5, borderRadius: "50%", background: "radial-gradient(circle, rgba(207,251,80,.45) 0%, rgba(207,251,80,.12) 38%, rgba(207,251,80,0) 68%)", opacity: 0 });
+  const base = el(g, { position: "absolute", inset: 0, filter: "drop-shadow(0 0 10px rgba(255,255,255,.55)) drop-shadow(0 0 30px rgba(255,255,255,.25))" }, svg("brain", size, "rgba(255,255,255,.92)", 1.1));
+  const lit = el(g, { position: "absolute", inset: 0, opacity: 0, filter: "drop-shadow(0 0 12px rgba(207,251,80,.95)) drop-shadow(0 0 40px rgba(207,251,80,.6))" }, svg("brain", size, K.lime, 1.4));
+  // neuroni: puntini che si accendono sul cervello
+  const N = [[0.3, 0.32], [0.46, 0.22], [0.62, 0.3], [0.38, 0.5], [0.58, 0.52], [0.7, 0.66], [0.3, 0.68], [0.5, 0.72]].map(([u, v]) => {
+    const d = el(g, { position: "absolute", left: size * u - 6, top: size * v - 6, width: 12, height: 12, borderRadius: "50%", background: "#fff", boxShadow: "0 0 12px #fff, 0 0 26px rgba(207,251,80,.8)", opacity: 0 });
+    return d;
+  });
+  return {
+    g,
+    on: (t) => { tl.to([lit, halo], { opacity: 1, duration: 0.25 }, t); tl.to(base, { opacity: 0.25, duration: 0.25 }, t); N.forEach((d, i) => { tl.to(d, { opacity: 1, duration: 0.08 }, t + 0.05 + i * 0.04); tl.to(d, { opacity: 0.35, duration: 0.4 }, t + 0.3 + i * 0.04); }); },
+    off: (t) => { tl.to([lit, halo], { opacity: 0, duration: 0.3 }, t); tl.to(base, { opacity: 1, duration: 0.3 }, t); tl.to(N, { opacity: 0, duration: 0.2 }, t); },
+    spark: (t) => N.forEach((d, i) => { tl.to(d, { opacity: 1, duration: 0.06 }, t + ((hash(i, 3) + 1) / 2) * 0.5); tl.to(d, { opacity: 0, duration: 0.3 }, t + 0.1 + ((hash(i, 3) + 1) / 2) * 0.5); }),
+  };
+};
+
+// ═══ O18 · tubo al neon che si disegna + riflesso che corre ═══════════════════════════════
+// d = path SVG (coordinate del parent); o: { w (spessore), color, z, x0,y0,W,H (area svg) }
+const neonPath = (parent, d, o) => {
+  o = o || {};
+  const w = o.w || 34, col = o.color || K.lime;
+  const S = svgLayer(parent, o.z || 8, o.x0 == null ? -60000 : o.x0, o.y0 == null ? -60000 : o.y0, o.W || 200000, o.H || 200000);
+  const glowP = pathEl(S, d, { fill: "none", stroke: col, "stroke-width": w + 26, "stroke-linecap": "round", "stroke-linejoin": "round", opacity: 0.22 });
+  glowP.style.filter = "blur(16px)";
+  const body = pathEl(S, d, { fill: "none", stroke: col, "stroke-width": w, "stroke-linecap": "round", "stroke-linejoin": "round", opacity: 0.9 });
+  body.style.filter = `drop-shadow(0 0 10px ${rgba(col.startsWith("#") ? col : "#CFFB50", 0.8)})`;
+  const core = pathEl(S, d, { fill: "none", stroke: "#ffffff", "stroke-width": Math.max(3, w * 0.22), "stroke-linecap": "round", "stroke-linejoin": "round", opacity: 0.7 });
+  const L = drawable(glowP); drawable(body); drawable(core);
+  const glint = pathEl(S, d, { fill: "none", stroke: "#ffffff", "stroke-width": w * 0.7, "stroke-linecap": "round", opacity: 0 });
+  glint.style.filter = "blur(2px) drop-shadow(0 0 12px #fff)";
+  const gl = Math.max(40, L * 0.06);
+  glint.setAttribute("stroke-dasharray", `${gl} ${L}`);
+  return {
+    S, L,
+    draw: (t, dur) => { [glowP, body, core].forEach((p) => drawOn(p, t, dur || 1.8, "none")); },
+    // il riflesso fa n giri (giro = durata) a partire da t
+    glint: (t, giro, n) => {
+      tl.set(glint, { attr: { opacity: 1 } }, t);
+      tl.fromTo(glint, { attr: { "stroke-dashoffset": gl } }, { attr: { "stroke-dashoffset": -L * (n || 1) }, duration: (giro || 1.6) * (n || 1), ease: "none", immediateRender: false }, t);
+      tl.set(glint, { attr: { opacity: 0 } }, t + (giro || 1.6) * (n || 1));
+    },
+  };
+};
+
+// ═══ L04 · checklist con spunte ════════════════════════════════════════════════════════════
+const checklist = (parent, cx, cy, w, items, o) => {
+  o = o || {};
+  const h = o.h || 100, gap = o.gap || 18, fs = o.fs || 32;
+  const top = cy - (items.length * h + (items.length - 1) * gap) / 2;
+  const rows = items.map((txt, i) => {
+    const r = el(parent, { position: "absolute", left: cx - w / 2, top: top + i * (h + gap), width: w, height: h, borderRadius: 16, background: "linear-gradient(90deg,#272727,#1f1f1f)", border: "1.5px solid rgba(255,255,255,.09)", boxShadow: "0 16px 40px rgba(0,0,0,.45)", overflow: "hidden", zIndex: o.z || 12 });
+    el(r, { position: "absolute", left: 0, top: 0, width: 7, height: h, background: K.lime, boxShadow: GLOW_A(0.5) });
+    const bx = el(r, { position: "absolute", left: 34, top: h / 2 - 22, width: 44, height: 44, borderRadius: 10, border: "3px solid rgba(255,255,255,.8)" });
+    const chk = el(bx, { position: "absolute", left: 2, top: 2, width: 34, height: 34 }, `<svg width="34" height="34" viewBox="0 0 24 24"><path d="M5 12.5 L10 17.5 L19 7" fill="none" stroke="${K.lime}" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg>`);
+    const p = chk.querySelector("path"); drawable(p);
+    chk.style.filter = "drop-shadow(0 0 6px rgba(207,251,80,.9))";
+    const tx = el(r, { position: "absolute", left: 104, top: 0, right: 24, height: h, display: "flex", alignItems: "center", fontFamily: FS, fontWeight: 700, fontSize: fs, color: K.white, lineHeight: 1.15 }, txt);
+    gsap.set(r, { opacity: 0 });
+    return { r, bx, p, tx };
+  });
+  return {
+    rows,
+    show: (t, step) => rows.forEach((rw, i) => blurIn(rw.r, t + i * (step == null ? 0.08 : step), { y: 24, blur: 10, dur: 0.4 })),
+    tick: (i, t) => { drawOn(rows[i].p, t, 0.22, "power2.out"); tl.to(rows[i].bx, { borderColor: K.lime, boxShadow: GLOW_A(0.5), duration: 0.15 }, t); },
+  };
+};
+
+// ═══ L11 · percorso a tappe ════════════════════════════════════════════════════════════════
+// pts: [[x,y], …] (coordinate del parent) · labels: testo di ogni tappa · o: { S (svgLayer), r }
+const pathSteps = (parent, S, pts, labels, o) => {
+  o = o || {};
+  const R = o.r || 34;
+  const segs = [];
+  for (let i = 1; i < pts.length; i++) segs.push(connector(S, [pts[i - 1], pts[i]], { color: "rgba(255,255,255,.35)", w: 4, curve: o.curve || null }));
+  const lit = [];
+  for (let i = 1; i < pts.length; i++) lit.push(connector(S, [pts[i - 1], pts[i]], { color: K.lime, w: 5, curve: o.curve || null, glow: true }));
+  const nodes = pts.map(([x, y], i) => {
+    const n = el(parent, { position: "absolute", left: x - R, top: y - R, width: R * 2, height: R * 2, borderRadius: "50%", background: "#262626", border: "3px solid rgba(255,255,255,.35)", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: FS, fontWeight: 800, fontSize: R * 0.8, color: "rgba(255,255,255,.6)", zIndex: 14 }, String(i + 1));
+    const lb = el(parent, { position: "absolute", left: x - 180, top: y + R + 14, width: 360, textAlign: "center", fontFamily: FS, fontWeight: 700, fontSize: o.fs || 28, color: "rgba(255,255,255,.5)", filter: "blur(5px)", zIndex: 14, lineHeight: 1.15 }, labels[i] || "");
+    gsap.set([n, lb], { opacity: 0 });
+    return { n, lb };
+  });
+  const runner = el(parent, { position: "absolute", left: pts[0][0] - 11, top: pts[0][1] - 11, width: 22, height: 22, borderRadius: "50%", background: "#fff", boxShadow: "0 0 16px #fff, 0 0 34px rgba(207,251,80,.8)", opacity: 0, zIndex: 15 });
+  return {
+    nodes,
+    show: (t) => { segs.forEach((s, i) => s.draw(t + i * 0.12, 0.35)); nodes.forEach((nd, i) => tl.to([nd.n, nd.lb], { opacity: 1, duration: 0.25 }, t + i * 0.12)); },
+    // go(i, t): il tratto fino alla tappa i si accende, la tappa si attiva, l'etichetta va a fuoco
+    go: (i, t, dur) => {
+      if (i > 0) { lit[i - 1].draw(t, dur || 0.45, "power2.inOut"); tl.set(runner, { opacity: 1 }, t); tl.to(runner, { x: pts[i][0] - pts[0][0], y: pts[i][1] - pts[0][1], duration: dur || 0.45, ease: "power2.inOut" }, t); }
+      const nd = nodes[i], tt = t + (i > 0 ? (dur || 0.45) : 0);
+      tl.to(nd.n, { background: K.lime, borderColor: K.lime, color: K.ink, boxShadow: GLOW_A(0.9), duration: 0.18 }, tt);
+      tl.fromTo(nd.n, { scale: 1.25 }, { scale: 1, duration: 0.35, ease: "back.out(2.5)", immediateRender: false }, tt);
+      tl.to(nd.lb, { filter: "blur(0px)", color: K.white, duration: 0.25 }, tt);
+    },
+  };
+};
+
+// ═══ O07 · scala al neon ═══════════════════════════════════════════════════════════════════
+// pioli dal basso (0) all'alto; labels per piolo · o: { w, gap, n }
+const ladder = (parent, cx, bottom, labels, o) => {
+  o = o || {};
+  const n = labels.length, gap = o.gap || 170, w = o.w || 520, tube = o.tube || 22;
+  const H = gap * (n - 1) + 160, top = bottom - H;
+  const S = svgLayer(parent, o.z || 8, cx - w, top - 100, w * 2, H + 200);
+  const rail = (x) => `M${x} ${bottom + 40} L${x} ${top}`;
+  const parts = [];
+  const tubeP = (d, a) => {
+    const g = pathEl(S, d, { fill: "none", stroke: K.lime, "stroke-width": tube + 22, "stroke-linecap": "round", opacity: 0.18 * (a || 1) });
+    g.style.filter = "blur(12px)";
+    const b = pathEl(S, d, { fill: "none", stroke: K.lime, "stroke-width": tube, "stroke-linecap": "round", opacity: 0.55 * (a || 1) });
+    b.style.filter = "drop-shadow(0 0 8px rgba(207,251,80,.8))";
+    const c = pathEl(S, d, { fill: "none", stroke: "#fff", "stroke-width": tube * 0.22, "stroke-linecap": "round", opacity: 0.5 * (a || 1) });
+    [g, b, c].forEach(drawable);
+    parts.push([g, b, c]);
+    return [g, b, c];
+  };
+  tubeP(rail(cx - w / 2)); tubeP(rail(cx + w / 2));
+  const rungs = labels.map((_, i) => tubeP(`M${cx - w / 2} ${bottom - i * gap} L${cx + w / 2} ${bottom - i * gap}`, 0.8));
+  const tags = labels.map((tx, i) => {
+    const y = bottom - i * gap;
+    const fsN = o.fs || 34;
+    const nm = el(parent, { position: "absolute", left: cx - w / 2 + 30, top: y - gap / 2 - fsN * 0.75, width: w - 60, textAlign: "center", fontFamily: FS, fontWeight: 800, fontSize: fsN, lineHeight: 1.1, letterSpacing: "0.04em", color: K.white, textShadow: GLOW_T, zIndex: 12, whiteSpace: "nowrap" });
+    const lvl = el(parent, { position: "absolute", left: cx - 200, top: y - gap / 2 + fsN * 0.55, width: 400, textAlign: "center", fontFamily: FS, fontWeight: 700, fontSize: 18, letterSpacing: "0.22em", color: "rgba(255,255,255,.55)", zIndex: 12 }, `LIVELLO ${i + 1}`);
+    gsap.set(lvl, { opacity: 0 });
+    return { lvl, nm, tx };
+  });
+  return {
+    S, rungs, tags,
+    build: (t, dur) => parts.forEach((pp, i) => pp.forEach((p) => drawOn(p, t + (i < 2 ? 0 : 0.15 + (i - 2) * 0.06), dur || 0.6, "power2.out"))),
+    // il piolo i si accende e il nome si scrive a macchina
+    on: (i, t) => {
+      const [g, b, c] = rungs[i];
+      tl.to([g], { attr: { opacity: 0.4 }, duration: 0.2 }, t);
+      tl.to([b], { attr: { opacity: 1 }, duration: 0.2 }, t);
+      tl.to([c], { attr: { opacity: 0.9 }, duration: 0.2 }, t);
+      tl.to(tags[i].lvl, { opacity: 1, duration: 0.2 }, t);
+      typeIn(tags[i].nm, tags[i].tx.toUpperCase(), t + 0.1, 14);
+    },
+  };
+};
+
+// ═══ O06 · imbuto a strati ═════════════════════════════════════════════════════════════════
+const funnel = (parent, cx, top, labels, o) => {
+  o = o || {};
+  const n = labels.length, w0 = o.w || 820, w1 = o.wEnd || 260, h = o.h || 104, gap = o.gap || 14, z = o.z || 12;
+  const layers = labels.map((tx, i) => {
+    const a = w0 - ((w0 - w1) * i) / n, b = w0 - ((w0 - w1) * (i + 1)) / n;
+    const y = top + i * (h + gap);
+    const poly = `polygon(0 0, 100% 0, ${50 + (b / a) * 50}% 100%, ${50 - (b / a) * 50}% 100%)`;
+    const glow = clipGlow(parent, cx - a / 2, y, a, h, poly, z - 1, 0.45);
+    const L = el(parent, { position: "absolute", left: cx - a / 2, top: y, width: a, height: h, clipPath: poly, background: limeFill(1 - i * 0.06), zIndex: z });
+    el(L, { position: "absolute", left: 0, top: 0, width: "100%", height: 5, background: "rgba(255,255,255,.75)" });
+    const lb = el(parent, { position: "absolute", left: cx - a / 2, top: y, width: a, height: h, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: FS, fontWeight: 800, fontSize: o.fs || 30, color: K.ink, zIndex: z + 2, whiteSpace: "nowrap" }, tx);
+    gsap.set([glow, L, lb], { opacity: 0 });
+    return { L, glow, lb, y };
+  });
+  const by = top + n * (h + gap) + 30;
+  const orb = el(parent, { position: "absolute", left: cx - 60, top: by, width: 120, height: 120, borderRadius: "50%", background: "radial-gradient(circle at 35% 30%, #f4ffd0 0%, #CFFB50 40%, #a9d634 100%)", boxShadow: `${GLOW_A(1)}, 0 0 80px rgba(207,251,80,.5)`, zIndex: z + 1 });
+  gsap.set(orb, { opacity: 0, scale: 0.3 });
+  return {
+    layers, orb,
+    build: (t, step) => {
+      layers.forEach((ly, i) => {
+        const tt = t + i * (step || 0.15);
+        tl.fromTo([ly.L, ly.lb], { opacity: 0, y: -24 }, { opacity: 1, y: 0, duration: 0.3, ease: "power3.out", immediateRender: false }, tt);
+        tl.fromTo(ly.glow, { opacity: 0 }, { opacity: 0.45, duration: 0.4, immediateRender: false }, tt);
+      });
+      tl.to(orb, { opacity: 1, scale: 1, duration: 0.45, ease: "back.out(2)" }, t + layers.length * (step || 0.15));
+    },
+    light: (i, t) => { tl.to(layers[i].glow, { opacity: 1, duration: 0.15 }, t); tl.fromTo([layers[i].L, layers[i].lb], { scale: 1.06 }, { scale: 1, duration: 0.45, ease: "back.out(2)", immediateRender: false }, t); tl.to(layers[i].glow, { opacity: 0.45, duration: 0.6 }, t + 0.5); },
+    dim: (i, t) => tl.to([layers[i].L, layers[i].lb], { opacity: 0.25, duration: 0.3 }, t),
+  };
+};
+
+// ═══ O22 · folla in un riquadro con contatore ═══════════════════════════════════════════════
+const crowd = (parent, cx, cy, cols, rows, o) => {
+  o = o || {};
+  const s = o.s || 44, gap = o.gap || 12;
+  const W = cols * s + (cols - 1) * gap + 70, H = rows * s + (rows - 1) * gap + 130;
+  const c = glass(parent, cx - W / 2, cy - H / 2, W, H, { zIndex: o.z || 12 });
+  const people = [];
+  for (let j = 0; j < rows; j++) for (let i = 0; i < cols; i++) people.push(person(c, 35 + s / 2 + i * (s + gap), 35 + s / 2 + j * (s + gap), s, "rgba(255,255,255,.85)", 3));
+  const num = el(c, { position: "absolute", left: 0, bottom: 22, width: W, textAlign: "center", fontFamily: FS, fontWeight: 800, fontSize: 40, color: K.lime, textShadow: GLOW_LT }, o.label || "");
+  gsap.set(people, { opacity: 0 });
+  const recolorP = (t, idx, color, step) => idx.forEach((i, k) => tl.to(people[i].children, { background: color, duration: 0.1 }, t + k * (step || 0)));
+  return {
+    c, people, num,
+    fillIn: (t, dur) => people.forEach((p, i) => tl.to(p, { opacity: 1, duration: 0.1 }, t + ((hash(i, 21) + 1) / 2) * (dur || 0.6))),
+    recolor: recolorP,
+    dim: (t, idx, a) => tl.to(idx.map((i) => people[i]), { opacity: a == null ? 0.18 : a, duration: 0.3 }, t),
+    count: (t, from, to, dur, fmt) => { const P = { v: from }; tl.to(P, { v: to, duration: dur, ease: "none", onUpdate: () => (num.textContent = (fmt || ((v) => itNum(v) + " persone"))(P.v)) }, t); },
+  };
+};
+
+// ═══ D04 · retention che crolla ══════════════════════════════════════════════════════════
+const retention = (parent, x, y, o) => {
+  o = o || {};
+  const w = o.w || 620, h = o.h || 380;
+  const c = glass(parent, x, y, w, h, { zIndex: o.z || 12 });
+  el(c, { position: "absolute", left: 30, top: 24, fontFamily: FS, fontWeight: 700, fontSize: 24, color: "rgba(255,255,255,.8)" }, o.label || "Visualizzazione");
+  const S = svgIn(c, w, h);
+  const x0 = 40, x1 = w - 40, y0 = 90, y1 = h - 40;
+  const P = o.points || [[0, 0], [0.08, 0.12], [0.14, 0.55], [0.22, 0.7], [0.4, 0.78], [0.7, 0.84], [1, 0.88]];
+  const d = "M" + P.map(([u, v]) => `${(x0 + (x1 - x0) * u).toFixed(1)} ${(y0 + (y1 - y0) * v).toFixed(1)}`).join(" L");
+  pathEl(S, `M${x0} ${y1} L${x1} ${y1}`, { stroke: "rgba(255,255,255,.2)", "stroke-width": 2 });
+  const line = pathEl(S, d, { fill: "none", stroke: "#fff", "stroke-width": 5, "stroke-linecap": "round", "stroke-linejoin": "round" });
+  line.style.filter = "drop-shadow(0 0 8px rgba(255,255,255,.7))";
+  drawable(line);
+  const dropX = x0 + (x1 - x0) * P[2][0], dropY = y0 + (y1 - y0) * P[2][1];
+  const pct = el(c, { position: "absolute", right: 30, top: 16, fontFamily: FD, fontWeight: 700, fontSize: 50, color: K.white, textShadow: GLOW_T }, "100%");
+  return {
+    c, dropX, dropY,
+    draw: (t, dur) => {
+      drawOn(line, t, dur || 0.9, "power1.inOut");
+      const Q = { v: 100 };
+      tl.to(Q, { v: o.end || 12, duration: dur || 0.9, ease: "power2.in", onUpdate: () => (pct.textContent = Math.round(Q.v) + "%") }, t);
+    },
+  };
+};
+
+// ═══ D05 · barre che crescono ══════════════════════════════════════════════════════════════
+// bars: [{v:0..1, l:"etichetta", win:true}] · o: { w, h, bw }
+const barChart = (parent, cx, base, bars, o) => {
+  o = o || {};
+  const bw = o.bw || 120, gap = o.gap || 60, H = o.h || 520;
+  const W = bars.length * bw + (bars.length - 1) * gap;
+  el(parent, { position: "absolute", left: cx - W / 2 - 30, top: base, width: W + 60, height: 3, background: "rgba(255,255,255,.3)", zIndex: 12 });
+  const items = bars.map((b, i) => {
+    const x = cx - W / 2 + i * (bw + gap);
+    const bar = el(parent, { position: "absolute", left: x, top: base - H * b.v, width: bw, height: H * b.v, borderRadius: "14px 14px 4px 4px", background: b.win ? "linear-gradient(180deg,#e2ff8a,#b9e63b)" : "linear-gradient(180deg,rgba(255,255,255,.55),rgba(255,255,255,.22))", boxShadow: b.win ? GLOW_A(0.8) : "0 0 24px rgba(255,255,255,.12)", transformOrigin: "50% 100%", zIndex: 12 });
+    const lb = el(parent, { position: "absolute", left: x - 40, top: base + 16, width: bw + 80, textAlign: "center", fontFamily: FS, fontWeight: 700, fontSize: o.fs || 26, color: b.win ? K.lime : "rgba(255,255,255,.75)", zIndex: 12, lineHeight: 1.1 }, b.l || "");
+    gsap.set(bar, { scaleY: 0 });
+    gsap.set(lb, { opacity: 0 });
+    return { bar, lb, b };
+  });
+  return {
+    items,
+    grow: (t, step) => items.forEach((it, i) => { tl.to(it.bar, { scaleY: 1, duration: 0.55, ease: "power3.out" }, t + i * (step == null ? 0.12 : step)); tl.to(it.lb, { opacity: 1, duration: 0.3 }, t + i * (step == null ? 0.12 : step) + 0.1); }),
+  };
+};
+
+// ═══ D06 · barra di avanzamento ════════════════════════════════════════════════════════════
+const progressBar = (parent, x, y, w, o) => {
+  o = o || {};
+  const h = o.h || 26;
+  const tr = el(parent, { position: "absolute", left: x, top: y, width: w, height: h, borderRadius: h / 2, background: "rgba(255,255,255,.1)", border: "1.5px solid rgba(255,255,255,.14)", overflow: "hidden", zIndex: o.z || 12 });
+  const f = el(tr, { position: "absolute", left: 0, top: 0, width: w, height: h, borderRadius: h / 2, background: "linear-gradient(90deg,#b9e63b,#e2ff8a)", boxShadow: GLOW_A(0.7), transformOrigin: "0 50%" });
+  gsap.set(f, { scaleX: 0 });
+  const lab = o.label ? el(parent, { position: "absolute", left: x, top: y - 44, width: w, display: "flex", justifyContent: "space-between", fontFamily: FS, fontWeight: 700, fontSize: 24, color: "rgba(255,255,255,.75)", zIndex: o.z || 12 }, `<span>${o.label}</span><span class="pv">0%</span>`) : null;
+  return {
+    tr, f,
+    fill: (t, to, dur, ease) => {
+      tl.to(f, { scaleX: to == null ? 1 : to, duration: dur || 1, ease: ease || "none" }, t);
+      if (lab) { const pv = lab.querySelector(".pv"), P = { v: 0 }; tl.to(P, { v: (to == null ? 1 : to) * 100, duration: dur || 1, ease: ease || "none", onUpdate: () => (pv.textContent = Math.round(P.v) + "%") }, t); }
+    },
+  };
+};
+
+// ═══ X01 · "Commenta X" + anteprima della risorsa ══════════════════════════════════════════
+// parola = la parola da commentare; o: { docs (quanti documenti), titolo, sotto }
+const ctaCard = (parent, cx, cy, parola, o) => {
+  o = o || {};
+  const T = titleW({ parent, x: cx, y: cy - 520, size: 88, lines: [[{ t: "Commenta " }, { t: `"${parola}"`, box: true }], [{ t: o.sotto || "e te lo mando", hand: true }]] });
+  const n = o.docs || 6, cols = 3, dw = 230, dh = 300, g = 26;
+  const gx = cx - (cols * dw + (cols - 1) * g) / 2, gy = cy - 180;
+  const docs = [];
+  for (let i = 0; i < n; i++) {
+    const x = gx + (i % cols) * (dw + g), y = gy + Math.floor(i / cols) * (dh + g);
+    const d = el(parent, { position: "absolute", left: x, top: y, width: dw, height: dh, borderRadius: 16, background: "linear-gradient(180deg,#f7f7f2,#e6e6df)", boxShadow: "0 24px 60px rgba(0,0,0,.5)", overflow: "hidden", zIndex: o.z || 14 });
+    el(d, { position: "absolute", left: 18, top: 18, width: dw - 36, height: 16, borderRadius: 4, background: "#1e1e1e" });
+    el(d, { position: "absolute", left: 18, top: 44, width: (dw - 36) * 0.6, height: 10, borderRadius: 3, background: "#CFFB50" });
+    for (let k = 0; k < 9; k++) el(d, { position: "absolute", left: 18, top: 72 + k * 22, width: (dw - 36) * (0.55 + 0.45 * ((hash(i * 9 + k, 4) + 1) / 2)), height: 9, borderRadius: 3, background: "rgba(30,30,30,.22)" });
+    gsap.set(d, { opacity: 0, y: 40, scale: 0.9 });
+    docs.push(d);
+  }
+  return {
+    T, docs,
+    // i documenti arrivano a ondate (1 → 3 → 6)
+    show: (t, times) => {
+      T.inAt(times || t);
+      const waves = o.waves || [1, 3, n];
+      let k = 0;
+      waves.forEach((upto, wi) => { for (; k < upto && k < n; k++) tl.to(docs[k], { opacity: 1, y: 0, scale: 1, duration: 0.45, ease: "back.out(1.6)" }, t + 0.5 + wi * 0.35 + (k % cols) * 0.05); });
+    },
+  };
+};
+
+// ═══ L14 · griglia di esempi (reel veri) con etichetta e badge ═══════════════════════════════
+// vids: [{v:"id", l:"etichetta", b:"1,2M"}] · o: { cols, w, h, gap }
+const reelGrid = (parent, cx, cy, vids, o) => {
+  o = o || {};
+  const cols = o.cols || 3, w = o.w || 270, h = o.h || 480, gap = o.gap || 28;
+  const rows = Math.ceil(vids.length / cols);
+  const W = cols * w + (cols - 1) * gap, H = rows * h + (rows - 1) * (gap + 70);
+  const cards = vids.map((vd, i) => {
+    const x = cx - W / 2 + (i % cols) * (w + gap) + w / 2, y = cy - H / 2 + Math.floor(i / cols) * (h + gap + 70) + h / 2;
+    const vc = videoCard(parent, x, y, w, h, vd.v, { z: 10 });
+    const lab = vd.l ? el(parent, { position: "absolute", left: x - w / 2, top: y - h / 2 - 48, width: w, textAlign: "center", fontFamily: FS, fontWeight: 800, fontSize: 24, color: K.white, textShadow: GLOW_T, zIndex: 12, whiteSpace: "nowrap" }, vd.l) : null;
+    const bd = vd.b ? viewBadge(parent, x, y + h / 2 + 34, vd.b, { fs: 26 }) : null;
+    gsap.set(vc.body, { opacity: 0 });
+    if (lab) gsap.set(lab, { opacity: 0 });
+    return { vc, lab, bd };
+  });
+  return {
+    cards,
+    show: (t, step) => {
+      cards.forEach((c, i) => { blurIn(c.vc.body, t + i * (step == null ? 0.07 : step), { y: 40, blur: 14, dur: 0.45 }); if (c.lab) tl.to(c.lab, { opacity: 1, duration: 0.3 }, t + 0.2 + i * (step == null ? 0.07 : step)); });
+      popSeq(cards.filter((c) => c.bd).map((c) => c.bd), t + 0.45, 0.08);
+    },
+  };
+};
+
+// ═══ L13 · confronto a due colonne ═════════════════════════════════════════════════════════
+const versus = (parent, cx, top, left, right, o) => {
+  o = o || {};
+  const w = o.w || 430, gap = o.gap || 40, fs = o.fs || 34;
+  const mk = (x, txt, good) => {
+    const hdr = el(parent, { position: "absolute", left: x, top, width: w, height: 84, borderRadius: 16, display: "flex", alignItems: "center", justifyContent: "center", background: good ? "linear-gradient(180deg,#dcff74,#c4f03e)" : "linear-gradient(180deg,#3a3a3a,#2a2a2a)", color: good ? K.ink : "rgba(255,255,255,.7)", fontFamily: FD, fontWeight: 700, fontSize: fs * 1.15, boxShadow: good ? GLOW_A(0.7) : "0 16px 40px rgba(0,0,0,.45)", zIndex: 13 }, txt);
+    gsap.set(hdr, { opacity: 0 });
+    return hdr;
+  };
+  const L = mk(cx - gap / 2 - w, left, false), R = mk(cx + gap / 2, right, true);
+  const rowsL = [], rowsR = [];
+  const add = (t, a, b, k) => {
+    const y = top + 110 + k * 110;
+    const mkr = (x, txt, good) => {
+      const r = el(parent, { position: "absolute", left: x, top: y, width: w, height: 92, borderRadius: 14, display: "flex", alignItems: "center", gap: 14, padding: "0 22px", background: "linear-gradient(90deg,#272727,#1f1f1f)", border: `1.5px solid ${good ? "rgba(207,251,80,.45)" : "rgba(255,255,255,.08)"}`, fontFamily: FS, fontWeight: 700, fontSize: fs * 0.82, color: good ? K.white : "rgba(255,255,255,.55)", zIndex: 13 }, svg(good ? "check" : "x", 30, good ? K.lime : "rgba(255,255,255,.4)", 3) + txt);
+      blurIn(r, t + (good ? 0.12 : 0), { y: 20, blur: 10, dur: 0.4 });
+      return r;
+    };
+    rowsL.push(mkr(cx - gap / 2 - w, a, false));
+    rowsR.push(mkr(cx + gap / 2, b, true));
+  };
+  return { L, R, rowsL, rowsR, head: (t) => { blurIn(L, t, { y: 20, blur: 12, dur: 0.4 }); blurIn(R, t + 0.1, { y: 20, blur: 12, dur: 0.4 }); }, add };
+};
+
+// ═══ U04 · interruttori che si accendono ════════════════════════════════════════════════════
+const toggle = (parent, x, y, o) => {
+  o = o || {};
+  const w = o.w || 104, h = o.h || 60;
+  const tr = el(parent, { position: "absolute", left: x, top: y, width: w, height: h, borderRadius: h / 2, background: "rgba(255,255,255,.18)", border: "1.5px solid rgba(255,255,255,.2)", zIndex: o.z || 14 });
+  const kn = el(tr, { position: "absolute", left: 4, top: 4, width: h - 8, height: h - 8, borderRadius: "50%", background: "#fff", boxShadow: "0 4px 10px rgba(0,0,0,.4)" });
+  return { tr, kn, on: (t) => { tl.to(tr, { background: K.lime, borderColor: K.lime, boxShadow: GLOW_A(0.7), duration: 0.2 }, t); tl.to(kn, { x: w - h, duration: 0.25, ease: "back.out(2)" }, t); } };
+};
+
+// ═══ L09 · albero (padre → figli) ═════════════════════════════════════════════════════════
+// collega il punto p ai punti dei figli con curve verticali; restituisce i connettori da disegnare in sequenza
+const tree = (S, p, kids, o) => {
+  o = o || {};
+  const cns = kids.map((k) => connector(S, [p, k], { curve: o.curve || "v", color: o.color || "rgba(255,255,255,.7)", w: o.w || 3, dash: o.dash || null }));
+  return { cns, draw: (t, step, dur) => cns.forEach((c, i) => c.draw(t + i * (step == null ? 0.08 : step), dur || 0.4)) };
+};
+
+// ═══ L10 · parentesi che raggruppa ══════════════════════════════════════════════════════════
+// verticale da (x, y0) a (x, y1), apertura verso destra (side=1) o sinistra (-1)
+const bracket = (S, x, y0, y1, side, o) => {
+  o = o || {};
+  const k = (o.depth || 28) * (side || 1), ym = (y0 + y1) / 2;
+  const d = `M${x} ${y0} C${x - k} ${y0} ${x} ${ym - 10} ${x - k} ${ym} C${x} ${ym + 10} ${x - k} ${y1} ${x} ${y1}`;
+  const p = pathEl(S, d, { fill: "none", stroke: o.color || K.lime, "stroke-width": o.w || 4, "stroke-linecap": "round" });
+  p.style.filter = "drop-shadow(0 0 6px rgba(207,251,80,.8))";
+  drawable(p);
+  return { p, draw: (t, dur) => drawOn(p, t, dur || 0.35, "power2.out") };
+};
+
+// ═══ H03 · tag inclinati attorno a un esempio ════════════════════════════════════════════
+// tags: [{t:"testo", x, y, rot}] (coordinate del parent) · o: { from:[x,y] punto da cui partono le linee }
+const tags = (parent, S, list, o) => {
+  o = o || {};
+  return list.map((tg, i) => {
+    const b = el(parent, { position: "absolute", left: tg.x, top: tg.y, padding: "10px 18px", borderRadius: 12, background: tg.good === false ? "#2b2b2b" : K.lime, color: tg.good === false ? "rgba(255,255,255,.75)" : K.ink, fontFamily: FS, fontWeight: 800, fontSize: o.fs || 28, whiteSpace: "nowrap", boxShadow: tg.good === false ? "0 10px 26px rgba(0,0,0,.5)" : `0 10px 26px rgba(0,0,0,.45), ${GLOW_A(0.5)}`, transform: `rotate(${tg.rot || 0}deg)`, zIndex: 20 }, tg.t);
+    gsap.set(b, { opacity: 0, scale: 0.7 });
+    const cn = o.from ? connector(S, [o.from, [tg.x + 20, tg.y + 24]], { color: "rgba(255,255,255,.6)", w: 2.5 }) : null;
+    return { b, cn, show: (t) => { if (cn) cn.draw(t, 0.25, "power2.out"); tl.to(b, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(2.4)" }, t + 0.12); } };
+  });
+};
+
+// ═══ O10 · bersaglio costruito dal centro ═══════════════════════════════════════════════════
+// rings: raggi dal centro all'esterno; il primo è il punto pieno · o: { colors }
+const bullseye = (parent, cx, cy, radii, o) => {
+  o = o || {};
+  const n = radii.length;
+  const rings = radii.map((r, i) => {
+    const solid = i === 0;
+    const a = Math.max(0.42, 1 - i * 0.16);
+    const d = el(parent, { position: "absolute", left: cx - r, top: cy - r, width: r * 2, height: r * 2, borderRadius: "50%",
+      background: solid ? "radial-gradient(circle at 38% 32%, #f1ffc4 0%, #CFFB50 45%, #a9d634 100%)" : `radial-gradient(circle, rgba(255,255,255,0) 55%, rgba(255,255,255,.035) 100%), ${i % 2 ? "#202020" : "#262626"}`,
+      border: solid ? "none" : `3px solid rgba(207,251,80,${a.toFixed(2)})`,
+      boxShadow: solid ? GLOW_A(1) : `0 0 26px rgba(207,251,80,${(a * 0.4).toFixed(2)}), inset 0 0 24px rgba(207,251,80,${(a * 0.18).toFixed(2)})`,
+      zIndex: (o.z || 10) + n - i });
+    gsap.set(d, { opacity: 0, scale: 0.4 });
+    return d;
+  });
+  return { rings, ring: (i, t) => tl.to(rings[i], { opacity: 1, scale: 1, duration: 0.3, ease: "expo.out" }, t), dimOuter: (from, t) => tl.to(rings.slice(from), { opacity: 0.2, duration: 0.35 }, t) };
+};
+
+// ═══ L12 · documento "Video Script" che si costruisce ═══════════════════════════════════════
+// sections: [{label:"Hook", rows:2, color}] · o: { w, h, title }
+const scriptDoc = (parent, cx, cy, sections, o) => {
+  o = o || {};
+  const w = o.w || 620, rowsTot = sections.reduce((a, s) => a + s.rows, 0), rh = o.rh || 30;
+  const h = o.h || 140 + rowsTot * rh + sections.length * 18;
+  const c = el(parent, { position: "absolute", left: cx - w / 2, top: cy - h / 2, width: w, height: h, borderRadius: 22, background: "linear-gradient(180deg,#232323,#171717)", border: "2px solid rgba(255,255,255,.85)", boxShadow: "0 0 26px rgba(255,255,255,.35), 0 0 90px rgba(255,255,255,.12), 0 30px 80px rgba(0,0,0,.6)", overflow: "hidden", zIndex: o.z || 12 });
+  el(c, { position: "absolute", left: 0, top: 26, width: w, textAlign: "center", fontFamily: FH, fontSize: 40, color: K.white }, o.title || "Copione");
+  const PAL = ["#CFFB50", "#ffffff", "#9fd4ff", "#ffd27a", "#b9a3ff"];
+  let y = 100;
+  const secs = sections.map((s, si) => {
+    const col = s.color || PAL[si % PAL.length];
+    const mark = el(c, { position: "absolute", left: 30, top: y + 2, width: 18, height: 18, borderRadius: 4, background: col, boxShadow: `0 0 10px ${col}`, opacity: 0 });
+    const lab = el(c, { position: "absolute", left: 58, top: y - 4, fontFamily: FS, fontWeight: 800, fontSize: 22, color: col, opacity: 0 }, s.label);
+    y += 30;
+    const rows = [];
+    for (let k = 0; k < s.rows; k++) {
+      const ww = (w - 90) * (k === s.rows - 1 ? 0.62 : 0.9 + 0.1 * ((hash(si * 10 + k, 6) + 1) / 2) - 0.1);
+      const base = el(c, { position: "absolute", left: 58, top: y + k * rh, width: ww, height: 12, borderRadius: 4, background: "rgba(255,255,255,.18)" });
+      const fillR = el(c, { position: "absolute", left: 58, top: y + k * rh, width: ww, height: 12, borderRadius: 4, background: col, boxShadow: `0 0 10px ${col}`, transformOrigin: "0 50%" });
+      gsap.set(fillR, { scaleX: 0 });
+      rows.push({ base, fillR });
+    }
+    y += s.rows * rh + 18;
+    return { mark, lab, rows, col };
+  });
+  const allBase = secs.flatMap((s) => s.rows.map((r) => r.base));
+  gsap.set(allBase, { scaleX: 0, transformOrigin: "0 50%" });
+  return {
+    c, secs,
+    // le righe grigie si stendono a cascata
+    lay: (t) => allBase.forEach((b, i) => tl.to(b, { scaleX: 1, duration: 0.25, ease: "power2.out" }, t + i * 0.02)),
+    // la sezione i si colora riga per riga (evidenziatore) con quadratino + etichetta
+    section: (i, t, step) => {
+      const s = secs[i];
+      tl.to([s.mark, s.lab], { opacity: 1, duration: 0.2 }, t);
+      s.rows.forEach((r, k) => tl.to(r.fillR, { scaleX: 1, duration: 0.3, ease: "power1.inOut" }, t + 0.1 + k * (step || 0.12)));
+    },
+    focus: (i, t) => secs.forEach((s, j) => tl.to([s.mark, s.lab, ...s.rows.map((r) => r.fillR), ...s.rows.map((r) => r.base)], { opacity: j === i ? 1 : 0.25, duration: 0.3 }, t)),
+  };
+};
+
+// ═══ U01 · chat AI ricreata + prompt che si digita ══════════════════════════════════════════
+// o: { logo:"claude"|"ai", saluto }
+const chatUI = (parent, cx, cy, o) => {
+  o = o || {};
+  const w = o.w || 860;
+  const logo = el(parent, { position: "absolute", left: cx - 50, top: cy - 230, width: 100, height: 100, zIndex: 13 }, o.logo === "claude"
+    ? `<svg width="100" height="100" viewBox="0 0 100 100">${Array.from({ length: 12 }, (_, i) => `<rect x="47" y="8" width="6" height="40" rx="3" fill="#D97757" transform="rotate(${i * 30 + (i % 2) * 7} 50 50)"/>`).join("")}</svg>`
+    : svg("sparkles", 100, K.lime, 1.6));
+  logo.style.filter = o.logo === "claude" ? "drop-shadow(0 0 18px rgba(217,119,87,.6))" : "drop-shadow(0 0 18px rgba(207,251,80,.7))";
+  const hi = el(parent, { position: "absolute", left: cx - w / 2, top: cy - 110, width: w, textAlign: "center", fontFamily: FD, fontWeight: 400, fontSize: 52, color: K.white, textShadow: GLOW_T, zIndex: 13 }, o.saluto || "Come posso aiutarti oggi?");
+  const rowsMax = o.rows || 2, HB = 84 + rowsMax * 42;
+  const bar = el(parent, { position: "absolute", left: cx - w / 2, top: cy + 10, width: w, height: HB, zIndex: 13 });
+  const barBg = el(bar, { position: "absolute", left: 0, top: 0, width: w, height: HB, borderRadius: 26, background: "linear-gradient(180deg,#2c2c2c,#232323)", border: "1.5px solid rgba(255,255,255,.16)", boxShadow: "0 24px 60px rgba(0,0,0,.5)", transformOrigin: "50% 0%" });
+  gsap.set(barBg, { scaleY: 84 / HB });
+  const txt = el(bar, { position: "absolute", left: 30, top: 22, right: 110, fontFamily: FS, fontWeight: 500, fontSize: 32, color: K.white, lineHeight: 1.3 });
+  const ph = el(bar, { position: "absolute", left: 30, top: 22, fontFamily: FS, fontWeight: 500, fontSize: 32, color: "rgba(255,255,255,.35)" }, o.placeholder || "Scrivi qui…");
+  const send = el(bar, { position: "absolute", right: 16, top: 14, width: 56, height: 56, borderRadius: "50%", background: o.logo === "claude" ? "#D97757" : K.lime, display: "flex", alignItems: "center", justifyContent: "center" }, svg("arrow-up", 30, o.logo === "claude" ? "#fff" : K.ink, 2.6));
+  gsap.set([logo, hi], { opacity: 0 });
+  gsap.set(bar, { scaleX: 0.18, opacity: 0 });
+  return {
+    show: (t) => { blurIn(logo, t, { y: 20, blur: 12, dur: 0.45, scale: 0.8 }); blurIn(hi, t + 0.12, { y: 16, blur: 10, dur: 0.4 }); tl.to(bar, { opacity: 1, duration: 0.15 }, t + 0.25); tl.to(bar, { scaleX: 1, duration: 0.3, ease: "power3.out" }, t + 0.25); },
+    // il campo si apre in altezza e il prompt si scrive
+    type: (t, text, cps) => {
+      tl.to(barBg, { scaleY: 1, duration: 0.25, ease: "power2.out" }, t - 0.1);
+      tl.to(ph, { opacity: 0, duration: 0.1 }, t - 0.05);
+      return typeIn(txt, text, t, cps || 22, { caret: true, size: 32 });
+    },
+    sendAt: (t) => { tl.to(send, { scale: 0.85, duration: 0.08 }, t); tl.to(send, { scale: 1, duration: 0.25, ease: "back.out(3)" }, t + 0.08); },
+  };
+};
+
+// ═══ O05 · piramide a livelli con bandiere ════════════════════════════════════════════════
+// livelli dal basso; labels per livello (bandiere alternate sx/dx con linea guida)
+const pyramid = (parent, S, cx, base, labels, o) => {
+  o = o || {};
+  const n = labels.length, W = o.w || 700, H = o.h || 640, gap = o.gap || 12;
+  const lh = (H - gap * (n - 1)) / n;
+  const lv = labels.map((tx, i) => {
+    const yb = base - i * (lh + gap), yt = yb - lh;
+    const wb = W * (1 - (i * (lh + gap)) / H), wt = W * (1 - (i * (lh + gap) + lh) / H);
+    const poly = `polygon(${50 - (wt / wb) * 50}% 0, ${50 + (wt / wb) * 50}% 0, 100% 100%, 0 100%)`;
+    const glow = clipGlow(parent, cx - wb / 2, yt, wb, lh, poly, 11, 0.4);
+    const L = el(parent, { position: "absolute", left: cx - wb / 2, top: yt, width: wb, height: lh, clipPath: poly, background: limeFill(0.82 + i * (0.18 / Math.max(1, n - 1))), zIndex: 12 });
+    el(L, { position: "absolute", left: 0, top: 0, width: "100%", height: 4, background: "rgba(255,255,255,.7)" });
+    const num = el(parent, { position: "absolute", left: cx - 60, top: yt, width: 120, height: lh, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: FD, fontWeight: 700, fontSize: Math.min(64, lh * 0.5), color: K.ink, zIndex: 13 }, String(i + 1));
+    const side = i % 2 ? -1 : 1, ym = yt + lh / 2;
+    const x0 = cx + side * ((wb + wt) / 4 + 10), x1 = cx + side * (W / 2 + 120);
+    const ld = leader(parent, S, x0, ym, x1, ym, tx, { fs: o.fs || 30 });
+    gsap.set([L, num, glow], { opacity: 0 });
+    return { L, num, ld, glow };
+  });
+  return {
+    lv,
+    build: (t, step) => lv.forEach((l, i) => { tl.fromTo([l.L, l.num], { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.35, ease: "power3.out", immediateRender: false }, t + i * (step || 0.15)); tl.to(l.glow, { opacity: 0.4, duration: 0.4 }, t + i * (step || 0.15)); }),
+    flag: (i, t) => { lv[i].ld.draw(t, 0.35); lv[i].ld.write(t + 0.15); },
+  };
+};
+
+// ═══ O20 · radar ══════════════════════════════════════════════════════════════════════════
+const radar = (parent, cx, cy, r, o) => {
+  o = o || {};
+  [1, 0.72, 0.45].forEach((k) => el(parent, { position: "absolute", left: cx - r * k, top: cy - r * k, width: r * 2 * k, height: r * 2 * k, borderRadius: "50%", border: "1.5px solid rgba(255,255,255,.14)", zIndex: 9 }));
+  const sweep = el(parent, { position: "absolute", left: cx - r, top: cy - r, width: r * 2, height: r * 2, borderRadius: "50%", background: "conic-gradient(from 0deg, rgba(207,251,80,0) 0deg, rgba(207,251,80,0) 300deg, rgba(207,251,80,.55) 360deg)", zIndex: 10, opacity: 0 });
+  return {
+    sweep,
+    spin: (t, dur, giri) => { tl.set(sweep, { opacity: 1 }, t); tl.fromTo(sweep, { rotation: 0 }, { rotation: 360 * (giri || 1), duration: dur, ease: "none", immediateRender: false }, t); tl.to(sweep, { opacity: 0, duration: 0.3 }, t + dur); },
+    // un elemento compare sul bordo quando lo spicchio ci passa sopra (angolo in gradi, 0 = alto, orario)
+    reveal: (node, t, ang, dur) => tl.fromTo(node, { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.25, ease: "back.out(2.5)", immediateRender: false }, t + (ang / 360) * dur),
+  };
+};
+
+// ═══ O04 · elementi in orbita su un cerchio tratteggiato ═══════════════════════════════════
+const orbit = (parent, cx, cy, r, nodes, o) => {
+  o = o || {};
+  const ring = el(parent, { position: "absolute", left: cx - r, top: cy - r, width: r * 2, height: r * 2, borderRadius: "50%", border: "2px dashed rgba(255,255,255,.22)", zIndex: 9 });
+  const arm = el(parent, { position: "absolute", left: cx, top: cy, width: 1, height: 1, zIndex: 12 });
+  nodes.forEach((nd, i) => {
+    const a = (i / nodes.length) * Math.PI * 2;
+    const holder = el(arm, { position: "absolute", left: Math.cos(a) * r, top: Math.sin(a) * r, width: 1, height: 1 });
+    holder.appendChild(nd);
+    nd._holder = holder;
+  });
+  return {
+    ring, arm,
+    spin: (t, dur, gradi) => {
+      tl.fromTo(arm, { rotation: 0 }, { rotation: gradi || 90, duration: dur, ease: "none", immediateRender: false }, t);
+      nodes.forEach((nd) => tl.fromTo(nd._holder, { rotation: 0 }, { rotation: -(gradi || 90), duration: dur, ease: "none", immediateRender: false }, t)); // restano dritti
+    },
+  };
+};
+
+// ═══ O02 · anello di loghi che esplode dal centro e implode nel protagonista ════════════════
+// icons: elementi (es. appIcon) già creati al centro (cx, cy) in un layer; o: { r }
+const logoRing = (parent, cx, cy, icons, o) => {
+  o = o || {};
+  const r = o.r || 320;
+  const ring = el(parent, { position: "absolute", left: cx - r, top: cy - r, width: r * 2, height: r * 2, borderRadius: "50%", border: "22px solid rgba(207,251,80,.55)", boxShadow: "0 0 40px rgba(207,251,80,.55), inset 0 0 40px rgba(207,251,80,.35)", filter: "blur(2px)", zIndex: 9 });
+  gsap.set(ring, { scale: 0.1, opacity: 0 });
+  const P = { a: 0, rr: 0.05 };
+  const put = () => icons.forEach((ic, i) => {
+    const a = P.a + (i / icons.length) * Math.PI * 2;
+    gsap.set(ic, { x: Math.cos(a) * r * P.rr, y: Math.sin(a) * r * P.rr });
+  });
+  put();
+  return {
+    ring,
+    burst: (t) => { tl.to(ring, { scale: 1, opacity: 1, duration: 0.35, ease: "expo.out" }, t); tl.to(P, { rr: 1, duration: 0.3, ease: "expo.out", onUpdate: put }, t); },
+    spin: (t, dur, rad) => tl.to(P, { a: P.a + (rad || 1), duration: dur, ease: "none", onUpdate: put }, t),
+    implode: (t) => { tl.to(P, { rr: 0.02, a: "+=3", duration: 0.32, ease: "power3.in", onUpdate: put }, t); tl.to(icons, { opacity: 0, scale: 0.5, duration: 0.1 }, t + 0.26); tl.to(ring, { scale: 0.55, duration: 0.3, ease: "power3.in" }, t); },
+  };
+};
+
+// ═══ O11 · due cerchi che diventano un Venn ════════════════════════════════════════════════
+const venn = (parent, cx, cy, r, a, b, o) => {
+  o = o || {};
+  const mk = (txt, col) => el(parent, { position: "absolute", left: cx - r, top: cy - r, width: r * 2, height: r * 2, borderRadius: "50%", background: col, display: "flex", alignItems: "center", justifyContent: "center", textAlign: "center", padding: r * 0.2, fontFamily: FS, fontWeight: 800, fontSize: o.fs || 32, color: K.white, lineHeight: 1.15, mixBlendMode: "screen", zIndex: 12 }, txt);
+  const A = mk(a, "rgba(255,255,255,.28)"), B = mk(b, "rgba(207,251,80,.55)");
+  gsap.set([A, B], { opacity: 0, scale: 0.6 });
+  return {
+    A, B,
+    one: (t) => tl.to(A, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(1.8)" }, t),
+    two: (t, dx) => { tl.to(A, { x: -(dx || r * 1.15), duration: 0.3, ease: "power3.inOut" }, t); tl.set(B, { x: dx || r * 1.15 }, t); tl.to(B, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(1.8)" }, t + 0.1); },
+    meet: (t, ov) => { tl.to(A, { x: -(ov || r * 0.55), duration: 0.5, ease: "power3.inOut" }, t); tl.to(B, { x: ov || r * 0.55, duration: 0.5, ease: "power3.inOut" }, t); },
+  };
+};
+
+
+        // far bokeh (parallax space, PF of camera speed)
+        bokeh($("bokeh"), [
+          [120, 320, 360, 0.06], [620, -60, 260, 0.035, true], [860, 720, 420, 0.05], [180, 1150, 300, 0.04, true],
+          [1250, 250, 380, 0.05], [1500, 900, 340, 0.045, true], [1150, 1550, 420, 0.06], [1900, 600, 380, 0.05],
+          [2200, 1100, 360, 0.045, true], [2600, 700, 420, 0.06], [2050, 1700, 380, 0.05], [2900, 1450, 360, 0.04, true],
+          [3200, 1000, 400, 0.05], [2500, 2100, 380, 0.045],
+        ]);
+
+        // ═══ 1 · HOOK — "L'errore numero uno che fanno i principianti?" (0 – 2.95s) ═══
+        // Kallaway's ring of reels (reels 06 / 11 / 12): posts open from a pile into a slowly turning circle,
+        // a dot at the centre blooms into a disc and becomes the label — here the answer, numbered and blurred
+        camInit(540, 900, 1);
+        drift(0, 2.9, 0, 0, 0.05);
+        const T1 = title({ lines: [[{ t: "L'errore " }, { t: "n°1", box: true }], [{ t: "dei principianti", hand: true }]], size: 86 });
+        T1.inAt(0.02);
+        const L1 = layer(10);
+        const RC = [540, 905], RN = 7, RCW = 172, RCH = 306;
+        const S1r = svgLayer(L1, 2, 0, 300, 1080, 1250, "white");
+        const ringLine = document.createElementNS(NS, "ellipse"); // slightly wider than tall: clears the bar and the title
+        ringLine.setAttribute("cx", RC[0]); ringLine.setAttribute("cy", RC[1]); ringLine.setAttribute("rx", 40); ringLine.setAttribute("ry", 36);
+        ringLine.setAttribute("fill", "none"); ringLine.setAttribute("stroke", "rgba(255,255,255,.38)"); ringLine.setAttribute("stroke-width", 2); ringLine.setAttribute("stroke-dasharray", "5 9");
+        S1r.appendChild(ringLine);
+        const ring = ["c1", "c2", "c3", "c4", "c5", "c6", "c7"].map((id, i) => {
+          const c = videoCard(L1, RC[0], RC[1], RCW, RCH, id, { z: 6, rot: hash(i, 41) * 6 });
+          gsap.set(c.body, { opacity: 1, filter: "blur(5px)" }); // frame 0 already shows the pile
+          return c;
+        });
+        // one proxy drives the whole ring: radius (opens from the pile) and angle (slow clockwise turn); cards stay upright
+        const RP = { a: -48, r: 30 };
+        const putRing = () => {
+          ring.forEach((c, i) => {
+            const a = ((RP.a + (i * 360) / RN - 90) * Math.PI) / 180;
+            gsap.set(c.wrap, { x: RC[0] + Math.cos(a) * RP.r * 1.076, y: RC[1] + Math.sin(a) * RP.r * 0.95 });
+          });
+          ringLine.setAttribute("rx", Math.max(1, RP.r * 1.076).toFixed(1)); ringLine.setAttribute("ry", Math.max(1, RP.r * 0.95).toFixed(1));
+        };
+        putRing();
+        tl.to(ring.map((c) => c.body), { filter: "blur(0px)", duration: 0.35, ease: "power2.out", stagger: 0.02 }, 0.0);
+        tl.to(RP, { r: 395, duration: 0.85, ease: "expo.out", onUpdate: putRing }, 0.02);
+        tl.to(RP, { a: 52, duration: 3.75, ease: "none", onUpdate: putRing }, 0.02);
+        tl.fromTo(ringLine, { attr: { "stroke-dashoffset": 0 } }, { attr: { "stroke-dashoffset": -140 }, duration: 3.75, ease: "none", immediateRender: false }, 0.02);
+        // the centre: a lime dot on "numero uno" blooms into a disc, then becomes the answer (blurred)
+        const dot = el(L1, { position: "absolute", left: RC[0] - 14, top: RC[1] - 14, width: 28, height: 28, borderRadius: "50%", background: K.lime, boxShadow: GLOW_L(0.9), zIndex: 15 });
+        gsap.set(dot, { scale: 0 });
+        tl.to(dot, { scale: 1, duration: 0.25, ease: "back.out(3)" }, 0.5);
+        tl.to(dot, { scale: 9.5, opacity: 0.85, duration: 0.35, ease: "expo.out" }, 0.74);
+        tl.to(dot, { scale: 0.3, opacity: 0, duration: 0.25, ease: "power3.in" }, 1.08);
+        const BW = 600, BH = 112;
+        const BAR = sectionBar(L1, RC[0] - BW / 2, RC[1] - BH / 2, BW, BH, "01", "<span>Pubblicare&nbsp;</span><span style=\"position:relative;display:inline-block\">di tutto</span>", null, { z: 20, fs: 49 });
+        const [w1, w2] = BAR.tx.children;
+        gsap.set([w1, w2], { filter: "blur(14px)", opacity: 0.5 });
+        blurIn(BAR.r, 1.08, { scale: 0.5, blur: 20, y: 0, dur: 0.5, ease: "back.out(1.6)" });
+        sheen(BAR.r, 1.45, 0.8);
+        const q = handNote(L1, RC[0] + BW / 2 - 6, RC[1] - 140, "?", { size: 130, rot: 10 });
+        q.write(1.82, 0.1);
+        // "principianti?": the reels go out of focus, the blurred answer is what matters
+        tl.to(ring.map((c) => c.body), { filter: "blur(7px)", opacity: 0.38, duration: 0.5, ease: "power2.out", stagger: 0.012 }, 1.5);
+        tl.to(BAR.r, { boxShadow: `${GLOW_L(0.35)}, 0 18px 44px rgba(0,0,0,.5)`, duration: 0.4 }, 1.5);
+
+        // ═══ 2 · "Pubblicare di tutto." (2.95 – 4.5s) ═══
+        T1.outAt(2.8);
+        q.hide(2.85);
+        tl.to(w1, { filter: "blur(0px)", opacity: 1, duration: 0.35, ease: "power2.out" }, 3.0);
+        tl.to(w2, { filter: "blur(0px)", opacity: 1, duration: 0.3, ease: "power2.out" }, 3.5);
+        tl.set([w1, w2], { filter: "none" }, 3.85);
+        // hand underline living inside the word, so it follows its real width
+        const underline = (span) => {
+          const s = document.createElementNS(NS, "svg");
+          s.setAttribute("viewBox", "0 0 100 12");
+          s.setAttribute("preserveAspectRatio", "none");
+          Object.assign(s.style, { position: "absolute", left: "-4%", bottom: "-16px", width: "108%", height: "18px", overflow: "visible", filter: "drop-shadow(0 0 6px rgba(207,251,80,.6))" });
+          span.appendChild(s);
+          const p = document.createElementNS(NS, "path");
+          p.setAttribute("d", "M1 7 Q 25 3 50 7 T 99 5");
+          p.setAttribute("fill", "none"); p.setAttribute("stroke", K.lime); p.setAttribute("stroke-width", "4"); p.setAttribute("stroke-linecap", "round");
+          s.appendChild(p);
+          const Ln = p.getTotalLength();
+          p.setAttribute("stroke-dasharray", `${Ln} ${Ln}`); p.setAttribute("stroke-dashoffset", Ln);
+          return p;
+        };
+        const u1 = underline(w2);
+        tl.to(u1, { attr: { "stroke-dashoffset": 0 }, duration: 0.35, ease: "power2.inOut" }, 3.8);
+        // "di tutto": the ring spins up and flings the reels out in every direction
+        tl.to(ring.map((c) => c.body), { filter: "blur(0px)", opacity: 1, duration: 0.2 }, 3.5);
+        tl.to(RP, { a: 150, duration: 0.6, ease: "power2.in", onUpdate: putRing }, 3.77);
+        tl.to(RP, { r: 1350, duration: 0.6, ease: "power3.in", onUpdate: putRing }, 3.77);
+        tl.to(ring.map((c) => c.body), { opacity: 0, duration: 0.3, stagger: 0.015 }, 4.05);
+        tl.to(ringLine, { attr: { opacity: 0 }, duration: 0.3 }, 3.8);
+        // the list item becomes the section header (shared element), then hands over to a HUD copy
+        const HY = 236, HS = 0.8, CS = CAM.s;
+        tl.to(BAR.r, { y: (HY - 880) / CS - (RC[1] - 900), scale: HS / CS, duration: 0.45, ease: "power3.inOut" }, 4.05);
+        const HB = sectionBar(hud, 540 - BW / 2, HY - BH / 2, BW, BH, "01", "<span>Pubblicare&nbsp;</span><span style=\"position:relative;display:inline-block\">di tutto</span>", null, { z: 55, fs: 49 });
+        underline(HB.tx.children[1]).setAttribute("stroke-dashoffset", 0);
+        gsap.set(HB.r, { scale: HS, opacity: 0 });
+        tl.set(HB.r, { opacity: 1 }, 4.5);
+        tl.set(BAR.r, { opacity: 0 }, 4.5);
+
+        // ═══ 3 · THE WEEK — "Lunedì fitness, martedì viaggi, venerdì motivazione" (4.5 – 7.6s) ═══
+        // Kallaway's horizontal timeline: the camera travels along it, each day drops a real post
+        const L2 = layer(12);
+        const TLY = 1150, CW = 340, CH = 604, CY = 741, DX = [1700, 2260, 2820, 3380, 3940], DAYS = ["LUN", "MAR", "MER", "GIO", "VEN"];
+        const S2 = svgLayer(L2, 2, 1300, 300, 3200, 1100, "white");
+        const tline = connector(S2, [[1380, TLY], [4300, TLY]], { color: "rgba(255,255,255,.8)", w: 3 });
+        tline.draw(4.45, 0.6, "power2.out");
+        const ticks = [];
+        for (let x = 1450; x < 4280; x += 112) if (!DX.some((d) => Math.abs(d - x) < 40)) ticks.push(el(L2, { position: "absolute", left: x - 1, top: TLY - 12, width: 2, height: 24, background: "rgba(255,255,255,.28)" }));
+        gsap.set(ticks, { opacity: 0 });
+        tl.to(ticks, { opacity: 1, duration: 0.3, stagger: 0.008 }, 4.5);
+        // every day is already on the line, dim; it lights up when he names it
+        const nodes = DX.map((x, k) => {
+          const n = el(L2, { position: "absolute", left: x - 18, top: TLY - 18, width: 36, height: 36, borderRadius: "50%", background: "#3a3a3a", border: "4px solid rgba(255,255,255,.55)", zIndex: 5 });
+          const lb = el(L2, { position: "absolute", left: x + 22, top: TLY - 92, fontFamily: FD, fontWeight: 700, fontSize: 56, color: K.white, textShadow: GLOW_W, zIndex: 5, lineHeight: 1 }, DAYS[k]);
+          gsap.set([n, lb], { opacity: 0 });
+          tl.to([n, lb], { opacity: 0.35, duration: 0.3 }, 4.55 + k * 0.03);
+          return { n, lb };
+        });
+        const dayIn = (k, t) => {
+          tl.to(nodes[k].n, { opacity: 1, backgroundColor: K.lime, borderColor: "#ffffff", boxShadow: GLOW_L(0.8), duration: 0.2 }, t);
+          tl.fromTo(nodes[k].n, { scale: 1.6 }, { scale: 1, duration: 0.4, ease: "back.out(3)", immediateRender: false }, t);
+          tl.to(nodes[k].lb, { opacity: 1, duration: 0.25 }, t + 0.04);
+        };
+        const CARDS = [["l1", "Fitness", "dumbbell"], ["l2", "Viaggi", "plane"], ["l3", "Cucina", "pizza"], ["l4", "Animali", "paw-print"], ["l5", "Motivazione", "flame"]];
+        const cards = CARDS.map(([id, lab, ic], k) => {
+          const c = videoCard(L2, DX[k], CY, CW, CH, id, { label: lab, icon: ic, z: 8 });
+          gsap.set(c.body, { opacity: 0 });
+          const st = connector(S2, [[DX[k], CY + CH / 2 + 2], [DX[k], TLY - 20]], { dash: [8, 8], color: "rgba(255,255,255,.55)", w: 3 });
+          return Object.assign(c, { st });
+        });
+        const cardIn = (k, t) => { blurIn(cards[k].body, t, { y: 50, blur: 22, scale: 0.9, dur: 0.55 }); cards[k].st.draw(t + 0.1, 0.3); };
+        // tight on the day, camera travelling along the line (Kallaway timeline)
+        whip(4.5, 0.5, 1817, 808, 1.2, null, 18);
+        dayIn(0, 4.73);
+        cardIn(0, 5.4);
+        whip(5.8, 0.38, 2377, 808, 1.2, null, 12);
+        dayIn(1, 5.86);
+        cardIn(1, 6.17);
+        whip(6.48, 0.42, 3820, 808, 1.2, null, 20);
+        dayIn(2, 6.58);
+        dayIn(3, 6.64);
+        dayIn(4, 6.7);
+        cardIn(4, 6.97);
+        // pull back: the whole week, all over the place
+        cam(7.0, 0.55, 2820, 800, 0.39, "power3.inOut");
+        cardIn(2, 7.03);
+        cardIn(3, 7.09);
+
+        // ═══ 4 · THE ALGORITHM — "…l'algoritmo non capisce di cosa parla il tuo profilo" (7.6 – 10.75s) ═══
+        // Kallaway hub: every post converges into the platform logo, which outputs a gauge that can't settle
+        blurOut(HB.r, 7.55, { y: -20, dur: 0.3 });
+        const T4 = title({ icon: "cpu", lines: [[{ t: "L'algoritmo " }, { t: "non capisce", box: true }]], size: 84 });
+        T4.inAt(7.74);
+        cam(7.6, 0.85, 2820, 900, 1, "power3.inOut");
+        tline.hide(7.6, 0.3);
+        tl.to([...nodes.map((n) => n.n), ...nodes.map((n) => n.lb), ...ticks], { opacity: 0, duration: 0.3 }, 7.6);
+        cards.forEach((c) => c.st.hide(7.6, 0.2));
+        const HX = 2820, OFFY = 20; // world = screen + (2280, 20) at this pose
+        const ROWX = [150, 345, 540, 735, 930].map((x) => x + 2280), ROWY = 525 + OFFY, RS = 0.44;
+        cards.forEach((c, k) => tl.to(c.wrap, { x: ROWX[k], y: ROWY, scale: RS, rotation: 0, duration: 0.85, ease: "power3.inOut" }, 7.6 + k * 0.03));
+        const L3 = layer(14);
+        const IGY = 800 + OFFY;
+        const IG = appIcon(L3, HX, IGY, 130, "instagram", 22);
+        blurIn(IG, 8.25, { y: -20, blur: 16, scale: 0.7, dur: 0.5, ease: "back.out(2)" });
+        const NODE = nodePill(L3, HX, IGY + 112, '<span style="opacity:.55">&lt;</span>algoritmo<span style="opacity:.55">/&gt;</span>', { w: 300, h: 70, fs: 30 });
+        blurIn(NODE, 8.35, { y: 16, blur: 14, dur: 0.45 });
+        ripple(L3, HX, IGY, 8.67, { wd: 130, ht: 130, radius: "34px", s0: 1, s1: 1.9, dur: 0.6, w: 3 });
+        ripple(L3, HX, IGY, 8.92, { wd: 130, ht: 130, radius: "34px", s0: 1, s1: 1.9, dur: 0.6, w: 3, a: 0.6 });
+        const S3 = svgLayer(L3, 6, 2300, 400, 1100, 1100, true);
+        ROWX.forEach((x, k) => {
+          const cn = connector(S3, [[x, ROWY + (CH * RS) / 2 + 4], [HX, IGY - 72]], { curve: "v", dash: [12, 10], color: K.lime, w: 3.5 });
+          cn.draw(8.45 + k * 0.04, 0.45);
+          traveller(S3, cn, 8.72 + k * 0.08, 0.45, K.lime, 8);
+          cn.hide(10.6, 0.3);
+        });
+        // the algorithm's read of your profile: three rows it cannot fill.
+        // (the same three come back as the triad's choices: nicchia / pubblico / problema)
+        const GW = 760, GH = 380, GX = HX - GW / 2, GY = 975 + OFFY;
+        const GC = card(L3, GX, GY, GW, GH, { zIndex: 12 });
+        el(GC, { position: "absolute", left: 32, top: 28, fontFamily: FS, fontWeight: 600, fontSize: 22, letterSpacing: "0.14em", color: K.mute }, "ANALISI DEL PROFILO");
+        const rd1 = layered(el(GC, { position: "absolute", right: 32, top: 16, fontFamily: FD, fontWeight: 700, fontSize: 44, color: K.white, textShadow: GLOW_W }, "…"));
+        const rd2 = layered(el(GC, { position: "absolute", right: 32, top: 16, fontFamily: FD, fontWeight: 700, fontSize: 44, color: K.white, textShadow: GLOW_W, opacity: 0 }, "Non chiaro"));
+        const RY = [84, 180, 276], SX = 236, SW = GW - SX - 30, SH = 72;
+        ["Argomento", "Pubblico", "Problema"].forEach((lb, r) => {
+          el(GC, { position: "absolute", left: 32, top: RY[r], height: SH, display: "flex", alignItems: "center", fontFamily: FD, fontWeight: 700, fontSize: 40, color: K.white, textShadow: GLOW_W }, lb);
+          el(GC, { position: "absolute", left: SX, top: RY[r], width: SW, height: SH, borderRadius: 14, border: "2px dashed rgba(255,255,255,.18)", background: "rgba(0,0,0,.18)" });
+        });
+        // Pubblico / Problema: Kallaway's blurred placeholders that never resolve
+        const ph = [1, 2].map((r) => {
+          const p = el(GC, { position: "absolute", left: SX + 18, top: RY[r] + 22, width: SW * (r === 1 ? 0.62 : 0.74), height: 30, borderRadius: 15, background: "linear-gradient(90deg, rgba(255,255,255,.34), rgba(255,255,255,.14))", filter: "blur(6px)", opacity: 0 });
+          return p;
+        });
+        // Argomento: every post claims the slot — the topics pile up on top of each other
+        const CH5 = [["Fitness", "dumbbell"], ["Viaggi", "plane"], ["Cucina", "pizza"], ["Animali", "paw-print"], ["Motivazione", "flame"]];
+        const chips = CH5.map(([lb, ic], k) => {
+          const c = layered(el(GC, { position: "absolute", left: SX + 14 + k * 62, top: RY[0] + 9, height: 54, display: "flex", alignItems: "center", gap: 10, padding: "0 18px 0 14px", borderRadius: 27, background: "linear-gradient(180deg,#3d3d3d,#2a2a2a)", border: "1.5px solid rgba(255,255,255,.22)", boxShadow: "0 8px 20px rgba(0,0,0,.5)", fontFamily: FS, fontWeight: 700, fontSize: 24, color: K.white, whiteSpace: "nowrap", zIndex: 2 + k }, svg(ic, 26, K.white, 2.2) + lb));
+          c.setAttribute("data-layout-allow-occlusion", "");
+          gsap.set(c, { opacity: 0, rotation: (k % 2 ? -1 : 1) * (2 + k) });
+          return c;
+        });
+        const CSH = `0 ${Math.round(CW * 0.12)}px ${Math.round(CW * 0.3)}px rgba(0,0,0,.6), 0 0 ${Math.round(CW * 0.12)}px rgba(255,255,255,.08)`;
+        blurIn(GC, 8.9, { y: 30, blur: 18, dur: 0.55 });
+        tl.to(ph, { opacity: 0.55, duration: 0.4, stagger: 0.08 }, 9.05);
+        [9.23, 9.45, 9.67, 9.9, 10.12].forEach((t, k) => {
+          blurIn(chips[k], t, { x: 120, y: 0, blur: 12, scale: 0.9, dur: 0.28, ease: "power3.out" });
+          // the post that claims it lights up above
+          tl.to(cards[k].body, { borderColor: rgba(K.lime, 0.95), boxShadow: GLOW_L(0.7), duration: 0.08 }, t);
+          tl.to(cards[k].body, { borderColor: "rgba(255,255,255,.24)", boxShadow: CSH, duration: 0.25 }, t + 0.18);
+        });
+        // on "profilo": nothing can be read — everything goes out of focus
+        tl.fromTo(chips, { filter: "blur(0px)" }, { filter: "blur(5px)", opacity: 0.35, duration: 0.35, ease: "power2.out", stagger: 0.02, immediateRender: false }, 10.42);
+        tl.set(rd1, { opacity: 0 }, 10.45);
+        tl.set(rd2, { opacity: 1 }, 10.45);
+        tl.fromTo(rd2, { x: 10 }, { x: 0, duration: 0.25, ease: "back.out(3)", immediateRender: false }, 10.45);
+        // a big hand "?" over the blurred pile
+        const qa = handNote(GC, SX + 190, RY[0] - 22, "?", { size: 118, rot: 8, z: 20 });
+        qa.write(10.5, 0.1);
+        shake(10.45, 6, 4);
+
+        // ═══ 4b · "…e nemmeno chi ti guarda" (10.75 – 12.75s) — the audience orbit empties ═══
+        cam(10.75, 0.6, 2820, 2250, 1, "power3.inOut");
+        tl.to([IG, NODE, GC, ...cards.map((c) => c.wrap)], { opacity: 0.4, duration: 0.4 }, 10.6);
+        const L35 = layer(14);
+        const OX0 = 2820, OY0 = 2250;
+        const RINGS = [[180, 10], [290, 16], [400, 24]];
+        const rings = RINGS.map(([r, n], k) => {
+          const ring = el(L35, { position: "absolute", left: OX0 - r, top: OY0 - r, width: r * 2, height: r * 2, borderRadius: "50%", border: "1.5px solid rgba(255,255,255,.16)", zIndex: 2 });
+          const dots = [];
+          for (let i = 0; i < n; i++) {
+            const a = (i / n) * Math.PI * 2 + k * 0.4, stays = (i * 7 + k * 3) % 13 === 0;
+            const d = el(ring, { position: "absolute", left: r + Math.cos(a) * r - 7, top: r + Math.sin(a) * r - 7, width: 14, height: 14, borderRadius: "50%", background: stays ? K.lime : "#e8e8e8", boxShadow: stays ? GLOW_L(0.6) : "0 0 8px rgba(255,255,255,.35)" });
+            dots.push({ d, a, stays });
+          }
+          return { ring, dots, r };
+        });
+        const av = el(L35, { position: "absolute", left: OX0 - 78, top: OY0 - 78, width: 156, height: 156, borderRadius: "50%", background: "linear-gradient(160deg,#3a3a3a,#1f1f1f)", border: `5px solid ${K.lime}`, boxShadow: GLOW_L(0.6), display: "flex", alignItems: "center", justifyContent: "center", zIndex: 5 }, svg("user-round", 78, "#fff", 1.8));
+        const avLb = el(L35, { position: "absolute", left: OX0 - 120, top: OY0 + 92, width: 240, textAlign: "center", fontFamily: FS, fontWeight: 700, fontSize: 22, letterSpacing: "0.12em", color: K.mute, zIndex: 5 }, "IL TUO PROFILO");
+        const cntL = el(L35, { position: "absolute", left: OX0 + 250, top: OY0 - 470, fontFamily: FS, fontWeight: 600, fontSize: 20, letterSpacing: "0.14em", color: K.mute }, "CHI TI GUARDA");
+        const cnt = el(L35, { position: "absolute", left: OX0 + 248, top: OY0 - 418, fontFamily: FD, fontWeight: 700, fontSize: 84, color: K.white, textShadow: GLOW_W, lineHeight: 1 }, "50");
+        blurIn(av, 10.9, { scale: 0.6, blur: 14, y: 0, dur: 0.45, ease: "back.out(2)" });
+        blurIn(avLb, 11.0, { y: 10, blur: 8, dur: 0.35 });
+        rings.forEach((R, k) => {
+          blurIn(R.ring, 10.92 + k * 0.06, { scale: 0.6, blur: 12, y: 0, dur: 0.5 });
+          tl.to(R.ring, { rotation: (k % 2 ? -1 : 1) * 24, duration: 2.0, ease: "none" }, 10.9);
+        });
+        blurIn([cntL, cnt], 11.0, { y: 10, blur: 10, dur: 0.35, stagger: 0.05 });
+        // nobody gets it: they drift away
+        rings.forEach((R, k) => R.dots.forEach(({ d, a, stays }, i) => {
+          if (stays) return;
+          const dist = 160 + Math.abs(hash(i + k * 31, 9)) * 180;
+          tl.to(d, { x: Math.cos(a) * dist, y: Math.sin(a) * dist, opacity: 0, duration: 0.65, ease: "power2.in" }, 11.45 + Math.abs(hash(i + k * 17, 4)) * 0.7);
+        }));
+        tl.to(rings.map((R) => R.ring), { borderColor: "rgba(255,255,255,.06)", duration: 0.6 }, 11.9);
+        counter(cnt, 50, 4, 11.5, 0.95, "power1.in");
+
+        // ═══ 5 · THE TRIAD — "nicchia, pubblico target, problema specifico che risolvi. Punto." (12.75 – 18.5s) ═══
+        T4.outAt(12.72);
+        const T5 = title({ icon: "triangle", lines: [[{ t: "Devi " }, { t: "scegliere", box: true }]], size: 86 });
+        T5.inAt(12.98);
+        whip(12.78, 0.55, 4300, 2250, 1, null, 20);
+        drift(13.4, 4.15, 0, 0, 0.03);
+        tl.to($("glow"), { opacity: 1, duration: 0.8 }, 13.0);
+        const C0 = [4300, 2240], TLv = [4000, 2067], TRv = [4600, 2067], Bv = [4300, 2587];
+        const HG = layer(18);
+        gsap.set(HG, { transformOrigin: `${Bv[0]}px ${Bv[1]}px` });
+        const SF = svgLayer(HG, 3, 3860, 1940, 880, 1320);
+        const SL = svgLayer(HG, 5, 3860, 1940, 880, 1320, true);
+        SF._defs.innerHTML = `<linearGradient id="gFrame" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3c3c3c"/><stop offset="1" stop-color="#141414"/></linearGradient><linearGradient id="gCap" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5a5a5a"/><stop offset="1" stop-color="#262626"/></linearGradient>`;
+        SL._defs.innerHTML = `<linearGradient id="gLime" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ecffa6"/><stop offset=".5" stop-color="${K.lime}"/><stop offset="1" stop-color="#9cc82c"/></linearGradient>`;
+        const poly = (S, pts, fill, stroke, sw) => {
+          const p = document.createElementNS(NS, "polygon");
+          p.setAttribute("points", pts.map((q) => q.join(",")).join(" "));
+          p.setAttribute("fill", fill);
+          if (stroke) { p.setAttribute("stroke", stroke); p.setAttribute("stroke-width", sw); p.setAttribute("stroke-linejoin", "round"); }
+          S.appendChild(p);
+          return p;
+        };
+        const off = (p, k) => [C0[0] + (p[0] - C0[0]) * k, C0[1] + (p[1] - C0[1]) * k];
+        poly(SF, [off(TLv, 1.13), off(TRv, 1.13), off(Bv, 1.13)], "url(#gFrame)", "rgba(255,255,255,.24)", 3);
+        poly(SF, [TLv, TRv, Bv], "#191919", "rgba(255,255,255,.12)", 2);
+        const SEC = [[TLv, TRv], [TRv, Bv], [Bv, TLv]];
+        const sectors = SEC.map(([a, b]) => { const p = poly(SL, [a, b, C0], "url(#gLime)"); p.setAttribute("opacity", "0"); return p; });
+        SEC.forEach(([a]) => { const ln = document.createElementNS(NS, "line"); ln.setAttribute("x1", C0[0]); ln.setAttribute("y1", C0[1]); ln.setAttribute("x2", a[0]); ln.setAttribute("y2", a[1]); ln.setAttribute("stroke", "#1E1E1E"); ln.setAttribute("stroke-width", "5"); SL.appendChild(ln); });
+        const edges = SEC.map(([a, b]) => connector(SL, [a, b], { color: K.lime, w: 7 }));
+        // the triad drops in, in 3D
+        gsap.set([SF, SL], { transformPerspective: 1800, rotationX: 65, opacity: 0, y: -90, transformOrigin: "50% 40%" });
+        tl.to([SF, SL], { rotationX: 0, opacity: 1, y: 0, duration: 0.8, ease: "expo.out" }, 13.12);
+        // the three choices, Kallaway section bars already there, blurred
+        const L5 = layer(19);
+        const S5 = svgLayer(L5, 3, 3700, 1850, 1200, 700, "white");
+        const M = SEC.map(([a, b]) => [(a[0] + b[0]) / 2, (a[1] + b[1]) / 2]);
+        const BARS = [["1", "Nicchia", "un solo tema", 4135, 1928, 330, [[M[0][0], M[0][1]], [M[0][0], 2012]]], ["2", "Pubblico", "target preciso", 4500, 2340, 330, [[M[1][0], M[1][1]], [4500, 2382]]], ["3", "Problema", "specifico, che risolvi", 3765, 2340, 345, [[M[2][0], M[2][1]], [4110, 2382]]]];
+        const bars = [], leads = [];
+        BARS.forEach(([n, a, b, x, y, w, pts], k) => {
+          const sb = sectionBar(L5, x, y, w, 84, n, a, b, { z: 14 });
+          gsap.set(sb.r, { opacity: 0 });
+          tl.fromTo(sb.r, { opacity: 0, filter: "blur(18px)" }, { opacity: 0.38, filter: "blur(9px)", duration: 0.4, ease: "power3.out", immediateRender: false }, 13.55 + k * 0.06);
+          const ld = connector(S5, pts, { color: "rgba(255,255,255,.85)", w: 3 });
+          bars.push(sb.r);
+          leads.push(ld);
+        });
+        [[13.93, 0], [14.43, 1], [15.5, 2]].forEach(([t, k]) => {
+          edges[k].draw(t, 0.3);
+          tl.to(sectors[k], { attr: { opacity: 1 }, duration: 0.35 }, t + 0.1);
+          leads[k].draw(t + 0.05, 0.25);
+          tl.to(bars[k], { opacity: 1, filter: "blur(0px)", duration: 0.35, ease: "power2.out" }, t + 0.12);
+          tl.set(bars[k], { filter: "none" }, t + 0.5);
+          sheen(bars[k], t + 0.4, 0.7);
+        });
+        const tick5 = el(L5, { position: "absolute", left: C0[0] - 34, top: C0[1] - 40, width: 68, height: 68, display: "flex", alignItems: "center", justifyContent: "center", zIndex: 8 }, svg("check", 60, K.ink, 3.4));
+        gsap.set(tick5, { scale: 0, opacity: 0 });
+        tl.to(tick5, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(3)" }, 16.67);
+        tl.fromTo(HG, { scale: 1.05 }, { scale: 1, duration: 0.3, ease: "power2.out", immediateRender: false }, 16.67);
+        // "Punto." — a dart nails the centre of the triad
+        tl.to(tick5, { opacity: 0, scale: 0.5, duration: 0.15 }, 17.4);
+        const dartW = el(L5, { position: "absolute", left: C0[0], top: C0[1], width: 1, height: 1, transform: "rotate(40deg)", zIndex: 40 });
+        const dart = el(dartW, { position: "absolute", left: -340, top: -28, width: 340, height: 56, filter: "url(#mb2)", transformOrigin: "100% 50%" });
+        el(dart, { position: "absolute", left: 0, top: 4, width: 86, height: 20, background: "linear-gradient(90deg,#a6d136,#CFFB50)", transform: "skewX(-35deg)", borderRadius: 3, boxShadow: GLOW_L(0.5) });
+        el(dart, { position: "absolute", left: 0, top: 32, width: 86, height: 20, background: "linear-gradient(90deg,#a6d136,#CFFB50)", transform: "skewX(35deg)", borderRadius: 3, boxShadow: GLOW_L(0.5) });
+        el(dart, { position: "absolute", left: 40, top: 23, width: 250, height: 10, borderRadius: 5, background: "linear-gradient(180deg,#ffffff,#bdbdbd)", boxShadow: "0 0 14px rgba(255,255,255,.5)" });
+        el(dart, { position: "absolute", left: 196, top: 17, width: 84, height: 22, borderRadius: 8, background: "linear-gradient(180deg,#5c5c5c,#262626)", border: "1.5px solid rgba(255,255,255,.28)" });
+        el(dart, { position: "absolute", left: 286, top: 20, width: 0, height: 0, borderTop: "8px solid transparent", borderBottom: "8px solid transparent", borderLeft: "54px solid #ededed" });
+        gsap.set(dart, { x: -720, opacity: 0 });
+        tl.set(dart, { opacity: 1 }, 17.44);
+        tl.to(dart, { x: 0, duration: 0.23, ease: "power2.in" }, 17.44);
+        const MB2 = { v: 0 }, mbn2 = $("mbn2");
+        const w2b = () => mbn2.setAttribute("stdDeviation", `${MB2.v} 0`);
+        w2b();
+        tl.to(MB2, { v: 16, duration: 0.23, ease: "power2.in", onUpdate: w2b }, 17.44);
+        tl.to(MB2, { v: 0, duration: 0.04, ease: "none", onUpdate: w2b }, 17.67);
+        [8, -6, 4, -2, 0].forEach((r, k) => tl.to(dart, { rotation: r, duration: 0.06, ease: "sine.inOut" }, 17.67 + k * 0.06));
+        cam(17.62, 0.4, C0[0], C0[1], 1.12, "power4.out");
+        shake(17.68, 12, 7);
+        ripple(L5, C0[0], C0[1], 17.67, { r: 300, s0: 0.25, dur: 0.7, w: 5 });
+        ripple(L5, C0[0], C0[1], 17.76, { r: 420, s0: 0.2, dur: 0.8, w: 3, a: 0.6 });
+        sparks(L5, C0[0], C0[1], 17.67, { n: 10, r0: 50, r1: 170, len: 40 });
+        const pnt = handNote(L5, C0[0] + 215, C0[1] - 345, "Punto.", { size: 96, rot: -6 });
+        pnt.write(17.76, 0.3);
+
+        // ═══ 6 · THREE SECONDS — "…deve capire in tre secondi di cosa parli" (18.5 – 22.95s) ═══
+        // match cut: the triad is the top of an hourglass; the lime is the sand
+        T5.outAt(18.48);
+        const T6 = title({ icon: "hourglass", lines: [[{ t: "Capirti in " }, { t: "3 secondi", box: true }]], size: 86 });
+        T6.inAt(18.72);
+        tl.to($("glow"), { opacity: 0.45, duration: 0.8 }, 18.6);
+        blurOut(bars, 18.2, { dur: 0.25 });
+        leads.forEach((l) => l.hide(18.2, 0.2));
+        tl.to(dart, { opacity: 0, duration: 0.2 }, 18.15);
+        pnt.hide(18.25);
+        cam(18.4, 0.6, 4300, 2250, 1, "power3.inOut");
+        const BOT = [[4000, 3107], [4600, 3107], Bv];
+        const bulb = poly(SF, BOT, "rgba(255,255,255,.035)", "rgba(255,255,255,.26)", 3);
+        gsap.set(bulb, { scaleY: 0, svgOrigin: `${Bv[0]} ${Bv[1]}` });
+        tl.to(bulb, { scaleY: 1, duration: 0.45, ease: "power3.out" }, 18.35);
+        const capR = (y) => { const r = document.createElementNS(NS, "rect"); r.setAttribute("x", 3930); r.setAttribute("y", y); r.setAttribute("width", 740); r.setAttribute("height", 26); r.setAttribute("rx", 13); r.setAttribute("fill", "url(#gCap)"); r.setAttribute("stroke", "rgba(255,255,255,.25)"); r.setAttribute("stroke-width", 2); SF.appendChild(r); gsap.set(r, { scaleX: 0, svgOrigin: `4300 ${y + 13}` }); return r; };
+        const caps = [capR(1990), capR(3112)];
+        tl.to(caps, { scaleX: 1, duration: 0.4, ease: "power3.out", stagger: 0.06 }, 18.4);
+        // swap the 3 sectors for one sand body (same look), and prepare the pile
+        const sand = poly(SL, [TLv, TRv, Bv], "url(#gLime)");
+        sand.setAttribute("opacity", "0");
+        gsap.set(sand, { svgOrigin: `${Bv[0]} ${Bv[1]}` });
+        tl.set(sand, { attr: { opacity: 1 } }, 18.7);
+        tl.set(sectors, { attr: { opacity: 0 } }, 18.7);
+        const pile = poly(SL, [[4040, 3107], [4560, 3107], [4300, 2655]], "url(#gLime)");
+        gsap.set(pile, { scale: 0, svgOrigin: "4300 3107" });
+        const stream = document.createElementNS(NS, "line");
+        stream.setAttribute("x1", 4300); stream.setAttribute("y1", 2590); stream.setAttribute("x2", 4300); stream.setAttribute("y2", 3100);
+        stream.setAttribute("stroke", K.lime); stream.setAttribute("stroke-width", 7); stream.setAttribute("opacity", "0");
+        SL.appendChild(stream);
+        // the hourglass shrinks to the right, a profile slides in on the left
+        tl.to(HG, { x: 290, y: -337, scale: 0.52, duration: 0.75, ease: "power3.inOut" }, 18.75);
+        const L6 = layer(20);
+        const P2 = igPhone(L6, 3800, 1750, {
+          ring: `linear-gradient(135deg, #ecffa8, ${K.lime} 50%, #a6d136)`, avatar: "assets/clips/hz_avatar.jpg",
+          user: "hormozi", name: "Alex Hormozi", bio: "Business · vendite · acquisizioni", posts: "1.234", fol: "4.000.000", seg: "12", statBlur: true,
+          grid: [1, 2, 3, 4, 5, 6, 7, 8, 9].map((i) => ({ video: "hz" + i })),
+        });
+        gsap.set(P2.frame, { opacity: 0 });
+        blurIn(P2.frame, 19.4, { x: -140, y: 0, blur: 22, dur: 0.6 });
+        tl.to(P2.frame, { boxShadow: `0 50px 110px rgba(0,0,0,.65), inset 0 0 0 2px rgba(255,255,255,.12), 0 0 80px ${rgba(K.lime, 0.18)}`, duration: 0.6 }, 19.6);
+        // someone lands on it
+        const F1 = finger(L6);
+        const tapX = P2.X + 330, tapY = P2.Y + 760;
+        gsap.set(F1, { x: tapX + 160, y: tapY + 220 });
+        tl.set(F1, { opacity: 0.95 }, 19.55);
+        tl.to(F1, { x: tapX, y: tapY, duration: 0.25, ease: "power2.out" }, 19.55);
+        tl.to(F1, { scale: 0.82, duration: 0.08 }, 19.8);
+        tl.to(F1, { scale: 1, opacity: 0, duration: 0.25 }, 19.9);
+        ripple(L6, tapX, tapY, 19.82, { r: 70, s0: 0.6, s1: 1.8, color: "#ffffff", glow: false, w: 3, dur: 0.5 });
+        // the sand runs while the eye reads the profile — one beat per second
+        tl.to(sand, { scale: 0, duration: 1.3, ease: "none" }, 21.17);
+        tl.to(pile, { scale: 1, duration: 1.3, ease: "none" }, 21.17);
+        tl.set(stream, { attr: { opacity: 1 } }, 21.17);
+        tl.set(stream, { attr: { opacity: 0 } }, 22.47);
+        const hb1 = highlight(P2.screen, 10, 116, 512, 190, 21.17);
+        const hb2 = highlight(P2.screen, 14, 298, 500, 42, 21.6, { r: 8 });
+        const hb3 = highlight(P2.screen, 3, 471, PH.sw - 6, 640, 22.03, { r: 6 });
+        tl.to(hb1, { opacity: 0.35, duration: 0.2 }, 21.6);
+        tl.to(hb3, { opacity: 0.35, duration: 0.25 }, 22.35);
+        tl.to(hb2, { boxShadow: `${GLOW_L(1)}, inset 0 0 24px ${rgba(K.lime, 0.3)}`, duration: 0.2 }, 22.15);
+        // "di cosa parli": the hand points at the bio
+        const S6 = svgLayer(L6, 45, 3700, 1700, 1100, 900, true);
+        const arr = handArrow(S6, 4440, 1900, 4140, 2075, 0.35, 12, { w: 6, head: 26 });
+        arr.draw(22.15, 0.4);
+        const nt = handNote(L6, 4330, 1790, "business!", { size: 66, rot: -6 });
+        nt.write(22.3, 0.35);
+        const ok = el(L6, { position: "absolute", left: 4590 - 38, top: 1872, width: 76, height: 76, borderRadius: "50%", background: K.lime, boxShadow: GLOW_L(0.9), display: "flex", alignItems: "center", justifyContent: "center", zIndex: 30 }, svg("check", 46, K.ink, 3.4));
+        pop(ok, 22.5, 0, "back.out(3)", 0.45);
+
+        // ═══ 7 · "Se non lo capisce, non ti segue." (22.95 – 25.83s) — the thumb hesitates, then swipes ═══
+        T6.outAt(22.9);
+        const T7 = title({ lines: [[{ t: "Se non ti capisce," }], [{ t: "non ti segue", box: true }]], size: 78 });
+        T7.inAt(23.1);
+        whip(22.98, 0.55, 4300, 3700, 1, "y", 20);
+        tl.to([HG, P2.frame, ok, S6, nt.n], { opacity: 0, duration: 0.12 }, 23.12);
+        tl.to($("glow"), { opacity: 0.2, duration: 0.6 }, 23.0);
+        drift(23.55, 0.85, 0, 0, 0.015);
+        const L7 = layer(22);
+        const P3 = igPhone(L7, 4020, 3150, {
+          user: "il_tuo_profilo", name: "Il tuo profilo", bio: "Fitness · viaggi · cucina · animali · motivazione", posts: "47", fol: "312", seg: "520",
+          grid: [1, 2, 3, 4, 5, 6, 7, 8, 9].map((i) => ({ video: "g" + i })),
+        });
+        gsap.set(P3.frame, { opacity: 0 });
+        blurIn(P3.frame, 23.2, { y: 60, blur: 20, dur: 0.55 });
+        const F2 = finger(L7, 70);
+        const btnX = P3.X + PH.bz + 148, btnY = P3.Y + PH.bz + 399;
+        gsap.set(F2, { x: btnX + 380, y: btnY + 420 });
+        tl.set(F2, { opacity: 0.95 }, 23.45);
+        tl.to(F2, { x: btnX + 24, y: btnY + 36, duration: 0.45, ease: "power2.out" }, 23.45);
+        [[-16, -8], [12, 6], [-8, -3], [0, 0]].forEach(([dx, dy], k) => tl.to(F2, { x: btnX + 24 + dx, y: btnY + 36 + dy, duration: 0.11, ease: "sine.inOut" }, 23.95 + k * 0.11));
+        const q7 = handNote(L7, P3.X + 470, P3.Y + 230, "?", { size: 120, rot: 8 });
+        q7.write(23.95, 0.1);
+        // "non ti segue": swipe up — the profile is gone
+        tl.to(F2, { x: btnX + 120, y: btnY + 520, duration: 0.14, ease: "power2.inOut" }, 24.3);
+        tl.to(F2, { y: btnY - 260, duration: 0.22, ease: "power3.in" }, 24.45);
+        tl.to(F2, { opacity: 0, duration: 0.1 }, 24.62);
+        q7.hide(24.45);
+        const MB3 = { v: 0 }, mbn3 = $("mbn3");
+        const w3 = () => mbn3.setAttribute("stdDeviation", `0 ${MB3.v}`);
+        w3();
+        tl.set(P3.frame, { filter: "url(#mb3)" }, 24.45);
+        tl.to(MB3, { v: 30, duration: 0.36, ease: "power2.in", onUpdate: w3 }, 24.45);
+        tl.to(P3.frame, { y: -1750, duration: 0.36, ease: "power2.in" }, 24.45);
+        tl.set(P3.frame, { filter: "none", opacity: 0 }, 24.82);
+        const ZERO = el(L7, { position: "absolute", left: 4300 - 420, top: 3700 - 210, width: 840, textAlign: "center", fontFamily: FD, fontWeight: 700, fontSize: 300, color: K.white, textShadow: GLOW_W, lineHeight: 1, zIndex: 10 }, "+0");
+        const zlb = el(L7, { position: "absolute", left: 4300 - 300, top: 3700 + 160, width: 600, textAlign: "center", fontFamily: FS, fontWeight: 700, fontSize: 32, letterSpacing: "0.18em", color: K.mute, zIndex: 10 }, "NUOVI FOLLOWER");
+        blurIn([ZERO, zlb], 24.72, { scale: 0.85, blur: 24, y: 0, dur: 0.55, stagger: 0.08 });
+        drift(24.95, 0.88, 0, 0, 0.03);
+
+        window.__timelines = window.__timelines || {};
+        window.__timelines["main"] = tl;
+      })();
+    </script>
+  </body>
+</html>

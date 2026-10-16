@@ -1,0 +1,12 @@
+# Reel 10/10 — densità al 60% di ogni scena (_tools/densita.py nostri; soglia densità ≥ 0,23 e copertura ≥ 0,54)
+# scene: 1 hook 0–4,1 · 2 pubblici/non a tutti 4,2–7,25 · 3 prima ai follower 7,3–10,3 · 4 misura 10,3–12 · 5 aprono/restano 12,1–15 · 6 sepolta 15,1–19,5 · 7 fino in fondo/reazioni 19,6–25 · 8 spinta in cima 25–27,4 · 9 non conta 27,5–31,1 · 10 i primi 31,2–34,07
+frame-00-at-2.46s.png            densità 0.654 (K mediana 0.327) · copertura 0.96 (K mediana 0.646) · ok
+frame-01-at-6.03s.png            densità 0.250 (K mediana 0.327) · copertura 0.79 (K mediana 0.646) · ok
+frame-02-at-9.1s.png             densità 0.380 (K mediana 0.327) · copertura 0.90 (K mediana 0.646) · ok
+frame-03-at-11.32s.png           densità 0.721 (K mediana 0.327) · copertura 0.98 (K mediana 0.646) · ok
+frame-04-at-13.84s.png           densità 0.464 (K mediana 0.327) · copertura 0.77 (K mediana 0.646) · ok
+frame-05-at-17.74s.png           densità 0.349 (K mediana 0.327) · copertura 0.65 (K mediana 0.646) · ok
+frame-06-at-22.84s.png           densità 0.396 (K mediana 0.327) · copertura 0.60 (K mediana 0.646) · ok
+frame-07-at-26.44s.png           densità 0.539 (K mediana 0.327) · copertura 0.98 (K mediana 0.646) · ok
+frame-08-at-29.66s.png           densità 0.425 (K mediana 0.327) · copertura 0.79 (K mediana 0.646) · ok
+frame-09-at-32.92s.png           densità 0.289 (K mediana 0.327) · copertura 0.60 (K mediana 0.646) · ok

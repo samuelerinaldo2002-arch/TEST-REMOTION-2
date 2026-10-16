@@ -1,0 +1,572 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>Reel 01/10 — Pubblicare di tutto (stile Kallaway)</title>
+    <script src="assets/vendor/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Advercase"; src: url("assets/fonts/Advercase-Bold.ttf") format("truetype"); font-weight: 700; font-style: normal; font-display: block; }
+      @font-face { font-family: "Advercase"; src: url("assets/fonts/Advercase-Regular.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: block; }
+      @font-face { font-family: "Patrick Hand"; src: url("assets/fonts/PatrickHand-Regular.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: block; }
+      @font-face { font-family: "Zalando Sans"; src: url("assets/fonts/ZalandoSans-Variable.ttf") format("truetype"); font-weight: 100 900; font-style: normal; font-display: block; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: #1e1e1e; }
+      body { font-family: "Zalando Sans", sans-serif; color: #f4f4f2; -webkit-font-smoothing: antialiased; }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; background: #1e1e1e; }
+      .clip { position: absolute; inset: 0; overflow: hidden; }
+      #glow { position: absolute; inset: 0; opacity: 0.35; background: radial-gradient(58% 32% at 50% 46%, rgba(207, 251, 80, 0.08), rgba(207, 251, 80, 0) 70%); }
+      #vignette { position: absolute; inset: 0; background: radial-gradient(110% 78% at 50% 44%, rgba(0, 0, 0, 0) 44%, rgba(0, 0, 0, 0.62) 100%); }
+      .cam { position: absolute; left: 540px; top: 880px; width: 1px; height: 1px; }
+      .layer { position: absolute; left: 0; top: 0; width: 1px; height: 1px; }
+      #dots { position: absolute; left: -2600px; top: -2600px; width: 9000px; height: 9000px; background-image: radial-gradient(circle, rgba(255, 255, 255, 0.095) 1.25px, rgba(255, 255, 255, 0) 1.95px); background-size: 24px 24px; }
+      #stage { position: absolute; inset: 0; overflow: hidden; }
+      /* facecam + post captions live below y≈1400: nothing of the infographic below it */
+      #safe { position: absolute; inset: 0; -webkit-mask-image: linear-gradient(to bottom, #000 0px, #000 1385px, transparent 1450px); mask-image: linear-gradient(to bottom, #000 0px, #000 1385px, transparent 1450px); }
+      #mbwrap, #shake { position: absolute; inset: 0; }
+      #hud { position: absolute; inset: 0; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="25.833" data-width="1080" data-height="1920">
+      <div id="bg" class="clip" data-start="0" data-duration="25.833" data-track-index="0">
+        <div class="cam" id="gcam2" data-layout-allow-overflow><div class="layer" id="gzoom2"><div class="layer" id="gpan2"><div class="layer" id="bokeh"></div></div></div></div>
+        <div class="cam" id="gcam" data-layout-allow-overflow><div class="layer" id="gzoom"><div class="layer" id="gpan"><div id="dots"></div></div></div></div>
+        <div id="glow"></div>
+        <div id="vignette"></div>
+      </div>
+      <!-- untimed on purpose: the clips inside carry their own data-start (no timed ancestor) -->
+      <div id="stage">
+        <svg width="0" height="0" style="position: absolute" aria-hidden="true">
+          <filter id="mb" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur id="mbn" in="SourceGraphic" stdDeviation="0 0" /></filter>
+          <filter id="mb2" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur id="mbn2" in="SourceGraphic" stdDeviation="0 0" /></filter>
+        </svg>
+        <div id="safe"><div id="mbwrap"><div id="shake"><div class="cam" id="cam" data-layout-allow-overflow><div class="layer" id="zoom"><div class="layer" id="pan"></div></div></div></div></div></div>
+        <!--VIDEOS
+          hz1 assets/clips/hz_01.mp4 18.55 4.75
+          hz2 assets/clips/hz_02.mp4 18.55 4.75
+          hz3 assets/clips/hz_03.mp4 18.55 4.75
+          hz4 assets/clips/hz_04.mp4 18.55 4.75
+          hz5 assets/clips/hz_05.mp4 18.55 4.75
+          hz6 assets/clips/hz_06.mp4 18.55 4.75
+          hz7 assets/clips/hz_07.mp4 18.55 4.75
+          hz8 assets/clips/hz_08.mp4 18.55 4.75
+          hz9 assets/clips/hz_09.mp4 18.55 4.75
+          hz10 assets/clips/hz_10.mp4 19.3 3.95
+          tr1 assets/clips/tr_01.mp4 23.12 2.713
+          tr2 assets/clips/tr_02.mp4 23.12 2.713
+          tr3 assets/clips/tr_03.mp4 23.12 2.713
+          tr4 assets/clips/tr_04.mp4 23.12 2.713
+          tr5 assets/clips/tr_05.mp4 23.12 2.713
+          tr6 assets/clips/tr_06.mp4 23.12 2.713
+          tr7 assets/clips/tr_07.mp4 23.12 2.713
+          tr8 assets/clips/tr_08.mp4 23.12 2.713
+          tr9 assets/clips/tr_09.mp4 23.12 2.713
+        -->
+      </div>
+      <div id="hudclip" class="clip" data-start="0" data-duration="25.833" data-track-index="2">
+        <div id="hud"></div>
+      </div>
+
+      <!--SFX
+        # 1 · hook — posts rain in, zoom-out reveal
+        0.0 whoosh .1
+        0.5 tick .08 ; 0.585 tick .07 ; 0.67 tick .08 ; 0.755 tick .07 ; 0.84 tick .08 ; 0.925 tick .07 ; 1.01 tick .08
+        0.92 whoosh .14 ; 1.3 card .12 ; 1.5 tap .14 ; 1.9 pop .16 ; 2.05 pop .12
+        # 2 · pubblicare di tutto — each day throws a post into the grid
+        2.85 whoosh .16 ; 3.0 card .14 ; 3.3 tick .05 ; 3.42 tick .05 ; 3.54 tick .05
+        4.73 click .2 ; 5.4 pop .15 ; 5.46 whoosh .07 ; 5.96 land .16
+        5.83 click .2 ; 6.17 pop .15 ; 6.23 whoosh .07 ; 6.73 land .16
+        6.53 click .2 ; 6.97 pop .15 ; 7.03 whoosh .07 ; 7.53 land .16
+        7.05 tick .07 ; 7.17 tick .07
+        # 3 · l'algoritmo non capisce
+        7.66 whoosh .16 ; 8.28 card .12 ; 8.67 rise .1 ; 8.72 toggle .07
+        9.23 tick .06 ; 9.35 tick .06 ; 9.47 tick .06 ; 9.59 tick .06 ; 9.71 tick .06 ; 9.83 tick .06 ; 9.95 tick .06 ; 10.07 tick .06 ; 10.19 tick .06 ; 10.31 tick .06
+        10.41 glitch .16 ; 10.42 bong .16 ; 10.9 card .12
+        11.32 pop .08 ; 11.5 pop .08 ; 11.68 pop .08 ; 11.86 pop .08 ; 11.96 whoosh .06
+        # 4 · il bersaglio — the dart on "Punto."
+        12.6 whoosh .1 ; 12.8 whoosh .24 ; 13.42 sub .22 ; 13.43 pop .16
+        13.93 drop .16 ; 14.43 drop .16 ; 15.5 drop .18 ; 16.67 ding .14
+        17.44 whoosh .2 ; 17.67 slam .32 ; 17.67 sub .32 ; 17.95 whoosh .1
+        # 5 · tre secondi
+        18.5 whoosh .16 ; 19.42 card .12 ; 20.3 card .1 ; 20.95 pop .1
+        21.17 tick .2 ; 21.6 tick .2 ; 22.03 tick .2 ; 22.5 ding .2
+        # 6 · non ti segue
+        22.98 whoosh .22 ; 23.28 card .12 ; 23.85 tap .12 ; 24.05 pop .08
+        24.43 bong .18 ; 24.5 whoosh .08 ; 24.7 tap .22 ; 24.72 pop .18
+      -->
+    </div>
+
+    <script>
+      (() => {
+        const ICON = __ICONS__;
+        /*__KIT__*/
+
+        // far bokeh (parallax space, PF of camera speed)
+        bokeh($("bokeh"), [
+          [120, 300, 360, 0.06], [620, -80, 260, 0.035, true], [820, 700, 420, 0.05], [180, 1150, 300, 0.04, true],
+          [1150, 250, 380, 0.05], [1450, 900, 340, 0.045, true], [980, 1450, 420, 0.06], [1500, 1700, 360, 0.04],
+          [700, 1950, 300, 0.035, true], [1250, 2150, 420, 0.05],
+        ]);
+
+        // ═══ 1 · HOOK — "L'errore numero uno che fanno i principianti?" (0 – 2.9s) ═══
+        // posts about everything rain into a profile; the camera pulls back to reveal it
+        camInit(540, 1040, 1.45);
+        const T1 = title({ lines: [[{ t: "L'errore " }, { t: "n°1", box: true }], [{ t: "dei principianti", hand: true }]], size: 86 });
+        T1.inAt(0.02);
+        const L1 = layer(10);
+        const MESSY = ["fitness", "viaggi", "motivazione", "cucina", "gatti", "auto", "musica", "moda", "gaming"];
+        const P1 = igPhone(L1, 260, 310, { grid: MESSY.map((topic) => ({ topic })), posts: "12", fol: "214", seg: "380", name: "Il tuo profilo", bio: "Fitness · viaggi · ricette · gatti · auto…" });
+        const overlay = (bg, border, z) => P1.cells.map((c, i) => { const [x, y] = cellXY(i); return el(P1.screen, { position: "absolute", left: x, top: y, width: PL.cw, height: PL.ch, background: bg || "none", border: border || "none", boxShadow: border ? `inset 0 0 34px ${rgba(K.lime, 0.4)}` : "none", zIndex: z, opacity: 0 }); });
+        const flashCell = overlay("rgba(255,255,255,.55)", null, 19);
+        const hiCell = overlay(null, `5px solid ${K.lime}`, 20);
+        const RAIN = [0, 1, 2, 3, 5, 6, 7];
+        gsap.set(RAIN.map((i) => P1.cells[i]), { opacity: 0 });
+        RAIN.forEach((i, k) => {
+          const [cx, cy] = phCell(P1, i);
+          const a = Math.atan2(cy - 1030, cx - 540) + hash(i, 4) * 0.4, R = 600 + hash(i, 6) * 90;
+          const fly = layered(el(L1, { position: "absolute", left: -PL.cw / 2, top: -PL.ch / 2, width: PL.cw, height: PL.ch, zIndex: 25, borderRadius: 4, boxShadow: "0 30px 60px rgba(0,0,0,.6)", overflow: "hidden" }));
+          topicTile(fly, 0, 0, PL.cw, PL.ch, MESSY[i]);
+          const t = k * 0.085;
+          arcFly(fly, [cx + Math.cos(a) * R, cy + Math.sin(a) * R], [cx, cy], t, 0.5, { straight: true, s0: 1.3, s1: 1, rot0: hash(i, 8) * 38, blur: 12, ease: "power3.out" });
+          tl.set(P1.cells[i], { opacity: 1 }, t + 0.5);
+          tl.fromTo(P1.cells[i], { scale: 1.1 }, { scale: 1, duration: 0.3, ease: "power2.out", immediateRender: false }, t + 0.5);
+          tl.set(flashCell[i], { opacity: 1 }, t + 0.5);
+          tl.to(flashCell[i], { opacity: 0, duration: 0.25 }, t + 0.52);
+        });
+        cam(0.9, 1.0, 540, 860, 0.9, "power3.inOut");
+        drift(1.92, 0.88, 0, 8, 0.02);
+        // the profile header builds itself once the camera has pulled back (the title always sits on clean black)
+        gsap.set(P1.head, { opacity: 0 });
+        blurIn(P1.head, 1.55, { y: 14, blur: 10, scale: 0.98, dur: 0.4, stagger: 0.03 });
+        // the number that doesn't move
+        const SC = card(L1, 700, 560, 360, 190, { zIndex: 12 });
+        el(SC, { position: "absolute", left: 24, top: 22, fontFamily: FS, fontWeight: 600, fontSize: 18, letterSpacing: "0.12em", color: K.mute }, "FOLLOWER · ULTIMI 30 GIORNI");
+        el(SC, { position: "absolute", left: 24, top: 56, fontFamily: FD, fontWeight: 700, fontSize: 84, color: K.white, lineHeight: 1, textShadow: GLOW_W }, "+0");
+        el(SC, { position: "absolute", left: 150, top: 78, width: 190, height: 80 }, `<svg width="190" height="80" viewBox="0 0 190 80"><polyline points="0,52 24,50 48,53 72,49 96,52 120,50 144,52 168,51 182,51" fill="none" stroke="rgba(255,255,255,.5)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="182" cy="51" r="7" fill="#9a9a9a"/></svg>`);
+        blurIn(SC, 1.3, { x: 40, y: 0, blur: 16, dur: 0.55 });
+        sheen(SC, 1.6, 0.8);
+        // the marker comes out: what is this profile about?
+        const S1 = svgLayer(L1, 30, -100, 100, 1300, 1600, true);
+        const circ = handCircle(S1, 540, 1010, 312, 250, 7, { w: 8 });
+        circ.draw(1.5, 0.55);
+        const q1 = handNote(L1, 70, 860, "?", { size: 210, rot: -10 });
+        const q2 = handNote(L1, 905, 1010, "?", { size: 130, rot: 12 });
+        q1.write(1.9, 0.12);
+        q2.write(2.05, 0.12);
+
+        // ═══ 2 · PUBBLICARE DI TUTTO — Lun fitness / Mar viaggi / Ven motivazione (2.9 – 7.6s) ═══
+        T1.outAt(2.8);
+        const T2 = title({ icon: "calendar-days", lines: [[{ t: "Pubblicare " }, { t: "di tutto", box: true }]], size: 86 });
+        T2.inAt(2.98);
+        circ.hide(2.82);
+        q1.hide(2.82);
+        q2.hide(2.82);
+        blurOut(SC, 2.82, { y: -20 });
+        cam(2.85, 0.85, 860, 880, 0.86);
+        drift(3.72, 3.86, 0, 0, 0.025);
+        const CAL = card(L1, 880, 440, 560, 880, { zIndex: 9 });
+        el(CAL, { position: "absolute", left: 32, top: 32, fontFamily: FS, fontWeight: 600, fontSize: 21, letterSpacing: "0.14em", color: K.mute }, "LA TUA SETTIMANA");
+        el(CAL, { position: "absolute", left: 30, top: 62, fontFamily: FD, fontWeight: 700, fontSize: 52, color: K.white, lineHeight: 1, textShadow: GLOW_W }, "Piano editoriale");
+        const DAYS = ["LUN", "MAR", "MER", "GIO", "VEN"], DTOP = ["fitness", "viaggi", "gatti", "cucina", "motivazione"];
+        const dayRows = DAYS.map((d, k) => {
+          const y = 150 + k * 140;
+          const day = el(CAL, { position: "absolute", left: 26, top: y, width: 96, height: 116, display: "flex", alignItems: "center", fontFamily: FD, fontWeight: 700, fontSize: 42, color: K.white }, d);
+          const slot = el(CAL, { position: "absolute", left: 124, top: y, width: 406, height: 116, borderRadius: 14, border: "2px dashed rgba(255,255,255,.16)" });
+          const [ic, lb] = TOPIC[DTOP[k]];
+          const chip = el(CAL, { position: "absolute", left: 132, top: y + 9, width: 390, height: 98, borderRadius: 12, background: "linear-gradient(90deg,#3c3c3c,#2e2e2e)", border: "1.5px solid rgba(255,255,255,.14)", boxShadow: "inset 0 1.5px 0 rgba(255,255,255,.1)", display: "flex", alignItems: "center", gap: 20, padding: "0 26px", fontFamily: FS, fontWeight: 700, fontSize: 36, color: K.white, overflow: "hidden" }, svg(ic, 46, K.white, 2) + lb);
+          const bar = el(chip, { position: "absolute", left: 0, top: 0, width: 9, height: 98, background: K.lime, boxShadow: GLOW_L(0.6) });
+          gsap.set(chip, { opacity: 0 });
+          return { day, slot, chip, bar, cy: 440 + y + 58 };
+        });
+        blurIn(CAL, 3.0, { x: 70, y: 0, blur: 22, dur: 0.7 });
+        dayRows.forEach((r, k) => blurIn([r.day, r.slot], 3.28 + k * 0.06, { x: 24, y: 0, blur: 10, dur: 0.4 }));
+        const S2 = svgLayer(L1, 24, 200, 300, 1300, 1100, true);
+        const flyer = (topic, lime) => {
+          const f = layered(el(L1, { position: "absolute", left: -PL.cw / 2, top: -PL.ch / 2, width: PL.cw, height: PL.ch, zIndex: 26, borderRadius: 4, overflow: "hidden", boxShadow: `0 24px 50px rgba(0,0,0,.6)${lime ? `, 0 0 34px ${rgba(K.lime, 0.4)}` : ""}` }));
+          topicTile(f, 0, 0, PL.cw, PL.ch, topic);
+          if (lime) el(f, { position: "absolute", left: 0, top: 0, width: PL.cw, height: PL.ch, border: `4px solid ${K.lime}`, borderRadius: 4, zIndex: 9 });
+          return f;
+        };
+        const SPOKEN = [[0, 4.73, 5.4, 0], [1, 5.83, 6.17, 1], [4, 6.53, 6.97, 2]]; // [row, day cue, topic cue, phone cell]
+        const trails = SPOKEN.map(([r, td, tt, cell]) => {
+          tl.to(dayRows[r].day, { color: K.lime, textShadow: GLOW_LT, duration: 0.2 }, td);
+          blurIn(dayRows[r].chip, tt, { x: -24, y: 0, blur: 14, scale: 0.97, dur: 0.38 });
+          const to = phCell(P1, cell);
+          const arc = arcFly(flyer(DTOP[r], true), [1207, dayRows[r].cy], to, tt + 0.06, 0.5, { lift: 150, s0: 0.42, s1: 1, rot0: -12, rotMid: 6, blur: 6 });
+          const tr = connector(S2, null, { d: arc.d, dash: [12, 10], color: K.lime, w: 3.5 });
+          tr.draw(tt + 0.06, 0.5, "power2.inOut");
+          const land = tt + 0.56;
+          tl.set(hiCell[cell], { opacity: 1 }, land);
+          tl.to(hiCell[cell], { opacity: 0.6, duration: 0.4 }, land + 0.2);
+          tl.fromTo(P1.cells[cell], { scale: 1.12 }, { scale: 1, duration: 0.35, ease: "back.out(2)", immediateRender: false }, land);
+          ripple(L1, to[0], to[1], land, { wd: PL.cw, ht: PL.ch, radius: "6px", s0: 1, s1: 1.35, dur: 0.5, z: 27 });
+          return tr;
+        });
+        // the unspoken days fill too — "di tutto"
+        [[2, 7.0, 4], [3, 7.1, 3]].forEach(([r, t, cell]) => {
+          tl.to(dayRows[r].day, { color: K.lime, duration: 0.2 }, t);
+          blurIn(dayRows[r].chip, t, { x: -24, y: 0, blur: 14, dur: 0.32 });
+          arcFly(flyer(DTOP[r], false), [1207, dayRows[r].cy], phCell(P1, cell), t + 0.05, 0.38, { lift: 110, s0: 0.42, s1: 1, rot0: -10, blur: 6 });
+          tl.set(flashCell[cell], { opacity: 1 }, t + 0.43);
+          tl.to(flashCell[cell], { opacity: 0, duration: 0.25 }, t + 0.45);
+        });
+
+        // ═══ 3 · L'ALGORITMO NON CAPISCE — "…e nemmeno chi ti guarda" (7.6 – 12.8s) ═══
+        T2.outAt(7.58);
+        const T3 = title({ icon: "cpu", lines: [[{ t: "L'algoritmo " }, { t: "non capisce", box: true }]], size: 84 });
+        T3.inAt(7.76);
+        trails.forEach((cn) => cn.hide(7.6, 0.2));
+        tl.to(hiCell, { opacity: 0, duration: 0.2 }, 7.6);
+        blurOut(CAL, 7.62, { x: 140, dur: 0.4 });
+        cam(7.7, 0.8, 540, 880, 1);
+        tl.to(P1.frame, { x: -305, y: -110, scale: 0.58, duration: 0.8, ease: "power3.inOut" }, 7.7);
+        drift(8.55, 4.2, 0, 0, 0.03);
+
+        const L3 = layer(14);
+        const S3 = svgLayer(L3, 6, 0, 300, 1080, 1200, true);
+        const S3w = svgLayer(L3, 6, 0, 300, 1080, 1200, "white");
+        // the algorithm = Instagram itself: glossy app icon + code-tag label
+        const NODE = nodePill(L3, 790, 470, '<span style="opacity:.55">&lt;</span>algoritmo<span style="opacity:.55">/&gt;</span>', { w: 330, h: 86, fs: 34 });
+        const IG = appIcon(L3, 590, 470, 96, "instagram", 22);
+        blurIn(IG, 8.2, { y: -24, blur: 16, scale: 0.7, dur: 0.5, ease: "back.out(2)" });
+        blurIn(NODE, 8.3, { x: -30, y: 0, blur: 16, dur: 0.5 });
+        tl.fromTo(NODE, { boxShadow: `0 0 50px ${rgba(K.lime, 0.32)}, inset 0 0 22px ${rgba(K.lime, 0.12)}` }, { boxShadow: `0 0 90px ${rgba(K.lime, 0.7)}, inset 0 0 30px ${rgba(K.lime, 0.3)}`, duration: 0.25, yoyo: true, repeat: 1, immediateRender: false }, 8.67);
+        ripple(L3, 590, 470, 8.67, { wd: 96, ht: 96, radius: "26px", s0: 1, s1: 1.9, dur: 0.6, w: 3 });
+        ripple(L3, 590, 470, 8.92, { wd: 96, ht: 96, radius: "26px", s0: 1, s1: 1.9, dur: 0.6, w: 3, a: 0.6 });
+        const cA = connector(S3, [[405, 640], [538, 470]], { curve: "h", dash: [14, 11], color: K.lime, w: 4 });
+        cA.draw(8.45, 0.45);
+        [8.75, 8.95, 9.15].forEach((t) => traveller(S3, cA, t, 0.42, K.lime, 9));
+        // the scan beam reads every post
+        const beam = el(P1.screen, { position: "absolute", left: 0, top: PL.gridTop - 130, width: PH.sw, height: 130, background: "linear-gradient(180deg, rgba(207,251,80,0) 0%, rgba(207,251,80,.3) 100%)", borderBottom: `5px solid ${K.lime}`, boxShadow: `0 8px 30px ${rgba(K.lime, 0.6)}`, zIndex: 26, opacity: 0 });
+        tl.set(beam, { opacity: 1 }, 8.7);
+        tl.fromTo(beam, { y: 0 }, { y: 720, duration: 0.55, ease: "power1.inOut", immediateRender: false }, 8.7);
+        tl.set(beam, { opacity: 0 }, 9.26);
+        const CC = card(L3, 455, 560, 570, 330, { zIndex: 12 });
+        el(CC, { position: "absolute", left: 32, top: 26, fontFamily: FS, fontWeight: 600, fontSize: 21, letterSpacing: "0.14em", color: K.mute }, "DI COSA PARLA IL PROFILO?");
+        const slot = el(CC, { position: "absolute", left: 32, top: 70, width: 506, height: 150, borderRadius: 14, background: "#161616", border: "1.5px solid rgba(255,255,255,.08)", boxShadow: "inset 0 6px 20px rgba(0,0,0,.5)", overflow: "hidden" });
+        const CYCLE = ["Fitness", "Viaggi", "Motivazione", "Cucina", "Gatti", "Auto", "Musica", "Moda", "Gaming", "Fitness"];
+        const ghost = layered(el(slot, { position: "absolute", left: 0, top: 0, width: 506, height: 150, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: FD, fontWeight: 700, fontSize: 110, color: K.lime, opacity: 0 }, "???"));
+        const cyc = CYCLE.concat(["???"]).map((w, k) => layered(el(slot, { position: "absolute", left: 0, top: 0, width: 506, height: 150, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: FD, fontWeight: 700, fontSize: k === CYCLE.length ? 110 : 80, color: K.white, textShadow: GLOW_W, opacity: 0 }, w)));
+        el(CC, { position: "absolute", left: 32, top: 252, fontFamily: FS, fontWeight: 600, fontSize: 21, letterSpacing: "0.14em", color: K.mute }, "CERTEZZA");
+        el(CC, { position: "absolute", left: 180, top: 258, width: 268, height: 12, borderRadius: 6, background: "rgba(255,255,255,.1)" });
+        const fill = el(CC, { position: "absolute", left: 180, top: 258, width: 268, height: 12, borderRadius: 6, background: K.lime, boxShadow: GLOW_L(0.5), transformOrigin: "0 50%" });
+        const pctA = layered(el(CC, { position: "absolute", left: 462, top: 248, width: 80, textAlign: "right", fontFamily: FS, fontWeight: 800, fontSize: 26, color: K.white }, "…"));
+        const pctB = layered(el(CC, { position: "absolute", left: 462, top: 248, width: 80, textAlign: "right", fontFamily: FS, fontWeight: 800, fontSize: 26, color: K.white, opacity: 0 }, "8%"));
+        gsap.set(fill, { scaleX: 0.02 });
+        blurIn(CC, 8.95, { y: 30, blur: 18, dur: 0.55 });
+        const cB = connector(S3w, [[790, 513], [790, 560]], { color: "rgba(255,255,255,.6)", w: 3 });
+        cB.draw(8.9, 0.2);
+        // the algorithm reads every post and can't settle
+        const T0 = 9.23, STEP = 0.118;
+        CYCLE.forEach((w, k) => {
+          const t = T0 + k * STEP;
+          tl.set(cyc[k], { opacity: 1 }, t);
+          tl.set(cyc[k], { opacity: 0 }, t + STEP);
+          tl.set(hiCell[k % 9], { opacity: 1 }, t);
+          tl.set(hiCell[k % 9], { opacity: 0 }, t + STEP);
+          tl.to(fill, { scaleX: 0.25 + ((k * 37) % 50) / 100, duration: STEP * 0.9, ease: "power1.out" }, t);
+        });
+        const tQ = T0 + CYCLE.length * STEP; // ≈ 10.41, on "profilo"
+        const QQ = cyc[CYCLE.length];
+        tl.set(QQ, { opacity: 1 }, tQ);
+        tl.fromTo(QQ, { scale: 1.25 }, { scale: 1, duration: 0.3, ease: "back.out(3)", immediateRender: false }, tQ);
+        [10, -8, 6, -3, 0].forEach((x, k) => tl.to(QQ, { x, duration: 0.035, ease: "none" }, tQ + k * 0.035));
+        tl.set(ghost, { opacity: 0.8, x: -10 }, tQ);
+        tl.set(ghost, { x: 8 }, tQ + 0.05);
+        tl.set(ghost, { opacity: 0 }, tQ + 0.13);
+        tl.to(CC, { borderColor: "rgba(255,255,255,.75)", duration: 0.06 }, tQ);
+        tl.to(CC, { borderColor: "rgba(255,255,255,.17)", duration: 0.35 }, tQ + 0.08);
+        tl.to(fill, { scaleX: 0.08, duration: 0.3, ease: "power2.out" }, tQ);
+        tl.set(pctA, { opacity: 0 }, tQ);
+        tl.set(pctB, { opacity: 1 }, tQ);
+        shake(tQ, 7, 5);
+        // …and the people watching don't get it either
+        const CR = card(L3, 85, 1114, 940, 268, { zIndex: 12 });
+        el(CR, { position: "absolute", left: 32, top: 26, fontFamily: FS, fontWeight: 600, fontSize: 21, letterSpacing: "0.14em", color: K.mute }, "CHI TI GUARDA");
+        el(CR, { position: "absolute", left: 640, top: 26, fontFamily: FS, fontWeight: 600, fontSize: 21, letterSpacing: "0.14em", color: K.mute }, "INTERESSATI");
+        el(CR, { position: "absolute", left: 830, top: 8, fontFamily: FD, fontWeight: 700, fontSize: 56, color: K.white, lineHeight: 1, textShadow: GLOW_W }, "0");
+        const crowd = [], qs = [];
+        for (let r = 0; r < 2; r++)
+          for (let c = 0; c < 12; c++) {
+            const x = 72 + c * 72 + (r % 2) * 18, y = 136 + r * 86;
+            crowd.push(person(CR, x, y, 58, "#9a9a9a"));
+            const q = layered(el(CR, { position: "absolute", left: x + 8, top: y - 62, fontFamily: FH, fontSize: 40, color: K.lime, textShadow: GLOW_LT, lineHeight: 1, zIndex: 8 }, "?"));
+            gsap.set(q, { opacity: 0, scale: 0.4, y: 10 });
+            qs.push(q);
+          }
+        // already there, out of focus, while the algorithm struggles — sharp on "nemmeno chi ti guarda"
+        gsap.set(CR, { opacity: 0 });
+        tl.fromTo(CR, { opacity: 0, y: 40, filter: "blur(20px)" }, { opacity: 0.38, y: 0, filter: "blur(10px)", duration: 0.5, ease: "power3.out", immediateRender: false }, 9.55);
+        tl.to(CR, { opacity: 1, filter: "blur(0px)", duration: 0.45, ease: "power2.out" }, 10.85);
+        tl.set(CR, { filter: "none" }, 11.31);
+        gsap.set(crowd, { opacity: 0, scale: 0.6 });
+        tl.to(crowd, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(2)", stagger: 0.012 }, 10.98);
+        const cC = connector(S3w, [[740, 890], [740, 1114]], { dash: [10, 10], color: "rgba(255,255,255,.5)", w: 3 });
+        cC.draw(10.85, 0.3);
+        tl.to(qs, { opacity: 1, scale: 1, y: 0, duration: 0.3, ease: "back.out(2.6)", stagger: 0.024 }, 11.3);
+        tl.to(P1.frame, { opacity: 0.55, duration: 0.4 }, 10.95);
+        // most of them just leave
+        crowd.forEach((p, i) => {
+          if (hash(i, 3) <= -0.35) return;
+          const dir = hash(i, 13) > 0 ? 1 : -1;
+          tl.to([p, qs[i]], { x: dir * (50 + Math.abs(hash(i, 17)) * 50), opacity: 0.12, duration: 0.7, ease: "power2.in" }, 11.96 + (i % 12) * 0.02);
+        });
+
+        // ═══ 4 · IL BERSAGLIO — nicchia / pubblico target / problema specifico. Punto. (12.8 – 18.5s) ═══
+        T3.outAt(12.72);
+        const T4 = title({ icon: "crosshair", lines: [[{ t: "Il " }, { t: "bersaglio", hand: true }, { t: " del profilo" }]], size: 84 });
+        T4.inAt(12.98);
+        const BX = 1935, BY = 880;
+        // whip straight onto the merge point (zoomed in), then pull back while the target expands
+        whip(12.8, 0.58, BX, BY, 1.6, null, 14);
+        cam(13.38, 0.8, 2140, 880, 1, "expo.out");
+        drift(14.2, 3.25, 15, 0, 0.03);
+        tl.to($("glow"), { opacity: 1, duration: 0.8 }, 13.0);
+
+        const L4 = layer(16);
+        // "Devi scegliere": every topic of the messy grid lifts off the phone, rides the whip with the camera
+        // and fuses into ONE point — the centre of the target (Kallaway's "start with one topic", as a match cut)
+        const TM = 13.38; // the merge
+        const P1c = (p) => [540 + (p[0] - 540) * 0.58 - 305, 880 + (p[1] - 880) * 0.58 - 110];
+        MESSY.forEach((topic, i) => {
+          const f = layered(el(L4, { position: "absolute", left: -PL.cw / 2, top: -PL.ch / 2, width: PL.cw, height: PL.ch, zIndex: 30, borderRadius: 4, overflow: "hidden", boxShadow: `0 20px 40px rgba(0,0,0,.55), 0 0 26px ${rgba(K.lime, 0.25)}` }));
+          topicTile(f, 0, 0, PL.cw, PL.ch, topic);
+          // same ease and window as the whip: the tiles ride WITH the camera (stay in frame) while the world streaks
+          const t = 12.74 + i * 0.012;
+          arcFly(f, P1c(phCell(P1, i)), [BX, BY], t, TM - t, { lift: 60 + (i % 3) * 70, s0: 0.58, s1: 0.3, rot0: 0, rotMid: hash(i, 21) * 60, blur: 2, ease: "power3.inOut" });
+          tl.set(P1.cells[i], { opacity: 0 }, t);
+        });
+        // the attractor: a lime core lights up where everything is being pulled
+        const attr = el(L4, { position: "absolute", left: BX - 200, top: BY - 200, width: 400, height: 400, borderRadius: "50%", background: `radial-gradient(circle, ${rgba(K.lime, 0.85)} 0%, ${rgba(K.lime, 0.35)} 22%, ${rgba(K.lime, 0)} 62%)`, opacity: 0, zIndex: 29 });
+        gsap.set(attr, { scale: 0.3 });
+        tl.to(attr, { opacity: 1, scale: 1, duration: 0.33, ease: "power2.in" }, TM - 0.33);
+        tl.to(attr, { opacity: 0, scale: 1.6, duration: 0.35, ease: "power2.out" }, TM);
+        const RR = [290, 220, 150, 80];
+        const RBG = [
+          "radial-gradient(circle at 50% 36%, #363636 0%, #2b2b2b 58%, #222 100%)",
+          "radial-gradient(circle at 50% 36%, #414a2a 0%, #363d24 58%, #2c321d 100%)",
+          "radial-gradient(circle at 50% 36%, #6d8034 0%, #5b6b2b 58%, #4b5823 100%)",
+          `radial-gradient(circle at 42% 34%, #f3ffc4 0%, ${K.lime} 46%, #a6d136 100%)`,
+        ];
+        const RSH = (k) => (k < 3 ? "inset 0 3px 0 rgba(255,255,255,.09), inset 0 -18px 40px rgba(0,0,0,.35), 0 22px 50px rgba(0,0,0,.5)" : `inset 0 3px 0 rgba(255,255,255,.55), 0 0 60px ${rgba(K.lime, 0.6)}, 0 0 140px ${rgba(K.lime, 0.25)}`);
+        const rings = RR.map((r, k) => el(L4, { position: "absolute", left: BX - r, top: BY - r, width: r * 2, height: r * 2, borderRadius: "50%", background: RBG[k], border: "2px solid rgba(255,255,255,.12)", boxShadow: RSH(k), zIndex: 2 + k }));
+        [3, 2, 1, 0].forEach((k, j) => {
+          gsap.set(rings[k], { scale: 0, opacity: 0 });
+          tl.to(rings[k], { opacity: 1, duration: 0.12 }, TM + j * 0.08);
+          tl.to(rings[k], { scale: 1, duration: k === 3 ? 0.5 : 0.75, ease: k === 3 ? "back.out(2.4)" : "expo.out" }, TM + j * 0.08);
+        });
+        ripple(L4, BX, BY, TM, { r: 120, s0: 0.3, s1: 2.6, dur: 0.8, w: 3 });
+        sparks(L4, BX, BY, TM, { n: 8, r0: 40, r1: 120, len: 30, seed: 5 });
+        const tick3 = el(L4, { position: "absolute", left: BX - 40, top: BY - 40, width: 80, height: 80, display: "flex", alignItems: "center", justifyContent: "center", zIndex: 8 }, svg("check", 64, K.ink, 3.4));
+        gsap.set(tick3, { scale: 0, opacity: 0 });
+        // the noisy audience around everything
+        const aud = [];
+        for (let i = 0; i < 20; i++) {
+          const a = (i / 20) * Math.PI * 2 + hash(i, 5) * 0.12, r = 316 + hash(i, 9) * 6;
+          aud.push(person(L4, BX + Math.cos(a) * r, BY + Math.sin(a) * r, 38, "#8a8a8a", 1));
+        }
+        gsap.set(aud, { opacity: 0, scale: 0.5 });
+        tl.to(aud, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(2)", stagger: 0.012 }, TM + 0.2);
+        // the three choices: Kallaway section bars with leaders
+        const S4 = svgLayer(L4, 12, 1600, 450, 1100, 900, "white");
+        const LBL = [["1", "Nicchia", "un solo tema", 620, [BX + 173, BY - 135], 13.93, 1], ["2", "Pubblico", "target preciso", 860, [BX + 149, BY - 13], 14.43, 2], ["3", "Problema", "specifico, che risolvi", 1100, [BX + 71, BY + 37], 15.5, 3]];
+        const bars = [], leads = [], dots = [];
+        LBL.forEach(([n, a, b, cy, [sx, sy], t, rk], k) => {
+          const sb = sectionBar(L4, 2260, cy - 48, 340, 96, n, a, b, { z: 14 });
+          // Kallaway's list: all three slots are already there, blurred, until each one is spoken
+          gsap.set(sb.r, { opacity: 0 });
+          tl.fromTo(sb.r, { opacity: 0, x: -24, filter: "blur(18px)" }, { opacity: 0.4, x: 0, filter: "blur(9px)", duration: 0.4, ease: "power3.out", immediateRender: false }, TM + 0.24 + k * 0.06);
+          const ld = connector(S4, [[sx, sy], [2215, cy], [2260, cy]], { color: "rgba(255,255,255,.85)", w: 3 });
+          const dt = el(L4, { position: "absolute", left: sx - 9, top: sy - 9, width: 18, height: 18, borderRadius: "50%", background: K.white, boxShadow: "0 0 14px rgba(255,255,255,.7)", zIndex: 13 });
+          gsap.set(dt, { scale: 0 });
+          tl.to(dt, { scale: 1, duration: 0.25, ease: "back.out(3)" }, t);
+          ld.draw(t + 0.02, 0.32);
+          tl.to(sb.r, { opacity: 1, filter: "blur(0px)", duration: 0.4, ease: "power2.out" }, t + 0.12);
+          tl.set(sb.r, { filter: "none" }, t + 0.53);
+          sheen(sb.r, t + 0.45, 0.7);
+          // focus by dimming: the ring outside fades, this ring lights up
+          tl.to(rings[rk - 1], { opacity: rk === 1 ? 0.4 : 0.5, duration: 0.4 }, t);
+          tl.to(rings[rk], { borderColor: rgba(K.lime, 0.95), boxShadow: `${RSH(rk)}, 0 0 50px ${rgba(K.lime, rk === 3 ? 0.8 : 0.35)}`, duration: 0.35 }, t);
+          if (rk > 1) tl.to(rings[rk - 1], { borderColor: "rgba(255,255,255,.12)", boxShadow: RSH(rk - 1), duration: 0.35 }, t);
+          bars.push(sb.r); leads.push(ld); dots.push(dt);
+        });
+        tl.to(aud, { opacity: 0.18, duration: 0.5, stagger: 0.01 }, 13.95);
+        tl.to(rings[3], { scale: 1.1, duration: 0.18, yoyo: true, repeat: 1, ease: "power2.out" }, 16.67);
+        tl.to(tick3, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(3)" }, 16.7);
+        // "Punto." — a dart nails the centre
+        blurOut(bars, 17.4, { x: 20, dur: 0.25 });
+        leads.forEach((l) => l.hide(17.4, 0.2));
+        tl.to(dots, { scale: 0, duration: 0.2 }, 17.4);
+        tl.to(aud, { opacity: 0, scale: 0.4, duration: 0.25, ease: "power2.in" }, 17.4);
+        tl.to(tick3, { opacity: 0, scale: 0.4, duration: 0.15 }, 17.4);
+        const dartW = el(L4, { position: "absolute", left: BX, top: BY, width: 1, height: 1, transform: "rotate(40deg)", zIndex: 40 });
+        const dart = el(dartW, { position: "absolute", left: -340, top: -28, width: 340, height: 56, filter: "url(#mb2)", transformOrigin: "100% 50%" });
+        el(dart, { position: "absolute", left: 0, top: 4, width: 86, height: 20, background: "linear-gradient(90deg,#a6d136,#CFFB50)", transform: "skewX(-35deg)", borderRadius: 3, boxShadow: GLOW_L(0.5) });
+        el(dart, { position: "absolute", left: 0, top: 32, width: 86, height: 20, background: "linear-gradient(90deg,#a6d136,#CFFB50)", transform: "skewX(35deg)", borderRadius: 3, boxShadow: GLOW_L(0.5) });
+        el(dart, { position: "absolute", left: 40, top: 23, width: 250, height: 10, borderRadius: 5, background: "linear-gradient(180deg,#ffffff,#bdbdbd)", boxShadow: "0 0 14px rgba(255,255,255,.5)" });
+        el(dart, { position: "absolute", left: 196, top: 17, width: 84, height: 22, borderRadius: 8, background: "linear-gradient(180deg,#5c5c5c,#262626)", border: "1.5px solid rgba(255,255,255,.28)" });
+        el(dart, { position: "absolute", left: 286, top: 20, width: 0, height: 0, borderTop: "8px solid transparent", borderBottom: "8px solid transparent", borderLeft: "54px solid #ededed" });
+        gsap.set(dart, { x: -720, opacity: 0 });
+        tl.set(dart, { opacity: 1 }, 17.44);
+        tl.to(dart, { x: 0, duration: 0.23, ease: "power2.in" }, 17.44);
+        const MB2 = { v: 0 }, mbn2 = $("mbn2");
+        const w2 = () => mbn2.setAttribute("stdDeviation", `${MB2.v} 0`);
+        w2();
+        tl.to(MB2, { v: 16, duration: 0.23, ease: "power2.in", onUpdate: w2 }, 17.44);
+        tl.to(MB2, { v: 0, duration: 0.04, ease: "none", onUpdate: w2 }, 17.67);
+        [8, -6, 4, -2, 0].forEach((r, k) => tl.to(dart, { rotation: r, duration: 0.06, ease: "sine.inOut" }, 17.67 + k * 0.06));
+        cam(17.62, 0.4, BX, BY, 1.22, "power4.out");
+        shake(17.68, 12, 7);
+        ripple(L4, BX, BY, 17.67, { r: 300, s0: 0.25, dur: 0.7, w: 5 });
+        ripple(L4, BX, BY, 17.76, { r: 420, s0: 0.2, dur: 0.8, w: 3, a: 0.6 });
+        sparks(L4, BX, BY, 17.67, { n: 12, r0: 50, r1: 190, len: 46 });
+        tl.fromTo(rings[3], { scale: 1.2 }, { scale: 1, duration: 0.35, ease: "back.out(3)", immediateRender: false }, 17.67);
+        [0, 1, 2].forEach((k) => tl.fromTo(rings[k], { scale: 1.05 }, { scale: 1, duration: 0.3, ease: "power2.out", immediateRender: false }, 17.67));
+        const pnt = handNote(L4, BX + 30, BY - 70, "Punto.", { size: 92, rot: -6 });
+        pnt.write(17.78, 0.3);
+        // …and everything collapses into one dot
+        [0, 1, 2].forEach((k) => tl.to(rings[k], { scale: 0, duration: 0.26, ease: "power3.in" }, 17.95 + k * 0.04));
+        tl.to(dart, { opacity: 0, duration: 0.2 }, 17.98);
+        tl.to(rings[3], { scale: 0.32, duration: 0.22, ease: "power3.in" }, 18.02);
+        cam(18.05, 0.42, BX, BY, 1.5, "power2.inOut");
+
+        // ═══ 5 · TRE SECONDI — "deve capire in tre secondi di cosa parli" (18.5 – 22.95s) ═══
+        T4.outAt(18.5);
+        const T5 = title({ icon: "timer", lines: [[{ t: "Capirti in " }, { t: "3 secondi", box: true }]], size: 86 });
+        T5.inAt(18.74);
+        tl.to($("glow"), { opacity: 0.45, duration: 0.8 }, 18.6);
+        pnt.hide(18.5);
+        const L5 = layer(18);
+        // the dot IS the avatar of a profile that's clear in 3 seconds (match cut)
+        const P2 = igPhone(L5, BX - (PH.bz + PL.avX), BY - (PH.bz + PL.avY), {
+          ring: `linear-gradient(135deg, #ecffa8, ${K.lime} 50%, #a6d136)`, avatar: "assets/clips/hz_avatar.jpg",
+          user: "hormozi", name: "Alex Hormozi", bio: "Business · vendite · acquisizioni", posts: "1.234", fol: "4.000.000", seg: "12", statBlur: true,
+          grid: [1, 2, 3, 4, 5, 6, 7, 8, 9].map((i) => ({ video: "hz" + i })),
+        });
+        gsap.set(P2.frame, { opacity: 0, filter: "blur(20px)" });
+        tl.to(rings[3], { scale: 0.88, duration: 0.45, ease: "power3.inOut" }, 18.5);
+        tl.to(P2.frame, { opacity: 1, filter: "blur(0px)", duration: 0.6, ease: "power2.out" }, 18.72);
+        tl.set(P2.frame, { filter: "none" }, 19.33);
+        tl.to(rings[3], { opacity: 0, duration: 0.25 }, 18.9);
+        const C5 = { fx: 2360, fy: 1180, s: 0.9 };
+        cam(18.5, 0.9, C5.fx, C5.fy, C5.s, "power3.inOut");
+        drift(19.4, 3.55, 0, 0, 0.03);
+        // a visitor arrives, from one of his Reels
+        const [vx, vy] = toWorld(624, 446, C5);
+        const V = card(L5, vx, vy, 430, 124, { zIndex: 24, borderRadius: 20 });
+        videoTile(V, 14, 14, 72, 96, "hz10", 2);
+        appIcon(V, 86, 98, 34, "instagram", 5);
+        el(V, { position: "absolute", left: 112, top: 24, fontFamily: FS, fontWeight: 700, fontSize: 30, color: K.white }, "Nuovo visitatore");
+        el(V, { position: "absolute", left: 112, top: 66, fontFamily: FS, fontWeight: 500, fontSize: 22, color: K.mute }, "arriva da un suo Reel");
+        blurIn(V, 19.4, { x: 90, y: 0, blur: 18, dur: 0.5 });
+        const S5 = svgLayer(L5, 22, 1700, 500, 1200, 1400, true);
+        const AV = phAvatar(P2);
+        const cV = connector(S5, [[vx, vy + 62], [AV[0] + 80, AV[1]]], { curve: "h", dash: [14, 11], color: K.lime, w: 4 });
+        cV.draw(19.55, 0.4);
+        traveller(S5, cV, 19.72, 0.4, K.lime, 10);
+        tl.fromTo(P2.av, { boxShadow: `0 0 0px ${rgba(K.lime, 0)}` }, { boxShadow: `0 0 50px ${rgba(K.lime, 0.85)}`, duration: 0.25, yoyo: true, repeat: 1, immediateRender: false }, 20.08);
+        // the stopwatch
+        const [swx, swy] = toWorld(610, 650, C5);
+        const SW = card(L5, swx, swy, 456, 500, { zIndex: 24 });
+        el(SW, { position: "absolute", left: 32, top: 28, fontFamily: FS, fontWeight: 600, fontSize: 22, letterSpacing: "0.14em", color: K.mute }, "TEMPO PER CAPIRTI");
+        const CIRC = 2 * Math.PI * 122;
+        const ringSvg = el(SW, { position: "absolute", left: 88, top: 100, width: 280, height: 280 }, `<svg width="280" height="280" viewBox="0 0 280 280" style="overflow:visible"><circle cx="140" cy="140" r="122" fill="none" stroke="rgba(255,255,255,.1)" stroke-width="20"/><circle id="swArc" cx="140" cy="140" r="122" fill="none" stroke="${K.lime}" stroke-width="20" stroke-linecap="round" transform="rotate(-90 140 140)" stroke-dasharray="${CIRC} ${CIRC}" stroke-dashoffset="0" style="filter:drop-shadow(0 0 10px rgba(207,251,80,.7))"/></svg>`);
+        const arc = ringSvg.querySelector("#swArc");
+        const nums = ["3", "2", "1"].map((n) => layered(el(SW, { position: "absolute", left: 88, top: 100, width: 280, height: 280, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: FD, fontWeight: 700, fontSize: 150, color: K.white, lineHeight: 1, textShadow: GLOW_W, opacity: 0 }, n)));
+        const swOk = layered(el(SW, { position: "absolute", left: 88, top: 100, width: 280, height: 280, display: "flex", alignItems: "center", justifyContent: "center", opacity: 0, filter: "drop-shadow(0 0 16px rgba(207,251,80,.7))" }, svg("check", 130, K.lime, 3.2)));
+        const swLbl = layered(el(SW, { position: "absolute", left: 0, top: 410, width: 456, textAlign: "center", fontFamily: FD, fontWeight: 700, fontSize: 48, color: K.white }, "secondi"));
+        const swLbl2 = layered(el(SW, { position: "absolute", left: 0, top: 404, width: 456, textAlign: "center", fontFamily: FH, fontSize: 60, color: K.lime, textShadow: GLOW_LT, opacity: 0 }, "capito!"));
+        blurIn(SW, 20.3, { x: 60, y: 0, blur: 18, dur: 0.55 });
+        tl.set(nums[0], { opacity: 1 }, 20.3);
+        tl.to(arc, { attr: { "stroke-dashoffset": CIRC }, duration: 1.3, ease: "none" }, 21.17);
+        tl.fromTo(nums[0], { scale: 1.3 }, { scale: 1, duration: 0.3, ease: "back.out(3)", immediateRender: false }, 21.17);
+        [[21.6, 0, 1], [22.03, 1, 2]].forEach(([t, a, b]) => {
+          tl.set(nums[a], { opacity: 0 }, t);
+          tl.set(nums[b], { opacity: 1 }, t);
+          tl.fromTo(nums[b], { scale: 1.3 }, { scale: 1, duration: 0.3, ease: "back.out(3)", immediateRender: false }, t);
+        });
+        tl.set(nums[2], { opacity: 0 }, 22.5);
+        tl.to(arc, { attr: { "stroke-dashoffset": 0 }, duration: 0.3, ease: "power2.out" }, 22.5);
+        tl.to(swOk, { opacity: 1, duration: 0.1 }, 22.5);
+        tl.fromTo(swOk, { scale: 0.4 }, { scale: 1, duration: 0.45, ease: "back.out(3)", immediateRender: false }, 22.5);
+        tl.to(swLbl, { opacity: 0, duration: 0.1 }, 22.45);
+        tl.to(swLbl2, { opacity: 1, duration: 0.2 }, 22.55);
+        tl.to(SW, { borderColor: rgba(K.lime, 0.85), boxShadow: `0 0 70px ${rgba(K.lime, 0.4)}, ${CARD_SH}`, duration: 0.3 }, 22.5);
+        // the visitor's gaze: avatar → posts → bio, one per second
+        const lens = el(L5, { position: "absolute", left: -70, top: -70, width: 140, height: 140, borderRadius: "50%", border: `4px solid ${K.lime}`, background: rgba(K.lime, 0.08), boxShadow: GLOW_L(0.7), zIndex: 30 });
+        el(lens, { position: "absolute", right: -14, top: -14, width: 44, height: 44, borderRadius: "50%", background: K.lime, display: "flex", alignItems: "center", justifyContent: "center", boxShadow: GLOW_L(0.6) }, svg("eye", 26, K.ink, 2.6));
+        const GRD = phCell(P2, 1), BIO = [P2.X + PH.bz + 24 + 180, P2.Y + PH.bz + 318];
+        gsap.set(lens, { x: AV[0], y: AV[1], scale: 0, opacity: 0 });
+        tl.to(lens, { scale: 1, opacity: 1, duration: 0.3, ease: "back.out(2.4)" }, 20.95);
+        tl.to(lens, { x: GRD[0], y: GRD[1], duration: 0.34, ease: "power3.inOut" }, 21.5);
+        tl.to(lens, { x: BIO[0], y: BIO[1], duration: 0.34, ease: "power3.inOut" }, 21.95);
+        tl.to(lens, { scale: 1.5, opacity: 0, duration: 0.3, ease: "power2.out" }, 22.5);
+        // the bio says it: underline it
+        const S5b = svgLayer(L5, 30, 1700, 900, 700, 250, true);
+        const bx0 = P2.X + PH.bz + 22, by0 = P2.Y + PH.bz + 340;
+        const und = handStroke(S5b, handPath([[bx0, by0], [bx0 + 110, by0 - 3], [bx0 + 220, by0 + 2], [bx0 + 345, by0 - 3]], 11, 2.5), { w: 6 });
+        und.draw(22.15, 0.35);
+
+        // ═══ 6 · SE NON LO CAPISCE, NON TI SEGUE (22.95 – 25.83s) ═══
+        T5.outAt(22.9);
+        const T6 = title({ lines: [[{ t: "Se non ti capisce," }], [{ t: "non ti segue", box: true }]], size: 78 });
+        T6.inAt(23.1);
+        whip(22.98, 0.55, 2360, 2500, 1, "y");
+        tl.to([P2.frame, V, SW, lens, S5, S5b], { opacity: 0, duration: 0.12 }, 23.12);
+        drift(23.55, 1.35, 0, 0, 0.015);
+        drift(24.92, 0.91, 40, 0, 0.025);
+        tl.to($("glow"), { opacity: 0.25, duration: 0.6 }, 23.0);
+        const L6 = layer(20);
+        const OX = 1820, OY = 1620; // screen → world offset at this station
+        const panel = (sx, head, ok) => {
+          const p = card(L6, OX + sx, OY + 400, 470, 930, { zIndex: 10 });
+          el(p, { position: "absolute", left: 0, top: 0, width: 470, height: 62, background: ok ? "linear-gradient(180deg,#dcff74,#CFFB50 60%,#b9e43e)" : "linear-gradient(180deg,#3a3a3a,#2e2e2e)", boxShadow: ok ? GLOW_L(0.5) : "none", display: "flex", alignItems: "center", gap: 12, padding: "0 24px", fontFamily: FS, fontWeight: 800, fontSize: 22, letterSpacing: "0.12em", color: ok ? K.ink : K.mute }, svg(ok ? "circle-check" : "circle-x", 28, ok ? K.ink : K.mute, 2.4) + head);
+          const cells = [];
+          for (let i = 0; i < 9; i++) {
+            const x = 28 + (i % 3) * 139, y = 84 + Math.floor(i / 3) * 183;
+            cells.push(ok ? videoTile(p, x, y, 135, 179, "tr" + (i + 1)) : topicTile(p, x, y, 135, 179, MESSY[(i * 4) % 9]));
+          }
+          return { p, cells };
+        };
+        const PLf = panel(50, "PROFILO CONFUSO", false);
+        const PRt = panel(560, "PROFILO CHIARO", true);
+        blurIn(PLf.p, 23.22, { x: -50, y: 0, blur: 20, dur: 0.55 });
+        blurIn(PRt.p, 23.3, { x: 50, y: 0, blur: 20, dur: 0.55 });
+        blurIn(PLf.cells, 23.36, { y: 12, blur: 8, scale: 0.92, dur: 0.35, stagger: 0.02 });
+        blurIn(PRt.cells, 23.42, { y: 12, blur: 8, scale: 0.92, dur: 0.35, stagger: 0.02 });
+        // marker verdicts on the grids
+        const S6 = svgLayer(L6, 30, OX, OY + 350, 1080, 1000, true);
+        const qq = handNote(L6, OX + 170, OY + 560, "?", { size: 230, rot: -8 });
+        qq.write(23.85, 0.1);
+        const ck = handStroke(S6, handPath([[OX + 700, OY + 760], [OX + 760, OY + 830], [OX + 905, OY + 640]], 4, 3), { w: 12 });
+        ck.draw(23.95, 0.35);
+        // the visitor, twice
+        const visitor = (p, x) => {
+          const v = el(p, { position: "absolute", left: x, top: 652, width: 414, height: 96, display: "flex", alignItems: "center", gap: 16, zIndex: 5 });
+          const a = el(v, { position: "relative", width: 76, height: 76, flex: "none", borderRadius: "50%", background: "#333", border: "3px solid rgba(255,255,255,.25)", overflow: "hidden" });
+          person(a, 35, 40, 56, "#d8d8d8");
+          el(v, { fontFamily: FS, fontWeight: 600, fontSize: 26, color: K.mute }, "nuovo visitatore");
+          return { v, a };
+        };
+        const vL = visitor(PLf.p, 28), vR = visitor(PRt.p, 28);
+        blurIn([vL.v, vR.v], 24.05, { y: 20, blur: 12, dur: 0.4, stagger: 0.06 });
+        const noL = el(PLf.p, { position: "absolute", left: 28, top: 772, width: 414, height: 120, borderRadius: 18, border: "2px solid rgba(255,255,255,.18)", background: "rgba(0,0,0,.18)", display: "flex", alignItems: "center", justifyContent: "center", gap: 14, fontFamily: FD, fontWeight: 700, fontSize: 50, color: K.white }, svg("x", 46, K.white, 3) + "Non ti segue");
+        gsap.set(noL, { opacity: 0 });
+        blurIn(noL, 24.43, { y: 16, blur: 14, dur: 0.4 });
+        tl.to(vL.v, { x: 140, rotation: 4, opacity: 0, duration: 0.45, ease: "power2.in" }, 24.5);
+        tl.to(PLf.p, { opacity: 0.45, y: 14, scale: 0.98, duration: 0.6, ease: "power2.out" }, 24.9);
+        const yesR = el(PRt.p, { position: "absolute", left: 28, top: 772, width: 414, height: 120, borderRadius: 18, background: "linear-gradient(180deg,#dcff74,#CFFB50 60%,#b9e43e)", display: "flex", alignItems: "center", justifyContent: "center", gap: 14, fontFamily: FS, fontWeight: 800, fontSize: 40, color: K.ink, boxShadow: GLOW_L(0.8) }, "Segui già" + svg("check", 40, K.ink, 3.4));
+        pop(yesR, 24.7, 0.6, "back.out(2.6)", 0.4);
+        ripple(L6, OX + 560 + 28 + 207, OY + 400 + 772 + 60, 24.72, { wd: 414, ht: 120, radius: "18px", s0: 1, s1: 1.25, dur: 0.55, z: 30 });
+        const plus = el(PRt.p, { position: "absolute", left: 340, top: 660, fontFamily: FD, fontWeight: 700, fontSize: 64, color: K.lime, textShadow: GLOW_LT, zIndex: 9 }, "+1");
+        gsap.set(plus, { opacity: 0, y: 20 });
+        tl.to(plus, { opacity: 1, y: -30, duration: 0.5, ease: "power2.out" }, 24.8);
+        tl.to(PRt.p, { borderColor: rgba(K.lime, 0.85), boxShadow: `0 0 70px ${rgba(K.lime, 0.32)}, ${CARD_SH}`, duration: 0.4 }, 24.75);
+
+        window.__timelines = window.__timelines || {};
+        window.__timelines["main"] = tl;
+      })();
+    </script>
+  </body>
+</html>
