@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>Reel 09/10 — Nessuno compra per le informazioni (stile Kallaway · kit v2)</title>
+    <script src="assets/vendor/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Advercase"; src: url("assets/fonts/Advercase-Bold.ttf") format("truetype"); font-weight: 700; font-style: normal; font-display: block; }
+      @font-face { font-family: "Advercase"; src: url("assets/fonts/Advercase-Regular.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: block; }
+      @font-face { font-family: "Patrick Hand"; src: url("assets/fonts/PatrickHand-Regular.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: block; }
+      @font-face { font-family: "Zalando Sans"; src: url("assets/fonts/ZalandoSans-Variable.ttf") format("truetype"); font-weight: 100 900; font-style: normal; font-display: block; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: #1e1e1e; }
+      body { font-family: "Zalando Sans", sans-serif; color: #f4f4f2; -webkit-font-smoothing: antialiased; }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; background: #1e1e1e; }
+      .clip { position: absolute; inset: 0; overflow: hidden; }
+      #glow { position: absolute; inset: 0; opacity: 0.35; background: radial-gradient(58% 32% at 50% 46%, rgba(207, 251, 80, 0.08), rgba(207, 251, 80, 0) 70%); }
+      #vignette { position: absolute; inset: 0; background: radial-gradient(110% 78% at 50% 44%, rgba(0, 0, 0, 0) 44%, rgba(0, 0, 0, 0.62) 100%); }
+      .cam { position: absolute; left: 540px; top: 880px; width: 1px; height: 1px; }
+      .layer { position: absolute; left: 0; top: 0; width: 1px; height: 1px; }
+      #dots { position: absolute; left: -6000px; top: -6000px; width: 32000px; height: 16000px; background-image: radial-gradient(circle, rgba(255, 255, 255, 0.095) 1.25px, rgba(255, 255, 255, 0) 1.95px); background-size: 24px 24px; }
+      #stage { position: absolute; inset: 0; overflow: hidden; }
+      /* facecam + sottotitoli in post sotto y≈1400: niente infografica lì sotto */
+      #safe { position: absolute; inset: 0; -webkit-mask-image: linear-gradient(to bottom, #000 0px, #000 1385px, transparent 1450px); mask-image: linear-gradient(to bottom, #000 0px, #000 1385px, transparent 1450px); }
+      #mbwrap, #shake { position: absolute; inset: 0; }
+      #hud { position: absolute; inset: 0; }
+    </style>
+  </head>
+  <body>
+    <!--WORDS ../../my-video-ottobre-p1-test/src/words/d09.ts-->
+    <div id="root" data-composition-id="main" data-start="0" data-duration="61.533" data-width="1080" data-height="1920">
+      <div id="bg" class="clip" data-start="0" data-duration="61.533" data-track-index="0">
+        <div class="cam" id="gcam2" data-layout-allow-overflow><div class="layer" id="gzoom2"><div class="layer" id="gpan2"><div class="layer" id="bokeh"></div></div></div></div>
+        <div class="cam" id="gcam" data-layout-allow-overflow><div class="layer" id="gzoom"><div class="layer" id="gpan"><div id="dots"></div></div></div></div>
+        <div id="glow"></div>
+        <div id="vignette"></div>
+      </div>
+      <div id="stage">
+        <svg width="0" height="0" style="position: absolute" aria-hidden="true">
+          <filter id="mb" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur id="mbn" in="SourceGraphic" stdDeviation="0 0" /></filter>
+        </svg>
+        <div id="safe"><div id="mbwrap"><div id="shake"><div class="cam" id="cam" data-layout-allow-overflow><div class="layer" id="zoom"><div class="layer" id="pan"></div></div></div></div></div></div>
+      </div>
+      <div id="hudclip" class="clip" data-start="0" data-duration="61.533" data-track-index="2">
+        <div id="hud"></div>
+      </div>
+
+      <!--SFX
+        # 1 · hook — le informazioni rimbalzano sulla testa, poi il cervello si accende
+        0.0 whoosh .08 ; 0.75 land .1 ; 1.15 land .1 ; 1.55 land .1 ; 1.95 land .1 ; 2.35 land .08 ; 4.07 sub .16 ; 4.09 rise .08 ; 4.75 whoosh .14
+        # 2 · il tuo video: la lancetta resta a 0, tutto corretto, non serve
+        6.0 click2 .06 ; 6.6 error .05 ; 7.73 tick .07 ; 8.27 tick .07 ; 8.47 tick .07 ; 8.97 tick .07 ; 9.85 drop .1
+        # 3 · la testa: tre nodi, il desiderio
+        11.5 whoosh .14 ; 12.2 pop .07 ; 12.35 pop .07 ; 12.5 pop .07 ; 13.8 bong .08 ; 15.37 rise .06 ; 15.8 whoosh .16
+        # 4 · dentro il desiderio
+        16.5 card .06 ; 17.7 slam .1 ; 18.57 pop .07 ; 19.2 pop .07 ; 19.9 pop .07 ; 20.97 click .07 ; 21.93 pop .07 ; 22.0 ding .1 ; 26.5 click2 .07 ; 27.0 pop .07 ; 28.3 rise .06
+        # 5 · la paura, il muro
+        29.75 whoosh .16 ; 31.17 bong .08 ; 31.5 whoosh .16 ; 32.4 land .06 ; 32.6 land .06 ; 32.8 land .06 ; 34.17 tick .06 ; 35.4 click .1 ; 37.03 slam .16 ; 37.05 sub .14 ; 38.3 whoosh .12 ; 39.93 key2 .06 ; 41.77 slam .14 ; 41.79 sub .1
+        # 6 · la convinzione
+        42.3 whoosh .16 ; 44.53 rise .06 ; 44.8 whoosh .16 ; 46.0 land2 .08 ; 47.97 key3 .05 ; 51.43 click .08 ; 52.8 glitch .06 ; 53.0 slam .12 ; 53.3 key4 .05
+        # 7 · la strada, CTA
+        55.3 rise .06 ; 56.43 ding .1 ; 56.9 whoosh .16 ; 57.87 pop .1 ; 58.5 card .06 ; 58.8 card .06 ; 60.0 whoosh .08 ; 60.45 ding .14
+      -->
+    </div>
+
+    <script>
+      (() => {
+        const ICON = __ICONS__;
+        /*__KIT__*/
+
+        const Wi = (i) => WORDS[i][1]; // istante della parola i in d09.ts (indici stampati da _tools/parole.py)
+        const L = layer(10);
+        const S = svgLayer(L, 6, -60000, -60000, 200000, 200000);
+        const SH = svgLayer(L, 45, -60000, -60000, 200000, 200000); // segni a mano sopra gli oggetti
+        const Y = 1000;
+        const pose = (r, o) => fitPose(r[0], r[1], r[2], r[3], Object.assign({ top: 380 }, o || {}));
+        const tile = (cx, cy, w, h, img, z) => {
+          const c = el(L, { position: "absolute", left: cx - w / 2, top: cy - h / 2, width: w, height: h, borderRadius: Math.round(w * 0.07), overflow: "hidden", border: "2px solid rgba(255,255,255,.25)", boxShadow: `0 ${Math.round(w * 0.1)}px ${Math.round(w * 0.25)}px rgba(0,0,0,.6)`, background: "#111", zIndex: z || 12 });
+          mediaTile(c, 0, 0, w, h, img, 1);
+          return c;
+        };
+        // chi compra: la stessa testa di profilo, piccola, che si muove nei mondi (holder spostato con x/y)
+        const buyer = (x, y, h, z) => {
+          const holder = layered(el(L, { position: "absolute", left: 0, top: 0, width: 1, height: 1, zIndex: z || 16 }));
+          gsap.set(holder, { x, y, opacity: 0 });
+          const hb = headBrain(holder, 0, 0, h, { visibile: true });
+          return { holder, hb };
+        };
+        // entra nel nodo (nx, ny) della testa e arriva sulla posa wp del mondo di quell'emozione
+        const dive = (t, nx, ny, wp) => {
+          const pre = 0.32;
+          camK(t - pre, pre, nx, ny, CAM.s * 3.4, "power2.in");
+          tl.fromTo(mbwrap, { filter: "blur(0px)" }, { filter: "blur(12px)", duration: pre, ease: "power2.in", immediateRender: false }, t - pre);
+          cutTo(t, wp.fx, wp.fy, wp.s * 0.78);
+          camK(t, 0.55, wp.fx, wp.fy, wp.s, "power3.out");
+          tl.to(mbwrap, { filter: "blur(0px)", duration: 0.22, ease: "power2.out" }, t);
+          tl.set(mbwrap, { filter: "none" }, t + 0.23);
+        };
+        // esce dal mondo e torna sulla testa uscendo dal nodo (nx, ny): la testa si allarga fino alla posa hp
+        const surface = (t, nx, ny, hp) => {
+          const pre = 0.25;
+          camK(t - pre, pre, CAM.fx, CAM.fy, CAM.s * 0.5, "power2.in");
+          tl.fromTo(mbwrap, { filter: "blur(0px)" }, { filter: "blur(12px)", duration: pre, ease: "power2.in", immediateRender: false }, t - pre);
+          cutTo(t, nx, ny, hp.s * 3.2);
+          camK(t, 0.6, hp.fx, hp.fy, hp.s, "power3.out");
+          tl.to(mbwrap, { filter: "blur(0px)", duration: 0.22, ease: "power2.out" }, t);
+          tl.set(mbwrap, { filter: "none" }, t + 0.23);
+        };
+        bokeh($("bokeh"), [
+          [200, 500, 380, 0.05], [900, 1400, 300, 0.04, true], [4300, 600, 420, 0.05], [5200, 1500, 340, 0.04, true],
+          [4300, 4100, 420, 0.05], [5400, 5000, 360, 0.04, true], [8800, 4200, 420, 0.05], [9900, 5000, 380, 0.045, true],
+          [13200, 4200, 400, 0.05], [14600, 5000, 380, 0.045, true], [17400, 900, 380, 0.045, true],
+        ]);
+
+        // ═══ HUB — la testa di chi compra, con il cervello vero (O29): è il centro di tutto il reel ═══
+        const HX = 540, HY = Y + 20, HH = 730;
+        const head = headBrain(L, HX, HY, HH, { visibile: true });
+        const hp = pose(head.rect, { fill: 0.98 });
+        const [bcx, bcy] = head.brainXY();
+        const bw0 = HH * 0.86 * 0.66, bh0 = bw0 * (1523 / 1800);
+        // i tre nodi delle emozioni (desiderio davanti, paura in basso al centro, convinzione dietro), con il numero
+        const NODES = [[bcx + 0.2 * bw0, bcy - 0.12 * bh0], [bcx + 0.03 * bw0, bcy + 0.2 * bh0], [bcx - 0.24 * bw0, bcy - 0.16 * bh0]];
+        const nodes = NODES.map(([x, y], i) => {
+          const n = el(L, { position: "absolute", left: x - 34, top: y - 34, width: 68, height: 68, borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", background: "radial-gradient(circle at 38% 32%, #4a4a4a, #1c1c1c 72%)", border: "3px solid rgba(255,255,255,.85)", boxShadow: "0 0 16px rgba(255,255,255,.45), 0 10px 20px rgba(0,0,0,.6)", fontFamily: FD, fontWeight: 700, fontSize: 34, color: K.white, zIndex: 18 }, String(i + 1));
+          const on = el(n, { position: "absolute", inset: -3, borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", background: "radial-gradient(circle at 38% 32%, #f6ffd8 0%, #dcff74 35%, #CFFB50 62%, #b2dd38 100%)", border: "3px solid #f4ffd0", boxShadow: GLOW_A(1), fontFamily: FD, fontWeight: 700, fontSize: 34, color: K.ink, opacity: 0 }, String(i + 1));
+          gsap.set(n, { opacity: 0, scale: 0.3 });
+          return { n, on, x, y };
+        });
+        const nodeOn = (i, t) => { tl.to(nodes[i].on, { opacity: 1, duration: 0.15 }, t); tl.fromTo(nodes[i].n, { scale: 1.45 }, { scale: 1, duration: 0.45, ease: "back.out(2.6)", immediateRender: false }, t); ripple(L, nodes[i].x, nodes[i].y, t, { r: 60, s0: 0.6, s1: 2.6, w: 4, z: 17 }); };
+
+        // ═══ 1 · HOOK — "Nessuno compra per le informazioni che gli hai dato. Comprano per come si sono sentiti." (0 – 4,85) ═══
+        // la testa è già in scena al fotogramma 0 (A02); sei pagine vere ci volano contro da tutte le parti, sbattono e cadono
+        // spente; su "sentiti" il cervello si accende di lime, partono i raggi e la camera dà il colpo
+        camInit(hp.fx, hp.fy + 40, hp.s * 0.95);
+        camK(0, 2.7, hp.fx, hp.fy, hp.s, KW.drift);
+        const ry = rays(L, HX, HY - 60, 620, { n: 18, z: 4 });
+        gsap.set(ry.g, { opacity: 0, scale: 0.7 });
+        [["Informazioni", -1, -230, 0], ["Dati", 1, -120, 0], ["Caratteristiche", -1, 60, 0], ["Prezzo", 1, 200, 0], ["Garanzia", -1, -360, 1], ["Specifiche", 1, -380, 1]].forEach(([tt, s, dy, alto], i) => {
+          const d = layered(el(L, { position: "absolute", left: 0, top: 0, width: 1, height: 1, zIndex: 20 }));
+          docPage(d, -130, -170, 260, 340, tt, 3 + i, { z: 1 });
+          const y0 = HY + dy, x0 = HX + s * 900, x1 = HX + s * 360;
+          gsap.set(d, { x: x0, y: alto ? y0 - 500 : y0, rotation: s * 16, opacity: 0 });
+          const t = 0.42 + i * 0.4;
+          tl.set(d, { opacity: 1 }, t);
+          tl.to(d, { x: x1, y: y0, rotation: -s * 6, duration: 0.3, ease: "power2.in" }, t);
+          ripple(L, x1 - s * 120, y0, t + 0.3, { r: 80, s0: 0.4, s1: 1.7, w: 4, color: "rgba(255,255,255,.85)", glow: false, z: 21, dur: 0.42 });
+          shake(t + 0.3, 6, 3);
+          tl.to(d, { x: x1 + s * 340, y: y0 + 640, rotation: s * 70, duration: 0.75, ease: "power2.in" }, t + 0.3);
+          tl.to(d, { filter: "grayscale(1) brightness(.45)", duration: 0.25 }, t + 0.3);
+          tl.to(d, { opacity: 0, duration: 0.3 }, t + 0.8);
+        });
+        const T1 = titleW({ lines: [[{ t: "Nessuno " }, { t: "compra", box: true }], [{ t: "per le informazioni", hand: true }]], size: 84 });
+        T1.inAt([Wi(0), Wi(1), Wi(2), Wi(3), Wi(4)]); T1.outAt(2.25);
+        const T2 = titleW({ lines: [[{ t: "Comprano per " }], [{ t: "come si sono sentiti", box: true }]], size: 84 });
+        T2.inAt([Wi(9), Wi(10), Wi(11), Wi(12), Wi(13), Wi(14)]); T2.outAt(4.45);
+        head.beat(0.3, 3.7, { k: 1.03, alone: 0.25, periodo: 0.9 });
+        head.on(Wi(14));
+        head.beat(Wi(14) + 0.25, 0.8);
+        ry.show(Wi(14)); ry.live(Wi(14), 0.9);
+        camK(Wi(14), 0.35, hp.fx, hp.fy - 20, hp.s * 1.1, "power4.out");
+        [0, 0.15].forEach((d, k) => ripple(L, bcx, bcy, Wi(14) + d, { r: 280, s0: 0.4, s1: 2.0 + k * 0.5, w: 5 - k * 2, z: 9 }));
+
+        // ═══ 2 · "E se il tuo video non fa provare niente, può essere corretto in ogni singola parola e non servire a niente." ═══
+        // (4,9 – 11,4) il tuo reel vero; accanto un indicatore d'acciaio "Cosa fa provare": la lancetta prova a salire e ricade a 0;
+        // il copione del reel (pagina vera) si spunta riga per riga; su "non servire a niente" reel e copione cadono nel buio
+        let X = 4740;
+        const rc2 = tile(X - 250, Y + 40, 420, 746, "th-mio_05", 12);
+        const gg = gauge(L, X + 255, Y - 150, 200, { etichetta: "Cosa fa provare" });
+        const doc2 = layered(el(L, { position: "absolute", left: X + 60, top: Y + 70, width: 400, height: 470, zIndex: 13 }));
+        docPage(doc2, 0, 0, 400, 470, "Copione", 7, { z: 1 });
+        const ticks2 = [0, 1, 2, 3].map((k) => { const tk = el(doc2, { position: "absolute", left: 340, top: 120 + k * 80, width: 44, height: 44, borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", background: limeFill(1), boxShadow: GLOW_A(0.7), zIndex: 5 }, svg("check", 28, K.ink, 3.4)); gsap.set(tk, { opacity: 0, scale: 0.4 }); return tk; });
+        gsap.set(doc2, { opacity: 0 });
+        zoomThrough(Wi(15), ...(() => { const p = pose([X - 480, Y - 380, X + 480, Y + 560]); return [p.fx, p.fy, p.s]; })(), { pre: 0.14 });
+        float(Wi(15) + 0.45, 6.0, 0, -12, 0.02);
+        blurIn(rc2, Wi(15), { y: 30, blur: 12, dur: 0.45 });
+        gg.show(Wi(15) + 0.12);
+        // "non fa provare niente": la lancetta prova a muoversi e ricade
+        gg.to(Wi(20), 0.12, 0.3, "power2.out"); gg.to(Wi(22), 0.0, 0.35, "power2.in"); gg.shake(Wi(23) + 0.05, 0.3);
+        blurIn(doc2, Wi(24), { y: 24, blur: 12, dur: 0.4 });
+        [26, 28, 29, 30].forEach((w, k) => { tl.to(ticks2[k], { opacity: 1, duration: 0.06 }, Wi(w)); tl.to(ticks2[k], { scale: 1, duration: 0.3, ease: "back.out(3)" }, Wi(w)); });
+        // "e non servire a niente": tutto si spegne e cade
+        tl.to([rc2, doc2], { filter: "grayscale(1) brightness(.5)", duration: 0.3 }, Wi(32));
+        tl.to(rc2, { y: 700, rotation: -12, opacity: 0, duration: 0.9, ease: "power2.in" }, Wi(35) - 0.25);
+        tl.to(doc2, { y: 700, rotation: 10, opacity: 0, duration: 0.9, ease: "power2.in" }, Wi(35) - 0.15);
+        const T3a = titleW({ lines: [[{ t: "Se non fa " }, { t: "provare niente", box: true }]], size: 78 });
+        T3a.inAt([Wi(16), Wi(20), Wi(21), Wi(22), Wi(23)]); T3a.outAt(7.2);
+        const T3b = titleW({ lines: [[{ t: "Corretto " }, { t: "in ogni parola", box: true }]], size: 78 });
+        T3b.inAt([Wi(26), Wi(27), Wi(28), Wi(30)]); T3b.outAt(9.3);
+        const T3c = titleW({ lines: [[{ t: "Non serve " }, { t: "a niente", box: true }]], size: 78 });
+        T3c.inAt([Wi(32), Wi(33), Wi(34), Wi(35)]); T3c.outAt(11.2);
+
+        // ═══ 3 · "Le emozioni che conta capire sono tre. La prima è il desiderio." (11,7 – 16,1) — di nuovo la testa: tre nodi ═══
+        whip2(11.5, 0.42, hp.fx, hp.fy, hp.s);
+        float(11.92, 3.7, 0, -8, 0.02);
+        nodes.forEach((nd, i) => tl.to(nd.n, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(2.4)" }, Wi(37) + i * 0.15));
+        pulse(L, bcx, bcy, Wi(42), { r: 300, z: 15, a: 0.45, front: true });
+        nodeOn(0, Wi(47));
+        head.beat(11.6, 4.4);
+        const T4 = titleW({ lines: [[{ t: "Le " }, { t: "3 emozioni", box: true }], [{ t: "che contano", hand: true }]], size: 84 });
+        T4.inAt([Wi(36), Wi(37), Wi(37) + 0.12, Wi(38), Wi(39)]); T4.outAt(13.95);
+        const T4b = titleW({ lines: [[{ t: "La prima: " }], [{ t: "il desiderio", box: true }]], size: 84 });
+        T4b.inAt([Wi(43), Wi(44), Wi(46), Wi(47)]); T4b.outAt(16.0);
+
+        // ═══ 4 · dentro il desiderio — "Ogni persona vuole qualcosa di preciso. Più tempo, più margine, più libertà di servire chi
+        // servire, più riconoscimento nel proprio settore." (16,1 – 23,7) — il bersaglio con i quattro desideri in orbita ═══
+        const DX = 4740, DY = 4700;
+        const be = bullseye(L, DX, DY, [80, 175, 270, 365]);
+        const pD = pose([DX - 640, DY - 560, DX + 640, DY + 560]);
+        dive(Wi(48), NODES[0][0], NODES[0][1], pD);
+        float(Wi(48) + 0.55, 2.1, 0, -8, 0.02);
+        [Wi(48), Wi(49), Wi(50), Wi(51)].forEach((t, i) => be.ring(3 - i, t + 0.1));
+        be.hit(Wi(53), { dx: 0.9, dy: 0.72, amp: 11 });
+        const T5 = titleW({ lines: [[{ t: "Vuole qualcosa " }], [{ t: "di preciso", box: true }]], size: 84 });
+        T5.inAt([Wi(50), Wi(51), Wi(52), Wi(53)]); T5.outAt(18.0);
+        // i quattro desideri: oggetti grandi in orbita attorno al bersaglio, ognuno sul suo "più"
+        const OR = 520;
+        const items4 = [0, 1, 2, 3].map(() => el(L, { position: "absolute", left: 0, top: 0, width: 1, height: 1, zIndex: 16 }));
+        const orb4 = orbit(L, DX, DY, OR, items4);
+        gsap.set(orb4.ring, { opacity: 0 });
+        const box4 = (k, w, h) => { const b = el(items4[k], { position: "absolute", left: -w / 2, top: -h / 2, width: w, height: h, borderRadius: 28, background: "linear-gradient(180deg, rgba(58,58,58,.95), rgba(28,28,28,.97))", border: "1.5px solid rgba(255,255,255,.2)", boxShadow: "0 30px 70px rgba(0,0,0,.6), inset 0 1.5px 0 rgba(255,255,255,.12)" }); gsap.set(b, { opacity: 0, scale: 0.5 }); return b; };
+        const lab4 = (b, w, h, tx) => el(b, { position: "absolute", left: 0, top: h - 62, width: w, textAlign: "center", fontFamily: FS, fontWeight: 800, fontSize: 32, color: K.white, whiteSpace: "nowrap" }, tx);
+        const pop4 = (b, t) => { tl.to(b, { opacity: 1, duration: 0.08 }, t); tl.to(b, { scale: 1, duration: 0.45, ease: "back.out(2.2)" }, t); };
+        // tempo
+        const b0 = box4(0, 290, 330); lab4(b0, 290, 330, "Più tempo");
+        const sw = stopwatch(b0, 145, 140, 190, { start: "20", unita: "MINUTI" }); gsap.set(sw.g, { opacity: 1 });
+        // margine
+        const b1 = box4(1, 330, 300); lab4(b1, 330, 300, "Più margine");
+        const sc = statCard(b1, 24, 24, { label: "Margine", icon: "trending-up", w: 282, h: 196, fs: 64, start: "+0%", z: 3 });
+        // libertà di scegliere chi servire
+        const b2 = box4(2, 360, 290); lab4(b2, 360, 290, "Scegli chi servire");
+        const pf = [0, 1, 2].map((i) => faceDot(b2, 180 - 120 + i * 120 - 50, 70, 100, 50 + i * 9, "atlas-muro", { bw: 3 }));
+        const ck = el(b2, { position: "absolute", left: 180 + 120 - 62, top: 58, width: 124, height: 124, borderRadius: 18, border: `5px solid ${K.lime}`, boxShadow: GLOW_A(0.8), opacity: 0 });
+        // riconoscimento
+        const b3 = box4(3, 300, 320); lab4(b3, 300, 320, "Riconoscimento");
+        avatar(b3, 150, 120, 150, "tu", { bw: 5, z: 3 });
+        el(b3, { position: "absolute", left: 190, top: 150, width: 56, height: 56, borderRadius: "50%", background: limeFill(1), boxShadow: GLOW_A(0.7), display: "flex", alignItems: "center", justifyContent: "center", zIndex: 4 }, svg("badge-check", 34, K.ink, 2.4));
+        const fl = el(b3, { position: "absolute", left: 0, top: 200, width: 300, textAlign: "center", fontFamily: FD, fontWeight: 700, fontSize: 40, color: K.lime, textShadow: GLOW_LT }, "12K");
+        const pO = pose([DX - OR - 200, DY - OR - 180, DX + OR + 200, DY + OR + 180]);
+        move(18.15, 0.7, pO.fx, pO.fy, pO.s);
+        tl.to(orb4.ring, { opacity: 1, duration: 0.4 }, 18.2);
+        orb4.spin(18.2, 5.6, 26);
+        float(18.85, 4.85, 0, -10, 0.02);
+        pop4(b0, Wi(55) - 0.05); sw.run(Wi(55) + 0.25, 1.0, 20, 60, 60);
+        pop4(b1, Wi(57) - 0.05); sc.count(Wi(57) + 0.1, 0, 38, 0.9, (v) => "+" + Math.round(v) + "%");
+        pop4(b2, Wi(59) - 0.05);
+        tl.to(ck, { opacity: 1, duration: 0.1 }, Wi(63)); tl.fromTo(ck, { scale: 1.5 }, { scale: 1, duration: 0.35, ease: "power3.out", immediateRender: false }, Wi(63));
+        tl.to([pf[0], pf[1]], { opacity: 0.35, filter: "grayscale(1)", duration: 0.3 }, Wi(63));
+        pop4(b3, Wi(64) - 0.05);
+        const F4 = { v: 12 };
+        tl.fromTo(F4, { v: 12 }, { v: 48, duration: 0.9, ease: "power2.out", onUpdate: () => (fl.textContent = Math.round(F4.v) + "K"), immediateRender: false }, Wi(65));
+        const T5c = titleW({ lines: [[{ t: "Più " }, { t: "tempo", box: true }]], size: 92 });
+        T5c.inAt([Wi(55) - 0.05, Wi(55)]);
+        swapWord(T5c, 1, "margine", Wi(57));
+        swapWord(T5c, 1, "libertà", Wi(59));
+        swapWord(T5c, 1, "riconoscimento", Wi(65));
+        T5c.outAt(23.45);
+
+        // ═══ 5 · "Devi sapere cosa vuole chi ti guarda e cosa cerca in un contenuto per sentirsi più vicino ad averlo." (23,9 – 29,9) ═══
+        // la testa di chi ti guarda entra da sinistra davanti al bersaglio; dal tuo contenuto parte un raggio verso il centro; su "più
+        // vicino ad averlo" la testa scivola verso il bersaglio e la distanza si accorcia
+        const by = buyer(DX - 1050, DY + 40, 360, 20);
+        const pB = pose([DX - 1300, DY - 560, DX + 420, DY + 560]);
+        move(23.75, 0.8, pB.fx, pB.fy, pB.s);
+        float(24.55, 5.3, 0, -10, 0.02);
+        tl.fromTo(by.holder, { opacity: 0, x: DX - 1250 }, { opacity: 1, x: DX - 1050, duration: 0.6, ease: "power3.out", immediateRender: false }, Wi(69));
+        by.hb.on(Wi(72));
+        by.hb.beat(Wi(72) + 0.3, 4.6);
+        const rv5 = tile(DX - 620, DY - 330, 210, 374, "th-mio_07", 18);
+        gsap.set(rv5, { opacity: 0 });
+        blurIn(rv5, Wi(78), { y: 20, blur: 12, dur: 0.4, scale: 0.9 });
+        const beam = connector(S, [[DX - 515, DY - 330], [DX - 60, DY - 20]], { color: K.lime, w: 6, glow: true });
+        beam.draw(Wi(81), 0.4);
+        // la distanza: una linea quotata tra la testa e il centro che si accorcia
+        const dist = el(L, { position: "absolute", left: DX - 860, top: DY + 300, width: 780, height: 4, borderRadius: 2, background: "rgba(255,255,255,.7)", transformOrigin: "100% 50%", zIndex: 15 });
+        const distLab = el(L, { position: "absolute", left: DX - 860, top: DY + 322, width: 780, textAlign: "center", fontFamily: FS, fontWeight: 800, fontSize: 30, color: "rgba(255,255,255,.85)", whiteSpace: "nowrap", zIndex: 15 }, "Quanto è lontano");
+        gsap.set([dist, distLab], { opacity: 0 });
+        tl.to([dist, distLab], { opacity: 1, duration: 0.25 }, Wi(82));
+        tl.to(by.holder, { x: DX - 560, duration: 1.0, ease: "power2.inOut" }, Wi(84));
+        tl.to(dist, { scaleX: 0.38, background: K.lime, boxShadow: GLOW_A(0.6), duration: 1.0, ease: "power2.inOut" }, Wi(84));
+        tl.set(distLab, { textContent: "Più vicino" }, Wi(85));
+        tl.to(distLab, { color: K.lime, x: 240, duration: 0.6, ease: "power2.inOut" }, Wi(84));
+        const T6a = titleW({ lines: [[{ t: "Cosa vuole " }], [{ t: "chi ti guarda", box: true }]], size: 84 });
+        T6a.inAt([Wi(71), Wi(72), Wi(73), Wi(74), Wi(75)]); T6a.outAt(27.05);
+        const T6b = titleW({ lines: [[{ t: "Più vicino " }, { t: "ad averlo", box: true }]], size: 80 });
+        T6b.inAt([Wi(84), Wi(85), Wi(86), Wi(87)]); T6b.outAt(29.65);
+
+        // ═══ 6 · "La seconda è la paura. Cioè cosa lo sta trattenendo." (30 – 33,5) — fuori, il nodo 2; dentro, il muro ═══
+        surface(30.0, NODES[0][0], NODES[0][1], hp);
+        float(30.6, 1.0, 0, -8, 0.01);
+        nodeOn(1, Wi(92));
+        head.beat(30.1, 1.6);
+        const MX = 9300, MY = 4700;
+        const by2 = buyer(MX - 470, MY + 120, 330, 20);
+        const goal = el(L, { position: "absolute", left: MX + 300, top: MY - 20, width: 250, height: 250, borderRadius: 30, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 10, background: limeFill(1), boxShadow: `${GLOW_A(0.9)}, 0 30px 60px rgba(0,0,0,.55)`, fontFamily: FS, fontWeight: 800, fontSize: 32, color: K.ink, zIndex: 12, textAlign: "center" }, svg("shopping-bag", 84, K.ink, 2.2) + "<span>Compra</span>");
+        const wall = brickWall(L, MX - 140, MY - 250, 3, 9, { bw: 128, bh: 60, gap: 8, z: 14 });
+        const pM = pose([MX - 740, MY - 560, MX + 600, MY + 560]);
+        dive(Wi(93), NODES[1][0], NODES[1][1], pM);
+        float(Wi(93) + 0.55, 5.6, 0, -10, 0.02);
+        tl.to(by2.holder, { opacity: 1, duration: 0.3 }, Wi(93));
+        blurIn(goal, Wi(93) + 0.1, { y: 16, blur: 10, dur: 0.35, scale: 0.9 });
+        wall.build(Wi(96), 0.55);
+        const T7 = titleW({ lines: [[{ t: "La paura: " }], [{ t: "cosa lo trattiene", box: true }]], size: 84 });
+        T7.inAt([Wi(88), Wi(92), Wi(94), Wi(95), Wi(97)]); T7.outAt(33.3);
+
+        // ═══ 7 · "E qui hai due strade. Puoi fargli vedere il muro oppure puoi buttarlo giù." (33,5 – 38) ═══
+        const fk = forkPath(L, S, MX + 52, MY - 262, MY - 330, { dx: 360, dy: 90, labels: ["Mostraglielo", "Buttalo giù"], fs: 34 });
+        fk.draw(Wi(98));
+        // "fargli vedere il muro": entra il faro vero del kit (sotto a sinistra, dietro la testa) e accende il fascio sul muro
+        const fr = faro(L, MX - 600, MY + 470, 240, { z: 17, dir: -31, len: 900 });
+        gsap.set(fr.g, { opacity: 0 });
+        tl.fromTo(fr.g, { opacity: 0, x: -160, y: 120, rotation: -14 }, { opacity: 1, x: 0, y: 0, rotation: 0, duration: 0.45, ease: "power3.out", immediateRender: false }, Wi(104) - 0.15);
+        fr.on(Wi(105));
+        fk.choose(0, Wi(105));
+        tl.to(wall.bricks.map((q) => q.b), { borderColor: "rgba(255,255,255,.85)", boxShadow: "inset 0 2px 0 rgba(255,255,255,.35), 0 0 22px rgba(255,255,255,.4)", duration: 0.25 }, Wi(107));
+        // "oppure puoi buttarlo giù": il muro esplode e la testa arriva a "Compra"
+        fr.off(Wi(108));
+        tl.to(fr.g, { opacity: 0, x: -120, y: 90, duration: 0.35, ease: "power2.in" }, Wi(108) + 0.1);
+        fk.choose(1, Wi(109));
+        wall.blast(Wi(110), { cx: MX - 120, cy: MY + 80, power: 980 });
+        tl.to(by2.holder, { x: MX + 120, duration: 0.7, ease: "power2.inOut" }, Wi(111));
+        by2.hb.on(Wi(111) + 0.5);
+        tl.to(goal, { scale: 1.12, duration: 0.25, ease: "power2.out", yoyo: true, repeat: 1 }, Wi(111) + 0.5);
+        const T8 = titleW({ lines: [[{ t: "Mostralo " }], [{ t: "o buttalo giù", box: true }]], size: 84 });
+        T8.inAt([Wi(105), Wi(108), Wi(110), Wi(111)]); T8.outAt(37.7);
+
+        // ═══ 8 · "Quello che non puoi fare è lasciarlo lì intatto, perché allora non succede niente." (38,1 – 42,3) ═══
+        // si riavvolge: il muro torna su intatto, la testa torna indietro, tutto si spegne; su "niente" cala il timbro
+        wall.rewind(38.3, 0.55);
+        tl.to(by2.holder, { x: MX - 470, duration: 0.55, ease: "power3.inOut" }, 38.3);
+        float(38.0, 4.2, 0, -10, 0.02);
+        wall.grey(Wi(120));
+        tl.to(goal, { filter: "grayscale(1) brightness(.5)", duration: 0.35 }, Wi(120));
+        tl.to(by2.holder, { filter: "grayscale(1) brightness(.6)", duration: 0.35 }, Wi(120));
+        const hcM = handCircle(SH, MX + 52, MY + 50, 300, 400, 11, { color: "rgba(255,255,255,.85)", w: 5 });
+        hcM.draw(Wi(120), 0.4);
+        stamp(L, MX + 40, MY + 40, "Niente", { w: 540, h: 196, rot: -9, fs: 96 }).down(Wi(125));
+        const T9 = titleW({ lines: [[{ t: "Mai lasciarlo " }, { t: "intatto", box: true }]], size: 82 });
+        T9.inAt([Wi(114), Wi(118), Wi(120)]); T9.outAt(42.15);
+
+        // ═══ 9 · "E la terza è quella che quasi nessuno tocca. Cosa crede di se stesso." (42,5 – 45,1) — il nodo 3 ═══
+        surface(42.55, NODES[1][0], NODES[1][1], hp);
+        float(43.15, 1.6, 0, -8, 0.01);
+        // "quasi nessuno tocca": il nodo 3 resta al buio, gli altri due si attenuano; poi si accende
+        tl.to([nodes[0].n, nodes[1].n], { opacity: 0.4, duration: 0.3 }, Wi(132));
+        tl.fromTo(nodes[2].n, { scale: 1 }, { scale: 1.25, duration: 0.3, ease: "power2.out", yoyo: true, repeat: 1, immediateRender: false }, Wi(132));
+        nodeOn(2, Wi(134));
+        head.beat(42.6, 2.4);
+        const T10 = titleW({ lines: [[{ t: "La terza: " }], [{ t: "cosa crede di sé", box: true }]], size: 84 });
+        T10.inAt([Wi(127), Wi(128), Wi(135), Wi(136), Wi(137), Wi(138)]); T10.outAt(46.4);
+
+        // ═══ 10 · dentro la convinzione — "Uno che vende magari è convinto di essere troppo timido per riuscirci. Se il tuo contenuto
+        // vede quella convinzione e la smonta, non stai solo informando." (45,1 – 54,9) — chiuso in una cupola di vetro ═══
+        const CX = 13700, CY = 4700;
+        const by3 = buyer(CX - 160, CY + 150, 360, 16);
+        const cage = glassCage(L, CX - 160, CY + 130, 290, { z: 19 });
+        const bel = glass(L, CX - 480, CY - 420, 960, 150, { zIndex: 22, borderRadius: 28 });
+        el(bel, { position: "absolute", left: 30, top: 14, display: "flex", alignItems: "center", gap: 10, fontFamily: FS, fontWeight: 800, fontSize: 22, letterSpacing: "0.16em", color: "rgba(255,255,255,.55)" }, svg("lock", 24, "rgba(255,255,255,.6)", 2.2) + "COSA CREDE DI SÉ");
+        const sl = strikeLines(bel, 30, 52, [], { fs: 46, w: 900, z: 3 });
+        gsap.set(bel, { opacity: 0 });
+        const rvC = tile(CX + 380, CY + 160, 300, 534, "th-mio_09", 18);
+        gsap.set(rvC, { opacity: 0 });
+        const pC = pose([CX - 560, CY - 440, CX + 560, CY + 470]);
+        dive(Wi(135), NODES[2][0], NODES[2][1], pC);
+        float(Wi(135) + 0.55, 5.6, 0, -10, 0.02);
+        tl.to(by3.holder, { opacity: 1, duration: 0.3 }, Wi(135));
+        cage.close(Wi(140) - 0.6);
+        blurIn(bel, Wi(143), { y: 20, blur: 12, dur: 0.4 });
+        const r1 = sl.add(Wi(145), "Sono troppo timido per vendere", { cps: 30 });
+        blurIn(rvC, Wi(155), { x: 60, y: 0, blur: 12, dur: 0.4 });
+        const beamC = connector(S, [[CX + 230, CY + 60], [CX + 60, CY - 270]], { color: K.lime, w: 6, glow: true });
+        beamC.draw(Wi(156) - 0.1, 0.3);
+        const sel = selectCorners(L, [CX - 480, CY - 420, CX + 480, CY - 270], { len: 46, w: 7, pad: 12, z: 40 });
+        sel.show(Wi(156));
+        sl.strikeR(r1, Wi(161));
+        cage.shatter(Wi(161) + 0.15);
+        sl.removeR(r1, Wi(161) + 0.35);
+        sl.add(Wi(161) + 0.5, "Posso vendere a modo mio", { color: K.lime, cps: 32 });
+        sel.hide(Wi(163));
+        by3.hb.on(Wi(161) + 0.4);
+        by3.hb.beat(Wi(161) + 0.7, 3.6);
+        float(51.3, 3.5, 0, -8, 0.01);
+        const T11 = titleW({ lines: [[{ t: "Troppo timido " }], [{ t: "per riuscirci", box: true }]], size: 84 });
+        T11.inAt([Wi(148), Wi(149), Wi(150), Wi(151)]); T11.outAt(50.1);
+        const T12 = titleW({ lines: [[{ t: "Vede la convinzione " }], [{ t: "e la smonta", box: true }]], size: 80 });
+        T12.inAt([Wi(156), Wi(157), Wi(158), Wi(159), Wi(160), Wi(161)]); T12.outAt(54.45);
+
+        // ═══ 11 · "Stai diventando la strada per uscirne." (54,9 – 56,9) — dalla testa libera parte la strada fino a "Compra" ═══
+        const goal3 = el(L, { position: "absolute", left: CX + 1250, top: CY - 270, width: 240, height: 240, borderRadius: 30, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 10, background: limeFill(1), boxShadow: `${GLOW_A(0.9)}, 0 30px 60px rgba(0,0,0,.55)`, fontFamily: FS, fontWeight: 800, fontSize: 30, color: K.ink, zIndex: 12, textAlign: "center" }, svg("shopping-bag", 80, K.ink, 2.2) + "<span>Compra</span>");
+        gsap.set(goal3, { opacity: 0 });
+        const mp = metroPath(L, S, [[CX - 160, CY + 150], [CX + 520, CY + 120], [CX + 900, CY - 160], [CX + 1370, CY - 150]], ["", "Ci prova", "Vende", ""], { r: 34, w: 10, fs: 34, lw: 260, icons: ["user-round", "message-circle", "trending-up", "shopping-bag"], side: ["b", "b", "t", "b"], walker: by3.holder });
+        const pR = pose([CX - 520, CY - 520, CX + 1520, CY + 420]);
+        move(Wi(166) - 0.1, 0.7, pR.fx, pR.fy, pR.s);
+        float(Wi(166) + 0.6, 1.4, 0, -6, 0.01);
+        tl.to(rvC, { opacity: 0, duration: 0.3 }, Wi(166));
+        mp.show(Wi(166), 0.55);
+        blurIn(goal3, Wi(167), { y: 16, blur: 10, dur: 0.35, scale: 0.9 });
+        mp.go(1, Wi(168) - 0.1, 0.4); mp.go(2, Wi(169) + 0.1, 0.35); mp.go(3, Wi(171) - 0.15, 0.35);
+        tl.to(goal3, { scale: 1.12, duration: 0.2, ease: "power2.out", yoyo: true, repeat: 1 }, Wi(171) + 0.2);
+        const T13 = titleW({ lines: [[{ t: "Stai diventando " }], [{ t: "la strada", box: true }]], size: 84 });
+        T13.inAt([Wi(166), Wi(167), Wi(168), Wi(169)]); T13.outAt(56.5);
+
+        // ═══ 12 · CTA — "Commenta EMOZIONI e ti mando le tre leve con un esempio per ognuna." (57 – 61,5) ═══
+        const QX = 18300;
+        const dwl = docWall(L, QX, Y + 160, { n: 6, cols: 3, dw: 250, dh: 300, titoli: ["Desiderio", "Paura", "Convinzione", "Esempio 1", "Esempio 2", "Esempio 3"] });
+        const pQ = pose([dwl.rect[0], dwl.rect[1] - 230, dwl.rect[2], dwl.rect[3]], { top: 430 });
+        whip2(56.9, 0.42, pQ.fx, pQ.fy, pQ.s);
+        float(57.32, 4.2, 0, -12, 0.02);
+        const TC = titleW({ lines: [[{ t: "Commenta " }, { t: "\"EMOZIONI\"", box: true }], [{ t: "e ti mando le 3 leve", hand: true }]], size: 80 });
+        TC.inAt([Wi(172), Wi(173), Wi(174), Wi(175), Wi(176), Wi(177), Wi(178), Wi(179)]);
+        dwl.show(Wi(174), [3, 6]);
+        const nt = igNotif(L, QX, Y + 160 - dwl.H / 2 - 60, { user: "tu", nome: "samuelerinaldo.media", testo: "ti ha inviato un PDF", allegato: "Le 3 leve" });
+        const ax = nt.attXY();
+        dwl.send(59.9, 0, ax[0], ax[1], 0.4);
+        nt.show(60.35);
+
+        window.__timelines = window.__timelines || {};
+        window.__timelines["main"] = tl;
+      })();
+    </script>
+  </body>
+</html>
