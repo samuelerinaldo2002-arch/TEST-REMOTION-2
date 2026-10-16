@@ -156,6 +156,13 @@
         // ═══ 4 · 9,426–12,554 s · facecam piena ═══
         cpFacecam(9.426, 12.554);
 
+        // ═══ 5 · 12,554–23,732 s · r01_tam: «Devi Espandere Il Tuo “TAM”», la pillola, la linea; 15,77 s gli anelli di persone ═══
+        cpCam.taglio(12.554, { fx: 18000, fy: 880, s: 1 });
+        COPIA.r01_tam({ t0: 12.554, t1: 23.732, X: 18000, Y: 880, parent: layer(13) }, {});
+
+        // ═══ 6 · 23,732–28,654 s · facecam piena (stacco sulla faccia a 27,82 s) ═══
+        cpFacecam(23.732, 28.654);
+
         //__SCENE__
 
         cpCam.gira(0, 122.462);

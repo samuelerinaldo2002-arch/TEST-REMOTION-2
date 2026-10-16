@@ -258,3 +258,141 @@ COPIA.r01_cento = (scena, o) => {
   tl.set(L, { opacity: 0 }, scena.t1);
   return { rect: null, pose: null, ancore: {}, elementi: { card, b, disco, muro } };
 };
+
+// ── anelli di persone attorno alla tua foto (scene 5, 9, 15, 22): anelli concentrici di omini bianchi a passo regolare (sfalsati
+// fra un anello e l'altro) e le orbite grigie sottili (più fitte degli anelli di persone, come le sue); ogni anello può uscire dal
+// centro (esce), comparire girando in senso orario dall'alto (giro), colorarsi (colora: il suo rosso / verde → lime), spegnersi
+// (spegni); le orbite possono comparire (orbiteIn) e tingersi (tinta). Indici da 1.
+// o: { raggi ([70, 125, 180, 235, 290]), conte ([6, 12, 18, 24, 31]), orbite (raggi delle linee: [70, 97, …]), d (17), col, z (6) }
+const r1Anelli = (L, cx, cy, o) => {
+  o = o || {};
+  const raggi = o.raggi || [70, 125, 180, 235, 290], conte = o.conte || raggi.map((r) => Math.max(6, Math.round((2 * Math.PI * r) / 58)));
+  const rOrb = o.orbite || [], d = o.d || 17, z = o.z || 6;
+  const R = Math.max(...raggi.concat(rOrb)) + 60;
+  const S = svgLayer(L, z - 1, cx - R, cy - R, 2 * R, 2 * R);
+  const mkC = (r, w, col) => { const c = document.createElementNS(NS, "circle"); c.setAttribute("cx", cx); c.setAttribute("cy", cy); c.setAttribute("r", r); c.setAttribute("fill", "none"); c.setAttribute("stroke", col); c.setAttribute("stroke-width", w); c.setAttribute("opacity", 0); S.appendChild(c); return c; };
+  const aloni = rOrb.map((r) => mkC(r, 14, "rgba(207,251,80,.10)"));
+  const orbite = rOrb.map((r) => mkC(r, 2.2, "rgba(255,255,255,.30)"));
+  const persone = raggi.map((r, i) => {
+    const n = conte[i], ring = [];
+    const G = layered(el(L, { position: "absolute", left: cx, top: cy, width: 0, height: 0, zIndex: z }));   // l'anello (ruota nel giro)
+    for (let j = 0; j < n; j++) {
+      const a = -Math.PI / 2 + (2 * Math.PI * (j + 0.5 * (i % 2))) / n;
+      const p = r1Omino(G, r * Math.cos(a), r * Math.sin(a), { d, col: o.col || "#ffffff", z });
+      p._a = ((a + Math.PI / 2) % (2 * Math.PI) + 2 * Math.PI) % (2 * Math.PI); p._dx = r * Math.cos(a); p._dy = r * Math.sin(a);
+      gsap.set(p, { opacity: 0 });
+      ring.push(p);
+    }
+    ring.G = G;
+    return ring;
+  });
+  const ks = (x) => (x == null ? persone.map((_, i) => i + 1) : [].concat(x));
+  const api = {
+    S, orbite, aloni, persone, raggi,
+    pieni: (x) => ks(x).forEach((k) => gsap.set(persone[k - 1], { opacity: 1 })),
+    // l'anello k vola fuori dal centro (dal 30% del raggio) e si accende, col mosso
+    esce: (k, t, dur) => persone[k - 1].forEach((p) => {
+      gsap.set(p, { x: -p._dx * 0.7, y: -p._dy * 0.7, scale: 0.7, filter: "blur(2px)" });
+      tl.to(p, { opacity: 1, duration: 0.06, ease: "none" }, t);
+      tl.to(p, { x: 0, y: 0, scale: 1, filter: "blur(0px)", duration: dur || 0.3, ease: "power2.out" }, t);
+      tl.set(p, { filter: "none" }, t + (dur || 0.3) + 0.01);
+    }),
+    // l'anello k compare girando in senso orario dall'alto (un giro in dur): ogni omino arriva sfocato quando passa la testa
+    // del giro e l'anello intero ruota di −40° → 0 (la scia di Kallaway, reel 1 20,27–21,4 s)
+    giro: (k, t, dur) => {
+      const D = dur || 0.5, G = persone[k - 1].G;
+      gsap.set(G, { rotation: -40, transformOrigin: "0px 0px" });
+      tl.to(G, { rotation: 0, duration: D + 0.35, ease: "power2.out" }, t);
+      persone[k - 1].forEach((p) => { const tt = t + D * (p._a / (2 * Math.PI)); gsap.set(p, { filter: "blur(4px)" }); tl.to(p, { opacity: 1, filter: "blur(0px)", duration: 0.22, ease: "power1.out" }, tt); tl.set(p, { filter: "none" }, tt + 0.23); });
+    },
+    // le orbite (indici o tutte) compaiono
+    orbiteIn: (t, dur, x) => (x == null ? orbite.map((_, i) => i + 1) : [].concat(x)).forEach((k) => tl.to(orbite[k - 1], { attr: { opacity: 1 }, duration: dur || 0.4, ease: "power1.out" }, t)),
+    // persone dell'anello (o di tutti) colorate in onda dall'alto (il suo rosso / verde → lime)
+    colora: (x, t, dur, col) => ks(x).forEach((k) => persone[k - 1].forEach((p) => r1ColOmino(p, t + (dur || 0) * (p._a / (2 * Math.PI)), col || K.lime, 0.12))),
+    // anelli che si spengono (le persone svaniscono)
+    spegni: (x, t, dur) => ks(x).forEach((k) => tl.to(persone[k - 1], { opacity: 0, duration: dur || 0.3, ease: "power1.in" }, t)),
+    orbiteVia: (x, t, dur) => [].concat(x).forEach((k) => tl.to(orbite[k - 1], { attr: { opacity: 0 }, duration: dur || 0.3 }, t)),
+    // le orbite si tingono (il suo rosso → lime) dall'interno verso l'esterno, ognuna col suo alone
+    tinta: (t, passo, x) => (x == null ? orbite.map((_, i) => i + 1) : [].concat(x)).forEach((k, i) => {
+      const tt = t + (passo || 0.1) * i;
+      tl.to(orbite[k - 1], { attr: { stroke: "rgba(207,251,80,.34)", opacity: 1 }, duration: 0.3, ease: "power1.out" }, tt);
+      tl.to(aloni[k - 1], { attr: { opacity: 1 }, duration: 0.4, ease: "power1.out" }, tt);
+    }),
+  };
+  return api;
+};
+
+/* @copia r01_tam · «Devi Espandere Il Tuo “TAM” / Per Avere Più Views»: «TAM Dell'Idea», la linea, «Mercato Totale
+ *   Raggiungibile»; poi gli anelli di persone attorno alla tua foto che escono, si allargano, si riempiono e si tingono
+ *   (reel 1, 12,554–23,732 s)
+ * kallaway: reel 1, 12,554 s · taglio: la pillola rossa «Idea TAM» c'è già, sfocata, e sale frenando (centro y 856 → 830 → 810 →
+ *   788 → 767 → 755 → 743 → 722 px a 12,554 · 12,68 · 12,80 · 13,01 · 13,26 · 13,43 · 13,72 · 14,8 s), a fuoco in 0,3 s, una banda
+ *   di luce la passa (13,1–13,3 s); il titolo parola per parola («You Must Expand» 13,01 · «Your “TAM”» 13,18 bianche) e il
+ *   riquadro rosso della riga 2 che si allunga da x 228 a 851 (12,85–13,47 s) con «To Get» 13,18 · «More Views» 13,43–13,47;
+ *   da 13,4 s una linea bianca curva parte dal lato sinistro della pillola e scende a «Total Addressable Market» (corsivo, 13,93 ·
+ *   14,26 · 14,6 s); a 15,77 s tutto lascia il posto agli anelli: il suo avatar (centro y 907) e gli anelli di omini che escono dal
+ *   centro uno dopo l'altro (raggio esterno 185 → 300 px in 0,25 s); la camera sale (avatar a y 862 · 837 · 820 · 807 · 798 ·
+ *   791 · 786 · 784 px a 16,0 … 17,8 s); 17,5–19,8 s la camera si avvicina ×1,29 e compaiono le orbite grigie; 20,0–21,4 s un
+ *   anello nuovo gira dall'alto in senso orario (scia luminosa) e la camera si allontana (×0,89): gli anelli sono 10; 22,5–23,7 s
+ *   le orbite si tingono di rosso dal centro in fuori, la camera si avvicina piano (×0,97)
+ * misure: pillola 580×122 (x 250–830); riga 1 x 155–920 (y 180–222); riquadro x 228–851, y 230–298; «Total Addressable Market»
+ *   x 225–855 col centro a y 930 (14,8 s); anelli: raggio esterno 300 px a ×1 (7 anelli), 387 a ×1,29, 391 a 23,5 s (10 anelli)
+ * scena: t0 (12,554), t1 (23,732), X, Y, parent
+ * colori: pillola rossa → lime con la scritta scura; riquadro rosso → lime; orbite rosse → lime con l'alone
+ */
+COPIA.r01_tam = (scena, o) => {
+  o = o || {};
+  const L = scena.parent || layer(13), X = scena.X, Y = scena.Y, W = (sx, sy) => [X - 540 + sx, Y - 880 + sy];
+  const t0 = scena.t0, t1 = scena.t1, a = (t) => t0 + (t - 12.554);
+  // titolo (HUD)
+  const T1 = r5Titolo({ righe: [[{ t: "Devi Espandere Il Tuo “TAM”", ruolo: "sans", size: 64 }]], y: 160, interlinea: [70] });
+  T1.inAt([12.84, 12.84, 12.84, 13.01, 13.01].map(a));
+  const T2 = COPIA.T02({ t0: 0, parent: hud, y: 230, x0: 228 }, { testo: ["Per", "Avere", "Più", "Views"], ruoli: ["sans", "sans", "serif", "serif"], fs: 60, fsSerif: 70, h: 68,
+    tempi: [13.18, 13.18, 13.43, 13.47].map(a), bordo: [[12.846, 229], [12.888, 247], [12.93, 277], [12.971, 323], [13.013, 362], [13.055, 414], [13.096, 474], [13.138, 527], [13.18, 590], [13.222, 646], [13.263, 701], [13.305, 746], [13.347, 788], [13.388, 821], [13.43, 845], [13.472, 851]].map(([t, x]) => [a(t), x]) });
+  tl.set([T1.root, T2.elementi.root], { opacity: 0 }, t1);
+  // la pillola «TAM Dell'Idea», la linea e «Mercato Totale Raggiungibile» (un gruppo che sale frenando)
+  const grp = layered(el(L, { position: "absolute", left: 0, top: 0, width: 1, height: 1, zIndex: 12 }));
+  const [px, py] = W(540, 722);
+  const chip = layered(el(grp, { position: "absolute", left: px - 290, top: py - 61, width: 580, height: 122, borderRadius: 4, background: "linear-gradient(90deg,#c4ef44 0%,#CFFB50 45%,#9fc232 100%)", boxShadow: "inset 0 0 0 2px rgba(255,255,255,.55), 0 0 30px rgba(207,251,80,.25)", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden", fontFamily: FD, fontWeight: 700, fontSize: 62, color: K.ink, letterSpacing: "-0.02em", whiteSpace: "nowrap", zIndex: 3 }, "TAM Dell'Idea"));
+  const band = el(chip, { position: "absolute", left: -120, top: -20, width: 90, height: 162, background: "linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.85),rgba(255,255,255,0))", transform: "skewX(-18deg)", opacity: 0 });
+  tl.set(band, { opacity: 1 }, a(13.1));
+  tl.fromTo(band, { x: 0 }, { x: 760, duration: 0.25, ease: "none", immediateRender: false }, a(13.1));
+  tl.set(band, { opacity: 0 }, a(13.36));
+  gsap.set(chip, { filter: "blur(7px)" });
+  tl.to(chip, { filter: "blur(0px)", duration: 0.3, ease: "power2.out" }, t0);
+  tl.set(chip, { filter: "none" }, t0 + 0.31);
+  const S = svgLayer(grp, 2, px - 600, py - 300, 1200, 700);
+  const lin = connector(S, [], { d: `M${px - 290} ${py + 8} C${px - 420} ${py + 30} ${px - 450} ${py + 190} ${px - 300} ${py + 210}`, color: "rgba(255,255,255,.92)", w: 3.5 });
+  lin.p.style.filter = "drop-shadow(0 0 6px rgba(255,255,255,.8))";
+  lin.draw(a(13.38), 0.5, "power1.inOut");
+  const TM = r5Titolo({ righe: [[{ t: "Mercato Totale Raggiungibile", ruolo: "serif", size: 66 }]], parent: grp, x: px, y: py + 172, z: 4 });
+  TM.inAt([13.76, 14.09, 14.43].map(a));
+  const su = cpCurva([[0, 856], [0.042, 846], [0.084, 838], [0.125, 830], [0.167, 823], [0.209, 816], [0.25, 810], [0.334, 800], [0.459, 788], [0.584, 777], [0.709, 767], [0.876, 755], [1.168, 743], [1.6, 733], [2.25, 722], [3.2, 712]].map(([u, y]) => [t0 + u, y - 722]));
+  const st = { v: 0 };
+  gsap.set(grp, { y: su(t0) });
+  tl.fromTo(st, { v: 0 }, { v: 1, duration: 3.2, ease: "none", immediateRender: false, onUpdate: () => gsap.set(grp, { y: su(t0 + st.v * 3.2) }) }, t0);
+  tl.set(grp, { opacity: 0 }, a(15.77));
+  // gli anelli attorno alla tua foto (15,77 s)
+  const [cx, cy] = W(540, 907);
+  // 5 anelli di persone (raggi 70 · 125 · 180 · 235 · 290, 6 → 31 persone) + 3 che arrivano girando (330 · 368 · 405); le orbite ogni
+  // 27 px (misurate a 18,6 s: le linee sono il doppio degli anelli di persone)
+  const orb = Array.from({ length: 13 }, (_, m) => 70 + 28 * m);
+  const an = r1Anelli(L, cx, cy, { raggi: [70, 125, 180, 235, 290, 330, 368, 405], conte: [6, 12, 18, 24, 31, 35, 39, 43], orbite: orb });
+  const av = r1Avatar(L, cx, cy, { r: 48, z: 9 });
+  gsap.set(av, { opacity: 0 });
+  tl.set(av, { opacity: 1 }, a(15.77));
+  for (let k = 1; k <= 5; k++) an.esce(k, a(15.70 + 0.06 * (k - 1)), 0.3);
+  an.orbiteIn(a(17.75), 0.5, [1, 2, 3, 4, 5, 6, 7, 8, 9]);
+  // tre anelli nuovi che girano dall'alto in senso orario (20,27 · 20,74 · 21,02 s, ~0,5 s l'uno), con le loro orbite
+  [[6, 20.27, [10, 11]], [7, 20.74, [12]], [8, 21.02, [13]]].forEach(([k, t, ob]) => { an.giro(k, a(t), 0.5); an.orbiteIn(a(t + 0.2), 0.6, ob); });
+  an.tinta(a(22.45), 0.09);
+  // l'alone largo attorno agli anelli che si accende con la tinta (il suo rosso scuro fino a ~r 520 → lime tenue)
+  const alone = layered(el(L, { position: "absolute", left: cx - 560, top: cy - 560, width: 1120, height: 1120, borderRadius: "50%", background: "radial-gradient(circle, rgba(207,251,80,0) 35%, rgba(207,251,80,.07) 62%, rgba(207,251,80,.05) 80%, rgba(207,251,80,0) 100%)", opacity: 0, zIndex: 2 }));
+  tl.to(alone, { opacity: 1, duration: 1.0, ease: "power1.out" }, a(22.6));
+  // la camera: sale con l'avatar, si avvicina (×1,29), si allontana mentre si riempiono gli anelli, si riavvicina piano
+  const ya = [[15.77, 907], [16.02, 862], [16.27, 837], [16.52, 820], [16.77, 807], [17.02, 798], [17.27, 791], [17.52, 786], [17.77, 784], [19.0, 780], [20.0, 778], [20.77, 768], [21.5, 765], [22.5, 762], [23.73, 762]];
+  cpCam.percorso(ya.map(([t, y]) => [a(t), 0, y - 907]));
+  cpCam.scala([[17.27, 1], [17.52, 1.02], [17.77, 1.067], [18.02, 1.137], [18.27, 1.187], [18.52, 1.223], [18.77, 1.247], [19.02, 1.267], [19.27, 1.277], [19.52, 1.287], [19.8, 1.29], [20.0, 1.27], [20.3, 1.15], [20.6, 1.0], [21.0, 0.92], [21.4, 0.89], [21.8, 0.887], [22.27, 0.9], [22.52, 0.92], [22.77, 0.935], [23.02, 0.945], [23.27, 0.955], [23.52, 0.963], [23.73, 0.97]].map(([t, k]) => [a(t), k]), [540, 784]);
+  tl.set(L, { opacity: 0 }, t1);
+  return { rect: null, pose: null, ancore: { avatar: [cx, cy] }, elementi: { T1, T2, chip, lin, TM, an, av } };
+};

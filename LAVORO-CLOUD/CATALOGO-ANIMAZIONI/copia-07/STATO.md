@@ -1,6 +1,6 @@
 # Blocco C2b · copia del REEL 1 intero (copia-07, porta :3047; in cloud niente anteprima)
 
-**Riga di stato (16/10, cloud):** IN CORSO. Fatte le scene 1–4 (build; snapshot guardate contro Kallaway con snap_kd.py). Prossima: scena 5 (r01_tam, 12,554–23,732 s). Chi riprende: `bash LAVORO-CLOUD/_tools/ripristina.sh`, poi riparte dalla prima riga «da fare» qui sotto (codice in `kw-kit/kit2-copia-r01.js`, `kit2-copia-c2b-*.js`; composizione `copia-07/index.src.html`, segnaposto `//__SCENE__`).
+**Riga di stato (16/10, cloud):** IN CORSO. Fatte le scene 1–6 (build; snapshot guardate contro Kallaway con snap_kd.py). Prossima: scena 7 (r01_specifico, 28,654–33,075 s). Chi riprende: `bash LAVORO-CLOUD/_tools/ripristina.sh`, poi riparte dalla prima riga «da fare» qui sotto (codice in `kw-kit/kit2-copia-r01.js`, `kit2-copia-c2b-*.js`; composizione `copia-07/index.src.html`, segnaposto `//__SCENE__`).
 
 Reel 1 = `TUTTI-I-REEL/2026-10-08_DePIvvKub8b.mp4` (inventario n = 1), 720×1280, 23,976 fps, video 119,33 s (2861 fotogrammi), audio
 119,42 s. Trascrizione `_lavoro/r01_parole.json` (Parakeet tarato). Dopo la fine del reel, la coda A01 dal reel 25 (0–3,042 s):
@@ -13,8 +13,8 @@ composizione 122,462 s. Media: `_lavoro/media.py` → `assets/` (`_sorgenti.json
 | 2 | 4,63–5,589 | facecam piena | cpFacecam | fatto |
 | 3 | 5,589–9,426 | il tuo reel con le views che contano (F02 sul badge), cambia reel, zoom indietro nel muro di ~100 reel che scorre | COPIA.r01_cento (F02) | fatto |
 | 4 | 9,426–12,554 | facecam piena | cpFacecam | fatto |
-| 5 | 12,554–23,732 | «Devi Espandere Il Tuo “TAM” / Per Avere Più Views»: «TAM Dell'Idea», la linea, «Mercato Totale Raggiungibile»; gli anelli di persone attorno alla tua foto che crescono | COPIA.r01_tam | da fare |
-| 6 | 23,732–28,654 | facecam piena (stacco sulla faccia a 27,82 s) | cpFacecam | da fare |
+| 5 | 12,554–23,732 | «Devi Espandere Il Tuo “TAM” / Per Avere Più Views»: «TAM Dell'Idea», la linea, «Mercato Totale Raggiungibile»; gli anelli di persone attorno alla tua foto che crescono | COPIA.r01_tam | fatto |
+| 6 | 23,732–28,654 | facecam piena (stacco sulla faccia a 27,82 s) | cpFacecam | fatto |
 | 7 | 28,654–33,075 | «I Contenuti Specifici / Raggiungono Meno Persone»: la tua foto, l'imbuto che sale, «Idea» e «Angolo» | COPIA.r01_specifico | da fare |
 | 8 | 33,075–33,575 | facecam piena | cpFacecam | da fare |
 | 9 | 33,575–43,168 | il logo dell'agenzia, i tre argomenti specifici; gli anelli di persone che si stringono e diventano lime | COPIA.r01_agenzia | da fare |

@@ -10,7 +10,8 @@
  *   per fotogramma, _script_copia07/); il titolo resta fino al taglio
  * quando: la riga del titolo con la promessa (il risultato, il numero)
  * scena: t0 (0: i tempi misurati partono da qui), parent (hud), y (alto del riquadro, 211), x0 (bordo sinistro, 156)
- * opzioni: testo ([parole]), tempi ([istante di ogni parola]), fs (78), bordo ([[t, x destro]] la curva del riquadro), h (91)
+ * opzioni: testo ([parole]), tempi ([istante di ogni parola]), fs (78), bordo ([[t, x destro]] la curva del riquadro), h (91),
+ *   ruoli ([ "sans" | "serif" ] per parola: il suo corsivo serif dentro il riquadro → Patrick Hand), fsSerif (fs × 1,18)
  * restituisce: elementi { box, parole, scure }
  * colori: il suo rosso con la scritta bianca → lime con la scritta scura; fuori dal riquadro la scritta resta bianca sul nero
  *   (due strati: bianco sotto, scuro ritagliato dal riquadro sopra, così si legge mentre il bordo passa)
@@ -25,7 +26,13 @@ COPIA.T02 = (scena, o) => {
   const riga = (col, sh) => el(root, { position: "absolute", left: 0, top: 0, width: W, height: h, display: "flex", alignItems: "center", justifyContent: "center", whiteSpace: "nowrap", fontFamily: FD, fontWeight: 700, fontSize: fs, lineHeight: 1, letterSpacing: "-0.02em", color: col, textShadow: sh });
   const bianca = riga(K.white, CP_GLOW_T), scura = riga(K.ink, "none");
   const testo = o.testo || ["Un", "Milione", "Di", "Views"];
-  const mk = (r) => testo.map((p, i) => { const w = el(r, { display: "inline-block", whiteSpace: "pre" }, (i ? " " : "") + p, "span"); gsap.set(w, { opacity: 0, filter: "blur(9px)", y: 5 }); return w; });
+  const ruoli = o.ruoli || [];
+  const mk = (r) => testo.map((p, i) => {
+    const serif = ruoli[i] === "serif";
+    const w = el(r, Object.assign({ display: "inline-block", whiteSpace: "pre" }, serif ? { fontFamily: FH, fontWeight: 400, fontSize: o.fsSerif || Math.round(fs * 1.18), letterSpacing: "0" } : {}), (i ? " " : "") + p, "span");
+    gsap.set(w, { opacity: 0, filter: "blur(9px)", y: 5 });
+    return w;
+  });
   const P = mk(bianca), S = mk(scura);
   const tempi = o.tempi || [0.58, 0.6, 0.63, 0.71];
   P.forEach((w, i) => {
